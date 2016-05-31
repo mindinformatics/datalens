@@ -1,0 +1,86 @@
+<HTML>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-5135464-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script><HEAD>
+<TITLE>JAD - Home</TITLE>
+<style type="text/css">
+h1 {
+	color: #FF9900;
+}
+</style>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/inc/global/header.php"); ?>
+	<TR>
+		
+    <TD ROWSPAN=2 bgcolor="#FFFFFF" valign="top" align="left"> <IMG SRC="/images/home_image1.jpg" WIDTH=198 HEIGHT=244 ALT=""></TD>
+    <TD bgcolor="#000000" valign="top" align="left" width="171"><IMG SRC="/images/left_1.jpg" WIDTH=171 HEIGHT=121 ALT=""></TD>
+    <TD COLSPAN=3 align="left" valign="top" bgcolor="#FFFFFF"> 
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+    		
+        <td height="121" align="left" valign="bottom"><img src="images/slogan_area.gif" width="55" height="97" align="bottom"></td>
+		<td align="left" valign="center">
+          <p><font face="Arial" size="2">The Journal of Alzheimer's Disease 
+            is an international multidisciplinary journal with a mission to facilitate 
+            progress in understanding the etiology, pathogenesis, epidemiology, 
+            genetics, behavior, treatment and psychology of Alzheimer's 
+            disease.</font></p></td>
+		</tr>
+		</table>
+    </TD>
+	</TR>
+	<TR>
+    <TD bgcolor="#000000" valign="top" height="94" width="171"> 
+      <table width="171" border="0" cellspacing="2" cellpadding="2">
+        <tr>
+          <td height="115" valign="top"> 
+            <p> <font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#FFFFFF"> 
+            <a href="advertising/index.html"><font color="#FFFFFF" face="Verdana"> 
+            Advertise with us</font></a> </font></p>
+            <p>&nbsp;</p>
+          </td>
+        </tr>
+      </table>
+    </TD>
+    <TD valign="top" height="94" colspan="3"> <p><a href="https://www.facebook.com/journalad" target="_blank"><img src="images/right_7.jpg" width="208" height="121"></a></p>
+      </TD>
+	</TR>
+	<TR>
+	<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/inc/global/google.php"); ?>
+  <TD COLSPAN=4 bgcolor="#FFFFFF" valign="top"><p></p>
+    <p><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#FF9900"><b>ANNOUNCEMENTS</b></font>:</a>
+    </p>
+    <ul>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="http://www.j-alz.com/newcentury/index.html" target="_blank"><span lang="EN-US">New book available: Alzheimer&rsquo;s Disease: Advances for a New Century</span></a><strong><a href="http://www.j-alz.com/issues/6/vol6-1.html"> <img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></a></strong></font></li>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="https://www.facebook.com/journalad" target="_blank">Join us on Facebook!</a><strong><a href="http://www.j-alz.com/issues/6/vol6-1.html"> <img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></a></strong></font></li>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="award/award_2012.html">Anders Lönneborg receives the 2012 Alzheimer Award.</a><strong><a href="http://www.j-alz.com/issues/6/vol6-1.html"> <img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></a></strong></font></li>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="http://www.iospress.nl/journal/journal-of-huntingtons-disease/" target="_blank">IOS Press adds Journal of Huntington's Disease as sister journal of JAD</a></font>.<font size="1" face="Verdana, Arial, Helvetica, sans-serif"><strong><a href="http://www.j-alz.com/issues/6/vol6-1.html"> <img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></a></strong></font></li>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="http://www.j-alz.com/links/JPD.html">IOS Press adds Journal of Parkinson's Disease as sister journal of JAD</a></font>.<font size="1" face="Verdana, Arial, Helvetica, sans-serif"><strong><a href="http://www.j-alz.com/issues/6/vol6-1.html"> <img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></a></strong></font></li>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="http://www.j-alz.com/marksmith.html">In Memory of Mark A. Smith</a></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><strong><a href="http://www.j-alz.com/issues/6/vol6-1.html"> <img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></a></strong></font></li>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="http://www.wfn-rgd.org" target="_blank">Members of the World Federation of Neurology Research Group on Dementia now have access to JAD. Go to www.wfn-rgd.org for access.</a><strong><a href="http://www.j-alz.com/issues/6/vol6-1.html"> <img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></a></strong></font></li>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="press/2010/20100824.html">JAD #18 on Index Copernicus™ Top 100 Journal List</a><strong><a href="http://www.j-alz.com/issues/6/vol6-1.html"> <img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></a></strong></font></li>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="top100/introduction.html">Top 100 AD Researchers new web page.</a><strong><a href="/issues/6/vol6-1.html"><font face="Verdana" size="1" color="#CCCC00"> <img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></font></a></strong></font></li>
+      <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="http://www.scimagojr.com/journalsearch.php?q=13872877&tip=iss&clean=0" target="_blank">Follow JAD's rise in the field.</a><img src="http://www.j-alz.com/images/2oranges.gif" alt="" width="8" align="absmiddle" border="0" height="8" /></font></li>
+    </ul>
+    <h1><!-- Facebook Badge START --><a href="https://www.facebook.com/journalad" target="_blank" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="Journal of Alzheimer&#039;s Disease">Find us on Facebook</a><br/>
+      <a href="https://www.facebook.com/journalad" target="_blank" title="Journal of Alzheimer&#039;s Disease"><img src="https://badge.facebook.com/badge/349783551741403.1979.636066553.png" style="border: 0px;" /></a><!-- Facebook Badge END --></h1>
+<p><em><a href="links/AIADvol1flyer.pdf" target="_blank"><strong>Handbook of Animal Models in Alzheimer&rsquo;s Disease</strong></a></em><strong><a href="links/AIADvol1flyer.pdf" target="_blank">, the first volume of JAD&rsquo;s new book series<em> Advances in Alzheimer&rsquo;s Disease </em>is available for order.</a></strong></p>
+    <p><em><a href="links/AIADvol2flyer.pdf" target="_blank"><strong>Handbook of Imaging the Alzheimer Brain</strong></a></em><strong><a href="links/AIADvol2flyer.pdf" target="_blank">, the second volume of JAD&rsquo;s new book series<em> Advances in Alzheimer&rsquo;s Disease </em>is available for order.</a></strong></p>
+    <p><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#FF9900"><b>IN 
+      THE SPOTLIGHT</b></font>:</p>
+    <p><b> <img src="images/cover_new.jpg" width="80" height="109" align="left"></b></p>
+    <p><b><font face="Verdana" size="1" color="#CCCC00"><a href="/issues/35/vol35-2.html"><font face="Verdana">Volume 35, No. 2  - April  2013</font></a><font face="Verdana"> <img src="/images/2oranges.gif" alt="" width="8" height="8" border="0" align="absmiddle"></font></font></b></p>
+    <p><b><font face="Verdana" size="1" color="#CCCC00"><a href="/issues/35/vol35-1.html"><font face="Verdana">Volume 35, No. 1 - March 2013</font></a><font face="Verdana"> <img src="/images/2oranges.gif" alt="" width="8" height="8" border="0" align="absmiddle"></font></font></b></p>
+    <p><b><font face="Verdana" size="1" color="#CCCC00"><a href="/issues/34/vol34-4.html"><font face="Verdana">Volume 34, No. 4 - March 2013</font></a><font face="Verdana"> <img src="/images/2oranges.gif" alt="" width="8" height="8" border="0" align="absmiddle"></font></font></b></p>
+    <p><b><font face="Verdana" size="1" color="#CCCC00"><a href="/issues/34/vol34-3.html"><font face="Verdana">Volume 34, No.  3 - March 2013</font></a><font face="Verdana"> <img src="/images/2oranges.gif" alt="" width="8" height="8" border="0" align="absmiddle"></font></font></b></p>
+<p>&nbsp;</p>
+    <p align="left"><img src="images/recommend_files/JHD.jpg" alt="http://www.iospress.nl/journal/journal-of-huntingtons-disease/" width="89" height="122" align="middle"><font color="#000000" size="2"><strong><a href="http://www.iospress.nl/journal/journal-of-huntingtons-disease/" target="_blank">NEW Sister Journal: Journal of Huntington&rsquo;s Disease (JHD)</a></strong></font></p>
+    <p><a href="http://www.j-alz.com/links/JPD.html"><img src="images/links_files/JPD.jpg" width="88" height="120" align="middle"></a><font color="#000000" size="2"><strong><a href="http://www.j-alz.com/links/JPD.html">NEW Sister Journal: Journal of Parkinson&rsquo;s Disease (JPD)</a></strong></font></p>
+    <a href="http://www.iospress.nl/html/aiad.php" target="_blank"><img src="images/links_files/AIAD.jpg" alt="Advances in Alzheimer’s Disease" width="85" height="134" align="middle"></a><font color="#000000" size="2"><strong><a href="http://www.iospress.nl/bookserie/advances-in-alzheimers-disease/" target="_blank">New Book Series: Advances in Alzheimer&rsquo;s Disease</a></strong></font></p>
+	<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/inc/global/footer.php"); ?>
+	

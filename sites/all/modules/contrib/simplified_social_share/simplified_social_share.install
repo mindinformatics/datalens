@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Provides uninstall function for the socialsharing module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function simplified_social_share_uninstall() {
+  variable_del('socialsharing_api_key');
+  variable_del('socialsharing_horizontal');
+  variable_del('socialsharing_selected_share_interface');
+  variable_del('socialsharing_enable_horizontal_share');
+  variable_del('socialsharing_enable_vertical_share');
+  variable_del('socialsharing_label_string');
+  variable_del('socialsharing_horizontal_images');
+  variable_del('socialsharing_vertical_images');
+  variable_del('socialsharing_show_horizotal');
+  variable_del('socialsharingcounter_rearrange_providers_list');
+  variable_del('socialsharing_counter_show_providers_list');
+  variable_del('socialsharing_rearrange_providers_list');
+  variable_del('socialsharing_show_providers_list');
+  variable_del('socialsharing_rearran_providers_list');
+  variable_del('socialsharing_show_veritical');
+  variable_del('socialsharingcounter_vertical_rearrange_providers_list');
+  variable_del('socialsharing_counter_vertical_show_providers_list');
+  variable_del('socialsharing_vertical_rearrange_providers_list');
+  variable_del('socialsharing_vetical_show_providers_list');
+  variable_del('socialsharing_vertical_rearra_providers_list');
+  variable_del('socialsharing_vertical_position');
+  variable_del('socialsharing_vertical_topweight');
+  variable_del('socialsharing_horizontal_location');
+  variable_del('socialsharing_vertical_location');
+  variable_del('socialsharing_position_top');
+  variable_del('socialsharing_position_bottom');
+  variable_del('socialsharing_top_weight');
+  variable_del('socialsharing_bottom_weight');
+  variable_del('socialsharing_show_pages');
+  variable_del('socialsharing_show_exceptpages');
+  variable_del('socialsharing_vertical_show_pages');
+  variable_del('socialsharing_vertical_show_exceptpages');
+  variable_del('socialsharing_user_fields');
+  variable_del('socialsharing_profile_fields');
+  variable_del('thanks_block');
+  variable_del('socialsharing_enable_share');
+  variable_del('socialsharing_commenting_enable');
+  variable_del('socialsharing_commenting_show');
+}

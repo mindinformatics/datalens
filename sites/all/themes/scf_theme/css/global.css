@@ -1,0 +1,1354 @@
+/* This file will hold styles for the mobile version of your website (mobile first). */
+/* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. */
+
+body {
+  font: 13px/18px Helvetica, Arial, Verdana, sans-serif;
+  letter-spacing: 0px;
+  background-repeat: repeat-x;
+  background-color: #A9A3A1;
+  background-position: 0px 110px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, Verdana,sans-serif;
+  line-height: 1em;
+  letter-spacing: 0px;
+}
+
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
+  margin-bottom: 10px;
+}
+ 
+sup {
+	vertical-align: super;
+}
+
+sub {
+	vertical-align: sub;
+}
+
+a:link {
+  text-decoration: none;
+  color: #00456a; /*  */
+}
+
+a:visited {
+  color: #00456a;
+}
+
+a:hover {
+	color: #8DC63F;  /* SCRF Light Green */
+}
+
+
+#zone-branding,
+#zone-content,
+#zone-header,
+#zone-menu {
+  background: white;
+  padding: 0px 15px;
+}
+
+#zone-footer {
+  background:  #4d4d4d;
+  padding: 0px 15px;
+}
+
+
+/* Header */
+#zone-branding-wrapper,
+#zone-branding {
+	height: 115px;
+}
+
+#region-branding {	
+	display: inline-block;
+	float: left;
+}
+
+#region-user-first {
+	display: inline-block; 
+	float: right;
+}
+
+#region-user-second {	
+	float: right;
+}
+
+/* Footer */
+
+
+#zone-footer,
+#zone-footer a,
+#zone-footer p {
+	color: white;
+	font-weight: bold;
+	padding-bottom: 12px;
+}
+
+
+
+#zone-footer .footer-menu li {
+    border-right: 1px solid #fff;
+    display: inline;
+    list-style-type: none;
+    margin-right: 10px;
+    padding-right: 10px;
+}
+
+#zone-footer .copyright {
+    float: left;
+}
+#zone-footer .footer-menu{
+    float: right;
+}
+
+#region-footer-first {
+	padding: 30px 10px;	
+}
+
+#region-footer-first ul {
+	list-style: none;
+}
+
+#region-footer-first p {
+	margin-bottom: 5px;
+}
+
+
+/* Logo config */
+
+.logo-img img{
+  height: auto;
+  padding-top: 10px;
+  width: 70%;
+}
+
+/* Social block */
+#block-block-15 {
+	float: right;
+	padding-top: 10px; 
+}
+
+/* Search button etc */
+input[type="submit"] {
+  background: none repeat scroll 0 0 #8DC63F;
+  border: 0 solid #aaaeb1;
+  border-radius: 3px;
+  color: white;
+  font-weight: normal;
+  text-shadow: none;
+}
+
+.form-actions input:hover {
+  background: none repeat scroll 0 0 #007099;
+}
+
+.block-search .block-title{
+	display: none;
+}
+
+.block-search  {
+/* 	padding-top: 25px; */
+	float: right;
+}
+
+.block-search #search-block-form {  
+  margin-bottom: 1em;
+ 
+}
+
+.block-search #search-block-form--2 {  
+  margin-bottom: 1em;
+}
+
+
+/* user welcome and login menu */
+#block-scfmembers-scfmembers-user-top-menu {
+	width: 600px;	
+	float: right;
+	padding-top: 0px;
+}
+
+#block-scfmembers-scfmembers-user-top-menu .item-list{
+	float: right;
+	padding: 5px 0px;
+}
+
+#block-scfmembers-scfmembers-user-top-menu .item-list ul{
+	margin: 0;	
+}
+
+#block-scfmembers-scfmembers-user-top-menu h2.block-title {
+	display: none;
+}
+
+#scfmembers_user_menu li{
+	display: inline;
+	color: #066862;
+	font-family: Helvetica, Arial, Verdana;
+  	font-size: 12px;
+  	font-weight: bold;
+ 	border-right: 1px solid #CCCCCC;
+ 	padding: 2px 10px;
+ 	margin: 0;
+}
+
+#scfmembers_user_menu li.last{
+	border: none;
+}
+
+.breadcrumb {
+  	padding-top: 0.5em;
+  	padding-bottom: 0.7em;
+}
+
+
+/** Menu **/
+nav {
+	display: none;
+}
+
+#region-menu {
+	height: 30px;
+}
+
+/* for nice-menu down bg color */
+#region-menu ul li ul {
+	background-color:  #b9dc89;
+}
+
+#region-menu.grid-12 {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.block-nice-menus {
+  line-height: 17px;
+}
+
+#region-menu ul ul {
+	background: none;
+	margin-top: 7px;
+}
+
+ul.nice-menu, 
+ul.nice-menu ul {
+  	z-index: 10;
+}
+
+ul.nice-menu-down li.menuparent,
+ul.nice-menu-down li.menuparent:hover  {
+  	background: none;
+}
+
+ul.nice-menu-down li ul li ul {
+  	left: 201px;
+}
+
+ul.nice-menu-down ul li.menuparent > a:after {
+  	 /*content: '>';*/
+  	content: url('../images/arrow_menu.png'); 
+  	color: white;
+  	padding-right: 0px;
+  	margin-right: 0px;
+  	float: right;
+}
+
+#region-menu ul.nice-menu ul li,
+#region-menu ul.nice-menu ul li.first {
+	border: 0;
+	padding: 14px 26px 12px 26px;
+	border-bottom: 1px solid white;
+}
+
+#region-menu ul.nice-menu ul li.last {
+	border: 0;
+	padding: 12px 26px;
+	border-bottom: 0;
+}
+
+#region-menu ul.nice-menu li {
+  	background: none;
+  	border-top: 0;
+  	border-bottom: 0;
+  	border-left: 0;
+  	margin-top: 1px;
+  	margin-bottom: 1px;
+  	padding: 6px 12px;
+}
+
+#region-menu ul.nice-menu li.last {
+	border-right: none;  
+}
+
+#region-menu ul.nice-menu a {
+  	color: black;
+  	font-size: 11px;
+  	font-family: Helvetica, Arial, Verdana, sans-serif;
+  	font-weight: normal;
+  	padding: 0px;
+  	text-transform: uppercase;
+  	letter-spacing: 0.05em;
+}
+
+#region-menu ul.nice-menu li.active,
+#region-menu ul.nice-menu li.active-trail{
+  	background-color: #b9dc89;
+}
+
+#region-menu ul.nice-menu li:hover{
+  	background-color: #b9dc89; 
+}
+
+#region-menu ul.nice-menu li li.active-trail,
+#region-menu ul.nice-menu li li:hover {
+  	margin-top: -1px;
+}
+
+
+
+/* Slider */
+.front .block-nivo-slider .theme-dark.slider-wrapper {
+	padding: 0;
+}
+
+.front .block-nivo-slider {
+	margin-top: 1px;
+}
+
+.front .nivo-caption {
+  width: 40%; 
+  height: 200px;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 15px;
+  opacity: 1;
+  padding: 20px 20px;
+  background-color: #B096DA	; 
+}
+
+.front .nivoSlider {
+  height: 200px;
+  width: 700px;
+}
+
+.front .nivoSlider img {
+  max-height: 200px;
+  max-width: 696px;
+}
+
+.nivo-caption h2 {
+  color: #34282C;
+  font-size: 15px;
+  line-height: 1.5em;
+}
+
+.nivo-caption p {
+  color: #34282C;
+  display: inline;
+  padding: 0;
+  line-height: 1.5em;
+}
+
+.nivo-caption a {
+  color: #f6ca53 !important;
+  border: none !important;
+  font-size: 13px;
+  line-height: 13px;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+.nivo-caption a:after {
+  content: "» ";
+  padding-left: 4px;
+  padding-right: 10px;
+}
+    
+.front .nivo-controlNav {
+	position: absolute;
+	left: 600px;
+	top: 175px;
+}
+
+
+/* Front page content */
+.front #page-title,
+.front #first-time {
+	display: none;
+}
+
+.front #zone-content .block .content {
+	padding-top: 10px;
+}
+
+.front #region-sidebar-first.grid-3 {
+	width: 34%;
+	padding-right: 2%;
+	margin-top: 10px;
+}
+
+.front #region-content {
+	width: 34%;
+	padding-right: 0%;
+	margin-top: 10px;
+}
+
+/* Block Titles */
+.front .region-content h2.block-title,
+.front .region-sidebar-first h2.block-title {
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	letter-spacing: 0.05em;
+	background: #00AEEF	;
+	color: white;
+	font-size: 14px;
+	padding: 8px 4px 4px 10px;
+	text-transform: uppercase;
+}
+
+.front .region-content h2.block-title{
+   background: #8DC63F;
+}
+
+/* Titles within Blocks*/
+.front .view h2.node-title,
+.front .views-field-title,
+.front .block-field-title,
+.front .views-field-field-meeting-link {
+	font-size: 13px;
+	color: #BFD000;
+	font-weight: bold;
+}
+
+.front .view-latest-articles .block-field-title {
+	/*margin-bottom: 15px; */
+	padding-bottom: 5%;
+}
+
+.front .view-clinical-trials .views-field-title {
+	padding-bottom: 5%;
+	padding-left: 0;
+}
+
+/* Rows within Blocks */
+.front .view-latest-articles .views-row,
+.front .block-block-25 .block-field-row,
+.front .block-paper-alert-block-3 .views-row {
+	margin-bottom: 15px;
+}
+
+.front .block-views-meetings-block .views-row {
+	margin-bottom: 20px;
+}
+
+.front .views-field-description p {
+	margin-bottom: 5px;
+}
+.front .views-field-description .abstract {
+	display: none;
+}
+
+.view-latest-news .more-link,
+.block-forums-block-4 .more-link,
+.block-block-25 .more-link,
+.block-paper-alert-block-3 .more-link,
+.block-clinical-trials-block .more-link,
+.block-views-meetings-block  .more-link {
+	float: left;
+	margin-top: 2px;
+}
+
+.front .more-link a:after {
+    content: "» ";
+    padding-left: 4px;
+    padding-right: 10px;
+}
+
+.front .more-link a {
+    color: #34282C;
+    font-weight: bold;
+    font-size: 11px;
+}
+.front .view footer {
+	display: none;
+}
+
+.front .view .field-item img {
+	float: left;
+}
+
+.front .field-content img {
+	float: left;
+	padding-right: 10px;
+}
+
+.front .views-field-created {
+    bottom: 0;
+    color: #a7a7a7;
+    display: block;
+    left: 0;
+    margin-right: 10px;
+    padding-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 25px;
+    float: left;
+    font-family: Arial,​Helvetica,​Verdana,​sans-serif;
+}
+
+.views-field-created span{
+    display: block;
+    font-family: Arial,Verdana,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.views-field-created .display-month, 
+.views-field-created .display-year {
+    font-size: 10px;
+    line-height: 11px;
+}
+.views-field-created .display-day {
+    font-size: 20px;
+    line-height: 16px;
+}
+
+.front .views-field-body {
+	padding-left: 35px;
+}
+.front .views-field-field-category ,
+.front .views-field-field-forum-category{
+    color: #333;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding-left: 35px;
+}
+
+.front .views-row {
+    border-bottom: 1px solid #cacaca;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+/* Front Page Side bar second */
+.region-sidebar-second {
+	background: #f0f0f0;
+	padding-top: 20px;	
+	margin-top: -10px;
+	width: 22%;
+	float: right !important;
+}
+
+.front .region-sidebar-second {
+	height: 910px;
+	top: -200px;
+}
+
+.region-sidebar-second h2 {
+	font-size: 13px;
+	color: #8DC63F;
+	text-transform: uppercase;
+}
+
+.region-sidebar-second .block {
+	padding-bottom: 20px;
+}
+
+.front .region-sidebar-second img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;	
+}
+
+.region-sidebar-second p {
+	font-weight: bold;
+}
+
+.region-sidebar-second .block .content {
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+
+/* Interior Page Styling */
+.secondary-menu {
+	display: none;
+}
+
+/* Add colors for each section type */
+
+.not-front .zone-content {
+	border-top: 4px solid #A9A3A1;
+}
+
+.node-type-discussion .zone-content,
+.context-forums .zone-content {
+	border-top: 4px solid #8DC63F;
+}
+.node-type-discussion .field-name-body {
+	padding-top: 20px;
+}
+.context-forums h1.title {
+	display: none;
+}
+
+.not-front #region-sidebar-first {
+	margin-left: 10px;
+    margin-right: 0px;
+    width: 20%;
+} 
+
+.not-front #region-content {
+	margin-left: 10px;
+    margin-right: 0px;
+}
+
+.not-front h1 {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: .01em;
+}
+
+.not-front h2 {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: .01em;
+}
+
+.not-front h3 {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: .01em;
+}
+
+.not-front table {
+	border: none;
+}
+
+.not-front .region-content img {
+	padding-right: 20px;
+}
+/* Forums Page styling */
+
+.context-forums label {
+	display: none;
+}
+
+.context-forums .views-exposed-form .views-exposed-widget .form-submit {
+	margin-top: 0;
+}
+
+.context-forums .views-exposed-form .views-exposed-widget.views-widget-filter-tid{
+	padding: 0;
+}
+
+.context-forums .field-name-body {
+	width: 100%;	
+	padding-top: 10px;
+}
+
+.context-forums .field-name-field-forum-category {
+	text-transform: uppercase;
+	font-size: 10px;
+	color: #B096DA	;
+	font-weight: bold;
+	padding-left: 105px;
+	padding-top: 10px;
+	
+}
+.context-forums  #region-content {
+	width: 52%;
+}
+
+/* News Page styling */
+.page-node .node-article .field-type-image img {
+	float: left;
+}
+
+.node-article .field-name-field-subtitle {
+	font-style: italic;
+	font-size: 14px;
+	font-weight: lighter;
+	margin-bottom: 15px;
+}
+
+.node-type-article .node-article h3 {
+	margin-bottom: 20px;
+}
+
+tr:hover td, tr.even:hover td.active, tr.odd:hover td.active {
+    background: none;
+}
+
+.not-front h2.node-title {
+	color: #4D317A;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.block-views-manuscript-block h2 {
+	margin: 20px 0 10px;
+}
+
+.pager {
+	background: none;
+	border: none;
+}	
+
+.pager li {
+	border: none;
+	background: none;
+}
+
+.pager li.pager-current {
+    background: none;
+    color:  #4D317A;
+    outline: 0 none;
+}
+.pager li.pager-next {
+    border: none;
+}
+.pager li a {
+    background: none;
+    cursor: pointer;
+}
+.pager li.pager-first a, .pager li.pager-previous a, .pager li.pager-next a, .pager li.pager-last a {
+    padding: 4px 0;
+    text-align: center;
+    width: 60px;
+}
+
+/* Styling biblio items */
+.front .biblio-editors-pick,
+.view-editor-s-pick .biblio-editors-pick {
+	display: none;
+}
+.view-editor-s-pick .biblio-extra,
+.view-papers .biblio-extra  {
+  padding-bottom: 20px;
+}
+
+.view-papers .biblio-editors-pick {
+	color: #BFD000;
+	font-weight: bold;
+}
+
+
+/* Registration page */
+.page-user-register .tabs ul,
+.page-user-register .fieldset-legend{
+	display: none;
+}
+
+.page-user-register #user-register-form .form-actions {
+	margin-left: 180px;
+}
+
+form#user-register-form label {
+    color: #727272;
+    float: left;
+    font-size: 11px;
+    padding-right: 16px;
+    padding-top: 1px;
+    text-align: right;
+    text-transform: uppercase;
+    width: 160px;
+}
+
+form#user-register-form .description {
+    clear: both;
+    margin-left: 180px;
+    width: 360px;
+}
+
+form#user-register-form .form-text,
+form#user-register-form .form-textarea {
+    border: 1px solid #727272;
+    color: #000;
+    width: 360px;
+}
+
+form#user-register-form .grippie {
+    display: none;
+}
+
+form#user-register-form select {
+    border: 1px solid #727272;
+    color: #000;
+    width: 360px;
+}
+
+
+/* Hide Biblio settings in account profile form */
+form#user-profile-form #edit-biblio-fieldset,
+form#user-profile-form .form-item-name {
+	display: none;
+}
+
+
+
+/* Members Directory Theming */
+.view-members2 td {
+    padding: 10px 10px 10px 0 ;
+    vertical-align: top;
+    width: 50%;
+}
+
+.view-members2 .views-field-field-xfp-photo {
+	float: left;
+}
+
+.view-members2 .views-field-field-xfp-photo img {
+	padding-right: 19px;
+}
+	
+.view-members2 .views-field-field-xfp-aoi {
+	width: 68%;
+	float: right;
+	padding-top: 15px;
+}	
+
+.view-members2 .views-field-field-xfp-aoi .field-content {
+	color: #4D317A;
+}
+
+.view-members2 .views-field-field-xfp-member-type {
+	font-weight: bold;
+}
+
+.view-members2 a.alpha-page {
+	padding: 5px;
+}
+
+.view-members2 .views-field-realname {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.page-members .region-content {
+	margin: 10px 25px;
+}
+
+.page-members .container-12 .grid-9 {
+    width: 670px;
+}
+
+
+/* Member Page  */
+.page-user ul.tabs,
+.page-user .profile h3 {
+	display: none;
+}
+
+.page-user-edit ul.tabs {
+	display: block;
+}
+.page-user .profile .field-name-field-xfp-photo {
+	float: left;
+}
+
+.page-user .profile .field-name-field-xfp-member-type,
+.page-user .profile .field-name-field-xfp-lab-url,
+.page-user .profile .field-name-field-xfp-orcid,
+.page-user .profile .field-name-field-xfp-aoi,
+.page-user .profile .field-name-field-xfp-affiliation,
+.page-user .profile .field-name-field-xfp-bio
+{
+  float: right;
+  width: 85%;
+  padding-bottom: 4px;
+}
+
+.page-user .field-name-field-xfp-member-type {
+	font-weight: bold;
+	
+}
+
+.page-user .block-member-commented-on-block-1 h2 {
+	text-transform: uppercase;
+	font-family: Helvetica, Arial, Verdana,sans-serif;
+	font-size: 12px;	
+	color: #4D317A;
+	
+}
+
+.page-user .block-member-commented-on-block-1  {
+	border: 1px solid #4D317A;
+	float: right;
+    width: 85%;
+    margin-bottom: 40px;
+}
+
+.page-user .block-member-commented-on-block-1  .content {
+	padding: 20px;
+}
+
+.page-user .block-member-commented-on-block-1  h2 {
+	background-color:#f0f0f0;
+	padding: 10px 20px;
+}
+
+.page-user .views-field-title {	
+	font-weight: bold;
+	padding-top: 5px;
+}
+
+
+/* Member and Blog section sidebars */
+.page-user .region-sidebar-second,
+.page-members .region-sidebar-second,
+.context-forums .region-sidebar-second {
+    background: none repeat scroll 0 0 #fff;
+    padding-top: 10px;
+}
+
+.context-forums .region-sidebar-second .block .content {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.page-user .region-sidebar-second h2,
+.page-members .region-sidebar-second h2,
+.context-forums .region-sidebar-second h2 {
+	background-color:#8DC63F;
+	color: white;
+	font-family: Helvetica, Arial, Verdana,sans-serif;
+	font-size: 14px;
+	padding: 10px 20px;
+}
+
+.context-forums .region-sidebar-second h2 {
+	text-align: center;
+}
+
+#block-quicktabs-member-comments,
+#block-quicktabs-popular-forums  {
+	background-color: #f0f0f0;
+}
+
+#quicktabs-member_comments .item-list ul.quicktabs-tabs,
+#block-quicktabs-popular-forums .item-list ul.quicktabs-tabs {
+	text-transform: uppercase;
+	margin: 0px;
+	padding: 0px;
+	background-color: #d9d9d9;
+	padding: 10px 10px;
+
+}
+
+#quicktabs-member_comments .item-list ul.quicktabs-tabs li,
+#block-quicktabs-popular-forums .item-list ul.quicktabs-tabs li {
+	margin: 0;
+	padding: 13px 8px;
+}
+
+#quicktabs-member_comments .item-list ul.quicktabs-tabs li.active,
+#block-quicktabs-popular-forums .item-list ul.quicktabs-tabs li.active {
+	background-color: #f0f0f0;
+}
+
+#quicktabs-member_comments .item-list ul.quicktabs-tabs li.active.first,
+#block-quicktabs-popular-forums .item-list ul.quicktabs-tabs li.active.first {
+	margin-left: -10px;
+	padding-right: 15px;
+}
+
+#quicktabs-member_comments .item-list ul.quicktabs-tabs li.active.last {
+	padding-right: 18px;
+}
+#block-quicktabs-popular-forums .item-list ul.quicktabs-tabs li.active.last{
+	/*padding-right: 31px;*/
+	padding-right: 78px;
+}
+
+
+#quicktabs-member_comments #quicktabs-container-member_comments,
+#block-quicktabs-popular-forums .view-content {
+	margin-top: 10px;
+}
+
+#quicktabs-member_comments .view-content li {
+	margin: 0;
+	padding-left: 10px;
+}
+
+#block-quicktabs-popular-forums .view-content li {
+	padding: 5px 5px 5px 15px;
+	margin: 0;
+}
+
+#block-quicktabs-popular-forums {
+	padding-bottom: 0;
+}
+
+#quicktabs-member_comments .view-content .views-field-timestamp,
+#quicktabs-member_comments .view-content  .views-field-entity-id,
+#block-quicktabs-popular-forums .view-content .views-field-timestamp{
+	float: right;
+  padding-right: 10px;
+}
+
+#quicktabs-member_comments #quicktabs-container-member_comments .view-content .views-field-name a,
+#block-quicktabs-popular-forums .view-content .views-field-title a,
+#block-quicktabs-popular-forums .view-content .views-field-name a{
+	color: #00456a;
+	font-weight: bold;
+}
+
+
+#block-custom-search-blocks-1 input.custom-search-box,
+#block-custom-search-blocks-2 input.custom-search-box  {
+	width: 145px;
+	margin: 20px 0 10px 15px;
+}
+
+#block-custom-search-blocks-1 .form-item-custom-search-blocks-form-1,
+#block-custom-search-blocks-2 .form-item-custom-search-blocks-form-2 {
+	width: 75%;
+	display: inline;
+}
+
+#block-custom-search-blocks-1 .form-actions,
+#block-custom-search-blocks-2 .form-actions  {
+	display: inline;
+	float: right;
+	margin: 20px 15px 10px 0;
+}
+
+.block-custom-search-blocks-1 .content,
+.block-custom-search-blocks-2 .content  {
+	background-color: #f0f0f0;	
+}
+
+/* Discussion/Blog/Paper Alert and Latest News Theming */
+.authors {
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+a.suggest-topic {
+    display: inline-block;
+    background-color: #4D317A;
+    background-image: url("../images/ico-plus.png");
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    border: none;
+    color: #FFFFFF;
+    font-size: 10px;
+    padding: 5px 10px 5px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.view-forums .views-exposed-form,
+.view-paper-alert .views-exposed-form,
+.view-latest-news .views-exposed-form {
+  float: right;
+  height: 0;
+  position: relative;
+  top: -35px;
+  padding: 0;
+}
+
+/* Want spacing to be the same between authors and field paper link- these next 2 items */
+.node-type-paper-alerts .forums-teaser-content .field-name-field-authors {
+	padding: 3px 0;
+	font-style: italic;
+}
+
+.node-paper-alerts .field-name-field-paper-link {
+	padding-top: 3px;
+	padding-bottom: 6px;
+}
+
+
+.view-forums #edit-submit-scf-forums {
+    background:#000000;
+    border: medium none;
+    color: #FFFFFF;
+    font-size: 0.9em;
+    font-weight: 400;
+    padding: 3px 6px;
+    text-transform: uppercase;
+}
+
+.not-front .region-content .view-forums .views-row,
+.not-front .region-content .view-paper-alert .views-row,
+.not-front .region-content .view-latest-news .views-row,
+.not-front .region-content .view-letters-to-the-editor .views-row,
+.not-front .region-content .view-clinical-trials .views-row {
+    padding-top: 15px;
+    padding-bottom: 20px;
+    border-top: 2px solid #8DC63F	; 
+}
+
+.views-field-comment-count,
+.views-field-count {
+    font-size: 8px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.view-latest-news h2.node-title a {
+  color: #4D317A;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.discussion-image-wrapper,
+.view-latest-news .field-type-image {
+  width: auto;
+  overflow: hidden;
+  float: left;
+}
+
+.view-forums .last-comment-by,
+.view-latest-news .last-comment-by {
+    margin-left: 105px;
+}
+
+.view-forums .field-name-body p,
+.view-latest-news .field-name-body p{
+	margin-bottom: 0;
+}
+
+#block-poll-recent {
+  background-color: #f0f0f0;
+}
+
+#block-poll-recent .poll {
+  margin: 10px 12px;
+}
+
+#block-poll-recent .poll .title {
+  margin-bottom: 10px;
+}
+
+#block-poll-recent ul.links {
+  display: none;
+}
+
+
+
+/* Fix margins and padding around icons */
+
+.link-wrapper ul.inline  li {
+	padding: 0;
+	margin: 0;
+	border-right: 1px solid #727272;
+	text-transform: uppercase;
+	font-size: 10px;
+	color: black;
+	font-weight: bold;
+}
+
+.link-wrapper ul.inline  li a {
+	color: black;
+	font-weight: bold;
+}
+.link-wrapper {
+	margin-bottom: 5px;
+}
+
+.link-wrapper ul.inline li.comment-add {
+	padding-left: 0px;
+	padding-right: 10px;
+}
+.link-wrapper  ul.inline li .comment-comments {
+	padding-left: 5px;
+	padding-right: 10px;
+}
+
+.link-wrapper .flag-bookmarks {
+	padding-left: 10px;
+	padding-right: 5px;
+}
+
+.link-wrapper .flag-follow-node {
+	padding-left: 10px;
+	padding-right: 9px;
+}
+
+.link-wrapper .flag-recommend {
+	padding-left: 10px;
+	padding-right: 4px;
+}
+
+.link-wrapper  ul.inline li .recommend-members{
+	padding-left: 0px;
+	padding-right: 10px;
+}
+
+.link-wrapper  ul.inline li.last {
+	border-right: none;
+}
+/* Add borders around print, email icons */
+.share-links ul.inline li {
+    border-right: 1px solid #cccccc;
+}
+
+.share-links {
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	padding: 10px 0;
+}
+
+.lrshare_interfacehorizontal {
+    padding: 0 !important;
+    float: right;
+}
+
+
+.page-node.node-type-discussion .submitted {
+	padding-bottom: 10px;
+}
+
+.page-node.node-type-discussion .field-name-field-references {
+	padding-bottom: 20px;
+}
+
+
+
+/* Comments */
+.field-name-comment-body .filter-wrapper {
+	display: none;
+}
+
+#comments .comment-form {
+   background-color: #f0f0f0;
+   margin: 0;
+}
+
+#comments h2.title {
+	font-family: Helvetica, Arial, Verdana,sans-serif;
+	color: white;
+	font-weight: bold;
+	background-color: #4D317A;
+	font-size: 14px;
+	padding: 15px;
+}
+
+.node-type-discussion #comments h2.title {
+	background-color: #8DC63F;
+}
+article.comment {
+	padding: 15px;
+	border: 1px solid #cccccc;
+	margin-bottom: 10px;
+}
+
+h2.comment-form {
+	padding: 15px 15px 0 15px; 
+}
+
+form.comment-form {
+	padding: 15px; 
+}
+
+
+/* Sidebar First Theming Menu Block */
+.page-ltte #region-sidebar-first,
+.page-contact #region-sidebar-first {
+  display: none;
+}
+
+
+.page-ltte .container-12 .grid-6,
+.page-contact .container-12 .grid-6{
+  width: 700px;
+}
+
+.not-front #region-sidebar-first ul,
+.not-front #region-sidebar-first ul li.leaf {
+  list-style: none;
+}
+
+.not-front #region-sidebar-first .block-title {
+	border-top: 2px solid grey;
+	padding: 10px 0;
+}
+	
+.not-front #region-sidebar-first .block-title a,
+.not-front #region-sidebar-first li a {
+	font-size: 11px;
+	font-weight: bold;	
+}
+
+.not-front #region-sidebar-first ul li {
+	border-bottom: 1px dotted grey;
+	padding: 7px 0 7px 7px;
+}
+
+.not-front #region-sidebar-first ul li.first {
+	border-top: 1px dotted grey;
+}
+
+.not-front #region-sidebar-first ul li ul li.first {
+	border-top: none;
+}
+
+.not-front #region-sidebar-first ul li ul li.last {
+	border-bottom: none;
+}
+
+.not-front #region-sidebar-first li.active-trail .active{
+	font-weight: bold;
+	color: #ec611f;
+}
+
+.not-front #region-sidebar-first ul > li.active a:after {
+	content: url('../images/circlearrow-over.gif');
+    padding-right: 5px;
+    float: right;
+}
+
+.not-front #region-sidebar-first ul > li:hover a:after {
+	content: url('../images/circlearrow-over.gif');
+    padding-right: 5px;
+    float: right;
+}
+.not-front #region-sidebar-first li a:after,
+.not-front #region-sidebar-first .block-title a:after,
+.not-front #region-sidebar-first ul li.active ul li a:after,
+.not-front #region-sidebar-first ul li:hover ul li a:after {
+    content: url('../images/arrow.gif');
+    color: grey;
+    padding-right: 5px;
+    float: right;
+}
+
+.context-editorial-board td {
+vertical-align: top;
+}
+
+/* Clinical Trials Corner */
+/* Editors Names alignment table */
+.page-clinical-trials td, th {
+	padding: 0;
+}
+ 
+.view-clinical-trials .field-label-inline .field-items {
+	float: none;
+}
+
+.page-upcoming-meetings .views-field-field-meeting-image {
+	float: left;
+}
+
+.page-upcoming-meetings .views-row {
+	padding: 22px 0;
+}
+
+.node-type-clinical-trials .region-content,
+.node-clinical-trials .region-content {
+	padding-bottom: 2%;
+}
+
+/* Masquerade Block Theming */
+.block-masquerade .description,
+.block-masquerade a:link {
+   color: #FFFFFF;
+   text-decoration: none;
+   font-size: 0.95em
+}
+

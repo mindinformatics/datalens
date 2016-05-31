@@ -1,0 +1,588 @@
+<?php
+/**
+ * @file
+ * Implement socialsharing support for Drupal
+ */
+
+/**
+ * Implements hook_menu().
+ *
+ * Respond to url handling for socialsharing module.
+ */
+
+function simplified_social_share_menu() {
+  $items['admin/config/people/simplified_social_share'] = array(
+    'title' => 'Simplified Social Share',
+    'description' => 'Configure setting for LoginRadius Simplified Social Share',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('simplified_social_share_admin_settings'),
+    'access arguments' => array('administer social share'),
+    'weight' => -4,
+    'file' => 'simplified_social_share.admin.inc',
+  );
+  $items['admin/config/people/simplified_social_share/settings'] = array(
+    'title' => 'Simplified Social Share',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('simplified_social_share_admin_settings'),
+    'access arguments' => array('administer social share'),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => -10,
+    'file' => 'simplified_social_share.admin.inc',
+  );
+  $items['simplified_social_share/login_submit'] = array(
+    'page callback' => 'simplified_social_share_login_submit',
+    'access arguments' => array('administer social share'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Return a list of disabled functions.
+ */
+function simplified_social_share_get_disabled_functions() {
+  $disabled_functions = trim(ini_get('disable_functions'));
+  if (drupal_strlen($disabled_functions) == 0) {
+    $disabled_functions = array();
+  }
+  else {
+    $disabled_functions = explode(',', $disabled_functions);
+    $disabled_functions = array_map('trim', $disabled_functions);
+  }
+  return $disabled_functions;
+}
+
+/**
+ * Enable ajax request for Get API Key and Save API key.
+ */
+function simplified_social_share_login_submit() {
+  global $base_url, $user;
+  $values = $_POST;
+  //When api key value is retrieved then set other default settings in database.
+  if (isset($values['apikey'])) {
+    module_load_include('inc', 'simplified_social_share', 'simplified_social_share.admin');
+    $settings = array(
+      'socialsharing_api_key' => $values['apikey'],
+      'socialsharing_enable_horizontal_share' => '1',
+      'socialsharing_horizontal_images' => '0',
+      'socialsharing_rearrange_providers_list' => simplified_social_share_get_default_sharing_networks('socialsharing_rearrange_providers_list'),
+      'socialsharing_enable_vertical_share' => '1',
+      'socialsharing_vertical_images' => '4',
+      'socialsharing_vertical_rearrange_providers_list' => simplified_social_share_get_default_sharing_networks('socialsharing_vertical_rearrange_providers_list'),
+      'socialsharingcounter_rearrange_providers_list' => simplified_social_share_get_default_sharing_networks('socialsharingcounter_rearrange_providers_list'),
+      'socialsharingcounter_vertical_rearrange_providers_list' => simplified_social_share_get_default_sharing_networks('socialsharingcounter_vertical_rearrange_providers_list'),
+      'socialsharing_vertical_position' => '0',
+      'socialsharing_horizontal_location' => '0',
+      'socialsharing_position_top' => '1',
+      'socialsharing_position_bottom' => '1',
+      'socialsharing_show_pages' => '0',
+      'socialsharing_vertical_show_pages' => '0',
+      'socialsharing_show_exceptpages' => '',
+      'socialsharing_vertical_show_exceptpages' => '',
+      'socialsharing_selected_share_interface' => 'horizontal'
+    );
+    foreach ($settings as $key => $value) {
+      if (is_array($value)) {
+        $value = array_filter($value);
+      }
+      variable_set($key, $value);
+    }
+    //Save all default settings into database.
+    $result = array('message' => 'success');
+    return drupal_json_output($result);
+  }
+}
+
+/**
+ * Implements hook_admin_paths().
+ *
+ * Respond to Define administrative paths.
+ */
+function simplified_social_share_admin_paths() {
+  $paths = array(
+    'user/*/simplified_social_share' => TRUE,
+    'user/*/simplified_social_share/delete/*' => TRUE,
+  );
+  return $paths;
+}
+
+/**
+ * Implements hook_permission().
+ *
+ * Responed to Define user permissions.
+ */
+function simplified_social_share_permission() {
+  $permissions = array(
+    'administer social share' => array(
+      'title' => t('administer social share settings'),
+      'restrict access' => TRUE,
+    ),
+  );
+  return $permissions;
+}
+
+/**
+ * Implements hook_help().
+ *
+ * Respond to Provide online user help links.
+ *
+ * @param string $path
+ *   The router menu path, as defined in hook_menu.
+ */
+function simplified_social_share_help($path) {
+  switch ($path) {
+    case 'admin/help#simplified_social_share':
+      $loginradius_link = l(t('LoginRadius'), 'http://www.LoginRadius.com/', array('attributes' => array('target' => '_blank')));
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This social sharing module is developed by LoginRadius. This Social Sharing module placed social sharing widget on each node of Drupal website. see the LoginRadius') . l(t('visit site'), 'http://www.LoginRadius.com/', array('attributes' => array('target' => '_blank'))) . '</p>';
+      $items = array(
+        l(t('Plugin Installation, Configuration and Troubleshooting'), 'http://ish.re/AWG8', array('attributes' => array('target' => '_blank'))),
+        l(t('How to get LoginRadius API Key'), 'http://ish.re/9VBI', array('attributes' => array('target' => '_blank'))),
+        l(t('Discussion Forum'), 'http://ish.re/8PG2', array('attributes' => array('target' => '_blank'))),
+        l(t('About LoginRadius'), 'http://ish.re/96M7', array('attributes' => array('target' => '_blank'))),
+        l(t('LoginRadius Products'), 'http://ish.re/96M9', array('attributes' => array('target' => '_blank'))),
+        l(t('Social Plugins'), 'http://ish.re/96M8', array('attributes' => array('target' => '_blank'))),
+        l(t('Social SDKs'), 'http://ish.re/96MA', array('attributes' => array('target' => '_blank'))),
+      );
+      $output .= theme('item_list', array('items' => $items, 'title' => t('Important links')));
+      return $output;
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_page().
+ * Add Sharing script variable to page.
+ * @param $vars
+ * @param $hook
+ */
+function simplified_social_share_preprocess_page(&$vars, $hook) {
+    if (!(module_exists('overlay') && arg(0) == 'admin')) {
+        $share_script = 'var islrsharing = true ; var islrsocialcounter = true; var hybridsharing = true;';
+        drupal_add_js($share_script, array('type' => 'inline', 'scope' => 'header', 'weight' => 3));
+        $options = array(
+          'weight' => 4,
+          'scope' => 'header'
+        );
+    }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function simplified_social_share_theme() {
+  return array(
+    'socialsharing_social_share' => array(
+      'variables' => array(
+        'node' => NULL,
+        'position' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function simplified_social_share_block_info() {
+  $blocks['sharing'] = array(
+    'info' => t('Social Sharing'),
+  );
+  return $blocks;
+}
+
+function simplified_social_share_add_sharing_script() {
+  drupal_add_js('//cdn.loginradius.com/share/v1/LoginRadius.js', array(
+    'type' => 'external',
+    'scope' => 'header',
+    'weight' => 4,
+  ));
+}
+/**
+ * Implements hook_block_view().
+ */
+function simplified_social_share_block_view($delta) {
+  $output = '';
+  $current_path = url($_GET['q'], array('absolute' => TRUE));
+  $socialsharing_horizontal_images = variable_get('socialsharing_horizontal_images');
+  $socialsharing_vertical_images = variable_get('socialsharing_vertical_images');
+    $block = array();
+    //Add the div to show horizontal sharing into block.
+    if (variable_get('socialsharing_enable_horizontal_share') == 1 && variable_get('socialsharing_api_key') !== '') {
+      // Add horizontal script code to page that require to show sharing widget.
+      socialsharing_horizontal_script_code();
+      // add div for horizontal/vertical sharing code.
+      if (simplified_social_share_in_array($socialsharing_horizontal_images)) {
+        simplified_social_share_add_sharing_script();
+        $output .= '<div class="lrsharecontainer" data-share-url=' . $current_path . '></div>';
+      }
+      else {
+        simplified_social_share_add_sharing_script();
+        $output .= '<div class="lrcounter_simplebox" data-share-url=' . $current_path . '></div>';
+      }
+    }
+    //Add the div to show vertical sharing into block.
+    if (variable_get('socialsharing_enable_vertical_share') == 1) {
+      // Add vertical script code to page that require to show sharing widget.
+      socialsharing_vertical_script_code();
+      //Add div to vertical sharing widget.
+      if ($socialsharing_vertical_images == '4' || $socialsharing_vertical_images == '5') {
+        simplified_social_share_add_sharing_script();
+        $output .= '<div class="lrshareverticalcontainer"></div>';
+      }
+      else {
+        simplified_social_share_add_sharing_script();
+        $output .= '<div class="lrcounter_verticalsimplebox"></div>';
+      }
+    }
+  $block['content'] = $output;
+  return $block;
+}
+
+/**
+ * Theme social share.
+ *
+ * @param $node : node that means page/article.
+ * @return string: div for horizontal and vertical sharing widget.
+ */
+function theme_socialsharing_social_share($node) {
+    global $base_url;
+    $output = "";
+    // Add sharing script and div when API key is available.
+      $is_path = FALSE;
+      foreach ($node as $k => $v) {
+        if ($k == 'path') {
+          $is_path = TRUE;
+        }
+      }
+      // This will choose the path to use.
+      if ($is_path) {
+        $path_module = $node->path;
+      }
+      else {
+        $path_module = '/node/' . $node['node']->nid;
+      }
+      $enable_clean_url = variable_get('clean_url', 0);
+      // Get the full path to insert into the Share Buttons.
+      if ($enable_clean_url == 0) {
+        $current_path = $base_url . '?q=' . $path_module;
+      }
+      else {
+        $current_path = $base_url . $path_module;
+      }
+      // Get the Node id and Title where you want to show sharing widget.
+      $item = menu_get_object($type = 'node', $position = 1, $path = NULL);
+      $item = empty($item) ? menu_get_item() : $item;
+      $item_nid = (!empty($item->nid) ? $item->nid : "");
+      $item_title = (!empty($item->title) ? $item->title : "");
+      $item_title = empty($item_title) && is_array($item) && isset($item['title']) ? $item['title'] : '';
+      $shareall_withexcept = variable_get('socialsharing_show_pages');
+      $node_withexcept = variable_get('socialsharing_show_exceptpages');
+      $node_except = explode(',', $node_withexcept);
+      $vertical_shareall_withexcept = variable_get('socialsharing_vertical_show_pages');
+      $vertical_node_withexcept = variable_get('socialsharing_vertical_show_exceptpages');
+      $vertical_node_except = explode(',', $vertical_node_withexcept);
+      $node_value = array_filter($node_except);
+      $vertical_node_value = array_filter($vertical_node_except);
+      $socialsharing_horizontal_images = variable_get('socialsharing_horizontal_images');
+      $socialsharing_vertical_images = variable_get('socialsharing_vertical_images');
+      //Get the div to show horizontal sharing widget.
+      if (variable_get('socialsharing_enable_horizontal_share') == 1) {
+        if ($node['position'] == 'horizontal') {
+          if ($shareall_withexcept == 0) {
+            if ((!in_array($item_nid, $node_except) && !in_array($item_title, $node_except)) || empty($node_value)) {
+              if (simplified_social_share_in_array($socialsharing_horizontal_images)) {
+                simplified_social_share_add_sharing_script();
+                $output .= '<div class="lrsharecontainer" data-share-url=' . $current_path . '></div>';
+              }
+              else {
+                simplified_social_share_add_sharing_script();
+                $output .= '<div class="lrcounter_simplebox" data-share-url=' . $current_path . '></div>';
+              }
+            }
+          }
+          elseif ($shareall_withexcept == 1) {
+            if (in_array($item_nid, $node_except) || in_array($item_title, $node_except)) {
+              if (simplified_social_share_in_array($socialsharing_horizontal_images)) {
+                simplified_social_share_add_sharing_script();
+                $output .= '<div class="lrsharecontainer" data-share-url=' . $current_path . '></div>';
+              }
+              else {
+                simplified_social_share_add_sharing_script();
+                $output .= '<div class="lrcounter_simplebox" data-share-url=' . $current_path . '></div>';
+              }
+            }
+          }
+        }
+        // Add horizontal sharing variables to page that requires to show sharing div widget.
+        socialsharing_horizontal_script_code();
+      }
+      //End the if condition to get div to show horizontal sharing widget.
+
+      //Get the div to show vertical sharing widget.
+      if (variable_get('socialsharing_enable_vertical_share') == 1) {
+        if ($node['position'] == 'vertical') {
+          if ($vertical_shareall_withexcept == 0) {
+            if ((!in_array($item_nid, $vertical_node_except) && !in_array($item_title, $vertical_node_except)) || empty($vertical_node_value)) {
+              if ($socialsharing_vertical_images == '4' || $socialsharing_vertical_images == '5') {
+                simplified_social_share_add_sharing_script();
+                $output .= '<div class="lrshareverticalcontainer"></div>';
+              }
+              else {
+                simplified_social_share_add_sharing_script();
+                $output .= '<div class="lrcounter_verticalsimplebox"></div>';
+              }
+            }
+          }
+          elseif ($vertical_shareall_withexcept == 1) {
+            if (in_array($item_nid, $vertical_node_except) || in_array($item_title, $vertical_node_except)) {
+              if ($socialsharing_vertical_images == '4' || $socialsharing_vertical_images == '5') {
+                simplified_social_share_add_sharing_script();
+                $output .= '<div class="lrshareverticalcontainer"></div>';
+              }
+              else {
+                simplified_social_share_add_sharing_script();
+                $output .= '<div class="lrcounter_verticalsimplebox"></div>';
+              }
+            }
+          }
+        }
+        // Add vertical sharing variables to page that requires to show sharing div widget.
+        socialsharing_vertical_script_code();
+      }
+      //End the if condition to get div to show vertical sharing widget.
+    return $output;
+}
+
+/**
+ * Implements hook_node_view().
+ * Get the horizontal and vertical div to show sharing widget.
+ *
+ * @param $node : Page/Article
+ * @param $view_mode
+ * @param $langcode
+ */
+function simplified_social_share_node_view($node, $view_mode, $langcode) {
+  $socialsharing_position_top = variable_get('socialsharing_position_top');
+  $socialsharing_horizontal_location = variable_get('socialsharing_horizontal_location');
+  $socialsharing_position_bottom = variable_get('socialsharing_position_bottom');
+  if ($socialsharing_position_top == '' && $socialsharing_position_bottom == '' && $socialsharing_horizontal_location == '') {
+    $socialsharing_position_top = $socialsharing_position_bottom = 1;
+    $socialsharing_horizontal_location = '0';
+    variable_set('socialsharing_position_top', $socialsharing_position_top);
+    variable_set('socialsharing_position_bottom', 1);
+    variable_set('socialsharing_horizontal_location', '0');
+  }
+  // Get the horizontal div for add at location links.
+  if (variable_get('socialsharing_enable_horizontal_share') == 1 && variable_get('socialsharing_horizontal_location') == '1') {
+    $links['socialsharing_top'] = array(
+      'html' => TRUE,
+      'title' => theme('socialsharing_social_share', array('node' => $node, 'position' => 'horizontal')),
+      'attributes' => array('class' => 'socialsharing-buttons'),
+    );
+    // Add horizontal sharing theme to links.
+    $node->content['links']['socialsharing_top'] = array(
+      '#theme' => 'links',
+      '#links' => $links,
+      '#attributes' => array(
+        'class' => array('links', 'inline'),
+      ),
+      '#tag' => 'div', // Wrap it in a div.
+      '#type' => 'html_tag',
+      '#weight' => -10,
+    );
+  }
+  // Get the horizontal div for add at location content.
+  if (variable_get('socialsharing_enable_horizontal_share') == 1 && $socialsharing_horizontal_location == '0') {
+    // Add horizontal div to node at top of the content.
+    if ($socialsharing_position_top == 1) {
+      $node->content['socialsharing_top'] = array(
+        '#markup' => theme('socialsharing_social_share', array('node' => $node, 'position' => 'horizontal')),
+        '#weight' => -10,
+      );
+    }
+    // Add horizontal div to node at bottom of the content.
+    if ($socialsharing_position_bottom == 1) {
+      $node->content['socialsharing_bottom'] = array(
+        '#markup' => theme('socialsharing_social_share', array('node' => $node, 'position' => 'horizontal')),
+        '#weight' => 10,
+      );
+    }
+  }
+  // Add the vertical div to location content.
+  if (variable_get('socialsharing_enable_vertical_share') == 1) {
+    $node->content['socialshare'] = array(
+      '#markup' => theme('socialsharing_social_share', array('node' => $node, 'position' => 'vertical')),
+      '#weight' => 10,
+    );
+  }
+}
+
+/**
+ *  Horizontal Social Sharing code.
+ */
+function socialsharing_horizontal_script_code() {
+  module_load_include('inc', 'simplified_social_share', 'simplified_social_share.admin');
+  $share_providers = variable_get('socialsharing_rearrange_providers_list');
+  if (empty($share_providers)) {
+    variable_set('socialsharing_rearrange_providers_list', simplified_social_share_get_default_sharing_networks('socialsharing_rearrange_providers_list'));
+  }
+  $horizontal_image = variable_get('socialsharing_horizontal_images');
+  if ($horizontal_image == '') {
+    $horizontal_image = 0;
+    variable_set('socialsharing_horizontal_images', $horizontal_image);
+  }
+  //Get horizontal script to show horizontal sharing div.
+  if (simplified_social_share_in_array($horizontal_image)) {
+    $interface = 'simpleimage';
+    $size = '16';
+    if ($horizontal_image == '0' || $horizontal_image == '1') {
+      $interface = 'horizontal';
+    }
+    if ($horizontal_image == '0' || $horizontal_image == '2') {
+      $size = '32';
+    }
+    if ($horizontal_image == '10') {
+      $interface = 'responsive';
+    }
+    $mysettings = array(
+      'sharing' => TRUE,
+      'lr_interface' => $interface,
+      'providers' => implode(',', $share_providers),
+      'size' => $size,
+      'apikey' => trim(variable_get('socialsharing_api_key')),
+      'divwidget' => 'lrsharecontainer',
+    );
+  }
+  //closing if condition to show horizontal sharing widget.
+  //Get horizontal script to show horizontal counter div.
+  else {
+    $counter_providers = variable_get('socialsharingcounter_rearrange_providers_list');
+    $type = 'horizontal';
+    if (empty($counter_providers)) {
+      variable_set('socialsharingcounter_rearrange_providers_list', simplified_social_share_get_default_sharing_networks('socialsharingcounter_rearrange_providers_list'));
+    }
+    if (variable_get('socialsharing_horizontal_images') == '8') {
+      $type = 'vertical';
+    }
+    $mysettings = array(
+      'counter' => TRUE,
+      'lr_interface' => 'simple',
+      'providers' => implode(',', $counter_providers),
+      'countertype' => $type,
+      'divwidget' => 'lrcounter_simplebox',
+    );
+  }
+  //closing condition to show horizontal counter div.
+  drupal_add_js(array('lrsimplifiedsocialshare' => $mysettings), 'setting');
+  drupal_add_js($GLOBALS['base_url'] . '/' . drupal_get_path('module', 'simplified_social_share') . '/socialshare_widget.js', array(
+      'type' => 'external',
+      'scope' => 'footer',
+      'weight' => 7
+    ));
+}
+
+/*
+* Vertical Social Sharing code.
+*/
+function socialsharing_vertical_script_code() {
+  module_load_include('inc', 'simplified_social_share', 'simplified_social_share.admin');
+  $socialsharing_vertical_images = variable_get('socialsharing_vertical_images');
+  $socialsharing_vertical_position = variable_get('socialsharing_vertical_position');
+  if ($socialsharing_vertical_images == '') {
+    $socialsharing_vertical_images = '6';
+    variable_set('socialsharing_vertical_images', $socialsharing_vertical_images);
+  }
+  //Get script to show vertical sharing widget.
+  if ($socialsharing_vertical_images == '4' || $socialsharing_vertical_images == '5') {
+    $size = '16';
+    $share_providers = variable_get("socialsharing_vertical_rearrange_providers_list");
+    if (empty($share_providers)) {
+      variable_set('socialsharing_vertical_rearrange_providers_list', simplified_social_share_get_default_sharing_networks('socialsharing_vertical_rearrange_providers_list'));
+    }
+    if ($socialsharing_vertical_images == '4') {
+      $size = '32';
+    }
+    //Check vertical position of sharing widget.
+    if ($socialsharing_vertical_position == '3') {
+      $position1 = 'bottom';
+      $position2 = 'right';
+    }
+    elseif ($socialsharing_vertical_position == '1') {
+      $position1 = 'top';
+      $position2 = 'right';
+    }
+    elseif ($socialsharing_vertical_position == '2') {
+      $position1 = 'bottom';
+      $position2 = 'left';
+    }
+    else {
+      $position1 = 'top';
+      $position2 = 'left';
+    }
+    //Settings for vertical sharing widget.
+    $mysettings = array(
+      'verticalsharing' => TRUE,
+      'lr_vertical_interface' => 'Simplefloat',
+      'vertical_providers' => implode(',', $share_providers),
+      'vertical_size' => $size,
+      'vertical_apikey' => trim(variable_get('socialsharing_api_key')),
+      'vertical_position1' => $position1,
+      'vertical_position2' => $position2,
+      'vertical_divwidget' => 'lrshareverticalcontainer',
+    );
+  }
+  //Get script to show vertical counter widget.
+  else {
+    $counter_providers = variable_get('socialsharingcounter_vertical_rearrange_providers_list');
+    $socialsharing_vertical_images = variable_get('socialsharing_vertical_images');
+    $socialsharing_vertical_position = variable_get('socialsharing_vertical_position');
+    $type = 'horizontal';
+    if (empty($counter_providers)) {
+      variable_set('socialsharingcounter_vertical_rearrange_providers_list', simplified_social_share_get_default_sharing_networks('socialsharingcounter_vertical_rearrange_providers_list'));
+    }
+    if ($socialsharing_vertical_images == '6') {
+      $type = 'vertical';
+    }
+    if ($socialsharing_vertical_position == '3') {
+      $position1 = 'bottom';
+      $position2 = 'right';
+    }
+    elseif ($socialsharing_vertical_position == '1') {
+      $position1 = 'top';
+      $position2 = 'right';
+    }
+    elseif ($socialsharing_vertical_position == '2') {
+      $position1 = 'bottom';
+      $position2 = 'left';
+    }
+    else {
+      $position1 = 'top';
+      $position2 = 'left';
+    }
+    $mysettings = array(
+      'verticalcounter' => TRUE,
+      'vertical_providers' => implode(',', $counter_providers),
+      'vertical_countertype' => $type,
+      'vertical_position1' => $position1,
+      'vertical_position2' => $position2,
+      'vertical_divwidget' => 'lrcounter_verticalsimplebox',
+    );
+  }
+  drupal_add_js(array('lrsimplifiedsocialshare' => $mysettings), 'setting');
+  drupal_add_js($GLOBALS['base_url'] . '/' . drupal_get_path('module', 'simplified_social_share') . '/socialshare_widget.js', array(
+      'type' => 'external',
+      'scope' => 'footer',
+      'weight' => 7
+    ));
+}
+/*
+ * Check values in array.
+ */
+function simplified_social_share_in_array($value) {
+  if (in_array($value, array('0', '1', '2', '3', '10'))) {
+    return TRUE;
+  }
+  return FALSE;
+}

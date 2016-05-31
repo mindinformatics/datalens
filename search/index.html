@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<TITLE>Search</TITLE>
+<!--#include virtual="/inc/global/header.php" -->
+<!--#include virtual="/inc/global/subheader.php" -->
+<!--#include virtual="/inc/search/head.php" -->
+<!--#include virtual="/inc/search/left.php" -->
+    <table width="515" border="0" cellspacing="3" cellpadding="3">
+        <tr> 
+          <td valign="top" width="499"> 
+            <font size="2">Use the box below to search our site</font><font size="2">.&nbsp;</font>
+            
+<!-- Put the following javascript before the closing </head> tag. -->
+<script>
+  (function() {
+    var cx = '008289705227140204128:dtfo1a_2dn0';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Place this tag where you want both of the search box and the search results to render -->
+<gcse:search></gcse:search></td>
+        </tr>
+      </table>
+<!--#include virtual="/inc/global/footer.php" -->

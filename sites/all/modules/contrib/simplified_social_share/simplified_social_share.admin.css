@@ -1,0 +1,351 @@
+#loginRadiusFormTitle, #loginRadiusFormDiv {
+    padding: 0 13px 13px 15px;
+}
+
+#loginRadiusFormDiv {
+    margin-top: 20px;
+}
+
+#edit-thanks-block {
+    background-color: #EAF7FF;
+    border: solid 1px;
+    border-color: rgb(195, 239, 250);
+    padding-bottom: 10px;
+    border-radius: 7px;
+    float: left;
+    width: 60%;
+    height: 192px;
+    margin-top: 0px !important;
+    margin-right: 15px;
+}
+
+#edit-thanks-block span, #edit-update-block span {
+    text-transform: none;
+}
+
+#edit-update-block {
+    background-color: #FFFFE0;
+    border: solid 1px;
+    border-color: rgb(195, 239, 250);
+    border-radius: 7px;
+}
+
+#socialcounter_vertical_show_providers_list > div,
+#socialsharing_vetical_show_providers_list > div,
+#socialcounter_show_providers_list > div,
+#socialsharing_providers_list > div {
+    display: inline-block;
+    margin-right: 17px;
+    width: 252px;
+}
+
+#edit-socialsharing-counter-show-providers-list > div {
+    display: inline-block;
+    margin-right: 17px;
+}
+
+.form-item.form-type-radio.form-item-socialsharing-horizontal-images > input {
+    margin: 15px 15px 15px 0px;
+}
+
+.form-item.form-type-radio.form-item-socialsharing-vertical-images > input {
+    margin: 0px 15px 15px 15px;
+}
+
+#horizon_sharing32 {
+    margin-bottom: -11px;
+}
+#responsive {
+    margin-bottom: -23px;
+    margin-left:-5px;
+}
+
+#horizon_sharing16, #single-image-theme-small {
+    margin-bottom: -3px;
+}
+
+#horizontalvertical {
+    margin-bottom: -30px;
+}
+
+#horizontal {
+    margin-top: 3px;
+    margin-bottom: -25px;
+}
+
+#single-image-theme-large {
+    margin-bottom: -8px;
+}
+
+.form-item.form-type-radio.form-item-socialsharing-horizontal-images {
+    margin-top: 9px;
+}
+
+#VerticlewithBox {
+    margin-left: 8px;
+}
+
+#hybrid-verticle-vertical {
+    margin-left: -8px;
+    margin-top: 0;
+}
+
+div#socialsharing_vertical_images div.form-item.form-type-radio.form-item-socialsharing-vertical-images {
+    float: left;
+    margin-right: 15px;
+}
+
+div#socialsharing_vetical_show_providers_list, .form-item.form-type-radios.form-item-socialsharing-vertical-position {
+    clear: both;
+}
+
+#show_horizontal_block {
+    display: block;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#edit-socialsharing-custom-redirection {
+    margin-left: 16px;
+}
+
+.addtopmargin,
+.form-item.form-type-radios.form-item-socialsharing-vertical-show-pages.addtopmargin {
+    margin-top: -65px !important;
+}
+
+ul#socialsharing_rearrange_providers > li {
+    float: left;
+    margin-left: 0px;
+}
+
+ul#socialsharing_vertical_rearrange_providers > li {
+    float: left;
+    margin-left: 0px;
+}
+
+#socialsharing_question {
+    margin-top: 64px;
+}
+
+#edit-lrshare-iconsprite32-facebook {
+    padding: 0px;
+}
+
+.form-item.form-type-radio.form-item-socialsharing-vertical-images {
+    display: inline;
+}
+
+.form-item.form-type-radio.form-item-socialsharing-attach-login-form,
+.form-item.form-type-radio.form-item-socialsharing-loginpage-position,
+.form-item .form-type-radio.form-item-socialsharing-registerpage-position,
+.form-item.form-type-radio.form-item-socialsharing-enable-share,
+.form-item.form-type-radio.form-item-socialsharing-enable-counter,
+.form-item.form-type-radio.form-item-socialsharing-enable-horizontal-share,
+.form-item.form-type-radio.form-item-socialsharing-enable-vertical-share,
+.form-item.form-type-radio.form-item-socialsharing-enable,
+.form-item.form-type-radio.form-item-socialsharing-interface-size,
+.form-item.form-type-radio.form-item-socialsharing-skip-email-verification,
+.form-item.form-type-radio.form-item-socialsharing-update-profile,
+.form-item.form-type-radio.form-item-socialsharing-commenting-enable {
+    display: inline;
+    margin-right: 17px;
+}
+
+.form-item.form-type-checkbox.form-item-socialsharing-counter-comments {
+    background-color: #EAF7FC;
+}
+
+.form-item.form-type-radio.form-item-socialsharing-counter-vertical-images {
+    display: inline;
+}
+
+.form-item.form-type-radios.form-item-socialsharing-counter-vertical-position {
+    background-color: #EAF7FC;
+    border: solid 1px;
+    border-color: rgb(195, 239, 250);
+    padding-bottom: 10px;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.form-item.form-type-radio.form-item-socialsharing-vertical-images > .form-item.form-type-radio.form-item-socialsharing-vertical-images {
+    float: none;
+    margin-top: 113px;
+}
+
+#lr_tabs {
+    bottom: -1px;
+    font-size: 1.54em;
+    line-height: 1.54em;
+    margin: 0;
+    margin-bottom: -8px;
+}
+
+div#lr_tabs li {
+    display: inline;
+    list-style: none;
+    margin: 0 0 0 -3px;
+    padding: 0;
+}
+
+div#lr_tabs li a {
+    border: 1px solid #aaaaaa /*{borderColorHeader}*/;
+    background: #cccccc;
+    -moz-border-radius: 8px 8px 0 0;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    border-radius: 8px 8px 0 0;
+    color: #000;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0 5px 2px 0;
+    outline: 0;
+    padding: 0 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+div#lr_tabs li a.active, div#lr_tabs li a:hover {
+    color: white;
+    border: 1px solid white !important;
+    background: #666;
+}
+
+div#registeration-container div label, div#login-container div label {
+    /* color: red; */
+    width: 200px;
+    float: left;
+}
+
+#login_error_message {
+    color: red;
+}
+
+.loginradius-aia--form-element-content.content-loginradius-aia-recaptcha_response_field, #loginradius-aia-submit-Register, #login_form_link, #register_form_link, #loginradius-aia-submit-Login {
+    margin-left: 200px;
+}
+
+div#registeration-container div input, div#login-container div input {
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-top-color: #999;
+    background: #fff;
+    color: #333;
+    width: 307px;
+}
+
+div#registeration-container div, div#login-container div {
+    margin-bottom: 8px;
+}
+
+label.recaptcha_only_if_image {
+    /* clear: both !important; */
+    float: none !important;
+}
+
+ul.recaptcha_options li span {
+    display: none;
+}
+
+ul.recaptcha_options {
+    margin-top: -5px;
+}
+
+ul.recaptcha_options li {
+    list-style: none;
+}
+
+div#recaptcha_widget {
+    background-color: rgb(241, 241, 241);
+    border: solid transparent;
+    width: 300px;
+    height: 108px !important;
+    margin-top: 20px;
+    padding: 5px;
+}
+
+#recaptcha_response_field {
+    width: 182px !important;
+}
+
+.recaptcha_only_if_image, ul.recaptcha_options li:last-child, .recaptcha_only_if_audio, #recaptcha_response_field,
+#loginradius-aia-submit-Login, #loginradius-aia-submit-Register {
+    float: left;
+}
+
+.recaptcha_only_if_audio {
+    width: auto !important;
+}
+
+div#recaptcha_image {
+    height: 57px;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    overflow: hidden;
+    /*width: 310px !important;*/
+}
+
+ul.recaptcha_options li:first-child {
+    float: left;
+    margin-left: 10px;
+}
+
+ul.recaptcha_options {
+    margin-top: -5px !important;
+}
+
+#validation-loginradius-aia-login-emailid, #validation-loginradius-aia-login-password, #validation-loginradius-aia-registration-appname, #validation-loginradius-aia-registration-recaptcha_response_field {
+    color: red;
+}
+
+#loginradius-aia-submit-Register, #loginradius-aia-submit-Login {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #E4E4E4 #D2D2D2 #B4B4B4;
+    border-image: none;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 1px;
+    color: #5A5A5A;
+    cursor: pointer;
+    font-family: "Lucida Grande", Verdana, sans-serif;
+    font-size: 1.077em;
+    font-weight: normal;
+    margin-bottom: 0px;
+    margin-right: 1em;
+    padding: 4px 17px;
+    text-align: center;
+    margin-top: 8px;
+}
+
+#errormsg, form-hiddenselect, #register_form_link {
+    display: none;
+}
+
+#edit-socialsharing-form-login {
+    padding: 0px !important;
+}
+
+#loginradius-aia-registration-emailid {
+    background-color: rgb(241, 241, 241) !important;
+}
+
+#processing_img_div {
+    margin-top: 19px !important;
+}
+
+#register_form_link, #login_form_link {
+    clear: both;
+}
+
+div#socialsharing_providers_list div input,
+div#socialsharing_vetical_show_providers_list div input,
+div#socialcounter_show_providers_list div input,
+div#socialcounter_vertical_show_providers_list div input {
+    margin-right: 5px;
+}

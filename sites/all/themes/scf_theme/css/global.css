@@ -37,7 +37,7 @@ a:visited {
 }
 
 a:hover {
-	color: #8DC63F;  /* SCRF Light Green */
+	color: #A41034;  /* SCRF Light Green */
 }
 
 
@@ -58,7 +58,7 @@ a:hover {
 /* Header */
 #zone-branding-wrapper,
 #zone-branding {
-	height: 115px;
+	height: 95px;
 }
 
 #region-branding {	
@@ -121,7 +121,7 @@ a:hover {
 .logo-img img{
   height: auto;
   padding-top: 10px;
-  width: 70%;
+  width: 30%;
 }
 
 /* Social block */
@@ -132,7 +132,7 @@ a:hover {
 
 /* Search button etc */
 input[type="submit"] {
-  background: none repeat scroll 0 0 #8DC63F;
+  background: none repeat scroll 0 0 #A41034;
   border: 0 solid #aaaeb1;
   border-radius: 3px;
   color: white;
@@ -309,6 +309,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 
 /* Slider */
+/* Slider */
 .front .block-nivo-slider .theme-dark.slider-wrapper {
 	padding: 0;
 }
@@ -318,33 +319,33 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .front .nivo-caption {
-  width: 40%; 
+  width: 30%; 
   height: 200px;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 15px;
-  opacity: 1;
+  opacity: 0.8;
   padding: 20px 20px;
-  background-color: #B096DA	; 
+  background-color: black	; 
 }
 
 .front .nivoSlider {
   height: 200px;
-  width: 700px;
+  width: 940px;
 }
 
 .front .nivoSlider img {
   max-height: 200px;
-  max-width: 696px;
+  max-width: 940px;
 }
 
 .nivo-caption h2 {
-  color: #34282C;
+  color: #ddd7d7;
   font-size: 15px;
   line-height: 1.5em;
 }
 
 .nivo-caption p {
-  color: #34282C;
+  color: #ddd7d7;
   display: inline;
   padding: 0;
   line-height: 1.5em;
@@ -359,7 +360,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .nivo-caption a:after {
-  content: "» ";
+  content: "Â» ";
   padding-left: 4px;
   padding-right: 10px;
 }
@@ -369,6 +370,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	left: 600px;
 	top: 175px;
 }
+
 
 
 /* Front page content */
@@ -406,7 +408,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .front .region-content h2.block-title{
-   background: #8DC63F;
+   background: #A41034;
 }
 
 /* Titles within Blocks*/
@@ -530,7 +532,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 /* Front Page Side bar second */
 .region-sidebar-second {
-	background: #f0f0f0;
+	background: #A41034;
 	padding-top: 20px;	
 	margin-top: -10px;
 	width: 22%;
@@ -539,12 +541,12 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 .front .region-sidebar-second {
 	height: 910px;
-	top: -200px;
+	top: 20px;
 }
 
 .region-sidebar-second h2 {
 	font-size: 13px;
-	color: #8DC63F;
+	color: #A41034;
 	text-transform: uppercase;
 }
 
@@ -581,7 +583,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 .node-type-discussion .zone-content,
 .context-forums .zone-content {
-	border-top: 4px solid #8DC63F;
+	border-top: 4px solid #A41034;
 }
 .node-type-discussion .field-name-body {
 	padding-top: 20px;
@@ -885,7 +887,7 @@ form#user-profile-form .form-item-name {
 }
 
 .page-user .block-member-commented-on-block-1  h2 {
-	background-color:#f0f0f0;
+	background-color:#A41034;
 	padding: 10px 20px;
 }
 
@@ -911,7 +913,7 @@ form#user-profile-form .form-item-name {
 .page-user .region-sidebar-second h2,
 .page-members .region-sidebar-second h2,
 .context-forums .region-sidebar-second h2 {
-	background-color:#8DC63F;
+	background-color:#A41034;
 	color: white;
 	font-family: Helvetica, Arial, Verdana,sans-serif;
 	font-size: 14px;
@@ -924,7 +926,7 @@ form#user-profile-form .form-item-name {
 
 #block-quicktabs-member-comments,
 #block-quicktabs-popular-forums  {
-	background-color: #f0f0f0;
+	background-color: #A41034;
 }
 
 #quicktabs-member_comments .item-list ul.quicktabs-tabs,
@@ -945,7 +947,7 @@ form#user-profile-form .form-item-name {
 
 #quicktabs-member_comments .item-list ul.quicktabs-tabs li.active,
 #block-quicktabs-popular-forums .item-list ul.quicktabs-tabs li.active {
-	background-color: #f0f0f0;
+	background-color: #A41034;
 }
 
 #quicktabs-member_comments .item-list ul.quicktabs-tabs li.active.first,
@@ -1018,7 +1020,7 @@ form#user-profile-form .form-item-name {
 
 .block-custom-search-blocks-1 .content,
 .block-custom-search-blocks-2 .content  {
-	background-color: #f0f0f0;	
+	background-color: #A41034;	
 }
 
 /* Discussion/Blog/Paper Alert and Latest News Theming */
@@ -1079,7 +1081,7 @@ a.suggest-topic {
 .not-front .region-content .view-clinical-trials .views-row {
     padding-top: 15px;
     padding-bottom: 20px;
-    border-top: 2px solid #8DC63F	; 
+    border-top: 2px solid #A41034	; 
 }
 
 .views-field-comment-count,
@@ -1113,7 +1115,7 @@ a.suggest-topic {
 }
 
 #block-poll-recent {
-  background-color: #f0f0f0;
+  background-color: #A41034;
 }
 
 #block-poll-recent .poll {
@@ -1215,7 +1217,7 @@ a.suggest-topic {
 }
 
 #comments .comment-form {
-   background-color: #f0f0f0;
+   background-color: #A41034;
    margin: 0;
 }
 
@@ -1229,7 +1231,7 @@ a.suggest-topic {
 }
 
 .node-type-discussion #comments h2.title {
-	background-color: #8DC63F;
+	background-color: #A41034;
 }
 article.comment {
 	padding: 15px;

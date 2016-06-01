@@ -390,7 +390,6 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .front #region-content {
-	width: 34%;
 	padding-right: 0%;
 	margin-top: 10px;
 }
@@ -415,9 +414,9 @@ ul.nice-menu-down ul li.menuparent > a:after {
 .front .view h2.node-title,
 .front .views-field-title,
 .front .block-field-title,
-.front .views-field-field-meeting-link {
+.front th {
 	font-size: 13px;
-	color: #BFD000;
+	color: black;
 	font-weight: bold;
 }
 
@@ -531,7 +530,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 /* Front Page Side bar second */
-.region-sidebar-second {
+.front .region-sidebar-second {
 	background: #A41034;
 	padding-top: 20px;	
 	margin-top: -10px;

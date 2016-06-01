@@ -569,7 +569,7 @@ function members_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 11,
+      'weight' => 9,
     ),
   );
 
@@ -621,7 +621,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
+      'weight' => 6,
     ),
   );
 
@@ -661,7 +661,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -701,7 +701,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 9,
+      'weight' => 7,
     ),
   );
 
@@ -743,7 +743,7 @@ function members_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 13,
+      'weight' => 12,
     ),
   );
 
@@ -840,47 +840,7 @@ function members_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance: 'node-dataset-field_project'
-  $field_instances['node-dataset-field_project'] = array(
-    'bundle' => 'dataset',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_project',
-    'label' => 'Project',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 4,
+      'weight' => 11,
     ),
   );
 
@@ -932,7 +892,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 7,
+      'weight' => 5,
     ),
   );
 
@@ -969,7 +929,7 @@ function members_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 10,
+      'weight' => 8,
     ),
   );
 
@@ -1020,7 +980,7 @@ function members_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 12,
+      'weight' => 10,
     ),
     'widget_type' => 'options_select',
   );
@@ -2767,7 +2727,6 @@ function members_field_default_field_instances() {
   t('Position');
   t('Professional Links');
   t('Profile photos will be cropped to squares. Please ensure that you are relatively central in the image.');
-  t('Project');
   t('Public or Private');
   t('References');
   t('Related');

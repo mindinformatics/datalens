@@ -541,7 +541,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 .front .region-sidebar-second {
 	height: 910px;
-	top: 20px;
+	top: 0px;
 }
 
 .region-sidebar-second h2 {

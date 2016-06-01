@@ -119,9 +119,9 @@ function members_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'views-forums-block_4' => array(
+        'views-datasets-block' => array(
           'module' => 'views',
-          'delta' => 'forums-block_4',
+          'delta' => 'datasets-block',
           'region' => 'content',
           'weight' => '-10',
         ),

@@ -261,6 +261,14 @@ function members_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'evidence' => array(
+      'name' => t('Evidence'),
+      'base' => 'node_content',
+      'description' => t('Evidence claims or statements.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'meetings' => array(
       'name' => t('Meetings'),
       'base' => 'node_content',
@@ -271,6 +279,14 @@ function members_node_info() {
     ),
     'news' => array(
       'name' => t('News'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'targets' => array(
+      'name' => t('Targets'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

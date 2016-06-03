@@ -1993,7 +1993,7 @@ function members_field_default_field_instances() {
     'entityconnect_unload_add' => 0,
     'entityconnect_unload_edit' => 0,
     'field_name' => 'field_claim_links',
-    'label' => 'Evidence links',
+    'label' => 'Claims',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -2043,7 +2043,7 @@ function members_field_default_field_instances() {
     'entityconnect_unload_add' => 0,
     'entityconnect_unload_edit' => 0,
     'field_name' => 'field_dataset_links',
-    'label' => 'Dataset links',
+    'label' => 'Datasets',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -2063,56 +2063,6 @@ function members_field_default_field_instances() {
       ),
       'type' => 'entityreference_autocomplete',
       'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance: 'node-targets-field_evidence_links'
-  $field_instances['node-targets-field_evidence_links'] = array(
-    'bundle' => 'targets',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Links to evidence for this target.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'entityconnect_unload_add' => 0,
-    'entityconnect_unload_edit' => 0,
-    'field_name' => 'field_evidence_links',
-    'label' => 'Evidence links',
-    'required' => 0,
-    'settings' => array(
-      'behaviors' => array(
-        'test_instance_behavior' => array(
-          'status' => 0,
-        ),
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 8,
     ),
   );
 
@@ -2153,7 +2103,7 @@ function members_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_links',
-    'label' => 'Identifying Links',
+    'label' => 'Identifiers',
     'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
@@ -2214,7 +2164,7 @@ function members_field_default_field_instances() {
     'entityconnect_unload_add' => 0,
     'entityconnect_unload_edit' => 0,
     'field_name' => 'field_literature_links',
-    'label' => 'Literature links',
+    'label' => 'Literature',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -2852,9 +2802,11 @@ function members_field_default_field_instances() {
   t('By');
   t('ByLine');
   t('Category');
+  t('Claims');
   t('Comment');
   t('Data Type');
   t('Dataset links');
+  t('Datasets');
   t('Description');
   t('Disease');
   t('Enter a brief biography and a summary of your research interests. (Expand text box via lower right hand corner.)');
@@ -2863,7 +2815,6 @@ function members_field_default_field_instances() {
   t('Enter description such as conference date, location or interviewed by.');
   t('Enter the location.');
   t('Evidence');
-  t('Evidence links');
   t('Evidence type');
   t('Expression');
   t('Featured Image');
@@ -2871,14 +2822,13 @@ function members_field_default_field_instances() {
   t('First Name');
   t('Forum Category');
   t('Group');
-  t('Identifying Links');
+  t('Identifiers');
   t('Image');
   t('Lab URL');
   t('Last Name');
   t('Links');
   t('Links to claim for this target.');
-  t('Links to evidence for this target.');
-  t('Literature links');
+  t('Literature');
   t('Location');
   t('Meeting Date');
   t('Meeting Image');

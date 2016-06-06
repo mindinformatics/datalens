@@ -1977,10 +1977,11 @@ function members_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => TRUE,
+          'view_mode' => 'default',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 5,
+        'type' => 'entityreference_entity_view',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2012,7 +2013,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -2027,10 +2028,11 @@ function members_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => TRUE,
+          'view_mode' => 'default',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 3,
+        'type' => 'entityreference_entity_view',
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2062,7 +2064,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -2148,10 +2150,11 @@ function members_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 1,
+          'view_mode' => 'default',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 4,
+        'type' => 'entityreference_entity_view',
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2183,7 +2186,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 

@@ -281,7 +281,7 @@ function members_field_default_field_bases() {
   // Exported field_base: 'field_dataset_links'
   $field_bases['field_dataset_links'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_dataset_links',
@@ -655,7 +655,7 @@ function members_field_default_field_bases() {
   // Exported field_base: 'field_literature_links'
   $field_bases['field_literature_links'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_literature_links',

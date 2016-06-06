@@ -136,7 +136,6 @@ features[field_base][] = field_featured_image
 features[field_base][] = field_files
 features[field_base][] = field_forum_category
 features[field_base][] = field_group
-features[field_base][] = field_id
 features[field_base][] = field_image
 features[field_base][] = field_links
 features[field_base][] = field_literature_links

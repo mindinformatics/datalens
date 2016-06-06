@@ -1361,11 +1361,11 @@ form.comment-form {
 }
 
 div.horizontal-tabs {
-  border-top: 0;
-  border-top-left-radius: 38px;
-  border-top-right-radius: 10px 50px;
+  border: none;
 }
-
+div.horizontal-tabs .horizontal-tabs-panes {
+	border: 1px solid #ccc;
+}
 .horizontal-tabs fieldset.horizontal-tabs-pane {
   padding: 0px;
 }
@@ -1402,7 +1402,10 @@ div.horizontal-tabs {
 }
 
 
-
+.horizontal-tabs ul.horizontal-tabs-list li a:hover {
+    background: none;
+    outline: medium none;
+}
 /* Meetings */
 .page-upcoming-meetings .views-field-field-meeting-image {
 	float: left;

@@ -1974,7 +1974,7 @@ function members_field_default_field_instances() {
     'description' => 'Links to claim for this target.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
           'links' => TRUE,
@@ -2025,7 +2025,7 @@ function members_field_default_field_instances() {
     'description' => 'Enter datasets that contain this target.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
           'links' => TRUE,
@@ -2147,11 +2147,11 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
           'links' => 1,
-          'view_mode' => 'default',
+          'view_mode' => 'teaser',
         ),
         'type' => 'entityreference_entity_view',
         'weight' => 5,

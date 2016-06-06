@@ -1318,20 +1318,67 @@ form.comment-form {
     float: right;
 }
 
-.context-editorial-board td {
-vertical-align: top;
+
+/* Target Tabs  */
+.node-targets .horizontal-tabs ul.horizontal-tabs-list {
+  background-color: #FFFFFF;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
-/* Clinical Trials Corner */
-/* Editors Names alignment table */
-.page-clinical-trials td, th {
-	padding: 0;
-}
- 
-.view-clinical-trials .field-label-inline .field-items {
-	float: none;
+.node-targets .horizontal-tabs ul.horizontal-tabs-list li {
+  background-color: #116688;
+  margin-right: 5px;
+  padding: 1px 140px 1px 5px;
+  border: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
+.node-targets .horizontal-tabs ul.horizontal-tabs-list li.selected {
+  background-color: #A41034;
+}
+
+.node-targets .horizontal-tabs ul.horizontal-tabs-list li.last {
+  margin-right: 0;
+  padding-right: 141px;
+}
+
+.node-targets .horizontal-tabs ul.horizontal-tabs-list li a,
+.node-targets .horizontal-tabs ul.horizontal-tabs-list li.selected strong
+{
+  color: #FFFFFF;
+}
+
+div.horizontal-tabs {
+  border-top: 0;
+  border-top-left-radius: 38px;
+  border-top-right-radius: 10px 50px;
+}
+
+.horizontal-tabs fieldset.horizontal-tabs-pane {
+  padding: 0px;
+}
+
+.node-targets .group-datasets-tab h2.node-title {
+	font-size: 14px;
+	margin-bottom: 0px;
+
+}
+
+.node-targets .group-datasets-tab .field-name-field-dataset-links .field-item,
+.node-targets .group-literature-tab .field-name-field-literature-links .field-item {
+	padding: 10px;
+}
+
+.node-targets .group-datasets-tab .field-name-field-dataset-links .field-item .field .field-item{
+	padding: 0px;
+}
+
+
+
+/* Meetings */
 .page-upcoming-meetings .views-field-field-meeting-image {
 	float: left;
 }
@@ -1340,10 +1387,6 @@ vertical-align: top;
 	padding: 22px 0;
 }
 
-.node-type-clinical-trials .region-content,
-.node-clinical-trials .region-content {
-	padding-bottom: 2%;
-}
 
 /* Masquerade Block Theming */
 .block-masquerade .description,

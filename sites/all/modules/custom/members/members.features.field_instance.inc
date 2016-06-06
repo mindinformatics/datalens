@@ -379,7 +379,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -388,7 +388,7 @@ function members_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_title',
-    'label' => 'Title',
+    'label' => 'Evidence',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -2826,7 +2826,6 @@ function members_field_default_field_instances() {
   t('Subtitle');
   t('Suffix');
   t('Tags');
-  t('Title');
   t('Upload Profile Image');
   t('Upload an image relevant to the content.');
   t('Upload an image to go with this article.');

@@ -1372,12 +1372,28 @@ div.horizontal-tabs {
 }
 
 .node-targets .group-datasets-tab .field-name-field-dataset-links .field-item,
-.node-targets .group-literature-tab .field-name-field-literature-links .field-item {
+.node-targets .group-literature-tab .field-name-field-literature-links .field-item,
+.node-targets .group-nomination-tab .fieldset-wrapper,
+.node-targets .group-evidence-tab .fieldset-wrapper  {
 	padding: 10px;
+}
+
+.node-targets .group-evidence-tab .field-collection-view {
+	padding: 0;
+	margin: 0;
+}
+
+.node-targets .field-collection-view .field-label,
+.node-targets .field-collection-view .field-items {
+	width: auto;
 }
 
 .node-targets .group-datasets-tab .field-name-field-dataset-links .field-item .field .field-item{
 	padding: 0px;
+}
+
+.node-targets .group-evidence-tab .field-collection-view .field-label {
+	display: inline-block;
 }
 
 

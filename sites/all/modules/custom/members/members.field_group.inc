@@ -21,7 +21,7 @@ function members_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Datasets',
-    'weight' => '8',
+    'weight' => '11',
     'children' => array(
       0 => 'field_dataset_links',
     ),
@@ -48,7 +48,7 @@ function members_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Evidence',
-    'weight' => '10',
+    'weight' => '13',
     'children' => array(
       0 => 'field_claim_links',
     ),
@@ -75,7 +75,7 @@ function members_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Literature',
-    'weight' => '9',
+    'weight' => '12',
     'children' => array(
       0 => 'field_literature_links',
     ),
@@ -94,6 +94,35 @@ function members_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_nomination_tab|node|targets|default';
+  $field_group->group_name = 'group_nomination_tab';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'targets';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_tabs';
+  $field_group->data = array(
+    'label' => 'Nomination',
+    'weight' => '10',
+    'children' => array(
+      0 => 'body',
+      1 => 'field_nominator',
+      2 => 'field_links',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-nomination-tab field-group-htab',
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_nomination_tab|node|targets|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_tabs|node|targets|default';
   $field_group->group_name = 'group_tabs';
   $field_group->entity_type = 'node';
@@ -105,8 +134,9 @@ function members_field_group_info() {
     'weight' => '3',
     'children' => array(
       0 => 'group_datasets_tab',
-      1 => 'group_literature_tab',
-      2 => 'group_evidence_tab',
+      1 => 'group_evidence_tab',
+      2 => 'group_literature_tab',
+      3 => 'group_nomination_tab',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -124,6 +154,7 @@ function members_field_group_info() {
   t('Datasets');
   t('Evidence');
   t('Literature');
+  t('Nomination');
   t('Tabs');
 
   return $field_groups;

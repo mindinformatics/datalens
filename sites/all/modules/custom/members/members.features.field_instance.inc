@@ -88,8 +88,8 @@ function members_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 6,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -119,10 +119,10 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'link' => 1,
         ),
         'type' => 'entityreference_label',
         'weight' => 8,
@@ -167,7 +167,7 @@ function members_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -197,11 +197,11 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -234,8 +234,8 @@ function members_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 5,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -268,7 +268,7 @@ function members_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
-        'weight' => 4,
+        'weight' => 6,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -300,14 +300,14 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 3,
+        'weight' => 7,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -348,8 +348,8 @@ function members_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 7,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -379,7 +379,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -2244,40 +2244,6 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_member_id'
-  $field_instances['profile2-xf_profile-field_member_id'] = array(
-    'bundle' => 'xf_profile',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 14,
-      ),
-    ),
-    'entity_type' => 'profile2',
-    'field_name' => 'field_member_id',
-    'label' => 'Member ID',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 0,
-    ),
-  );
-
   // Exported field_instance: 'profile2-xf_profile-field_xfp_address'
   $field_instances['profile2-xf_profile-field_xfp_address'] = array(
     'bundle' => 'xf_profile',
@@ -2840,7 +2806,6 @@ function members_field_default_field_instances() {
   t('Meeting Date');
   t('Meeting Image');
   t('Meeting Name');
-  t('Member ID');
   t('Middle Name');
   t('Nominator(s)');
   t('Please indicate the Lab Group or Center.');

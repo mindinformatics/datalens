@@ -215,7 +215,7 @@ nav {
 
 /* for nice-menu down bg color */
 #region-menu ul li ul {
-	background-color:  #b9dc89;
+	background-color:  #AACCDD;
 }
 
 #region-menu.grid-12 {
@@ -294,11 +294,13 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 #region-menu ul.nice-menu li.active,
 #region-menu ul.nice-menu li.active-trail{
-  	background-color: #b9dc89;
+  	background-color: #AACCDD;
 }
 
 #region-menu ul.nice-menu li:hover{
-  	background-color: #b9dc89; 
+  	/*background-color: #AACCDD; light green*/
+  	background-color: #AACCDD;
+
 }
 
 #region-menu ul.nice-menu li li.active-trail,
@@ -308,7 +310,6 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 
 
-/* Slider */
 /* Slider */
 .front .block-nivo-slider .theme-dark.slider-wrapper {
 	padding: 0;
@@ -630,6 +631,9 @@ ul.nice-menu-down ul li.menuparent > a:after {
 .not-front .region-content img {
 	padding-right: 20px;
 }
+
+
+
 /* Forums Page styling */
 
 .context-forums label {

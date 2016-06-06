@@ -203,31 +203,13 @@ function members_context_default_contexts() {
           'module' => 'scfmembers',
           'delta' => 'scfmembers_user_top_menu',
           'region' => 'user_second',
-          'weight' => '-38',
+          'weight' => '-31',
         ),
         'search-form' => array(
           'module' => 'search',
           'delta' => 'form',
           'region' => 'user_second',
-          'weight' => '-37',
-        ),
-        'block-17' => array(
-          'module' => 'block',
-          'delta' => '17',
-          'region' => 'sidebar_second',
-          'weight' => '-10',
-        ),
-        'block-3' => array(
-          'module' => 'block',
-          'delta' => '3',
-          'region' => 'sidebar_second',
-          'weight' => '-9',
-        ),
-        'block-20' => array(
-          'module' => 'block',
-          'delta' => '20',
-          'region' => 'sidebar_second',
-          'weight' => '-8',
+          'weight' => '-31',
         ),
         'block-16' => array(
           'module' => 'block',

@@ -1934,7 +1934,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -1952,14 +1952,15 @@ function members_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
+    'label' => 'Rationale',
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'display_summary' => 1,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
@@ -2818,6 +2819,7 @@ function members_field_default_field_instances() {
   t('Profile photos will be cropped to squares. Please ensure that you are relatively central in the image.');
   t('Project');
   t('Public or Private');
+  t('Rationale');
   t('References');
   t('Related');
   t('Size should be 75x75 pixels.');

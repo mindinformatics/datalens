@@ -1349,6 +1349,11 @@ form.comment-form {
   background-color: #2B2B2B;
 }
 
+.horizontal-tabs ul.horizontal-tabs-list li:hover,
+.horizontal-tabs ul.horizontal-tabs-list li:focus {
+  background-color: #2B2B2B;
+}
+
 .node-targets .horizontal-tabs ul.horizontal-tabs-list li.last {
   margin-right: 0;
   padding-right: 141px;

@@ -125,6 +125,12 @@ function members_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
+        'views-biblio_view-block_1' => array(
+          'module' => 'views',
+          'delta' => 'biblio_view-block_1',
+          'region' => 'content',
+          'weight' => '-8',
+        ),
         'scfmembers-scfmembers_user_top_menu' => array(
           'module' => 'scfmembers',
           'delta' => 'scfmembers_user_top_menu',

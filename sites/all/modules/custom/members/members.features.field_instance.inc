@@ -875,7 +875,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
@@ -1151,9 +1151,8 @@ function members_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'list',
         'settings' => array(),
-        'type' => 'list_default',
+        'type' => 'hidden',
         'weight' => 10,
       ),
       'teaser' => array(

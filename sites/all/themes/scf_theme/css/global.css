@@ -426,9 +426,17 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	padding-bottom: 5%;
 }
 
-.front .view-clinical-trials .views-field-title {
-	padding-bottom: 5%;
-	padding-left: 0;
+/* FP Datasets block table */
+.front .view-datasets .views-table .views-field-field-group {
+	width: 70px;
+}
+
+.front .view-datasets .views-table .views-field-title {
+	width: 100px;
+}
+
+.front .view-datasets .views-table .views-field-field-data-type {
+	width: 60px;
 }
 
 /* Rows within Blocks */
@@ -453,7 +461,6 @@ ul.nice-menu-down ul li.menuparent > a:after {
 .block-forums-block-4 .more-link,
 .block-block-25 .more-link,
 .block-paper-alert-block-3 .more-link,
-.block-clinical-trials-block .more-link,
 .block-views-meetings-block  .more-link {
 	float: left;
 	margin-top: 2px;

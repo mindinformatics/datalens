@@ -1,11 +1,12 @@
 # sudo su
-# cd /var/www/html/adrc
-# drush sql-dump --result-file=/var/www/html/dumps/adrc_2016_02_11.sql
-# scp mym39@nlinq.dipr.partners.org:/var/www/html/dumps/adrc_2016_02_11_2pm.sql .
+# cd /var/www/html/cats
+# drush sql-dump --result-file=/var/www/html/dumps/cats_2016_06_09.sql
+# scp mym39@cats.dipr.partners.org:/var/www/html/dumps/cats_2016_06_09.sql .
 echo "Clearing database...Loading new database"
 #Comment out next 2 lines to prevent dropping/reloading db 
 drush sql-drop -y  
-drush sqlc < ../downloads/mind-template_dev_2016-05-06T15-12-17_UTC_database.sql
+#drush sqlc < ../downloads/mind-template_dev_2016-05-06T15-12-17_UTC_database.sql
+drush sqlc < cats_2016_06_09.sql
 echo "Finished loading drupal db."
 echo "Running db updates.."
 drush -y updb

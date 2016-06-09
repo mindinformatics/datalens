@@ -16,6 +16,7 @@ dependencies[] = comment
 dependencies[] = conditional_fields
 dependencies[] = contact
 dependencies[] = contact_forms
+dependencies[] = content_access
 dependencies[] = context
 dependencies[] = context_ui
 dependencies[] = csm

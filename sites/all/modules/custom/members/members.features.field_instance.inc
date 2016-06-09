@@ -201,12 +201,12 @@ function members_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_plain',
-        'weight' => 1,
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_evidence_type',
-    'label' => 'Evidence type',
+    'label' => 'Relationship',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -383,7 +383,7 @@ function members_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -2789,7 +2789,6 @@ function members_field_default_field_instances() {
   t('Enter description such as conference date, location or interviewed by.');
   t('Enter the location.');
   t('Evidence');
-  t('Evidence type');
   t('Expression');
   t('Featured Image');
   t('Files');
@@ -2822,6 +2821,7 @@ function members_field_default_field_instances() {
   t('Rationale');
   t('References');
   t('Related');
+  t('Relationship');
   t('Size should be 75x75 pixels.');
   t('Species');
   t('Status');

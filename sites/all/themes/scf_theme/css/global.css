@@ -1418,6 +1418,13 @@ div.horizontal-tabs .horizontal-tabs-panes {
     background: none;
     outline: medium none;
 }
+
+
+.field-name-field-files img.file-icon {
+	padding-right: 0px;
+}
+
+
 /* Meetings */
 .page-upcoming-meetings .views-field-field-meeting-image {
 	float: left;

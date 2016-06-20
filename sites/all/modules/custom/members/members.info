@@ -149,6 +149,7 @@ features[field_base][] = field_nominator
 features[field_base][] = field_project
 features[field_base][] = field_references
 features[field_base][] = field_related
+features[field_base][] = field_sample_size
 features[field_base][] = field_species
 features[field_base][] = field_status
 features[field_base][] = field_subtitle

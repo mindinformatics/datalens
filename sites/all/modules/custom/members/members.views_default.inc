@@ -202,17 +202,17 @@ function members_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'table';
-  /* Field: Content: Group */
-  $handler->display->display_options['fields']['field_group']['id'] = 'field_group';
-  $handler->display->display_options['fields']['field_group']['table'] = 'field_data_field_group';
-  $handler->display->display_options['fields']['field_group']['field'] = 'field_group';
-  $handler->display->display_options['fields']['field_group']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Group */
+  $handler->display->display_options['fields']['field_group']['id'] = 'field_group';
+  $handler->display->display_options['fields']['field_group']['table'] = 'field_data_field_group';
+  $handler->display->display_options['fields']['field_group']['field'] = 'field_group';
+  $handler->display->display_options['fields']['field_group']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Data Type */
   $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
   $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';

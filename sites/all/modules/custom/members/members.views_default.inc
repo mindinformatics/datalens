@@ -277,7 +277,7 @@ function members_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'field_data_type_tid' => array(
+    'term_node_tid_depth' => array(
       'bef_format' => 'default',
       'more_options' => array(
         'bef_select_all_none' => 0,
@@ -329,7 +329,7 @@ function members_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'field_brain_region_tid' => array(
+    'term_node_tid_depth_1' => array(
       'bef_format' => 'default',
       'more_options' => array(
         'bef_select_all_none' => 0,
@@ -414,42 +414,44 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'dataset' => 'dataset',
   );
-  /* Filter criterion: Content: Data Type (field_data_type) */
-  $handler->display->display_options['filters']['field_data_type_tid']['id'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['table'] = 'field_data_field_data_type';
-  $handler->display->display_options['filters']['field_data_type_tid']['field'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator_id'] = 'field_data_type_tid_op';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['label'] = 'Data Type';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator'] = 'field_data_type_tid_op';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['identifier'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['remember_roles'] = array(
+  /* Filter criterion: Content: Has taxonomy terms (with depth) */
+  $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
+  $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Data Type';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
   );
-  $handler->display->display_options['filters']['field_data_type_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_data_type_tid']['vocabulary'] = 'data_type';
-  $handler->display->display_options['filters']['field_data_type_tid']['hierarchy'] = 1;
-  /* Filter criterion: Field: Brain region (field_brain_region) */
-  $handler->display->display_options['filters']['field_brain_region_tid']['id'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['table'] = 'field_data_field_brain_region';
-  $handler->display->display_options['filters']['field_brain_region_tid']['field'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator_id'] = 'field_brain_region_tid_op';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator'] = 'field_brain_region_tid_op';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['identifier'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
+  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'data_type';
+  $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
+  /* Filter criterion: Content: Has taxonomy terms (with depth) */
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator_id'] = 'term_node_tid_depth_1_op';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['label'] = 'Brain Region';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator'] = 'term_node_tid_depth_1_op';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['identifier'] = 'term_node_tid_depth_1';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
   );
-  $handler->display->display_options['filters']['field_brain_region_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_brain_region_tid']['vocabulary'] = 'brain_region';
-  $handler->display->display_options['filters']['field_brain_region_tid']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['type'] = 'select';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['vocabulary'] = 'brain_region';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['depth'] = '3';
   $handler->display->display_options['mefibs'] = array(
     'page' => array(
       'secondary_form_block' => array(),

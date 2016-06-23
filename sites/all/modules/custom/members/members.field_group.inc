@@ -13,6 +13,33 @@ function members_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group__analysis_tab|node|dataset|default';
+  $field_group->group_name = 'group__analysis_tab';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'dataset';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_tabs';
+  $field_group->data = array(
+    'label' => 'Analysis',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_analysis',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group--analysis-tab field-group-htab',
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group__analysis_tab|node|dataset|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_datasets_tab|node|targets|default';
   $field_group->group_name = 'group_datasets_tab';
   $field_group->entity_type = 'node';
@@ -63,6 +90,43 @@ function members_field_group_info() {
     ),
   );
   $field_groups['group_evidence_tab|node|targets|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_general_tab|node|dataset|default';
+  $field_group->group_name = 'group_general_tab';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'dataset';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_tabs';
+  $field_group->data = array(
+    'label' => 'General',
+    'weight' => '1',
+    'children' => array(
+      0 => 'body',
+      1 => 'field_group',
+      2 => 'field_project',
+      3 => 'field_status',
+      4 => 'field_species',
+      5 => 'field_brain_region',
+      6 => 'field_files',
+      7 => 'field_data_type',
+      8 => 'field_links',
+      9 => 'field_disease',
+      10 => 'field_sample_size',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-general-tab field-group-htab',
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_general_tab|node|dataset|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -123,6 +187,33 @@ function members_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_tabs|node|dataset|default';
+  $field_group->group_name = 'group_tabs';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'dataset';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Tabs',
+    'weight' => '0',
+    'children' => array(
+      0 => 'group_general_tab',
+      1 => 'group__analysis_tab',
+    ),
+    'format_type' => 'htabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => 'group-tabs field-group-htabs',
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_tabs|node|dataset|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_tabs|node|targets|default';
   $field_group->group_name = 'group_tabs';
   $field_group->entity_type = 'node';
@@ -151,8 +242,10 @@ function members_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Analysis');
   t('Datasets');
   t('Evidence');
+  t('General');
   t('Literature');
   t('Nomination');
   t('Tabs');

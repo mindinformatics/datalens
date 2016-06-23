@@ -240,6 +240,14 @@ function members_flag_default_flags() {
  */
 function members_node_info() {
   $items = array(
+    'analysis' => array(
+      'name' => t('Analysis'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'article' => array(
       'name' => t('Article'),
       'base' => 'node_content',
@@ -282,6 +290,14 @@ function members_node_info() {
     ),
     'news' => array(
       'name' => t('News'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'result' => array(
+      'name' => t('Result'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

@@ -1330,7 +1330,8 @@ form.comment-form {
 }
 
 
-/* Target Tabs  */
+/* Tabs  Targets and Datasets */
+.node-dataset .horizontal-tabs ul.horizontal-tabs-list,
 .node-targets .horizontal-tabs ul.horizontal-tabs-list {
   background-color: #FFFFFF;
   border: 0;
@@ -1338,6 +1339,7 @@ form.comment-form {
   margin: 0;
 }
 
+.node-dataset .horizontal-tabs ul.horizontal-tabs-list li,
 .node-targets .horizontal-tabs ul.horizontal-tabs-list li {
   background-color: #116688;
   margin-right: 5px;
@@ -1347,11 +1349,13 @@ form.comment-form {
   border-top-right-radius: 10px;
 }
 
+.node-dataset .horizontal-tabs ul.horizontal-tabs-list li.selected,
 .node-targets .horizontal-tabs ul.horizontal-tabs-list li.selected {
   background-color: #A41034;
 }
 
 /*This doesn't work!*/
+.node-dataset .horizontal-tabs ul.horizontal-tabs-list li.hover,
 .node-targets .horizontal-tabs ul.horizontal-tabs-list li.hover {
   background-color: #2B2B2B;
 }
@@ -1361,11 +1365,13 @@ form.comment-form {
   background-color: #2B2B2B;
 }
 
-.node-targets .horizontal-tabs ul.horizontal-tabs-list li.last {
+.horizontal-tabs ul.horizontal-tabs-list li.last {
   margin-right: 0;
   padding-right: 141px;
 }
 
+.node-dataset .horizontal-tabs ul.horizontal-tabs-list li a,
+.node-dataset .horizontal-tabs ul.horizontal-tabs-list li.selected strong,
 .node-targets .horizontal-tabs ul.horizontal-tabs-list li a,
 .node-targets .horizontal-tabs ul.horizontal-tabs-list li.selected strong
 {

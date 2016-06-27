@@ -1424,6 +1424,16 @@ div.horizontal-tabs .horizontal-tabs-panes {
 	display: inline-block;
 }
 
+.node-dataset .group--analysis-tab h2.node-title {
+	color: #4D317A;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.node-dataset .group--analysis-tab .field-name-field-analysis {
+	display: none;
+}
+
 
 .horizontal-tabs ul.horizontal-tabs-list li a:hover {
     background: none;

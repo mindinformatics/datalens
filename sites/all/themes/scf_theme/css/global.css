@@ -1411,6 +1411,11 @@ div.horizontal-tabs .horizontal-tabs-panes {
 	width: auto;
 }
 
+.node-targets .group-evidence-tab .field-name-field-title .field-items {
+	width: 90%;
+}
+
+
 .node-targets .group-datasets-tab .field-name-field-dataset-links .field-item .field .field-item{
 	padding: 0px;
 }

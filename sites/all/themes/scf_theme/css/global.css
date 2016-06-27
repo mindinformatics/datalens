@@ -1411,8 +1411,16 @@ div.horizontal-tabs .horizontal-tabs-panes {
 	width: auto;
 }
 
-.node-targets .group-evidence-tab .field-name-field-title .field-items {
+.node-targets .group-evidence-tab .field-label,
+.node-claim .field-label {
+	width: 10%;
+	float: left;
+}
+
+.node-targets .group-evidence-tab .field-collection-view .field-items,
+.node-claim .field-collection-view .field-items {
 	width: 90%;
+	float: right;
 }
 
 
@@ -1426,11 +1434,17 @@ div.horizontal-tabs .horizontal-tabs-panes {
 
 .node-dataset .group--analysis-tab h2.node-title {
 	color: #4D317A;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.node-dataset .group--analysis-tab .field-name-field-input .field-items,
+.node-dataset .group--analysis-tab .field-name-field-result h2.node-title {
 	font-size: 12px;
 	font-weight: bold;
 }
 
-.node-dataset .group--analysis-tab .field-name-field-analysis {
+.node-dataset .group--analysis-tab .field-name-field-result .field-name-field-analysis {
 	display: none;
 }
 
@@ -1444,6 +1458,8 @@ div.horizontal-tabs .horizontal-tabs-panes {
 .field-name-field-files img.file-icon {
 	padding-right: 0px;
 }
+
+
 
 
 /* Meetings */

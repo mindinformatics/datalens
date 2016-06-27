@@ -1072,35 +1072,19 @@ function members_field_default_field_bases() {
       'type' => 0,
     ),
     'indexes' => array(
-      'target_id' => array(
-        0 => 'target_id',
+      'revision_id' => array(
+        0 => 'revision_id',
       ),
     ),
     'locked' => 0,
-    'module' => 'entityreference',
+    'module' => 'field_collection',
     'settings' => array(
-      'handler' => 'base',
-      'handler_settings' => array(
-        'behaviors' => array(
-          'test_field_behavior' => array(
-            'status' => 0,
-          ),
-          'views-select-list' => array(
-            'status' => 0,
-          ),
-        ),
-        'sort' => array(
-          'type' => 'none',
-        ),
-        'target_bundles' => array(
-          'result' => 'result',
-        ),
-      ),
+      'hide_blank_items' => 1,
+      'path' => '',
       'profile2_private' => FALSE,
-      'target_type' => 'node',
     ),
     'translatable' => 0,
-    'type' => 'entityreference',
+    'type' => 'field_collection',
   );
 
   // Exported field_base: 'field_result_data'
@@ -1135,7 +1119,7 @@ function members_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          'result' => 'result',
+          'analysis' => 'analysis',
         ),
       ),
       'profile2_private' => FALSE,

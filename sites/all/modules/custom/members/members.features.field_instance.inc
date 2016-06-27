@@ -85,7 +85,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -190,9 +190,10 @@ function members_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => 1,
+          'links' => 1,
+          'view_mode' => 'teaser',
         ),
-        'type' => 'entityreference_label',
+        'type' => 'entityreference_entity_view',
         'weight' => 3,
       ),
     ),

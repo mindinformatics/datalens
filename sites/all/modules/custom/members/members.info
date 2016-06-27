@@ -189,6 +189,7 @@ features[field_instance][] = field_collection_item-field_evidence-field_brain_re
 features[field_instance][] = field_collection_item-field_evidence-field_description
 features[field_instance][] = field_collection_item-field_evidence-field_evidence_type
 features[field_instance][] = field_collection_item-field_evidence-field_expression
+features[field_instance][] = field_collection_item-field_evidence-field_literature_links
 features[field_instance][] = field_collection_item-field_evidence-field_tags
 features[field_instance][] = field_collection_item-field_evidence-field_title
 features[field_instance][] = node-analysis-body

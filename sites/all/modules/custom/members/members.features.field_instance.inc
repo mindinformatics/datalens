@@ -179,6 +179,50 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'field_collection_item-field_evidence-field_literature_links'
+  $field_instances['field_collection_item-field_evidence-field_literature_links'] = array(
+    'bundle' => 'field_evidence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'entityconnect_unload_add' => 0,
+    'entityconnect_unload_edit' => 0,
+    'field_name' => 'field_literature_links',
+    'label' => 'Citation',
+    'required' => 0,
+    'settings' => array(
+      'behaviors' => array(
+        'test_instance_behavior' => array(
+          'status' => 0,
+        ),
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 32,
+    ),
+  );
+
   // Exported field_instance: 'field_collection_item-field_evidence-field_tags'
   $field_instances['field_collection_item-field_evidence-field_tags'] = array(
     'bundle' => 'field_evidence',
@@ -240,7 +284,7 @@ function members_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 175,
       ),
       'type' => 'text_textfield',
       'weight' => 0,
@@ -3094,6 +3138,7 @@ function members_field_default_field_instances() {
   t('By');
   t('ByLine');
   t('Category');
+  t('Citation');
   t('Claims');
   t('Code');
   t('Comment');

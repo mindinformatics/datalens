@@ -223,7 +223,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Code */
+  /* Field: Content: Identifiers */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -381,6 +381,58 @@ function members_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
+    'field_group_tid' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_select_all_none_nested' => 0,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
     'secondary_label' => NULL,
     'collapsible_label' => NULL,
     'combine_rewrite' => NULL,
@@ -452,6 +504,24 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth_1']['vocabulary'] = 'brain_region';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['hierarchy'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['depth'] = '3';
+  /* Filter criterion: Content: Group (field_group) */
+  $handler->display->display_options['filters']['field_group_tid']['id'] = 'field_group_tid';
+  $handler->display->display_options['filters']['field_group_tid']['table'] = 'field_data_field_group';
+  $handler->display->display_options['filters']['field_group_tid']['field'] = 'field_group_tid';
+  $handler->display->display_options['filters']['field_group_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_group_tid']['expose']['operator_id'] = 'field_group_tid_op';
+  $handler->display->display_options['filters']['field_group_tid']['expose']['label'] = 'Group';
+  $handler->display->display_options['filters']['field_group_tid']['expose']['operator'] = 'field_group_tid_op';
+  $handler->display->display_options['filters']['field_group_tid']['expose']['identifier'] = 'field_group_tid';
+  $handler->display->display_options['filters']['field_group_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_group_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_group_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_group_tid']['vocabulary'] = 'group';
+  $handler->display->display_options['filters']['field_group_tid']['hierarchy'] = 1;
   $handler->display->display_options['mefibs'] = array(
     'page' => array(
       'secondary_form_block' => array(),

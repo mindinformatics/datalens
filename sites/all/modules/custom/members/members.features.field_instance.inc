@@ -458,7 +458,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -492,7 +492,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -537,7 +537,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -689,7 +689,7 @@ function members_field_default_field_instances() {
         'settings' => array(
           'add' => 'Add',
           'delete' => 'Delete',
-          'description' => TRUE,
+          'description' => 1,
           'edit' => 'Edit',
           'view_mode' => 'full',
         ),
@@ -705,7 +705,7 @@ function members_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_result',
-    'label' => 'Result',
+    'label' => 'Results',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1020,11 +1020,8 @@ function members_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 4,
       ),
     ),
@@ -3425,7 +3422,7 @@ function members_field_default_field_instances() {
   t('References');
   t('Related');
   t('Relationship');
-  t('Result');
+  t('Results');
   t('Sample Size');
   t('Size should be 75x75 pixels.');
   t('Species');

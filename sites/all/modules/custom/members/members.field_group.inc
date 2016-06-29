@@ -48,7 +48,7 @@ function members_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Datasets',
-    'weight' => '11',
+    'weight' => '13',
     'children' => array(
       0 => 'field_dataset_links',
     ),
@@ -75,7 +75,7 @@ function members_field_group_info() {
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
     'label' => 'Evidence',
-    'weight' => '13',
+    'weight' => '11',
     'children' => array(
       0 => 'field_claim_links',
     ),

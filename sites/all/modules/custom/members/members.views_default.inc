@@ -223,7 +223,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Code */
+  /* Field: Content: Identifiers */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -466,10 +466,31 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'dataset' => 'dataset',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Group (field_group) */
+  $handler->display->display_options['filters']['field_group_tid']['id'] = 'field_group_tid';
+  $handler->display->display_options['filters']['field_group_tid']['table'] = 'field_data_field_group';
+  $handler->display->display_options['filters']['field_group_tid']['field'] = 'field_group_tid';
+  $handler->display->display_options['filters']['field_group_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_group_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_group_tid']['expose']['operator_id'] = 'field_group_tid_op';
+  $handler->display->display_options['filters']['field_group_tid']['expose']['label'] = 'Group';
+  $handler->display->display_options['filters']['field_group_tid']['expose']['operator'] = 'field_group_tid_op';
+  $handler->display->display_options['filters']['field_group_tid']['expose']['identifier'] = 'field_group_tid';
+  $handler->display->display_options['filters']['field_group_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_group_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_group_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_group_tid']['vocabulary'] = 'group';
+  $handler->display->display_options['filters']['field_group_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
   $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Data Type';
@@ -489,6 +510,7 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator_id'] = 'term_node_tid_depth_1_op';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['label'] = 'Brain Region';
@@ -504,24 +526,6 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth_1']['vocabulary'] = 'brain_region';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['hierarchy'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['depth'] = '3';
-  /* Filter criterion: Content: Group (field_group) */
-  $handler->display->display_options['filters']['field_group_tid']['id'] = 'field_group_tid';
-  $handler->display->display_options['filters']['field_group_tid']['table'] = 'field_data_field_group';
-  $handler->display->display_options['filters']['field_group_tid']['field'] = 'field_group_tid';
-  $handler->display->display_options['filters']['field_group_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_group_tid']['expose']['operator_id'] = 'field_group_tid_op';
-  $handler->display->display_options['filters']['field_group_tid']['expose']['label'] = 'Group';
-  $handler->display->display_options['filters']['field_group_tid']['expose']['operator'] = 'field_group_tid_op';
-  $handler->display->display_options['filters']['field_group_tid']['expose']['identifier'] = 'field_group_tid';
-  $handler->display->display_options['filters']['field_group_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_group_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_group_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_group_tid']['vocabulary'] = 'group';
-  $handler->display->display_options['filters']['field_group_tid']['hierarchy'] = 1;
   $handler->display->display_options['mefibs'] = array(
     'page' => array(
       'secondary_form_block' => array(),

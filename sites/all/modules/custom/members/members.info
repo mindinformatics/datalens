@@ -179,6 +179,7 @@ features[field_base][] = field_xfp_pro_links
 features[field_base][] = field_xfp_suffix
 features[field_base][] = group_content_access
 features[field_group][] = group__analysis_tab|node|dataset|default
+features[field_group][] = group_analysis_tab|node|dataset|default
 features[field_group][] = group_datasets_tab|node|targets|default
 features[field_group][] = group_evidence_tab|node|targets|default
 features[field_group][] = group_general_tab|node|dataset|default

@@ -297,7 +297,7 @@ function members_node_info() {
       'help' => '',
     ),
     'targets' => array(
-      'name' => t('Targets'),
+      'name' => t('Projects'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

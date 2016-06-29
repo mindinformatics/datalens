@@ -2823,7 +2823,7 @@ function members_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Targets';
+  $handler->display->display_options['title'] = 'Projects';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -2836,7 +2836,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = 'Target';
+  $handler->display->display_options['fields']['title']['label'] = 'Project';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Nominator(s) */
@@ -2877,9 +2877,9 @@ function members_views_default_views() {
     'targets' => 'targets',
   );
 
-  /* Display: Targets Page */
-  $handler = $view->new_display('page', 'Targets Page', 'page');
-  $handler->display->display_options['path'] = 'targets';
+  /* Display: Projects Page */
+  $handler = $view->new_display('page', 'Projects Page', 'page');
+  $handler->display->display_options['path'] = 'projects';
 
   /* Display: Targets Block */
   $handler = $view->new_display('block', 'Targets Block', 'block');

@@ -255,6 +255,7 @@ function members_field_group_info() {
       1 => 'group_evidence_tab',
       2 => 'group_literature_tab',
       3 => 'group_nomination_tab',
+      4 => 'group_tools_tab',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(

@@ -1259,75 +1259,15 @@ form.comment-form {
 
 
 /* Sidebar First Theming Menu Block */
-.page-ltte #region-sidebar-first,
 .page-contact #region-sidebar-first {
   display: none;
 }
 
-
-.page-ltte .container-12 .grid-6,
 .page-contact .container-12 .grid-6{
   width: 700px;
 }
 
-.not-front #region-sidebar-first ul,
-.not-front #region-sidebar-first ul li.leaf {
-  list-style: none;
-}
 
-.not-front #region-sidebar-first .block-title {
-	border-top: 2px solid grey;
-	padding: 10px 0;
-}
-	
-.not-front #region-sidebar-first .block-title a,
-.not-front #region-sidebar-first li a {
-	font-size: 11px;
-	font-weight: bold;	
-}
-
-.not-front #region-sidebar-first ul li {
-	border-bottom: 1px dotted grey;
-	padding: 7px 0 7px 7px;
-}
-
-.not-front #region-sidebar-first ul li.first {
-	border-top: 1px dotted grey;
-}
-
-.not-front #region-sidebar-first ul li ul li.first {
-	border-top: none;
-}
-
-.not-front #region-sidebar-first ul li ul li.last {
-	border-bottom: none;
-}
-
-.not-front #region-sidebar-first li.active-trail .active{
-	font-weight: bold;
-	color: #ec611f;
-}
-
-.not-front #region-sidebar-first ul > li.active a:after {
-	content: url('../images/circlearrow-over.gif');
-    padding-right: 5px;
-    float: right;
-}
-
-.not-front #region-sidebar-first ul > li:hover a:after {
-	content: url('../images/circlearrow-over.gif');
-    padding-right: 5px;
-    float: right;
-}
-.not-front #region-sidebar-first li a:after,
-.not-front #region-sidebar-first .block-title a:after,
-.not-front #region-sidebar-first ul li.active ul li a:after,
-.not-front #region-sidebar-first ul li:hover ul li a:after {
-    content: url('../images/arrow.gif');
-    color: grey;
-    padding-right: 5px;
-    float: right;
-}
 
 
 /* Tabs: Targets, Datasets, Analysis & Claims */
@@ -1460,6 +1400,36 @@ div.horizontal-tabs .horizontal-tabs-panes {
 
 .field-name-field-files img.file-icon {
 	padding-right: 0px;
+}
+
+
+/* Datasets Filter better? */
+.form-checkboxes .bef-tree,
+.bef-select-as-radios .form-radios {
+  /*
+   * Setting the height and overflow creates a scrollable <div> for the radio/checkbox elements.
+   * The border is just for looks -- adjust or remove as needed.
+   */
+  height: 150px;
+  overflow: auto;
+  border: 1px solid #999;
+}
+
+.not-front #region-sidebar-first ul,
+.not-front #region-sidebar-first ul li.leaf {
+  list-style: none;
+}
+
+.views-exposed-form label {
+    font-weight: normal;
+    font-size: 12px;
+}
+
+/* Line up multi-line options nicely */
+.form-checkboxes .bef-tree .bef-tree-child,
+.bef-select-as-radios .form-radios .form-item {
+  text-indent: -20px;
+  margin-left: 24px;
 }
 
 

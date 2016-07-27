@@ -355,15 +355,9 @@ ul.nice-menu-down ul li.menuparent > a:after {
 .nivo-caption a {
   color: #f6ca53 !important;
   border: none !important;
-  font-size: 13px;
-  line-height: 13px;
+  font-size: 15px;
+  line-height: 15px;
   font-family: Helvetica, Arial, Verdana, sans-serif;
-}
-
-.nivo-caption a:after {
-  content: "Â» ";
-  padding-left: 4px;
-  padding-right: 10px;
 }
     
 .front .nivo-controlNav {
@@ -428,15 +422,15 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 /* FP Datasets block table */
 .front .view-datasets .views-table .views-field-field-group {
-	width: 70px;
+	width: 90px;
 }
 
 .front .view-datasets .views-table .views-field-title {
-	width: 100px;
+	width: 300px;
 }
 
 .front .view-datasets .views-table .views-field-field-data-type {
-	width: 60px;
+	width: 70px;
 }
 
 /* Rows within Blocks */
@@ -1401,6 +1395,8 @@ div.horizontal-tabs .horizontal-tabs-panes {
 .field-name-field-files img.file-icon {
 	padding-right: 0px;
 }
+
+
 
 
 /* Datasets Filter better? */

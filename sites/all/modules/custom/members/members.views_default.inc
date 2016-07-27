@@ -223,7 +223,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -277,7 +277,7 @@ function members_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'field_group_tid' => array(
+    'term_node_tid_depth' => array(
       'bef_format' => 'default',
       'more_options' => array(
         'bef_select_all_none' => 0,
@@ -329,11 +329,11 @@ function members_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'term_node_tid_depth' => array(
-      'bef_format' => 'bef_ul',
+    'term_node_tid_depth_1' => array(
+      'bef_format' => 'default',
       'more_options' => array(
         'bef_select_all_none' => 0,
-        'bef_select_all_none_nested' => 1,
+        'bef_select_all_none_nested' => 0,
         'bef_collapsible' => 0,
         'is_secondary' => 0,
         'any_label' => '',
@@ -381,7 +381,7 @@ function members_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'term_node_tid_depth_1' => array(
+    'field_group_tid' => array(
       'bef_format' => 'default',
       'more_options' => array(
         'bef_select_all_none' => 0,

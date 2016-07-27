@@ -2,6 +2,7 @@ name = SCF
 description = SCF feature
 core = 7.x
 package = Features
+dependencies[] = acl
 dependencies[] = addressfield
 dependencies[] = addtoany
 dependencies[] = aggregator

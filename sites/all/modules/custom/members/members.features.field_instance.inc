@@ -201,7 +201,7 @@ function members_field_default_field_instances() {
     'entityconnect_unload_add' => 0,
     'entityconnect_unload_edit' => 0,
     'field_name' => 'field_literature_links',
-    'label' => 'Citation',
+    'label' => 'Citation(s)',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -3645,7 +3645,7 @@ function members_field_default_field_instances() {
   t('By');
   t('ByLine');
   t('Category');
-  t('Citation');
+  t('Citation(s)');
   t('Claims');
   t('Code');
   t('Comment');

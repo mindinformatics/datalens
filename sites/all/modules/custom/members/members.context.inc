@@ -272,18 +272,6 @@ function members_context_default_contexts() {
           'region' => 'user_second',
           'weight' => '-9',
         ),
-        'quicktabs-member_comments' => array(
-          'module' => 'quicktabs',
-          'delta' => 'member_comments',
-          'region' => 'sidebar_second',
-          'weight' => '-10',
-        ),
-        'custom_search_blocks-2' => array(
-          'module' => 'custom_search_blocks',
-          'delta' => '2',
-          'region' => 'sidebar_second',
-          'weight' => '-9',
-        ),
         'block-16' => array(
           'module' => 'block',
           'delta' => '16',

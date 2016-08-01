@@ -223,7 +223,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Code */
+  /* Field: Content: Identifiers */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -2131,7 +2131,7 @@ function members_views_default_views() {
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '8';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '12';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['header'] = FALSE;
   /* Header: Global: Text area */
@@ -2161,7 +2161,7 @@ function members_views_default_views() {
   $handler = $view->new_display('page', 'Members Directory', 'page_2');
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '8';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '12';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';

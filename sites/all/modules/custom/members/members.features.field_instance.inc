@@ -3439,6 +3439,37 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_type'
+  $field_instances['profile2-xf_profile-field_xfp_type'] = array(
+    'bundle' => 'xf_profile',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 19,
+      ),
+    ),
+    'entity_type' => 'profile2',
+    'field_name' => 'field_xfp_type',
+    'label' => 'Profile Type',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 31,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Acknowledgement');
@@ -3503,6 +3534,7 @@ function members_field_default_field_instances() {
   t('Please list institutional affiliations, separated by commas, with your primary affiliation first.');
   t('Position');
   t('Professional Links');
+  t('Profile Type');
   t('Profile photos will be cropped to squares. Please ensure that you are relatively central in the image.');
   t('Project');
   t('Public or Private');

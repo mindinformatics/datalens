@@ -1009,14 +1009,18 @@ function members_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_2_node_types';
   $strongarm->value = array(
+    'analysis' => 0,
     'article' => 0,
-    'authors' => 0,
     'page' => 0,
     'biblio' => 0,
-    'disclosure_grants' => 0,
-    'disclosure' => 0,
+    'claim' => 0,
+    'dataset' => 0,
     'discussion' => 0,
-    'manuscript' => 0,
+    'group' => 0,
+    'meetings' => 0,
+    'news' => 0,
+    'poll' => 0,
+    'targets' => 0,
     'webform' => 0,
   );
   $export['custom_search_blocks_2_node_types'] = $strongarm;
@@ -1026,15 +1030,19 @@ function members_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_search_blocks_2_node_types_excluded';
   $strongarm->value = array(
-    'authors' => 'authors',
-    'disclosure_grants' => 'disclosure_grants',
-    'disclosure' => 'disclosure',
     'webform' => 'webform',
+    'analysis' => 0,
     'article' => 0,
     'page' => 0,
     'biblio' => 0,
+    'claim' => 0,
+    'dataset' => 0,
     'discussion' => 0,
-    'manuscript' => 0,
+    'group' => 0,
+    'meetings' => 0,
+    'news' => 0,
+    'poll' => 0,
+    'targets' => 0,
   );
   $export['custom_search_blocks_2_node_types_excluded'] = $strongarm;
 

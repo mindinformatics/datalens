@@ -44,12 +44,6 @@ function members_context_default_contexts() {
           'region' => 'user_second',
           'weight' => '-9',
         ),
-        'quicktabs-member_comments' => array(
-          'module' => 'quicktabs',
-          'delta' => 'member_comments',
-          'region' => 'sidebar_second',
-          'weight' => '-10',
-        ),
         'block-16' => array(
           'module' => 'block',
           'delta' => '16',
@@ -76,30 +70,7 @@ function members_context_default_contexts() {
       ),
     ),
   );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'custom_search_blocks-1' => array(
-          'module' => 'custom_search_blocks',
-          'delta' => '1',
-          'region' => 'sidebar_second',
-          'weight' => '-36',
-        ),
-        'poll-recent' => array(
-          'module' => 'poll',
-          'delta' => 'recent',
-          'region' => 'sidebar_second',
-          'weight' => '-36',
-        ),
-        'quicktabs-popular_forums' => array(
-          'module' => 'quicktabs',
-          'delta' => 'popular_forums',
-          'region' => 'sidebar_second',
-          'weight' => '-36',
-        ),
-      ),
-    ),
-  );
+  $context->reactions = array();
   $context->condition_mode = 0;
   $export['forum'] = $context;
 

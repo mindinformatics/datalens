@@ -2033,7 +2033,7 @@ function members_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = '<span>Name:</span><span class="alpha-pager"><a class="alpha-page" href="/members/directory/a">A</a><a class="alpha-page" href="/members/directory/b">B</a><a class="alpha-page" href="/members/directory/c">C</a><a class="alpha-page" href="/members/directory/d">D</a><a class="alpha-page" href="/members/directory/e">E</a><a class="alpha-page" href="/members/directory/f">F</a><a class="alpha-page" href="/members/directory/g">G</a><a class="alpha-page" href="/members/directory/h">H</a><a class="alpha-page" href="/members/directory/i">I</a><a class="alpha-page" href="/members/directory/j">J</a><a class="alpha-page" href="/members/directory/k">K</a><a class="alpha-page" href="/members/directory/l">L</a><a class="alpha-page" href="/members/directory/m">M</a><a class="alpha-page" href="/members/directory/n">N</a><a class="alpha-page" href="/members/directory/o">O</a><a class="alpha-page" href="/members/directory/p">P</a><a class="alpha-page" href="/members/directory/q">Q</a><a class="alpha-page" href="/members/directory/r">R</a><a class="alpha-page" href="/members/directory/s">S</a><a class="alpha-page" href="/members/directory/t">T</a><a class="alpha-page" href="/members/directory/u">U</a><a class="alpha-page" href="/members/directory/v">V</a><a class="alpha-page" href="/members/directory/w">W</a><a class="alpha-page" href="/members/directory/x">X</a><a class="alpha-page" href="/members/directory/y">Y</a><a class="alpha-page" href="/members/directory/z">Z</a><a class="alpha-page alpha-page-all" href="/members/directory">ALL</a></span>';
+  $handler->display->display_options['header']['area']['content'] = '<span>Name:</span><span class="alpha-pager"><a class="alpha-page" href="/members/directory/a">A</a><a class="alpha-page" href="/members/directory/b">B</a><a class="alpha-page" href="/members/directory/c">C</a><a class="alpha-page" href="/members/directory/d">D</a><a class="alpha-page" href="/members/directory/e">E</a><a class="alpha-page" href="/members/directory/f">F</a><a class="alpha-page" href="/members/directory/g">G</a><a class="alpha-page" href="/members/directory/h">H</a><a class="alpha-page" href="/members/directory/i">I</a><a class="alpha-page" href="/members/directory/j">J</a><a class="alpha-page" href="/members/directory/k">K</a><a class="alpha-page" href="/members/directory/l">L</a><a class="alpha-page" href="/members/directory/m">M</a><a class="alpha-page" href="/members/directory/n">N</a><a class="alpha-page" href="/members/directory/o">O</a><a class="alpha-page" href="/members/directory/p">P</a><a class="alpha-page" href="/members/directory/q">Q</a><a class="alpha-page" href="/members/directory/r">R</a><a class="alpha-page" href="/members/directory/s">S</a><a class="alpha-page" href="/members/directory/t">T</a><a class="alpha-page" href="/members/directory/u">U</a><a class="alpha-page" href="/members/directory/v">V</a><a class="alpha-page" href="/members/directory/w">W</a><a class="alpha-page" href="/members/directory/x">X</a><a class="alpha-page" href="/members/directory/y">Y</a><a class="alpha-page" href="/members/directory/z">Z</a><a class="alpha-page alpha-page-all" href="/members/directory">SHOW ALL</a></span>';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
@@ -2121,6 +2121,17 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['field_xfp_lastname']['field'] = 'field_xfp_lastname_value';
   $handler->display->display_options['filters']['field_xfp_lastname']['operator'] = 'not empty';
   $handler->display->display_options['filters']['field_xfp_lastname']['value'] = '1';
+  /* Filter criterion: Profile: Profile Type (field_xfp_type) */
+  $handler->display->display_options['filters']['field_xfp_type_tid']['id'] = 'field_xfp_type_tid';
+  $handler->display->display_options['filters']['field_xfp_type_tid']['table'] = 'field_data_field_xfp_type';
+  $handler->display->display_options['filters']['field_xfp_type_tid']['field'] = 'field_xfp_type_tid';
+  $handler->display->display_options['filters']['field_xfp_type_tid']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_xfp_type_tid']['value'] = array(
+    119 => '119',
+  );
+  $handler->display->display_options['filters']['field_xfp_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_xfp_type_tid']['vocabulary'] = 'membership_type';
+  $handler->display->display_options['filters']['field_xfp_type_tid']['hierarchy'] = 1;
 
   /* Display: Members */
   $handler = $view->new_display('page', 'Members', 'page_1');

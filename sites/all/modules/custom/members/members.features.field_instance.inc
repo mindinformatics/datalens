@@ -3470,6 +3470,250 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-genes-field_chromosome'
+  $field_instances['taxonomy_term-genes-field_chromosome'] = array(
+    'bundle' => 'genes',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_chromosome',
+    'label' => 'Chromosome',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 10,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 32,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-genes-field_ensembl_id'
+  $field_instances['taxonomy_term-genes-field_ensembl_id'] = array(
+    'bundle' => 'genes',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_ensembl_id',
+    'label' => 'Ensembl Id',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 35,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-genes-field_full_name'
+  $field_instances['taxonomy_term-genes-field_full_name'] = array(
+    'bundle' => 'genes',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_full_name',
+    'label' => 'Full Name',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 100,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 31,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-genes-field_gene_id'
+  $field_instances['taxonomy_term-genes-field_gene_id'] = array(
+    'bundle' => 'genes',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_gene_id',
+    'label' => 'Gene Id',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 34,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-genes-field_hgnc_id'
+  $field_instances['taxonomy_term-genes-field_hgnc_id'] = array(
+    'bundle' => 'genes',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_hgnc_id',
+    'label' => 'HGNC ID',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 37,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-genes-field_map_location'
+  $field_instances['taxonomy_term-genes-field_map_location'] = array(
+    'bundle' => 'genes',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_map_location',
+    'label' => 'Map Location',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 33,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-genes-field_synonyms'
+  $field_instances['taxonomy_term-genes-field_synonyms'] = array(
+    'bundle' => 'genes',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_synonyms',
+    'label' => 'Synonyms',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 36,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Acknowledgement');
@@ -3487,6 +3731,7 @@ function members_field_default_field_instances() {
   t('By');
   t('ByLine');
   t('Category');
+  t('Chromosome');
   t('Citation(s)');
   t('Claims');
   t('Code');
@@ -3496,6 +3741,7 @@ function members_field_default_field_instances() {
   t('Description');
   t('Determine if this is an OG group.');
   t('Disease');
+  t('Ensembl Id');
   t('Enter a brief biography and a summary of your research interests. (Expand text box via lower right hand corner.)');
   t('Enter a comma-separated list of words to describe your content.');
   t('Enter datasets that contain this target.');
@@ -3508,9 +3754,12 @@ function members_field_default_field_instances() {
   t('Files');
   t('First Name');
   t('Forum Category');
+  t('Full Name');
+  t('Gene Id');
   t('Group');
   t('Group content visibility');
   t('Groups audience');
+  t('HGNC ID');
   t('Identifiers');
   t('Image');
   t('Input');
@@ -3521,6 +3770,7 @@ function members_field_default_field_instances() {
   t('Links to claim for this target.');
   t('Literature');
   t('Location');
+  t('Map Location');
   t('Meeting Date');
   t('Meeting Image');
   t('Meeting Name');
@@ -3550,6 +3800,7 @@ function members_field_default_field_instances() {
   t('Subtitle');
   t('Suffix');
   t('Supporting Data');
+  t('Synonyms');
   t('Tags');
   t('Title');
   t('Upload Profile Image');

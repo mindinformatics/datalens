@@ -223,7 +223,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -742,6 +742,151 @@ function members_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'enable-comments';
   $export['enable_comments'] = $view;
+
+  $view = new view();
+  $view->name = 'filter_genes';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'taxonomy_term_data';
+  $view->human_name = 'filter genes';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Filter Genes';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'genes' => 'genes',
+  );
+  /* Filter criterion: Taxonomy term: Ensembl Id (field_ensembl_id) */
+  $handler->display->display_options['filters']['field_ensembl_id_value']['id'] = 'field_ensembl_id_value';
+  $handler->display->display_options['filters']['field_ensembl_id_value']['table'] = 'field_data_field_ensembl_id';
+  $handler->display->display_options['filters']['field_ensembl_id_value']['field'] = 'field_ensembl_id_value';
+  $handler->display->display_options['filters']['field_ensembl_id_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_ensembl_id_value']['expose']['operator_id'] = 'field_ensembl_id_value_op';
+  $handler->display->display_options['filters']['field_ensembl_id_value']['expose']['label'] = 'Ensembl Id';
+  $handler->display->display_options['filters']['field_ensembl_id_value']['expose']['operator'] = 'field_ensembl_id_value_op';
+  $handler->display->display_options['filters']['field_ensembl_id_value']['expose']['identifier'] = 'field_ensembl_id_value';
+  $handler->display->display_options['filters']['field_ensembl_id_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Taxonomy term: Chromosome (field_chromosome) */
+  $handler->display->display_options['filters']['field_chromosome_value']['id'] = 'field_chromosome_value';
+  $handler->display->display_options['filters']['field_chromosome_value']['table'] = 'field_data_field_chromosome';
+  $handler->display->display_options['filters']['field_chromosome_value']['field'] = 'field_chromosome_value';
+  $handler->display->display_options['filters']['field_chromosome_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_chromosome_value']['expose']['operator_id'] = 'field_chromosome_value_op';
+  $handler->display->display_options['filters']['field_chromosome_value']['expose']['label'] = 'Chromosome';
+  $handler->display->display_options['filters']['field_chromosome_value']['expose']['operator'] = 'field_chromosome_value_op';
+  $handler->display->display_options['filters']['field_chromosome_value']['expose']['identifier'] = 'field_chromosome_value';
+  $handler->display->display_options['filters']['field_chromosome_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Taxonomy term: Gene Id (field_gene_id) */
+  $handler->display->display_options['filters']['field_gene_id_value']['id'] = 'field_gene_id_value';
+  $handler->display->display_options['filters']['field_gene_id_value']['table'] = 'field_data_field_gene_id';
+  $handler->display->display_options['filters']['field_gene_id_value']['field'] = 'field_gene_id_value';
+  $handler->display->display_options['filters']['field_gene_id_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_gene_id_value']['expose']['operator_id'] = 'field_gene_id_value_op';
+  $handler->display->display_options['filters']['field_gene_id_value']['expose']['label'] = 'Gene Id';
+  $handler->display->display_options['filters']['field_gene_id_value']['expose']['operator'] = 'field_gene_id_value_op';
+  $handler->display->display_options['filters']['field_gene_id_value']['expose']['identifier'] = 'field_gene_id_value';
+  $handler->display->display_options['filters']['field_gene_id_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Taxonomy term: HGNC ID (field_hgnc_id) */
+  $handler->display->display_options['filters']['field_hgnc_id_value']['id'] = 'field_hgnc_id_value';
+  $handler->display->display_options['filters']['field_hgnc_id_value']['table'] = 'field_data_field_hgnc_id';
+  $handler->display->display_options['filters']['field_hgnc_id_value']['field'] = 'field_hgnc_id_value';
+  $handler->display->display_options['filters']['field_hgnc_id_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_hgnc_id_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_hgnc_id_value']['expose']['operator_id'] = 'field_hgnc_id_value_op';
+  $handler->display->display_options['filters']['field_hgnc_id_value']['expose']['label'] = 'HGNC ID';
+  $handler->display->display_options['filters']['field_hgnc_id_value']['expose']['operator'] = 'field_hgnc_id_value_op';
+  $handler->display->display_options['filters']['field_hgnc_id_value']['expose']['identifier'] = 'field_hgnc_id_value';
+  $handler->display->display_options['filters']['field_hgnc_id_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Taxonomy term: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['operator'] = 'starts';
+  $handler->display->display_options['filters']['name']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['name']['expose']['operator_id'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['label'] = 'Name';
+  $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
+  $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+  $handler->display->display_options['filters']['name']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Taxonomy term: Synonyms (field_synonyms) */
+  $handler->display->display_options['filters']['field_synonyms_value']['id'] = 'field_synonyms_value';
+  $handler->display->display_options['filters']['field_synonyms_value']['table'] = 'field_data_field_synonyms';
+  $handler->display->display_options['filters']['field_synonyms_value']['field'] = 'field_synonyms_value';
+  $handler->display->display_options['filters']['field_synonyms_value']['operator'] = 'starts';
+  $handler->display->display_options['filters']['field_synonyms_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_synonyms_value']['expose']['operator_id'] = 'field_synonyms_value_op';
+  $handler->display->display_options['filters']['field_synonyms_value']['expose']['label'] = 'Synonyms';
+  $handler->display->display_options['filters']['field_synonyms_value']['expose']['operator'] = 'field_synonyms_value_op';
+  $handler->display->display_options['filters']['field_synonyms_value']['expose']['identifier'] = 'field_synonyms_value';
+  $handler->display->display_options['filters']['field_synonyms_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'filter-genes';
+  $export['filter_genes'] = $view;
 
   $view = new view();
   $view->name = 'forums';
@@ -1357,6 +1502,143 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['tid']['vocabulary'] = 'forums_category';
   $handler->display->display_options['path'] = 'forums/Interviews';
   $export['forums'] = $view;
+
+  $view = new view();
+  $view->name = 'gene_evidence';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'field_collection_item';
+  $view->human_name = 'Gene Evidence';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Gene Evidence';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'item_id' => 'item_id',
+    'field_title' => 'field_title',
+    'field_result_data' => 'field_result_data',
+    'field_input' => 'field_input',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'item_id' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_result_data' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_input' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_result_data_target_id']['id'] = 'field_result_data_target_id';
+  $handler->display->display_options['relationships']['field_result_data_target_id']['table'] = 'field_data_field_result_data';
+  $handler->display->display_options['relationships']['field_result_data_target_id']['field'] = 'field_result_data_target_id';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_input_target_id']['id'] = 'field_input_target_id';
+  $handler->display->display_options['relationships']['field_input_target_id']['table'] = 'field_data_field_input';
+  $handler->display->display_options['relationships']['field_input_target_id']['field'] = 'field_input_target_id';
+  $handler->display->display_options['relationships']['field_input_target_id']['relationship'] = 'field_result_data_target_id';
+  /* Field: Field collection item: Field collection item ID */
+  $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
+  $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['item_id']['separator'] = '';
+  /* Field: Field collection item: Title */
+  $handler->display->display_options['fields']['field_title']['id'] = 'field_title';
+  $handler->display->display_options['fields']['field_title']['table'] = 'field_data_field_title';
+  $handler->display->display_options['fields']['field_title']['field'] = 'field_title';
+  $handler->display->display_options['fields']['field_title']['alter']['path'] = '[item_id]';
+  /* Field: Field collection item: Supporting Data */
+  $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['label'] = 'Supporting Data Analysis';
+  $handler->display->display_options['fields']['field_result_data']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
+  /* Field: Content: Input */
+  $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
+  $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['relationship'] = 'field_result_data_target_id';
+  $handler->display->display_options['fields']['field_input']['label'] = 'Input Dataset';
+  $handler->display->display_options['fields']['field_input']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';
+  /* Field: Field: Brain region */
+  $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
+  /* Field: Content: Data Type */
+  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Filter criterion: Field collection item: Differentially Expressed Genes (field_genes_diff) */
+  $handler->display->display_options['filters']['field_genes_diff_tid']['id'] = 'field_genes_diff_tid';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['table'] = 'field_data_field_genes_diff';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['field'] = 'field_genes_diff_tid';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator_id'] = 'field_genes_diff_tid_op';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['label'] = 'Differentially Expressed Genes';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator'] = 'field_genes_diff_tid_op';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['identifier'] = 'field_genes_diff_tid';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_genes_diff_tid']['type'] = 'synonyms_autocomplete';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
+  /* Filter criterion: Field collection item: Supporting Data (field_result_data) */
+  $handler->display->display_options['filters']['field_result_data_target_id']['id'] = 'field_result_data_target_id';
+  $handler->display->display_options['filters']['field_result_data_target_id']['table'] = 'field_data_field_result_data';
+  $handler->display->display_options['filters']['field_result_data_target_id']['field'] = 'field_result_data_target_id';
+  $handler->display->display_options['filters']['field_result_data_target_id']['operator'] = 'not empty';
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'gene-evidence';
+  $export['gene_evidence'] = $view;
 
   $view = new view();
   $view->name = 'latest_news';

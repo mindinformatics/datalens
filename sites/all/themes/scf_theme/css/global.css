@@ -1440,6 +1440,12 @@ div.horizontal-tabs .horizontal-tabs-panes {
 	padding: 22px 0;
 }
 
+/* Genes Taxonomy Individual Term */  
+.field-name-field-synonyms .field-items .field-item p {
+	margin-bottom: 0;
+	display: inline;
+}
+
 
 /* Masquerade Block Theming */
 .block-masquerade .description,

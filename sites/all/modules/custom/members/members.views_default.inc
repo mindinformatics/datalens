@@ -223,7 +223,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Code */
+  /* Field: Content: Identifiers */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -783,7 +783,7 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['machine_name']['value'] = array(
     'genes' => 'genes',
   );
-  /* Filter criterion: Taxonomy term: Ensembl Id (field_ensembl_id) */
+  /* Filter criterion: Taxonomy term: Ensembl id (field_ensembl_id) */
   $handler->display->display_options['filters']['field_ensembl_id_value']['id'] = 'field_ensembl_id_value';
   $handler->display->display_options['filters']['field_ensembl_id_value']['table'] = 'field_data_field_ensembl_id';
   $handler->display->display_options['filters']['field_ensembl_id_value']['field'] = 'field_ensembl_id_value';
@@ -815,7 +815,7 @@ function members_views_default_views() {
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Taxonomy term: Gene Id (field_gene_id) */
+  /* Filter criterion: Taxonomy term: Entrez id (field_gene_id) */
   $handler->display->display_options['filters']['field_gene_id_value']['id'] = 'field_gene_id_value';
   $handler->display->display_options['filters']['field_gene_id_value']['table'] = 'field_data_field_gene_id';
   $handler->display->display_options['filters']['field_gene_id_value']['field'] = 'field_gene_id_value';
@@ -831,7 +831,7 @@ function members_views_default_views() {
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Taxonomy term: HGNC ID (field_hgnc_id) */
+  /* Filter criterion: Taxonomy term: HGNC id (field_hgnc_id) */
   $handler->display->display_options['filters']['field_hgnc_id_value']['id'] = 'field_hgnc_id_value';
   $handler->display->display_options['filters']['field_hgnc_id_value']['table'] = 'field_data_field_hgnc_id';
   $handler->display->display_options['filters']['field_hgnc_id_value']['field'] = 'field_hgnc_id_value';

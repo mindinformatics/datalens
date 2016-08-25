@@ -3565,7 +3565,7 @@ function members_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'taxonomy_term',
@@ -3583,7 +3583,7 @@ function members_field_default_field_instances() {
         'size' => 10,
       ),
       'type' => 'text_textfield',
-      'weight' => 32,
+      'weight' => 5,
     ),
   );
 
@@ -3599,12 +3599,12 @@ function members_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_ensembl_id',
-    'label' => 'Ensembl Id',
+    'label' => 'Ensembl id',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -3617,7 +3617,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 35,
+      'weight' => 8,
     ),
   );
 
@@ -3651,7 +3651,7 @@ function members_field_default_field_instances() {
         'size' => 100,
       ),
       'type' => 'text_textfield',
-      'weight' => 31,
+      'weight' => 4,
     ),
   );
 
@@ -3672,12 +3672,12 @@ function members_field_default_field_instances() {
           'thousand_separator' => '',
         ),
         'type' => 'number_integer',
-        'weight' => 3,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_gene_id',
-    'label' => 'Gene Id',
+    'label' => 'Entrez id',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -3691,7 +3691,7 @@ function members_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 34,
+      'weight' => 7,
     ),
   );
 
@@ -3712,7 +3712,7 @@ function members_field_default_field_instances() {
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_hgnc_id',
-    'label' => 'HGNC ID',
+    'label' => 'HGNC id',
     'required' => 0,
     'settings' => array(
       'text_processing' => 0,
@@ -3725,7 +3725,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 37,
+      'weight' => 9,
     ),
   );
 
@@ -3741,7 +3741,7 @@ function members_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'taxonomy_term',
@@ -3759,7 +3759,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 33,
+      'weight' => 6,
     ),
   );
 
@@ -3772,10 +3772,22 @@ function members_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 5,
+        'module' => 'textformatter',
+        'settings' => array(
+          'textformatter_class' => 'textformatter-list',
+          'textformatter_comma_and' => 0,
+          'textformatter_comma_full_stop' => 0,
+          'textformatter_comma_override' => 0,
+          'textformatter_comma_tag' => 0,
+          'textformatter_contrib' => array(),
+          'textformatter_separator_custom' => '',
+          'textformatter_separator_custom_class' => 'textformatter-separator',
+          'textformatter_separator_custom_tag' => 'span',
+          'textformatter_term_plain' => 0,
+          'textformatter_type' => 'comma',
+        ),
+        'type' => 'textformatter_list',
+        'weight' => 7,
       ),
     ),
     'entity_type' => 'taxonomy_term',
@@ -3793,7 +3805,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 36,
+      'weight' => 10,
     ),
   );
 
@@ -3805,7 +3817,7 @@ function members_field_default_field_instances() {
     'description' => 'Taxonomy id for the organism the gene belongs to. E.g., 9606 for human.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
@@ -3814,12 +3826,12 @@ function members_field_default_field_instances() {
           'thousand_separator' => '',
         ),
         'type' => 'number_integer',
-        'weight' => 7,
+        'weight' => 8,
       ),
     ),
     'entity_type' => 'taxonomy_term',
     'field_name' => 'field_taxonomy_id',
-    'label' => 'Taxonomy ID',
+    'label' => 'Taxonomy id',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -3833,7 +3845,7 @@ function members_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 38,
+      'weight' => 11,
     ),
   );
 
@@ -3865,12 +3877,13 @@ function members_field_default_field_instances() {
   t('Determine if this is an OG group.');
   t('Differentially Expressed Genes');
   t('Disease');
-  t('Ensembl Id');
+  t('Ensembl id');
   t('Enter a brief biography and a summary of your research interests. (Expand text box via lower right hand corner.)');
   t('Enter a comma-separated list of words to describe your content.');
   t('Enter datasets that contain this target.');
   t('Enter description such as conference date, location or interviewed by.');
   t('Enter the location.');
+  t('Entrez id');
   t('Evidence');
   t('Evidence_id');
   t('Expression');
@@ -3880,11 +3893,10 @@ function members_field_default_field_instances() {
   t('First Name');
   t('Forum Category');
   t('Full Name');
-  t('Gene Id');
   t('Group');
   t('Group content visibility');
   t('Groups audience');
-  t('HGNC ID');
+  t('HGNC id');
   t('Id field for feeds importer.  System use only.');
   t('Identifiers');
   t('Image');
@@ -3928,7 +3940,7 @@ function members_field_default_field_instances() {
   t('Supporting Data');
   t('Synonyms');
   t('Tags');
-  t('Taxonomy ID');
+  t('Taxonomy id');
   t('Taxonomy id for the organism the gene belongs to. E.g., 9606 for human.');
   t('Title');
   t('Upload Profile Image');

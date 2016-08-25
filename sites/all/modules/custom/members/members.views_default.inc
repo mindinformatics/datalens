@@ -1591,7 +1591,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['relationship'] = 'field_result_data_target_id';
-  $handler->display->display_options['fields']['field_input']['label'] = 'Input Dataset';
+  $handler->display->display_options['fields']['field_input']['label'] = 'Experimental Dataset';
   $handler->display->display_options['fields']['field_input']['settings'] = array(
     'link' => 1,
   );

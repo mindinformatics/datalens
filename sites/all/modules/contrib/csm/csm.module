@@ -29,7 +29,10 @@ function csm_form_node_type_form_alter(&$form, $form_state) {
   );
 
   // Add submit message subsections for each language
-  $enabled_languages = language_list('enabled')['1'];
+  //$enabled_languages = language_list('enabled')['1'];
+  // FIX: https://www.drupal.org/node/2652560#comment-11465137
+  $enabled_languages = language_list('enabled');
+  $enabled_languages = $enabled_languages['1'];
 
   // If this returns NULL then we don't have to deal with any per-role messages
   $csm_attributes = variable_get('csm_attributes', NULL);

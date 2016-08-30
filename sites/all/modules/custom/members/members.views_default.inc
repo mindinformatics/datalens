@@ -1544,7 +1544,7 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['field_data_type_tid']['id'] = 'field_data_type_tid';
   $handler->display->display_options['filters']['field_data_type_tid']['table'] = 'field_data_field_data_type';
   $handler->display->display_options['filters']['field_data_type_tid']['field'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['relationship'] = 'field_result_data_target_id';
+  $handler->display->display_options['filters']['field_data_type_tid']['relationship'] = 'field_input_target_id';
   $handler->display->display_options['filters']['field_data_type_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator_id'] = 'field_data_type_tid_op';
   $handler->display->display_options['filters']['field_data_type_tid']['expose']['label'] = 'Data Type';

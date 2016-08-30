@@ -8,8 +8,8 @@ package = Flags
 
 
 ; Information added by Drupal.org packaging script on 2015-02-15
-version = "7.x-3.x-dev"
+version = "7.x-3.0"
 core = "7.x"
 project = "flag_anon"
-datestamp = "1423989182"
+datestamp = "1423989484"
 

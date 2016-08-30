@@ -136,14 +136,12 @@
       <?php print $messages; ?>
       <?php if ($page['content_top']): ?><div id="content_top"><?php print render($page['content_top']); ?></div><?php endif; ?>
       <?php print render($title_prefix); ?>
-      <?php if ($title && substr($title, 0, 4) != 'Welc'): ?><h1 class="page-title"><?php print $title; ?></h1><?php endif; ?>
+      <?php if ($title): ?><h1 class="page-title"><?php print $title; ?></h1><?php endif; ?>
       <?php print render($title_suffix); ?>
       <?php if (!empty($tabs['#primary'])): ?><div class="tabs-wrapper clearfix"><?php print render($tabs); ?></div><?php endif; ?>
       <?php print render($page['help']); ?>
       <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-      <?php if (substr($title,0,4) == 'Welc'): ?><?php endif; ?>
-	<?php print render($page['content']); ?>
-
+      <?php print render($page['content']); ?>
     </section> <!-- /#main -->
 
     <?php if ($page['sidebar_first']): ?>
@@ -181,8 +179,8 @@
 
       <div id="footer-bottom" class="clearfix">
         <div id="copyright" class="clearfix">
-          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?> Journal of Alzheimer's Disease, <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>  //  
-          <?php print t('Theme by'); ?>  <a href="http://www.devsaran.com" target="_blank">Devsaran</a> & <a href="http://stko.geog.ucsb.edu" target="_blank">STKO Lab</a>
+          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>  //  
+          <?php print t('Theme by'); ?>  <a href="http://www.devsaran.com" target="_blank">Devsaran</a>
         </div>
         <div id="back-to-top" class="clearfix">
           <a href="#toplink">back up ↑</a>

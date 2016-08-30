@@ -687,6 +687,7 @@ features[variable][] = pathauto_forum_pattern
 features[variable][] = pathauto_node_article_pattern
 features[variable][] = pathauto_node_discussion_pattern
 features[variable][] = pathauto_node_page_pattern
+features[variable][] = pathauto_taxonomy_term_tags_pattern
 features[variable][] = pathauto_user_pattern
 features[variable][] = print_comments
 features[variable][] = print_css

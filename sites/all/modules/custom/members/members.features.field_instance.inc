@@ -10,7 +10,7 @@
 function members_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_discussion-comment_body'
+  // Exported field_instance: 'comment-comment_node_discussion-comment_body'.
   $field_instances['comment-comment_node_discussion-comment_body'] = array(
     'bundle' => 'comment_node_discussion',
     'default_value' => NULL,
@@ -43,7 +43,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_brain_region'
+  // Exported field_instance:
+  // 'field_collection_item-field_evidence-field_brain_region'.
   $field_instances['field_collection_item-field_evidence-field_brain_region'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -77,7 +78,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_description'
+  // Exported field_instance:
+  // 'field_collection_item-field_evidence-field_description'.
   $field_instances['field_collection_item-field_evidence-field_description'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -111,7 +113,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_evidence_id'
+  // Exported field_instance:
+  // 'field_collection_item-field_evidence-field_evidence_id'.
   $field_instances['field_collection_item-field_evidence-field_evidence_id'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -144,7 +147,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_evidence_type'
+  // Exported field_instance:
+  // 'field_collection_item-field_evidence-field_evidence_type'.
   $field_instances['field_collection_item-field_evidence-field_evidence_type'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -178,7 +182,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_expression'
+  // Exported field_instance:
+  // 'field_collection_item-field_evidence-field_expression'.
   $field_instances['field_collection_item-field_evidence-field_expression'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -212,7 +217,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_genes_diff'
+  // Exported field_instance:
+  // 'field_collection_item-field_evidence-field_genes_diff'.
   $field_instances['field_collection_item-field_evidence-field_genes_diff'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -262,7 +268,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_literature_links'
+  // Exported field_instance:
+  // 'field_collection_item-field_evidence-field_literature_links'.
   $field_instances['field_collection_item-field_evidence-field_literature_links'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -307,7 +314,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_result_data'
+  // Exported field_instance:
+  // 'field_collection_item-field_evidence-field_result_data'.
   $field_instances['field_collection_item-field_evidence-field_result_data'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -351,7 +359,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_tags'
+  // Exported field_instance: 'field_collection_item-field_evidence-field_tags'.
   $field_instances['field_collection_item-field_evidence-field_tags'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -385,7 +393,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_evidence-field_title'
+  // Exported field_instance:
+  // 'field_collection_item-field_evidence-field_title'.
   $field_instances['field_collection_item-field_evidence-field_title'] = array(
     'bundle' => 'field_evidence',
     'default_value' => NULL,
@@ -419,7 +428,8 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_result-field_description'
+  // Exported field_instance:
+  // 'field_collection_item-field_result-field_description'.
   $field_instances['field_collection_item-field_result-field_description'] = array(
     'bundle' => 'field_result',
     'default_value' => NULL,
@@ -453,7 +463,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_result-field_files'
+  // Exported field_instance: 'field_collection_item-field_result-field_files'.
   $field_instances['field_collection_item-field_result-field_files'] = array(
     'bundle' => 'field_result',
     'deleted' => 0,
@@ -489,7 +499,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_result-field_image'
+  // Exported field_instance: 'field_collection_item-field_result-field_image'.
   $field_instances['field_collection_item-field_result-field_image'] = array(
     'bundle' => 'field_result',
     'deleted' => 0,
@@ -533,7 +543,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_result-field_title'
+  // Exported field_instance: 'field_collection_item-field_result-field_title'.
   $field_instances['field_collection_item-field_result-field_title'] = array(
     'bundle' => 'field_result',
     'default_value' => NULL,
@@ -567,7 +577,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analysis-body'
+  // Exported field_instance: 'node-analysis-body'.
   $field_instances['node-analysis-body'] = array(
     'bundle' => 'analysis',
     'default_value' => NULL,
@@ -612,7 +622,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analysis-field_acknowledgement'
+  // Exported field_instance: 'node-analysis-field_acknowledgement'.
   $field_instances['node-analysis-field_acknowledgement'] = array(
     'bundle' => 'analysis',
     'default_value' => NULL,
@@ -652,7 +662,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analysis-field_input'
+  // Exported field_instance: 'node-analysis-field_input'.
   $field_instances['node-analysis-field_input'] = array(
     'bundle' => 'analysis',
     'default_value' => NULL,
@@ -702,7 +712,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analysis-field_links'
+  // Exported field_instance: 'node-analysis-field_links'.
   $field_instances['node-analysis-field_links'] = array(
     'bundle' => 'analysis',
     'default_value' => NULL,
@@ -759,7 +769,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analysis-field_result'
+  // Exported field_instance: 'node-analysis-field_result'.
   $field_instances['node-analysis-field_result'] = array(
     'bundle' => 'analysis',
     'default_value' => NULL,
@@ -802,7 +812,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-analysis-group_content_access'
+  // Exported field_instance: 'node-analysis-group_content_access'.
   $field_instances['node-analysis-group_content_access'] = array(
     'bundle' => 'analysis',
     'default_value' => array(
@@ -852,7 +862,7 @@ function members_field_default_field_instances() {
     'widget_type' => 'options_select',
   );
 
-  // Exported field_instance: 'node-analysis-og_group_ref'
+  // Exported field_instance: 'node-analysis-og_group_ref'.
   $field_instances['node-analysis-og_group_ref'] = array(
     'bundle' => 'analysis',
     'default_value' => NULL,
@@ -911,7 +921,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-body'
+  // Exported field_instance: 'node-article-body'.
   $field_instances['node-article-body'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -964,7 +974,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_image'
+  // Exported field_instance: 'node-article-field_image'.
   $field_instances['node-article-field_image'] = array(
     'bundle' => 'article',
     'deleted' => 0,
@@ -1019,7 +1029,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_subtitle'
+  // Exported field_instance: 'node-article-field_subtitle'.
   $field_instances['node-article-field_subtitle'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -1065,7 +1075,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_tags'
+  // Exported field_instance: 'node-article-field_tags'.
   $field_instances['node-article-field_tags'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -1109,7 +1119,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-claim-body'
+  // Exported field_instance: 'node-claim-body'.
   $field_instances['node-claim-body'] = array(
     'bundle' => 'claim',
     'default_value' => NULL,
@@ -1153,7 +1163,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-claim-field_evidence'
+  // Exported field_instance: 'node-claim-field_evidence'.
   $field_instances['node-claim-field_evidence'] = array(
     'bundle' => 'claim',
     'default_value' => NULL,
@@ -1196,7 +1206,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-body'
+  // Exported field_instance: 'node-dataset-body'.
   $field_instances['node-dataset-body'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1237,7 +1247,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_analysis'
+  // Exported field_instance: 'node-dataset-field_analysis'.
   $field_instances['node-dataset-field_analysis'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1288,7 +1298,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_brain_region'
+  // Exported field_instance: 'node-dataset-field_brain_region'.
   $field_instances['node-dataset-field_brain_region'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1341,7 +1351,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_data_type'
+  // Exported field_instance: 'node-dataset-field_data_type'.
   $field_instances['node-dataset-field_data_type'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1382,7 +1392,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_disease'
+  // Exported field_instance: 'node-dataset-field_disease'.
   $field_instances['node-dataset-field_disease'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1434,7 +1444,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_files'
+  // Exported field_instance: 'node-dataset-field_files'.
   $field_instances['node-dataset-field_files'] = array(
     'bundle' => 'dataset',
     'deleted' => 0,
@@ -1476,7 +1486,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_group'
+  // Exported field_instance: 'node-dataset-field_group'.
   $field_instances['node-dataset-field_group'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1517,7 +1527,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_links'
+  // Exported field_instance: 'node-dataset-field_links'.
   $field_instances['node-dataset-field_links'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1574,7 +1584,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_project'
+  // Exported field_instance: 'node-dataset-field_project'.
   $field_instances['node-dataset-field_project'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1614,7 +1624,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_sample_size'
+  // Exported field_instance: 'node-dataset-field_sample_size'.
   $field_instances['node-dataset-field_sample_size'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1660,7 +1670,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_species'
+  // Exported field_instance: 'node-dataset-field_species'.
   $field_instances['node-dataset-field_species'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1701,7 +1711,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-field_status'
+  // Exported field_instance: 'node-dataset-field_status'.
   $field_instances['node-dataset-field_status'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1738,7 +1748,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-dataset-group_content_access'
+  // Exported field_instance: 'node-dataset-group_content_access'.
   $field_instances['node-dataset-group_content_access'] = array(
     'bundle' => 'dataset',
     'default_value' => array(
@@ -1789,7 +1799,7 @@ function members_field_default_field_instances() {
     'widget_type' => 'options_select',
   );
 
-  // Exported field_instance: 'node-dataset-og_group_ref'
+  // Exported field_instance: 'node-dataset-og_group_ref'.
   $field_instances['node-dataset-og_group_ref'] = array(
     'bundle' => 'dataset',
     'default_value' => NULL,
@@ -1850,7 +1860,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-discussion-body'
+  // Exported field_instance: 'node-discussion-body'.
   $field_instances['node-discussion-body'] = array(
     'bundle' => 'discussion',
     'default_value' => NULL,
@@ -1895,7 +1905,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-discussion-field_authors'
+  // Exported field_instance: 'node-discussion-field_authors'.
   $field_instances['node-discussion-field_authors'] = array(
     'bundle' => 'discussion',
     'default_value' => NULL,
@@ -1972,7 +1982,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-discussion-field_byline'
+  // Exported field_instance: 'node-discussion-field_byline'.
   $field_instances['node-discussion-field_byline'] = array(
     'bundle' => 'discussion',
     'default_value' => NULL,
@@ -2013,7 +2023,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-discussion-field_featured_image'
+  // Exported field_instance: 'node-discussion-field_featured_image'.
   $field_instances['node-discussion-field_featured_image'] = array(
     'bundle' => 'discussion',
     'deleted' => 0,
@@ -2067,7 +2077,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-discussion-field_forum_category'
+  // Exported field_instance: 'node-discussion-field_forum_category'.
   $field_instances['node-discussion-field_forum_category'] = array(
     'bundle' => 'discussion',
     'default_value' => NULL,
@@ -2108,7 +2118,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-discussion-field_references'
+  // Exported field_instance: 'node-discussion-field_references'.
   $field_instances['node-discussion-field_references'] = array(
     'bundle' => 'discussion',
     'default_value' => NULL,
@@ -2158,7 +2168,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-group-body'
+  // Exported field_instance: 'node-group-body'.
   $field_instances['node-group-body'] = array(
     'bundle' => 'group',
     'default_value' => NULL,
@@ -2202,7 +2212,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-group-group_group'
+  // Exported field_instance: 'node-group-group_group'.
   $field_instances['node-group-group_group'] = array(
     'bundle' => 'group',
     'default_value' => array(
@@ -2260,7 +2270,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-meetings-field_meeting_dates'
+  // Exported field_instance: 'node-meetings-field_meeting_dates'.
   $field_instances['node-meetings-field_meeting_dates'] = array(
     'bundle' => 'meetings',
     'deleted' => 0,
@@ -2275,6 +2285,7 @@ function members_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
         'weight' => 2,
@@ -2288,6 +2299,7 @@ function members_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
         'weight' => 2,
@@ -2320,7 +2332,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-meetings-field_meeting_image'
+  // Exported field_instance: 'node-meetings-field_meeting_image'.
   $field_instances['node-meetings-field_meeting_image'] = array(
     'bundle' => 'meetings',
     'deleted' => 0,
@@ -2370,7 +2382,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-meetings-field_meeting_link'
+  // Exported field_instance: 'node-meetings-field_meeting_link'.
   $field_instances['node-meetings-field_meeting_link'] = array(
     'bundle' => 'meetings',
     'default_value' => NULL,
@@ -2428,7 +2440,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-meetings-field_meeting_location'
+  // Exported field_instance: 'node-meetings-field_meeting_location'.
   $field_instances['node-meetings-field_meeting_location'] = array(
     'bundle' => 'meetings',
     'default_value' => NULL,
@@ -2469,7 +2481,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-body'
+  // Exported field_instance: 'node-news-body'.
   $field_instances['node-news-body'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -2514,7 +2526,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_category'
+  // Exported field_instance: 'node-news-field_category'.
   $field_instances['node-news-field_category'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -2554,7 +2566,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_news_author'
+  // Exported field_instance: 'node-news-field_news_author'.
   $field_instances['node-news-field_news_author'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -2594,7 +2606,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_references'
+  // Exported field_instance: 'node-news-field_references'.
   $field_instances['node-news-field_references'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -2637,7 +2649,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_related'
+  // Exported field_instance: 'node-news-field_related'.
   $field_instances['node-news-field_related'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -2688,7 +2700,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-targets-body'
+  // Exported field_instance: 'node-targets-body'.
   $field_instances['node-targets-body'] = array(
     'bundle' => 'targets',
     'default_value' => NULL,
@@ -2733,7 +2745,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-targets-field_claim_links'
+  // Exported field_instance: 'node-targets-field_claim_links'.
   $field_instances['node-targets-field_claim_links'] = array(
     'bundle' => 'targets',
     'default_value' => NULL,
@@ -2784,7 +2796,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-targets-field_dataset_links'
+  // Exported field_instance: 'node-targets-field_dataset_links'.
   $field_instances['node-targets-field_dataset_links'] = array(
     'bundle' => 'targets',
     'default_value' => NULL,
@@ -2835,7 +2847,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-targets-field_links'
+  // Exported field_instance: 'node-targets-field_links'.
   $field_instances['node-targets-field_links'] = array(
     'bundle' => 'targets',
     'default_value' => NULL,
@@ -2906,7 +2918,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-targets-field_literature_links'
+  // Exported field_instance: 'node-targets-field_literature_links'.
   $field_instances['node-targets-field_literature_links'] = array(
     'bundle' => 'targets',
     'default_value' => NULL,
@@ -2957,7 +2969,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-targets-field_nominator'
+  // Exported field_instance: 'node-targets-field_nominator'.
   $field_instances['node-targets-field_nominator'] = array(
     'bundle' => 'targets',
     'default_value' => NULL,
@@ -3007,7 +3019,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_address'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_address'.
   $field_instances['profile2-xf_profile-field_xfp_address'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3050,7 +3062,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_affiliation'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_affiliation'.
   $field_instances['profile2-xf_profile-field_xfp_affiliation'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3096,7 +3108,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_aoi'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_aoi'.
   $field_instances['profile2-xf_profile-field_xfp_aoi'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3142,7 +3154,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_bio'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_bio'.
   $field_instances['profile2-xf_profile-field_xfp_bio'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3176,7 +3188,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_degrees'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_degrees'.
   $field_instances['profile2-xf_profile-field_xfp_degrees'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3209,7 +3221,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_firstname'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_firstname'.
   $field_instances['profile2-xf_profile-field_xfp_firstname'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3242,7 +3254,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_lab_url'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_lab_url'.
   $field_instances['profile2-xf_profile-field_xfp_lab_url'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3293,7 +3305,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_lastname'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_lastname'.
   $field_instances['profile2-xf_profile-field_xfp_lastname'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3326,7 +3338,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_middlename'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_middlename'.
   $field_instances['profile2-xf_profile-field_xfp_middlename'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3359,7 +3371,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_photo'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_photo'.
   $field_instances['profile2-xf_profile-field_xfp_photo'] = array(
     'bundle' => 'xf_profile',
     'deleted' => 0,
@@ -3403,7 +3415,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_position'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_position'.
   $field_instances['profile2-xf_profile-field_xfp_position'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3437,7 +3449,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_pro_links'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_pro_links'.
   $field_instances['profile2-xf_profile-field_xfp_pro_links'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3488,7 +3500,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_suffix'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_suffix'.
   $field_instances['profile2-xf_profile-field_xfp_suffix'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3522,7 +3534,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-xf_profile-field_xfp_type'
+  // Exported field_instance: 'profile2-xf_profile-field_xfp_type'.
   $field_instances['profile2-xf_profile-field_xfp_type'] = array(
     'bundle' => 'xf_profile',
     'default_value' => NULL,
@@ -3553,7 +3565,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-genes-field_chromosome'
+  // Exported field_instance: 'taxonomy_term-genes-field_chromosome'.
   $field_instances['taxonomy_term-genes-field_chromosome'] = array(
     'bundle' => 'genes',
     'default_value' => NULL,
@@ -3587,7 +3599,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-genes-field_ensembl_id'
+  // Exported field_instance: 'taxonomy_term-genes-field_ensembl_id'.
   $field_instances['taxonomy_term-genes-field_ensembl_id'] = array(
     'bundle' => 'genes',
     'default_value' => NULL,
@@ -3621,7 +3633,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-genes-field_full_name'
+  // Exported field_instance: 'taxonomy_term-genes-field_full_name'.
   $field_instances['taxonomy_term-genes-field_full_name'] = array(
     'bundle' => 'genes',
     'default_value' => NULL,
@@ -3655,7 +3667,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-genes-field_gene_id'
+  // Exported field_instance: 'taxonomy_term-genes-field_gene_id'.
   $field_instances['taxonomy_term-genes-field_gene_id'] = array(
     'bundle' => 'genes',
     'default_value' => NULL,
@@ -3695,7 +3707,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-genes-field_hgnc_id'
+  // Exported field_instance: 'taxonomy_term-genes-field_hgnc_id'.
   $field_instances['taxonomy_term-genes-field_hgnc_id'] = array(
     'bundle' => 'genes',
     'default_value' => NULL,
@@ -3729,7 +3741,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-genes-field_map_location'
+  // Exported field_instance: 'taxonomy_term-genes-field_map_location'.
   $field_instances['taxonomy_term-genes-field_map_location'] = array(
     'bundle' => 'genes',
     'default_value' => NULL,
@@ -3763,7 +3775,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-genes-field_synonyms'
+  // Exported field_instance: 'taxonomy_term-genes-field_synonyms'.
   $field_instances['taxonomy_term-genes-field_synonyms'] = array(
     'bundle' => 'genes',
     'default_value' => NULL,
@@ -3809,7 +3821,7 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-genes-field_taxonomy_id'
+  // Exported field_instance: 'taxonomy_term-genes-field_taxonomy_id'.
   $field_instances['taxonomy_term-genes-field_taxonomy_id'] = array(
     'bundle' => 'genes',
     'default_value' => NULL,

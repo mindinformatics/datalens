@@ -10,7 +10,7 @@
 function members_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
+  // Exported field_base: 'body'.
   $field_bases['body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -36,7 +36,7 @@ function members_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'comment_body'
+  // Exported field_base: 'comment_body'.
   $field_bases['comment_body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -57,7 +57,7 @@ function members_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_acknowledgement'
+  // Exported field_base: 'field_acknowledgement'.
   $field_bases['field_acknowledgement'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -81,7 +81,7 @@ function members_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_analysis'
+  // Exported field_base: 'field_analysis'.
   $field_bases['field_analysis'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -123,7 +123,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_authors'
+  // Exported field_base: 'field_authors'.
   $field_bases['field_authors'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -163,7 +163,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_brain_region'
+  // Exported field_base: 'field_brain_region'.
   $field_bases['field_brain_region'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -193,7 +193,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_byline'
+  // Exported field_base: 'field_byline'.
   $field_bases['field_byline'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -218,7 +218,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_category'
+  // Exported field_base: 'field_category'.
   $field_bases['field_category'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -248,7 +248,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_chromosome'
+  // Exported field_base: 'field_chromosome'.
   $field_bases['field_chromosome'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -273,7 +273,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_claim_links'
+  // Exported field_base: 'field_claim_links'.
   $field_bases['field_claim_links'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -315,7 +315,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_data_type'
+  // Exported field_base: 'field_data_type'.
   $field_bases['field_data_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -345,7 +345,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_dataset_links'
+  // Exported field_base: 'field_dataset_links'.
   $field_bases['field_dataset_links'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -387,7 +387,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_description'
+  // Exported field_base: 'field_description'.
   $field_bases['field_description'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -411,7 +411,7 @@ function members_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_disease'
+  // Exported field_base: 'field_disease'.
   $field_bases['field_disease'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -441,7 +441,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_ensembl_id'
+  // Exported field_base: 'field_ensembl_id'.
   $field_bases['field_ensembl_id'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -466,7 +466,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_evidence'
+  // Exported field_base: 'field_evidence'.
   $field_bases['field_evidence'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -492,7 +492,7 @@ function members_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_evidence_id'
+  // Exported field_base: 'field_evidence_id'.
   $field_bases['field_evidence_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -517,7 +517,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_evidence_type'
+  // Exported field_base: 'field_evidence_type'.
   $field_bases['field_evidence_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -547,7 +547,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_expression'
+  // Exported field_base: 'field_expression'.
   $field_bases['field_expression'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -577,7 +577,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_featured_image'
+  // Exported field_base: 'field_featured_image'.
   $field_bases['field_featured_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -603,7 +603,7 @@ function members_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_files'
+  // Exported field_base: 'field_files'.
   $field_bases['field_files'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -630,7 +630,7 @@ function members_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_forum_category'
+  // Exported field_base: 'field_forum_category'.
   $field_bases['field_forum_category'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -660,7 +660,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_full_name'
+  // Exported field_base: 'field_full_name'.
   $field_bases['field_full_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -685,7 +685,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_gene_id'
+  // Exported field_base: 'field_gene_id'.
   $field_bases['field_gene_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -705,7 +705,7 @@ function members_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_genes_diff'
+  // Exported field_base: 'field_genes_diff'.
   $field_bases['field_genes_diff'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -735,7 +735,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_group'
+  // Exported field_base: 'field_group'.
   $field_bases['field_group'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -765,7 +765,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_hgnc_id'
+  // Exported field_base: 'field_hgnc_id'.
   $field_bases['field_hgnc_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -790,7 +790,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_image'
+  // Exported field_base: 'field_image'.
   $field_bases['field_image'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -816,7 +816,7 @@ function members_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_input'
+  // Exported field_base: 'field_input'.
   $field_bases['field_input'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -858,7 +858,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_links'
+  // Exported field_base: 'field_links'.
   $field_bases['field_links'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -891,7 +891,7 @@ function members_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_literature_links'
+  // Exported field_base: 'field_literature_links'.
   $field_bases['field_literature_links'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -933,7 +933,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_map_location'
+  // Exported field_base: 'field_map_location'.
   $field_bases['field_map_location'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -958,7 +958,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_meeting_dates'
+  // Exported field_base: 'field_meeting_dates'.
   $field_bases['field_meeting_dates'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -991,7 +991,7 @@ function members_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_meeting_image'
+  // Exported field_base: 'field_meeting_image'.
   $field_bases['field_meeting_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1017,7 +1017,7 @@ function members_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_meeting_link'
+  // Exported field_base: 'field_meeting_link'.
   $field_bases['field_meeting_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1050,7 +1050,7 @@ function members_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_meeting_location'
+  // Exported field_base: 'field_meeting_location'.
   $field_bases['field_meeting_location'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1074,7 +1074,7 @@ function members_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_news_author'
+  // Exported field_base: 'field_news_author'.
   $field_bases['field_news_author'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1099,7 +1099,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_nominator'
+  // Exported field_base: 'field_nominator'.
   $field_bases['field_nominator'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1139,7 +1139,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_project'
+  // Exported field_base: 'field_project'.
   $field_bases['field_project'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1169,7 +1169,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_references'
+  // Exported field_base: 'field_references'.
   $field_bases['field_references'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1211,7 +1211,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_related'
+  // Exported field_base: 'field_related'.
   $field_bases['field_related'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1261,7 +1261,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_result'
+  // Exported field_base: 'field_result'.
   $field_bases['field_result'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1287,7 +1287,7 @@ function members_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_result_data'
+  // Exported field_base: 'field_result_data'.
   $field_bases['field_result_data'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1329,7 +1329,7 @@ function members_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_sample_size'
+  // Exported field_base: 'field_sample_size'.
   $field_bases['field_sample_size'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1349,7 +1349,7 @@ function members_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_species'
+  // Exported field_base: 'field_species'.
   $field_bases['field_species'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1379,7 +1379,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_status'
+  // Exported field_base: 'field_status'.
   $field_bases['field_status'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1409,7 +1409,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_subtitle'
+  // Exported field_base: 'field_subtitle'.
   $field_bases['field_subtitle'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1433,7 +1433,7 @@ function members_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_synonyms'
+  // Exported field_base: 'field_synonyms'.
   $field_bases['field_synonyms'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1458,7 +1458,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_tags'
+  // Exported field_base: 'field_tags'.
   $field_bases['field_tags'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1488,7 +1488,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_taxonomy_id'
+  // Exported field_base: 'field_taxonomy_id'.
   $field_bases['field_taxonomy_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1508,7 +1508,7 @@ function members_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_title'
+  // Exported field_base: 'field_title'.
   $field_bases['field_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1533,7 +1533,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_xfp_address'
+  // Exported field_base: 'field_xfp_address'.
   $field_bases['field_xfp_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1553,7 +1553,7 @@ function members_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
-  // Exported field_base: 'field_xfp_affiliation'
+  // Exported field_base: 'field_xfp_affiliation'.
   $field_bases['field_xfp_affiliation'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1583,7 +1583,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_xfp_aoi'
+  // Exported field_base: 'field_xfp_aoi'.
   $field_bases['field_xfp_aoi'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1613,7 +1613,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_xfp_bio'
+  // Exported field_base: 'field_xfp_bio'.
   $field_bases['field_xfp_bio'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1637,7 +1637,7 @@ function members_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_xfp_degrees'
+  // Exported field_base: 'field_xfp_degrees'.
   $field_bases['field_xfp_degrees'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1667,7 +1667,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_xfp_firstname'
+  // Exported field_base: 'field_xfp_firstname'.
   $field_bases['field_xfp_firstname'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1692,7 +1692,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_xfp_lab_url'
+  // Exported field_base: 'field_xfp_lab_url'.
   $field_bases['field_xfp_lab_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1725,7 +1725,7 @@ function members_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_xfp_lastname'
+  // Exported field_base: 'field_xfp_lastname'.
   $field_bases['field_xfp_lastname'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1750,7 +1750,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_xfp_middlename'
+  // Exported field_base: 'field_xfp_middlename'.
   $field_bases['field_xfp_middlename'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1775,7 +1775,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_xfp_photo'
+  // Exported field_base: 'field_xfp_photo'.
   $field_bases['field_xfp_photo'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1801,7 +1801,7 @@ function members_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_xfp_position'
+  // Exported field_base: 'field_xfp_position'.
   $field_bases['field_xfp_position'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1826,7 +1826,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_xfp_pro_links'
+  // Exported field_base: 'field_xfp_pro_links'.
   $field_bases['field_xfp_pro_links'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -1859,7 +1859,7 @@ function members_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_xfp_suffix'
+  // Exported field_base: 'field_xfp_suffix'.
   $field_bases['field_xfp_suffix'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1884,7 +1884,7 @@ function members_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_xfp_type'
+  // Exported field_base: 'field_xfp_type'.
   $field_bases['field_xfp_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1914,7 +1914,7 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'group_content_access'
+  // Exported field_base: 'group_content_access'.
   $field_bases['group_content_access'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1945,7 +1945,7 @@ function members_field_default_field_bases() {
     'type' => 'list_integer',
   );
 
-  // Exported field_base: 'group_group'
+  // Exported field_base: 'group_group'.
   $field_bases['group_group'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -1970,7 +1970,7 @@ function members_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'og_group_ref'
+  // Exported field_base: 'og_group_ref'.
   $field_bases['og_group_ref'] = array(
     'active' => 1,
     'cardinality' => -1,

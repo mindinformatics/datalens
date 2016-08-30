@@ -88,12 +88,10 @@
   
       <?php if ($display_submitted): ?>
       <div class="submitted">
-        <?php  if(!$teaser): ?>
-	 <span class="awesome-icon-calendar icon"></span><?php print t('On') . ' ' . $date; ?>
-        <?php endif; ?>
-	<!-- <span class="awesome-icon-user icon"></span><?php print t('By') . ' ' . $name; ?>
+        <span class="awesome-icon-calendar icon"></span><?php print t('On') . ' ' . $date; ?>
+        <span class="awesome-icon-user icon"></span><?php print t('By') . ' ' . $name; ?>
         <span class="awesome-icon-comments icon"></span><?php if (module_exists('comment') && $node->comment) { print $node->comment_count . ' ' . t('Comments');  } ?>
-      --> </div>
+      </div>
       <?php endif; ?>
 
     <?php if (!$page): ?>
@@ -106,16 +104,13 @@
       hide($content['comments']);
       hide($content['links']);
       print render($content);
-      if ($teaser || $view_mode == 'rss') {
-	print "<a href='node/".$node->nid."'>Read more...</a>";
-      }
     ?>
   </div>
   <?php if ($page): ?>
   <?php if (!empty($content['links'])): ?>
     <footer>
-      <?php print render($content['links']); ?>    
-</footer>
+      <?php print render($content['links']); ?>
+    </footer>
   <?php endif; ?>
   <?php endif; ?>
   <?php print render($content['comments']); ?>

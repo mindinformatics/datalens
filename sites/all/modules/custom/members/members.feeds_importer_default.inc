@@ -358,15 +358,22 @@ function members_feeds_importer_default() {
           ),
           1 => array(
             'source' => 'eid',
-            'target' => 'field_evidence_id',
+            'target' => 'identifier_field',
             'unique' => FALSE,
             'language' => 'und',
           ),
           2 => array(
+            'source' => 'eid',
+            'target' => 'field_evidence_id',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          3 => array(
             'source' => 'genes',
             'target' => 'field_genes_diff',
             'term_search' => '0',
             'autocreate' => 0,
+            'language' => 'und',
           ),
         ),
         'insert_new' => '1',

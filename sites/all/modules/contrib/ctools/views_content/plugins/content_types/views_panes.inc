@@ -265,7 +265,7 @@ function views_content_views_panes_content_type_render($subtype, $conf, $panel_a
   if ($allow['fields_override']) {
     if ($conf['fields_override']) {
       $fields = $view->get_items('field');
-      foreach ($fields as $field => $display) {
+      foreach ($fields as $field => $field_display) {
         $fields[$field]['exclude'] = empty($conf['fields_override'][$field]);
       }
       $view->display_handler->set_option('fields', $fields);
@@ -320,6 +320,10 @@ function views_content_views_panes_content_type_render($subtype, $conf, $panel_a
  */
 function views_content_views_panes_add_defaults(&$conf, $view) {
   $pager = $view->display_handler->get_option('pager');
+
+  if (empty($conf)) {
+    $conf = array();
+  }
 
   $conf += array(
     'link_to_view' => $view->display_handler->get_option('link_to_view'),

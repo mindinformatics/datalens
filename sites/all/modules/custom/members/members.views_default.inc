@@ -1520,6 +1520,26 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['field_result_data_target_id']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['filters']['field_result_data_target_id']['field'] = 'field_result_data_target_id';
   $handler->display->display_options['filters']['field_result_data_target_id']['operator'] = 'not empty';
+  /* Filter criterion: Field: Brain region (field_brain_region) */
+  $handler->display->display_options['filters']['field_brain_region_tid']['id'] = 'field_brain_region_tid';
+  $handler->display->display_options['filters']['field_brain_region_tid']['table'] = 'field_data_field_brain_region';
+  $handler->display->display_options['filters']['field_brain_region_tid']['field'] = 'field_brain_region_tid';
+  $handler->display->display_options['filters']['field_brain_region_tid']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['filters']['field_brain_region_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_brain_region_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator_id'] = 'field_brain_region_tid_op';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator'] = 'field_brain_region_tid_op';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['identifier'] = 'field_brain_region_tid';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_brain_region_tid']['vocabulary'] = 'brain_region';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

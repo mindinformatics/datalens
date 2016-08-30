@@ -333,3 +333,20 @@ function members_default_profile2_type() {
   }');
   return $items;
 }
+
+/**
+ * Implements hook_default_synonyms().
+ */
+function members_default_synonyms() {
+  $synonyms = array();
+  $synonyms['taxonomy_term:genes:synonyms_provider_field_field_synonyms:autocomplete'] = array(
+    'entity_type' => 'taxonomy_term',
+    'bundle' => 'genes',
+    'provider' => 'synonyms_provider_field_field_synonyms',
+    'behavior' => 'autocomplete',
+    'settings' => array(
+      'wording' => '@synonym is a synonym of @entity',
+    ),
+  );
+  return $synonyms;
+}

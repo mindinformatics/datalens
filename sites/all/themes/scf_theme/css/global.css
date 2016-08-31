@@ -859,7 +859,8 @@ form#user-profile-form .form-item-name {
 .page-user .profile .field-name-field-xfp-orcid,
 .page-user .profile .field-name-field-xfp-aoi,
 .page-user .profile .field-name-field-xfp-affiliation,
-.page-user .profile .field-name-field-xfp-bio
+.page-user .profile .field-name-field-xfp-bio,
+.page-user .profile .field-name-field-xfp-position
 {
   float: right;
   width: 85%;

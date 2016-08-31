@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {
   margin-bottom: 10px;
 }
- 
+
 sup {
 	vertical-align: super;
 }
@@ -61,17 +61,17 @@ a:hover {
 	height: 95px;
 }
 
-#region-branding {	
+#region-branding {
 	display: inline-block;
 	float: left;
 }
 
 #region-user-first {
-	display: inline-block; 
+	display: inline-block;
 	float: right;
 }
 
-#region-user-second {	
+#region-user-second {
 	float: right;
 }
 
@@ -104,7 +104,7 @@ a:hover {
 }
 
 #region-footer-first {
-	padding: 30px 10px;	
+	padding: 30px 10px;
 }
 
 #region-footer-first ul {
@@ -127,7 +127,7 @@ a:hover {
 /* Social block */
 #block-block-15 {
 	float: right;
-	padding-top: 10px; 
+	padding-top: 10px;
 }
 
 /* Search button etc */
@@ -153,19 +153,19 @@ input[type="submit"] {
 	float: right;
 }
 
-.block-search #search-block-form {  
+.block-search #search-block-form {
   margin-bottom: 1em;
- 
+
 }
 
-.block-search #search-block-form--2 {  
+.block-search #search-block-form--2 {
   margin-bottom: 1em;
 }
 
 
 /* user welcome and login menu */
 #block-scfmembers-scfmembers-user-top-menu {
-	width: 600px;	
+	width: 600px;
 	float: right;
 	padding-top: 0px;
 }
@@ -176,7 +176,7 @@ input[type="submit"] {
 }
 
 #block-scfmembers-scfmembers-user-top-menu .item-list ul{
-	margin: 0;	
+	margin: 0;
 }
 
 #block-scfmembers-scfmembers-user-top-menu h2.block-title {
@@ -232,7 +232,7 @@ nav {
 	margin-top: 7px;
 }
 
-ul.nice-menu, 
+ul.nice-menu,
 ul.nice-menu ul {
   	z-index: 10;
 }
@@ -248,7 +248,7 @@ ul.nice-menu-down li ul li ul {
 
 ul.nice-menu-down ul li.menuparent > a:after {
   	 /*content: '>';*/
-  	content: url('../images/arrow_menu.png'); 
+  	content: url('../images/arrow_menu.png');
   	color: white;
   	padding-right: 0px;
   	margin-right: 0px;
@@ -279,7 +279,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 #region-menu ul.nice-menu li.last {
-	border-right: none;  
+	border-right: none;
 }
 
 #region-menu ul.nice-menu a {
@@ -320,13 +320,13 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .front .nivo-caption {
-  width: 30%; 
+  width: 30%;
   height: 200px;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 15px;
   opacity: 0.8;
   padding: 20px 20px;
-  background-color: black	; 
+  background-color: black	;
 }
 
 .front .nivoSlider {
@@ -359,7 +359,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
   line-height: 15px;
   font-family: Helvetica, Arial, Verdana, sans-serif;
 }
-    
+
 .front .nivo-controlNav {
 	position: absolute;
 	left: 600px;
@@ -504,7 +504,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
     margin: 0;
     padding: 0;
 }
-.views-field-created .display-month, 
+.views-field-created .display-month,
 .views-field-created .display-year {
     font-size: 10px;
     line-height: 11px;
@@ -534,7 +534,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 /* Front Page Side bar second */
 .front .region-sidebar-second {
 	background: #A41034;
-	padding-top: 20px;	
+	padding-top: 20px;
 	margin-top: -10px;
 	width: 22%;
 	float: right !important;
@@ -558,7 +558,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 .front .region-sidebar-second img {
   display: block;
   margin-left: auto;
-  margin-right: auto;	
+  margin-right: auto;
 }
 
 .region-sidebar-second p {
@@ -597,7 +597,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	margin-left: 10px;
     margin-right: 0px;
     width: 20%;
-} 
+}
 
 .not-front #region-content {
 	margin-left: 10px;
@@ -650,7 +650,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .context-forums .field-name-body {
-	width: 100%;	
+	width: 100%;
 	padding-top: 10px;
 }
 
@@ -661,7 +661,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	font-weight: bold;
 	padding-left: 105px;
 	padding-top: 10px;
-	
+
 }
 .context-forums  #region-content {
 	width: 52%;
@@ -700,7 +700,7 @@ tr:hover td, tr.even:hover td.active, tr.odd:hover td.active {
 .pager {
 	background: none;
 	border: none;
-}	
+}
 
 .pager li {
 	border: none;
@@ -808,12 +808,12 @@ form#user-profile-form .form-item-name {
 .view-members2 .views-field-field-xfp-photo img {
 	padding-right: 19px;
 }
-	
+
 .view-members2 .views-field-field-xfp-aoi {
 	width: 68%;
 	float: right;
 	padding-top: 15px;
-}	
+}
 
 .view-members2 .views-field-field-xfp-aoi .field-content {
 	color: #4D317A;
@@ -868,15 +868,19 @@ form#user-profile-form .form-item-name {
 
 .page-user .field-name-field-xfp-member-type {
 	font-weight: bold;
-	
+
+}
+
+.page-user .profile .field-name-realname {
+  display: none;
 }
 
 .page-user .block-member-commented-on-block-1 h2 {
 	text-transform: uppercase;
 	font-family: Helvetica, Arial, Verdana,sans-serif;
-	font-size: 12px;	
+	font-size: 12px;
 	color: #4D317A;
-	
+
 }
 
 .page-user .block-member-commented-on-block-1  {
@@ -895,7 +899,7 @@ form#user-profile-form .form-item-name {
 	padding: 10px 20px;
 }
 
-.page-user .views-field-title {	
+.page-user .views-field-title {
 	font-weight: bold;
 	padding-top: 5px;
 }
@@ -1024,7 +1028,7 @@ form#user-profile-form .form-item-name {
 
 .block-custom-search-blocks-1 .content,
 .block-custom-search-blocks-2 .content  {
-	background-color: #A41034;	
+	background-color: #A41034;
 }
 
 /* Discussion/Blog/Paper Alert and Latest News Theming */
@@ -1085,7 +1089,7 @@ a.suggest-topic {
 .not-front .region-content .view-clinical-trials .views-row {
     padding-top: 15px;
     padding-bottom: 20px;
-    border-top: 2px solid #A41034	; 
+    border-top: 2px solid #A41034	;
 }
 
 .views-field-comment-count,
@@ -1244,11 +1248,11 @@ article.comment {
 }
 
 h2.comment-form {
-	padding: 15px 15px 0 15px; 
+	padding: 15px 15px 0 15px;
 }
 
 form.comment-form {
-	padding: 15px; 
+	padding: 15px;
 }
 
 
@@ -1440,7 +1444,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
 	padding: 22px 0;
 }
 
-/* Genes Taxonomy Individual Term */  
+/* Genes Taxonomy Individual Term */
 .field-name-field-synonyms .field-items .field-item p {
 	margin-bottom: 0;
 	display: inline;

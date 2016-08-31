@@ -301,6 +301,7 @@ features[flag][] = follow_comments
 features[flag][] = follow_node
 features[flag][] = follow_users
 features[flag][] = recommend
+features[image][] = profile_picture
 features[node][] = analysis
 features[node][] = article
 features[node][] = claim

@@ -236,6 +236,30 @@ function members_flag_default_flags() {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function members_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: profile_picture.
+  $styles['profile_picture'] = array(
+    'label' => 'Profile Picture',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 85,
+          'height' => 115,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function members_node_info() {

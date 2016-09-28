@@ -115,18 +115,17 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['label'] = 'FC_id';
   $handler->display->display_options['fields']['item_id']['separator'] = '';
-  /* Field: Field collection item: Evidence */
+  /* Field: Field collection item: Title */
   $handler->display->display_options['fields']['field_title']['id'] = 'field_title';
   $handler->display->display_options['fields']['field_title']['table'] = 'field_data_field_title';
   $handler->display->display_options['fields']['field_title']['field'] = 'field_title';
-  $handler->display->display_options['fields']['field_title']['label'] = 'Title';
   $handler->display->display_options['fields']['field_title']['type'] = 'text_plain';
   /* Field: Field collection item: Relationship */
   $handler->display->display_options['fields']['field_evidence_type']['id'] = 'field_evidence_type';
   $handler->display->display_options['fields']['field_evidence_type']['table'] = 'field_data_field_evidence_type';
   $handler->display->display_options['fields']['field_evidence_type']['field'] = 'field_evidence_type';
   $handler->display->display_options['fields']['field_evidence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Field collection item: Supporting Data */
+  /* Field: Field: Supporting Data */
   $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
   $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
@@ -141,10 +140,11 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
-  /* Field: Field: Literature */
+  /* Field: Field: Citation(s) */
   $handler->display->display_options['fields']['field_literature_links']['id'] = 'field_literature_links';
   $handler->display->display_options['fields']['field_literature_links']['table'] = 'field_data_field_literature_links';
   $handler->display->display_options['fields']['field_literature_links']['field'] = 'field_literature_links';
+  $handler->display->display_options['fields']['field_literature_links']['label'] = 'Literature';
   $handler->display->display_options['fields']['field_literature_links']['type'] = 'entityreference_entity_id';
   $handler->display->display_options['fields']['field_literature_links']['settings'] = array(
     'link' => 0,
@@ -156,13 +156,12 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
-  /* Field: Field collection item: Description */
+  /* Field: Field collection item: Legend */
   $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
   $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
   $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
-  $handler->display->display_options['fields']['field_description']['label'] = 'Legend';
   $handler->display->display_options['fields']['field_description']['type'] = 'text_plain';
-  /* Field: Field collection item: Differentially Expressed Genes */
+  /* Field: Field: Differentially Expressed Genes */
   $handler->display->display_options['fields']['field_genes_diff']['id'] = 'field_genes_diff';
   $handler->display->display_options['fields']['field_genes_diff']['table'] = 'field_data_field_genes_diff';
   $handler->display->display_options['fields']['field_genes_diff']['field'] = 'field_genes_diff';
@@ -285,8 +284,33 @@ function members_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '25';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'title',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_evidence' => 'field_evidence',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_evidence' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_literature_links_target_id']['id'] = 'field_literature_links_target_id';
   $handler->display->display_options['relationships']['field_literature_links_target_id']['table'] = 'field_data_field_literature_links';
@@ -302,12 +326,20 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_evidence']['id'] = 'field_evidence';
   $handler->display->display_options['fields']['field_evidence']['table'] = 'field_data_field_evidence';
   $handler->display->display_options['fields']['field_evidence']['field'] = 'field_evidence';
+  $handler->display->display_options['fields']['field_evidence']['type'] = 'textformatter_list';
   $handler->display->display_options['fields']['field_evidence']['settings'] = array(
-    'edit' => '',
-    'delete' => '',
-    'add' => '',
-    'description' => 1,
-    'view_mode' => 'full',
+    'textformatter_type' => 'ul',
+    'textformatter_comma_and' => 0,
+    'textformatter_comma_full_stop' => 0,
+    'textformatter_comma_override' => 0,
+    'textformatter_separator_custom' => '',
+    'textformatter_separator_custom_tag' => 'span',
+    'textformatter_separator_custom_class' => 'textformatter-separator',
+    'textformatter_comma_tag' => 'div',
+    'textformatter_class' => 'textformatter-list',
+    'textformatter_contrib' => array(
+      'field_collection_view_mode' => 'full',
+    ),
   );
   $handler->display->display_options['fields']['field_evidence']['delta_offset'] = '0';
   /* Sort criterion: Content: Post date */
@@ -332,7 +364,13 @@ function members_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'claims-export';
+  $handler->display->display_options['path'] = 'all-claims';
+
+  /* Display: Data export */
+  $handler = $view->new_display('views_data_export', 'Data export', 'views_data_export_1');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+  $handler->display->display_options['path'] = 'all-claims/export';
   $export['claims_export'] = $view;
 
   $view = new view();
@@ -1704,12 +1742,12 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['exclude'] = TRUE;
   $handler->display->display_options['fields']['item_id']['separator'] = '';
-  /* Field: Field collection item: Evidence */
+  /* Field: Field collection item: Title */
   $handler->display->display_options['fields']['field_title']['id'] = 'field_title';
   $handler->display->display_options['fields']['field_title']['table'] = 'field_data_field_title';
   $handler->display->display_options['fields']['field_title']['field'] = 'field_title';
   $handler->display->display_options['fields']['field_title']['alter']['path'] = '[item_id]';
-  /* Field: Field collection item: Supporting Data */
+  /* Field: Field: Supporting Data */
   $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
   $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
@@ -1741,7 +1779,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
   $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
   $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Filter criterion: Field collection item: Differentially Expressed Genes (field_genes_diff) */
+  /* Filter criterion: Field: Differentially Expressed Genes (field_genes_diff) */
   $handler->display->display_options['filters']['field_genes_diff_tid']['id'] = 'field_genes_diff_tid';
   $handler->display->display_options['filters']['field_genes_diff_tid']['table'] = 'field_data_field_genes_diff';
   $handler->display->display_options['filters']['field_genes_diff_tid']['field'] = 'field_genes_diff_tid';
@@ -1761,7 +1799,7 @@ function members_views_default_views() {
   );
   $handler->display->display_options['filters']['field_genes_diff_tid']['type'] = 'synonyms_autocomplete';
   $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
-  /* Filter criterion: Field collection item: Supporting Data (field_result_data) */
+  /* Filter criterion: Field: Supporting Data (field_result_data) */
   $handler->display->display_options['filters']['field_result_data_target_id']['id'] = 'field_result_data_target_id';
   $handler->display->display_options['filters']['field_result_data_target_id']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['filters']['field_result_data_target_id']['field'] = 'field_result_data_target_id';

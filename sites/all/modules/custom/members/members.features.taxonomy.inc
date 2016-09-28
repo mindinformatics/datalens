@@ -170,6 +170,29 @@ function members_taxonomy_default_vocabularies() {
         ),
       ),
     ),
+    'evidence_data_type' => array(
+      'name' => 'Evidence Data Type',
+      'machine_name' => 'evidence_data_type',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+    ),
     'evidence_type' => array(
       'name' => 'Evidence Type',
       'machine_name' => 'evidence_type',

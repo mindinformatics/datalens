@@ -304,6 +304,14 @@ function members_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'evidence' => array(
+      'name' => t('Evidence'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'group' => array(
       'name' => t('Group'),
       'base' => 'node_content',

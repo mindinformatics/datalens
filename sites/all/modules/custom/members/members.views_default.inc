@@ -183,6 +183,10 @@ function members_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
   $handler->display->display_options['path'] = 'all-evidence/export';
+  $handler->display->display_options['displays'] = array(
+    'page' => 'page',
+    'default' => 0,
+  );
   $export['all_evidence'] = $view;
 
   $view = new view();
@@ -319,27 +323,18 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['label'] = 'Claim Title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Evidence */
   $handler->display->display_options['fields']['field_evidence']['id'] = 'field_evidence';
   $handler->display->display_options['fields']['field_evidence']['table'] = 'field_data_field_evidence';
   $handler->display->display_options['fields']['field_evidence']['field'] = 'field_evidence';
-  $handler->display->display_options['fields']['field_evidence']['type'] = 'textformatter_list';
+  $handler->display->display_options['fields']['field_evidence']['empty'] = 'None';
+  $handler->display->display_options['fields']['field_evidence']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['field_evidence']['type'] = 'field_collection_fields';
   $handler->display->display_options['fields']['field_evidence']['settings'] = array(
-    'textformatter_type' => 'ul',
-    'textformatter_comma_and' => 0,
-    'textformatter_comma_full_stop' => 0,
-    'textformatter_comma_override' => 0,
-    'textformatter_separator_custom' => '',
-    'textformatter_separator_custom_tag' => 'span',
-    'textformatter_separator_custom_class' => 'textformatter-separator',
-    'textformatter_comma_tag' => 'div',
-    'textformatter_class' => 'textformatter-list',
-    'textformatter_contrib' => array(
-      'field_collection_view_mode' => 'full',
-    ),
+    'view_mode' => 'full',
   );
   $handler->display->display_options['fields']['field_evidence']['delta_offset'] = '0';
   /* Sort criterion: Content: Post date */
@@ -371,6 +366,10 @@ function members_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
   $handler->display->display_options['path'] = 'all-claims/export';
+  $handler->display->display_options['displays'] = array(
+    'page' => 'page',
+    'default' => 0,
+  );
   $export['claims_export'] = $view;
 
   $view = new view();

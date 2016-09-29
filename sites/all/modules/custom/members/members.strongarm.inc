@@ -1692,13 +1692,13 @@ function members_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '-5',
+          'weight' => '0',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -2909,20 +2909,6 @@ function members_strongarm() {
   $strongarm->name = 'spamicide_log_attempts';
   $strongarm->value = 1;
   $export['spamicide_log_attempts'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'uif_plus_addressfield_field_delimiter';
-  $strongarm->value = ':';
-  $export['uif_plus_addressfield_field_delimiter'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'uif_plus_addressfield_part_delimiter';
-  $strongarm->value = '__:__';
-  $export['uif_plus_addressfield_part_delimiter'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

@@ -2313,7 +2313,7 @@ function members_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -2353,7 +2353,47 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 6,
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-evidence-field_evidence_data_type'.
+  $field_instances['node-evidence-field_evidence_data_type'] = array(
+    'bundle' => 'evidence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_evidence_data_type',
+    'label' => 'Evidence Type',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 3,
     ),
   );
 
@@ -2393,7 +2433,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -2439,7 +2479,7 @@ function members_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -2495,7 +2535,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -2548,7 +2588,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -2594,7 +2634,7 @@ function members_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -2627,7 +2667,7 @@ function members_field_default_field_instances() {
     'entityconnect_unload_add' => 1,
     'entityconnect_unload_edit' => 1,
     'field_name' => 'field_result_data',
-    'label' => 'Supporting Data',
+    'label' => 'Supporting Analysis',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -2646,7 +2686,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -2702,7 +2742,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -2761,7 +2801,7 @@ function members_field_default_field_instances() {
       'module' => 'og',
       'settings' => array(),
       'type' => 'og_complex',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -4493,6 +4533,7 @@ function members_field_default_field_instances() {
   t('Enter the location.');
   t('Entrez id');
   t('Evidence');
+  t('Evidence Type');
   t('Evidence that challenges this claim.');
   t('Evidence that supports this claim.');
   t('Evidence_id');
@@ -4550,6 +4591,7 @@ function members_field_default_field_instances() {
   t('Subtitle');
   t('Suffix');
   t('Supported By');
+  t('Supporting Analysis');
   t('Supporting Data');
   t('Synonyms');
   t('Tags');

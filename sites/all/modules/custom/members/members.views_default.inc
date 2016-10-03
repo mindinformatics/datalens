@@ -149,7 +149,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_brain_region']['label'] = 'BrainRegion';
   $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
-  /* Field: Field: Supporting Data */
+  /* Field: Field: Supporting Analysis */
   $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
   $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
@@ -1646,7 +1646,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_title']['table'] = 'field_data_field_title';
   $handler->display->display_options['fields']['field_title']['field'] = 'field_title';
   $handler->display->display_options['fields']['field_title']['alter']['path'] = '[item_id]';
-  /* Field: Field: Supporting Data */
+  /* Field: Field: Supporting Analysis */
   $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
   $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
@@ -1698,7 +1698,7 @@ function members_views_default_views() {
   );
   $handler->display->display_options['filters']['field_genes_diff_tid']['type'] = 'synonyms_autocomplete';
   $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
-  /* Filter criterion: Field: Supporting Data (field_result_data) */
+  /* Filter criterion: Field: Supporting Analysis (field_result_data) */
   $handler->display->display_options['filters']['field_result_data_target_id']['id'] = 'field_result_data_target_id';
   $handler->display->display_options['filters']['field_result_data_target_id']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['filters']['field_result_data_target_id']['field'] = 'field_result_data_target_id';

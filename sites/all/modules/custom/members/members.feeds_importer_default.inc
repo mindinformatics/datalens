@@ -13,6 +13,89 @@ function members_feeds_importer_default() {
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
+  $feeds_importer->id = 'claims_importer';
+  $feeds_importer->config = array(
+    'name' => 'Claims Importer',
+    'description' => 'Import Claims (Evidence Content Type update)',
+    'fetcher' => array(
+      'plugin_key' => 'FeedsFileFetcher',
+      'config' => array(
+        'allowed_extensions' => 'txt csv tsv xml opml',
+        'direct' => FALSE,
+        'directory' => 'private://feeds',
+        'allowed_schemes' => array(
+          0 => 'public',
+          1 => 'private',
+        ),
+      ),
+    ),
+    'parser' => array(
+      'plugin_key' => 'FeedsCSVParser',
+      'config' => array(
+        'delimiter' => ',',
+        'encoding' => 'UTF-8',
+        'no_headers' => 0,
+      ),
+    ),
+    'processor' => array(
+      'plugin_key' => 'FeedsNodeProcessor',
+      'config' => array(
+        'expire' => '-1',
+        'author' => 0,
+        'authorize' => 1,
+        'mappings' => array(
+          0 => array(
+            'source' => 'Nid',
+            'target' => 'nid',
+            'unique' => 1,
+            'language' => 'und',
+          ),
+          1 => array(
+            'source' => 'SupportedBy',
+            'target' => 'entityreference_lookup:field_evidence_support',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          2 => array(
+            'source' => 'ChallengedBy',
+            'target' => 'entityreference_lookup:field_evidence_challenge',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          3 => array(
+            'source' => 'SupportedBy_Nid',
+            'target' => 'entityreference:field_evidence_support',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          4 => array(
+            'source' => 'ChallengedBy_Nid',
+            'target' => 'entityreference:field_evidence_challenge',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+        ),
+        'insert_new' => '1',
+        'update_existing' => '2',
+        'update_non_existent' => 'skip',
+        'input_format' => 'plain_text',
+        'skip_hash_check' => 0,
+        'bundle' => 'claim',
+        'language' => 'und',
+      ),
+    ),
+    'content_type' => '',
+    'update' => 0,
+    'import_period' => '-1',
+    'expire_period' => 3600,
+    'import_on_create' => 1,
+    'process_in_background' => 0,
+  );
+  $export['claims_importer'] = $feeds_importer;
+
+  $feeds_importer = new stdClass();
+  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
+  $feeds_importer->api_version = 1;
   $feeds_importer->id = 'datasets_importer';
   $feeds_importer->config = array(
     'name' => 'Datasets Importer',
@@ -151,7 +234,7 @@ function members_feeds_importer_default() {
   $feeds_importer->id = 'evidence_importer';
   $feeds_importer->config = array(
     'name' => 'Evidence importer',
-    'description' => 'Upload differentially expressed genes into evidence',
+    'description' => 'Import evidence content',
     'fetcher' => array(
       'plugin_key' => 'FeedsFileFetcher',
       'config' => array(
@@ -173,46 +256,85 @@ function members_feeds_importer_default() {
       ),
     ),
     'processor' => array(
-      'plugin_key' => 'FeedsFieldCollectionProcessor',
+      'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
-        'field_name' => 'field_evidence',
-        'host_entity_type' => 'node',
-        'is_field' => 0,
-        'guid_field_name' => 'nid',
-        'identifier_field_name' => 'field_evidence_id',
+        'expire' => '-1',
+        'author' => '1',
+        'authorize' => 1,
         'mappings' => array(
           0 => array(
-            'source' => 'nid',
-            'target' => 'host_entity_guid',
+            'source' => 'Title',
+            'target' => 'title',
             'unique' => FALSE,
             'language' => 'und',
           ),
           1 => array(
-            'source' => 'eid',
-            'target' => 'identifier_field',
-            'unique' => FALSE,
-            'language' => 'und',
+            'source' => 'EvidenceType',
+            'target' => 'field_evidence_data_type',
+            'term_search' => '0',
+            'autocreate' => 1,
           ),
           2 => array(
-            'source' => 'eid',
-            'target' => 'field_evidence_id',
+            'source' => 'LiteratureNids',
+            'target' => 'entityreference:field_literature_links',
             'unique' => FALSE,
             'language' => 'und',
           ),
           3 => array(
-            'source' => 'genes',
-            'target' => 'field_genes_diff',
+            'source' => 'AnalysisNids',
+            'target' => 'entityreference:field_result_data',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          4 => array(
+            'source' => 'BrainRegion',
+            'target' => 'field_brain_region',
             'term_search' => '0',
-            'autocreate' => 0,
+            'autocreate' => 1,
+          ),
+          5 => array(
+            'source' => 'Expression',
+            'target' => 'field_expression',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          6 => array(
+            'source' => 'Pvalue',
+            'target' => 'field_pvalue',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          7 => array(
+            'source' => 'FoldChange',
+            'target' => 'field_fold_change',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          8 => array(
+            'source' => 'Genes_list',
+            'target' => 'field_genes_diff',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          9 => array(
+            'source' => 'Tags',
+            'target' => 'field_tags',
+            'term_search' => '0',
+            'autocreate' => 1,
+          ),
+          10 => array(
+            'source' => 'Description',
+            'target' => 'body',
+            'format' => 'full_html',
             'language' => 'und',
           ),
         ),
         'insert_new' => '1',
         'update_existing' => '2',
         'update_non_existent' => 'skip',
-        'input_format' => 'plain_text',
+        'input_format' => 'full_html',
         'skip_hash_check' => 0,
-        'bundle' => 'field_evidence',
+        'bundle' => 'evidence',
         'language' => 'und',
       ),
     ),

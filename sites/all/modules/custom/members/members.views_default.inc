@@ -137,7 +137,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['label'] = 'FC_id';
   $handler->display->display_options['fields']['item_id']['separator'] = '';
-  /* Field: Field collection item: Evidence */
+  /* Field: Field collection item: Title */
   $handler->display->display_options['fields']['field_title']['id'] = 'field_title';
   $handler->display->display_options['fields']['field_title']['table'] = 'field_data_field_title';
   $handler->display->display_options['fields']['field_title']['field'] = 'field_title';
@@ -1641,7 +1641,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['exclude'] = TRUE;
   $handler->display->display_options['fields']['item_id']['separator'] = '';
-  /* Field: Field collection item: Evidence */
+  /* Field: Field collection item: Title */
   $handler->display->display_options['fields']['field_title']['id'] = 'field_title';
   $handler->display->display_options['fields']['field_title']['table'] = 'field_data_field_title';
   $handler->display->display_options['fields']['field_title']['field'] = 'field_title';

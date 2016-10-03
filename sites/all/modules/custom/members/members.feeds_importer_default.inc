@@ -49,6 +49,7 @@ function members_feeds_importer_default() {
             'target' => 'field_group',
             'term_search' => '0',
             'autocreate' => 1,
+            'language' => 'und',
           ),
           1 => array(
             'source' => 'Study Name',
@@ -61,6 +62,7 @@ function members_feeds_importer_default() {
             'target' => 'field_data_type',
             'term_search' => '0',
             'autocreate' => 1,
+            'language' => 'und',
           ),
           3 => array(
             'source' => 'Data',
@@ -81,28 +83,48 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
           6 => array(
+            'source' => 'Male',
+            'target' => 'field_num_male',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          7 => array(
+            'source' => 'Female',
+            'target' => 'field_num_female',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          8 => array(
             'source' => 'Study_Body',
             'target' => 'body',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          7 => array(
+          9 => array(
             'source' => 'Brain Regions',
             'target' => 'field_brain_region',
             'term_search' => '0',
             'autocreate' => 1,
+            'language' => 'und',
           ),
-          8 => array(
+          10 => array(
             'source' => 'Disease',
             'target' => 'field_disease',
             'term_search' => '0',
             'autocreate' => 1,
+            'language' => 'und',
           ),
-          9 => array(
+          11 => array(
             'source' => 'Species',
             'target' => 'field_species',
             'term_search' => '0',
             'autocreate' => 1,
+            'language' => 'und',
+          ),
+          12 => array(
+            'source' => 'Public',
+            'target' => 'group_content_access',
+            'unique' => FALSE,
           ),
         ),
         'insert_new' => '1',

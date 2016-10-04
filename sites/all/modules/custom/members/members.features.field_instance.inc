@@ -2338,46 +2338,6 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-evidence-field_expression'.
-  $field_instances['node-evidence-field_expression'] = array(
-    'bundle' => 'evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_expression',
-    'label' => 'Expression',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
-    ),
-  );
-
   // Exported field_instance: 'node-evidence-field_fold_change'.
   $field_instances['node-evidence-field_fold_change'] = array(
     'bundle' => 'evidence',
@@ -4480,7 +4440,6 @@ function members_field_default_field_instances() {
   t('Evidence Type');
   t('Evidence that challenges this claim.');
   t('Evidence that supports this claim.');
-  t('Expression');
   t('Featured Image');
   t('Figure');
   t('Files');

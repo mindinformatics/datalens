@@ -32,7 +32,7 @@ function members_feeds_importer_default() {
     'parser' => array(
       'plugin_key' => 'FeedsCSVParser',
       'config' => array(
-        'delimiter' => ',',
+        'delimiter' => 'TAB',
         'encoding' => 'UTF-8',
         'no_headers' => 0,
       ),
@@ -51,24 +51,12 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
           1 => array(
-            'source' => 'SupportedBy',
-            'target' => 'entityreference_lookup:field_evidence_support',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          2 => array(
-            'source' => 'ChallengedBy',
-            'target' => 'entityreference_lookup:field_evidence_challenge',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          3 => array(
             'source' => 'SupportedBy_Nid',
             'target' => 'entityreference:field_evidence_support',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          4 => array(
+          2 => array(
             'source' => 'ChallengedBy_Nid',
             'target' => 'entityreference:field_evidence_challenge',
             'unique' => FALSE,

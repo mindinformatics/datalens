@@ -67,6 +67,35 @@ function members_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_disease|node|dataset|form';
+  $field_group->group_name = 'group_disease';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'dataset';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Disease',
+    'weight' => '25',
+    'children' => array(
+      0 => 'field_ad',
+      1 => 'field_control',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-disease field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_disease|node|dataset|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_evidence_tab|node|targets|default';
   $field_group->group_name = 'group_evidence_tab';
   $field_group->entity_type = 'node';
@@ -187,6 +216,66 @@ function members_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_race|node|dataset|form';
+  $field_group->group_name = 'group_race';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'dataset';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Race',
+    'weight' => '18',
+    'children' => array(
+      0 => 'field_white',
+      1 => 'field_black',
+      2 => 'field_asian',
+      3 => 'field_hispanic',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-race field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_race|node|dataset|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_sex|node|dataset|form';
+  $field_group->group_name = 'group_sex';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'dataset';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Sex',
+    'weight' => '17',
+    'children' => array(
+      0 => 'field_num_male',
+      1 => 'field_num_female',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-sex field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_sex|node|dataset|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_tabs|node|dataset|default';
   $field_group->group_name = 'group_tabs';
   $field_group->entity_type = 'node';
@@ -245,10 +334,13 @@ function members_field_group_info() {
   // Included for use with string extractors like potx.
   t('Analysis');
   t('Datasets');
+  t('Disease');
   t('Evidence');
   t('General');
   t('Literature');
   t('Nomination');
+  t('Race');
+  t('Sex');
   t('Tabs');
 
   return $field_groups;

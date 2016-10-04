@@ -1351,6 +1351,52 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-dataset-field_ad'.
+  $field_instances['node-dataset-field_ad'] = array(
+    'bundle' => 'dataset',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 18,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_ad',
+    'label' => 'AD',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 25,
+    ),
+  );
+
   // Exported field_instance: 'node-dataset-field_analysis'.
   $field_instances['node-dataset-field_analysis'] = array(
     'bundle' => 'dataset',
@@ -1399,6 +1445,98 @@ function members_field_default_field_instances() {
       ),
       'type' => 'entityreference_autocomplete',
       'weight' => 13,
+    ),
+  );
+
+  // Exported field_instance: 'node-dataset-field_asian'.
+  $field_instances['node-dataset-field_asian'] = array(
+    'bundle' => 'dataset',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_asian',
+    'label' => 'Asian',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 21,
+    ),
+  );
+
+  // Exported field_instance: 'node-dataset-field_black'.
+  $field_instances['node-dataset-field_black'] = array(
+    'bundle' => 'dataset',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_black',
+    'label' => 'Black',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 20,
     ),
   );
 
@@ -1452,6 +1590,52 @@ function members_field_default_field_instances() {
       ),
       'type' => 'taxonomy_autocomplete',
       'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-dataset-field_control'.
+  $field_instances['node-dataset-field_control'] = array(
+    'bundle' => 'dataset',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_control',
+    'label' => 'Control',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 24,
     ),
   );
 
@@ -1631,6 +1815,52 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-dataset-field_hispanic'.
+  $field_instances['node-dataset-field_hispanic'] = array(
+    'bundle' => 'dataset',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hispanic',
+    'label' => 'Hispanic',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 22,
+    ),
+  );
+
   // Exported field_instance: 'node-dataset-field_links'.
   $field_instances['node-dataset-field_links'] = array(
     'bundle' => 'dataset',
@@ -1685,6 +1915,98 @@ function members_field_default_field_instances() {
       'settings' => array(),
       'type' => 'link_field',
       'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'node-dataset-field_num_female'.
+  $field_instances['node-dataset-field_num_female'] = array(
+    'bundle' => 'dataset',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 13,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_num_female',
+    'label' => 'Num_female',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 19,
+    ),
+  );
+
+  // Exported field_instance: 'node-dataset-field_num_male'.
+  $field_instances['node-dataset-field_num_male'] = array(
+    'bundle' => 'dataset',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 12,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_num_male',
+    'label' => 'Num_male',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 17,
     ),
   );
 
@@ -1849,6 +2171,52 @@ function members_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_buttons',
       'weight' => 14,
+    ),
+  );
+
+  // Exported field_instance: 'node-dataset-field_white'.
+  $field_instances['node-dataset-field_white'] = array(
+    'bundle' => 'dataset',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_white',
+    'label' => 'White',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 19,
     ),
   );
 
@@ -4498,6 +4866,7 @@ function members_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('AD');
   t('Acknowledgement');
   t('Add links here to professional pages, such as ResearchGate, LinkedIn, ORCID, or other online professional profile.');
   t('Address');
@@ -4505,9 +4874,11 @@ function members_field_default_field_instances() {
   t('Affiliation(s)');
   t('Analysis');
   t('Areas of Interest');
+  t('Asian');
   t('Author');
   t('Bibliographical references.');
   t('Biography & Research');
+  t('Black');
   t('Body');
   t('Brain region');
   t('By');
@@ -4519,6 +4890,7 @@ function members_field_default_field_instances() {
   t('Claims');
   t('Code');
   t('Comment');
+  t('Control');
   t('Data Type');
   t('Datasets');
   t('Description');
@@ -4549,6 +4921,7 @@ function members_field_default_field_instances() {
   t('Group content visibility');
   t('Groups audience');
   t('HGNC id');
+  t('Hispanic');
   t('Id field for feeds importer.  System use only.');
   t('Identifiers');
   t('Image');
@@ -4567,6 +4940,8 @@ function members_field_default_field_instances() {
   t('Method');
   t('Middle Name');
   t('Nominator(s)');
+  t('Num_female');
+  t('Num_male');
   t('P-value');
   t('Please indicate the Lab Group or Center.');
   t('Please indicate the brain region.');
@@ -4601,6 +4976,7 @@ function members_field_default_field_instances() {
   t('Upload Profile Image');
   t('Upload an image relevant to the content.');
   t('Upload an image to go with this article.');
+  t('White');
 
   return $field_instances;
 }

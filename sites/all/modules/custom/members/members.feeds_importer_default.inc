@@ -32,7 +32,7 @@ function members_feeds_importer_default() {
     'parser' => array(
       'plugin_key' => 'FeedsCSVParser',
       'config' => array(
-        'delimiter' => ',',
+        'delimiter' => 'TAB',
         'encoding' => 'UTF-8',
         'no_headers' => 0,
       ),
@@ -51,24 +51,12 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
           1 => array(
-            'source' => 'SupportedBy',
-            'target' => 'entityreference_lookup:field_evidence_support',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          2 => array(
-            'source' => 'ChallengedBy',
-            'target' => 'entityreference_lookup:field_evidence_challenge',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          3 => array(
             'source' => 'SupportedBy_Nid',
             'target' => 'entityreference:field_evidence_support',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          4 => array(
+          2 => array(
             'source' => 'ChallengedBy_Nid',
             'target' => 'entityreference:field_evidence_challenge',
             'unique' => FALSE,
@@ -205,9 +193,46 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
           12 => array(
+            'source' => 'White',
+            'target' => 'field_white',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          13 => array(
+            'source' => 'Black',
+            'target' => 'field_black',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          14 => array(
+            'source' => 'Asian',
+            'target' => 'field_asian',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          15 => array(
+            'source' => 'Hispanic',
+            'target' => 'field_hispanic',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          16 => array(
+            'source' => 'Control',
+            'target' => 'field_control',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          17 => array(
+            'source' => 'AD',
+            'target' => 'field_ad',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          18 => array(
             'source' => 'Public',
             'target' => 'group_content_access',
             'unique' => FALSE,
+            'language' => 'und',
           ),
         ),
         'insert_new' => '1',

@@ -44,391 +44,6 @@ function members_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_evidence-field_brain_region'.
-  $field_instances['field_collection_item-field_evidence-field_brain_region'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 6,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_brain_region',
-    'label' => 'Brain region',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_evidence-field_description'.
-  $field_instances['field_collection_item-field_evidence-field_description'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_description',
-    'label' => 'Description',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_evidence-field_evidence_id'.
-  $field_instances['field_collection_item-field_evidence-field_evidence_id'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Id field for feeds importer.  System use only.',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 8,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_evidence_id',
-    'label' => 'Evidence_id',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 31,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_evidence-field_evidence_type'.
-  $field_instances['field_collection_item-field_evidence-field_evidence_type'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_evidence_type',
-    'label' => 'Relationship',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'options',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'options_select',
-      'weight' => 1,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_evidence-field_expression'.
-  $field_instances['field_collection_item-field_evidence-field_expression'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 5,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_expression',
-    'label' => 'Expression',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_evidence-field_genes_diff'.
-  $field_instances['field_collection_item-field_evidence-field_genes_diff'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'textformatter',
-        'settings' => array(
-          'textformatter_class' => 'textformatter-list',
-          'textformatter_comma_and' => 0,
-          'textformatter_comma_full_stop' => 0,
-          'textformatter_comma_override' => 0,
-          'textformatter_comma_tag' => 'div',
-          'textformatter_contrib' => array(),
-          'textformatter_separator_custom' => '',
-          'textformatter_separator_custom_class' => 'textformatter-separator',
-          'textformatter_separator_custom_tag' => 'span',
-          'textformatter_term_plain' => 1,
-          'textformatter_type' => 'comma',
-        ),
-        'type' => 'textformatter_list',
-        'weight' => 9,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_genes_diff',
-    'label' => 'Differentially Expressed Genes',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'auto_creation' => 1,
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-        'suggest_only_unique' => 0,
-        'suggestion_size' => 10,
-        'synonyms_autocomplete_path' => 'synonyms/autocomplete-taxonomy-term',
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 32,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_evidence-field_literature_links'.
-  $field_instances['field_collection_item-field_evidence-field_literature_links'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'entityreference',
-        'settings' => array(
-          'links' => 1,
-          'view_mode' => 'teaser',
-        ),
-        'type' => 'entityreference_entity_view',
-        'weight' => 3,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'entityconnect_unload_add' => 0,
-    'entityconnect_unload_edit' => 0,
-    'field_name' => 'field_literature_links',
-    'label' => 'Citation(s)',
-    'required' => 0,
-    'settings' => array(
-      'behaviors' => array(
-        'test_instance_behavior' => array(
-          'status' => 0,
-        ),
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_evidence-field_result_data'.
-  $field_instances['field_collection_item-field_evidence-field_result_data'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => 1,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 4,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'entityconnect_unload_add' => 0,
-    'entityconnect_unload_edit' => 0,
-    'field_name' => 'field_result_data',
-    'label' => 'Supporting Data',
-    'required' => 0,
-    'settings' => array(
-      'behaviors' => array(
-        'test_instance_behavior' => array(
-          'status' => 0,
-        ),
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete_tags',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'field_collection_item-field_evidence-field_tags'.
-  $field_instances['field_collection_item-field_evidence-field_tags'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 7,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_tags',
-    'label' => 'Tags',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 7,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_evidence-field_title'.
-  $field_instances['field_collection_item-field_evidence-field_title'] = array(
-    'bundle' => 'field_evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_title',
-    'label' => 'Evidence',
-    'required' => 0,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 175,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance:
   // 'field_collection_item-field_result-field_description'.
   $field_instances['field_collection_item-field_result-field_description'] = array(
     'bundle' => 'field_result',
@@ -1163,49 +778,6 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-claim-field_evidence'.
-  $field_instances['node-claim-field_evidence'] = array(
-    'bundle' => 'claim',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'field_collection',
-        'settings' => array(
-          'add' => 'Add',
-          'delete' => 'Delete',
-          'description' => TRUE,
-          'edit' => 'Edit',
-          'view_mode' => 'full',
-        ),
-        'type' => 'field_collection_view',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_evidence',
-    'label' => 'Evidence',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'field_collection',
-      'settings' => array(),
-      'type' => 'field_collection_embed',
-      'weight' => 5,
-    ),
-  );
-
   // Exported field_instance: 'node-claim-field_evidence_challenge'.
   $field_instances['node-claim-field_evidence_challenge'] = array(
     'bundle' => 'claim',
@@ -1214,12 +786,13 @@ function members_field_default_field_instances() {
     'description' => 'Evidence that challenges this claim.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => TRUE,
+          'view_mode' => 'default',
         ),
-        'type' => 'entityreference_label',
+        'type' => 'entityreference_entity_view',
         'weight' => 4,
       ),
       'teaser' => array(
@@ -1266,12 +839,13 @@ function members_field_default_field_instances() {
     'description' => 'Evidence that supports this claim.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 1,
+          'view_mode' => 'default',
         ),
-        'type' => 'entityreference_label',
+        'type' => 'entityreference_entity_view',
         'weight' => 3,
       ),
       'teaser' => array(
@@ -2733,11 +2307,10 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
+        'label' => 'hidden',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
+        'type' => 'hidden',
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2762,46 +2335,6 @@ function members_field_default_field_instances() {
       ),
       'type' => 'taxonomy_autocomplete',
       'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'node-evidence-field_expression'.
-  $field_instances['node-evidence-field_expression'] = array(
-    'bundle' => 'evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_plain',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_expression',
-    'label' => 'Expression',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
     ),
   );
 
@@ -2915,7 +2448,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
           'links' => 1,
@@ -3126,7 +2659,7 @@ function members_field_default_field_instances() {
         'module' => 'og_ui',
         'settings' => array(),
         'type' => 'og_list_default',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4904,12 +4437,9 @@ function members_field_default_field_instances() {
   t('Enter description such as conference date, location or interviewed by.');
   t('Enter the location.');
   t('Entrez id');
-  t('Evidence');
   t('Evidence Type');
   t('Evidence that challenges this claim.');
   t('Evidence that supports this claim.');
-  t('Evidence_id');
-  t('Expression');
   t('Featured Image');
   t('Figure');
   t('Files');
@@ -4922,7 +4452,6 @@ function members_field_default_field_instances() {
   t('Groups audience');
   t('HGNC id');
   t('Hispanic');
-  t('Id field for feeds importer.  System use only.');
   t('Identifiers');
   t('Image');
   t('Input');
@@ -4957,7 +4486,6 @@ function members_field_default_field_instances() {
   t('Rationale');
   t('References');
   t('Related');
-  t('Relationship');
   t('Results');
   t('Sample Size');
   t('Size should be 75x75 pixels.');
@@ -4967,7 +4495,6 @@ function members_field_default_field_instances() {
   t('Suffix');
   t('Supported By');
   t('Supporting Analysis');
-  t('Supporting Data');
   t('Synonyms');
   t('Tags');
   t('Taxonomy id');

@@ -1351,19 +1351,60 @@ div.horizontal-tabs .horizontal-tabs-panes {
 	width: auto;
 }
 
-.node-targets .group-datasets-tab .field-label,
-.node-targets .group-evidence-tab .field-label,
-.node-claim .field-label {
+.node-targets .group-datasets-tab .field-label {
 	width: 10%;
 	float: left;
 }
 
-.node-targets .group-datasets-tab .field-collection-view .field-items,
-.node-targets .group-evidence-tab .field-collection-view .field-items,
-.node-claim .field-collection-view .field-items {
+.node-targets .group-datasets-tab .field-collection-view .field-items {
 	width: 90%;
 	float: right;
 }
+
+.node-targets .group-evidence-tab .node-claim .node-title {
+  padding-top: 3%;
+}
+
+.node-targets .group-evidence-tab .node-claim .field-name-field-evidence-support h2.node-title {
+  padding-top: 2%;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.node-targets .group-evidence-tab .field-name-field-literature-links .field-item {
+  padding-top: 1%;
+}
+
+.node-targets .group-evidence-tab .field-label {
+  width: 20%;
+	float: left;
+}
+
+.node-targets .group-evidence-tab .node-claim .field-items {
+  width: 98%;
+	float: right;
+}
+
+.node-targets .group-evidence-tab .field-name-field-evidence-support .field-name-field-result-data .field-label,
+.node-targets .group-evidence-tab .field-name-field-evidence-support .field-name-field-result-data .field-items {
+  float: unset;
+  width: auto;
+}
+
+
+.node-targets .group-evidence-tab .field-name-field-result-data {
+  float: unset;
+  width: 100%;
+  display: inline-block;
+}
+
+/*.node-targets .group-evidence-tab .field-label {
+	width: 10%;
+	float: left;
+}
+
+.node-targets .group-evidence-tab .field-collection-view .field-items
+*/
 
 
 .node-targets .group-datasets-tab .field-name-field-dataset-links .field-item .field .field-item{

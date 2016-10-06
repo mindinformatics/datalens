@@ -109,7 +109,7 @@ function members_views_default_views() {
       'empty_column' => 1,
     ),
   );
-  /* Relationship: Field collection item: Entity with the Evidence (field_evidence) */
+  /* Relationship: Broken/missing handler */
   $handler->display->display_options['relationships']['field_evidence_node']['id'] = 'field_evidence_node';
   $handler->display->display_options['relationships']['field_evidence_node']['table'] = 'field_collection_item';
   $handler->display->display_options['relationships']['field_evidence_node']['field'] = 'field_evidence_node';
@@ -126,11 +126,10 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['title']['relationship'] = 'field_evidence_node';
   $handler->display->display_options['fields']['title']['label'] = 'Claim';
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Field collection item: Relationship */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_evidence_type']['id'] = 'field_evidence_type';
   $handler->display->display_options['fields']['field_evidence_type']['table'] = 'field_data_field_evidence_type';
   $handler->display->display_options['fields']['field_evidence_type']['field'] = 'field_evidence_type';
-  $handler->display->display_options['fields']['field_evidence_type']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Field collection item: Field collection item ID */
   $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
@@ -142,14 +141,14 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_title']['table'] = 'field_data_field_title';
   $handler->display->display_options['fields']['field_title']['field'] = 'field_title';
   $handler->display->display_options['fields']['field_title']['type'] = 'text_plain';
-  /* Field: Field: Brain region */
+  /* Field: Content: Brain region */
   $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['label'] = 'BrainRegion';
   $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
-  /* Field: Field: Supporting Analysis */
+  /* Field: Content: Supporting Analysis */
   $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
   $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
@@ -159,11 +158,10 @@ function members_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Field: Citation(s) */
+  /* Field: Content: Literature */
   $handler->display->display_options['fields']['field_literature_links']['id'] = 'field_literature_links';
   $handler->display->display_options['fields']['field_literature_links']['table'] = 'field_data_field_literature_links';
   $handler->display->display_options['fields']['field_literature_links']['field'] = 'field_literature_links';
-  $handler->display->display_options['fields']['field_literature_links']['label'] = 'Literature';
   $handler->display->display_options['fields']['field_literature_links']['type'] = 'entityreference_entity_id';
   $handler->display->display_options['fields']['field_literature_links']['settings'] = array(
     'link' => 0,
@@ -811,6 +809,163 @@ function members_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'enable-comments';
   $export['enable_comments'] = $view;
+
+  $view = new view();
+  $view->name = 'evidence';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'evidence';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'evidence';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_result_data_target_id']['id'] = 'field_result_data_target_id';
+  $handler->display->display_options['relationships']['field_result_data_target_id']['table'] = 'field_data_field_result_data';
+  $handler->display->display_options['relationships']['field_result_data_target_id']['field'] = 'field_result_data_target_id';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_input_target_id']['id'] = 'field_input_target_id';
+  $handler->display->display_options['relationships']['field_input_target_id']['table'] = 'field_data_field_input';
+  $handler->display->display_options['relationships']['field_input_target_id']['field'] = 'field_input_target_id';
+  $handler->display->display_options['relationships']['field_input_target_id']['relationship'] = 'field_result_data_target_id';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Brain region */
+  $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
+  /* Field: Content: Supporting Analysis */
+  $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
+  /* Field: Content: Input */
+  $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
+  $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['relationship'] = 'field_result_data_target_id';
+  $handler->display->display_options['fields']['field_input']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';
+  /* Field: Content: Data Type */
+  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'evidence' => 'evidence',
+  );
+  /* Filter criterion: Content: Evidence Type (field_evidence_data_type) */
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['id'] = 'field_evidence_data_type_tid';
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['table'] = 'field_data_field_evidence_data_type';
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['field'] = 'field_evidence_data_type_tid';
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['value'] = array(
+    0 => '19448',
+  );
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['vocabulary'] = 'evidence_data_type';
+  /* Filter criterion: Content: Differentially Expressed Genes (field_genes_diff) */
+  $handler->display->display_options['filters']['field_genes_diff_tid']['id'] = 'field_genes_diff_tid';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['table'] = 'field_data_field_genes_diff';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['field'] = 'field_genes_diff_tid';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator_id'] = 'field_genes_diff_tid_op';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['label'] = 'Gene Name';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator'] = 'field_genes_diff_tid_op';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['identifier'] = 'field_genes_diff_tid';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
+  /* Filter criterion: Content: Brain region (field_brain_region) */
+  $handler->display->display_options['filters']['field_brain_region_tid']['id'] = 'field_brain_region_tid';
+  $handler->display->display_options['filters']['field_brain_region_tid']['table'] = 'field_data_field_brain_region';
+  $handler->display->display_options['filters']['field_brain_region_tid']['field'] = 'field_brain_region_tid';
+  $handler->display->display_options['filters']['field_brain_region_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_brain_region_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator_id'] = 'field_brain_region_tid_op';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region(s)';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator'] = 'field_brain_region_tid_op';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['identifier'] = 'field_brain_region_tid';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_brain_region_tid']['vocabulary'] = 'brain_region';
+  /* Filter criterion: Content: Data Type (field_data_type) */
+  $handler->display->display_options['filters']['field_data_type_tid']['id'] = 'field_data_type_tid';
+  $handler->display->display_options['filters']['field_data_type_tid']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['filters']['field_data_type_tid']['field'] = 'field_data_type_tid';
+  $handler->display->display_options['filters']['field_data_type_tid']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['filters']['field_data_type_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_data_type_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator_id'] = 'field_data_type_tid_op';
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['label'] = 'Data Type';
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator'] = 'field_data_type_tid_op';
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['identifier'] = 'field_data_type_tid';
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_data_type_tid']['vocabulary'] = 'data_type';
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'evidence';
+  $export['evidence'] = $view;
 
   $view = new view();
   $view->name = 'filter_genes';
@@ -1571,184 +1726,6 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['tid']['vocabulary'] = 'forums_category';
   $handler->display->display_options['path'] = 'forums/Interviews';
   $export['forums'] = $view;
-
-  $view = new view();
-  $view->name = 'gene_evidence';
-  $view->description = '';
-  $view->tag = 'default';
-  $view->base_table = 'field_collection_item';
-  $view->human_name = 'Gene Evidence';
-  $view->core = 7;
-  $view->api_version = '3.0';
-  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-  /* Display: Master */
-  $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Gene Evidence';
-  $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'none';
-  $handler->display->display_options['cache']['type'] = 'none';
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'item_id' => 'item_id',
-    'field_title' => 'field_title',
-    'field_result_data' => 'field_result_data',
-    'field_input' => 'field_input',
-  );
-  $handler->display->display_options['style_options']['default'] = '-1';
-  $handler->display->display_options['style_options']['info'] = array(
-    'item_id' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_title' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_result_data' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_input' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-  );
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_result_data_target_id']['id'] = 'field_result_data_target_id';
-  $handler->display->display_options['relationships']['field_result_data_target_id']['table'] = 'field_data_field_result_data';
-  $handler->display->display_options['relationships']['field_result_data_target_id']['field'] = 'field_result_data_target_id';
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_input_target_id']['id'] = 'field_input_target_id';
-  $handler->display->display_options['relationships']['field_input_target_id']['table'] = 'field_data_field_input';
-  $handler->display->display_options['relationships']['field_input_target_id']['field'] = 'field_input_target_id';
-  $handler->display->display_options['relationships']['field_input_target_id']['relationship'] = 'field_result_data_target_id';
-  /* Field: Field collection item: Field collection item ID */
-  $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
-  $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
-  $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
-  $handler->display->display_options['fields']['item_id']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['item_id']['separator'] = '';
-  /* Field: Field collection item: Title */
-  $handler->display->display_options['fields']['field_title']['id'] = 'field_title';
-  $handler->display->display_options['fields']['field_title']['table'] = 'field_data_field_title';
-  $handler->display->display_options['fields']['field_title']['field'] = 'field_title';
-  $handler->display->display_options['fields']['field_title']['alter']['path'] = '[item_id]';
-  /* Field: Field: Supporting Analysis */
-  $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
-  $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
-  $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
-  $handler->display->display_options['fields']['field_result_data']['label'] = 'Supporting Data Analysis';
-  $handler->display->display_options['fields']['field_result_data']['settings'] = array(
-    'link' => 1,
-  );
-  $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Input */
-  $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
-  $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
-  $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
-  $handler->display->display_options['fields']['field_input']['relationship'] = 'field_result_data_target_id';
-  $handler->display->display_options['fields']['field_input']['label'] = 'Experimental Dataset';
-  $handler->display->display_options['fields']['field_input']['settings'] = array(
-    'link' => 1,
-  );
-  $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';
-  /* Field: Field: Brain region */
-  $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
-  $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
-  $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
-  $handler->display->display_options['fields']['field_brain_region']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
-  $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
-  /* Field: Content: Data Type */
-  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Filter criterion: Field: Differentially Expressed Genes (field_genes_diff) */
-  $handler->display->display_options['filters']['field_genes_diff_tid']['id'] = 'field_genes_diff_tid';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['table'] = 'field_data_field_genes_diff';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['field'] = 'field_genes_diff_tid';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator_id'] = 'field_genes_diff_tid_op';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['label'] = 'Differentially Expressed Genes';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator'] = 'field_genes_diff_tid_op';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['identifier'] = 'field_genes_diff_tid';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['field_genes_diff_tid']['type'] = 'synonyms_autocomplete';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
-  /* Filter criterion: Field: Supporting Analysis (field_result_data) */
-  $handler->display->display_options['filters']['field_result_data_target_id']['id'] = 'field_result_data_target_id';
-  $handler->display->display_options['filters']['field_result_data_target_id']['table'] = 'field_data_field_result_data';
-  $handler->display->display_options['filters']['field_result_data_target_id']['field'] = 'field_result_data_target_id';
-  $handler->display->display_options['filters']['field_result_data_target_id']['operator'] = 'not empty';
-  /* Filter criterion: Field: Brain region (field_brain_region) */
-  $handler->display->display_options['filters']['field_brain_region_tid']['id'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['table'] = 'field_data_field_brain_region';
-  $handler->display->display_options['filters']['field_brain_region_tid']['field'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['filters']['field_brain_region_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_brain_region_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator_id'] = 'field_brain_region_tid_op';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator'] = 'field_brain_region_tid_op';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['identifier'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['field_brain_region_tid']['vocabulary'] = 'brain_region';
-  /* Filter criterion: Content: Data Type (field_data_type) */
-  $handler->display->display_options['filters']['field_data_type_tid']['id'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['table'] = 'field_data_field_data_type';
-  $handler->display->display_options['filters']['field_data_type_tid']['field'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['filters']['field_data_type_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator_id'] = 'field_data_type_tid_op';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['label'] = 'Data Type';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator'] = 'field_data_type_tid_op';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['identifier'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['field_data_type_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_data_type_tid']['vocabulary'] = 'data_type';
-  $handler->display->display_options['filters']['field_data_type_tid']['hierarchy'] = 1;
-
-  /* Display: Genes Evidence Page */
-  $handler = $view->new_display('page', 'Genes Evidence Page', 'page');
-  $handler->display->display_options['path'] = 'gene-evidence';
-  $export['gene_evidence'] = $view;
 
   $view = new view();
   $view->name = 'latest_news';

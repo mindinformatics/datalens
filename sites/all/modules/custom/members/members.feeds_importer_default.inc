@@ -411,38 +411,34 @@ function members_feeds_importer_default() {
             'target' => 'field_brain_region',
             'term_search' => '0',
             'autocreate' => 1,
-          ),
-          5 => array(
-            'source' => 'Expression',
-            'target' => 'field_expression',
-            'unique' => FALSE,
             'language' => 'und',
           ),
-          6 => array(
+          5 => array(
             'source' => 'Pvalue',
             'target' => 'field_pvalue',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          7 => array(
+          6 => array(
             'source' => 'FoldChange',
             'target' => 'field_fold_change',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          8 => array(
+          7 => array(
             'source' => 'Genes_list',
             'target' => 'field_genes_diff',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          9 => array(
+          8 => array(
             'source' => 'Tags',
             'target' => 'field_tags',
             'term_search' => '0',
             'autocreate' => 1,
+            'language' => 'und',
           ),
-          10 => array(
+          9 => array(
             'source' => 'Description',
             'target' => 'body',
             'format' => 'full_html',

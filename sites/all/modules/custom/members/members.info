@@ -809,6 +809,7 @@ features[variable][] = user_register
 features[views_view][] = all_analysis
 features[views_view][] = all_evidence
 features[views_view][] = biblio_view
+features[views_view][] = dataset_viz
 features[views_view][] = datasets
 features[views_view][] = datasets_node
 features[views_view][] = enable_comments

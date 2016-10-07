@@ -224,7 +224,7 @@ function members_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Literature */
+  /* Field: Content: Citation(s) */
   $handler->display->display_options['fields']['field_literature_links']['id'] = 'field_literature_links';
   $handler->display->display_options['fields']['field_literature_links']['table'] = 'field_data_field_literature_links';
   $handler->display->display_options['fields']['field_literature_links']['field'] = 'field_literature_links';
@@ -335,6 +335,152 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['citation']['style_name'] = 'vancouver.csl';
   $handler->display->display_options['fields']['citation']['export_links'] = 0;
   $export['biblio_view'] = $view;
+
+  $view = new view();
+  $view->name = 'dataset_viz';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Dataset Viz';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Dataset Viz';
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_num_female' => 'field_num_female',
+    'field_num_male' => 'field_num_male',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_num_female' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_num_male' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Num_female */
+  $handler->display->display_options['fields']['field_num_female']['id'] = 'field_num_female';
+  $handler->display->display_options['fields']['field_num_female']['table'] = 'field_data_field_num_female';
+  $handler->display->display_options['fields']['field_num_female']['field'] = 'field_num_female';
+  $handler->display->display_options['fields']['field_num_female']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: Num_male */
+  $handler->display->display_options['fields']['field_num_male']['id'] = 'field_num_male';
+  $handler->display->display_options['fields']['field_num_male']['table'] = 'field_data_field_num_male';
+  $handler->display->display_options['fields']['field_num_male']['field'] = 'field_num_male';
+  $handler->display->display_options['fields']['field_num_male']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'dataset' => 'dataset',
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['access'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'd3_style';
+  $handler->display->display_options['style_options']['library'] = 'd3.barchart';
+  $handler->display->display_options['style_options']['fields'] = array(
+    'rows' => array(
+      'x_label' => array(
+        'field' => 'title',
+        'aggregation' => '_none',
+      ),
+      'value0' => array(
+        'field' => 'field_num_male',
+        'aggregation' => '_none',
+      ),
+      'value1' => array(
+        'field' => 'field_num_female',
+        'aggregation' => '_none',
+      ),
+      'value2' => array(
+        'field' => '__none',
+        'aggregation' => '_none',
+      ),
+    ),
+    'legend' => array(
+      0 => array(
+        'field' => 'title',
+        'aggregation' => '_none',
+      ),
+      1 => array(
+        'field' => '__none',
+        'aggregation' => '_none',
+      ),
+    ),
+  );
+  $handler->display->display_options['style_options']['show_table'] = 1;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['path'] = 'dataset-viz';
+  $export['dataset_viz'] = $view;
 
   $view = new view();
   $view->name = 'datasets';
@@ -470,7 +616,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -838,7 +984,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
   $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
   $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -979,7 +1125,7 @@ function members_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'evidence';
+  $handler->display->display_options['title'] = 'Gene Expression';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -1098,11 +1244,19 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
   $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
   $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php']['id'] = 'php';
+  $handler->display->display_options['fields']['php']['table'] = 'views';
+  $handler->display->display_options['fields']['php']['field'] = 'php';
   /* Sort criterion: Content: Fold change (field_fold_change) */
   $handler->display->display_options['sorts']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['sorts']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['sorts']['field_fold_change_value']['field'] = 'field_fold_change_value';
   $handler->display->display_options['sorts']['field_fold_change_value']['order'] = 'DESC';
+  /* Sort criterion: Content: P-value (field_pvalue) */
+  $handler->display->display_options['sorts']['field_pvalue_value']['id'] = 'field_pvalue_value';
+  $handler->display->display_options['sorts']['field_pvalue_value']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['sorts']['field_pvalue_value']['field'] = 'field_pvalue_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1188,7 +1342,508 @@ function members_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'evidence';
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Clear';
+  $handler->display->display_options['exposed_form']['options']['bef'] = array(
+    'general' => array(
+      'allow_secondary' => 0,
+      'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_genes_diff_tid' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_brain_region_tid' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_data_type_tid' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_fold_change_value' => array(
+      'bef_format' => 'bef_slider',
+      'slider_options' => array(
+        'bef_slider_min' => '-10',
+        'bef_slider_max' => '10',
+        'bef_slider_step' => '1',
+        'bef_slider_animate' => 'slow',
+        'bef_slider_orientation' => 'horizontal',
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'bef_filter_description' => NULL,
+        'any_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_pvalue_value' => array(
+      'bef_format' => 'default',
+      'slider_options' => array(
+        'bef_slider_min' => '0.000000001',
+        'bef_slider_max' => '1',
+        'bef_slider_step' => '0.1',
+        'bef_slider_animate' => 'slow',
+        'bef_slider_orientation' => 'horizontal',
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'bef_filter_description' => NULL,
+        'any_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
+    'bef_filter_description' => NULL,
+    'any_label' => NULL,
+    'filter_rewrite_values' => NULL,
+  );
+  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
+  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'full_html';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Fold change */
+  $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
+  $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
+  $handler->display->display_options['fields']['field_fold_change']['field'] = 'field_fold_change';
+  $handler->display->display_options['fields']['field_fold_change']['label'] = 'Log(FC)';
+  $handler->display->display_options['fields']['field_fold_change']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '1',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php']['id'] = 'php';
+  $handler->display->display_options['fields']['php']['table'] = 'views';
+  $handler->display->display_options['fields']['php']['field'] = 'php';
+  $handler->display->display_options['fields']['php']['label'] = 'Fold Change';
+  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php']['php_output'] = '<?php 
+$dat=$data->field_field_fold_change[0][\'raw\'][\'value\'];
+$fc_up =pow(2,$dat);
+$fc_down= -1/pow(2,$dat);
+$fc = ($dat>= 0) ? $fc_up : $fc_down;
+printf("%.2f",$fc);
+?> 
+';
+  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
+  /* Field: Content: P-value */
+  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php_1']['id'] = 'php_1';
+  $handler->display->display_options['fields']['php_1']['table'] = 'views';
+  $handler->display->display_options['fields']['php_1']['field'] = 'php';
+  $handler->display->display_options['fields']['php_1']['label'] = 'P-value';
+  $handler->display->display_options['fields']['php_1']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php_1']['php_output'] = '<?php 
+printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
+?> ';
+  $handler->display->display_options['fields']['php_1']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php_1']['php_click_sortable'] = '';
+  /* Field: Content: Brain region */
+  $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
+  /* Field: Content: Supporting Analysis */
+  $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
+  /* Field: Content: Input */
+  $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
+  $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['relationship'] = 'field_result_data_target_id';
+  $handler->display->display_options['fields']['field_input']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';
+  /* Field: Content: Data Type */
+  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'evidence' => 'evidence',
+  );
+  /* Filter criterion: Content: Evidence Type (field_evidence_data_type) */
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['id'] = 'field_evidence_data_type_tid';
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['table'] = 'field_data_field_evidence_data_type';
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['field'] = 'field_evidence_data_type_tid';
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['value'] = array(
+    0 => '19448',
+  );
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['vocabulary'] = 'evidence_data_type';
+  /* Filter criterion: Content: Differentially Expressed Genes (field_genes_diff) */
+  $handler->display->display_options['filters']['field_genes_diff_tid']['id'] = 'field_genes_diff_tid';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['table'] = 'field_data_field_genes_diff';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['field'] = 'field_genes_diff_tid';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator_id'] = 'field_genes_diff_tid_op';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['label'] = 'Gene Name';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator'] = 'field_genes_diff_tid_op';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['identifier'] = 'field_genes_diff_tid';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_genes_diff_tid']['type'] = 'synonyms_autocomplete';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
+  /* Filter criterion: Content: Brain region (field_brain_region) */
+  $handler->display->display_options['filters']['field_brain_region_tid']['id'] = 'field_brain_region_tid';
+  $handler->display->display_options['filters']['field_brain_region_tid']['table'] = 'field_data_field_brain_region';
+  $handler->display->display_options['filters']['field_brain_region_tid']['field'] = 'field_brain_region_tid';
+  $handler->display->display_options['filters']['field_brain_region_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_brain_region_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator_id'] = 'field_brain_region_tid_op';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region(s)';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator'] = 'field_brain_region_tid_op';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['identifier'] = 'field_brain_region_tid';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_brain_region_tid']['vocabulary'] = 'brain_region';
+  /* Filter criterion: Content: Data Type (field_data_type) */
+  $handler->display->display_options['filters']['field_data_type_tid']['id'] = 'field_data_type_tid';
+  $handler->display->display_options['filters']['field_data_type_tid']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['filters']['field_data_type_tid']['field'] = 'field_data_type_tid';
+  $handler->display->display_options['filters']['field_data_type_tid']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['filters']['field_data_type_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_data_type_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator_id'] = 'field_data_type_tid_op';
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['label'] = 'Data Type';
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator'] = 'field_data_type_tid_op';
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['identifier'] = 'field_data_type_tid';
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_data_type_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_data_type_tid']['vocabulary'] = 'data_type';
+  /* Filter criterion: Content: Fold change (field_fold_change) */
+  $handler->display->display_options['filters']['field_fold_change_value']['id'] = 'field_fold_change_value';
+  $handler->display->display_options['filters']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
+  $handler->display->display_options['filters']['field_fold_change_value']['field'] = 'field_fold_change_value';
+  $handler->display->display_options['filters']['field_fold_change_value']['operator'] = 'between';
+  $handler->display->display_options['filters']['field_fold_change_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['operator_id'] = 'field_fold_change_value_op';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['label'] = 'Fold change';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['operator'] = 'field_fold_change_value_op';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['identifier'] = 'field_fold_change_value';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Content: P-value (field_pvalue) */
+  $handler->display->display_options['filters']['field_pvalue_value']['id'] = 'field_pvalue_value';
+  $handler->display->display_options['filters']['field_pvalue_value']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['filters']['field_pvalue_value']['field'] = 'field_pvalue_value';
+  $handler->display->display_options['filters']['field_pvalue_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_pvalue_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['operator_id'] = 'field_pvalue_value_op';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['label'] = 'P-value Less than';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['operator'] = 'field_pvalue_value_op';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['identifier'] = 'field_pvalue_value';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['path'] = 'gene-expression-table';
   $export['evidence'] = $view;
 
   $view = new view();

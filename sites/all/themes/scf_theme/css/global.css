@@ -1476,7 +1476,6 @@ div.horizontal-tabs .horizontal-tabs-panes {
 
 
 
-
 /* Meetings */
 .page-upcoming-meetings .views-field-field-meeting-image {
 	float: left;
@@ -1501,3 +1500,18 @@ div.horizontal-tabs .horizontal-tabs-panes {
    font-size: 0.95em
 }
 
+/* Evidence */
+
+/* Search button etc */
+.form-item-field-pvalue-value input {
+  width: 85%;
+}
+#edit-field-pvalue-value-wrapper {
+  width: 20%;
+}
+.views-exposed-form .views-exposed-widget.views-submit-button {
+  padding-top: 5em;
+}
+.views-exposed-form .views-exposed-widget.views-reset-button {
+  padding-top: 5em;
+}

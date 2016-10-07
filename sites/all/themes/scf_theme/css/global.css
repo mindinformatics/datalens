@@ -1515,3 +1515,50 @@ div.horizontal-tabs .horizontal-tabs-panes {
 .views-exposed-form .views-exposed-widget.views-reset-button {
   padding-top: 5em;
 }
+
+.node-type-evidence .evidence-label
+ {
+  color: #004e73;
+  font-weight: bold;
+  display: inline;
+  float: left;
+  width: 20%;
+}
+.node-type-evidence .evidence-value {
+  display: inline;
+}
+
+.node-type-evidence .field-label {
+  color: #004e73;
+  width: 20%;
+}
+.node-type-evidence .field {
+  padding-bottom: 2em;
+}
+
+.node-type-evidence .field-name-body p{
+  margin-bottom: 0;
+}
+
+.node-type-evidence .item-list li,
+.node-type-evidence .item-list ul {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Analysis */
+.node-type-analysis .field-label {
+  color: #004e73;
+  padding-bottom: 1em;
+}
+
+.node-type-analysis h2 {
+  text-decoration: underline;
+  margin-bottom: 5px;
+}
+
+.node-type-analysis .field-name-body img {
+  height: 50%;
+  width: 50%;
+}

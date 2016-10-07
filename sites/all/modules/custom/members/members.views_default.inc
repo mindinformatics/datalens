@@ -224,7 +224,7 @@ function members_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Citation(s) */
+  /* Field: Content: Literature */
   $handler->display->display_options['fields']['field_literature_links']['id'] = 'field_literature_links';
   $handler->display->display_options['fields']['field_literature_links']['table'] = 'field_data_field_literature_links';
   $handler->display->display_options['fields']['field_literature_links']['field'] = 'field_literature_links';
@@ -1757,7 +1757,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_genes_diff_tid']['value'] = '';
   $handler->display->display_options['filters']['field_genes_diff_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator_id'] = 'field_genes_diff_tid_op';
-  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['label'] = 'Gene Name';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['label'] = 'Gene Name:';
   $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator'] = 'field_genes_diff_tid_op';
   $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['identifier'] = 'field_genes_diff_tid';
   $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['multiple'] = TRUE;
@@ -1777,7 +1777,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_brain_region_tid']['value'] = '';
   $handler->display->display_options['filters']['field_brain_region_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator_id'] = 'field_brain_region_tid_op';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region(s)';
+  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region(s):';
   $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator'] = 'field_brain_region_tid_op';
   $handler->display->display_options['filters']['field_brain_region_tid']['expose']['identifier'] = 'field_brain_region_tid';
   $handler->display->display_options['filters']['field_brain_region_tid']['expose']['multiple'] = TRUE;
@@ -1816,7 +1816,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_fold_change_value']['operator'] = 'between';
   $handler->display->display_options['filters']['field_fold_change_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_fold_change_value']['expose']['operator_id'] = 'field_fold_change_value_op';
-  $handler->display->display_options['filters']['field_fold_change_value']['expose']['label'] = 'Fold change';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['label'] = 'Fold change:';
   $handler->display->display_options['filters']['field_fold_change_value']['expose']['operator'] = 'field_fold_change_value_op';
   $handler->display->display_options['filters']['field_fold_change_value']['expose']['identifier'] = 'field_fold_change_value';
   $handler->display->display_options['filters']['field_fold_change_value']['expose']['remember_roles'] = array(
@@ -1833,7 +1833,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_pvalue_value']['operator'] = '<=';
   $handler->display->display_options['filters']['field_pvalue_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_pvalue_value']['expose']['operator_id'] = 'field_pvalue_value_op';
-  $handler->display->display_options['filters']['field_pvalue_value']['expose']['label'] = 'P-value Less than';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['label'] = 'P-value Less than:';
   $handler->display->display_options['filters']['field_pvalue_value']['expose']['operator'] = 'field_pvalue_value_op';
   $handler->display->display_options['filters']['field_pvalue_value']['expose']['identifier'] = 'field_pvalue_value';
   $handler->display->display_options['filters']['field_pvalue_value']['expose']['remember_roles'] = array(

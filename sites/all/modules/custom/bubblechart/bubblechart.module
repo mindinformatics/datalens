@@ -1,3 +1,4 @@
+<?php
 /**
  * Implements hook_block_info().
  *
@@ -27,3 +28,4 @@ function bubblechart_block_view($delta = '') {
   }
   return $block;
 }
+?>

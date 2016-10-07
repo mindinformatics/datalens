@@ -249,81 +249,33 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
           6 => array(
-            'source' => 'Male',
-            'target' => 'field_num_male',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          7 => array(
-            'source' => 'Female',
-            'target' => 'field_num_female',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          8 => array(
             'source' => 'Study_Body',
             'target' => 'body',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          9 => array(
+          7 => array(
             'source' => 'Brain Regions',
             'target' => 'field_brain_region',
             'term_search' => '0',
             'autocreate' => 1,
             'language' => 'und',
           ),
-          10 => array(
+          8 => array(
             'source' => 'Disease',
             'target' => 'field_disease',
             'term_search' => '0',
             'autocreate' => 1,
             'language' => 'und',
           ),
-          11 => array(
+          9 => array(
             'source' => 'Species',
             'target' => 'field_species',
             'term_search' => '0',
             'autocreate' => 1,
             'language' => 'und',
           ),
-          12 => array(
-            'source' => 'White',
-            'target' => 'field_white',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          13 => array(
-            'source' => 'Black',
-            'target' => 'field_black',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          14 => array(
-            'source' => 'Asian',
-            'target' => 'field_asian',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          15 => array(
-            'source' => 'Hispanic',
-            'target' => 'field_hispanic',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          16 => array(
-            'source' => 'Control',
-            'target' => 'field_control',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          17 => array(
-            'source' => 'AD',
-            'target' => 'field_ad',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          18 => array(
+          10 => array(
             'source' => 'Public',
             'target' => 'group_content_access',
             'unique' => FALSE,
@@ -393,6 +345,7 @@ function members_feeds_importer_default() {
             'target' => 'field_evidence_data_type',
             'term_search' => '0',
             'autocreate' => 1,
+            'language' => 'und',
           ),
           2 => array(
             'source' => 'LiteratureNids',

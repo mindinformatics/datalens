@@ -581,6 +581,79 @@ function members_feeds_importer_default() {
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
+  $feeds_importer->id = 'results_importer';
+  $feeds_importer->config = array(
+    'name' => 'Results Importer',
+    'description' => 'Results Importer',
+    'fetcher' => array(
+      'plugin_key' => 'FeedsFileFetcher',
+      'config' => array(
+        'allowed_extensions' => 'txt csv tsv xml opml',
+        'direct' => FALSE,
+        'directory' => 'private://feeds',
+        'allowed_schemes' => array(
+          0 => 'public',
+          1 => 'private',
+        ),
+      ),
+    ),
+    'parser' => array(
+      'plugin_key' => 'FeedsCSVParser',
+      'config' => array(
+        'delimiter' => ',',
+        'encoding' => 'UTF-8',
+        'no_headers' => 0,
+      ),
+    ),
+    'processor' => array(
+      'plugin_key' => 'FeedsFieldCollectionProcessor',
+      'config' => array(
+        'field_name' => 'field_result',
+        'host_entity_type' => 'node',
+        'is_field' => 0,
+        'guid_field_name' => 'nid',
+        'identifier_field_name' => 'title',
+        'mappings' => array(
+          0 => array(
+            'source' => 'Title',
+            'target' => 'host_entity_guid',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          1 => array(
+            'source' => 'ResultTitle',
+            'target' => 'field_title',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          2 => array(
+            'source' => 'ResultFile',
+            'target' => 'field_files:uri',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+        ),
+        'insert_new' => '1',
+        'update_existing' => '2',
+        'update_non_existent' => 'skip',
+        'input_format' => 'full_html',
+        'skip_hash_check' => 0,
+        'bundle' => 'field_result',
+        'language' => 'und',
+      ),
+    ),
+    'content_type' => '',
+    'update' => 0,
+    'import_period' => '-1',
+    'expire_period' => 3600,
+    'import_on_create' => 0,
+    'process_in_background' => 0,
+  );
+  $export['results_importer'] = $feeds_importer;
+
+  $feeds_importer = new stdClass();
+  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
+  $feeds_importer->api_version = 1;
   $feeds_importer->id = 'tag_evidence_with_genes';
   $feeds_importer->config = array(
     'name' => 'Tag Evidence with Genes',

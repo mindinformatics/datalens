@@ -235,7 +235,7 @@ function d3_libraries_info() {
   if ($lib == 'cdn') {
     $options = array(
       'lines' => 4,
-      'file' => 'http://d3js.org/d3.v3.min.js',
+      'file' => 'https://d3js.org/d3.v3.min.js',
       'pattern' => '/version\:\"([0-9\.]*)\"/',
     );
 
@@ -252,13 +252,13 @@ function d3_libraries_info() {
 
     $libraries['d3'] = array(
       'name' => 'D3',
-      'vendor url' => 'http://d3js.org/',
-      'download url' => 'http://d3js.org/',
+      'vendor url' => 'https://d3js.org/',
+      'download url' => 'https://d3js.org/',
       // This will bypass the check for file_exists.
       'installed' => TRUE,
       // For easy reference later.
       'cdn' => TRUE,
-      'library path' => 'http://d3js.org',
+      'library path' => 'https://d3js.org',
       'files' => array(
         'js' => array(
           'data' => 'd3.v3.min.js',
@@ -311,8 +311,8 @@ function d3_libraries_info() {
 
     $libraries['d3'] = array(
       'name' => 'D3',
-      'vendor url' => 'http://d3js.org/',
-      'download url' => 'http://d3js.org/',
+      'vendor url' => 'https://d3js.org/',
+      'download url' => 'https://d3js.org/',
       'files' => array(
         'js' => array(
           $file->filename,
@@ -538,7 +538,7 @@ function theme_d3_graphapi($vars) {
     return '';
   }
   $default_library = variable_get('d3_graphapi_default_library', 'forcedirected');
-  $library = empty($vars['config']['library']) ? $default_library : $vars['config']['library']; 
+  $library = empty($vars['config']['library']) ? $default_library : $vars['config']['library'];
   $graph = _d3_graphapi_format_graph_data($vars['graph']);
   $chart = array(
     'id' => $vars['config']['id'],

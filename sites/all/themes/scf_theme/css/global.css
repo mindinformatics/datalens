@@ -1509,12 +1509,14 @@ div.horizontal-tabs .horizontal-tabs-panes {
 #edit-field-pvalue-value-wrapper {
   width: 20%;
 }
+/*
 .views-exposed-form .views-exposed-widget.views-submit-button {
   padding-top: 5em;
 }
 .views-exposed-form .views-exposed-widget.views-reset-button {
   padding-top: 5em;
 }
+ */
 
 .node-type-evidence .evidence-label
  {

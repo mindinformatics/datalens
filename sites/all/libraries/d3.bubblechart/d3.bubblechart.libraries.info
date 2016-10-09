@@ -1,7 +1,7 @@
 name = Stacked Bubble
 description = D3 test library
-files[js][] = d3.bubblechart.js
-files[css][] = d3.bubblechart.css
+files[js][] = bubblechart.js
+files[css][] = bubblechart.css
 version = 0.1
 dependencies[] = d3.extend
 dependencies[] = d3.tooltip

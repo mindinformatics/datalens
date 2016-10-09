@@ -25,22 +25,29 @@ function bubblechart_block_view($delta = '') {
     case 'bubble_block':
       $block['subject'] = t("Bubble Chart");
       $block['content'] =  t("This is a title\n");
-      $block['content'] .= bubblechart_linegraph();
+      $block['content'] .= bubblechart_bubblechart();
       break;
   }
   return $block;
 }
 
-function bubblechart_examples_menu() {
-
+/**
+* Implements hook_menu().
+*/
+function bubblechart_menu() {
   $items['bubbles'] = array(
-    'title' => 'D3 examples',
+    'title' => 'D3 bubble test',
     'description' => 'Different visualization examples using d3.',
-    'page callback' => 'bubblechart_test',
+    'page callback' => 'bubblechart_bubblechart',
     'access callback' => TRUE,
   );
+
+  return $items;
 }
 
+function bubblechart_test() {
+   return t("Hello World\n");
+}
 
 function bubblechart_linegraph() {
 
@@ -65,8 +72,14 @@ function bubblechart_linegraph() {
   return d3_draw($chart);
 }
 
-function bubblechart_test() {
-   return  t("Hello World\n");
+function bubblechart_bubblechart() {
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'bubblechart',
+  );
+
+  return d3_draw($chart);
 }
 
 ?>

@@ -23,7 +23,7 @@
         .size([diameter - 4, diameter - 4])
         .value(function(d) { return d.size; });
 
-      var svg = d3.select('#' + div).append("svg")
+      var svg = d3.select('#' + settings.id).append("svg")
         .attr("width", diameter)
         .attr("height", diameter)
         .append("g")

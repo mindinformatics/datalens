@@ -1,0 +1,13 @@
+name = Stacked Bubble
+description = D3 test library
+files[js][] = d3.bubblechart.js
+files[css][] = d3.bubblechart.css
+version = 0.1
+dependencies[] = d3.extend
+dependencies[] = d3.tooltip
+
+; Information added by Drupal.org packaging script on 2015-12-27
+version = "7.x-1.0-alpha2"
+core = "7.x"
+project = "d3"
+datestamp = "1451186943"

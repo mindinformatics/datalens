@@ -235,7 +235,7 @@ function d3_libraries_info() {
   if ($lib == 'cdn') {
     $options = array(
       'lines' => 4,
-      'file' => 'https://d3js.org/d3.v3.min.js',
+      'file' => 'http://d3js.org/d3.v3.min.js',
       'pattern' => '/version\:\"([0-9\.]*)\"/',
     );
 

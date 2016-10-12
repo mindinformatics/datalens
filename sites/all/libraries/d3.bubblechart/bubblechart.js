@@ -29,17 +29,43 @@
         .append("g")
         .attr("transform", "translate(2,2)");
 
-      d3.json("/sites/all/themes/scf_theme/BubbleChart/flare.json", function(error, root) {
-          if (error) throw error;
+      d3.csv("/sites/all/themes/scf_theme/BubbleChart/test.csv", function(error, data) {
 
-          var node = svg.datum(root).selectAll(".node")
-                .data(pack.nodes)
-            .enter().append("g")
-              .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
-              .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+        // *********** Convert flat data into a nice tree ***************
+        // create a name: node map
+        var dataMap = data.reduce(function(map, node) {
+          map[node.name] = node;
+          return map;
+        }, {});
+
+        // create the tree array
+        var treeData = [];
+        data.forEach(function(node) {
+          // add to parent
+          var parent = dataMap[node.parent];
+          if (parent) {
+            // create child array if it doesn't exist
+            (parent.children || (parent.children = []))
+              // add node to child array
+              .push(node);
+          } else {
+            // parent is null or missing
+            treeData.push(node);
+          }
+        });
+
+        root = treeData[0];
+        var node = svg.datum(root).selectAll(".node")
+                .data(pack.nodes);
+
+                console.debug(node);
+
+          node.enter().append("g")
+                .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
+                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
           node.append("title")
-              .text(function(d) { return d.name + (d.children ? "" : ": " + format(d.size)); });
+                .text(function(d) { return d.name + (d.children ? "" : ": " + format(d.size)); });
 
           node.append("circle")
               .attr("r", function(d) { return d.r; });
@@ -53,6 +79,6 @@
         d3.select(self.frameElement).style("height", diameter + "px");
 
 
-      }
+  }
 
 })(jQuery);

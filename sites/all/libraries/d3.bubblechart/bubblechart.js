@@ -65,7 +65,9 @@
                 .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
           node.append("title")
-                .text(function(d) { return d.name + (d.children ? "" : ": " + format(d.size)); });
+                //Gene,Log(FC),P.Value,Adj.P.Value
+                //(d.children ? "" : ": " + format(d.size)
+                .html(function(d) { return (d.children ? d.name : d.Gene + " <br/> " + "FC: " + d.LogFC + " <br/> " + "P.value: " + d.PValue +" <br/> " + d.Study) });
 
           node.append("circle")
               .attr("r", function(d) { return d.r; });

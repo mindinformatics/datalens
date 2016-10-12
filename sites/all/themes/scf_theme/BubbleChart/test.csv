@@ -1,4 +1,4 @@
-Study,parent,name,Data Type,Contrast,Gene,Log(FC),P.Value,Adj.P.Value,size
+Study,parent,name,Data Type,Contrast,Gene,LogFC,PValue,AdjPValue,size
 MayoBB,null,Frontal Lobe,RNA-Seq,AD-NCI,ACTB,-0.166699357,7.20E-05,0.000172278,5
 MSBB,Frontal Lobe,Inferior Frontal Gyrus,RNA-Seq,AD-NCI,ACTB,-0.326658479,7.56E-05,0.000962972,5
 MayoEGWAS,Frontal Lobe,Temporal Cortex,Microarray,AD-DNAD,ACTB,-0.039927536,0.000384832,0.001007558,5

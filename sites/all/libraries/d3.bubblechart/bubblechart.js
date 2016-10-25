@@ -30,18 +30,18 @@
         .attr("transform", "translate(2,2)");
 
       var arc = d3.svg.arc()
-        .innerRadius(180)
-        .outerRadius(240)
-        .startAngle(180)
+        .innerRadius(function(d){return d.r-d.r/5;})
+        .outerRadius(function(d){return d.r;})
+        .startAngle(0)
         .endAngle(2*Math.PI);
 
       d3.csv("/sites/all/themes/scf_theme/BubbleChart/Hypoxia-viz.csv", function(error, data) {
+
           data.forEach(function(d) {
             d.LogFC = +d.LogFC;
             d.PValue = +d.PValue;
             d.AdjPValue = +d.AdjPValue;
           });
-
 
         // *********** Convert flat data into a nice tree ***************
         // create a name: node map
@@ -102,27 +102,28 @@
               .style('stroke', 'black');
 
 
-          node.append("path")
-              .attr("fill","none")
-              .attr("d", arc);
-
           console.debug(node);
 
           //If no children, display title like this
           node.filter(function(d) { return !d.children; }).append("text")
-              .attr("dy", ".3em")
+              .attr("dy", ".2em")
               .style("text-anchor", "middle")
               .text(function(d) { return d.name.substring(0, d.r / 3); });
 
 
         //If has children
+         node.filter(function(d) { return d.children; }).append("path")
+              .attr("id", function(d,i){return "s"+i;})
+              .attr("fill","none")
+              .attr("d", arc);
+
          node.filter(function(d) { return d.children; }).append("text")
-              .attr("dy", "10em")
-              //.append("textPath")
-              //.attr("xlink:href",function(d,i){return "#s"+i;})
-              //.attr("startOffset",function(d,i){return "25%";})
-              .style("text-anchor", "left")
-              .text(function(d) { return d.name; });
+                  .attr("dy", "1em")
+                  .style("text-anchor", "middle")
+              .append("textPath")
+                  .attr("xlink:href",function(d,i){return "#s"+i;})
+                  .attr("startOffset",function(d){return "30%";})
+                  .text(function(d) { return d.name; });
         });
 
         d3.select(self.frameElement).style("height", diameter + "px");

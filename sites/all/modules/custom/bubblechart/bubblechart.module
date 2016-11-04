@@ -1,4 +1,9 @@
 <?php
+
+// Show PHP errors (during development only)
+    error_reporting(E_ALL | E_STRICT);
+    ini_set("display_errors", 2);
+
 /**
  * Implements hook_block_info().
  *
@@ -41,6 +46,12 @@ function bubblechart_menu() {
     'page callback' => 'bubblechart_bubblechart',
     'access callback' => TRUE,
   );
+  $items['genomics'] = array(
+    'title' => 'Mongo Expression Data',
+    'description' => 'Return expression data from a mongo collection',
+    'page callback' => 'bubblechart_genomics',
+    'access callback' => TRUE,
+  );
 
   return $items;
 }
@@ -80,6 +91,40 @@ function bubblechart_bubblechart() {
   );
 
   return d3_draw($chart);
+}
+
+function bubblechart_genomics() {
+    // Create a Mongo conenction
+    $mongo = new MongoClient("mongodb://localhost");
+
+    // Choose the database and collection
+    $db = $mongo->cats;
+    //echo $db;
+    $coll = $db->expression;
+
+    // Retrieve the document and display it
+    //$item = $coll->findOne();
+    //$test = "My file name is " . $item['FileName'] . ". Platform is " . $item['PlatformName'] . ".";
+
+    //$gene_list = array('RHEB', 'SKA1');
+
+    //$query = array(array('GeneSymbol' => 'RHEB'), array('FileName' => 1, 'GeneSymbol' => 1, 'logFC' => 1, 'PValue' => 1, 'adjPVal' => 1, 'B' => 1)); // SELECT title FROM fields_current WHERE group_name = 'node' AND type = 'content-type'
+
+    $query = array('GeneSymbol' => 'RHEB');
+
+		$cursor = $coll->find($query);
+		$cursor->limit( 5 );
+		//$cursor->addOption( '$maxScan', 5 );
+
+		$result = "This is a test";
+		//$result = array();
+		foreach ($cursor as $doc) {
+			var_dump($doc);
+			//$result[] = "My file name is " . (string)$doc['FileName'] . ". GeneSymbol is " . (string)$doc['GeneSymbol'] . ".";
+		}
+
+    return t($result);
+
 }
 
 ?>

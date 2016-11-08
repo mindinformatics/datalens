@@ -115,7 +115,6 @@ function bubblechart_genomics() {
 		$cursor->limit( 5 );
 
 		//Access query results
-		//$result = array();
 		$result = array();
 		$filenames = array();
 		$i = 0;
@@ -129,10 +128,6 @@ function bubblechart_genomics() {
 			$filenames[] = $doc['FileName'];
 			$i++;
 		}
-		//$result_string = implode('', $result);
-		//var_dump($result_string);
-		//$test = $filenames[1];
-		//var_dump($result);
 
 
 		// Check the main for the meta data: Study,parent,DataType,Contrast
@@ -151,10 +146,8 @@ function bubblechart_genomics() {
 		}
 		//var_dump($main_result);
 
-	   //$merged_result = array_merge_recursive($result, $main_result);
-		//var_dump($merged_result);
-
-		$row = "";
+		// Incorportate main metadata into result array.
+		$row = array();
    	foreach($result as &$value){
     	$file = $value['FileName'];
     	$main_key = array_search($file, array_column($main_result, 'FileName'));
@@ -162,12 +155,21 @@ function bubblechart_genomics() {
 			$value['parent'] = $main_result[$main_key]['parent'];
 			$value['DataType'] = $main_result[$main_key]['DataType'];
 			$value['Contrast'] = $main_result[$main_key]['Contrast'];
-			//Study,parent,DataType,Contrast,name,LogFC,size,PValue,AdjPValue
-			$row .= $value['Study'] . "," . $value['parent'] . "," . $value['DataType'] . "," . $value['Contrast'] . "," . $value['name'] . "," . $value['LogFC'] . "," . abs($value['LogFC']) . "," . $value['PValue'] . "," . $value['adjPVal'] . "," . $file . "<br />";
+			$row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], abs($value['LogFC']), $value['PValue'], $value['adjPVal']);
 		}
-		var_dump($result);
+		//var_dump($row);
 
-	return t($row);
+		//error-checking:
+		//db.expression.find( { GeneSymbol: { $in: [ "RHEB", "SKA1" ]} }, { FileName: 1, GeneSymbol: 1, logFC:1, PValue:1, adjPVal:1, B:1 } ).limit( 5 );
+
+		$chart = array(
+    	'id' => 'visualization',
+    	'type' => 'bubblechart',
+    	'rows' => $row,
+  	);
+
+	return d3_draw($chart);
 }
+
 
 ?>

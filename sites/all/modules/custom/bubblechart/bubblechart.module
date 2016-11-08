@@ -132,7 +132,7 @@ function bubblechart_genomics() {
 		//$result_string = implode('', $result);
 		//var_dump($result_string);
 		//$test = $filenames[1];
-		var_dump($result);
+		//var_dump($result);
 
 
 		// Check the main for the meta data: Study,parent,DataType,Contrast
@@ -149,16 +149,26 @@ function bubblechart_genomics() {
 			$main_result[$i]['Contrast'] = $doc['Contrast'];
 			$i++;
 		}
-		var_dump($main_result);
+		//var_dump($main_result);
 
 	   //$merged_result = array_merge_recursive($result, $main_result);
 		//var_dump($merged_result);
 
+		$row = "";
+   	foreach($result as &$value){
+    	$file = $value['FileName'];
+    	$main_key = array_search($file, array_column($main_result, 'FileName'));
+			$value['Study'] = $main_result[$main_key]['Study'];
+			$value['parent'] = $main_result[$main_key]['parent'];
+			$value['DataType'] = $main_result[$main_key]['DataType'];
+			$value['Contrast'] = $main_result[$main_key]['Contrast'];
+			$row .= "<p>";
+			$row .= implode(",", $value);
+			$row .= "</p>";
+		}
+	var_dump($result);
 
-
-		$main_string = "This is a test!";
-
-	return t($main_string);
+	return t($row);
 }
 
 ?>

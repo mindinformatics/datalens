@@ -162,11 +162,10 @@ function bubblechart_genomics() {
 			$value['parent'] = $main_result[$main_key]['parent'];
 			$value['DataType'] = $main_result[$main_key]['DataType'];
 			$value['Contrast'] = $main_result[$main_key]['Contrast'];
-			$row .= "<p>";
-			$row .= implode(",", $value);
-			$row .= "</p>";
+			//Study,parent,DataType,Contrast,name,LogFC,size,PValue,AdjPValue
+			$row .= $value['Study'] . "," . $value['parent'] . "," . $value['DataType'] . "," . $value['Contrast'] . "," . $value['name'] . "," . $value['LogFC'] . "," . abs($value['LogFC']) . "," . $value['PValue'] . "," . $value['adjPVal'] . "," . $file . "<br />";
 		}
-	var_dump($result);
+		var_dump($result);
 
 	return t($row);
 }

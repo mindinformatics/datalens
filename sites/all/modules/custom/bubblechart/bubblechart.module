@@ -47,10 +47,19 @@ function bubblechart_menu() {
     'access callback' => TRUE,
   );
   $items['genomics'] = array(
-    'title' => 'Mongo Expression Data',
+    'title' => 'Expression Data Bubblechart',
     'description' => 'Return expression data from a mongo collection',
     'page callback' => 'bubblechart_genomics',
     'access callback' => TRUE,
+  );
+  $items['input'] = array(
+    'title' => 'Mongo Expression Data Input',
+    'description' => 'Return expression data from a mongo collection based on user input',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('bubblechart_form'),
+    'access callback' => TRUE,
+    'access arguments' => array(1),
+    'weight' => 8,
   );
 
   return $items;
@@ -169,6 +178,50 @@ function bubblechart_genomics() {
   	);
 
 	return d3_draw($chart);
+}
+
+
+/**
+ * Return a form used to input gene names into bubblechar
+ *
+ * @return
+ *   An array which will be used by the form builder to build the import form
+ */
+
+function bubblechart_form($form, &$form_state) {
+	$form['input_genes'] = array (
+    '#type' => 'textarea',
+    '#title' => t('Gene Symbols'),
+    '#default_value' => '',
+    '#description' => t('Paste a comma separated list of gene symbols'),
+    '#size' => 60
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+
+	return $form;
+}
+
+/**
+ * Implementation of hook_validate() for the bubblechart_input.
+ */
+
+function bubblechart_form_validate($form, & $form_state) {
+	 $valid_genes = $form_state['values']['input_genes'];
+  if (!($valid_genes)) {
+  form_set_error('input_genes', 'Sorry. your genes list is not valid. Please submit a comma separated list.');
+  }
+
+}
+
+function bubblechart_form_submit($form, & $form_state) {
+	$valid_genes = $form_state['values']['input_genes'];
+
+	return drupal_render(drupal_get_form('bubblechart_form'));
 }
 
 

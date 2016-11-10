@@ -108,7 +108,7 @@ function bubblechart_genomics() {
     $db = $mongo->cats;
 
     //Enter genes of interest
-    $gene_list = array('RHEB', 'SKA1');
+    $gene_list = array('RHEB','SKA1');
 
     // Select the expression collection for gene expression info
     //name,LogFC,size,PValue,AdjPValue
@@ -120,20 +120,23 @@ function bubblechart_genomics() {
     //Build query and run it
     $query = array("GeneSymbol" => array('$in' => $gene_list));
 		$cursor = $coll->find($query);
+		$cursor->timeout(-1);
 		//$total = (string)$cursor->count(); //To find total number of documents
-		$cursor->limit( 5 );
+		//$cursor->limit( 5 );
 
 		//Access query results
 		$result = array();
 		$filenames = array();
 		$i = 0;
+
 		foreach ($cursor as $doc) {
 			//var_dump($doc);
 			$result[$i]['FileName'] = $doc['FileName'];
 			$result[$i]['name'] = $doc['GeneSymbol'];
 			$result[$i]['LogFC'] = $doc['logFC'];
 			$result[$i]['PValue'] = $doc['PValue'];
-			$result[$i]['adjPVal'] = $doc['adjPVal'];
+			$result[$i]['AdjPVal'] = $doc['adjPVal'];
+			$result[$i]['size'] = abs($doc['logFC']);
 			$filenames[] = $doc['FileName'];
 			$i++;
 		}
@@ -164,9 +167,37 @@ function bubblechart_genomics() {
 			$value['parent'] = $main_result[$main_key]['parent'];
 			$value['DataType'] = $main_result[$main_key]['DataType'];
 			$value['Contrast'] = $main_result[$main_key]['Contrast'];
-			$row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], abs($value['LogFC']), $value['PValue'], $value['adjPVal']);
+			$row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], abs($value['LogFC']), $value['PValue'], $value['AdjPVal']);
 		}
-		//var_dump($row);
+
+		$terms = array_column($result, 'parent');
+		$terms_unique = array_flip($terms);
+		//var_dump($terms_unique);
+
+		//$vid = 21;
+		$parents = array();
+		foreach ($terms_unique as $key => $value) {
+			$term_object = taxonomy_get_term_by_name($key);
+			$tid = array_pop($term_object)->tid;
+			$parent_object = taxonomy_get_parents($tid);
+			if (empty($parent_object)){
+				$parents[] = $key;
+			} else {
+				$parent_name = array_pop($parent_object)->name;
+				$result[] = array('size' => 5, 'parent' => $parent_name, 'name' => $key);
+				$parents[] = $parent_name;
+			}
+
+		}
+		$parents_unique = array_flip($parents);
+		var_dump($parents_unique);
+		foreach($parents_unique as $key => $value){
+			$result[] = array('size' => 5, 'parent' => 'WB', 'name' => $key);
+		}
+		$result[] = array('size' => 5, 'parent' => 'null', 'name' => 'WB');
+
+		//var_dump($result);
+		//dsm($result);
 
 		//error-checking:
 		//db.expression.find( { GeneSymbol: { $in: [ "RHEB", "SKA1" ]} }, { FileName: 1, GeneSymbol: 1, logFC:1, PValue:1, adjPVal:1, B:1 } ).limit( 5 );
@@ -174,7 +205,7 @@ function bubblechart_genomics() {
 		$chart = array(
     	'id' => 'visualization',
     	'type' => 'bubblechart',
-    	'rows' => $row,
+    	'rows' => $result,
   	);
 
 	return d3_draw($chart);

@@ -46,10 +46,11 @@ function bubblechart_menu() {
     'page callback' => 'bubblechart_bubblechart',
     'access callback' => TRUE,
   );
-  $items['genomics'] = array(
+  $items['genomics/%'] = array(
     'title' => 'Expression Data Bubblechart',
     'description' => 'Return expression data from a mongo collection',
     'page callback' => 'bubblechart_genomics',
+    'page arguments' => array(2),
     'access callback' => TRUE,
   );
   $items['input'] = array(
@@ -58,8 +59,7 @@ function bubblechart_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('bubblechart_form'),
     'access callback' => TRUE,
-    'access arguments' => array(1),
-    'weight' => 8,
+    'type' => MENU_NORMAL_ITEM,
   );
 
   return $items;
@@ -102,13 +102,20 @@ function bubblechart_bubblechart() {
   return d3_draw($chart);
 }
 
-function bubblechart_genomics() {
+function bubblechart_genomics($input_genes) {
+
+		//Enter genes of interest
+
+		if (empty($input_genes)) {
+			$gene_list = array('RHEB','SKA1');
+		} else {
+			$gene_list = explode(",", $input_genes);
+		}
+
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
     $db = $mongo->cats;
 
-    //Enter genes of interest
-    $gene_list = array('RHEB','SKA1');
 
     // Select the expression collection for gene expression info
     //name,LogFC,size,PValue,AdjPValue
@@ -190,7 +197,7 @@ function bubblechart_genomics() {
 
 		}
 		$parents_unique = array_flip($parents);
-		var_dump($parents_unique);
+		//var_dump($parents_unique);
 		foreach($parents_unique as $key => $value){
 			$result[] = array('size' => 5, 'parent' => 'WB', 'name' => $key);
 		}
@@ -233,7 +240,6 @@ function bubblechart_form($form, &$form_state) {
     '#value' => t('Submit'),
   );
 
-
 	return $form;
 }
 
@@ -243,16 +249,18 @@ function bubblechart_form($form, &$form_state) {
 
 function bubblechart_form_validate($form, & $form_state) {
 	 $valid_genes = $form_state['values']['input_genes'];
-  if (!($valid_genes)) {
-  form_set_error('input_genes', 'Sorry. your genes list is not valid. Please submit a comma separated list.');
-  }
+
+
 
 }
 
 function bubblechart_form_submit($form, & $form_state) {
 	$valid_genes = $form_state['values']['input_genes'];
 
-	return drupal_render(drupal_get_form('bubblechart_form'));
+	drupal_set_message(t('Working.... this will take a few minutes. Your genes are %genes', array('%genes' => $valid_genes)));
+	//return drupal_render(drupal_get_form('bubblechart_form'));
+
+	$form_state['redirect'] = 'genomics/' . $valid_genes;
 }
 
 

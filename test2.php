@@ -9,12 +9,14 @@
     $mongo = new MongoClient("mongodb://localhost");
 
     // Choose the database and collection
-    $db = $mongo->drupal_default;
+    $db = $mongo->cats;
     //echo $db;
-    $coll = $db->genetics;
+    $coll = $db->expression;
 
 
     // Retrieve the document and display it
     $item = $coll->findOne();
 
-    echo "My file name is " . $item['FileName'] . ". Platform is " . $item['PlatformName'] . ".";
+    echo "Testing connection to Mongo database: cats, collection = expression";
+    echo "\n";
+    echo "My file name is " . $item['FileName'] . ". PValue is " . $item['PValue'] . ".";

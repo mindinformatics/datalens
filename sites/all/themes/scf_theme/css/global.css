@@ -1462,10 +1462,34 @@ div.horizontal-tabs .horizontal-tabs-panes {
   list-style: none;
 }
 
-.views-exposed-form label {
+
+.views-exposed-form .form-item label {
     font-weight: normal;
     font-size: 12px;
 }
+
+.views-exposed-form label {
+  font-weight: bold;
+}
+
+.views-exposed-form #edit-field-group-tid-wrapper,
+.views-exposed-form #edit-term-node-tid-depth-wrapper,
+.views-exposed-form #edit-term-node-tid-depth-1-wrapper {
+  width: 95%;
+}
+
+ul.bef-tree-child.bef-tree-depth-0,
+ul.bef-tree-child.bef-tree-depth-1,
+ul.bef-tree-child.bef-tree-depth-2 {
+	list-style: none;
+	padding-top: 0;
+	margin-bottom: 0;
+}
+
+.views-exposed-form .views-exposed-widget .form-submit {
+    margin-top: 1.0em;
+}
+
 
 /* Line up multi-line options nicely */
 .form-checkboxes .bef-tree .bef-tree-child,

@@ -15,8 +15,8 @@
    *       visualization to the DOM.
    */
   Drupal.d3.bubblechart = function (select, settings) {
-      rows = settings.rows;
-      console.debug(rows);
+      //rows = settings.rows;
+      //console.debug(rows);
 
       var diameter = 960,
         format = d3.format(",d");
@@ -37,7 +37,7 @@
         .startAngle(0)
         .endAngle(2*Math.PI);
 
-      d3.csv("/sites/all/themes/scf_theme/BubbleChart/gene-test-viz.csv", function(error, data) {
+      d3.csv("/sites/all/themes/scf_theme/BubbleChart/Hypoxia-viz.csv", function(error, data) {
         console.debug(data);
           data.forEach(function(d) {
             d.LogFC = +d.LogFC;
@@ -45,9 +45,10 @@
             d.AdjPValue = +d.AdjPValue;
           });
 
+
         // *********** Convert flat data into a nice tree ***************
         // create a name: node map
-        var dataMap = rows.reduce(function(map, node) {
+        var dataMap = data.filter(function(d){ return (d.PValue <= 0.001); }).reduce(function(map, node) {
           map[node.name] = node;
           return map;
         }, {});
@@ -56,7 +57,7 @@
 
         // create the tree array
         var treeData = [];
-        rows.forEach(function(node) {
+        data.forEach(function(node) {
           // add to parent
           var parent = dataMap[node.parent];
           if (parent) {
@@ -75,7 +76,6 @@
 
         var node = svg.datum(root).selectAll(".node")
                 .data(pack.nodes);
-
                 //console.debug(node);
 
           node.enter().append("g")
@@ -117,7 +117,7 @@
         //If has children
          node.filter(function(d) { return d.children; })
          .filter(function(d){ return !(d.name == "WB"); })
-         .filter(function(d){ return !(d.parent.name == "WB"); })
+         //.filter(function(d){ return !(d.parent.name == "WB"); })
          .append("path")
               .attr("id", function(d,i){return "s"+i;})
               .attr("fill","none")
@@ -125,7 +125,7 @@
 
          node.filter(function(d) { return d.children; })
          .filter(function(d){ return !(d.name == "WB"); })
-         .filter(function(d){ return !(d.parent.name == "WB"); })
+         //.filter(function(d){ return !(d.parent.name == "WB"); })
          .append("text")
                   .attr("dy", "1em")
                   .style("text-anchor", "middle")

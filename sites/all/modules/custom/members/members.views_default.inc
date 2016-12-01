@@ -670,11 +670,63 @@ function members_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'term_node_tid_depth' => array(
-      'bef_format' => 'default',
+    'field_group_tid' => array(
+      'bef_format' => 'bef_ul',
       'more_options' => array(
         'bef_select_all_none' => 0,
-        'bef_select_all_none_nested' => 0,
+        'bef_select_all_none_nested' => 1,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'term_node_tid_depth' => array(
+      'bef_format' => 'bef_ul',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_select_all_none_nested' => 1,
         'bef_collapsible' => 0,
         'is_secondary' => 0,
         'any_label' => '',
@@ -723,10 +775,10 @@ function members_views_default_views() {
       'filter_rewrite_values' => NULL,
     ),
     'term_node_tid_depth_1' => array(
-      'bef_format' => 'default',
+      'bef_format' => 'bef_ul',
       'more_options' => array(
         'bef_select_all_none' => 0,
-        'bef_select_all_none_nested' => 0,
+        'bef_select_all_none_nested' => 1,
         'bef_collapsible' => 0,
         'is_secondary' => 0,
         'any_label' => '',
@@ -774,11 +826,11 @@ function members_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
-    'field_group_tid' => array(
-      'bef_format' => 'default',
+    'field_data_type_tid' => array(
+      'bef_format' => 'bef_ul',
       'more_options' => array(
         'bef_select_all_none' => 0,
-        'bef_select_all_none_nested' => 0,
+        'bef_select_all_none_nested' => 1,
         'bef_collapsible' => 0,
         'is_secondary' => 0,
         'any_label' => '',
@@ -1229,7 +1281,7 @@ function members_views_default_views() {
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Input */
+  /* Field: Content: Originating Dataset */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
@@ -1710,7 +1762,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Input */
+  /* Field: Content: Originating Dataset */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';

@@ -321,7 +321,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 .front .nivo-caption {
   width: 30%;
-  height: 200px;
+  height: 50%;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 15px;
   opacity: 0.8;
@@ -329,6 +329,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
   background-color: black	;
 }
 
+/*
 .front .nivoSlider {
   height: 200px;
   width: 940px;
@@ -338,6 +339,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
   max-height: 200px;
   max-width: 940px;
 }
+ */
 
 .nivo-caption h2 {
   color: #ddd7d7;
@@ -387,6 +389,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 .front #region-content {
 	padding-right: 0%;
 	margin-top: 10px;
+	width: 76.5%;
 }
 
 /* Block Titles */
@@ -536,7 +539,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	background: #A41034;
 	padding-top: 20px;
 	margin-top: -10px;
-	width: 22%;
+	width: 20% !important;
 	float: right !important;
 }
 

@@ -1,0 +1,5 @@
+name = "Dataset Visualization"
+description = "D3 Visualization of Dataset Metadata."
+package = custom
+core = 7.x
+

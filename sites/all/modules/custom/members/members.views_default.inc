@@ -895,6 +895,55 @@ function members_views_default_views() {
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Group */
+  $handler->display->display_options['fields']['field_group']['id'] = 'field_group';
+  $handler->display->display_options['fields']['field_group']['table'] = 'field_data_field_group';
+  $handler->display->display_options['fields']['field_group']['field'] = 'field_group';
+  $handler->display->display_options['fields']['field_group']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Data Type */
+  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Species */
+  $handler->display->display_options['fields']['field_species']['id'] = 'field_species';
+  $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
+  $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
+  $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Brain region */
+  $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
+  /* Field: Content: Identifiers */
+  $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
+  $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
+  $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
+  $handler->display->display_options['fields']['field_links']['label'] = 'Link to Data';
+  $handler->display->display_options['fields']['field_links']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_links']['delta_offset'] = '0';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Sort criterion: Content: Data Type (field_data_type) */
+  $handler->display->display_options['sorts']['field_data_type_tid']['id'] = 'field_data_type_tid';
+  $handler->display->display_options['sorts']['field_data_type_tid']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['sorts']['field_data_type_tid']['field'] = 'field_data_type_tid';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */

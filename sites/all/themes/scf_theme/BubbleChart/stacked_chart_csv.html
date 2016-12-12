@@ -1,4 +1,5 @@
-<p><script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script></p><p>&nbsp;</p><form><label><input type="radio" name="mode" value="grouped" /> Grouped</label> <label><input type="radio" name="mode" value="stacked" checked="checked" /> Stacked</label></form><div id="colchart">&nbsp;</div><p><script type="text/javascript">// <![CDATA[
+<p><script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script></p><p>&nbsp;</p><form><label><input type="radio" name="mode" value="grouped" /> Grouped</label> <label><input type="radio" name="mode" value="stacked" checked="checked" /> Stacked</label></form><div id="colchart">&nbsp;</div><p><script type="text/javascript">// <![CDATA[
 var n = 6, // number of layers
     m = 15; // number of samples per layer
 
@@ -12,7 +13,7 @@ var svg = d3.select("#colchart").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("/sites/all/themes/scf_theme/BubbleChart/data3.csv", function (data){
+d3.csv("/sites/all/themes/scf_theme/BubbleChart/dataset_diagnosis.csv", function (data){
     var headers = ["Normal Cognition","Alzheimer's Disease","Pathological Aging","Dementia not AD","Huntington's Disease","Progressive Supranuclear Palsy"];
 
     var layers = d3.layout.stack()(headers.map(function(numberRange) {
@@ -20,6 +21,8 @@ d3.csv("/sites/all/themes/scf_theme/BubbleChart/data3.csv", function (data){
           return {x: d.Category, y: +d[numberRange]};
         });
     }));
+    console.debug("layers");
+    console.debug(layers);
 
     var yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); });
     var yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
@@ -52,6 +55,15 @@ d3.csv("/sites/all/themes/scf_theme/BubbleChart/data3.csv", function (data){
         .enter().append("g")
         .attr("class", "layer")
         .style("fill", function(d, i) { return color(i); });
+
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+          return "<strong><span style='color:black'>" + d.y; + "</span></strong>";
+        });
+
+    svg.call(tip);
 
     var rect = layer.selectAll("rect")
         .data(function(d) { return d; })
@@ -88,6 +100,7 @@ d3.csv("/sites/all/themes/scf_theme/BubbleChart/data3.csv", function (data){
         .attr("dy", ".75em")
         .style("text-anchor", "end")
         .text("# of subjects");
+
 
     var legend = svg.selectAll(".legend")
         .data(color.domain().slice().reverse())
@@ -137,14 +150,8 @@ d3.csv("/sites/all/themes/scf_theme/BubbleChart/data3.csv", function (data){
           .attr("y", function(d) { return y(d.y); })
           .attr("height", function(d) { return height - y(d.y); });
 
-      rect.on("mouseover", function() { tooltip.style("display", null); })
-        .on("mouseout", function() { tooltip.style("display", "none"); })
-        .on("mousemove", function(d) {
-          var xPosition = d3.mouse(this)[0] - 15;
-          var yPosition = d3.mouse(this)[1] - 25;
-          tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-          tooltip.select("text").text("hello world");
-        });
+      rect.on('mouseover', tip.show)
+          .on('mouseout', tip.hide);
     };
 
     function transitionStacked() {
@@ -159,31 +166,12 @@ d3.csv("/sites/all/themes/scf_theme/BubbleChart/data3.csv", function (data){
           .attr("x", function(d) { return xScale(d.x); })
           .attr("width", xScale.rangeBand());
 
-      rect.on("mouseover", function() { tooltip.style("display", null); })
-        .on("mouseout", function() { tooltip.style("display", "none"); })
-        .on("mousemove", function(d) {
-          var xPosition = d3.mouse(this)[0] - 15;
-          var yPosition = d3.mouse(this)[1] - 25;
-          console.log(xPosition);
-          tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-          tooltip.select("text").text("hello world");
-        });
+      rect.on('mouseover', tip.show)
+          .on('mouseout', tip.hide);
     };
 
-    var tooltip = svg.append("g")
-        .attr("class", "tooltip");
 
-    tooltip.append("rect")
-        .attr("width", 30)
-        .attr("height", 20)
-        .attr("fill", "red")
-        .style("opacity", 0.5);
+  });
 
-    tooltip.append("text")
-        .attr("x", 15)
-        .attr("dy", "1.2em")
-        .style("text-anchor", "middle")
-        .attr("font-size", "12px")
-        .attr("font-weight", "bold");
-});
+
 // ]]></script></p>

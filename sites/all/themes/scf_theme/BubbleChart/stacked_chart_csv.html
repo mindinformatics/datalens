@@ -1,19 +1,9 @@
-<link rel="stylesheet" href="/sites/all/themes/scf_theme/BubbleChart/stacked_chart_csv.css">
-<script src="//d3js.org/d3.v3.min.js"></script>
-<p>&nbsp;</p>
-<form>
-  <label><input type="radio" name="mode" value="grouped"> Grouped</label>
-  <label><input type="radio" name="mode" value="stacked" checked> Stacked</label>
-</form>
-
-<div id="colchart"></div>
-<script>
-
+<p><script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script></p><p>&nbsp;</p><form><label><input type="radio" name="mode" value="grouped" /> Grouped</label> <label><input type="radio" name="mode" value="stacked" checked="checked" /> Stacked</label></form><div id="colchart">&nbsp;</div><p><script type="text/javascript">// <![CDATA[
 var n = 6, // number of layers
     m = 15; // number of samples per layer
 
-var margin = {top: 20, right: 50, bottom: 100, left: 75},
-    width = 740 - margin.left - margin.right,
+var margin = {top: 20, right: 50, bottom: 200, left: 75},
+    width = 1100 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var svg = d3.select("#colchart").append("svg")
@@ -23,9 +13,7 @@ var svg = d3.select("#colchart").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("/sites/all/themes/scf_theme/BubbleChart/data3.csv", function (data){
-
-
-    var headers = ["NCI","AD","PA","PSP","DNAD","HD"];
+    var headers = ["Normal Cognition","Alzheimer's Disease","Pathological Aging","Dementia not AD","Huntington's Disease","Progressive Supranuclear Palsy"];
 
     var layers = d3.layout.stack()(headers.map(function(numberRange) {
         return data.map(function(d) {
@@ -44,8 +32,9 @@ d3.csv("/sites/all/themes/scf_theme/BubbleChart/data3.csv", function (data){
         .domain([0, yStackMax])
         .range([height, 0]);
 
-    var color = d3.scale.ordinal()
-        .range(["#98ABC5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c"]);
+    var color = d3.scale.category20();
+        //.range(["#98ABC5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c"]);
+       // .range(["#0868ac", "43a2ca", "#7bccc4", "#a8ddb5", "#ccebc5", "#f0f9e8"]);
 
     var xAxis = d3.svg.axis()
         .scale(xScale)
@@ -197,4 +186,4 @@ d3.csv("/sites/all/themes/scf_theme/BubbleChart/data3.csv", function (data){
         .attr("font-size", "12px")
         .attr("font-weight", "bold");
 });
-</script>
+// ]]></script></p>

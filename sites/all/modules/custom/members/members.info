@@ -120,6 +120,7 @@ features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
 features[feeds_importer][] = analysis
+features[feeds_importer][] = analysis_update
 features[feeds_importer][] = claims_importer
 features[feeds_importer][] = datasets_importer
 features[feeds_importer][] = evidence_importer

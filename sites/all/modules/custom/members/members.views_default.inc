@@ -24,7 +24,10 @@ function members_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'all analysis';
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    3 => '3',
+  );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -75,187 +78,6 @@ function members_views_default_views() {
     'default' => 0,
   );
   $export['all_analysis'] = $view;
-
-  $view = new view();
-  $view->name = 'all_evidence';
-  $view->description = '';
-  $view->tag = 'default';
-  $view->base_table = 'field_collection_item';
-  $view->human_name = 'All evidence';
-  $view->core = 7;
-  $view->api_version = '3.0';
-  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-  /* Display: Master */
-  $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'All evidence';
-  $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'none';
-  $handler->display->display_options['cache']['type'] = 'none';
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'item_id' => 'item_id',
-    'field_title' => 'field_title',
-    'field_evidence_type' => 'field_evidence_type',
-    'field_result_data' => 'field_result_data',
-    'field_brain_region' => 'field_brain_region',
-    'field_literature_links' => 'field_literature_links',
-    'field_tags' => 'field_tags',
-    'field_description' => 'field_description',
-    'field_genes_diff' => 'field_genes_diff',
-    'field_evidence_id' => 'field_evidence_id',
-  );
-  $handler->display->display_options['style_options']['default'] = '-1';
-  $handler->display->display_options['style_options']['info'] = array(
-    'item_id' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_title' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_evidence_type' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_result_data' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_brain_region' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_literature_links' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_tags' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_description' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_genes_diff' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_evidence_id' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 1,
-    ),
-  );
-  /* Relationship: Broken/missing handler */
-  $handler->display->display_options['relationships']['field_evidence_node']['id'] = 'field_evidence_node';
-  $handler->display->display_options['relationships']['field_evidence_node']['table'] = 'field_collection_item';
-  $handler->display->display_options['relationships']['field_evidence_node']['field'] = 'field_evidence_node';
-  /* Field: Content: Nid */
-  $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'node';
-  $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['relationship'] = 'field_evidence_node';
-  $handler->display->display_options['fields']['nid']['label'] = 'ClaimNid';
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['relationship'] = 'field_evidence_node';
-  $handler->display->display_options['fields']['title']['label'] = 'Claim';
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_evidence_type']['id'] = 'field_evidence_type';
-  $handler->display->display_options['fields']['field_evidence_type']['table'] = 'field_data_field_evidence_type';
-  $handler->display->display_options['fields']['field_evidence_type']['field'] = 'field_evidence_type';
-  /* Field: Field collection item: Field collection item ID */
-  $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
-  $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
-  $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
-  $handler->display->display_options['fields']['item_id']['label'] = 'FC_id';
-  $handler->display->display_options['fields']['item_id']['separator'] = '';
-  /* Field: Field collection item: Title */
-  $handler->display->display_options['fields']['field_title']['id'] = 'field_title';
-  $handler->display->display_options['fields']['field_title']['table'] = 'field_data_field_title';
-  $handler->display->display_options['fields']['field_title']['field'] = 'field_title';
-  $handler->display->display_options['fields']['field_title']['type'] = 'text_plain';
-  /* Field: Content: Brain region */
-  $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
-  $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
-  $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
-  $handler->display->display_options['fields']['field_brain_region']['label'] = 'BrainRegion';
-  $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
-  $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
-  /* Field: Content: Supporting Analysis */
-  $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
-  $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
-  $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
-  $handler->display->display_options['fields']['field_result_data']['label'] = 'SupportingData';
-  $handler->display->display_options['fields']['field_result_data']['type'] = 'entityreference_entity_id';
-  $handler->display->display_options['fields']['field_result_data']['settings'] = array(
-    'link' => 0,
-  );
-  $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Literature */
-  $handler->display->display_options['fields']['field_literature_links']['id'] = 'field_literature_links';
-  $handler->display->display_options['fields']['field_literature_links']['table'] = 'field_data_field_literature_links';
-  $handler->display->display_options['fields']['field_literature_links']['field'] = 'field_literature_links';
-  $handler->display->display_options['fields']['field_literature_links']['type'] = 'entityreference_entity_id';
-  $handler->display->display_options['fields']['field_literature_links']['settings'] = array(
-    'link' => 0,
-  );
-  $handler->display->display_options['fields']['field_literature_links']['delta_offset'] = '0';
-  /* Filter criterion: Field collection item: Field name */
-  $handler->display->display_options['filters']['field_name']['id'] = 'field_name';
-  $handler->display->display_options['filters']['field_name']['table'] = 'field_collection_item';
-  $handler->display->display_options['filters']['field_name']['field'] = 'field_name';
-  $handler->display->display_options['filters']['field_name']['value'] = array(
-    'field_evidence' => 'field_evidence',
-  );
-
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'all-evidence';
-
-  /* Display: Data export */
-  $handler = $view->new_display('views_data_export', 'Data export', 'views_data_export_1');
-  $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
-  $handler->display->display_options['path'] = 'all-evidence/export';
-  $handler->display->display_options['displays'] = array(
-    'page' => 'page',
-    'default' => 0,
-  );
-  $export['all_evidence'] = $view;
 
   $view = new view();
   $view->name = 'biblio_view';
@@ -1039,7 +861,7 @@ function members_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'datasets-node';
+  $view->human_name = 'all-datasets (export)';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -1049,6 +871,7 @@ function members_views_default_views() {
   $handler->display->display_options['title'] = 'datasets-node';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'administer nodes';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -1068,6 +891,11 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Data Type */
+  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Brain region */
   $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
@@ -1080,11 +908,6 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_group']['field'] = 'field_group';
   $handler->display->display_options['fields']['field_group']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_group']['delta_offset'] = '0';
-  /* Field: Content: Data Type */
-  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Identifiers */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
@@ -1115,14 +938,18 @@ function members_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'datasets-node';
+  $handler->display->display_options['path'] = 'all-datasets';
 
   /* Display: Data export */
   $handler = $view->new_display('views_data_export', 'Data export', 'views_data_export_1');
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
-  $handler->display->display_options['path'] = 'datasets-node/export';
+  $handler->display->display_options['path'] = 'all-datasets/export';
+  $handler->display->display_options['displays'] = array(
+    'page' => 'page',
+    'default' => 0,
+  );
   $export['datasets_node'] = $view;
 
   $view = new view();

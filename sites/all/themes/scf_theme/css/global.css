@@ -1591,3 +1591,54 @@ ul.bef-tree-child.bef-tree-depth-2 {
   height: 50%;
   width: 50%;
 }
+
+
+
+/* D3 CSS */
+
+#block-nice-menus-2 .nice-menu-hide-title {
+  display: none;
+}
+
+.node-type-page #page-title.title {
+  display: none;
+}
+
+.node-type-page .d3-title {
+  text-align: center;
+}
+
+
+.node-type-page .d3-form {
+  margin-left: 8%;
+}
+
+.node-type-page .d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.node-type-page .d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.node-type-page .d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+
+

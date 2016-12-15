@@ -28,8 +28,16 @@ function bubblechart_block_view($delta = '') {
   //The $delta parameter tells us which block is being requested.
   switch ($delta) {
     case 'bubble_block':
-      $block['subject'] = t("Bubble Chart");
-      $block['content'] =  t("This is a title\n");
+      $path = libraries_get_path('d3.bubblechart');
+      drupal_add_js($path . '/libs/' . 'd3.slider.js');
+      //drupal_add_js($path . '/libs/' . 'jquery-2.1.4.min.js');
+      //drupal_add_js($path . '/libs/' . 'd3.min.js');
+      //drupal_add_js($path . '/bubblechart.js');
+      $block['subject'] = t("Bubble Chart Block");
+      $block['content'] =  t("This is content:\n");
+      $block['content'] .=  t('<p>PValue</p><div id="sliderPVal"></div>');
+      $block['content'] .=  t('<p>FCValue</p><div id="sliderFCVal"></div>');
+      $block['content'] .=  t('<div id="visualization"></div>');
       $block['content'] .= bubblechart_bubblechart();
       break;
   }
@@ -65,6 +73,16 @@ function bubblechart_menu() {
   return $items;
 }
 
+function bubblechart_bubblechart() {
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'bubblechart',
+  );
+
+  return d3_draw($chart);
+}
+
 function bubblechart_test() {
    return t("Hello World\n");
 }
@@ -87,16 +105,6 @@ function bubblechart_linegraph() {
       array('4th Quarter 2011',15,76,49,51),
       array('1st Quarter 2012',20,100,50,52),
     ),
-  );
-
-  return d3_draw($chart);
-}
-
-function bubblechart_bubblechart() {
-
-  $chart = array(
-    'id' => 'visualization',
-    'type' => 'bubblechart',
   );
 
   return d3_draw($chart);

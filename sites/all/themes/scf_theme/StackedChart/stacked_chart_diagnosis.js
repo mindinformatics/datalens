@@ -1,6 +1,7 @@
-<p><script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script><script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script></p><div class="d3-title"><h1>Braak Distribution Across Studies</h1></div><form class="d3-form"><label><input type="radio" name="mode" value="grouped" /> Grouped</label> <label><input type="radio" name="mode" value="stacked" checked="checked" /> Stacked</label></form><div id="colchart">&nbsp;</div><p><script type="text/javascript">// <![CDATA[
-var n = 3, // number of layers
-    m = 25; // number of samples per layer
+<p><script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script></p><p>&nbsp;</p><form><label><input type="radio" name="mode" value="grouped" /> Grouped</label> <label><input type="radio" name="mode" value="stacked" checked="checked" /> Stacked</label></form><div id="colchart">&nbsp;</div><p><script type="text/javascript">// <![CDATA[
+var n = 6, // number of layers
+    m = 13; // number of samples per layer
 
 var margin = {top: 20, right: 50, bottom: 200, left: 75},
     width = 1100 - margin.left - margin.right,
@@ -12,8 +13,8 @@ var svg = d3.select("#colchart").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("/sites/all/themes/scf_theme/BubbleChart/DatasetStatsForViz-Braak.csv", function (data){
-    var headers = ["B1: Stage 0/I/II","B2: Stage III/IV","B3: Stage V/VI"];
+d3.csv("/sites/all/themes/scf_theme/BubbleChart/dataset_diagnosis.csv", function (data){
+    var headers = ["Normal Cognition","Alzheimer's Disease","Pathological Aging","Dementia not AD","Huntington's Disease","Progressive Supranuclear Palsy"];
 
     var layers = d3.layout.stack()(headers.map(function(numberRange) {
         return data.map(function(d) {
@@ -59,7 +60,7 @@ d3.csv("/sites/all/themes/scf_theme/BubbleChart/DatasetStatsForViz-Braak.csv", f
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function(d) {
-          return "<strong><span style='color:white'>" + d.y; + "</span></strong>";
+          return "<strong><span style='color:black'>" + d.y; + "</span></strong>";
         });
 
     svg.call(tip);

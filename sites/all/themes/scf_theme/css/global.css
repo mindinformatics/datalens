@@ -1732,39 +1732,7 @@ ul.bef-tree-child.bef-tree-depth-2 {
 
 
 /* Evidence Dendrogram */
-.page-node-26716 .node circle {
-  fill: #999;
-}
 
-.page-node-26716 .node text {
-  font: 10px sans-serif;
-}
-
-.page-node-26716 .node--internal circle {
-  fill: #555;
-}
-
-.page-node-26716 .node--internal text {
-  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
-}
-
-.page-node-26716 .link {
-  fill: none;
-  stroke: #555;
-  stroke-opacity: 0.4;
-  stroke-width: 1.5px;
-}
-
-.page-node-26716 form {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  position: relative;
-  left: 10px;
-  top: 10px;
-}
-
-.page-node-26716 label {
-  display: block;
-}
 
 
 

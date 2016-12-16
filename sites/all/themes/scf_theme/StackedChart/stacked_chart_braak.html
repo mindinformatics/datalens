@@ -1,4 +1,18 @@
-<p><script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script><script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script></p><div class="d3-title"><h1>Braak Distribution Across Studies</h1></div><form class="d3-form"><label><input type="radio" name="mode" value="grouped" /> Grouped</label> <label><input type="radio" name="mode" value="stacked" checked="checked" /> Stacked</label></form><div id="colchart">&nbsp;</div><p><script type="text/javascript">// <![CDATA[
+<p>
+<script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+</p>
+
+<div class="d3-title"><h1>Braak Distribution Across Studies</h1></div>
+
+<form class="d3-form">
+  <label><input type="radio" name="mode" value="grouped" /> Grouped</label>
+  <label><input type="radio" name="mode" value="stacked" checked="checked" /> Stacked</label>
+</form>
+
+<div id="colchart">&nbsp;</div>
+
+<script type="text/javascript">
 var n = 3, // number of layers
     m = 25; // number of samples per layer
 
@@ -172,5 +186,4 @@ d3.csv("/sites/all/themes/scf_theme/StackedChart/DatasetStatsForViz-Braak.csv", 
 
   });
 
-
-// ]]></script></p>
+</script>

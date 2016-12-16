@@ -1,4 +1,18 @@
-<p><script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script><script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script></p><div class="d3-title"><h1>CDR Distribution Across Studies</h1></div><form class="d3-form"><label><input type="radio" name="mode" value="grouped" /> Grouped</label> <label><input type="radio" name="mode" value="stacked" checked="checked" /> Stacked</label></form><div id="colchart">&nbsp;</div><p><script type="text/javascript">// <![CDATA[
+<p>
+<script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+</p>
+
+<div class="d3-title"><h1>CDR Distribution Across Studies</h1></div>
+
+<form class="d3-form">
+	<label><input type="radio" name="mode" value="grouped" /> Grouped</label>
+	<label><input type="radio" name="mode" value="stacked" checked="checked" /> Stacked</label>
+</form>
+
+<div id="colchart">&nbsp;</div>
+<script type="text/javascript">
+
 var n = 2, // number of layers
     m = 23; // number of samples per layer
 
@@ -34,7 +48,7 @@ d3.csv("/sites/all/themes/scf_theme/StackedChart/DatasetStatsForViz-CDR.csv", fu
         .domain([0, yStackMax])
         .range([height, 0]);
 
-    var color = d3.scale.category18();
+    var color = d3.scale.category20();
         //.range(["#98ABC5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c"]);
        // .range(["#0868ac", "43a2ca", "#7bccc4", "#a8ddb5", "#ccebc5", "#f0f9e8"]);
 
@@ -171,6 +185,4 @@ d3.csv("/sites/all/themes/scf_theme/StackedChart/DatasetStatsForViz-CDR.csv", fu
 
 
   });
-
-
-// ]]></script></p>
+</script></p>

@@ -29,17 +29,93 @@ function bubblechart_block_view($delta = '') {
   switch ($delta) {
     case 'bubble_block':
       $path = libraries_get_path('d3.bubblechart');
-      drupal_add_js($path . '/libs/' . 'd3.slider.js');
-      drupal_add_js($path . '/libs/' . 'bootstrap.js');
-      drupal_add_css($path . '/libs/' . 'bootstrap.css');
+      //drupal_add_js($path . '/libs/' . 'd3.slider.js');
+      //drupal_add_js($path . '/libs/' . 'bootstrap.js');
       drupal_add_css($path . '/libs/' . 'bubblechart.css');
-      //drupal_add_js($path . '/libs/' . 'jquery-2.1.4.min.js');
-      //drupal_add_js($path . '/libs/' . 'd3.min.js');
-      //drupal_add_js($path . '/bubblechart.js');
-      $block['subject'] = t("Bubble Chart Block");
-      $block['content'] =  t('<p>PValue</p><div id="sliderPVal"></div>');
-      $block['content'] .=  t('<p>FCValue</p><div id="sliderFCVal"></div>');
-      $block['content'] .=  t('<div id="visualization"></div>');
+      //$block['subject'] = t("Bubble Chart Block");
+      $block['content'] =  t('<div id="facet-group">
+    <div class="list-group">
+      <h4>Study</h4>
+      <div class="facet-list">
+        <label><input type="checkbox" class="cbox study" value="MSBB"> MSBB</label><br>
+        <label><input type="checkbox" class="cbox study" value="HBTRC"> HBTRC</label><br>
+        <label><input type="checkbox" class="cbox study" value="MayoBB"> MayoBB</label><br>
+        <label><input type="checkbox" class="cbox study" value="MayoEGWAS"> MayoEGWAS</label><br>
+        <label><input type="checkbox" class="cbox study" value="ROSMAP"> ROSMAP</label>
+      </div>
+    </div>
+     <div class="list-group">
+      <h4>Contrast</h4>
+      <div class="facet-list">
+        <label><input type="checkbox" class="cbox contrast" value="AD-DNAD"> AD-DNAD</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="AD-NCI"> AD-NCI</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="AD-PA"> AD-PA</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="AD-PC"> AD-PC</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="AD-PSP"> AD-PSP</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="B2-B1"> B2-B1</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="B3-B1"> B3-B1</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="B3-B2"> B3-B2</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="C1-C0"> C1-C0</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="C2-C0"> C2-C0</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="C3-C0"> C3-C0</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="DNAD-NCI"> DNAD-NCI</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="PA-NCI"> PA-NCI</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="PC-NCI"> PC-NCI</label><br>
+        <label><input type="checkbox" class="cbox contrast" value="PSP-NCI"> PSP-NCI</label>
+      </div>
+    </div>
+    <div class="list-group">
+      <h4>Data Type</h4>
+      <div class="facet-list">
+        <label><input type="checkbox" class="cbox dataType" value="Microarray"> Microarray</label><br>
+        <label><input type="checkbox" class="cbox dataType" value="RNA-Seq"> RNA-Seq</label>
+      </div>
+    </div>
+    <div class="list-group">
+      <h4>Brain Region</h4>
+      <div class="facet-list">
+        <label><input type="checkbox" class="cbox brainRegion" value="Amygdala"> Amygdala</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Anterior Cingulate"> Anterior Cingulate</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Caudate Nucleus"> Caudate Nucleus</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Cerebellum"> Cerebellum</label><br>
+        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Cingulum"> Cingulum</label><br> -->
+        <label><input type="checkbox" class="cbox brainRegion" value="Dorsolateral Prefrontal Cortex"> Dorsolateral Prefrontal Cortex</label><br>
+        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Frontal lobe"> Frontal lobe</label><br> -->
+        <label><input type="checkbox" class="cbox brainRegion" value="Frontal Pole"> Frontal Pole</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Hippocampus"> Hippocampus</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Inferior Frontal Gyrus"> Inferior Frontal Gyrus</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Inferior Temporal Gyrus"> Inferior Temporal Gyrus</label><br>
+        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Limbic system"> Limbic system</label><br> -->
+        <label><input type="checkbox" class="cbox brainRegion" value="Middle Temporal Gyrus"> Middle Temporal Gyrus</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Nucleus Accumbens"> Nucleus Accumbens</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Occipital Visual Cortex"> Occipital Visual Cortex</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Parahippocampal Gyrus"> Parahippocampal Gyrus</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Posterior Cingulate Cortex"> Posterior Cingulate Cortex</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Precentral Gyrus"> Precentral Gyrus</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Prefrontal Cortex"> Prefrontal Cortex</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Putamen"> Putamen</label><br>
+        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Striatum"> Striatum</label><br> -->
+        <label><input type="checkbox" class="cbox brainRegion" value="Superior Parietal Lobule"> Superior Parietal Lobule</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Superior Temporal Gyrus"> Superior Temporal Gyrus</label><br>
+        <label><input type="checkbox" class="cbox brainRegion" value="Temporal Cortex"> Temporal Cortex</label><br>
+        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Temporal lobe"> Temporal lobe</label><br> -->
+        <label><input type="checkbox" class="cbox brainRegion" value="Temporal Pole"> Temporal Pole</label>
+      </div>
+    </div>
+  </div>
+
+  <div id="slider-area">
+    <div id="PValue" class="slider">
+      <h4>PValue</h4><input type="text" id="PValText" class="slider-text">
+      <input type="range" id="sliderPVal">
+    </div>
+    <div id="FCValue" class="slider">
+      <h4>FCValue</h4><input type="text" id="FCValText" class="slider-text">
+      <input type="range" id="sliderFCVal">
+    </div>
+  </div>'
+);
+
       $block['content'] .= bubblechart_bubblechart();
       break;
   }

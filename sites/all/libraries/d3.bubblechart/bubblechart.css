@@ -1,6 +1,6 @@
 html {
   font-family:sans-serif;
-/*   overflow: hidden; */
+  /*overflow: hidden;*/
   /*background-color: #F5F5F5;*/
 }
 
@@ -62,8 +62,6 @@ label {
 .facet-list br {
   display: none;
 }
-
-
 /******* Sliders *******/
 
 #slider-area{
@@ -82,7 +80,7 @@ label {
 
 .slider-text {
   position: relative;
-  width: 75px;
+  width: 90px;
   height: 20px;
   top: -26px;
   border: none;
@@ -157,4 +155,3 @@ label {
   top: -51px;
   z-index: 0;
 }
-

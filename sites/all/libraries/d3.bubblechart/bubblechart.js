@@ -27,6 +27,9 @@
 
     // pValue Slider ****************************************************************************************************************************************************************************
     // Axis
+    var pValue_x_min = 1e-2; //1e0
+    var pValue_x_max = 1e-8; //1e-6 (for a reason I didn't look into, needs a spread of at least 10^6 to render correctly)
+
     var margin = {top: 10, right: 10, bottom: 20, left: 10},
     width = $("#PValue").width() - margin.left - margin.right,
     height = 0;//$("#PValue").height() - margin.top - margin.bottom - $("#sliderPVal").height();
@@ -34,8 +37,9 @@
     var superscript = "⁰¹²³⁴⁵⁶⁷⁸⁹", superscriptMinus = "⁻",
         formatPower = function(d) { return (d + "").split("").map(function(c) { return superscript[c]; }).join(""); };
 
+    
     var pValue_x = d3.scale.log()
-        .domain([1e0, 1e-6])
+        .domain([pValue_x_min, pValue_x_max])
         .range([0, width]);
 
     var pValue_xAxis = d3.svg.axis()
@@ -60,22 +64,34 @@
         .call(pValue_xAxis);
 
     // Slider
-    $("#sliderPVal").attr({ "max" : 6, "min" : 0, "value" : pValue, "step" : .0001 });
+    $("#sliderPVal").attr({ "max" : -1*Math.log10(pValue_x_max), "min" : -1*Math.log10(pValue_x_min), "value" : pValue, "step" : .0001 });
     
     var sliderOutput = function(x){ return Math.pow(10,-x); }; // <- minus x because the slider outputs positive values instead of negative ones.
     var sliderInput  = function(x){ return (-1 * Math.log10(x))};
 
     $("#sliderPVal").on("input", function(){ 
-      $("#PValText").val( sliderOutput( $("#sliderPVal").val()));
+      $("#PValText").val( sliderOutput( $("#sliderPVal").val()).toFixed( -1*Math.log10(pValue_x_max) ).replace(/\.?0+$/, '') );
       pValue = sliderOutput( $("#sliderPVal").val());
     });
     $("#sliderPVal").on("change", function(){ updateChart(); });
 
     // Textfield
-    $("#PValText").focusout( function(e){
+    $("#PValText").val( pValue.toFixed( -1*Math.log10(pValue_x_max) ).replace(/\.?0+$/, '' ) ); // set initial value
+
+    var pUpdate = function(){
       pValue = Number( $("#PValText").val() );
       $("#sliderPVal").val(sliderInput(pValue));
       updateChart();
+    };
+
+    $("#PValText").focusout( function(e){
+      pUpdate();
+    });
+
+    $("#PValText").keypress(function(e) {
+        if(e.which == 13) {
+            pUpdate();
+        }
     });
 
 
@@ -116,13 +132,22 @@
     $("#sliderFCVal").on("change", function(event){ updateChart(); });
 
     // Textfield
-    $("#FCValText").focusout( function(e){
+    $("#FCValText").val(FCValue); // set initial value
+
+    var fcUpdate = function(){
       FCValue = Number( $("#FCValText").val() );
       $("#sliderFCVal").val(FCValue);
       updateChart();
+    };
+
+    $("#FCValText").focusout( function(e){
+      fcUpdate();
     });
-
-
+    $("#FCValText").keypress(function(e) {
+        if(e.which == 13) {
+            fcUpdate();
+        }
+    });
 
 
     // Selections - Checkbox filtering *********************************************************************************************************************************************
@@ -246,7 +271,7 @@
 
       // create the tree array
       var treeData = [];
-      data.filter(function(d){ return d.name != "NA" && d.LogFC != "NA" && d.size != "NA" && d.PValue != "NA" && d.AdjPValue != "NA" && d.PValue < 0.01})
+      data.filter(function(d){ return d.name != "NA" && d.LogFC != "NA" && d.size != "NA" && d.PValue != "NA" && d.AdjPValue != "NA" && d.PValue < pValue_x_min})
         .forEach(function(node) {
           // add to parent
           var parent = dataMap[node.parent];
@@ -302,13 +327,11 @@
 
       circles = node.filter(function(d){ return !( d.name == "WB" ); }).append("circle")
           .attr("r", function(d) { return d.r; })
-          .style("visibility", function(d) { 
-            if (d.r < 0.01) return "none"; 
-            else return "visible"; 
-          })
           .style('fill', function(d) { return (d.children ? "none" : color_scale(d.LogFC)); })
-          .style('fill-opacity', function(d) { return (d.children ? '0' : '.6'); })
-          .style('stroke', 'black');
+          // .style('fill-opacity', function(d) { return ( d.children ? '0' : '.6' ); })
+          .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '0' : '.6' ); })
+          .style('stroke', function(d){ return d.children ? '#ccc' : 'none'})
+          .style('stroke-width', '2px');
 
 
       //console.debug(node);
@@ -321,12 +344,8 @@
           // .attr("dy", ".2em")
           .attr("dy", ".33em")
           .style("text-anchor", "middle")
-          // .text(function(d) { return d.name.substring(0, d.r / 3); });
-          .style("font-size", function(d) { return (d.r) + "px"; })
-          .text(function(d) { 
-            if(d.r < 15) return d.name.substring(0, d.r / 6); 
-            else return d.name.substring(0, d.r / 10); 
-          });
+          .style("font-size", function(d) { return Math.min( d.r, 12 ) + "px" })
+          .text(function(d) { return d.name.substring(0, d.r * 0.225); });
 
       //If has children
       parentPaths = node.filter(function(d) { return d.children; })
@@ -352,11 +371,13 @@
     var updateChart = function() {
 
       pack.value( userInputFilter );
-      console.log('spacer?');
       pack.nodes(root);
 
       circles.transition().duration(2000)
-              .attr("r", function(d){ return d.r; } );
+          .attr("r", function(d){ return d.r; } )
+          .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '0' : '.6' ); })
+          .style('stroke', function(d){ return d.children ? '#ccc' : 'none'});
+              
 
       groups.transition().duration(2000)
           .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
@@ -372,16 +393,8 @@
         .endAngle(2*Math.PI);
       //If no children, display title like this
       titles
-          // .attr("dy", ".2em")
-          .attr("dy", ".33em")
-          .style("text-anchor", "middle")
-          // .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; })
-          .style("font-size", function(d) { return (d.r) + "px"; })
-          // .text(function(d) { return d.name.substring(0, d.r / 3); });
-          .text(function(d) { 
-            if(d.r < 15) return d.name.substring(0, d.r / 6); 
-            else return d.name.substring(0, d.r / 10); 
-          });
+          .style("font-size", function(d) { return Math.min( d.r, 12 ) + "px" })
+          .text(function(d) { return d.name.substring(0, d.r * 0.225); });
 
       //If has children
       parentPaths
@@ -392,7 +405,10 @@
       parentTitles
           .attr("xlink:href",function(d,i){return "#s"+i;})
           .attr("startOffset",function(d){return "30%";})
-          .text(function(d) { return d.name; });
+          // .text(function(d) { return d.name; })
+          .text(function(d) { return (d.r > 25 ? d.name : ""); });
+          // .style("font-size", function(d) { return Math.min( 0.5 * d.r , 16 ) + "px" });
+
 
     };
 

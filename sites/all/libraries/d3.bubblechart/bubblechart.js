@@ -365,7 +365,7 @@
             .append("textPath")
                 .attr("xlink:href",function(d,i){return "#s"+i;})
                 .attr("startOffset",function(d){return "30%";})
-                .text(function(d) { return d.name; });
+                .text(function(d) { return (d.r > 25 ? d.name : ""); });
     };
 
     var updateChart = function() {

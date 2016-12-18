@@ -12,6 +12,9 @@ h4 {
 
 label {
   font-size: 12px;
+  font-weight: normal !important;
+  color: grey;
+
 }
 
 /*::-webkit-scrollbar-track
@@ -49,6 +52,7 @@ label {
 .facet-list {
   max-height: 380px;
   overflow-y: auto;
+  padding-bottom: 10px;
 }
 
 #facet-group {
@@ -154,4 +158,8 @@ label {
   position: relative;
   top: -51px;
   z-index: 0;
+}
+
+#FCValue {
+  display: none;
 }

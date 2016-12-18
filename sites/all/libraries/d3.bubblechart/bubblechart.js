@@ -15,10 +15,10 @@
    *       visualization to the DOM.
    */
 
-  // var 
+  // var
 
   Drupal.d3.bubblechart = function (select, settings) {
-    
+
     var pValue = 0.01;
     var FCValue = 3.52;
     var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Hyman-all-out.csv";
@@ -37,7 +37,7 @@
     var superscript = "⁰¹²³⁴⁵⁶⁷⁸⁹", superscriptMinus = "⁻",
         formatPower = function(d) { return (d + "").split("").map(function(c) { return superscript[c]; }).join(""); };
 
-    
+
     var pValue_x = d3.scale.log()
         .domain([pValue_x_min, pValue_x_max])
         .range([0, width]);
@@ -45,10 +45,10 @@
     var pValue_xAxis = d3.svg.axis()
         .scale(pValue_x)
         .orient("bottom")
-        .ticks(10, function(d) { 
+        .ticks(10, function(d) {
           console.log('d ' + d);
-          if(d < 1) return 10 + superscriptMinus + formatPower(Math.round(Math.log(d) / Math.LN10)); 
-          else return 10 + formatPower(Math.round(Math.log(d) / Math.LN10)); 
+          if(d < 1) return 10 + superscriptMinus + formatPower(Math.round(Math.log(d) / Math.LN10));
+          else return 10 + formatPower(Math.round(Math.log(d) / Math.LN10));
         });
 
     var svg = d3.select("#PValue").append("svg")
@@ -344,8 +344,8 @@
           // .attr("dy", ".2em")
           .attr("dy", ".33em")
           .style("text-anchor", "middle")
-          .style("font-size", function(d) { return Math.min( d.r, 12 ) + "px" })
-          .text(function(d) { return d.name.substring(0, d.r * 0.225); });
+          .style("font-size", function(d) { return Math.min( d.r, 8 ) + "px" })
+          .text(function(d) { return d.name.substring(0, d.r * 0.4); });
 
       //If has children
       parentPaths = node.filter(function(d) { return d.children; })
@@ -377,7 +377,7 @@
           .attr("r", function(d){ return d.r; } )
           .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '0' : '.6' ); })
           .style('stroke', function(d){ return d.children ? '#ccc' : 'none'});
-              
+
 
       groups.transition().duration(2000)
           .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
@@ -393,8 +393,8 @@
         .endAngle(2*Math.PI);
       //If no children, display title like this
       titles
-          .style("font-size", function(d) { return Math.min( d.r, 12 ) + "px" })
-          .text(function(d) { return d.name.substring(0, d.r * 0.225); });
+          .style("font-size", function(d) { return Math.min( d.r, 8 ) + "px" })
+          .text(function(d) { return d.name.substring(0, d.r * 0.4); });
 
       //If has children
       parentPaths

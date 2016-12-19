@@ -1,253 +1,31 @@
 id
-flare
-flare.analytics
-flare.analytics.cluster
-flare.analytics.cluster.AgglomerativeCluster
-flare.analytics.cluster.CommunityStructure
-flare.analytics.cluster.HierarchicalCluster
-flare.analytics.cluster.MergeEdge
-flare.analytics.graph
-flare.analytics.graph.BetweennessCentrality
-flare.analytics.graph.LinkDistance
-flare.analytics.graph.MaxFlowMinCut
-flare.analytics.graph.ShortestPaths
-flare.analytics.graph.SpanningTree
-flare.analytics.optimization
-flare.analytics.optimization.AspectRatioBanker
-flare.animate
-flare.animate.Easing
-flare.animate.FunctionSequence
-flare.animate.interpolate
-flare.animate.interpolate.ArrayInterpolator
-flare.animate.interpolate.ColorInterpolator
-flare.animate.interpolate.DateInterpolator
-flare.animate.interpolate.Interpolator
-flare.animate.interpolate.MatrixInterpolator
-flare.animate.interpolate.NumberInterpolator
-flare.animate.interpolate.ObjectInterpolator
-flare.animate.interpolate.PointInterpolator
-flare.animate.interpolate.RectangleInterpolator
-flare.animate.ISchedulable
-flare.animate.Parallel
-flare.animate.Pause
-flare.animate.Scheduler
-flare.animate.Sequence
-flare.animate.Transition
-flare.animate.Transitioner
-flare.animate.TransitionEvent
-flare.animate.Tween
-flare.data
-flare.data.converters
-flare.data.converters.Converters
-flare.data.converters.DelimitedTextConverter
-flare.data.converters.GraphMLConverter
-flare.data.converters.IDataConverter
-flare.data.converters.JSONConverter
-flare.data.DataField
-flare.data.DataSchema
-flare.data.DataSet
-flare.data.DataSource
-flare.data.DataTable
-flare.data.DataUtil
-flare.kim kardashian is a media celebrity
-flare.kim kardashian is a media celebrity.DirtySprite
-flare.kim kardashian is a media celebrity.LineSprite
-flare.kim kardashian is a media celebrity.RectSprite
-flare.kim kardashian is a media celebrity.TextSprite
-flare.flex
-flare.flex.FlareVis
-flare.physics
-flare.physics.DragForce
-flare.physics.GravityForce
-flare.physics.IForce
-flare.physics.NBodyForce
-flare.physics.Particle
-flare.physics.Simulation
-flare.physics.Spring
-flare.physics.SpringForce
-flare.query
-flare.query.AggregateExpression
-flare.query.And
-flare.query.Arithmetic
-flare.query.Average
-flare.query.BinaryExpression
-flare.query.Comparison
-flare.query.CompositeExpression
-flare.query.Count
-flare.query.DateUtil
-flare.query.Distinct
-flare.query.Expression
-flare.query.ExpressionIterator
-flare.query.Fn
-flare.query.If
-flare.query.IsA
-flare.query.Literal
-flare.query.Match
-flare.query.Maximum
-flare.query.methods
-flare.query.methods.add
-flare.query.methods.and
-flare.query.methods.average
-flare.query.methods.count
-flare.query.methods.distinct
-flare.query.methods.div
-flare.query.methods.eq
-flare.query.methods.fn
-flare.query.methods.gt
-flare.query.methods.gte
-flare.query.methods.iff
-flare.query.methods.isa
-flare.query.methods.lt
-flare.query.methods.lte
-flare.query.methods.max
-flare.query.methods.min
-flare.query.methods.mod
-flare.query.methods.mul
-flare.query.methods.neq
-flare.query.methods.not
-flare.query.methods.or
-flare.query.methods.orderby
-flare.query.methods.range
-flare.query.methods.select
-flare.query.methods.stddev
-flare.query.methods.sub
-flare.query.methods.sum
-flare.query.methods.update
-flare.query.methods.variance
-flare.query.methods.where
-flare.query.methods.xor
-flare.query.methods._
-flare.query.Minimum
-flare.query.Not
-flare.query.Or
-flare.query.Query
-flare.query.Range
-flare.query.StringUtil
-flare.query.Sum
-flare.query.Variable
-flare.query.Variance
-flare.query.Xor
-flare.scale
-flare.scale.IScaleMap
-flare.scale.LinearScale
-flare.scale.LogScale
-flare.scale.OrdinalScale
-flare.scale.QuantileScale
-flare.scale.QuantitativeScale
-flare.scale.RootScale
-flare.scale.Scale
-flare.scale.ScaleType
-flare.scale.TimeScale
-flare.util
-flare.util.Arrays
-flare.util.Colors
-flare.util.Dates
-flare.util.Displays
-flare.util.Filter
-flare.util.Geometry
-flare.util.heap
-flare.util.heap.FibonacciHeap
-flare.util.heap.HeapNode
-flare.util.IEvaluable
-flare.util.IPredicate
-flare.util.IValueProxy
-flare.util.math
-flare.util.math.DenseMatrix
-flare.util.math.IMatrix
-flare.util.math.SparseMatrix
-flare.util.Maths
-flare.util.Orientation
-flare.util.palette
-flare.util.palette.ColorPalette
-flare.util.palette.Palette
-flare.util.palette.ShapePalette
-flare.util.palette.SizePalette
-flare.util.Property
-flare.util.Shapes
-flare.util.Sort
-flare.util.Stats
-flare.util.Strings
-flare.vis
-flare.vis.axis
-flare.vis.axis.Axes
-flare.vis.axis.Axis
-flare.vis.axis.AxisGridLine
-flare.vis.axis.AxisLabel
-flare.vis.axis.CartesianAxes
-flare.vis.controls
-flare.vis.controls.AnchorControl
-flare.vis.controls.ClickControl
-flare.vis.controls.Control
-flare.vis.controls.ControlList
-flare.vis.controls.DragControl
-flare.vis.controls.ExpandControl
-flare.vis.controls.HoverControl
-flare.vis.controls.IControl
-flare.vis.controls.PanZoomControl
-flare.vis.controls.SelectionControl
-flare.vis.controls.TooltipControl
-flare.vis.data
-flare.vis.data.Data
-flare.vis.data.DataList
-flare.vis.data.DataSprite
-flare.vis.data.EdgeSprite
-flare.vis.data.NodeSprite
-flare.vis.data.render
-flare.vis.data.render.ArrowType
-flare.vis.data.render.EdgeRenderer
-flare.vis.data.render.IRenderer
-flare.vis.data.render.ShapeRenderer
-flare.vis.data.ScaleBinding
-flare.vis.data.Tree
-flare.vis.data.TreeBuilder
-flare.vis.events
-flare.vis.events.DataEvent
-flare.vis.events.SelectionEvent
-flare.vis.events.TooltipEvent
-flare.vis.events.VisualizationEvent
-flare.vis.legend
-flare.vis.legend.Legend
-flare.vis.legend.LegendItem
-flare.vis.legend.LegendRange
-flare.vis.operator
-flare.vis.operator.distortion
-flare.vis.operator.distortion.BifocalDistortion
-flare.vis.operator.distortion.Distortion
-flare.vis.operator.distortion.FisheyeDistortion
-flare.vis.operator.encoder
-flare.vis.operator.encoder.ColorEncoder
-flare.vis.operator.encoder.Encoder
-flare.vis.operator.encoder.PropertyEncoder
-flare.vis.operator.encoder.ShapeEncoder
-flare.vis.operator.encoder.SizeEncoder
-flare.vis.operator.filter
-flare.vis.operator.filter.FisheyeTreeFilter
-flare.vis.operator.filter.GraphDistanceFilter
-flare.vis.operator.filter.VisibilityFilter
-flare.vis.operator.IOperator
-flare.vis.operator.label
-flare.vis.operator.label.Labeler
-flare.vis.operator.label.RadialLabeler
-flare.vis.operator.label.StackedAreaLabeler
-flare.vis.operator.layout
-flare.vis.operator.layout.AxisLayout
-flare.vis.operator.layout.BundledEdgeRouter
-flare.vis.operator.layout.CircleLayout
-flare.vis.operator.layout.CirclePackingLayout
-flare.vis.operator.layout.DendrogramLayout
-flare.vis.operator.layout.ForceDirectedLayout
-flare.vis.operator.layout.IcicleTreeLayout
-flare.vis.operator.layout.IndentedTreeLayout
-flare.vis.operator.layout.Layout
-flare.vis.operator.layout.NodeLinkTreeLayout
-flare.vis.operator.layout.PieLayout
-flare.vis.operator.layout.RadialTreeLayout
-flare.vis.operator.layout.RandomLayout
-flare.vis.operator.layout.StackedAreaLayout
-flare.vis.operator.layout.TreeMapLayout
-flare.vis.operator.Operator
-flare.vis.operator.OperatorList
-flare.vis.operator.OperatorSequence
-flare.vis.operator.OperatorSwitch
-flare.vis.operator.SortOperator
-flare.vis.Visualization
+PKR
+PKR.Abeta production tau propagation and neurodegeneration are the hallmarks of AD
+PKR.Abeta production tau propagation and neurodegeneration are the hallmarks of AD.NIA Alzheimers Association guidelines for the neuropathologic assessment of AD
+PKR.PKR is involved in neuroinflammation common to mechanisms of neurodegeneration
+PKR.PKR is involved in neuroinflammation common to mechanisms of neurodegeneration.TDP-43 cytoplasmic inclusions present in 20% of AD cases and >80% of ALS cases
+PKR.PKR is involved in neuroinflammation common to mechanisms of neurodegeneration.Cytoplasmic double-stranded RNA (dsRNA) is sufficient to mount a robust type I interferon response within neurons
+PKR.PKR is involved in neuroinflammation common to mechanisms of neurodegeneration.Knockout of TDP-43 or loss of function mutations or cytoplasmic inclusions have been shown to de-repress endogenous repeats leading to the production of dsRNA
+PKR.PKR is involved in neuroinflammation common to mechanisms of neurodegeneration.PKR senses dsRNA which in turn activates Type I interferon responses and triggers apoptosis
+PKR.PKR is involved in neuroinflammation common to mechanisms of neurodegeneration.PKR activated pathways converge with pathways activated by PERK which is activated by ER stress
+PKR.PKR is involved in neuroinflammation common to mechanisms of neurodegeneration.PKR protein is elevated in the CSF of patients with AD and ALS and elevated phosphoPKR is associated with accelerated cognitive decline
+PKR.PKR activation is linked with ABeta production tau propagation and neurodegeneration
+PKR.PKR activation is linked with ABeta production tau propagation and neurodegeneration.PKR is present at higher levels in the CSF of patients with MCI and AD and predicts cognitive decline
+PKR.PKR activation is linked with ABeta production tau propagation and neurodegeneration.PKR is present at higher levels in the CSF of patients with ALS
+PKR.PKR activation is linked with ABeta production tau propagation and neurodegeneration.Expression of PKR is significantly elevated in AD brains in the frontal cortex
+PKR.PKR activation is linked with ABeta production tau propagation and neurodegeneration.Innate inflammation which induces PKR protein is present in the aging brain and is further increased in AD
+PKR.dsRNA activates PKR and neuroinflammation
+PKR.dsRNA activates PKR and neuroinflammation.Injection of dsRNA into a rat brain causes persistent inflammation neuronal death and aggregation of APP
+PKR.dsRNA activates PKR and neuroinflammation.Genomic instability is prevalent in the aging brain aging is the most significant risk factor for sporadic AD
+PKR.dsRNA activates PKR and neuroinflammation.PKR activation induces ABeta production by derepression of BACE1 translation
+PKR.dsRNA activates PKR and neuroinflammation.Reduced ABeta production and BACE1 induction in LPS-injected PKR knockout mice
+PKR.Human physiological evidence supports PKR involvement with AD
+PKR.Human physiological evidence supports PKR involvement with AD.Expression data shows PKR is significantly up-regulated in brains with SADrelative to the healthy age-matched controls
+PKR.Mouse models support dsRNA and PKR involvement with neurodegeneration
+PKR.Mouse models support dsRNA and PKR involvement with neurodegeneration.Our two independent models in mice show ds-RNA mediated- neurodegeneration of olfactory sensory neurons with robust induction and activation of PKR
+PKR.PKR is a druggable target
+PKR.PKR is a druggable target.PKR has been a target in other cellular and disease contexts
+PKR.PKR is a druggable target.Kinase inhibitors have been reported that have limited kinase specificity
+PKR.PKR is a druggable target.Non-kinase inhibitors have been developed
+PKR.PKR is a druggable target.Non-kinase inhibitors have been developed.Chemical genetics reveals a kinase-independent role for PKR in pyroptosis
+PKR.PKR is a druggable target.Preliminary screen at Broad resulted in one hit

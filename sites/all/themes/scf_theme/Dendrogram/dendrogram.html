@@ -55,7 +55,7 @@ d3.csv("/sites/all/themes/scf_theme/Dendrogram/dendrogram.csv", function(error, 
   node.append("text")
       .attr("dy", 3)
       .attr("x", function(d) { return d.children ? -8 : 8; })
-      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+      .style("text-anchor", function(d) { return d.children ? "middle" : "start"; })
       .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
 
   d3.selectAll("input")

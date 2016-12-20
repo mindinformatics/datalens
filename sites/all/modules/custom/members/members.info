@@ -126,6 +126,7 @@ features[feeds_importer][] = datasets_importer
 features[feeds_importer][] = evidence_importer
 features[feeds_importer][] = gene_importer
 features[feeds_importer][] = result
+features[feeds_importer][] = update_dataset_title
 features[feeds_tamper][] = claims_importer-challengedby_nid-explode
 features[feeds_tamper][] = claims_importer-supportedby_nid-explode
 features[feeds_tamper][] = datasets_importer-brain_regions-explode

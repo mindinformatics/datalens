@@ -605,7 +605,7 @@ function members_feeds_importer_default() {
   $feeds_importer->id = 'result';
   $feeds_importer->config = array(
     'name' => 'Result',
-    'description' => '2nd Results test.',
+    'description' => 'Upload results fc with files: public://analysis_files/',
     'fetcher' => array(
       'plugin_key' => 'FeedsFileFetcher',
       'config' => array(

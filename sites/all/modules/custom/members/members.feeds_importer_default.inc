@@ -602,10 +602,10 @@ function members_feeds_importer_default() {
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
-  $feeds_importer->id = 'results_importer';
+  $feeds_importer->id = 'result';
   $feeds_importer->config = array(
-    'name' => 'Results Importer',
-    'description' => 'Results Importer',
+    'name' => 'Result',
+    'description' => '2nd Results test.',
     'fetcher' => array(
       'plugin_key' => 'FeedsFileFetcher',
       'config' => array(
@@ -622,6 +622,7 @@ function members_feeds_importer_default() {
       'plugin_key' => 'FeedsCSVParser',
       'config' => array(
         'delimiter' => ',',
+        'encoding' => 'UTF-8',
         'no_headers' => 0,
       ),
     ),
@@ -631,8 +632,8 @@ function members_feeds_importer_default() {
         'field_name' => 'field_result',
         'host_entity_type' => 'node',
         'is_field' => 0,
-        'guid_field_name' => 'nid',
-        'identifier_field_name' => 'field_result_id',
+        'guid_field_name' => 'Nid',
+        'identifier_field_name' => '',
         'mappings' => array(
           0 => array(
             'source' => 'Nid',
@@ -642,42 +643,40 @@ function members_feeds_importer_default() {
           ),
           1 => array(
             'source' => 'ResultId',
-            'target' => 'identifier_field',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          2 => array(
-            'source' => 'ResultId',
             'target' => 'field_result_id',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          3 => array(
+          2 => array(
             'source' => 'ResultTitle',
             'target' => 'field_title',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          4 => array(
+          3 => array(
             'source' => 'ResultFile',
-            'target' => 'field_files',
+            'target' => 'field_files:uri',
             'unique' => FALSE,
+            'language' => 'und',
           ),
         ),
+        'insert_new' => '1',
         'update_existing' => '2',
-        'input_format' => 'full_html',
+        'update_non_existent' => 'skip',
+        'input_format' => 'plain_text',
         'skip_hash_check' => 0,
         'bundle' => 'field_result',
+        'language' => 'und',
       ),
     ),
     'content_type' => '',
     'update' => 0,
     'import_period' => '-1',
     'expire_period' => 3600,
-    'import_on_create' => 0,
+    'import_on_create' => 1,
     'process_in_background' => 0,
   );
-  $export['results_importer'] = $feeds_importer;
+  $export['result'] = $feeds_importer;
 
   return $export;
 }

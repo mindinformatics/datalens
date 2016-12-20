@@ -815,7 +815,6 @@ features[variable][] = user_picture_style
 features[variable][] = user_pictures
 features[variable][] = user_register
 features[views_view][] = all_analysis
-features[views_view][] = all_evidence
 features[views_view][] = biblio_view
 features[views_view][] = dataset_viz
 features[views_view][] = datasets

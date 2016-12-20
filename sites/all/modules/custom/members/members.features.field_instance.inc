@@ -158,6 +158,40 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'field_collection_item-field_result-field_result_id'.
+  $field_instances['field_collection_item-field_result-field_result_id'] = array(
+    'bundle' => 'field_result',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_result_id',
+    'label' => 'Result Id',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'field_collection_item-field_result-field_title'.
   $field_instances['field_collection_item-field_result-field_title'] = array(
     'bundle' => 'field_result',
@@ -4648,6 +4682,7 @@ function members_field_default_field_instances() {
   t('Rationale');
   t('References');
   t('Related');
+  t('Result Id');
   t('Results');
   t('Sample Size');
   t('Size should be 75x75 pixels.');

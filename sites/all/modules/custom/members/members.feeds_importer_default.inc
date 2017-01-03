@@ -111,7 +111,7 @@ function members_feeds_importer_default() {
   $feeds_importer->id = 'analysis_update';
   $feeds_importer->config = array(
     'name' => 'Analysis Update',
-    'description' => 'Analysis Update',
+    'description' => 'Analysis Update Input',
     'fetcher' => array(
       'plugin_key' => 'FeedsFileFetcher',
       'config' => array(
@@ -175,77 +175,6 @@ function members_feeds_importer_default() {
     'process_in_background' => 0,
   );
   $export['analysis_update'] = $feeds_importer;
-
-  $feeds_importer = new stdClass();
-  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
-  $feeds_importer->api_version = 1;
-  $feeds_importer->id = 'claims_importer';
-  $feeds_importer->config = array(
-    'name' => 'Claims Importer',
-    'description' => 'Import Claims (Evidence Content Type update)',
-    'fetcher' => array(
-      'plugin_key' => 'FeedsFileFetcher',
-      'config' => array(
-        'allowed_extensions' => 'txt csv tsv xml opml',
-        'direct' => FALSE,
-        'directory' => 'private://feeds',
-        'allowed_schemes' => array(
-          0 => 'public',
-          1 => 'private',
-        ),
-      ),
-    ),
-    'parser' => array(
-      'plugin_key' => 'FeedsCSVParser',
-      'config' => array(
-        'delimiter' => 'TAB',
-        'encoding' => 'UTF-8',
-        'no_headers' => 0,
-      ),
-    ),
-    'processor' => array(
-      'plugin_key' => 'FeedsNodeProcessor',
-      'config' => array(
-        'expire' => '-1',
-        'author' => 0,
-        'authorize' => 1,
-        'mappings' => array(
-          0 => array(
-            'source' => 'Nid',
-            'target' => 'nid',
-            'unique' => 1,
-            'language' => 'und',
-          ),
-          1 => array(
-            'source' => 'SupportedBy_Nid',
-            'target' => 'entityreference:field_evidence_support',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          2 => array(
-            'source' => 'ChallengedBy_Nid',
-            'target' => 'entityreference:field_evidence_challenge',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-        ),
-        'insert_new' => '1',
-        'update_existing' => '2',
-        'update_non_existent' => 'skip',
-        'input_format' => 'plain_text',
-        'skip_hash_check' => 0,
-        'bundle' => 'claim',
-        'language' => 'und',
-      ),
-    ),
-    'content_type' => '',
-    'update' => 0,
-    'import_period' => '-1',
-    'expire_period' => 3600,
-    'import_on_create' => 1,
-    'process_in_background' => 0,
-  );
-  $export['claims_importer'] = $feeds_importer;
 
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
@@ -412,16 +341,16 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
           1 => array(
+            'source' => 'ID',
+            'target' => 'field_evidence_id',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          2 => array(
             'source' => 'EvidenceType',
             'target' => 'field_evidence_data_type',
             'term_search' => '0',
             'autocreate' => 1,
-            'language' => 'und',
-          ),
-          2 => array(
-            'source' => 'LiteratureNids',
-            'target' => 'entityreference:field_literature_links',
-            'unique' => FALSE,
             'language' => 'und',
           ),
           3 => array(

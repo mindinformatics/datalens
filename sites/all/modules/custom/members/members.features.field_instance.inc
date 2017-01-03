@@ -2289,7 +2289,7 @@ function members_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -2329,7 +2329,7 @@ function members_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 12,
+      'weight' => 15,
     ),
   );
 
@@ -2369,7 +2369,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 10,
+      'weight' => 13,
     ),
   );
 
@@ -2408,7 +2408,59 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 9,
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-evidence-field_evidence_challenge'.
+  $field_instances['node-evidence-field_evidence_challenge'] = array(
+    'bundle' => 'evidence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'entityconnect_show_add_icon' => 0,
+    'entityconnect_show_edit_icon' => 0,
+    'entityconnect_unload_add' => 1,
+    'entityconnect_unload_edit' => 1,
+    'field_name' => 'field_evidence_challenge',
+    'label' => 'Challenged By',
+    'required' => 0,
+    'settings' => array(
+      'behaviors' => array(
+        'test_instance_behavior' => array(
+          'status' => 0,
+        ),
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 5,
     ),
   );
 
@@ -2434,7 +2486,7 @@ function members_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_evidence_data_type',
-    'label' => 'Evidence Type',
+    'label' => 'Claim Type',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -2447,7 +2499,99 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-evidence-field_evidence_id'.
+  $field_instances['node-evidence-field_evidence_id'] = array(
+    'bundle' => 'evidence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_evidence_id',
+    'label' => 'Claim ID',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
       'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-evidence-field_evidence_support'.
+  $field_instances['node-evidence-field_evidence_support'] = array(
+    'bundle' => 'evidence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'entityconnect_show_add_icon' => 0,
+    'entityconnect_show_edit_icon' => 0,
+    'entityconnect_unload_add' => 1,
+    'entityconnect_unload_edit' => 1,
+    'field_name' => 'field_evidence_support',
+    'label' => 'Supported By',
+    'required' => 0,
+    'settings' => array(
+      'behaviors' => array(
+        'test_instance_behavior' => array(
+          'status' => 0,
+        ),
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 6,
     ),
   );
 
@@ -2487,7 +2631,7 @@ function members_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 13,
+      'weight' => 16,
     ),
   );
 
@@ -2543,7 +2687,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 14,
+      'weight' => 17,
     ),
   );
 
@@ -2595,60 +2739,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance: 'node-evidence-field_literature_links'.
-  $field_instances['node-evidence-field_literature_links'] = array(
-    'bundle' => 'evidence',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'entityreference',
-        'settings' => array(
-          'links' => 1,
-          'view_mode' => 'teaser',
-        ),
-        'type' => 'entityreference_entity_view',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'entityconnect_show_add_icon' => 0,
-    'entityconnect_show_edit_icon' => 0,
-    'entityconnect_unload_add' => 1,
-    'entityconnect_unload_edit' => 1,
-    'field_name' => 'field_literature_links',
-    'label' => 'Citation(s)',
-    'required' => 0,
-    'settings' => array(
-      'behaviors' => array(
-        'test_instance_behavior' => array(
-          'status' => 0,
-        ),
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 5,
+      'weight' => 9,
     ),
   );
 
@@ -2688,7 +2779,7 @@ function members_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 11,
+      'weight' => 14,
     ),
   );
 
@@ -2740,7 +2831,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 7,
+      'weight' => 10,
     ),
   );
 
@@ -2780,7 +2871,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
+      'weight' => 11,
     ),
   );
 
@@ -2836,7 +2927,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 15,
+      'weight' => 18,
     ),
   );
 
@@ -2895,7 +2986,7 @@ function members_field_default_field_instances() {
       'module' => 'og',
       'settings' => array(),
       'type' => 'og_complex',
-      'weight' => 16,
+      'weight' => 19,
     ),
   );
 
@@ -3501,6 +3592,8 @@ function members_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
+    'entityconnect_show_add_icon' => 0,
+    'entityconnect_show_edit_icon' => 0,
     'entityconnect_unload_add' => 0,
     'entityconnect_unload_edit' => 0,
     'field_name' => 'field_claim_links',
@@ -4613,7 +4706,8 @@ function members_field_default_field_instances() {
   t('Category');
   t('Challenged By');
   t('Chromosome');
-  t('Citation(s)');
+  t('Claim ID');
+  t('Claim Type');
   t('Claims');
   t('Clustered brain region');
   t('Code');
@@ -4632,7 +4726,6 @@ function members_field_default_field_instances() {
   t('Enter description such as conference date, location or interviewed by.');
   t('Enter the location.');
   t('Entrez id');
-  t('Evidence Type');
   t('Evidence that challenges this claim.');
   t('Evidence that supports this claim.');
   t('Featured Image');

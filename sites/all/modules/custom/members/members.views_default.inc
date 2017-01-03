@@ -438,7 +438,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -750,7 +750,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -908,7 +908,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_group']['field'] = 'field_group';
   $handler->display->display_options['fields']['field_group']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_group']['delta_offset'] = '0';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -1199,7 +1199,7 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'evidence' => 'evidence',
   );
-  /* Filter criterion: Content: Evidence Type (field_evidence_data_type) */
+  /* Filter criterion: Content: Claim Type (field_evidence_data_type) */
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['id'] = 'field_evidence_data_type_tid';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['table'] = 'field_data_field_evidence_data_type';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['field'] = 'field_evidence_data_type_tid';
@@ -1670,7 +1670,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'evidence' => 'evidence',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Evidence Type (field_evidence_data_type) */
+  /* Filter criterion: Content: Claim Type (field_evidence_data_type) */
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['id'] = 'field_evidence_data_type_tid';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['table'] = 'field_data_field_evidence_data_type';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['field'] = 'field_evidence_data_type_tid';

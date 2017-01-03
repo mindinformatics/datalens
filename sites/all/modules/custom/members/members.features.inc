@@ -281,7 +281,7 @@ function members_node_info() {
       'help' => '',
     ),
     'claim' => array(
-      'name' => t('Claim'),
+      'name' => t('Claim-old'),
       'base' => 'node_content',
       'description' => t('Research claims or statements.'),
       'has_title' => '1',
@@ -305,7 +305,7 @@ function members_node_info() {
       'help' => '',
     ),
     'evidence' => array(
-      'name' => t('Evidence'),
+      'name' => t('Claim'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

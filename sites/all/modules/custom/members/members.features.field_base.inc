@@ -386,7 +386,7 @@ function members_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          'claim' => 'claim',
+          'evidence' => 'evidence',
         ),
       ),
       'profile2_private' => FALSE,
@@ -629,6 +629,8 @@ function members_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
+          'analysis' => 'analysis',
+          'biblio' => 'biblio',
           'evidence' => 'evidence',
         ),
       ),
@@ -669,6 +671,31 @@ function members_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
+  // Exported field_base: 'field_evidence_id'.
+  $field_bases['field_evidence_id'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_evidence_id',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_evidence_support'.
   $field_bases['field_evidence_support'] = array(
     'active' => 1,
@@ -701,6 +728,8 @@ function members_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
+          'analysis' => 'analysis',
+          'biblio' => 'biblio',
           'evidence' => 'evidence',
         ),
       ),

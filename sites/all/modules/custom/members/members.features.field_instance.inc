@@ -2260,7 +2260,7 @@ function members_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -2304,7 +2304,7 @@ function members_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2345,7 +2345,7 @@ function members_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_plain',
-        'weight' => 7,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2384,7 +2384,7 @@ function members_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2423,10 +2423,11 @@ function members_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 0,
+          'view_mode' => 'full',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 2,
+        'type' => 'entityreference_entity_view',
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2441,7 +2442,7 @@ function members_field_default_field_instances() {
     'entityconnect_unload_add' => 1,
     'entityconnect_unload_edit' => 1,
     'field_name' => 'field_evidence_challenge',
-    'label' => 'Challenged By',
+    'label' => 'Challenged by',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -2473,9 +2474,10 @@ function members_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 15,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2554,10 +2556,11 @@ function members_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 0,
+          'view_mode' => 'full',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 1,
+        'type' => 'entityreference_entity_view',
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2572,7 +2575,7 @@ function members_field_default_field_instances() {
     'entityconnect_unload_add' => 1,
     'entityconnect_unload_edit' => 1,
     'field_name' => 'field_evidence_support',
-    'label' => 'Supported By',
+    'label' => 'Supported by',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -2606,7 +2609,7 @@ function members_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2663,7 +2666,7 @@ function members_field_default_field_instances() {
           'textformatter_type' => 'ul',
         ),
         'type' => 'textformatter_list',
-        'weight' => 8,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2705,7 +2708,7 @@ function members_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 4,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2754,7 +2757,7 @@ function members_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2797,7 +2800,7 @@ function members_field_default_field_instances() {
           'link' => 1,
         ),
         'type' => 'entityreference_label',
-        'weight' => 5,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2847,7 +2850,7 @@ function members_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 6,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2883,14 +2886,14 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'hidden',
         'module' => 'textformatter',
         'settings' => array(
           'textformatter_class' => 'textformatter-list',
           'textformatter_comma_and' => 0,
           'textformatter_comma_full_stop' => 0,
           'textformatter_comma_override' => 0,
-          'textformatter_comma_tag' => 'div',
+          'textformatter_comma_tag' => 'span',
           'textformatter_contrib' => array(
             'entityreference_link' => TRUE,
             'field_collection_view_mode' => 'full',
@@ -2900,10 +2903,10 @@ function members_field_default_field_instances() {
           'textformatter_separator_custom_class' => 'textformatter-separator',
           'textformatter_separator_custom_tag' => 'span',
           'textformatter_term_plain' => 1,
-          'textformatter_type' => 'comma',
+          'textformatter_type' => 'ul',
         ),
         'type' => 'textformatter_list',
-        'weight' => 9,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2943,7 +2946,7 @@ function members_field_default_field_instances() {
         'module' => 'og_ui',
         'settings' => array(),
         'type' => 'og_list_default',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -4705,6 +4708,7 @@ function members_field_default_field_instances() {
   t('ByLine');
   t('Category');
   t('Challenged By');
+  t('Challenged by');
   t('Chromosome');
   t('Claim ID');
   t('Claim Type');
@@ -4785,6 +4789,7 @@ function members_field_default_field_instances() {
   t('Subtitle');
   t('Suffix');
   t('Supported By');
+  t('Supported by');
   t('Supporting Analysis');
   t('Synonyms');
   t('Tags');

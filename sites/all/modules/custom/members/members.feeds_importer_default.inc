@@ -630,13 +630,13 @@ function members_feeds_importer_default() {
           0 => array(
             'source' => 'Nid',
             'target' => 'nid',
-            'unique' => FALSE,
-            'language' => 'und',
+            'unique' => 1,
           ),
           1 => array(
             'source' => 'Claims',
             'target' => 'entityreference:field_claim_links',
             'unique' => FALSE,
+            'language' => 'und',
           ),
         ),
         'insert_new' => '0',

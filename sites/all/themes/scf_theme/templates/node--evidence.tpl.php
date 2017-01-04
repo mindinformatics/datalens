@@ -14,7 +14,7 @@
   <div<?php print $content_attributes; ?>>
     <?php
       // We hide the comments and links now so that we can render them later.
-      dsm($content);
+      //dsm($content);
       hide($content['field_evidence_data_type']);
       hide($content['field_evidence_id']);
       hide($content['comments']);

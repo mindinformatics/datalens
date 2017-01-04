@@ -2,7 +2,7 @@
   <?php print render($title_prefix); ?>
   <?php if (!$page && $title): ?>
   <header>
-    <?php $claim_prefix = ($content['field_evidence_id']) ? $content['field_evidence_data_type'][0]['#markup'] . ": " . "(". $content['field_evidence_id'][0]['#markup'] . ") " : ""; ?>
+    <?php $claim_prefix = ($content['field_evidence_id'] && $content['field_evidence_data_type']) ? $content['field_evidence_data_type'][0]['#markup'] . ": " . "(". $content['field_evidence_id'][0]['#markup'] . ") " : ""; ?>
     <h2<?php print $title_attributes; ?>><a href="<?php print $node_url ?>" title="<?php print $title ?>"><span class="claim-prefix"><?php print $claim_prefix; ?></span><span class="claim-title"><?php print $title; ?></span></a></h2>
   </header>
   <?php endif; ?>

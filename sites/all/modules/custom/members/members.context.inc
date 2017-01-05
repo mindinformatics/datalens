@@ -126,12 +126,6 @@ function members_context_default_contexts() {
           'region' => 'sidebar_first',
           'weight' => '-9',
         ),
-        'block-17' => array(
-          'module' => 'block',
-          'delta' => '17',
-          'region' => 'sidebar_second',
-          'weight' => '-10',
-        ),
         'nivo_slider-nivo_slider' => array(
           'module' => 'nivo_slider',
           'delta' => 'nivo_slider',

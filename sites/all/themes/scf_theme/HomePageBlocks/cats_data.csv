@@ -1,0 +1,56 @@
+password,category
+Array Expression,Technology
+Array Genotype,Technology
+Caspase assay,Technology
+Cell Viability,Technology
+Coexpression Networks,Technology
+Confocal Imaging REST,Technology
+DNA Methylation,Technology
+eSNP Results,Technology
+Exome sequencing,Technology
+Gene Expression,Technology
+GWAS,Technology
+H3K9Ac ChIP-Seq,Technology
+Imputed Genotype,Technology
+Mass Spectrometry,Technology
+miRNA nanostring,Technology
+Nanostring Expression,Technology
+RNA-Seq,Technology
+RT-qPCR,Technology
+TLR Genotype,Technology
+Alzheimer's Disease,Disease
+Amyotrophic Lateral Sclerosis,Disease
+Control,Disease
+Corticobasal Degeneration,Disease
+Frontotemporal Dementia,Disease
+Dementia,Disease
+Mild Cognitive Impairment,Disease
+Parkinson's Disease,Disease
+Pathologic Aging,Disease
+Progressive Supranuclear Palsy,Disease
+Tauopathy,Disease
+Traumatic Brain Injury,Disease
+Rosetta/Merck Human 44k,Platform
+Illumina HumanHT-12,Platform
+Illumina HumanRef-8,Platform
+Affymetrix HG_U133_AB,Platform
+Affymetrix HG_U133_Plus2,Platform
+Illumina HiSeq 2000,Platform
+Illumina HiSeq 2500,Platform
+Sentrix HumanRef-8,Platform
+Illumina HumanHT-12,Platform
+HBTRC,Study
+ROSMAP,Study
+MayoEGWAS,Study
+MSBB,Study
+MayoBB,Study
+MillerSM,Study
+TGRI,Study
+Claim,Graph
+Literature,Graph
+Plan,Graph
+Question,Graph
+SupportedBy,Graph
+ChallengedBy,Graph
+Evidence,Graph
+Citation,Graph

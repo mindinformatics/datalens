@@ -389,7 +389,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 .front #region-content {
 	padding-right: 0%;
 	margin-top: 10px;
-	width: 76.5%;
+	width: 46.5%;
 }
 
 /* Block Titles */
@@ -430,7 +430,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .front .view-datasets .views-table .views-field-title {
-	width: 300px;
+	width: 130px;
 }
 
 .front .view-datasets .views-table .views-field-field-data-type {
@@ -541,7 +541,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 	padding-top: 20px;
 	margin-top: -10px;
-	width: 20% !important;
+	width: 50% !important;
 	float: right !important;
 }
 

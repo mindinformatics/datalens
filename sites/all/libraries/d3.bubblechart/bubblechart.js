@@ -19,9 +19,9 @@
 
   Drupal.d3.bubblechart = function (select, settings) {
 
-    var pValue = 0.01;
+    var pValue = 0.5;
     var FCValue = 3.52;
-    var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Hyman-all-out.csv";
+    var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Hypoxia-viz.csv";
 
 
 
@@ -65,11 +65,11 @@
 
     // Slider
     $("#sliderPVal").attr({ "max" : -1*Math.log10(pValue_x_max), "min" : -1*Math.log10(pValue_x_min), "value" : pValue, "step" : .0001 });
-    
+
     var sliderOutput = function(x){ return Math.pow(10,-x); }; // <- minus x because the slider outputs positive values instead of negative ones.
     var sliderInput  = function(x){ return (-1 * Math.log10(x))};
 
-    $("#sliderPVal").on("input", function(){ 
+    $("#sliderPVal").on("input", function(){
       $("#PValText").val( sliderOutput( $("#sliderPVal").val()).toFixed( -1*Math.log10(pValue_x_max) ).replace(/\.?0+$/, '') );
       pValue = sliderOutput( $("#sliderPVal").val());
     });
@@ -95,7 +95,7 @@
     });
 
 
-    // FCValue Slider ********************************************************************************************************************************************************************************************   
+    // FCValue Slider ********************************************************************************************************************************************************************************************
     // Axis
     var fc_min = -2.5444, fc_max = 3.51671876;
     width = $("#FCValue").width() - margin.left - margin.right,
@@ -122,11 +122,11 @@
         .attr("transform", "translate(0," + height + ")")
         .call(fcValue_xAxis);
 
-    // Slider 
+    // Slider
     $("#sliderFCVal").attr({ "max" : fc_max, "min" : fc_min, "value" : FCValue, "step" : .0001 });
-    
-    $("#sliderFCVal").on("input",  function(event){ 
-      FCValue = Number($("#sliderFCVal").val()); 
+
+    $("#sliderFCVal").on("input",  function(event){
+      FCValue = Number($("#sliderFCVal").val());
       $("#FCValText").val(FCValue);
     });
     $("#sliderFCVal").on("change", function(event){ updateChart(); });
@@ -215,7 +215,7 @@
     var pack = d3.layout.pack()
       .size([diameter - 4, diameter - 4])
       .value(function(d) { return d.size; })
-      .padding(1.5);
+      .padding(2);
 
     var svg = d3.select('#' + settings.id).append("svg")
       .attr("width", diameter)
@@ -229,24 +229,27 @@
       .startAngle(0)
       .endAngle(2*Math.PI);
 
+
     var userInputFilter = function(d)
     {
-      if( 
+      if(
           (
             // check all studies selected
-            checkBoxMatch(d)
-            &&
-            d.PValue <= pValue 
+            //checkBoxMatch(d)
+            //&&
+            d.PValue <= pValue
             &&
             d.LogFC <= FCValue
-          ) 
+          )
           ||
-          d.Study == "" 
-        ) 
+          d.Study == ""
+        )
         return d.size;
-      else 
-        return 0.0001; // approximately zero, but actually zero screws up packing function
+      else
+        return d.size;
+        //return 0.0001; // approximately zero, but actually zero screws up packing function
     };
+
 
     var load = function(error, dataIn) {
       data = dataIn;
@@ -265,7 +268,7 @@
         return map;
       }, {});
       emptyDataMap = jQuery.extend(true, {}, dataMap); // store the datamap for reuse when making changes to data, later.
-      
+
       console.log('datamap');
       console.log(dataMap);
 
@@ -414,6 +417,7 @@
 
 
     d3.csv(dataFile, load);
+
 
     d3.select(self.frameElement).style("height", diameter + "px");
 

@@ -21,7 +21,7 @@
 
     var pValue = 0.5;
     var FCValue = 3.52;
-    var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Hypoxia-viz.csv";
+    var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Demo-genes-out.csv";
 
 
 

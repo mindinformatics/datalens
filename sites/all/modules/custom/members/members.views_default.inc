@@ -616,7 +616,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Links */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -928,7 +928,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Links */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -1086,7 +1086,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_group']['field'] = 'field_group';
   $handler->display->display_options['fields']['field_group']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_group']['delta_offset'] = '0';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Links */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -1335,7 +1335,7 @@ function members_views_default_views() {
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Input */
+  /* Field: Content: Originating Dataset */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
@@ -1816,7 +1816,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Input */
+  /* Field: Content: Originating Dataset */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
@@ -4261,7 +4261,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Projects';
+  $handler->display->display_options['title'] = 'Targets';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -4296,10 +4296,10 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '100',
   );
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  /* Sort criterion: Content: Rank (field_rank) */
+  $handler->display->display_options['sorts']['field_rank_value']['id'] = 'field_rank_value';
+  $handler->display->display_options['sorts']['field_rank_value']['table'] = 'field_data_field_rank';
+  $handler->display->display_options['sorts']['field_rank_value']['field'] = 'field_rank_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -4317,7 +4317,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
 
   /* Display: Projects Page */
   $handler = $view->new_display('page', 'Projects Page', 'page');
-  $handler->display->display_options['path'] = 'projects';
+  $handler->display->display_options['path'] = 'targets';
 
   /* Display: Targets Block */
   $handler = $view->new_display('block', 'Targets Block', 'block');

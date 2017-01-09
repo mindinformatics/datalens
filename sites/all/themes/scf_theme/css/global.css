@@ -1620,20 +1620,29 @@ ul.bef-tree-child.bef-tree-depth-2 {
   line-height: 1.3em;
 }
 
+
+.group-support {
+  padding-left: 1%;
+}
 .field-name-field-evidence-support {
-  padding-left: 2%;
+  padding-left: 1%;
 }
 
 .field-name-field-evidence-support .field-name-field-evidence-support {
-  padding-left: 4%;
+  padding-left: 2%;
 }
 
+.group-support a.fieldset-title,
 .field-name-field-evidence-support .field-label {
   color: #006d2c;
+  font-weight: bold;
 }
 
+
+.group_challenge a.fieldset-title,
 .field_evidence_challenge .field-label {
   color: #bd0026;
+  font-weight: bold;
 }
 
 .field-name-field-tags .field-items ul {

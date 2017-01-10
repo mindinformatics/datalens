@@ -136,7 +136,7 @@ function bubblechart_menu() {
     'title' => 'Expression Data Bubblechart',
     'description' => 'Return expression data',
     'page callback' => 'bubblechart_genomics',
-    'page arguments' => array(2),
+    'page arguments' => array(1),
     'access callback' => TRUE,
   );
   $items['input'] = array(
@@ -190,10 +190,10 @@ function bubblechart_linegraph() {
 
 function bubblechart_genomics($input_genes) {
 
-		//Enter genes of interest
-
+		// Genes of interest
+    //var_dump($input_genes);
 		if (empty($input_genes)) {
-			$gene_list = array('RHEB','SKA1');
+			$gene_list = array('RHEB');
 		} else {
 			$gene_list = explode(",", $input_genes);
 		}
@@ -202,36 +202,39 @@ function bubblechart_genomics($input_genes) {
     $mongo = new MongoClient("mongodb://localhost");
     $db = $mongo->cats;
 
-
     // Select the expression collection for gene expression info
-    //name,LogFC,size,PValue,AdjPValue
     $coll = $db->expression;
 
 
     //$query = array(array('GeneSymbol' => 'RHEB'), array('FileName' => 1, 'GeneSymbol' => 1, 'logFC' => 1, 'PValue' => 1, 'adjPVal' => 1, 'B' => 1)); // SELECT title FROM fields_current WHERE group_name = 'node' AND type = 'content-type'
 
-    //Build query and run it
-    $query = array("GeneSymbol" => array('$in' => $gene_list));
+    // Build query and run it
+
+    // Filter on genes only
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+
+		// Filter on genes and p-value
+		$query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
 		$cursor = $coll->find($query);
 		$cursor->timeout(-1);
 		//$total = (string)$cursor->count(); //To find total number of documents
 		//$cursor->limit( 5 );
 
-		//Access query results
+		// Access query results
 		$result = array();
 		$filenames = array();
 		$i = 0;
 
 		foreach ($cursor as $doc) {
 			//var_dump($doc);
-			$result[$i]['FileName'] = $doc['FileName'];
-			$result[$i]['name'] = $doc['GeneSymbol'];
-			$result[$i]['LogFC'] = $doc['logFC'];
-			$result[$i]['PValue'] = $doc['PValue'];
-			$result[$i]['AdjPVal'] = $doc['adjPVal'];
-			$result[$i]['size'] = abs($doc['logFC']);
-			$filenames[] = $doc['FileName'];
-			$i++;
+        $result[$i]['FileName'] = $doc['FileName'];
+        $result[$i]['name'] = $doc['GeneSymbol'];
+        $result[$i]['LogFC'] = $doc['logFC'];
+        $result[$i]['PValue'] = $doc['PValue'];
+        $result[$i]['AdjPVal'] = $doc['adjPVal'];
+        $result[$i]['size'] = abs($doc['logFC']);
+        $filenames[] = $doc['FileName'];
+        $i++;
 		}
 
 
@@ -289,6 +292,10 @@ function bubblechart_genomics($input_genes) {
 		}
 		$result[] = array('size' => 5, 'parent' => 'null', 'name' => 'WB');
 
+    //$file_name = 'Test_input.txt';
+    //$lines = array_values($result);
+    //$file_lines = implode("\n", $lines);
+    //file_save_data($file_lines, 'public://' . $file_name);
 		//var_dump($result);
 		//dsm($result);
 
@@ -336,14 +343,12 @@ function bubblechart_form($form, &$form_state) {
 function bubblechart_form_validate($form, & $form_state) {
 	 $valid_genes = $form_state['values']['input_genes'];
 
-
-
 }
 
 function bubblechart_form_submit($form, & $form_state) {
 	$valid_genes = $form_state['values']['input_genes'];
 
-	drupal_set_message(t('Working.... this will take a few minutes. Your genes are %genes', array('%genes' => $valid_genes)));
+	drupal_set_message(t('Your genes are %genes.', array('%genes' => $valid_genes)));
 	//return drupal_render(drupal_get_form('bubblechart_form'));
 
 	$form_state['redirect'] = 'genomics/' . $valid_genes;

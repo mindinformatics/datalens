@@ -245,11 +245,12 @@ function bubblechart_genomics($input_genes) {
 		$main_result =  array();
 		$i = 0;
 		foreach ($cursor2 as $doc) {
-			$main_result[$i]['FileName'] = $doc['FileName'];
-			$main_result[$i]['Study'] = $doc['StudyName'];
-			$main_result[$i]['parent'] = $doc['BrainRegionFull'];
-			$main_result[$i]['DataType'] = $doc['DataType'];
-			$main_result[$i]['Contrast'] = $doc['Contrast'];
+			//$main_result[$i]['FileName'] = $doc['FileName'];
+			$fname=$doc['FileName'];
+			$main_result[$fname]['Study'] = $doc['StudyName'];
+			$main_result[$fname]['parent'] = $doc['BrainRegionFull'];
+			$main_result[$fname]['DataType'] = $doc['DataType'];
+			$main_result[$fname]['Contrast'] = $doc['Contrast'];
 			$i++;
 		}
 		//var_dump($main_result);
@@ -258,14 +259,10 @@ function bubblechart_genomics($input_genes) {
 		$row = array();
    	foreach($result as &$value){
     	$file = $value['FileName'];
-    	// Server uses php 5.3.3, which does not have array_column
-    	// alternate code suggests: array_map
-    	//$main_key = array_search($file, array_column($main_result, 'FileName'));
-    	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
-			$value['Study'] = $main_result[$main_key]['Study'];
-			$value['parent'] = $main_result[$main_key]['parent'];
-			$value['DataType'] = $main_result[$main_key]['DataType'];
-			$value['Contrast'] = $main_result[$main_key]['Contrast'];
+			$value['Study'] = $main_result[$file]['Study'];
+			$value['parent'] = $main_result[$file]['parent'];
+			$value['DataType'] = $main_result[$file]['DataType'];
+			$value['Contrast'] = $main_result[$file]['Contrast'];
 			$row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], abs($value['LogFC']), $value['PValue'], $value['AdjPVal']);
 		}
 

@@ -54,12 +54,13 @@ function members_field_group_info() {
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Challenged by',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-challenge field-group-fieldset',
         'id' => '',
+        'classes' => 'group-challenge field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'collapsed',
     ),
   );
   $field_groups['group_challenge|node|evidence|default'] = $field_group;
@@ -323,7 +324,7 @@ function members_field_group_info() {
         'classes' => 'group-support field-group-fieldset',
         'description' => '',
       ),
-      'formatter' => 'collapsible',
+      'formatter' => 'collapsed',
     ),
   );
   $field_groups['group_support|node|evidence|default'] = $field_group;

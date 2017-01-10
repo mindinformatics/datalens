@@ -1837,6 +1837,9 @@ ul.bef-tree-child.bef-tree-depth-2 {
     margin-bottom: -.6em;
 }
 
+#bubblechart-form {
+  padding-bottom: 25px;
+}
 
 
 /* Evidence Dendrogram */

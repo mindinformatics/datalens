@@ -22,8 +22,10 @@
         format = d3.format(",d");
 
       var pack = d3.layout.pack()
-        .size([diameter - 4, diameter - 4])
-        .value(function(d) { return d.size; });
+      .size([diameter - 4, diameter - 4])
+      .value(function(d) { return d.size; })
+      .padding(2);
+
 
       var svg = d3.select('#' + settings.id).append("svg")
         .attr("width", diameter)
@@ -37,16 +39,19 @@
         .startAngle(0)
         .endAngle(2*Math.PI);
 
-      d3.csv("/sites/all/themes/scf_theme/BubbleChart/gene-test-viz.csv", function(error, data) {
-        console.debug(data);
+
+      d3.csv("/sites/all/themes/scf_theme/BubbleChart/Microglia-out-B3-B2.csv", function(error, data) {
+        //console.debug(data);
           data.forEach(function(d) {
             d.LogFC = +d.LogFC;
             d.PValue = +d.PValue;
             d.AdjPValue = +d.AdjPValue;
           });
 
+
         // *********** Convert flat data into a nice tree ***************
         // create a name: node map
+        //csv to input: change data to rows
         var dataMap = rows.reduce(function(map, node) {
           map[node.name] = node;
           return map;
@@ -56,6 +61,7 @@
 
         // create the tree array
         var treeData = [];
+        //csv to input: change data to rows
         rows.forEach(function(node) {
           // add to parent
           var parent = dataMap[node.parent];
@@ -84,7 +90,7 @@
 
           node.append("title")
                 //(d.children ? "" : ": " + format(d.size)
-                .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + d.LogFC + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study) });
+                .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + d.LogFC + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study + "<br/>" + "Contrast: " + d.Contrast) });
 
 
           var data_points = d3.entries(dataMap);
@@ -96,28 +102,27 @@
           var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
           console.debug(color_scale(max_fc));
 
-
           node.filter(function(d){ return !(d.name == "WB"); }).append("circle")
               .attr("r", function(d) { return d.r; })
               .style('fill', function(d) { return (d.children ? "none" : color_scale(d.LogFC)); })
-              .style('fill-opacity', function(d) { return (d.children ? '0' : '.6'); })
-              .style('stroke', 'black');
-
+              .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '0' : '.6' ); })
+              .style('stroke', function(d){ return d.children ? '#ccc' : 'none'})
+              .style('stroke-width', '2px');
 
           //console.debug(node);
 
           //If no children, display title like this
           node.filter(function(d) { return !d.children; }).append("text")
-              .attr("dy", ".2em")
-              .style("text-anchor", "middle")
-              .text(function(d) { return d.name.substring(0, d.r / 3); });
-
+            .attr("dy", ".33em")
+            .style("text-anchor", "middle")
+            .style("font-size", function(d) { return Math.min( d.r, 8 ) + "px" })
+            .text(function(d) { return d.name.substring(0, d.r * 0.4); });
 
 
         //If has children
          node.filter(function(d) { return d.children; })
          .filter(function(d){ return !(d.name == "WB"); })
-         .filter(function(d){ return !(d.parent.name == "WB"); })
+         //.filter(function(d){ return !(d.parent.name == "WB"); })
          .append("path")
               .attr("id", function(d,i){return "s"+i;})
               .attr("fill","none")
@@ -125,7 +130,7 @@
 
          node.filter(function(d) { return d.children; })
          .filter(function(d){ return !(d.name == "WB"); })
-         .filter(function(d){ return !(d.parent.name == "WB"); })
+         //.filter(function(d){ return !(d.parent.name == "WB"); })
          .append("text")
                   .attr("dy", "1em")
                   .style("text-anchor", "middle")

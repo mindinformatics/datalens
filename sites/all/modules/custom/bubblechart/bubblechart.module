@@ -258,7 +258,10 @@ function bubblechart_genomics($input_genes) {
 		$row = array();
    	foreach($result as &$value){
     	$file = $value['FileName'];
-    	$main_key = array_search($file, array_column($main_result, 'FileName'));
+    	// Server uses php 5.3.3, which does not have array_column
+    	// alternate code suggests: array_map
+    	//$main_key = array_search($file, array_column($main_result, 'FileName'));
+    	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
 			$value['Study'] = $main_result[$main_key]['Study'];
 			$value['parent'] = $main_result[$main_key]['parent'];
 			$value['DataType'] = $main_result[$main_key]['DataType'];

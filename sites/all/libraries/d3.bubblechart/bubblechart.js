@@ -15,8 +15,8 @@
    *       visualization to the DOM.
    */
   Drupal.d3.bubblechart = function (select, settings) {
-      //rows = settings.rows;
-      //console.debug(rows);
+      rows = settings.rows;
+      console.debug(rows);
 
       var diameter = 960,
         format = d3.format(",d");
@@ -50,7 +50,7 @@
         // *********** Convert flat data into a nice tree ***************
         // create a name: node map
         //csv to input: change data to rows
-        var dataMap = data.reduce(function(map, node) {
+        var dataMap = rows.reduce(function(map, node) {
           map[node.name] = node;
           return map;
         }, {});
@@ -60,7 +60,7 @@
         // create the tree array
         var treeData = [];
         //csv to input: change data to rows
-        data.forEach(function(node) {
+        rows.forEach(function(node) {
           // add to parent
           var parent = dataMap[node.parent];
           if (parent) {

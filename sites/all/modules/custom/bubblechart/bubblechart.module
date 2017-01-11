@@ -190,13 +190,13 @@ function bubblechart_linegraph() {
 
 function bubblechart_genomics($input_genes) {
 
-		// Genes of interest
+	// Genes of interest
     //var_dump($input_genes);
-		if (empty($input_genes)) {
-			$gene_list = array('RHEB');
-		} else {
-			$gene_list = explode(",", $input_genes);
-		}
+	if (empty($input_genes)) {
+		$gene_list = array('RHEB');
+	} else {
+		$gene_list = explode(",", $input_genes);
+	}
 
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
@@ -213,102 +213,101 @@ function bubblechart_genomics($input_genes) {
     // Filter on genes only
     //$query = array("GeneSymbol" => array('$in' => $gene_list));
 
-		// Filter on genes and p-value
-		$query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
-		$cursor = $coll->find($query);
-		$cursor->timeout(-1);
-		//$total = (string)$cursor->count(); //To find total number of documents
-		//$cursor->limit( 5 );
+    // Filter on genes and p-value
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    //$total = (string)$cursor->count(); //To find total number of documents
+    //$cursor->limit( 5 );
 
-		// Access query results
-		$result = array();
-		$filenames = array();
-		$i = 0;
+    // Access query results
+    $result = array();
+    $filenames = array();
+    $i = 0;
 
-		foreach ($cursor as $doc) {
-			//var_dump($doc);
-        $result[$i]['FileName'] = $doc['FileName'];
-        $result[$i]['name'] = $doc['GeneSymbol'];
-        $result[$i]['LogFC'] = $doc['logFC'];
-        $result[$i]['PValue'] = $doc['PValue'];
-        $result[$i]['AdjPVal'] = $doc['adjPVal'];
-        $result[$i]['size'] = abs($doc['logFC']);
-        $filenames[] = $doc['FileName'];
-        $i++;
-		}
+    foreach ($cursor as $doc) {
+      //var_dump($doc);
+    $result[$i]['FileName'] = $doc['FileName'];
+    $result[$i]['name'] = $doc['GeneSymbol'];
+    $result[$i]['LogFC'] = $doc['logFC'];
+    $result[$i]['PValue'] = $doc['PValue'];
+    $result[$i]['AdjPVal'] = $doc['adjPVal'];
+    $result[$i]['size'] = abs($doc['logFC']);
+    $filenames[] = $doc['FileName'];
+    $i++;
+    }
 
 
 		// Check the main for the meta data: Study,parent,DataType,Contrast
     $coll2 = $db->main;
     $query2 = array('FileName' => array('$in' => $filenames));
-		$cursor2 = $coll2->find($query2);
-		$main_result =  array();
-		$i = 0;
-		foreach ($cursor2 as $doc) {
-			//$main_result[$i]['FileName'] = $doc['FileName'];
-			$fname=$doc['FileName'];
-			$main_result[$fname]['Study'] = $doc['StudyName'];
-			$main_result[$fname]['parent'] = $doc['BrainRegionFull'];
-			$main_result[$fname]['DataType'] = $doc['DataType'];
-			$main_result[$fname]['Contrast'] = $doc['Contrast'];
-			$i++;
-		}
-		//var_dump($main_result);
+    $cursor2 = $coll2->find($query2);
+    $main_result =  array();
+    $i = 0;
+    foreach ($cursor2 as $doc) {
+      $main_result[$i]['FileName'] = $doc['FileName'];
+      $main_result[$i]['Study'] = $doc['StudyName'];
+      $main_result[$i]['parent'] = $doc['BrainRegionFull'];
+      $main_result[$i]['DataType'] = $doc['DataType'];
+      $main_result[$i]['Contrast'] = $doc['Contrast'];
+      $i++;
+    }
+	  //var_dump($main_result);
 
-		// Incorportate main metadata into result array.
-		$row = array();
+	  // Incorportate main metadata into result array.
+	  $row = array();
    	foreach($result as &$value){
     	$file = $value['FileName'];
-			$value['Study'] = $main_result[$file]['Study'];
-			$value['parent'] = $main_result[$file]['parent'];
-			$value['DataType'] = $main_result[$file]['DataType'];
-			$value['Contrast'] = $main_result[$file]['Contrast'];
-			$row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], abs($value['LogFC']), $value['PValue'], $value['AdjPVal']);
-		}
+    	$main_key = array_search($file, array_column($main_result, 'FileName'));
+		  $value['Study'] = $main_result[$main_key]['Study'];
+		  $value['parent'] = $main_result[$main_key]['parent'];
+		  $value['DataType'] = $main_result[$main_key]['DataType'];
+		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
+		  $row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], $value['size'], $value['PValue'], $value['AdjPVal']);
+	  }
 
-		$terms = array_column($result, 'parent');
-		$terms_unique = array_flip($terms);
-		//var_dump($terms_unique);
+    $terms = array_column($result, 'parent');
+    $terms_unique = array_flip($terms);
+    //var_dump($terms_unique);
 
-		//$vid = 21;
-		$parents = array();
-		foreach ($terms_unique as $key => $value) {
-			$term_object = taxonomy_get_term_by_name($key);
-			$tid = array_pop($term_object)->tid;
-			$parent_object = taxonomy_get_parents($tid);
-			if (empty($parent_object)){
-				$parents[] = $key;
-			} else {
-				$parent_name = array_pop($parent_object)->name;
-				$result[] = array('size' => 5, 'parent' => $parent_name, 'name' => $key);
-				$parents[] = $parent_name;
-			}
-
-		}
-		$parents_unique = array_flip($parents);
-		//var_dump($parents_unique);
-		foreach($parents_unique as $key => $value){
-			$result[] = array('size' => 5, 'parent' => 'WB', 'name' => $key);
-		}
-		$result[] = array('size' => 5, 'parent' => 'null', 'name' => 'WB');
+    //$vid = 21;
+    $parents = array();
+    foreach ($terms_unique as $key => $value) {
+      $term_object = taxonomy_get_term_by_name($key);
+      $tid = array_pop($term_object)->tid;
+      $parent_object = taxonomy_get_parents($tid);
+      if (empty($parent_object)){
+        $parents[] = $key;
+      } else {
+        $parent_name = array_pop($parent_object)->name;
+        $result[] = array('size' => 5, 'parent' => $parent_name, 'name' => $key);
+        $parents[] = $parent_name;
+      }
+    }
+    $parents_unique = array_flip($parents);
+    //var_dump($parents_unique);
+    foreach($parents_unique as $key => $value){
+      $result[] = array('size' => 5, 'parent' => 'WB', 'name' => $key);
+    }
+    $result[] = array('size' => 5, 'parent' => 'null', 'name' => 'WB');
 
     //$file_name = 'Test_input.txt';
     //$lines = array_values($result);
     //$file_lines = implode("\n", $lines);
     //file_save_data($file_lines, 'public://' . $file_name);
-		//var_dump($result);
-		//dsm($result);
+    //var_dump($result);
+    //dsm($result);
 
-		//error-checking:
-		//db.expression.find( { GeneSymbol: { $in: [ "RHEB", "SKA1" ]} }, { FileName: 1, GeneSymbol: 1, logFC:1, PValue:1, adjPVal:1, B:1 } ).limit( 5 );
+    //error-checking:
+    //db.expression.find( { GeneSymbol: { $in: [ "RHEB", "SKA1" ]} }, { FileName: 1, GeneSymbol: 1, logFC:1, PValue:1, adjPVal:1, B:1 } ).limit( 5 );
 
-		$chart = array(
-    	'id' => 'visualization',
-    	'type' => 'bubblechart',
-    	'rows' => $result,
-  	);
+    $chart = array(
+      'id' => 'visualization',
+      'type' => 'bubblechart',
+      'rows' => $result,
+    );
 
-	return d3_draw($chart);
+    return d3_draw($chart);
 }
 
 
@@ -320,7 +319,7 @@ function bubblechart_genomics($input_genes) {
  */
 
 function bubblechart_form($form, &$form_state) {
-	$form['input_genes'] = array (
+  $form['input_genes'] = array (
     '#type' => 'textarea',
     '#title' => t('Gene Symbols'),
     '#default_value' => '',

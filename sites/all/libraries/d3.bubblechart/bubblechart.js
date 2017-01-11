@@ -16,7 +16,7 @@
    */
   Drupal.d3.bubblechart = function (select, settings) {
       rows = settings.rows;
-      console.debug(rows);
+      //console.debug(rows);
 
       var diameter = 960,
         format = d3.format(",d");
@@ -40,7 +40,7 @@
         .endAngle(2*Math.PI);
 
       d3.csv("/sites/all/themes/scf_theme/BubbleChart/Microglia-out-B3-B2.csv", function(error, data) {
-        console.debug(data);
+        //console.debug(data);
           data.forEach(function(d) {
             d.LogFC = +d.LogFC;
             d.PValue = +d.PValue;
@@ -91,14 +91,24 @@
                 .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + d.LogFC + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study + "<br/>" + "Contrast: " + d.Contrast) });
 
 
-          var data_points = d3.entries(dataMap);
-          //console.debug(test);
-          var max_fc = d3.max( data_points, function(d) { return d['value']['LogFC'] });
-          //console.debug(max_fc);
-          var min_fc = d3.min( data_points, function(d) { return d['value']['LogFC'] });
-          //console.debug(min_fc);
+// These max and mins are not correct;
+//           var data_points = d3.entries(dataMap);
+//           console.debug(test);
+//           var max_fc = d3.max( data_points, function(d) { return d['value']['LogFC'] });
+//           console.debug('max_fc');
+//           console.debug(max_fc);
+//           var min_fc = d3.min( data_points, function(d) { return d['value']['LogFC'] });
+//           console.debug('min_fc');
+//           console.debug(min_fc);
+
+          var max_fc = d3.max( rows, function(d) { return d.LogFC });
+            //console.debug('max_fc');
+            //console.debug(max_fc);
+          var min_fc = d3.min( rows, function(d) { return d.LogFC });
+            //console.debug('min_fc');
+            //console.debug(min_fc);
           var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
-          console.debug(color_scale(max_fc));
+            //console.debug(color_scale(max_fc));
 
           node.filter(function(d){ return !(d.name == "WB"); }).append("circle")
               .attr("r", function(d) { return d.r; })

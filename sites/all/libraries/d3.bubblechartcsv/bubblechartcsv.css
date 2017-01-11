@@ -1,0 +1,165 @@
+html {
+  font-family:sans-serif;
+  /*overflow: hidden;*/
+  /*background-color: #F5F5F5;*/
+}
+
+h4 {
+  margin-top: 12px;
+  margin-bottom: 5px;
+  font-size: 14px !important;
+}
+
+label {
+  font-size: 12px;
+  font-weight: normal !important;
+  color: grey;
+
+}
+
+/*::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}*/
+
+/*::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5;
+}*/
+
+.axis text {
+  font: 13px sans-serif;
+  /*letter-spacing:2px;*/
+  /*text-transform: full-width;*/
+/*  -webkit-transform:scale(1.2,1.0);
+  -moz-transform:scale(1.2, 1.0);
+  -ms-transform:scale(1.2, 1.0);
+  -o-transform:scale(1.2, 1.0);
+  transform:scale(1.2,1.0);*/
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+/******* Facets *******/
+
+.facet-list {
+  max-height: 380px;
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+#facet-group {
+  position: absolute;
+  right: 0px;
+  width: 200px;
+/*  height: 960px;*/
+  /*overflow-y: hidden;*/
+}
+
+.facet-list br {
+  display: none;
+}
+/******* Sliders *******/
+
+#slider-area{
+    width: 1200px;
+    margin: 0px auto;
+    overflow: hidden;
+    /*border: 1px solid;*/
+}
+
+.slider {
+  float: left;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 75px;
+}
+
+.slider-text {
+  position: relative;
+  width: 90px;
+  height: 20px;
+  top: -26px;
+  border: none;
+  font-size: 14px;
+  background-color: transparent;
+}
+
+#PValue {
+  /*position: absolute;*/
+  width: 400px;
+  /*height: 50px;*/
+  /*border: solid 1px #ccc;*/
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#sliderPVal {
+  position: relative;
+  left: 0px;
+  width: 395px;
+  height: 20px;
+  top: -30px;
+  z-index: 1;
+}
+
+#PValAxis {
+  position: relative;
+  top: -51px;
+  z-index: 0;
+}
+
+#PValText {
+  /*position: relative;
+  width: 75px;
+  height: 20px;
+  top: -27px;*/
+  left: 70px;
+  /*border: none;
+  font-size: 14px;*/
+}
+
+#FCValue {
+  /*position: absolute;*/
+  /*left: 460px;*/
+  width: 400px;
+  /*height: 50px;*/
+  /*border: solid 1px #000;*/
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#sliderFCVal {
+  position: relative;
+  left: 0px;
+  width: 395px;
+  height: 20px;
+  top: -30px;
+  z-index: 1;
+}
+
+#FCValText {
+  /*position: relative;
+  width: 50px;
+  height: 20px;
+  top: -38px;*/
+  left: 79px;
+  /*border: solid 1px #ccc;*/
+}
+
+#FCValAxis {
+  position: relative;
+  top: -51px;
+  z-index: 0;
+}
+
+#FCValue {
+  display: none;
+}

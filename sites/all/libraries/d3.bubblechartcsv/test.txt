@@ -1,0 +1,170 @@
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400   1) /**
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400   2)  * @file
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400   3)  * Javascript for Bubblechart.
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400   4)  */
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400   5) 
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400   6) (function($) {
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400   7) 
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400   8)   /**
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400   9)    * Adds library to the global d3 object.
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  10)    *
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  11)    * @param select
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  12)    * @param settings
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  13)    *   Array of values passed to d3_draw.
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  14)    *   id: required. This will be needed to attach your
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  15)    *       visualization to the DOM.
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  16)    */
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  17)   Drupal.d3.bubblechart = function (select, settings) {
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  18)       rows = settings.rows;
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  19)       console.debug(rows);
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  20) 
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  21)       var diameter = 960,
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  22)         format = d3.format(",d");
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  23) 
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  24)       var pack = d3.layout.pack()
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  25)         .size([diameter - 4, diameter - 4])
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  26)         .value(function(d) { return d.size; });
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  27) 
+eed0a6e2 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-09 16:48:22 -0400  28)       var svg = d3.select('#' + settings.id).append("svg")
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  29)         .attr("width", diameter)
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  30)         .attr("height", diameter)
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  31)         .append("g")
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  32)         .attr("transform", "translate(2,2)");
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400  33) 
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400  34)       var arc = d3.svg.arc()
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400  35)         .innerRadius(function(d){return d.r-d.r/5;})
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400  36)         .outerRadius(function(d){return d.r;})
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400  37)         .startAngle(0)
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400  38)         .endAngle(2*Math.PI);
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400  39) 
+09dc163a sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-12-01 15:12:48 -0500  40)       d3.csv("/sites/all/themes/scf_theme/BubbleChart/Hypoxia-viz.csv", function(error, data) {
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  41)         console.log('data');
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  42)         console.log(data);
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  43)         data.forEach(function(d) {
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  44)           d.LogFC = +d.LogFC;
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  45)           d.PValue = +d.PValue;
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  46)           d.AdjPValue = +d.AdjPValue;
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  47)         });
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  48) 
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  49) 
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400  50) 
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  51)         var dataFiltered = rows.filter(function(d){ return d.PValue < .5 });
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  52)         console.log("dataFiltered");
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  53)         console.log(dataFiltered);
+09dc163a sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-12-01 15:12:48 -0500  54) 
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  55)         // *********** Convert flat data into a nice tree ***************
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  56)         // create a name: node map
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  57)         var dataMap = rows.reduce(function(map, node) {
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  58)           map[node.name] = node;
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  59)           return map;
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  60)         }, {});
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  61) 
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  62)         console.log('datamap');
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  63)         console.log(dataMap);
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400  64) 
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  65)         // create the tree array - part 1 - branches
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  66)         var treeData = [];
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  67)         rows.filter(function(d){ return d.Study == "" }).forEach(function(node) {
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  68)           // add to parent
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  69)           var parent = dataMap[node.parent];
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  70)           if (parent) {
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  71)             // create child array if it doesn't exist
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  72)             (parent.children || (parent.children = []))
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  73)               // add node to child array
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  74)               .push(node);
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  75)           } else {
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  76)             // parent is null or missing
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  77)             treeData.push(node);
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  78)           }
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  79)         });
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  80) 
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  81)         // create the tree array - part 2 - leaves (use filtered data here)
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  82)         dataFiltered.filter(function(d){ return d.Study != ""}).forEach(function(node) {
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  83)           // add to parent
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  84)           var parent = dataMap[node.parent];
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  85)           if (parent) {
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  86)             // create child array if it doesn't exist
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  87)             (parent.children || (parent.children = []))
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  88)               // add node to child array
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  89)               .push(node);
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  90)           } else {
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  91)             // parent is null or missing
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  92)             treeData.push(node);
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  93)           }
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  94)         });
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  95) 
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  96) 
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500  97)         //console.debug(treeData[0].children[0]);
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400  98)         root = treeData[0];
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500  99)         console.log('root');
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500 100)         console.log(root);
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 101) 
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400 102)         var node = svg.datum(root).selectAll(".node")
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400 103)                 .data(pack.nodes);
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 104)                 //console.debug(node);
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400 105) 
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400 106)           node.enter().append("g")
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400 107)                 .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400 108)                 .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 109) 
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 110)           node.append("title")
+82ebacb3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-12 16:59:43 -0400 111)                 //(d.children ? "" : ": " + format(d.size)
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400 112)                 .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + d.LogFC + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study) });
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 113) 
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 114) 
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 115)           var data_points = d3.entries(dataMap);
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500 116)           console.log("data_points");
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500 117)           // console.log(data_points);
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 118)           var max_fc = d3.max( data_points, function(d) { return d['value']['LogFC'] });
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 119)           //console.debug(max_fc);
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 120)           var min_fc = d3.min( data_points, function(d) { return d['value']['LogFC'] });
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 121)           //console.debug(min_fc);
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 122)           var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500 123)           console.log('color');
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500 124)           console.log(color_scale(max_fc));
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 125) 
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 126) 
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500 127)           node.filter(function(d){ return !( d.name == "WB" ); }).append("circle")
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 128)               .attr("r", function(d) { return d.r; })
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 129)               .style('fill', function(d) { return (d.children ? "none" : color_scale(d.LogFC)); })
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400 130)               .style('fill-opacity', function(d) { return (d.children ? '0' : '.6'); })
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 131)               .style('stroke', 'black');
+e8c96621 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 14:18:19 -0400 132) 
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 133) 
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 134)           //console.debug(node);
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400 135) 
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400 136)           //If no children, display title like this
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500 137)           node.filter(function(d) { return !(d.children); }).append("text")
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 138)               .attr("dy", ".2em")
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 139)               .style("text-anchor", "middle")
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 140)               .text(function(d) { return d.name.substring(0, d.r / 3); });
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400 141) 
+c8f241ea sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-10-13 16:54:30 -0400 142) 
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 143) 
+00000000 sites/all/libraries/d3.bubblechart/bubblechart.js    (Not Committed Yet 2016-12-14 15:43:54 -0500 144)          //If has children
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 145)          node.filter(function(d) { return d.children; })
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 146)          .filter(function(d){ return !(d.name == "WB"); })
+09dc163a sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-12-01 15:12:48 -0500 147)          //.filter(function(d){ return !(d.parent.name == "WB"); })
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 148)          .append("path")
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 149)               .attr("id", function(d,i){return "s"+i;})
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 150)               .attr("fill","none")
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 151)               .attr("d", arc);
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 152) 
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 153)          node.filter(function(d) { return d.children; })
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 154)          .filter(function(d){ return !(d.name == "WB"); })
+09dc163a sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-12-01 15:12:48 -0500 155)          //.filter(function(d){ return !(d.parent.name == "WB"); })
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 156)          .append("text")
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 157)                   .attr("dy", "1em")
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 158)                   .style("text-anchor", "middle")
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 159)               .append("textPath")
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 160)                   .attr("xlink:href",function(d,i){return "#s"+i;})
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 161)                   .attr("startOffset",function(d){return "30%";})
+621286d0 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-25 16:10:19 -0400 162)                   .text(function(d) { return d.name; });
+47194aa3 sites/all/libraries/d3.bubblechart/bubblechart.js    (Emily Merrill     2016-11-10 13:22:50 -0500 163) 
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 164)         });
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 165) 
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 166)         d3.select(self.frameElement).style("height", diameter + "px");
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 167) 
+57fabf55 sites/all/libraries/d3.bubblechart/bubblechart.js    (Sudeshna Das      2016-10-12 16:11:15 -0400 168)   }
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 169) 
+e9318a54 sites/all/libraries/d3.bubblechart/d3.bubblechart.js (Sudeshna Das      2016-10-09 15:49:42 -0400 170) })(jQuery);

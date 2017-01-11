@@ -28,10 +28,10 @@ function bubblechart_block_view($delta = '') {
   //The $delta parameter tells us which block is being requested.
   switch ($delta) {
     case 'bubble_block':
-      $path = libraries_get_path('d3.bubblechart');
+      $path = libraries_get_path('d3.bubblechartcsv');
       //drupal_add_js($path . '/libs/' . 'd3.slider.js');
       //drupal_add_js($path . '/libs/' . 'bootstrap.js');
-      drupal_add_css($path . '/libs/' . 'bubblechart.css');
+      drupal_add_css($path . '/libs/' . 'bubblechartcsv.css');
       //$block['subject'] = t("Bubble Chart Block");
       $block['content'] =  t('<div id="facet-group">
     <div class="list-group">
@@ -116,7 +116,7 @@ function bubblechart_block_view($delta = '') {
   </div>'
 );
 
-      $block['content'] .= bubblechart_bubblechart();
+      $block['content'] .= bubblechart_csv();
       break;
   }
   return $block;
@@ -129,7 +129,7 @@ function bubblechart_menu() {
   $items['bubbles'] = array(
     'title' => 'D3 visualization',
     'description' => 'Different visualization examples using d3.',
-    'page callback' => 'bubblechart_bubblechart',
+    'page callback' => 'bubblechart_csv',
     'access callback' => TRUE,
   );
   $items['genomics/%'] = array(
@@ -151,11 +151,11 @@ function bubblechart_menu() {
   return $items;
 }
 
-function bubblechart_bubblechart() {
+function bubblechart_csv() {
 
   $chart = array(
     'id' => 'visualization',
-    'type' => 'bubblechart',
+    'type' => 'bubblechartcsv',
   );
 
   return d3_draw($chart);
@@ -356,6 +356,10 @@ function bubblechart_form_submit($form, & $form_state) {
 
 	$form_state['redirect'] = 'genomics/' . $valid_genes;
 }
+
+
+
+
 
 
 ?>

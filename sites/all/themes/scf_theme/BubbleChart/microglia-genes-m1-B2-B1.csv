@@ -5,8 +5,8 @@ Study,parent,DataType,Contrast,name,LogFC,size,PValue,AdjPValue
 ,WB,,,Striatum,,5,,
 ,WB,,,Frontal lobe,,5,,
 ,WB,,,Temporal lobe,,5,,
-,WB,,,Occipital lobe,,5,,
-,WB,,,Parietal lobe,,5,,
+,WB,,,Occipital Visual Cortex,,5,,
+,WB,,,Superior Parietal Lobule,,5,,
 ,Cingulum,,,Anterior Cingulate,,5,,
 ,Limbic system,,,Amygdala,,5,,
 ,Striatum,,,Caudate Nucleus,,5,,
@@ -15,14 +15,12 @@ Study,parent,DataType,Contrast,name,LogFC,size,PValue,AdjPValue
 ,Frontal lobe,,,Inferior Frontal Gyrus,,5,,
 ,Temporal lobe,,,Inferior Temporal Gyrus,,5,,
 ,Temporal lobe,,,Middle Temporal Gyrus,,5,,
-,Limbic system,,,Nucleus Accumbens,,5,,
-,Occipital lobe,,,Occipital Visual Cortex,,5,,
+,Limbic system,,,NucA,,5,,
 ,Cingulum,,,Posterior Cingulate Cortex,,5,,
 ,Frontal lobe,,,Precentral Gyrus,,5,,
 ,Frontal lobe,,,Dorsolateral Prefrontal Cortex,,5,,
 ,Limbic system,,,Parahippocampal Gyrus,,5,,
 ,Striatum,,,Putamen,,5,,
-,Parietal lobe,,,Superior Parietal Lobule,,5,,
 ,Temporal lobe,,,Superior Temporal Gyrus,,5,,
 ,Temporal lobe,,,Temporal Pole,,5,,
 MSBB,Anterior Cingulate,Microarray,B2-B1,CD86,-0.151806996,0.151806996,0.016803525,0.999758325
@@ -67,7 +65,7 @@ MSBB,Inferior Temporal Gyrus,Microarray,B2-B1,CD86,-0.156645676,0.156645676,0.01
 MSBB,Middle Temporal Gyrus,Microarray,B2-B1,PPP1R15A,-0.203521785,0.203521785,0.038175694,0.978568648
 MSBB,Middle Temporal Gyrus,Microarray,B2-B1,TMEM47,0.43607709,0.43607709,0.040191758,0.978568648
 MSBB,Middle Temporal Gyrus,Microarray,B2-B1,CCL5,-0.20336931,0.20336931,0.045368384,0.978568648
-MSBB,Nucleus Accumbens,Microarray,B2-B1,ABCA1,-0.138394245,0.138394245,0.03410053,0.999982647
+MSBB,NucA,Microarray,B2-B1,ABCA1,-0.138394245,0.138394245,0.03410053,0.999982647
 MSBB,Occipital Visual Cortex,Microarray,B2-B1,NR3C1,0.606415253,0.606415253,0.02374777,0.362155042
 MSBB,Occipital Visual Cortex,Microarray,B2-B1,CHL1,0.647949614,0.647949614,0.029400661,0.381672725
 MSBB,Occipital Visual Cortex,Microarray,B2-B1,TMEM47,0.58778547,0.58778547,0.035524425,0.398708587

@@ -21,6 +21,7 @@
       var diameter = 960,
         format = d3.format(",d");
 
+      var real_fc  = function(x){ return (x>0 ? Math.pow(2,x) : -1/Math.pow(2,x)) };
       var pack = d3.layout.pack()
       .size([diameter - 4, diameter - 4])
       .value(function(d) { return d.size; })
@@ -38,7 +39,7 @@
         .startAngle(0)
         .endAngle(2*Math.PI);
 
-      d3.csv("/sites/all/themes/scf_theme/BubbleChart/Microglia-out-B3-B2.csv", function(error, data) {
+      d3.csv("/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m1-B3-B1.csv", function(error, data) {
         console.debug(data);
           data.forEach(function(d) {
             d.LogFC = +d.LogFC;
@@ -87,12 +88,12 @@
 
           node.append("title")
                 //(d.children ? "" : ": " + format(d.size)
-                .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + d.LogFC + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study + "<br/>" + "Contrast: " + d.Contrast) });
+                .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + real_fc(d.LogFC) + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study + "<br/>" + "Contrast: " + d.Contrast) });
 
 
-// These max and mins are not correct;
+//These max and mins are not correct;
 //           var data_points = d3.entries(dataMap);
-//           console.debug(test);
+//
 //           var max_fc = d3.max( data_points, function(d) { return d['value']['LogFC'] });
 //           console.debug('max_fc');
 //           console.debug(max_fc);
@@ -100,19 +101,19 @@
 //           console.debug('min_fc');
 //           console.debug(min_fc);
 
-          var max_fc = d3.max( data, function(d) { return d.LogFC });
-            console.debug('max_fc');
-            console.debug(max_fc);
-          var min_fc = d3.min( data, function(d) { return d.LogFC });
-            console.debug('min_fc');
-            console.debug(min_fc);
-          var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
-            console.debug(color_scale(max_fc));
+         var max_fc = real_fc(d3.max( data, function(d) { return d.LogFC }));
+         console.debug('max_fc');
+         console.debug(max_fc);
+         var min_fc = real_fc(d3.min( data, function(d) { return d.LogFC }));
+         console.debug('min_fc');
+         console.debug(min_fc);
+         var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
+         console.debug(color_scale(max_fc));
 
           node.filter(function(d){ return !(d.name == "WB"); }).append("circle")
               .attr("r", function(d) { return d.r; })
-              .style('fill', function(d) { return (d.children ? "none" : color_scale(d.LogFC)); })
-              .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '0' : '.6' ); })
+              .style('fill', function(d) { return (d.children ? "none" : color_scale(real_fc(d.LogFC))); })
+              .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '0' : '.7' ); })
               .style('stroke', function(d){ return d.children ? '#ccc' : 'none'})
               .style('stroke-width', '2px');
 
@@ -138,12 +139,12 @@
          node.filter(function(d) { return d.children; })
          .filter(function(d){ return !(d.name == "WB"); })
          //.filter(function(d){ return !(d.parent.name == "WB"); })
-         .append("text")
-                  .attr("dy", "1em")
-                  .style("text-anchor", "middle")
+              .append("text")
+                  .attr("dy", "-0.3em")
+                  .style("text-anchor", "start")
               .append("textPath")
                   .attr("xlink:href",function(d,i){return "#s"+i;})
-                  .attr("startOffset",function(d){return "30%";})
+                  .attr("startOffset",function(d){return "25%";})
                   .text(function(d) { return d.name; });
 
         });

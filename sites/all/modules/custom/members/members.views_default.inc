@@ -1957,8 +1957,8 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     4 => 0,
     5 => 0,
   );
-  $handler->display->display_options['filters']['field_genes_diff_tid']['type'] = 'synonyms_autocomplete';
   $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['error_message'] = FALSE;
   /* Filter criterion: Content: Brain region (field_brain_region) */
   $handler->display->display_options['filters']['field_brain_region_tid']['id'] = 'field_brain_region_tid';
   $handler->display->display_options['filters']['field_brain_region_tid']['table'] = 'field_data_field_brain_region';
@@ -1970,7 +1970,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region(s):';
   $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator'] = 'field_brain_region_tid_op';
   $handler->display->display_options['filters']['field_brain_region_tid']['expose']['identifier'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_brain_region_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,

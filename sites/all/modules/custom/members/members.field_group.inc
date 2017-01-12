@@ -48,7 +48,7 @@ function members_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Challenged by',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_evidence_challenge',
     ),
@@ -312,7 +312,7 @@ function members_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Supported by',
-    'weight' => '3',
+    'weight' => '4',
     'children' => array(
       0 => 'field_evidence_support',
     ),

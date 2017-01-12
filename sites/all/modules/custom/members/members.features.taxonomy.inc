@@ -101,6 +101,29 @@ function members_taxonomy_default_vocabularies() {
         ),
       ),
     ),
+    'contrast' => array(
+      'name' => 'Contrast',
+      'machine_name' => 'contrast',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+    ),
     'data_type' => array(
       'name' => 'Data Type',
       'machine_name' => 'data_type',

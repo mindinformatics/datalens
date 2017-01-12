@@ -369,24 +369,25 @@ function bubblechart_views_pre_render(&$view) {
 
   if($view->name=='evidence'){
     //echo "hello\n";
-    $temp = new stdClass;
-
-    $temp->node_title = "Test";
-    $temp->field_field_pvalue[0]['raw']['value'] = "1.63423e-16";
-    $temp->field_field_fold_change[0]['raw']['value'] = "8.5";
-    $temp->field_field_fold_change[0]['rendered']['#markup'] = "8.5";
-    $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/msbb-amygdala-pc-nci-comparison">MSBB Amygdala PC-NCI comparison</a>';
-    $temp->field_field_brain_region[0]['rendered']['#markup']= "Brain";
-    $temp->field_field_data_type[0]['rendered']['#markup'] = "Array Expression";
-    $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">MSBB</a>';
-
-    $new_result_array = array();
-
-      foreach($view->result as $gene_record){
-        //dsm($gene_record)
-        $new_result_array[] = $temp;
-        $new_result_array[] = $gene_record;
-      }
+//     $temp = new stdClass;
+//
+//     $temp->node_title = "Test";
+//     $temp->field_field_pvalue[0]['raw']['value'] = "1.63423e-16";
+//     $temp->field_field_fold_change[0]['raw']['value'] = "8.5";
+//     $temp->field_field_fold_change[0]['rendered']['#markup'] = "8.5";
+//     $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/msbb-amygdala-pc-nci-comparison">MSBB Amygdala PC-NCI comparison</a>';
+//     $temp->field_field_brain_region[0]['rendered']['#markup']= "Brain";
+//     $temp->field_field_data_type[0]['rendered']['#markup'] = "Array Expression";
+//     $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">MSBB</a>';
+//     $temp->field_genes_diff[0]['rendered']['#markup'] = 'Sudeshna1';
+//
+//     $new_result_array = array();
+//
+//       foreach($view->result as $gene_record){
+//         //dsm($gene_record)
+//         $new_result_array[] = $temp;
+//         $new_result_array[] = $gene_record;
+//       }
     //replace the old result array
     //$gene_list=$view->exposed_input['field_genes_diff_tid'];
 
@@ -394,20 +395,23 @@ function bubblechart_views_pre_render(&$view) {
     $mongo_array = bubblechart_query_mongo($gene_list);
     var_dump($mongo_array);
 
-    // for($mongo_array as $row) {
-//
-//       $temp = new stdClass;
-//
-//       $temp->node_title = "name";
-//       $temp->field_field_pvalue[0]['raw']['value'] = "1.63423e-16";
-//       $temp->field_field_fold_change[0]['raw']['value'] = "8.5";
-//       $temp->field_field_fold_change[0]['rendered']['#markup'] = "8.5";
-//       $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/msbb-amygdala-pc-nci-comparison">MSBB Amygdala PC-NCI comparison</a>';
-//       $temp->field_field_brain_region[0]['rendered']['#markup']= "Brain";
-//       $temp->field_field_data_type[0]['rendered']['#markup'] = "Array Expression";
-//       $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">MSBB</a>';
-//
-//     }
+   foreach($mongo_array as $row) {
+       //$row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['AdjPVal'], $value['FileName']););
+      $temp = new stdClass;
+      $temp->node_title = $row[4];
+      $temp->field_field_pvalue[0]['raw']['value'] = $row[6];
+      $temp->field_field_fold_change[0]['raw']['value'] = $row[5];
+      $temp->field_field_fold_change[0]['rendered']['#markup'] = $row[5];
+      $temp->field_field_result_data[0]['rendered']['#markup'] = $row[7];
+      $temp->field_field_brain_region[0]['rendered']['#markup']= $row[1];
+      $temp->field_field_data_type[0]['rendered']['#markup'] = $row[2];
+      $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">' . $row[0] . '</a>';
+    }
+
+      foreach($view->result as $gene_record){
+        $new_result_array[] = $temp;
+        $new_result_array[] = $gene_record;
+      }
 
     $view->result = $new_result_array;
 
@@ -437,7 +441,7 @@ function bubblechart_query_mongo($gene_list) {
     foreach ($cursor as $doc) {
       //var_dump($doc);
       $result[$i]['FileName'] = $doc['FileName'];
-      $result[$i]['name'] = $doc['GeneSymbol'];
+      $result[$i]['GeneSymbol'] = $doc['GeneSymbol'];
       $result[$i]['LogFC'] = $doc['logFC'];
       $result[$i]['PValue'] = $doc['PValue'];
       $filenames[] = $doc['FileName'];
@@ -454,7 +458,7 @@ function bubblechart_query_mongo($gene_list) {
     foreach ($cursor2 as $doc) {
       $main_result[$i]['FileName'] = $doc['FileName'];
       $main_result[$i]['Study'] = $doc['StudyName'];
-      $main_result[$i]['parent'] = $doc['BrainRegionFull'];
+      $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
       $main_result[$i]['DataType'] = $doc['DataType'];
       $main_result[$i]['Contrast'] = $doc['Contrast'];
       $i++;
@@ -470,10 +474,10 @@ function bubblechart_query_mongo($gene_list) {
     	//$main_key = array_search($file, array_column($main_result, 'FileName'));
     	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
 		  $value['Study'] = $main_result[$main_key]['Study'];
-		  $value['parent'] = $main_result[$main_key]['parent'];
+		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
 		  $value['DataType'] = $main_result[$main_key]['DataType'];
 		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
-		  $row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], $value['size'], $value['PValue'], $value['AdjPVal']);
+		  $row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['FileName']);
 	  }
   return $row;
 }

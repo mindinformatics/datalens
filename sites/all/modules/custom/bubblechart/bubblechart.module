@@ -147,6 +147,12 @@ function bubblechart_menu() {
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['analysis'] = array(
+    'title' => 'Gene Expression',
+    'description' => 'Gene expression from SAGE',
+    'page callback' => 'bubblechart_table',
+    'access callback' => TRUE,
+  );
 
   return $items;
 }
@@ -358,8 +364,106 @@ function bubblechart_form_submit($form, & $form_state) {
 }
 
 
+function bubblechart_views_post_execute(&$view) {
+    //dsm($view->name);
+    //if ($view->name == 'evidence') {
+      //print_r("this is a test");
+      //var_dump($view->name);
+      //var_dump(get_defined_vars());
+      //dsm($view->name);
+      //$newResults = 'this is simple test text';
+      //var_dump($view->result);
+      //$view->result = $newResults;
+}
+
+function bubblechart_table() {
+
+	// Genes of interest
+  //var_dump($input_genes);
+// 	if (empty($input_genes)) {
+// 		$gene_list = array('RHEB');
+// 	} else {
+// 		$gene_list = explode(",", $input_genes);
+// 	}
+
+  $gene_list = array('PRELP','GPHN');
+  $pvalue = .05;
+// 	if (empty($input_pvalue)) {
+// 		$pvalue = .05;
+// 	} else {
+// 		//$pvalue = $input_pvalue;
+// 	}
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Select the expression collection for gene expression info
+    $coll = $db->expression;
 
 
+    // Filter on genes and p-value
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => $pvalue) ) ) );
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    //$total = (string)$cursor->count(); //To find total number of documents
+    $cursor->limit( 5 );
+
+    // Access query results
+    $result = array();
+    $filenames = array();
+    $i = 0;
+
+    foreach ($cursor as $doc) {
+      //var_dump($doc);
+    $result[$i]['FileName'] = $doc['FileName'];
+    $result[$i]['name'] = $doc['GeneSymbol'];
+    $result[$i]['LogFC'] = $doc['logFC'];
+    $result[$i]['PValue'] = $doc['PValue'];
+    $result[$i]['AdjPVal'] = $doc['adjPVal'];
+    $result[$i]['size'] = abs($doc['logFC']);
+    $filenames[] = $doc['FileName'];
+    $i++;
+    }
+
+
+		// Check the main for the meta data: Study,parent,DataType,Contrast
+    $coll2 = $db->main;
+    $query2 = array('FileName' => array('$in' => $filenames));
+    $cursor2 = $coll2->find($query2);
+    $main_result =  array();
+    $i = 0;
+    foreach ($cursor2 as $doc) {
+      $main_result[$i]['FileName'] = $doc['FileName'];
+      $main_result[$i]['Study'] = $doc['StudyName'];
+      $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+      $main_result[$i]['DataType'] = $doc['DataType'];
+      $main_result[$i]['Contrast'] = $doc['Contrast'];
+      $i++;
+    }
+	  //var_dump($main_result);
+
+	  // Incorporate main metadata into result array.
+	  $row = array();
+   	foreach($result as &$value){
+    	$file = $value['FileName'];
+    	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
+		  $value['Study'] = $main_result[$main_key]['Study'];
+		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
+		  $value['DataType'] = $main_result[$main_key]['DataType'];
+		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
+		  $row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], $value['PValue'], $value['AdjPVal']);
+	  }
+
+    //$file_name = 'Test_input.txt';
+    //$lines = array_values($result);
+    //$file_lines = implode("\n", $lines);
+    //file_save_data($file_lines, 'public://' . $file_name);
+    //var_dump($result);
+    //dsm($result);
+
+    return t("Hello World\n");
+}
 
 
 ?>

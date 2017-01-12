@@ -545,7 +545,6 @@ function _query_mongo($input_genes) {
 		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
 		  $value['DataType'] = $main_result[$main_key]['DataType'];
 		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
-		  $value[''] = $main_result[$main_key]['Contrast'];
 		  $row[] = array(
 		    'Study' => $value['Study'],
 		    'BrainRegion' => $value['BrainRegion'],

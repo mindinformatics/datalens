@@ -357,9 +357,117 @@ function bubblechart_form_submit($form, & $form_state) {
 	$form_state['redirect'] = 'genomics/' . $valid_genes;
 }
 
+function bubblechart_views_pre_render(&$view) {
+  //dsm($view->exposed_input['field_genes_diff_tid']);
+
+  if($view->name=='evidence'){
+    //echo "hello\n";
+    $temp = new stdClass;
+
+    $temp->node_title = "Test";
+    $temp->field_field_pvalue[0]['raw']['value'] = "1.63423e-16";
+    $temp->field_field_fold_change[0]['raw']['value'] = "8.5";
+    $temp->field_field_fold_change[0]['rendered']['#markup'] = "8.5";
+    $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/msbb-amygdala-pc-nci-comparison">MSBB Amygdala PC-NCI comparison</a>';
+    $temp->field_field_brain_region[0]['rendered']['#markup']= "Brain";
+    $temp->field_field_data_type[0]['rendered']['#markup'] = "Array Expression";
+    $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">MSBB</a>';
 
 
+    $new_result_array = array();
 
+      foreach($view->result as $gene_record){
+        //dsm($gene_record)
+        $new_result_array[] = $temp;
+        $new_result_array[] = $gene_record;
+      }
+    //replace the old result array
+    //$gene_list=$view->exposed_input['field_genes_diff_tid'];
+    //$mongo_array = _query_mongo($gene_list);
+
+    // for($mongo_array as $row) {
+//
+//       $temp = new stdClass;
+//
+//       $temp->node_title = "name";
+//       $temp->field_field_pvalue[0]['raw']['value'] = "1.63423e-16";
+//       $temp->field_field_fold_change[0]['raw']['value'] = "8.5";
+//       $temp->field_field_fold_change[0]['rendered']['#markup'] = "8.5";
+//       $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/msbb-amygdala-pc-nci-comparison">MSBB Amygdala PC-NCI comparison</a>';
+//       $temp->field_field_brain_region[0]['rendered']['#markup']= "Brain";
+//       $temp->field_field_data_type[0]['rendered']['#markup'] = "Array Expression";
+//       $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">MSBB</a>';
+//
+//     }
+
+    $view->result = $new_result_array;
+
+  }
+}
+
+function _query_mongo($gene_list) {
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Select the expression collection for gene expression info
+    $coll = $db->expression;
+
+    // Filter on genes and p-value
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    //$total = (string)$cursor->count(); //To find total number of documents
+    //$cursor->limit( 5 );
+
+    // Access query results
+    $result = array();
+    $filenames = array();
+    $i = 0;
+
+    foreach ($cursor as $doc) {
+      //var_dump($doc);
+      $result[$i]['FileName'] = $doc['FileName'];
+      $result[$i]['name'] = $doc['GeneSymbol'];
+      $result[$i]['LogFC'] = $doc['logFC'];
+      $result[$i]['PValue'] = $doc['PValue'];
+      $filenames[] = $doc['FileName'];
+      $i++;
+    }
+
+
+		// Check the main for the meta data: Study,parent,DataType,Contrast
+    $coll2 = $db->main;
+    $query2 = array('FileName' => array('$in' => $filenames));
+    $cursor2 = $coll2->find($query2);
+    $main_result =  array();
+    $i = 0;
+    foreach ($cursor2 as $doc) {
+      $main_result[$i]['FileName'] = $doc['FileName'];
+      $main_result[$i]['Study'] = $doc['StudyName'];
+      $main_result[$i]['parent'] = $doc['BrainRegionFull'];
+      $main_result[$i]['DataType'] = $doc['DataType'];
+      $main_result[$i]['Contrast'] = $doc['Contrast'];
+      $i++;
+    }
+	  //var_dump($main_result);
+
+	  // Incorportate main metadata into result array.
+	  $row = array();
+   	foreach($result as &$value){
+    	$file = $value['FileName'];
+    	// Server uses php 5.3.3, which does not have array_column
+    	// alternate code suggests: array_map
+    	//$main_key = array_search($file, array_column($main_result, 'FileName'));
+    	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
+		  $value['Study'] = $main_result[$main_key]['Study'];
+		  $value['parent'] = $main_result[$main_key]['parent'];
+		  $value['DataType'] = $main_result[$main_key]['DataType'];
+		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
+		  $row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], $value['size'], $value['PValue'], $value['AdjPVal']);
+	  }
+  return $row;
+}
 
 
 ?>

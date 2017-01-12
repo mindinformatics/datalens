@@ -364,29 +364,16 @@ function bubblechart_form_submit($form, & $form_state) {
 }
 
 function bubblechart_views_pre_render(&$view) {
-  //dsm($view->exposed_input['field_genes_diff_tid']);
+  //dsm($view->exposed_input);
 
 
   if($view->name=='evidence'){
 
     //dsm($view->exposed_input);
-    dsm($view->result);
+    //dsm($view->result);
 
-    if (!empty($view->exposed_input['field_brain_region_tid'])) {
-      $brain_region = $view->exposed_input['field_brain_region_tid'];
-    }
-    if (!empty($view->exposed_input['field_data_type_tid'])) {
-      $data_type = $view->exposed_input['field_data_type_tid'];
-    }
-    if (!empty($view->exposed_input['field_fold_change_value_1_op'])) {
-      $fold_change_op = $view->exposed_input['field_fold_change_value_1_op'];
-    }
-    if (!empty($view->exposed_input['field_fold_change_value_1'])) {
-      $fold_change = $view->exposed_input['field_fold_change_value_1'];
-    }
-    if (!empty($view->exposed_input['field_pvalue_value'])) {
-      $pvalue = $view->exposed_input['field_pvalue_value'];
-    }
+
+
 
 
      if (!empty($view->exposed_input['field_genes_diff_tid'])) {
@@ -395,16 +382,55 @@ function bubblechart_views_pre_render(&$view) {
       //var_dump($gene_list);
 
       $mongo_array = _query_mongo($gene_list);
+      $filtered_mongo = $mongo_array;
       //var_dump($mongo_array);
 
-     $new_result_array = array();
-     foreach($mongo_array as $row) {
+      if (!empty($view->exposed_input['field_brain_region_tid'])) {
+        $brain_region = $view->exposed_input['field_brain_region_tid'];
+        //dsm($brain_region);
+        $filtered_mongo = array_filter($filtered_mongo,
+        function($v) use ($brain_region){return $v['BrainRegion'] == $brain_region;});
+      }
+
+
+      if (!empty($view->exposed_input['field_fold_change_value_1'])) {
+        $fc_lt= $view->exposed_input['field_fold_change_value_1'];
+        $filtered_mongo = array_filter($filtered_mongo,
+        function($v) use ($fc_lt){return $v['LogFC'] <= $fc_lt;});
+      }
+
+      if (!empty($view->exposed_input['field_fold_change_value'])) {
+        $fc_gt = $view->exposed_input['field_fold_change_value'];
+        dsm($fc_gt);
+        $filtered_mongo = array_filter($filtered_mongo,
+        function($v) use ($fc_gt){return intval($v['LogFC']) > $fc_gt;});
+      }
+
+
+      if (!empty($view->exposed_input['field_contrast_tid '])) {
+        $contrast = $view->exposed_input['field_contrast_tid'];
+        $filtered_mongo = array_filter($filtered_mongo,
+        function($v) use ($contrast){return $v['Contrast'] == $contrast;});
+
+      }
+
+      if (!empty($view->exposed_input['field_pvalue_value'])) {
+        $pvalue = $view->exposed_input['field_pvalue_value'];
+        //dsm($pvalue);
+        $filtered_mongo = array_filter($filtered_mongo,
+        function($v) use ($pvalue){return $v['PValue'] < $pvalue;});
+
+      }
+
+      $new_result_array = array();
+      foreach($filtered_mongo as $row) {
          //$row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['AdjPVal'], $value['FileName']););
         $analysis_nid = intval(_query_analysisId($row['FileName']));
         $input_study_nid = intval(_query_inputId($analysis_nid));
         //var_dump($analysis_id);
         $temp = new stdClass;
-        $temp->node_title = $row['GeneSymbol'];
+        $temp->node_title = $row['GeneSymbol'] . " " . $row['ProbeID'];
+        $temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ProbeID'];
         $temp->field_field_pvalue[0]['raw']['value'] = $row['PValue'];
         $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
         $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
@@ -418,25 +444,15 @@ function bubblechart_views_pre_render(&$view) {
 
 
       $view->result = $new_result_array;
-      dsm($view->result);
+      //dsm($view->result);
 
     }
 
   }
 }
 
-function filter_mongo_br ($array, $index, $value){
-    if(is_array($array) && count($array)>0)
-    {
-        foreach(array_keys($array) as $key){
-            $temp[$key] = $array[$key][$index];
-
-            if ($temp[$key] == $value){
-                $newarray[$key] = $array[$key];
-            }
-        }
-      }
-  return $newarray;
+function filter_brainregion ($item){
+    return $item['BrainRegion'] == "Dorsolateral Prefrontal Cortex";
 }
 
 
@@ -477,8 +493,8 @@ function _query_mongo($input_genes) {
     $coll = $db->expression;
 
     // Filter on genes and p-value
-    //$query = array("GeneSymbol" => array('$in' => $gene_list));
-    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
+    $query = array("GeneSymbol" => array('$in' => $gene_list));
+    //$query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
     $cursor = $coll->find($query);
     $cursor->timeout(-1);
     //$total = (string)$cursor->count(); //To find total number of documents
@@ -495,6 +511,7 @@ function _query_mongo($input_genes) {
       $result[$i]['GeneSymbol'] = $doc['GeneSymbol'];
       $result[$i]['LogFC'] = $doc['logFC'];
       $result[$i]['PValue'] = $doc['PValue'];
+      $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
       $filenames[] = $doc['FileName'];
       $i++;
     }
@@ -525,6 +542,7 @@ function _query_mongo($input_genes) {
 		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
 		  $value['DataType'] = $main_result[$main_key]['DataType'];
 		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
+		  $value[''] = $main_result[$main_key]['Contrast'];
 		  $row[] = array(
 		    'Study' => $value['Study'],
 		    'BrainRegion' => $value['BrainRegion'],
@@ -533,7 +551,9 @@ function _query_mongo($input_genes) {
 		    'GeneSymbol' => $value['GeneSymbol'],
 		    'LogFC' => $value['LogFC'],
 		    'PValue' => $value['PValue'],
-		    'FileName' => $value['FileName']
+		    'FileName' => $value['FileName'],
+		    'ProbeID' => $value['ProbeID']
+
 		    );
 	  }
   return $row;

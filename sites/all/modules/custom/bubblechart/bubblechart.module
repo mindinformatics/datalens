@@ -363,37 +363,58 @@ function bubblechart_form_submit($form, & $form_state) {
 	$form_state['redirect'] = 'genomics/' . $valid_genes;
 }
 
+function bubblechart_views_pre_render(&$view) {
+  //dsm($view->exposed_input['field_genes_diff_tid']);
 
-function bubblechart_views_post_execute(&$view) {
-    //dsm($view->name);
-    //if ($view->name == 'evidence') {
-      //print_r("this is a test");
-      //var_dump($view->name);
-      //var_dump(get_defined_vars());
-      //dsm($view->name);
-      //$newResults = 'this is simple test text';
-      //var_dump($view->result);
-      //$view->result = $newResults;
+
+  if($view->name=='evidence'){
+    //echo "hello\n";
+    $temp = new stdClass;
+
+    $temp->node_title = "Test";
+    $temp->field_field_pvalue[0]['raw']['value'] = "1.63423e-16";
+    $temp->field_field_fold_change[0]['raw']['value'] = "8.5";
+    $temp->field_field_fold_change[0]['rendered']['#markup'] = "8.5";
+    $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/msbb-amygdala-pc-nci-comparison">MSBB Amygdala PC-NCI comparison</a>';
+    $temp->field_field_brain_region[0]['rendered']['#markup']= "Brain";
+    $temp->field_field_data_type[0]['rendered']['#markup'] = "Array Expression";
+    $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">MSBB</a>';
+
+    $new_result_array = array();
+
+      foreach($view->result as $gene_record){
+        //dsm($gene_record)
+        $new_result_array[] = $temp;
+        $new_result_array[] = $gene_record;
+      }
+    //replace the old result array
+    //$gene_list=$view->exposed_input['field_genes_diff_tid'];
+
+    $gene_list = array('PRELP','GPHN');
+    $mongo_array = bubblechart_query_mongo($gene_list);
+    var_dump($mongo_array);
+
+    // for($mongo_array as $row) {
+//
+//       $temp = new stdClass;
+//
+//       $temp->node_title = "name";
+//       $temp->field_field_pvalue[0]['raw']['value'] = "1.63423e-16";
+//       $temp->field_field_fold_change[0]['raw']['value'] = "8.5";
+//       $temp->field_field_fold_change[0]['rendered']['#markup'] = "8.5";
+//       $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/msbb-amygdala-pc-nci-comparison">MSBB Amygdala PC-NCI comparison</a>';
+//       $temp->field_field_brain_region[0]['rendered']['#markup']= "Brain";
+//       $temp->field_field_data_type[0]['rendered']['#markup'] = "Array Expression";
+//       $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">MSBB</a>';
+//
+//     }
+
+    $view->result = $new_result_array;
+
+  }
 }
 
-function bubblechart_table() {
-
-	// Genes of interest
-  //var_dump($input_genes);
-// 	if (empty($input_genes)) {
-// 		$gene_list = array('RHEB');
-// 	} else {
-// 		$gene_list = explode(",", $input_genes);
-// 	}
-
-  $gene_list = array('PRELP','GPHN');
-  $pvalue = .05;
-// 	if (empty($input_pvalue)) {
-// 		$pvalue = .05;
-// 	} else {
-// 		//$pvalue = $input_pvalue;
-// 	}
-
+function bubblechart_query_mongo($gene_list) {
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
     $db = $mongo->cats;
@@ -401,13 +422,12 @@ function bubblechart_table() {
     // Select the expression collection for gene expression info
     $coll = $db->expression;
 
-
     // Filter on genes and p-value
-    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => $pvalue) ) ) );
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
     $cursor = $coll->find($query);
     $cursor->timeout(-1);
     //$total = (string)$cursor->count(); //To find total number of documents
-    $cursor->limit( 5 );
+    //$cursor->limit( 5 );
 
     // Access query results
     $result = array();
@@ -416,14 +436,12 @@ function bubblechart_table() {
 
     foreach ($cursor as $doc) {
       //var_dump($doc);
-    $result[$i]['FileName'] = $doc['FileName'];
-    $result[$i]['name'] = $doc['GeneSymbol'];
-    $result[$i]['LogFC'] = $doc['logFC'];
-    $result[$i]['PValue'] = $doc['PValue'];
-    $result[$i]['AdjPVal'] = $doc['adjPVal'];
-    $result[$i]['size'] = abs($doc['logFC']);
-    $filenames[] = $doc['FileName'];
-    $i++;
+      $result[$i]['FileName'] = $doc['FileName'];
+      $result[$i]['name'] = $doc['GeneSymbol'];
+      $result[$i]['LogFC'] = $doc['logFC'];
+      $result[$i]['PValue'] = $doc['PValue'];
+      $filenames[] = $doc['FileName'];
+      $i++;
     }
 
 
@@ -436,7 +454,7 @@ function bubblechart_table() {
     foreach ($cursor2 as $doc) {
       $main_result[$i]['FileName'] = $doc['FileName'];
       $main_result[$i]['Study'] = $doc['StudyName'];
-      $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+      $main_result[$i]['parent'] = $doc['BrainRegionFull'];
       $main_result[$i]['DataType'] = $doc['DataType'];
       $main_result[$i]['Contrast'] = $doc['Contrast'];
       $i++;
@@ -447,22 +465,17 @@ function bubblechart_table() {
 	  $row = array();
    	foreach($result as &$value){
     	$file = $value['FileName'];
+    	// Server uses php 5.3.3, which does not have array_column
+    	// alternate code suggests: array_map
+    	//$main_key = array_search($file, array_column($main_result, 'FileName'));
     	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
 		  $value['Study'] = $main_result[$main_key]['Study'];
-		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
+		  $value['parent'] = $main_result[$main_key]['parent'];
 		  $value['DataType'] = $main_result[$main_key]['DataType'];
 		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
-		  $row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], $value['PValue'], $value['AdjPVal']);
+		  $row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], $value['size'], $value['PValue'], $value['AdjPVal']);
 	  }
-
-    //$file_name = 'Test_input.txt';
-    //$lines = array_values($result);
-    //$file_lines = implode("\n", $lines);
-    //file_save_data($file_lines, 'public://' . $file_name);
-    //var_dump($result);
-    //dsm($result);
-
-    return t("Hello World\n");
+  return $row;
 }
 
 

@@ -129,6 +129,7 @@ features[feeds_importer][] = gene_importer
 features[feeds_importer][] = project_claims
 features[feeds_importer][] = result
 features[feeds_importer][] = update_dataset_title
+features[feeds_importer][] = user_import
 features[feeds_tamper][] = claim_supported_by-supportedby-explode
 features[feeds_tamper][] = datasets_importer-brain_regions-explode
 features[feeds_tamper][] = datasets_importer-disease-explode

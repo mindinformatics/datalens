@@ -368,57 +368,107 @@ function bubblechart_views_pre_render(&$view) {
 
 
   if($view->name=='evidence'){
-    //echo "hello\n";
-//     $temp = new stdClass;
-//
-//     $temp->node_title = "Test";
-//     $temp->field_field_pvalue[0]['raw']['value'] = "1.63423e-16";
-//     $temp->field_field_fold_change[0]['raw']['value'] = "8.5";
-//     $temp->field_field_fold_change[0]['rendered']['#markup'] = "8.5";
-//     $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/msbb-amygdala-pc-nci-comparison">MSBB Amygdala PC-NCI comparison</a>';
-//     $temp->field_field_brain_region[0]['rendered']['#markup']= "Brain";
-//     $temp->field_field_data_type[0]['rendered']['#markup'] = "Array Expression";
-//     $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">MSBB</a>';
-//     $temp->field_genes_diff[0]['rendered']['#markup'] = 'Sudeshna1';
-//
-//     $new_result_array = array();
-//
-//       foreach($view->result as $gene_record){
-//         //dsm($gene_record)
-//         $new_result_array[] = $temp;
-//         $new_result_array[] = $gene_record;
-//       }
-    //replace the old result array
-    //$gene_list=$view->exposed_input['field_genes_diff_tid'];
 
-    $gene_list = array('PRELP','GPHN');
-    $mongo_array = bubblechart_query_mongo($gene_list);
-    var_dump($mongo_array);
+    //dsm($view->exposed_input);
+    dsm($view->result);
 
-   foreach($mongo_array as $row) {
-       //$row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['AdjPVal'], $value['FileName']););
-      $temp = new stdClass;
-      $temp->node_title = $row[4];
-      $temp->field_field_pvalue[0]['raw']['value'] = $row[6];
-      $temp->field_field_fold_change[0]['raw']['value'] = $row[5];
-      $temp->field_field_fold_change[0]['rendered']['#markup'] = $row[5];
-      $temp->field_field_result_data[0]['rendered']['#markup'] = $row[7];
-      $temp->field_field_brain_region[0]['rendered']['#markup']= $row[1];
-      $temp->field_field_data_type[0]['rendered']['#markup'] = $row[2];
-      $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/msbb-16">' . $row[0] . '</a>';
+    if (!empty($view->exposed_input['field_brain_region_tid'])) {
+      $brain_region = $view->exposed_input['field_brain_region_tid'];
+    }
+    if (!empty($view->exposed_input['field_data_type_tid'])) {
+      $data_type = $view->exposed_input['field_data_type_tid'];
+    }
+    if (!empty($view->exposed_input['field_fold_change_value_1_op'])) {
+      $fold_change_op = $view->exposed_input['field_fold_change_value_1_op'];
+    }
+    if (!empty($view->exposed_input['field_fold_change_value_1'])) {
+      $fold_change = $view->exposed_input['field_fold_change_value_1'];
+    }
+    if (!empty($view->exposed_input['field_pvalue_value'])) {
+      $pvalue = $view->exposed_input['field_pvalue_value'];
     }
 
-      foreach($view->result as $gene_record){
+
+     if (!empty($view->exposed_input['field_genes_diff_tid'])) {
+      $gene_list = $view->exposed_input['field_genes_diff_tid'];
+      //dsm($gene_list);
+      //var_dump($gene_list);
+
+      $mongo_array = _query_mongo($gene_list);
+      //var_dump($mongo_array);
+
+     $new_result_array = array();
+     foreach($mongo_array as $row) {
+         //$row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['AdjPVal'], $value['FileName']););
+        $analysis_nid = intval(_query_analysisId($row['FileName']));
+        $input_study_nid = intval(_query_inputId($analysis_nid));
+        //var_dump($analysis_id);
+        $temp = new stdClass;
+        $temp->node_title = $row['GeneSymbol'];
+        $temp->field_field_pvalue[0]['raw']['value'] = $row['PValue'];
+        $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
+        $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
+        $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['FileName']);
+        $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $row['FileName'] . '</a>';
+        $temp->field_field_brain_region[0]['rendered']['#markup']= $row['BrainRegion'];
+        $temp->field_field_data_type[0]['rendered']['#markup'] = $row['DataType'];
+        $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/node/' . $input_study_nid . '">' . $row['Study']. '</a>';
         $new_result_array[] = $temp;
-        $new_result_array[] = $gene_record;
       }
 
-    $view->result = $new_result_array;
+
+      $view->result = $new_result_array;
+      dsm($view->result);
+
+    }
 
   }
 }
 
-function bubblechart_query_mongo($gene_list) {
+function filter_mongo_br ($array, $index, $value){
+    if(is_array($array) && count($array)>0)
+    {
+        foreach(array_keys($array) as $key){
+            $temp[$key] = $array[$key][$index];
+
+            if ($temp[$key] == $value){
+                $newarray[$key] = $array[$key];
+            }
+        }
+      }
+  return $newarray;
+}
+
+
+function _query_analysisId($input) {
+    $query = db_select('field_data_field_result', 'fr');
+    $query->join('field_data_field_files', 'ff', 'fr.field_result_value = ff.entity_id');
+    $query->join('file_managed', 'fm', 'ff.field_files_fid = fm.fid');
+    $query->fields('fr', array('entity_id'));
+    $query->condition('fm.filename',$input,'=');
+    $result = $query->execute()->fetchfield();
+    return($result);
+
+}
+
+function _query_inputId($input) {
+    //select field_input_target_id from field_data_field_input where entity_id =
+    $query = db_select('field_data_field_input', 'fi');
+    $query->fields('fi', array('field_input_target_id'));
+    $query->condition('fi.entity_id',$input,'=');
+    $result = $query->execute()->fetchfield();
+    return($result);
+
+}
+
+function _query_mongo($input_genes) {
+
+    if (empty($input_genes)) {
+      $gene_list = array('RHEB');
+    } else {
+      $gene_list = explode(",", $input_genes);
+    }
+
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
     $db = $mongo->cats;
@@ -427,6 +477,7 @@ function bubblechart_query_mongo($gene_list) {
     $coll = $db->expression;
 
     // Filter on genes and p-value
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
     $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
     $cursor = $coll->find($query);
     $cursor->timeout(-1);
@@ -469,15 +520,21 @@ function bubblechart_query_mongo($gene_list) {
 	  $row = array();
    	foreach($result as &$value){
     	$file = $value['FileName'];
-    	// Server uses php 5.3.3, which does not have array_column
-    	// alternate code suggests: array_map
-    	//$main_key = array_search($file, array_column($main_result, 'FileName'));
     	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
 		  $value['Study'] = $main_result[$main_key]['Study'];
 		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
 		  $value['DataType'] = $main_result[$main_key]['DataType'];
 		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
-		  $row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['FileName']);
+		  $row[] = array(
+		    'Study' => $value['Study'],
+		    'BrainRegion' => $value['BrainRegion'],
+		    'DataType' => $value['DataType'],
+		    'Contrast' => $value['Contrast'],
+		    'GeneSymbol' => $value['GeneSymbol'],
+		    'LogFC' => $value['LogFC'],
+		    'PValue' => $value['PValue'],
+		    'FileName' => $value['FileName']
+		    );
 	  }
   return $row;
 }

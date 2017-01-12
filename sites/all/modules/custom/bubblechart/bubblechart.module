@@ -376,7 +376,7 @@ function bubblechart_views_pre_render(&$view) {
 
 
 
-     if (!empty($view->exposed_input['field_genes_diff_tid'])) {
+    if (!empty($view->exposed_input['field_genes_diff_tid'])) {
       $gene_list = $view->exposed_input['field_genes_diff_tid'];
       //dsm($gene_list);
       //var_dump($gene_list);
@@ -395,20 +395,22 @@ function bubblechart_views_pre_render(&$view) {
 
       if (!empty($view->exposed_input['field_fold_change_value_1'])) {
         $fc_lt= $view->exposed_input['field_fold_change_value_1'];
+        //dsm($fc_lt);
         $filtered_mongo = array_filter($filtered_mongo,
-        function($v) use ($fc_lt){return $v['LogFC'] <= $fc_lt;});
+        function($v) use ($fc_lt){return -1/pow(2,$v['LogFC']) <= $fc_lt;});
       }
 
       if (!empty($view->exposed_input['field_fold_change_value'])) {
         $fc_gt = $view->exposed_input['field_fold_change_value'];
-        dsm($fc_gt);
+        //dsm($fc_gt);
         $filtered_mongo = array_filter($filtered_mongo,
-        function($v) use ($fc_gt){return intval($v['LogFC']) > $fc_gt;});
+        function($v) use ($fc_gt){return pow(2,$v['LogFC']) >= $fc_gt;});
       }
 
 
-      if (!empty($view->exposed_input['field_contrast_tid '])) {
+      if (!empty($view->exposed_input['field_contrast_tid'])) {
         $contrast = $view->exposed_input['field_contrast_tid'];
+        //dsm($contrast);
         $filtered_mongo = array_filter($filtered_mongo,
         function($v) use ($contrast){return $v['Contrast'] == $contrast;});
 
@@ -444,6 +446,7 @@ function bubblechart_views_pre_render(&$view) {
 
 
       $view->result = $new_result_array;
+      $view->total_rows = count($new_result_array);
       //dsm($view->result);
 
     }

@@ -1286,6 +1286,17 @@ function members_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
+  $handler->display->display_options['header']['result']['content'] = 'Total rows: @total';
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['content'] = 'If no gene is specified, only results with P-value &lt; .001 are displayed by default.  If a gene is specified, only results with P-value &lt; .05 are displayed unless the P-value filter is specified.';
+  $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
@@ -1822,10 +1833,6 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Probe Id */
-  $handler->display->display_options['fields']['field_probe_id']['id'] = 'field_probe_id';
-  $handler->display->display_options['fields']['field_probe_id']['table'] = 'field_data_field_probe_id';
-  $handler->display->display_options['fields']['field_probe_id']['field'] = 'field_probe_id';
   /* Field: Content: Fold change */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';

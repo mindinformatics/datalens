@@ -382,8 +382,8 @@ function bubblechart_views_pre_render(&$view) {
       $gene_list = $view->exposed_input['field_genes_diff_tid'];
       //dsm($gene_list);
       //var_dump($gene_list);
-
-      $mongo_array = _query_mongo($gene_list);
+      $pval=$view->exposed_input['field_pvalue_value'];
+      $mongo_array = _query_mongo($gene_list, $pval);
       $filtered_mongo = $mongo_array;
       //var_dump($mongo_array);
 
@@ -456,11 +456,6 @@ function bubblechart_views_pre_render(&$view) {
   }
 }
 
-function filter_brainregion ($item){
-    return $item['BrainRegion'] == "Dorsolateral Prefrontal Cortex";
-}
-
-
 function _query_analysisId($input) {
     $query = db_select('field_data_field_result', 'fr');
     $query->join('field_data_field_files', 'ff', 'fr.field_result_value = ff.entity_id');
@@ -482,7 +477,7 @@ function _query_inputId($input) {
 
 }
 
-function _query_mongo($input_genes) {
+function _query_mongo($input_genes, $pval) {
 
     if (empty($input_genes)) {
       $gene_list = array('RHEB');
@@ -492,6 +487,8 @@ function _query_mongo($input_genes) {
       $gene_list = $trimmed_array;
     }
 
+    //var_dump((float)$pval);
+
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
     $db = $mongo->cats;
@@ -500,68 +497,73 @@ function _query_mongo($input_genes) {
     $coll = $db->expression;
 
     // Filter on genes and p-value
-    $query = array("GeneSymbol" => array('$in' => $gene_list));
-    //$query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+             array('PValue' => array('$lt' => (float)$pval) ) ) );
+
+
     $cursor = $coll->find($query);
     $cursor->timeout(-1);
     //$total = (string)$cursor->count(); //To find total number of documents
+    //dsm($total);
     //$cursor->limit( 5 );
 
-    // Access query results
-    $result = array();
-    $filenames = array();
-    $i = 0;
+     //Access query results
+     $result = array();
+     $filenames = array();
+     $i = 0;
 
-    foreach ($cursor as $doc) {
-      //var_dump($doc);
-      $result[$i]['FileName'] = $doc['FileName'];
-      $result[$i]['GeneSymbol'] = $doc['GeneSymbol'];
-      $result[$i]['LogFC'] = $doc['logFC'];
-      $result[$i]['PValue'] = $doc['PValue'];
-      $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
-      $filenames[] = $doc['FileName'];
-      $i++;
-    }
+     foreach ($cursor as $doc) {
+       //var_dump($doc);
+       $result[$i]['FileName'] = $doc['FileName'];
+       $result[$i]['GeneSymbol'] = $doc['GeneSymbol'];
+       $result[$i]['LogFC'] = $doc['logFC'];
+       $result[$i]['PValue'] = $doc['PValue'];
+       $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
+       $filenames[] = $doc['FileName'];
+       $i++;
+     }
 
 
-		// Check the main for the meta data: Study,parent,DataType,Contrast
-    $coll2 = $db->main;
-    $query2 = array('FileName' => array('$in' => $filenames));
-    $cursor2 = $coll2->find($query2);
-    $main_result =  array();
-    $i = 0;
-    foreach ($cursor2 as $doc) {
-      $main_result[$i]['FileName'] = $doc['FileName'];
-      $main_result[$i]['Study'] = $doc['StudyName'];
-      $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
-      $main_result[$i]['DataType'] = $doc['DataType'];
-      $main_result[$i]['Contrast'] = $doc['Contrast'];
-      $i++;
-    }
-	  //var_dump($main_result);
+// 		 Check the main for the meta data: Study,parent,DataType,Contrast
+     $coll2 = $db->main;
+     $query2 = array('FileName' => array('$in' => $filenames));
+     $cursor2 = $coll2->find($query2);
+     $main_result =  array();
+     $i = 0;
+     foreach ($cursor2 as $doc) {
+       $main_result[$i]['FileName'] = $doc['FileName'];
+       $main_result[$i]['Study'] = $doc['StudyName'];
+       $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+       $main_result[$i]['DataType'] = $doc['DataType'];
+       $main_result[$i]['Contrast'] = $doc['Contrast'];
+       $i++;
+     }
+ 	  //var_dump($main_result);
 
-	  // Incorporate main metadata into result array.
-	  $row = array();
-   	foreach($result as &$value){
-    	$file = $value['FileName'];
-    	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
-		  $value['Study'] = $main_result[$main_key]['Study'];
-		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
-		  $value['DataType'] = $main_result[$main_key]['DataType'];
-		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
-		  $row[] = array(
-		    'Study' => $value['Study'],
-		    'BrainRegion' => $value['BrainRegion'],
-		    'DataType' => $value['DataType'],
-		    'Contrast' => $value['Contrast'],
-		    'GeneSymbol' => $value['GeneSymbol'],
-		    'LogFC' => $value['LogFC'],
-		    'PValue' => $value['PValue'],
-		    'FileName' => $value['FileName'],
-		    'ProbeID' => $value['ProbeID']
+ 	  // Incorporate main metadata into result array.
+ 	  $row = array();
+    	foreach($result as &$value){
+     	$file = $value['FileName'];
+     	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
+ 		  $value['Study'] = $main_result[$main_key]['Study'];
+ 		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
+ 		  $value['DataType'] = $main_result[$main_key]['DataType'];
+ 		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
+ 		  $row[] = array(
+ 		    'Study' => $value['Study'],
+ 		    'BrainRegion' => $value['BrainRegion'],
+ 		    'DataType' => $value['DataType'],
+ 		    'Contrast' => $value['Contrast'],
+ 		    'GeneSymbol' => $value['GeneSymbol'],
+ 		    'LogFC' => $value['LogFC'],
+ 		    'PValue' => $value['PValue'],
+ 		    'FileName' => $value['FileName'],
+ 		    'ProbeID' => $value['ProbeID']
 
-		    );
-	  }
+ 		    );
+ 	  }
+
   return $row;
 }
 

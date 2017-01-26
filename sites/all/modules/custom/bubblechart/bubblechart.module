@@ -29,92 +29,33 @@ function bubblechart_block_view($delta = '') {
   switch ($delta) {
     case 'bubble_block':
       $path = libraries_get_path('d3.bubblechart');
-      echo $path;
+      //echo $path;
       drupal_add_css($path . '/bubblechart.css');
-      $block['content'] =  t('<div id="facet-group">
-    <div class="list-group">
-      <h4>Study</h4>
-      <div class="facet-list">
-        <label><input type="checkbox" class="cbox study" value="MSBB"> MSBB</label><br>
-        <label><input type="checkbox" class="cbox study" value="HBTRC"> HBTRC</label><br>
-        <label><input type="checkbox" class="cbox study" value="MayoBB"> MayoBB</label><br>
-        <label><input type="checkbox" class="cbox study" value="MayoEGWAS"> MayoEGWAS</label><br>
-        <label><input type="checkbox" class="cbox study" value="ROSMAP"> ROSMAP</label>
-      </div>
-    </div>
-     <div class="list-group">
-      <h4>Contrast</h4>
-      <div class="facet-list">
-        <label><input type="checkbox" class="cbox contrast" value="AD-DNAD"> AD-DNAD</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="AD-NCI"> AD-NCI</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="AD-PA"> AD-PA</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="AD-PC"> AD-PC</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="AD-PSP"> AD-PSP</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="B2-B1"> B2-B1</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="B3-B1"> B3-B1</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="B3-B2"> B3-B2</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="C1-C0"> C1-C0</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="C2-C0"> C2-C0</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="C3-C0"> C3-C0</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="DNAD-NCI"> DNAD-NCI</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="PA-NCI"> PA-NCI</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="PC-NCI"> PC-NCI</label><br>
-        <label><input type="checkbox" class="cbox contrast" value="PSP-NCI"> PSP-NCI</label>
-      </div>
-    </div>
-    <div class="list-group">
-      <h4>Data Type</h4>
-      <div class="facet-list">
-        <label><input type="checkbox" class="cbox dataType" value="Microarray"> Microarray</label><br>
-        <label><input type="checkbox" class="cbox dataType" value="RNA-Seq"> RNA-Seq</label>
-      </div>
-    </div>
-    <div class="list-group">
-      <h4>Brain Region</h4>
-      <div class="facet-list">
-        <label><input type="checkbox" class="cbox brainRegion" value="Amygdala"> Amygdala</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Anterior Cingulate"> Anterior Cingulate</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Caudate Nucleus"> Caudate Nucleus</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Cerebellum"> Cerebellum</label><br>
-        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Cingulum"> Cingulum</label><br> -->
-        <label><input type="checkbox" class="cbox brainRegion" value="Dorsolateral Prefrontal Cortex"> Dorsolateral Prefrontal Cortex</label><br>
-        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Frontal lobe"> Frontal lobe</label><br> -->
-        <label><input type="checkbox" class="cbox brainRegion" value="Frontal Pole"> Frontal Pole</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Hippocampus"> Hippocampus</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Inferior Frontal Gyrus"> Inferior Frontal Gyrus</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Inferior Temporal Gyrus"> Inferior Temporal Gyrus</label><br>
-        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Limbic system"> Limbic system</label><br> -->
-        <label><input type="checkbox" class="cbox brainRegion" value="Middle Temporal Gyrus"> Middle Temporal Gyrus</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Nucleus Accumbens"> Nucleus Accumbens</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Occipital Visual Cortex"> Occipital Visual Cortex</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Parahippocampal Gyrus"> Parahippocampal Gyrus</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Posterior Cingulate Cortex"> Posterior Cingulate Cortex</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Precentral Gyrus"> Precentral Gyrus</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Prefrontal Cortex"> Prefrontal Cortex</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Putamen"> Putamen</label><br>
-        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Striatum"> Striatum</label><br> -->
-        <label><input type="checkbox" class="cbox brainRegion" value="Superior Parietal Lobule"> Superior Parietal Lobule</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Superior Temporal Gyrus"> Superior Temporal Gyrus</label><br>
-        <label><input type="checkbox" class="cbox brainRegion" value="Temporal Cortex"> Temporal Cortex</label><br>
-        <!-- <label><input type="checkbox" class="cbox brainRegion" value="Temporal lobe"> Temporal lobe</label><br> -->
-        <label><input type="checkbox" class="cbox brainRegion" value="Temporal Pole"> Temporal Pole</label>
-      </div>
-    </div>
-  </div>
 
-  <div id="slider-area">
-    <div id="PValue" class="slider">
-      <h4>PValue</h4><input type="text" id="PValText" class="slider-text">
-      <input type="range" id="sliderPVal">
-    </div>
-    <div id="FCValue" class="slider">
-      <h4>FCValue</h4><input type="text" id="FCValText" class="slider-text">
-      <input type="range" id="sliderFCVal">
-    </div>
-  </div>'
-);
       $genes = 'PRELP';
-      $block['content'] .= bubblechart_genomics($genes);
+      $pval = 0.05;
+      $result = _query_mongo($genes, $pval);
+
+      $study_checkbox=_create_facet($result, 'Study');    // Retuens string 35-44
+      $contrast_checkbox=_create_facet($result, 'Contrast');
+      $datatype_checkbox=_create_facet($result, 'DataType');
+      $br_checkbox=_create_facet($result, 'BrainRegion');
+      $block['content'] = $study_checkbox . $contrast_checkbox .  $datatype_checkbox .  $br_checkbox;
+      $block['content'] .=  t(
+
+      '<div id="slider-area">
+      <div id="PValue" class="slider">
+        <h4>PValue</h4><input type="text" id="PValText" class="slider-text">
+        <input type="range" id="sliderPVal">
+      </div>
+      <div id="FCValue" class="slider">
+        <h4>FCValue</h4><input type="text" id="FCValText" class="slider-text">
+        <input type="range" id="sliderFCVal">
+      </div>
+      </div>'
+      );
+
+      $block['content'] .= bubblechart_genomics($result);
       break;
   }
   return $block;
@@ -165,115 +106,8 @@ function bubblechart_csv() {
   return d3_draw($chart);
 }
 
-function bubblechart_test() {
-   return t("Hello World\n");
-}
 
-function bubblechart_linegraph() {
-
-  $chart = array(
-    'id' => 'visualization',
-    'type' => 'linegraph',
-    'legend' => array(
-      'Development',
-      'QA',
-      'Strategy',
-      'Design',
-    ),
-    'rows' => array(
-      array('1st Quarter 2011',10,20,26,35),
-      array('2nd Quarter 2011',20,26,27,37),
-      array('3rd Quarter 2011',10,50,28,50),
-      array('4th Quarter 2011',15,76,49,51),
-      array('1st Quarter 2012',20,100,50,52),
-    ),
-  );
-
-  return d3_draw($chart);
-}
-
-function bubblechart_genomics($input_genes) {
-
-	// Genes of interest
-    //var_dump($input_genes);
-	if (empty($input_genes)) {
-		$gene_list = array('RHEB');
-	} else {
-		$gene_list = explode(",", $input_genes);
-		$trimmed_array = array_map('trim', $gene_list);
-    $gene_list = $trimmed_array;
-	}
-
-    // Create a Mongo connection and connect to database //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
-
-    // Select the expression collection for gene expression info
-    $coll = $db->expression;
-
-
-    //$query = array(array('GeneSymbol' => 'RHEB'), array('FileName' => 1, 'GeneSymbol' => 1, 'logFC' => 1, 'PValue' => 1, 'adjPVal' => 1, 'B' => 1)); // SELECT title FROM fields_current WHERE group_name = 'node' AND type = 'content-type'
-
-    // Build query and run it
-
-    // Filter on genes only
-    //$query = array("GeneSymbol" => array('$in' => $gene_list));
-
-    // Filter on genes and p-value
-    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)), array('PValue' => array('$lt' => .05) ) ) );
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    //$total = (string)$cursor->count(); //To find total number of documents
-    //$cursor->limit( 5 );
-
-    // Access query results
-    $result = array();
-    $filenames = array();
-    $i = 0;
-
-    foreach ($cursor as $doc) {
-      //var_dump($doc);
-    $result[$i]['FileName'] = $doc['FileName'];
-    $result[$i]['name'] = $doc['GeneSymbol'];
-    $result[$i]['LogFC'] = $doc['logFC'];
-    $result[$i]['PValue'] = $doc['PValue'];
-    $result[$i]['AdjPVal'] = $doc['adjPVal'];
-    $result[$i]['size'] = abs($doc['logFC']);
-    $filenames[] = $doc['FileName'];
-    $i++;
-    }
-
-
-		// Check the main for the meta data: Study,parent,DataType,Contrast
-    $coll2 = $db->main;
-    $query2 = array('FileName' => array('$in' => $filenames));
-    $cursor2 = $coll2->find($query2);
-    $main_result =  array();
-    $i = 0;
-    foreach ($cursor2 as $doc) {
-      $main_result[$i]['FileName'] = $doc['FileName'];
-      $main_result[$i]['Study'] = $doc['StudyName'];
-      $main_result[$i]['parent'] = $doc['BrainRegionFull'];
-      $main_result[$i]['DataType'] = $doc['DataType'];
-      $main_result[$i]['Contrast'] = $doc['Contrast'];
-      $i++;
-    }
-	  //var_dump($main_result);
-
-	  // Incorportate main metadata into result array.
-	  $row = array();
-   	foreach($result as &$value){
-    	$file = $value['FileName'];
-    	// Server uses php 5.3.3, which does not have array_column
-    	// alternate code suggests: array_map
-    	//$main_key = array_search($file, array_column($main_result, 'FileName'));
-    	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
-		  $value['Study'] = $main_result[$main_key]['Study'];
-		  $value['parent'] = $main_result[$main_key]['parent'];
-		  $value['DataType'] = $main_result[$main_key]['DataType'];
-		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
-		  $row[] = array($value['Study'], $value['parent'], $value['DataType'], $value['Contrast'], $value['name'], $value['LogFC'], $value['size'], $value['PValue'], $value['AdjPVal']);
-	  }
+function bubblechart_genomics($result) {
 
     //$terms = array_column($result, 'parent');
     $terms = array_map(function($element){return $element['parent'];}, $result);
@@ -371,10 +205,6 @@ function bubblechart_views_pre_render(&$view) {
 
     //dsm($view->exposed_input);
     //dsm($view->result);
-
-
-
-
 
     if (!empty($view->exposed_input['field_genes_diff_tid'])) {
       $gene_list = $view->exposed_input['field_genes_diff_tid'];
@@ -569,5 +399,8 @@ function _query_mongo($input_genes, $pval) {
   return $row;
 }
 
+_create_facet($result, $type) {
+
+}
 
 ?>

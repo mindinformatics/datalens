@@ -19,6 +19,8 @@
 
   Drupal.d3.bubblechart = function (select, settings) {
 
+   rows = settings.rows;
+
     var pValue = 0.5;
     var FCValue = 3.52;
     var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m1-B2-B1.csv";
@@ -369,7 +371,7 @@
 
       // *********** Convert flat data into a nice tree ***************
       // create a name: node map
-      var dataMap = data.reduce(function(map, node) {
+      var dataMap = rows.reduce(function(map, node) {
         map[node.name] = node;
         return map;
       }, {});
@@ -380,8 +382,8 @@
 
       // create the tree array
       var treeData = [];
-      data.filter(function(d){ return d.name != "NA" && d.LogFC != "NA" && d.size != "NA" && d.PValue != "NA" && d.AdjPValue != "NA"})
-        .forEach(function(node) {
+      //rows.filter(function(d){ return d.name != "NA" && d.LogFC != "NA" && d.size != "NA" && d.PValue != "NA" && d.AdjPValue != "NA"})
+        rows.forEach(function(node) {
           // add to parent
           var parent = dataMap[node.parent];
           if (parent) {

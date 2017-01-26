@@ -21,16 +21,14 @@
 
     var pValue = 0.5;
     var FCValue = 3.52;
-    var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m1-B2-B1.csv";
-    //var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Hyman-all-out.csv";
+    var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Hypoxia-viz.csv";
 
-    var real_fc  = function(x){ return (x>0 ? Math.pow(2,x) : -1/Math.pow(2,x)) };
 
 
     // pValue Slider ****************************************************************************************************************************************************************************
     // Axis
-    var pValue_x_min = 1e-8; //1e0
-    var pValue_x_max = 1e-1; //1e-6 (for a reason I didn't look into, needs a spread of at least 10^6 to render correctly)
+    var pValue_x_min = 1e-2; //1e0
+    var pValue_x_max = 1e-8; //1e-6 (for a reason I didn't look into, needs a spread of at least 10^6 to render correctly)
 
     var margin = {top: 10, right: 10, bottom: 20, left: 10},
     width = $("#PValue").width() - margin.left - margin.right,
@@ -66,20 +64,19 @@
         .call(pValue_xAxis);
 
     // Slider
-    $("#sliderPVal").attr({ "max" : 1*Math.log10(pValue_x_max), "min" : 1*Math.log10(pValue_x_min), "value" : pValue, "step" : .0001 });
+    $("#sliderPVal").attr({ "max" : -1*Math.log10(pValue_x_max), "min" : -1*Math.log10(pValue_x_min), "value" : pValue, "step" : .0001 });
 
-    var sliderOutput = function(x){ return Math.pow(10,x); };
-    var sliderInput  = function(x){ return (Math.log10(x))};
+    var sliderOutput = function(x){ return Math.pow(10,-x); }; // <- minus x because the slider outputs positive values instead of negative ones.
+    var sliderInput  = function(x){ return (-1 * Math.log10(x))};
 
     $("#sliderPVal").on("input", function(){
-      $("#PValText").val( sliderOutput( $("#sliderPVal").val()).toFixed( -1*Math.log10(pValue_x_min) ).replace(/\.?0+$/, '') );
+      $("#PValText").val( sliderOutput( $("#sliderPVal").val()).toFixed( -1*Math.log10(pValue_x_max) ).replace(/\.?0+$/, '') );
       pValue = sliderOutput( $("#sliderPVal").val());
-
     });
     $("#sliderPVal").on("change", function(){ updateChart(); });
 
     // Textfield
-    $("#PValText").val( pValue.toFixed( -1*Math.log10(pValue_x_min) ).replace(/\.?0+$/, '' ) ); // set initial value
+    $("#PValText").val( pValue.toFixed( -1*Math.log10(pValue_x_max) ).replace(/\.?0+$/, '' ) ); // set initial value
 
     var pUpdate = function(){
       pValue = Number( $("#PValText").val() );
@@ -100,7 +97,7 @@
 
     // FCValue Slider ********************************************************************************************************************************************************************************************
     // Axis
-    var fc_min = 0, fc_max = Math.ceil(real_fc(3.51671876)); // regular FC Value -> 3.51671876;
+    var fc_min = -2.5444, fc_max = 3.51671876;
     width = $("#FCValue").width() - margin.left - margin.right,
     height = 0;//$("#PValue").height() - margin.top - margin.bottom - $("#sliderPVal").height();
 
@@ -151,109 +148,6 @@
             fcUpdate();
         }
     });
-
-    // Legend for FC Value colors ********************************************************************************************************************************************************************************************
-    var legendMargin = { top: 20, bottom: 20, left: 20, right: 20 };
-
-    // use same margins as main plot
-    var margin = { top: 20, bottom: 20, left: 30, right: 20 };
-    var legendWidth = 10;
-    var legendHeight = 200;
-    var legendFullWidth = 100;
-    var legendFullHeight = legendHeight + margin.bottom + margin.top;
-
-    var legendSvg = d3.select('#legend').append("svg")
-        .attr('width', legendFullWidth)
-        .attr('height', legendFullHeight)
-        .append('g')
-        .attr('transform', 'translate(' + legendMargin.left + ',' +
-        legendMargin.top + ')');
-
-    // update the color scale, restyle the plot points and legend
-    function updateColorLegend(scale, minVal, maxVal) {
-        // create color scale
-        var colorScale = d3.scale.linear()
-            .domain(linspace(minVal, maxVal, scale.length))
-            .range(scale);
-
-        // clear current legend
-        legendSvg.selectAll('*').remove();
-
-        // append gradient bar
-        var gradient = legendSvg.append('defs')
-            .append('linearGradient')
-            .attr('id', 'gradient')
-            .attr('x1', '0%') // bottom
-            .attr('y1', '100%')
-            .attr('x2', '0%') // to top
-            .attr('y2', '0%')
-            .attr('spreadMethod', 'pad');
-
-        // programatically generate the gradient for the legend
-        // this creates an array of [pct, color] pairs as stop
-        // values for legend
-        var pct = linspace(0, 100, scale.length).map(function(d) {
-            return Math.round(d) + '%';
-        });
-
-        var colorPct = d3.zip(pct, scale);
-
-        colorPct.forEach(function(d) {
-            gradient.append('stop')
-                .attr('offset', d[0])
-                .attr('stop-color', d[1])
-                .attr('stop-opacity', .6);
-        });
-
-        legendSvg.append('rect')
-            .attr('x1', 0)
-            .attr('y1', 0)
-            .attr('width', legendWidth)
-            .attr('height', legendHeight)
-            .style('fill', 'url(#gradient)');
-
-        // create a scale and axis for the legend
-        var legendScale = d3.scale.linear()
-            .domain([minVal, maxVal])
-            .range([legendHeight, 0]);
-
-        var max_value = Math.ceil(maxVal);
-
-        var legendAxis = d3.svg.axis()
-            .scale(legendScale)
-            .orient("right")
-            .tickValues(d3.range(minVal, max_value))
-            .ticks(10, function(d) {
-              return d;
-            });
-
-        legendSvg.append("g")
-            .attr("class", "legend axis")
-            .attr("transform", "translate(" + legendWidth + ", 0)")
-            .call(legendAxis);
-
-        legendSvg.append("text")
-          .attr("class", "y label")
-          .attr("text-anchor", "end")
-          .attr("y", 6)
-          .attr("dy", "-.75em")
-          .attr("transform", "rotate(-90)")
-          .text("FC Value");
-    }
-
-    function linspace(start, end, n) {
-        var out = [];
-        var delta = (end - start) / (n - 1);
-
-        var i = 0;
-        while(i < (n - 1)) {
-            out.push(start + (i * delta));
-            i++;
-        }
-
-        out.push(end);
-        return out;
-    }
 
 
     // Selections - Checkbox filtering *********************************************************************************************************************************************
@@ -316,12 +210,12 @@
     var root;
 
     var diameter = 880, //960,
-    format = d3.format(",d");
+      format = d3.format(",d");
 
     var pack = d3.layout.pack()
       .size([diameter - 4, diameter - 4])
       .value(function(d) { return d.size; })
-      .padding(0);
+      .padding(2);
 
     var svg = d3.select('#' + settings.id).append("svg")
       .attr("width", diameter)
@@ -345,15 +239,15 @@
             //&&
             d.PValue <= pValue
             &&
-            real_fc(Math.abs(d.LogFC)) <= FCValue
+            d.LogFC <= FCValue
           )
           ||
           d.Study == ""
         )
         return d.size;
       else
-        // return d.size;
-        return 0.0001; // approximately zero, but actually zero screws up packing function
+        return d.size;
+        //return 0.0001; // approximately zero, but actually zero screws up packing function
     };
 
 
@@ -380,7 +274,7 @@
 
       // create the tree array
       var treeData = [];
-      data.filter(function(d){ return d.name != "NA" && d.LogFC != "NA" && d.size != "NA" && d.PValue != "NA" && d.AdjPValue != "NA"})
+      data.filter(function(d){ return d.name != "NA" && d.LogFC != "NA" && d.size != "NA" && d.PValue != "NA" && d.AdjPValue != "NA" && d.PValue < pValue_x_min})
         .forEach(function(node) {
           // add to parent
           var parent = dataMap[node.parent];
@@ -407,7 +301,7 @@
 
       node = svg.datum(root).selectAll(".node")
               .data(pack.nodes);
-              ////console.debug(node);
+              //console.debug(node);
 
       pack.value( userInputFilter );
       pack.nodes(root);
@@ -418,36 +312,32 @@
 
       tooltips = groups.append("title")
             //(d.children ? "" : ": " + format(d.size)
-            .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + real_fc(d.LogFC) + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study) });
+            .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + d.LogFC + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study) });
 
 
       // Color Map
-      // var data_points = d3.entries(dataMap);
+      var data_points = d3.entries(dataMap);
       // console.log("data_points");
       // console.log(data_points);
-      // var max_fc = d3.max( data_points, function(d) { return d['value']['LogFC'] });
-  	  var max_fc = real_fc(d3.max( data, function(d) { return d.LogFC }));
-      ////console.debug(max_fc);
-      // var min_fc = d3.min( data_points, function(d) { return d['value']['LogFC'] });
-  	  var min_fc = real_fc(d3.min( data, function(d) { return d.LogFC }));
-      ////console.debug(min_fc);
+      var max_fc = d3.max( data_points, function(d) { return d['value']['LogFC'] });
+      //console.debug(max_fc);
+      var min_fc = d3.min( data_points, function(d) { return d['value']['LogFC'] });
+      //console.debug(min_fc);
       var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
       // console.log('color');
       // console.log(color_scale(max_fc));
 
-      updateColorLegend(['#253494', '#bd0026'], min_fc, max_fc);
 
       circles = node.filter(function(d){ return !( d.name == "WB" ); }).append("circle")
-          .attr("r", function(d) { return d.children ? 0.95 * d.r : d.r; }) //0.909090909
-          .style('fill', function(d) { return (d.children ? "#000" : color_scale(real_fc(d.LogFC))); })
+          .attr("r", function(d) { return d.r; })
+          .style('fill', function(d) { return (d.children ? "none" : color_scale(d.LogFC)); })
           // .style('fill-opacity', function(d) { return ( d.children ? '0' : '.6' ); })
-          .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '.07' : '.6' ); })
-          //.style('stroke', function(d){ return d.children ? '#000' : 'none'})
-          .style('stroke-opacity','.1')
-          .style('stroke-width', '10px');
+          .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '0' : '.6' ); })
+          .style('stroke', function(d){ return d.children ? '#ccc' : 'none'})
+          .style('stroke-width', '2px');
 
 
-      ////console.debug(node);
+      //console.debug(node);
 
 
       // RENDERING TEXT
@@ -473,19 +363,12 @@
        .filter(function(d){ return !(d.name == "WB"); })
       //.filter(function(d){ return !(d.parent.name == "WB"); })
        .append("text")
-                // .attr("dy", function(d){ return Math.max(0.909090909 * d.r + 10)+"px"})
-                .attr("dy", function(d){ return (.005 * d.r)+"em"})
+                .attr("dy", "1em")
                 .style("text-anchor", "middle")
-                .style("font-size", function(d) { return Math.min(16, (Math.max( 0.2 * d.r, 11)) ) + "px" })
-                // .style("font-weight", function(d) { return (0.2 * d.r > 12 ? 'Regular' : '600')})
-                .style("text-shadow", "-1px 0 #cecece, 0 2px #cecece, 1px 0 #cecece, 0 -0px #e0e0e0") // left, bottom, right, top
             .append("textPath")
                 .attr("xlink:href",function(d,i){return "#s"+i;})
-                .attr("startOffset",function(d){return "28%";})
-                .text(function(d) {
-                  return ( (d.r > 30 && d.parent.r / d.r > 1.4) ? d.name : "" );
-                  // return (d.r > 30 ? d.name : "");
-                });
+                .attr("startOffset",function(d){return "30%";})
+                .text(function(d) { return (d.r > 25 ? d.name : ""); });
     };
 
     var updateChart = function() {
@@ -494,9 +377,10 @@
       pack.nodes(root);
 
       circles.transition().duration(2000)
-          .attr("r", function(d) { return d.children ? 0.95 * d.r : d.r; }) //0.909090909
-          .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '.07' : '.6' ); })
-          .style('stroke', function(d){ return d.children ? '#000' : 'none'});
+          .attr("r", function(d){ return d.r; } )
+          .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '0' : '.6' ); })
+          .style('stroke', function(d){ return d.children ? '#ccc' : 'none'});
+
 
       groups.transition().duration(2000)
           .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
@@ -505,6 +389,11 @@
           .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + d.LogFC + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study) });
 
       // RENDERING TEXT
+      arc = d3.svg.arc()
+        .innerRadius(function(d){return d.r-d.r/5;})
+        .outerRadius(function(d){return d.r;})
+        .startAngle(0)
+        .endAngle(2*Math.PI);
       //If no children, display title like this
       titles
           .style("font-size", function(d) { return Math.min( d.r, 8 ) + "px" })
@@ -517,15 +406,13 @@
           .attr("d", arc);
 
       parentTitles
-            .attr("xlink:href",function(d,i){return "#s"+i;})
-            .attr("startOffset",function(d){return "28%";})
-            .style("text-anchor", "middle")
-            .text(function(d) {
-              return ( (d.r > 30 && d.parent.r / d.r > 1.4) ? d.name : "" );
-              // return (d.r > 30 ? d.name : "");
-            })
-            .attr("dy", function(d){ return (.005 * d.r)+"em"})
-            .style("font-size", function(d) { return Math.min(16, (Math.max( 0.2 * d.r, 6)) ) + "px" });
+          .attr("xlink:href",function(d,i){return "#s"+i;})
+          .attr("startOffset",function(d){return "30%";})
+          // .text(function(d) { return d.name; })
+          .text(function(d) { return (d.r > 25 ? d.name : ""); });
+          // .style("font-size", function(d) { return Math.min( 0.5 * d.r , 16 ) + "px" });
+
+
     };
 
 
@@ -533,6 +420,8 @@
 
 
     d3.select(self.frameElement).style("height", diameter + "px");
+
+    // d3.select("#button1").on("click", updateChart );
   }
 
 })(jQuery);

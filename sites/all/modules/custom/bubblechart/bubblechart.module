@@ -28,11 +28,9 @@ function bubblechart_block_view($delta = '') {
   //The $delta parameter tells us which block is being requested.
   switch ($delta) {
     case 'bubble_block':
-      $path = libraries_get_path('d3.bubblechartcsv');
-      //drupal_add_js($path . '/libs/' . 'd3.slider.js');
-      //drupal_add_js($path . '/libs/' . 'bootstrap.js');
-      drupal_add_css($path . '/libs/' . 'bubblechartcsv.css');
-      //$block['subject'] = t("Bubble Chart Block");
+      $path = libraries_get_path('d3.bubblechart');
+      echo $path;
+      drupal_add_css($path . '/bubblechart.css');
       $block['content'] =  t('<div id="facet-group">
     <div class="list-group">
       <h4>Study</h4>
@@ -115,8 +113,8 @@ function bubblechart_block_view($delta = '') {
     </div>
   </div>'
 );
-
-      $block['content'] .= bubblechart_csv();
+      $genes = 'PRELP';
+      $block['content'] .= bubblechart_genomics($genes);
       break;
   }
   return $block;
@@ -324,7 +322,7 @@ function bubblechart_genomics($input_genes) {
 
 
 /**
- * Return a form used to input gene names into bubblechar
+ * Return a form used to input gene names into bubblechart
  *
  * @return
  *   An array which will be used by the form builder to build the import form

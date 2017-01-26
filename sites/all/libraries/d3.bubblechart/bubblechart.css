@@ -14,7 +14,6 @@ label {
   font-size: 12px;
   font-weight: normal !important;
   color: grey;
-
 }
 
 /*::-webkit-scrollbar-track
@@ -60,12 +59,14 @@ label {
   right: 0px;
   width: 200px;
 /*  height: 960px;*/
-  /*overflow-y: hidden;*/
+/*overflow-y: hidden;*/
 }
 
 .facet-list br {
   display: none;
 }
+
+
 /******* Sliders *******/
 
 #slider-area{
@@ -150,7 +151,7 @@ label {
   width: 50px;
   height: 20px;
   top: -38px;*/
-  left: 79px;
+  left: 120px;
   /*border: solid 1px #ccc;*/
 }
 
@@ -160,6 +161,14 @@ label {
   z-index: 0;
 }
 
-#FCValue {
-  display: none;
+/******* Legend *******/
+
+#legend {
+  position: absolute;
+  bottom: 12px;
+  left: 25px;
+}
+
+#legend .axis text {
+  font: 11px sans-serif;
 }

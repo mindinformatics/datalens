@@ -2053,6 +2053,101 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   );
   $handler->display->display_options['filters']['field_contrast_tid']['vocabulary'] = 'contrast';
   $handler->display->display_options['path'] = 'gene-expression-table';
+
+  /* Display: Data export */
+  $handler = $view->new_display('views_data_export', 'Data export', 'views_data_export_1');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Fold change */
+  $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
+  $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
+  $handler->display->display_options['fields']['field_fold_change']['field'] = 'field_fold_change';
+  $handler->display->display_options['fields']['field_fold_change']['label'] = 'Log(FC)';
+  $handler->display->display_options['fields']['field_fold_change']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '1',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php_1']['id'] = 'php_1';
+  $handler->display->display_options['fields']['php_1']['table'] = 'views';
+  $handler->display->display_options['fields']['php_1']['field'] = 'php';
+  $handler->display->display_options['fields']['php_1']['label'] = 'Fold Change';
+  $handler->display->display_options['fields']['php_1']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php_1']['php_output'] = '<?php 
+$dat=$data->field_field_fold_change[0][\'raw\'][\'value\'];
+$fc_up =pow(2,$dat);
+$fc_down= -1/pow(2,$dat);
+$fc = ($dat>= 0) ? $fc_up : $fc_down;
+printf("%.2f",$fc);
+?> 
+';
+  $handler->display->display_options['fields']['php_1']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php_1']['php_click_sortable'] = '';
+  /* Field: Content: P-value */
+  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '10',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php']['id'] = 'php';
+  $handler->display->display_options['fields']['php']['table'] = 'views';
+  $handler->display->display_options['fields']['php']['field'] = 'php';
+  $handler->display->display_options['fields']['php']['label'] = 'Pvalue';
+  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php']['php_output'] = '<?php 
+printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
+?>';
+  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
+  /* Field: Content: Brain region */
+  $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
+  /* Field: Content: Supporting Analysis */
+  $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
+  /* Field: Content: Originating Dataset */
+  $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
+  $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['relationship'] = 'field_result_data_target_id';
+  $handler->display->display_options['fields']['field_input']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';
+  /* Field: Content: Data Type */
+  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['path'] = 'gene-expression-table/export';
+  $handler->display->display_options['displays'] = array(
+    'page' => 'page',
+    'default' => 0,
+  );
   $export['evidence'] = $view;
 
   $view = new view();

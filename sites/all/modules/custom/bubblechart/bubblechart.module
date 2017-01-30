@@ -35,8 +35,6 @@ function bubblechart_block_view($delta = '') {
       $genes = 'PRELP';
       $pval = 0.05;
       $result = _query_mongo($genes, $pval);
-      dsm($result);
-
 
 
       $study_checkbox = _create_facet($result, 'Study');    // Retuens string 35-44

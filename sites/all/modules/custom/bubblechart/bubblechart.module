@@ -35,11 +35,17 @@ function bubblechart_block_view($delta = '') {
       $genes = 'PRELP';
       $pval = 0.05;
       $result = _query_mongo($genes, $pval);
+      dsm($result);
 
-      $study_checkbox=_create_facet($result, 'Study');    // Retuens string 35-44
-      $contrast_checkbox=_create_facet($result, 'Contrast');
-      $datatype_checkbox=_create_facet($result, 'DataType');
-      $br_checkbox=_create_facet($result, 'BrainRegion');
+
+
+      $study_checkbox = _create_facet($result, 'Study');    // Retuens string 35-44
+      $contrast_checkbox = _create_facet($result, 'Contrast');
+      $datatype_checkbox = _create_facet($result, 'DataType');
+      $br_checkbox = _create_facet($result, 'BrainRegion');
+
+      $block['content'] = '<div id="facet-group"> <div class="list-group">';
+
       $block['content'] = $study_checkbox . $contrast_checkbox .  $datatype_checkbox .  $br_checkbox;
       $block['content'] .=  t(
 
@@ -60,6 +66,8 @@ function bubblechart_block_view($delta = '') {
   }
   return $block;
 }
+
+
 
 /**
 * Implements hook_menu().
@@ -108,11 +116,14 @@ function bubblechart_csv() {
 
 
 function bubblechart_genomics($result) {
+    //dsm($result);
 
     //$terms = array_column($result, 'parent');
     $terms = array_map(function($element){return $element['parent'];}, $result);
+    //$terms = array_filter($result, "parent");
+    //dsm($terms);
     $terms_unique = array_flip($terms);
-    //var_dump($terms_unique);
+    //dsm($terms_unique);
 
     //$vid = 21;
     $parents = array();
@@ -129,11 +140,13 @@ function bubblechart_genomics($result) {
       }
     }
     $parents_unique = array_flip($parents);
+    //dsm($parents_unique);
     //var_dump($parents_unique);
     foreach($parents_unique as $key => $value){
       $result[] = array('size' => 5, 'parent' => 'WB', 'name' => $key);
     }
     $result[] = array('size' => 5, 'parent' => 'null', 'name' => 'WB');
+    //dsm($result);
 
     //$file_name = 'Test_input.txt';
     //$lines = array_values($result);
@@ -352,6 +365,7 @@ function _query_mongo($input_genes, $pval) {
        $result[$i]['LogFC'] = $doc['logFC'];
        $result[$i]['PValue'] = $doc['PValue'];
        $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
+       $result[$i]['size'] = abs($doc['logFC']);
        $filenames[] = $doc['FileName'];
        $i++;
      }
@@ -367,6 +381,7 @@ function _query_mongo($input_genes, $pval) {
        $main_result[$i]['FileName'] = $doc['FileName'];
        $main_result[$i]['Study'] = $doc['StudyName'];
        $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+       $main_result[$i]['parent'] = $doc['BrainRegionFull'];
        $main_result[$i]['DataType'] = $doc['DataType'];
        $main_result[$i]['Contrast'] = $doc['Contrast'];
        $i++;
@@ -382,25 +397,74 @@ function _query_mongo($input_genes, $pval) {
  		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
  		  $value['DataType'] = $main_result[$main_key]['DataType'];
  		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
+ 		  $value['parent'] = $main_result[$main_key]['parent'];
  		  $row[] = array(
  		    'Study' => $value['Study'],
  		    'BrainRegion' => $value['BrainRegion'],
+ 		    'parent' => $value['parent'],
  		    'DataType' => $value['DataType'],
  		    'Contrast' => $value['Contrast'],
  		    'GeneSymbol' => $value['GeneSymbol'],
  		    'LogFC' => $value['LogFC'],
  		    'PValue' => $value['PValue'],
  		    'FileName' => $value['FileName'],
- 		    'ProbeID' => $value['ProbeID']
-
+ 		    'ProbeID' => $value['ProbeID'],
+ 		    'size' => $value['size'],
+ 		    'name' => $value['GeneSymbol'],
  		    );
  	  }
 
   return $row;
-}
-
-_create_facet($result, $type) {
 
 }
+
+function _create_facet($result, $type) {
+  $lines = "";
+  if ($type == "Study") {
+    $terms = array_map(function($element){return $element['Study'];}, $result);
+    $terms_unique = array_flip($terms);
+    $lines .= '<div class="list-group"><h4>Study</h4><div class="facet-list">';
+    foreach ($terms_unique as $key => $value) {
+      $lines .= '<label><input type="checkbox" class="cbox study" value="' . $key . '"> '. $key . '</label><br>';
+    }
+    $lines .='</div></div>';
+  }
+  if ($type == "Contrast") {
+    $terms = array_map(function($element){return $element['Contrast'];}, $result);
+    $terms_unique = array_flip($terms);
+    $lines .= '<div class="list-group"><h4>Contrast</h4><div class="facet-list">';
+    foreach ($terms_unique as $key => $value) {
+      $lines .= '<label><input type="checkbox" class="cbox contrast" value="' . $key . '"> '. $key . '</label><br>';
+    }
+    $lines .='</div></div>';
+  }
+  if ($type == "BrainRegion") {
+    $terms = array_map(function($element){return $element['BrainRegion'];}, $result);
+    $terms_unique = array_flip($terms);
+    $lines .= '<div class="list-group"><h4>Brain Region</h4><div class="facet-list">';
+    foreach ($terms_unique as $key => $value) {
+      $lines .= '<label><input type="checkbox" class="cbox brainRegion" value="' . $key . '"> '. $key . '</label><br>';
+    }
+    $lines .='</div></div>';
+  }
+  if ($type == "DataType") {
+    $terms = array_map(function($element){return $element['DataType'];}, $result);
+    $terms_unique = array_flip($terms);
+    $lines .= '<div class="list-group"><h4>Data Type</h4><div class="facet-list">';
+    foreach ($terms_unique as $key => $value) {
+      $lines .= '<label><input type="checkbox" class="cbox dataType" value="' . $key . '"> '. $key . '</label><br>';
+    }
+    $lines .='</div></div>';
+  }
+
+  //dsm($terms_unique);
+  //dsm($lines);
+
+  return($lines);
+
+}
+
+
+
 
 ?>

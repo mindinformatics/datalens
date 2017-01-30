@@ -44,9 +44,10 @@ function bubblechart_block_view($delta = '') {
       $datatype_checkbox = _create_facet($result, 'DataType');
       $br_checkbox = _create_facet($result, 'BrainRegion');
 
-      $block['content'] = '<div id="facet-group"> <div class="list-group">';
+      $block['content'] = '<div id="facet-group">';
 
-      $block['content'] = $study_checkbox . $contrast_checkbox .  $datatype_checkbox .  $br_checkbox;
+      $block['content'] .= $study_checkbox . $contrast_checkbox .  $datatype_checkbox .  $br_checkbox;
+      $block['content'] .= '</div>';
       $block['content'] .=  t(
 
       '<div id="slider-area">

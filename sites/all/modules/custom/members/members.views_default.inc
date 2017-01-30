@@ -2107,7 +2107,7 @@ printf("%.2f",$fc);
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
   $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = 'Pvalue';
+  $handler->display->display_options['fields']['php']['label'] = 'P-value';
   $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
   $handler->display->display_options['fields']['php']['php_output'] = '<?php 
 printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);

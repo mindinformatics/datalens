@@ -1541,6 +1541,10 @@ ul.bef-tree-child.bef-tree-depth-2 {
     margin-top: 1.0em;
 }
 
+.view .feed-icon {
+  padding-bottom: 1%;
+}
+
 
 /* Line up multi-line options nicely */
 .form-checkboxes .bef-tree .bef-tree-child,

@@ -227,11 +227,21 @@ function bubblechart_views_pre_render(&$view) {
       $filtered_mongo = $mongo_array;
       //var_dump($mongo_array);
 
-      if (!empty($view->exposed_input['field_brain_region_tid'])) {
-        $brain_region = $view->exposed_input['field_brain_region_tid'];
+      if (!empty($view->exposed_input['term_node_tid_depth'])) {
+        $brain_region = $view->exposed_input['term_node_tid_depth'];
         //dsm($brain_region);
-        $filtered_mongo = array_filter($filtered_mongo,
-        function($v) use ($brain_region){return $v['BrainRegion'] == $brain_region;});
+        $terms = array();
+        foreach($brain_region as $br) {
+          $term = taxonomy_term_load($br)->name;
+          array_push($terms, $term);
+          }
+          //dsm($terms);
+          $filtered_mongo = array_filter($filtered_mongo,
+          function($v) use ($terms){
+            return in_array($v['BrainRegion'], $terms);
+            });
+          //dsm($filtered_mongo);
+
       }
 
 

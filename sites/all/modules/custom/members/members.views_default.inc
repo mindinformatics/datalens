@@ -1395,6 +1395,7 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'evidence' => 'evidence',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Claim Type (field_evidence_data_type) */
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['id'] = 'field_evidence_data_type_tid';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['table'] = 'field_data_field_evidence_data_type';
@@ -1403,12 +1404,14 @@ function members_views_default_views() {
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['value'] = array(
     0 => '19448',
   );
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['vocabulary'] = 'evidence_data_type';
   /* Filter criterion: Content: Differentially Expressed Genes (field_genes_diff) */
   $handler->display->display_options['filters']['field_genes_diff_tid']['id'] = 'field_genes_diff_tid';
   $handler->display->display_options['filters']['field_genes_diff_tid']['table'] = 'field_data_field_genes_diff';
   $handler->display->display_options['filters']['field_genes_diff_tid']['field'] = 'field_genes_diff_tid';
   $handler->display->display_options['filters']['field_genes_diff_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_genes_diff_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_genes_diff_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['operator_id'] = 'field_genes_diff_tid_op';
   $handler->display->display_options['filters']['field_genes_diff_tid']['expose']['label'] = 'Gene Name';
@@ -1424,45 +1427,129 @@ function members_views_default_views() {
   );
   $handler->display->display_options['filters']['field_genes_diff_tid']['type'] = 'synonyms_autocomplete';
   $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
-  /* Filter criterion: Content: Brain region (field_brain_region) */
-  $handler->display->display_options['filters']['field_brain_region_tid']['id'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['table'] = 'field_data_field_brain_region';
-  $handler->display->display_options['filters']['field_brain_region_tid']['field'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_brain_region_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator_id'] = 'field_brain_region_tid_op';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region(s)';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator'] = 'field_brain_region_tid_op';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['identifier'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['remember_roles'] = array(
+  /* Filter criterion: Content: Fold change (field_fold_change) */
+  $handler->display->display_options['filters']['field_fold_change_value_1']['id'] = 'field_fold_change_value_1';
+  $handler->display->display_options['filters']['field_fold_change_value_1']['table'] = 'field_data_field_fold_change';
+  $handler->display->display_options['filters']['field_fold_change_value_1']['field'] = 'field_fold_change_value';
+  $handler->display->display_options['filters']['field_fold_change_value_1']['operator'] = '<';
+  $handler->display->display_options['filters']['field_fold_change_value_1']['group'] = 1;
+  $handler->display->display_options['filters']['field_fold_change_value_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['operator_id'] = 'field_fold_change_value_1_op';
+  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['label'] = 'Log(FC) less than:';
+  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['operator'] = 'field_fold_change_value_1_op';
+  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['identifier'] = 'field_fold_change_value_1';
+  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
   );
-  $handler->display->display_options['filters']['field_brain_region_tid']['vocabulary'] = 'brain_region';
-  /* Filter criterion: Content: Data Type (field_data_type) */
-  $handler->display->display_options['filters']['field_data_type_tid']['id'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['table'] = 'field_data_field_data_type';
-  $handler->display->display_options['filters']['field_data_type_tid']['field'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['filters']['field_data_type_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_data_type_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator_id'] = 'field_data_type_tid_op';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['label'] = 'Data Type';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['operator'] = 'field_data_type_tid_op';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['identifier'] = 'field_data_type_tid';
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_data_type_tid']['expose']['remember_roles'] = array(
+  /* Filter criterion: Content: Fold change (field_fold_change) */
+  $handler->display->display_options['filters']['field_fold_change_value']['id'] = 'field_fold_change_value';
+  $handler->display->display_options['filters']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
+  $handler->display->display_options['filters']['field_fold_change_value']['field'] = 'field_fold_change_value';
+  $handler->display->display_options['filters']['field_fold_change_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_fold_change_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_fold_change_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['operator_id'] = 'field_fold_change_value_op';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['label'] = 'Log(FC) greater than:';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['operator'] = 'field_fold_change_value_op';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['identifier'] = 'field_fold_change_value';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
   );
-  $handler->display->display_options['filters']['field_data_type_tid']['vocabulary'] = 'data_type';
+  /* Filter criterion: Content: P-value (field_pvalue) */
+  $handler->display->display_options['filters']['field_pvalue_value']['id'] = 'field_pvalue_value';
+  $handler->display->display_options['filters']['field_pvalue_value']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['filters']['field_pvalue_value']['field'] = 'field_pvalue_value';
+  $handler->display->display_options['filters']['field_pvalue_value']['operator'] = '<';
+  $handler->display->display_options['filters']['field_pvalue_value']['value']['value'] = '0.05';
+  $handler->display->display_options['filters']['field_pvalue_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_pvalue_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['operator_id'] = 'field_pvalue_value_op';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['label'] = 'P-value less than:';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['operator'] = 'field_pvalue_value_op';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['identifier'] = 'field_pvalue_value';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Content: Has taxonomy terms (with depth) */
+  $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
+  $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['group'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Brain region(s):';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
+  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'brain_region';
+  $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
+  /* Filter criterion: Content: Contrast (field_contrast) */
+  $handler->display->display_options['filters']['field_contrast_tid']['id'] = 'field_contrast_tid';
+  $handler->display->display_options['filters']['field_contrast_tid']['table'] = 'field_data_field_contrast';
+  $handler->display->display_options['filters']['field_contrast_tid']['field'] = 'field_contrast_tid';
+  $handler->display->display_options['filters']['field_contrast_tid']['value'] = array(
+    19503 => '19503',
+  );
+  $handler->display->display_options['filters']['field_contrast_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_contrast_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_contrast_tid']['expose']['operator_id'] = 'field_contrast_tid_op';
+  $handler->display->display_options['filters']['field_contrast_tid']['expose']['label'] = 'Contrast:';
+  $handler->display->display_options['filters']['field_contrast_tid']['expose']['operator'] = 'field_contrast_tid_op';
+  $handler->display->display_options['filters']['field_contrast_tid']['expose']['identifier'] = 'field_contrast_tid';
+  $handler->display->display_options['filters']['field_contrast_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_contrast_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_contrast_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_contrast_tid']['vocabulary'] = 'contrast';
+  /* Filter criterion: Content: Has taxonomy terms (with depth) */
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['group'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator_id'] = 'term_node_tid_depth_1_op';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['label'] = 'Data Type:';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator'] = 'term_node_tid_depth_1_op';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['identifier'] = 'term_node_tid_depth_1';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['type'] = 'select';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['vocabulary'] = 'data_type';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['depth'] = '3';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -1482,106 +1569,6 @@ function members_views_default_views() {
       'filter_rewrite_values' => NULL,
     ),
     'field_genes_diff_tid' => array(
-      'bef_format' => 'default',
-      'more_options' => array(
-        'bef_select_all_none' => 0,
-        'bef_collapsible' => 0,
-        'is_secondary' => 0,
-        'any_label' => '',
-        'bef_filter_description' => '',
-        'tokens' => array(
-          'available' => array(
-            0 => 'global_types',
-            1 => 'vocabulary',
-            'secondary_label' => NULL,
-            'collapsible_label' => NULL,
-            'combine_rewrite' => NULL,
-            'reset_label' => NULL,
-            'bef_filter_description' => NULL,
-            'any_label' => NULL,
-            'filter_rewrite_values' => NULL,
-          ),
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-          'filter_rewrite_values' => NULL,
-        ),
-        'rewrite' => array(
-          'filter_rewrite_values' => '',
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-        ),
-        'secondary_label' => NULL,
-        'collapsible_label' => NULL,
-        'combine_rewrite' => NULL,
-        'reset_label' => NULL,
-        'filter_rewrite_values' => NULL,
-      ),
-      'secondary_label' => NULL,
-      'collapsible_label' => NULL,
-      'combine_rewrite' => NULL,
-      'reset_label' => NULL,
-      'bef_filter_description' => NULL,
-      'any_label' => NULL,
-      'filter_rewrite_values' => NULL,
-    ),
-    'field_brain_region_tid' => array(
-      'bef_format' => 'default',
-      'more_options' => array(
-        'is_secondary' => 0,
-        'any_label' => '',
-        'bef_filter_description' => '',
-        'tokens' => array(
-          'available' => array(
-            0 => 'global_types',
-            1 => 'vocabulary',
-            'secondary_label' => NULL,
-            'collapsible_label' => NULL,
-            'combine_rewrite' => NULL,
-            'reset_label' => NULL,
-            'bef_filter_description' => NULL,
-            'any_label' => NULL,
-            'filter_rewrite_values' => NULL,
-          ),
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-          'filter_rewrite_values' => NULL,
-        ),
-        'rewrite' => array(
-          'filter_rewrite_values' => '',
-          'secondary_label' => NULL,
-          'collapsible_label' => NULL,
-          'combine_rewrite' => NULL,
-          'reset_label' => NULL,
-          'bef_filter_description' => NULL,
-          'any_label' => NULL,
-        ),
-        'secondary_label' => NULL,
-        'collapsible_label' => NULL,
-        'combine_rewrite' => NULL,
-        'reset_label' => NULL,
-        'filter_rewrite_values' => NULL,
-      ),
-      'secondary_label' => NULL,
-      'collapsible_label' => NULL,
-      'combine_rewrite' => NULL,
-      'reset_label' => NULL,
-      'bef_filter_description' => NULL,
-      'any_label' => NULL,
-      'filter_rewrite_values' => NULL,
-    ),
-    'field_data_type_tid' => array(
       'bef_format' => 'default',
       'more_options' => array(
         'is_secondary' => 0,
@@ -1816,6 +1803,162 @@ function members_views_default_views() {
       'any_label' => NULL,
       'filter_rewrite_values' => NULL,
     ),
+    'term_node_tid_depth' => array(
+      'bef_format' => 'bef_ul',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_select_all_none_nested' => 1,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_contrast_tid' => array(
+      'bef_format' => 'bef_ul',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_select_all_none_nested' => 0,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'term_node_tid_depth_1' => array(
+      'bef_format' => 'bef_ul',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_select_all_none_nested' => 1,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            1 => 'vocabulary',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
     'secondary_label' => NULL,
     'collapsible_label' => NULL,
     'combine_rewrite' => NULL,
@@ -1959,25 +2102,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   );
   $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
   $handler->display->display_options['filters']['field_genes_diff_tid']['error_message'] = FALSE;
-  /* Filter criterion: Content: Brain region (field_brain_region) */
-  $handler->display->display_options['filters']['field_brain_region_tid']['id'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['table'] = 'field_data_field_brain_region';
-  $handler->display->display_options['filters']['field_brain_region_tid']['field'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_brain_region_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_brain_region_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator_id'] = 'field_brain_region_tid_op';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['label'] = 'Brain region(s):';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['operator'] = 'field_brain_region_tid_op';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['identifier'] = 'field_brain_region_tid';
-  $handler->display->display_options['filters']['field_brain_region_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['field_brain_region_tid']['vocabulary'] = 'brain_region';
   /* Filter criterion: Content: Fold change (field_fold_change) */
   $handler->display->display_options['filters']['field_fold_change_value_1']['id'] = 'field_fold_change_value_1';
   $handler->display->display_options['filters']['field_fold_change_value_1']['table'] = 'field_data_field_fold_change';
@@ -2033,17 +2157,37 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     4 => 0,
     5 => 0,
   );
+  /* Filter criterion: Content: Has taxonomy terms (with depth) */
+  $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
+  $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Brain region(s):';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
+  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'brain_region';
+  $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
   /* Filter criterion: Content: Contrast (field_contrast) */
   $handler->display->display_options['filters']['field_contrast_tid']['id'] = 'field_contrast_tid';
   $handler->display->display_options['filters']['field_contrast_tid']['table'] = 'field_data_field_contrast';
   $handler->display->display_options['filters']['field_contrast_tid']['field'] = 'field_contrast_tid';
-  $handler->display->display_options['filters']['field_contrast_tid']['relationship'] = 'field_result_data_target_id';
-  $handler->display->display_options['filters']['field_contrast_tid']['value'] = '';
   $handler->display->display_options['filters']['field_contrast_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_contrast_tid']['expose']['operator_id'] = 'field_contrast_tid_op';
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['label'] = 'Contrast';
+  $handler->display->display_options['filters']['field_contrast_tid']['expose']['label'] = 'Contrast:';
   $handler->display->display_options['filters']['field_contrast_tid']['expose']['operator'] = 'field_contrast_tid_op';
   $handler->display->display_options['filters']['field_contrast_tid']['expose']['identifier'] = 'field_contrast_tid';
+  $handler->display->display_options['filters']['field_contrast_tid']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_contrast_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -2051,7 +2195,31 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     4 => 0,
     5 => 0,
   );
+  $handler->display->display_options['filters']['field_contrast_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_contrast_tid']['vocabulary'] = 'contrast';
+  $handler->display->display_options['filters']['field_contrast_tid']['hierarchy'] = 1;
+  /* Filter criterion: Content: Has taxonomy terms (with depth) */
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator_id'] = 'term_node_tid_depth_1_op';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['label'] = 'Data Type:';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator'] = 'term_node_tid_depth_1_op';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['identifier'] = 'term_node_tid_depth_1';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['type'] = 'select';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['vocabulary'] = 'data_type';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['depth'] = '3';
   $handler->display->display_options['path'] = 'gene-expression-table';
 
   /* Display: Data export */

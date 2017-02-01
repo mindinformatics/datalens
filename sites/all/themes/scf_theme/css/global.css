@@ -1529,6 +1529,12 @@ div.horizontal-tabs .horizontal-tabs-panes {
   width: 95%;
 }
 
+.view-evidence .views-exposed-form #edit-field-group-tid-wrapper,
+.view-evidence .views-exposed-form #edit-term-node-tid-depth-wrapper,
+.view-evidence .views-exposed-form #edit-term-node-tid-depth-1-wrapper {
+  width: 20%;
+}
+
 ul.bef-tree-child.bef-tree-depth-0,
 ul.bef-tree-child.bef-tree-depth-1,
 ul.bef-tree-child.bef-tree-depth-2 {

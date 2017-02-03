@@ -369,7 +369,9 @@ function _query_mongo($input_genes, $pval) {
     if (empty($input_genes)) {
       $gene_list = array('PRELP');
     } else {
-      $gene_list = explode(",", $input_genes);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_genes);
+      //var_dump($gene_list);
       $trimmed_array = array_map('trim', $gene_list);
       $gene_list = $trimmed_array;
     }

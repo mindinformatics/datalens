@@ -113,8 +113,15 @@ function bubblechart_csv() {
   return d3_draw($chart);
 }
 
+function bubblechart_genomics($input_genes) {
 
-function bubblechart_genomics($result) {
+  $pval = 0.05;
+  $result = _query_mongo($input_genes, $pval);
+
+  return _call_genomics($result);
+}
+
+function _call_genomics($result) {
     //dsm($result);
 
     //$terms = array_column($result, 'parent');

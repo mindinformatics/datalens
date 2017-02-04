@@ -1538,6 +1538,12 @@ div.horizontal-tabs .horizontal-tabs-panes {
   width: 95%;
 }
 
+.view-evidence .views-exposed-form #edit-field-group-tid-wrapper,
+.view-evidence .views-exposed-form #edit-term-node-tid-depth-wrapper,
+.view-evidence .views-exposed-form #edit-term-node-tid-depth-1-wrapper {
+  width: 20%;
+}
+
 ul.bef-tree-child.bef-tree-depth-0,
 ul.bef-tree-child.bef-tree-depth-1,
 ul.bef-tree-child.bef-tree-depth-2 {
@@ -1855,7 +1861,29 @@ ul.bef-tree-child.bef-tree-depth-2 {
 }
 
 
-/* Evidence Dendrogram */
+/* Contrast "Table" */
+.not-front .ctable {
+  padding-top: 1%;
+  padding-bottom: 2%;
+  padding-left: 1%;
+}
+
+
+.not-front .crow {
+  display: block;
+  padding-top: 0.5%;
+}
+
+.not-front .cterm {
+  width: 20%;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.not-front .cdef {
+  width: 60%;
+  display: inline-block;
+}
 
 
 

@@ -113,8 +113,15 @@ function bubblechart_csv() {
   return d3_draw($chart);
 }
 
+function bubblechart_genomics($input_genes) {
 
-function bubblechart_genomics($result) {
+  $pval = 0.05;
+  $result = _query_mongo($input_genes, $pval);
+
+  return _call_genomics($result);
+}
+
+function _call_genomics($result) {
     //dsm($result);
 
     //$terms = array_column($result, 'parent');
@@ -214,7 +221,7 @@ function bubblechart_views_pre_render(&$view) {
 
 
   if($view->name=='evidence'){
-
+    //dsm($view);
     //dsm($view->exposed_input);
     //dsm($view->result);
 
@@ -231,8 +238,8 @@ function bubblechart_views_pre_render(&$view) {
         $brain_region = $view->exposed_input['term_node_tid_depth'];
         //dsm($brain_region);
         $terms = array();
-        foreach($brain_region as $br) {
-          $term = taxonomy_term_load($br)->name;
+        foreach($brain_region as $tid) {
+          $term = taxonomy_term_load($tid)->name;
           array_push($terms, $term);
           }
           //dsm($terms);
@@ -241,7 +248,30 @@ function bubblechart_views_pre_render(&$view) {
             return in_array($v['BrainRegion'], $terms);
             });
           //dsm($filtered_mongo);
+      }
 
+      if (!empty($view->exposed_input['term_node_tid_depth_1'])) {
+        $data_type = $view->exposed_input['term_node_tid_depth_1'];
+        //dsm($data_type);
+        $terms = array();
+        foreach($data_type as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          if ($term === "Array Expression" ) {
+            $term = "uArray";
+          }
+          if ($term === "RNA-seq" ) {
+            array_push($terms, "CPM", "RC", "FPKM");
+
+          } else {
+            array_push($terms, $term);
+          }
+        }
+          //dsm($terms);
+          $filtered_mongo = array_filter($filtered_mongo,
+          function($v) use ($terms){
+            return in_array($v['DataType'], $terms);
+            });
+          //dsm($filtered_mongo);
       }
 
 
@@ -263,9 +293,16 @@ function bubblechart_views_pre_render(&$view) {
       if (!empty($view->exposed_input['field_contrast_tid'])) {
         $contrast = $view->exposed_input['field_contrast_tid'];
         //dsm($contrast);
-        $filtered_mongo = array_filter($filtered_mongo,
-        function($v) use ($contrast){return $v['Contrast'] == $contrast;});
-
+        $terms = array();
+        foreach($contrast as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          array_push($terms, $term);
+        }
+          //dsm($terms);
+          $filtered_mongo = array_filter($filtered_mongo,
+          function($v) use ($terms){
+            return in_array($v['Contrast'], $terms);
+          });
       }
 
       if (!empty($view->exposed_input['field_pvalue_value'])) {
@@ -332,7 +369,9 @@ function _query_mongo($input_genes, $pval) {
     if (empty($input_genes)) {
       $gene_list = array('PRELP');
     } else {
-      $gene_list = explode(",", $input_genes);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_genes);
+      //var_dump($gene_list);
       $trimmed_array = array_map('trim', $gene_list);
       $gene_list = $trimmed_array;
     }

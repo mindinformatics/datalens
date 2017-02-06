@@ -235,7 +235,12 @@ nav {
 
 ul.nice-menu,
 ul.nice-menu ul {
-  	z-index: 10;
+  z-index: 10 !important;
+}
+
+ul#nice-menu-2,
+ul#nice-menu-2 ul {
+  z-index: 4 !important;
 }
 
 ul.nice-menu-down li.menuparent,
@@ -311,10 +316,6 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 #block-nice-menus-2 {
   padding-bottom: 20px;
-}
-
-ul#nice-menu-2 {
-  z-index: 4;
 }
 
 #nice-menu-2 ul {

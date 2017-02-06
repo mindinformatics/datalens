@@ -243,6 +243,11 @@ ul#nice-menu-2 ul {
   z-index: 4 !important;
 }
 
+ul.nice-menu li.menuparent ul {
+  overflow: visible !important;
+}
+
+
 ul.nice-menu-down li.menuparent,
 ul.nice-menu-down li.menuparent:hover  {
   	background: none;
@@ -315,7 +320,9 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 #block-nice-menus-2 {
+  margin-top: 3%;
   padding-bottom: 20px;
+  z-index: 0 !important;
 }
 
 #nice-menu-2 ul {

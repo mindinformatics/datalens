@@ -34,6 +34,7 @@ function bubblechart_block_view($delta = '') {
 
       $genes = 'PRELP';
       $pval = 0.05;
+
       $result = _query_mongo($genes, $pval);
 
 
@@ -41,6 +42,8 @@ function bubblechart_block_view($delta = '') {
       $contrast_checkbox = _create_facet($result, 'Contrast');
       $datatype_checkbox = _create_facet($result, 'DataType');
       $br_checkbox = _create_facet($result, 'BrainRegion');
+
+
 
       $block['content'] = '<div id="facet-group">';
 
@@ -60,7 +63,8 @@ function bubblechart_block_view($delta = '') {
       </div>'
       );
 
-      $block['content'] .= bubblechart_genomics($result);
+      $block['content'] .= _call_genomics($result);
+
       break;
   }
   return $block;
@@ -141,7 +145,7 @@ function _call_genomics($result) {
         $parents[] = $key;
       } else {
         $parent_name = array_pop($parent_object)->name;
-        $result[] = array('size' => 5, 'parent' => $parent_name, 'name' => $key);
+        $result[] = array('size' => 5, 'parent' => $parent_name, 'name' => $key, 'PValue' => 0);
         $parents[] = $parent_name;
       }
     }
@@ -149,9 +153,9 @@ function _call_genomics($result) {
     //dsm($parents_unique);
     //var_dump($parents_unique);
     foreach($parents_unique as $key => $value){
-      $result[] = array('size' => 5, 'parent' => 'WB', 'name' => $key);
+      $result[] = array('size' => 5, 'parent' => 'WB', 'name' => $key, 'PValue' => 0);
     }
-    $result[] = array('size' => 5, 'parent' => 'null', 'name' => 'WB');
+    $result[] = array('size' => 5, 'parent' => 'null', 'name' => 'WB', 'PValue' => 0);
     //dsm($result);
 
     //$file_name = 'Test_input.txt';

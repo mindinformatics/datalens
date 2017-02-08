@@ -2103,24 +2103,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
   $handler->display->display_options['filters']['field_genes_diff_tid']['error_message'] = FALSE;
   /* Filter criterion: Content: Fold change (field_fold_change) */
-  $handler->display->display_options['filters']['field_fold_change_value_1']['id'] = 'field_fold_change_value_1';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['table'] = 'field_data_field_fold_change';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['field'] = 'field_fold_change_value';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['operator'] = '<';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['group'] = 1;
-  $handler->display->display_options['filters']['field_fold_change_value_1']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['operator_id'] = 'field_fold_change_value_1_op';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['label'] = 'Log(FC) less than:';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['operator'] = 'field_fold_change_value_1_op';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['identifier'] = 'field_fold_change_value_1';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  /* Filter criterion: Content: Fold change (field_fold_change) */
   $handler->display->display_options['filters']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['filters']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['filters']['field_fold_change_value']['field'] = 'field_fold_change_value';

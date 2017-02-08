@@ -227,7 +227,6 @@ function bubblechart_views_post_execute(&$view) {
 function bubblechart_views_pre_render(&$view) {
   //dsm($view->exposed_input);
 
-
   if($view->name=='evidence'){
     //dsm($view);
     //dsm($view->exposed_input);
@@ -253,6 +252,7 @@ function bubblechart_views_pre_render(&$view) {
       $filtered_mongo = $mongo_array;
       //var_dump($mongo_array);
 
+      // Brain Region
       if (!empty($view->exposed_input['term_node_tid_depth'])) {
         $brain_region = $view->exposed_input['term_node_tid_depth'];
         //dsm($brain_region);
@@ -269,6 +269,7 @@ function bubblechart_views_pre_render(&$view) {
           //dsm($filtered_mongo);
       }
 
+      // Data Type
       if (!empty($view->exposed_input['term_node_tid_depth_1'])) {
         $data_type = $view->exposed_input['term_node_tid_depth_1'];
         //dsm($data_type);
@@ -293,7 +294,24 @@ function bubblechart_views_pre_render(&$view) {
           //dsm($filtered_mongo);
       }
 
+      // Group/Study
+      if (!empty($view->exposed_input['term_node_tid_depth_2'])) {
+        $study = $view->exposed_input['term_node_tid_depth_2'];
+        //dsm($data_type);
+        $terms = array();
+        foreach($study as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          //dsm($terms);
+          $filtered_mongo = array_filter($filtered_mongo,
+          function($v) use ($terms){
+            return in_array($v['Study'], $terms);
+            });
+          //dsm($filtered_mongo);
+        }
+      }
 
+
+      // Fold Change
       if (!empty($view->exposed_input['field_fold_change_value'])) {
         $fc_gt = $view->exposed_input['field_fold_change_value'];
         //dsm($fc_gt);
@@ -302,6 +320,7 @@ function bubblechart_views_pre_render(&$view) {
       }
 
 
+      // Contrast
       if (!empty($view->exposed_input['field_contrast_tid'])) {
         $contrast = $view->exposed_input['field_contrast_tid'];
         //dsm($contrast);

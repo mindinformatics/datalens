@@ -38,7 +38,7 @@ function bubblechart_block_view($delta = '') {
       $result = _query_mongo($genes, $pval);
 
 
-      $study_checkbox = _create_facet($result, 'Study');    // Retuens string 35-44
+      $study_checkbox = _create_facet($result, 'Study');    // Returns string 35-44
       $contrast_checkbox = _create_facet($result, 'Contrast');
       $datatype_checkbox = _create_facet($result, 'DataType');
       $br_checkbox = _create_facet($result, 'BrainRegion');

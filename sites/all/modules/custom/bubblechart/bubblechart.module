@@ -220,6 +220,10 @@ function bubblechart_form_submit($form, & $form_state) {
 	$form_state['redirect'] = 'genomics/' . $valid_genes;
 }
 
+function bubblechart_views_post_execute(&$view) {
+
+}
+
 function bubblechart_views_pre_render(&$view) {
   //dsm($view->exposed_input);
 
@@ -227,7 +231,18 @@ function bubblechart_views_pre_render(&$view) {
   if($view->name=='evidence'){
     //dsm($view);
     //dsm($view->exposed_input);
-    //dsm($view->result);
+    //dsm($view);
+
+    if (empty($view->exposed_input['field_genes_diff_tid']) &&
+        empty($view->exposed_input['term_node_tid_depth']) &&
+        empty($view->exposed_input['term_node_tid_depth_1']) &&
+        empty($view->exposed_input['field_contrast_tid']) &&
+        empty($view->exposed_input['field_fold_change_value']) ) {
+        $view->result = array();
+        $view->total_rows = 0;
+        $view->query->pager->total_items = 0;
+        $view->query->pager->update_page_info();
+    }
 
     if (!empty($view->exposed_input['field_genes_diff_tid'])) {
       $gene_list = $view->exposed_input['field_genes_diff_tid'];
@@ -279,18 +294,11 @@ function bubblechart_views_pre_render(&$view) {
       }
 
 
-      if (!empty($view->exposed_input['field_fold_change_value_1'])) {
-        $fc_lt= $view->exposed_input['field_fold_change_value_1'];
-        //dsm($fc_lt);
-        $filtered_mongo = array_filter($filtered_mongo,
-        function($v) use ($fc_lt){return -1/pow(2,$v['LogFC']) <= $fc_lt;});
-      }
-
       if (!empty($view->exposed_input['field_fold_change_value'])) {
         $fc_gt = $view->exposed_input['field_fold_change_value'];
         //dsm($fc_gt);
         $filtered_mongo = array_filter($filtered_mongo,
-        function($v) use ($fc_gt){return pow(2,$v['LogFC']) >= $fc_gt;});
+        function($v) use ($fc_gt){return pow(2,abs($v['LogFC'])) >= $fc_gt;});
       }
 
 
@@ -340,7 +348,8 @@ function bubblechart_views_pre_render(&$view) {
 
       $view->result = $new_result_array;
       $view->total_rows = count($new_result_array);
-      //dsm($view->result);
+      //$view->query->pager->total_items = count($new_result_array);
+      //$view->query->pager->update_page_info();
 
     }
 
@@ -383,6 +392,7 @@ function _query_mongo($input_genes, $pval) {
     if(empty($pval)) {
       $pval=0.05;
     }
+
 
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");

@@ -18,22 +18,13 @@
   // var
 
   Drupal.d3.bubblechart = function (select, settings) {
-	rows = settings.rows;
 
+    rows = settings.rows;
 
     var pValue = 0.1;
-    var FCValue = 3.52;
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m1-B2-B1.csv";
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m0-B2-B1.csv";
+    var FCValue = 1.5;
+
     var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m0-B3-B1.csv";
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m1-B2-B1.csv";
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m1-B3-B1.csv";
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m2-B2-B1.csv";
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m2-B2-B1.csv";
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Microglia-out-B2-B1.csv";
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Microglia-out-B3-B1.csv";
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Microglia-out-B3-B2.csv";
-    // var dataFile = "/sites/all/themes/scf_theme/BubbleChart/Hyman-all-out.csv";
 
     var real_fc  = function(x){ return (x>0 ? Math.pow(2,x) : -1/Math.pow(2,x)) };
 
@@ -59,7 +50,7 @@
         .scale(pValue_x)
         .orient("bottom")
         .ticks(10, function(d) {
-          console.log('d ' + d);
+          //console.log('d ' + d);
           if(d < 1) return 10 + superscriptMinus + formatPower(Math.round(Math.log(d) / Math.LN10));
           else return 10 + formatPower(Math.round(Math.log(d) / Math.LN10));
         });
@@ -351,13 +342,135 @@
         checkboxFilters['DataType'][ this.value ] = this;
     });
 
+    var updateFilters = function(dataSet){
+
+      // uncheck parents, removes children
+      // UNIMPELMENTED !
+      // no recursive or multi-tiered updating for now!
 
 
+      // use a filtered dataMap based on sliders but not checkboxes (otherwise when an item is unchecked, it disappears and cannot be rechecked)
+      var dataSlider = jQuery.extend(true, new Array(), rows.filter(function(d){ return d.name != "NA" && d.LogFC != "NA" && d.size != "NA" && d.PValue != "NA" && d.AdjPValue != "NA" && d.PValue < pValue && Math.abs(real_fc(d.LogFC)) < FCValue }));
+      var dataMapSlider = dataSlider.reduce(function(map, node) {
+          map[node.name] = node;
+          return map;
+        }, {});
+
+      var dataSliderTree = [];
+
+      dataSlider.forEach(function(node) {
+          // add to parent
+          var parent = dataMapSlider[node.parent];
+          if (parent) {
+            // create child array if it doesn't exist
+            (parent.children || (parent.children = []))
+              // add node to child array
+              .push(node);
+          } else {
+            // parent is null or missing
+            dataSliderTree.push(node);
+          }
+        });
 
 
+      // check constrast
+      var checkboxes = $(".cbox.contrast");
+      for(var element in checkboxes){
+        if(!isNaN(element)){
+          // get value of checkbox
+          var value = checkboxes[element].value;
+          // turn off
+          checkboxes[element].parentElement.style.display = "none";
+
+          for(var i=0; i<dataSlider.length; i++){
+            if(dataSlider[i].Contrast == value) {
+              checkboxes[element].parentElement.style.display = "";
+              break;
+            }
+          }
+        }
+      };
+
+      // check data type
+      var checkboxes = $(".cbox.dataType");
+      for(var element in checkboxes){
+        if(!isNaN(element)){
+          // get value of checkbox
+          var value = checkboxes[element].value;
+          // turn off
+          checkboxes[element].parentElement.style.display = "none";
+
+          for(var i=0; i<dataSlider.length; i++){
+            if(dataSlider[i].DataType == value) {
+              checkboxes[element].parentElement.style.display = "";
+              break;
+            }
+          }
+        }
+      };
+
+      // check study
+      var checkboxes = $(".cbox.study");
+      for(var element in checkboxes){
+        if(!isNaN(element)){
+          // get value of checkbox
+          var value = checkboxes[element].value;
+          // turn off
+          checkboxes[element].parentElement.style.display = "none";
+
+          for(var i=0; i<dataSlider.length; i++){
+            if(dataSlider[i].Study == value) {
+              checkboxes[element].parentElement.style.display = "";
+              break;
+            }
+          }
+        }
+      };
+
+      // check for brain region
+      var checkboxes = $(".cbox.brainRegion");
+      for(var element in checkboxes){
+          if(!isNaN(element)){
+            // get value of checkbox
+            var value = checkboxes[element].value;
+
+            if(value === "Limbic system")
+              console.log('blah');
+            // turn off
+            checkboxes[element].parentElement.style.display = "none";
+
+            var typeof1 = typeof(dataMapSlider[value]);
+            if(typeof1 !== 'undefined'){
+              var typeof2 = typeof(dataMapSlider[value].children);
+            }
+
+            // if node and children exist
+            if( typeof(dataMapSlider[value]) !== "undefined" ){
+              if(typeof(dataMapSlider[value].children) !== "undefined")
+              {
+                // see if the children are data or just other parent nodes
+                for(var i=0; i<dataMapSlider[value].children.length; i++){
+                  if(dataMapSlider[value].children[i].Study != ""){
+                    //has data
+                    // turn on list element
+                    checkboxes[element].parentElement.style.display = "";
+                    break;
+                  }
+                  else
+                  {
+                    // only has other parents, let's remove it from the checklist until we implement hierarchical checking of parent/children
+                    checkboxes[element].parentElement.style.display = "none";
+                  }
+                }
+              }
+            }
+        };
+      };
+
+    };
 
     // Processing Data *********************************************************************************************************************************************
-    var data, emptyDataMap, emptyTree, node, groups, circles, titles, tooltips, parentPaths, parentTitles;
+    var data, data2, dataMap, emptyDataMap, emptyTree, node, groups, circles, titles, tooltips, parentPaths, parentTitles;
 
     var root;
 
@@ -381,54 +494,90 @@
       .startAngle(0)
       .endAngle(2*Math.PI);
 
+    // comment out this part - loads CSV for testing outside of Drupal environment
+    var loadCSV = function() {
+      d3.csv(dataFile, function(error, dataIn){
+        data = dataIn;
+        console.log('data');
+        console.log(data);
+        data.forEach(function(d) {
+          d.LogFC = +d.LogFC;
+          d.PValue = +d.PValue;
+          d.AdjPValue = +d.AdjPValue;
+        });
 
-    var userInputFilter = function(d)
-    {
-      // if(
-      //     (
-      //       // check all studies selected
-      //       //checkBoxMatch(d)
-      //       //&&
-      //       d.PValue <= pValue
-      //       &&
-      //       real_fc(Math.abs(d.LogFC)) <= FCValue
-      //     )
-      //     ||
-      //     d.Study == ""
-      //   )
-        return d.size;
-      // else
-      //   // return d.size;
-      //   return 0.0001; // approximately zero, but actually zero screws up packing function
+        updateChart();
+      });
     };
 
+    var updateChart = function() {
+      d3.selectAll("svg").selectAll("g.node").remove();
 
-    var load = function(error, dataIn) {
-      data = dataIn;
-      console.log('data');
-      console.log(data);
-      data.forEach(function(d) {
-        d.LogFC = +d.LogFC;
-        d.PValue = +d.PValue;
-        d.AdjPValue = +d.AdjPValue;
+      console.log('rows');
+      console.log(rows);
+
+//    var data2 = rows.filter(function(d){ return  d.PValue < pValue && Math.abs(real_fc(d.LogFC)) < FCValue && checkBoxMatch(d)});
+      var genes = jQuery.extend(true, new Array(),
+      rows.filter(function(d) {return d.Study &&  d.PValue < pValue && Math.abs(real_fc(d.LogFC)) > FCValue && checkBoxMatch(d)}));
+
+      console.log('genes');
+      console.log(genes);
+
+      // Create a map of objects
+      dataMap = jQuery.extend(true, new Array(), rows.reduce(function(map, node) {
+            map[node.name] = node;
+            return map
+        }, {}));
+
+      console.log('dataMap');
+      console.log(dataMap);
+      console.log('dataMap');
+
+      // Find genes with distinct parents
+
+      var unique = {};
+      var distinctGenes = [];
+      genes.forEach(function (d) {
+        if (!unique[d.parent]) {
+          distinctGenes.push(d);
+          unique[d.parent] = true;
+        }
       });
 
-      // *********** Convert flat data into a nice tree ***************
-      // create a name: node map
-      var dataMap = rows.reduce(function(map, node) {
-        map[node.name] = node;
-        return map;
-      }, {});
-      emptyDataMap = jQuery.extend(true, {}, dataMap); // store the datamap for reuse when making changes to data, later.
 
-      console.log('datamap');
-      console.log(dataMap);
+      console.log('distinctGenes');
+      console.log(distinctGenes);
+
+      // Add the parents of these genes with distinct parents
+      var parents=[];
+      function getParents(node) {
+          if (node.parent != "null") {
+            //console.log(node.parent);
+             parent = dataMap[node.parent]
+             if(parents.indexOf(parent) == -1) {
+                parents.push(parent);
+              }
+             return (getParents(parent));
+          }
+          else {
+           return;
+         }
+      }
+
+      distinctGenes.forEach(getParents);
+      console.log('parents');
+      console.log(parents);
+
+      // Concatenate genes with parents
+
+      var data2 = genes.concat(parents);
 
       // create the tree array
+
       var treeData = [];
-      //rows.filter(function(d){ return d.name != "NA" && d.LogFC != "NA" && d.size != "NA" && d.PValue != "NA" && d.AdjPValue != "NA" && d.PValue < pValue && Math.abs(real_fc(d.LogFC)) < FCValue && checkBoxMatch(d)})
-      rows.filter(function(d){ return d})
-        .forEach(function(node) {
+
+      data2.forEach(function(node) {
+          //console.log(node.parent);
           // add to parent
           var parent = dataMap[node.parent];
           if (parent) {
@@ -441,106 +590,32 @@
             treeData.push(node);
           }
         });
-      emptyTree = jQuery.extend(true, {}, treeData);// copy empty treeData for reuse later
 
-      // data[0].children.splice(0,1);
+       console.log("treeData");
+       console.log(treeData);
 
-      // comb through the code and remove any tree structure without children (besides leaves)
-      function trimUnusedParents(root) {
-          // cleanedData = jQuery.extend(true, {}, root);// copy empty treeData for reuse later
-          function recurse(name, node) {
-              if (node.children) node.children.forEach(function (child) {
-                recurse(node.name, child);
-              });
-              // if it's not a leaf node, but it has no children... (and it's not the root node)
-              if(!node.Study && !node.children)
-              {
-                // then remove from parent
-                // search through data for node matching the parent
-                var parentNode;
-                for(var i=0; i<data.length; i++)
-                {
-                  if(data[i].name == node.parent)
-                  {
-                    parentNode = data[i];
-                  }
-                }
-                if(!parentNode)
-                    console.log('no match?');
-                // search through the parent's children for a match to the childless node
-                for (i=0; i<parentNode.children.length; i++)
-                {
-                  if(parentNode.children[i].name == node.name)
-                    parentNode.children.splice(i,1);
-
-                    // recheck if parent became childless
-                    // recurse(parentNode.name, parentNode); // <-- exceeds max call stack
-                };
-              }
-          };
-
-          // the last tier lingers, manually remove it! (recursive calls exceed maximus stack size)
-          for(var k=0; k<root.children.length; k++){
-            if(
-              root.children[k].name === "Frontal lobe" ||
-              root.children[k].name === "Temporal lobe" ||
-              root.children[k].name === "Limbic system" ||
-              root.children[k].name === "Striatum" ||
-              root.children[k].name === "Cingulum" ||
-              root.children[k].name === "Occipital Visual Cortex" ||
-              root.children[k].name === "Middle Temporal Gyrus" ||
-              root.children[k].name === "Amygdala" ||
-              root.children[k].name === "Caudate Nucleus" ||
-              root.children[k].name === "Prefrontal Cortex" ||
-              root.children[k].name === "Hippocampus" ||
-              root.children[k].name === "Inferior Frontal Gyrus" ||
-              root.children[k].name === "Inferior Temporal Gyrus" ||
-              root.children[k].name === "Posterior Cingulate Cortex" ||
-              root.children[k].name === "Precentral Gyrus" ||
-              root.children[k].name === "Parahippocampal Gyrus" ||
-              root.children[k].name === "Putamen" ||
-              root.children[k].name === "Superior Parietal Lobule" ||
-              root.children[k].name === "Superior Temporal Gyrus" ||
-              root.children[k].name === "Temporal Pole" ||
-              root.children[k].name === "Temporal Cortex" ||
-              root.children[k].name === "Anterior Cingulate" ||
-              root.children[k].name === "Cerebellum" ||
-              root.children[k].name === "Dorsolateral Prefrontal Cortex" ||
-              root.children[k].name === "Frontal Pole" ||
-              root.children[k].name === "Nucleus Accumbens" ||
-              root.children[k].name === "Parietal lobe" ||
-              root.children[k].name === "Occipital lobe"
-            )
-            {
-              if(!root.children[k].children || root.children[k].children.length<1)
-                root.children.splice(k,1);
-            };
-          };
-          recurse(null, root);
-          return root;;
-      };
-
-      root = trimUnusedParents((treeData[0])); // run through a few times because it might make a parent no longer have children (multiple tiers), and a recursive algorythm keeps running over maximum stack size due to large dataset
-      root = trimUnusedParents(root);
-      root = trimUnusedParents(root);
-      root = trimUnusedParents(root);
-      root = trimUnusedParents(root);
 
       // Graphing *********************************************************************************************************************************************
-      // root = treeData[0];
+      root = treeData[0];
       console.log('root');
       console.log(root);
 
       node = svg.datum(root).selectAll(".node")
               .data(pack.nodes);
-              ////console.debug(node);
 
-      pack.value( userInputFilter );
+      console.debug('node');
+      console.debug(node);
+
+      pack.value(function(d){return d.size;} );
       pack.nodes(root);
 
       groups = node.enter().append("g")
             .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+
+      // groups.transition().duration(2000)
+      //     .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
       tooltips = groups.append("title")
             //(d.children ? "" : ": " + format(d.size)
@@ -548,15 +623,15 @@
 
 
       // Color Map
-      // var data_points = d3.entries(dataMap);
-      // console.log("data_points");
-      // console.log(data_points);
-      // var max_fc = d3.max( data_points, function(d) { return d['value']['LogFC'] });
-  	  var max_fc = real_fc(d3.max( data, function(d) { return d.LogFC }));
-      ////console.debug(max_fc);
-      // var min_fc = d3.min( data_points, function(d) { return d['value']['LogFC'] });
-  	  var min_fc = real_fc(d3.min( data, function(d) { return d.LogFC }));
-      ////console.debug(min_fc);
+
+      var max_fc = real_fc(d3.max( data2, function(d) { return d.LogFC }));
+      max_fc= max_fc > 1 ? max_fc : 1;
+      console.debug(max_fc);
+
+      var min_fc = real_fc(d3.min( data2, function(d) { return d.LogFC }));
+      min_fc = min_fc < -1 ? min_fc : -1;
+      console.debug(min_fc);
+
       var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
       // console.log('color');
       // console.log(color_scale(max_fc));
@@ -572,8 +647,12 @@
           .style('stroke-opacity','.1')
           .style('stroke-width', '10px');
 
-
-      ////console.debug(node);
+/*
+     circles.transition().duration(2000)
+           .attr("r", function(d) { return d.children ? 0.95 * d.r : d.r; }) //0.909090909
+           .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '.07' : '.6' ); })
+           .style('stroke', function(d){ return d.children ? '#000' : 'none'});
+*/
 
 
       // RENDERING TEXT
@@ -607,7 +686,7 @@
                 .style("text-anchor", "middle")
                 .style("font-size", function(d) { return Math.min(12, (Math.max( 0.2 * d.r, 11)) ) + "px" })
                 // .style("font-weight", function(d) { return (0.2 * d.r > 12 ? 'Regular' : '600')})
-                //.style("text-shadow", "-1px 0 #cecece, 0 2px #cecece, 1px 0 #cecece, 0 -0px #e0e0e0") // left, bottom, right, top
+                // .style("text-shadow", "-1px 0 #cecece, 0 2px #cecece, 1px 0 #cecece, 0 -0px #e0e0e0") // left, bottom, right, top
             .append("textPath")
                 .attr("xlink:href",function(d,i){return "#s"+i;})
                 .attr("startOffset",function(d){return "28%";})
@@ -617,57 +696,14 @@
                   else
                     return (d.r > 30 ? d.name : "");
                 });
+
+     //updateFilters(data2);
     };
 
-    var updateChart = function() {
-
-      d3.selectAll("svg").selectAll("g.node").remove();
-      d3.csv(dataFile, load);
-
-      // pack.value( userInputFilter );
-      // pack.nodes(root);
-
-      // circles.transition().duration(2000)
-      //     .attr("r", function(d) { return d.children ? 0.95 * d.r : d.r; }) //0.909090909
-      //     .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '.07' : '.6' ); })
-      //     .style('stroke', function(d){ return d.children ? '#000' : 'none'});
-
-      // groups.transition().duration(2000)
-      //     .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-
-      // tooltips
-      //     .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + d.LogFC + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study) });
-
-      // // RENDERING TEXT
-      // //If no children, display title like this
-      // titles
-      //     .style("font-size", function(d) { return Math.min( d.r, 8 ) + "px" })
-      //     .text(function(d) { return d.name.substring(0, d.r * 0.4); });
-
-      // //If has children
-      // parentPaths
-      //     .attr("id", function(d,i){return "s"+i;})
-      //     .attr("fill","none")
-      //     .attr("d", arc);
-
-      // parentTitles
-      //       .attr("xlink:href",function(d,i){return "#s"+i;})
-      //       .attr("startOffset",function(d){return "28%";})
-      //       .style("text-anchor", "middle")
-      //       .text(function(d) {
-      //         return ( (d.r > 30 && d.parent.r / d.r > 1.4) ? d.name : "" );
-      //         // return (d.r > 30 ? d.name : "");
-      //       })
-      //       .attr("dy", function(d){ return (.005 * d.r)+"em"})
-      //       .style("font-size", function(d) { return Math.min(16, (Math.max( 0.2 * d.r, 11)) ) + "px" });
-    };
-
-
-    d3.csv(dataFile, load);
-    // load(null, newData);
-
+    updateChart();
 
     d3.select(self.frameElement).style("height", diameter + "px");
   }
 
 })(jQuery);
+

@@ -266,7 +266,7 @@ function members_taxonomy_default_vocabularies() {
       'name' => 'Group',
       'machine_name' => 'group',
       'description' => 'Group or Center',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => 1,
       'rdf_mapping' => array(

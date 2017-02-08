@@ -236,7 +236,8 @@ function bubblechart_views_pre_render(&$view) {
         empty($view->exposed_input['term_node_tid_depth']) &&
         empty($view->exposed_input['term_node_tid_depth_1']) &&
         empty($view->exposed_input['field_contrast_tid']) &&
-        empty($view->exposed_input['field_fold_change_value']) ) {
+        empty($view->exposed_input['field_fold_change_value']) &&
+        empty($view->exposed_input['term_node_tid_depth_2']) ) {
         $view->result = array();
         $view->total_rows = 0;
         $view->query->pager->total_items = 0;

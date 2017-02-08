@@ -44,6 +44,25 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Originating Dataset */
+  $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
+  $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
+  $handler->display->display_options['fields']['field_input']['label'] = 'Input Nid';
+  $handler->display->display_options['fields']['field_input']['type'] = 'entityreference_entity_id';
+  $handler->display->display_options['fields']['field_input']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';
+  /* Field: Content: Originating Dataset */
+  $handler->display->display_options['fields']['field_input_1']['id'] = 'field_input_1';
+  $handler->display->display_options['fields']['field_input_1']['table'] = 'field_data_field_input';
+  $handler->display->display_options['fields']['field_input_1']['field'] = 'field_input';
+  $handler->display->display_options['fields']['field_input_1']['label'] = 'Input';
+  $handler->display->display_options['fields']['field_input_1']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_input_1']['delta_offset'] = '0';
   /* Sort criterion: Content: Nid */
   $handler->display->display_options['sorts']['nid']['id'] = 'nid';
   $handler->display->display_options['sorts']['nid']['table'] = 'node';

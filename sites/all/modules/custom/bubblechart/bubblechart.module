@@ -60,7 +60,8 @@ function bubblechart_block_view($delta = '') {
         <h4>FCValue</h4><input type="text" id="FCValText" class="slider-text">
         <input type="range" id="sliderFCVal">
       </div>
-      </div>'
+      </div>
+      <div id="legend"></div>'
       );
 
       $block['content'] .= _call_genomics($result);

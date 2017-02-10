@@ -118,6 +118,7 @@ function bubblechart_csv() {
   return d3_draw($chart);
 }
 
+
 function bubblechart_genomics($input_genes) {
   $path = libraries_get_path('d3.bubblechart');
   drupal_add_css($path . '/bubblechart.css');
@@ -253,6 +254,23 @@ function bubblechart_form_submit($form, & $form_state) {
 function bubblechart_views_post_execute(&$view) {
 
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+
+function bubblechart_form_alter( &$form, &$form_state,$form_id ){
+  //dsm($form_id);
+  if ($form_id == 'views_exposed_form') {
+        //dsm($form);
+        dsm($form['#id']);
+        if ($form['#id'] == 'views-exposed-form-evidence-page' {
+            dsm($form);
+        }
+    }
+
+}
+
 
 function bubblechart_views_pre_render(&$view) {
   //dsm($view->exposed_input);

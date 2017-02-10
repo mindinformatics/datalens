@@ -1314,6 +1314,7 @@ function members_views_default_views() {
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['content'] = 'If no gene is specified, only results with P-value &lt; .001 are displayed by default.  If a gene is specified, only results with P-value &lt; .05 are displayed unless the P-value filter is specified.';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* No results behavior: Global: Text area */

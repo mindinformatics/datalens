@@ -233,7 +233,7 @@ function bubblechart_views_pre_render(&$view) {
     //dsm($view->exposed_input);
     //dsm($view);
 
-    if (empty($view->exposed_input['field_genes_diff_tid']) &&
+    if (empty($view->exposed_input['title']) &&
         empty($view->exposed_input['term_node_tid_depth']) &&
         empty($view->exposed_input['term_node_tid_depth_1']) &&
         empty($view->exposed_input['field_contrast_tid']) &&
@@ -245,9 +245,9 @@ function bubblechart_views_pre_render(&$view) {
         $view->query->pager->update_page_info();
     }
 
-    if (!empty($view->exposed_input['field_genes_diff_tid'])) {
-      $gene_list = $view->exposed_input['field_genes_diff_tid'];
-      //dsm($gene_list);
+    if (!empty($view->exposed_input['title'])) {
+      $gene_list = $view->exposed_input['title'];
+      dsm($gene_list);
       //var_dump($gene_list);
       $pval=$view->exposed_input['field_pvalue_value'];
       $mongo_array = _query_mongo($gene_list, $pval);

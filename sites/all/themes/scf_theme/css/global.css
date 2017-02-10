@@ -1554,6 +1554,12 @@ ul.bef-tree-child.bef-tree-depth-2 {
   padding-bottom: 1%;
 }
 
+.form-item-field-genes-diff-tid,
+#edit-field-fold-change-value-wrapper {
+  padding-right: 40px;
+
+}
+
 
 /* Line up multi-line options nicely */
 .form-checkboxes .bef-tree .bef-tree-child,

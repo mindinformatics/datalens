@@ -74,6 +74,7 @@ label {
     margin: 0px auto;
     overflow: hidden;
     /*border: 1px solid;*/
+    padding-top: 5px;
 }
 
 .slider {
@@ -165,7 +166,7 @@ label {
 
 #legend {
   position: absolute;
-  top: 150px;
+  top: 20%;
   left: 25px;
 }
 

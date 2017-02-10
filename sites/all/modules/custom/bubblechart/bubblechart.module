@@ -243,6 +243,7 @@ function bubblechart_views_pre_render(&$view) {
         $view->total_rows = 0;
         $view->query->pager->total_items = 0;
         $view->query->pager->update_page_info();
+        $view->empty['area']->options['content'] = "Please select 1 or more filter options above and click the Apply button.";
     }
 
     if (!empty($view->exposed_input['title'])) {

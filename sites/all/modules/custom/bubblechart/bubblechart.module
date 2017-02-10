@@ -119,11 +119,40 @@ function bubblechart_csv() {
 }
 
 function bubblechart_genomics($input_genes) {
+  $path = libraries_get_path('d3.bubblechart');
+  drupal_add_css($path . '/bubblechart.css');
 
   $pval = 0.05;
   $result = _query_mongo($input_genes, $pval);
 
-  return _call_genomics($result);
+  $study_checkbox = _create_facet($result, 'Study');    // Returns string 35-44
+  $contrast_checkbox = _create_facet($result, 'Contrast');
+  $datatype_checkbox = _create_facet($result, 'DataType');
+  $br_checkbox = _create_facet($result, 'BrainRegion');
+
+  $page = '<div id="facet-group">';
+
+  $page .= $study_checkbox . $contrast_checkbox .  $datatype_checkbox .  $br_checkbox;
+  $page .= '</div>';
+  $page .=  t(
+
+  '<div id="slider-area">
+  <div id="PValue" class="slider">
+    <h4>PValue</h4><input type="text" id="PValText" class="slider-text">
+    <input type="range" id="sliderPVal">
+  </div>
+  <div id="FCValue" class="slider">
+    <h4>FCValue</h4><input type="text" id="FCValText" class="slider-text">
+    <input type="range" id="sliderFCVal">
+  </div>
+  </div>
+  <div id="legend"></div>'
+  );
+
+  $page .= _call_genomics($result);
+
+  return ($page);
+
 }
 
 function _call_genomics($result) {

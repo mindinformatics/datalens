@@ -1499,7 +1499,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
 
 
 
-/* Datasets Filter better? */
+/* Datasets Filter better */
 .form-checkboxes .bef-tree,
 .bef-select-as-radios .form-radios {
   /*
@@ -1517,6 +1517,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
 }
 
 
+/* Gene Expression table view */
 .views-exposed-form .form-item label {
     font-weight: normal;
     font-size: 12px;
@@ -1535,6 +1536,25 @@ div.horizontal-tabs .horizontal-tabs-panes {
 .view-evidence .views-exposed-form #edit-field-group-tid-wrapper,
 .view-evidence .views-exposed-form #edit-term-node-tid-depth-wrapper,
 .view-evidence .views-exposed-form #edit-term-node-tid-depth-1-wrapper {
+  width: 20%;
+}
+
+.view-evidence .view-header {
+  font-size: 14px;
+}
+.view-evidence .view-empty p {
+  color: #004466;
+  font-weight: bold;
+}
+.views-exposed-form .views-widget-filter-field_pvalue_value,
+.views-exposed-form .views-widget-filter-field_fold_change_value{
+  margin-top: 0%;
+}
+
+.form-item-field-pvalue-value input {
+  width: 85%;
+}
+#edit-field-pvalue-value-wrapper {
   width: 20%;
 }
 
@@ -1597,12 +1617,7 @@ ul.bef-tree-child.bef-tree-depth-2 {
 /* Evidence */
 
 /* Search button etc */
-.form-item-field-pvalue-value input {
-  width: 85%;
-}
-#edit-field-pvalue-value-wrapper {
-  width: 20%;
-}
+
 /*
 .views-exposed-form .views-exposed-widget.views-submit-button {
   padding-top: 5em;

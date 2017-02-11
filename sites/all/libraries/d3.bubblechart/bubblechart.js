@@ -21,7 +21,7 @@
 
     rows = settings.rows;
 
-    var pValue = 0.1;
+    var pValue = 0.05;
     var FCValue = 1.5;
 
     var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m0-B3-B1.csv";
@@ -348,7 +348,8 @@
       // UNIMPELMENTED !
       // no recursive or multi-tiered updating for now!
 
-
+      console.log('dataSet');
+      console.log(dataSet);
       // use a filtered dataMap based on sliders but not checkboxes (otherwise when an item is unchecked, it disappears and cannot be rechecked)
       var dataSlider = jQuery.extend(true, new Array(), rows.filter(function(d){ return d.name != "NA" && d.LogFC != "NA" && d.size != "NA" && d.PValue != "NA" && d.AdjPValue != "NA" && d.PValue < pValue && Math.abs(real_fc(d.LogFC)) < FCValue }));
       var dataMapSlider = dataSlider.reduce(function(map, node) {
@@ -434,41 +435,19 @@
             // get value of checkbox
             var value = checkboxes[element].value;
 
-            if(value === "Limbic system")
-              console.log('blah');
+            console.log(value);
             // turn off
             checkboxes[element].parentElement.style.display = "none";
 
-            var typeof1 = typeof(dataMapSlider[value]);
-            if(typeof1 !== 'undefined'){
-              var typeof2 = typeof(dataMapSlider[value].children);
+            for(var i=0; i<dataSlider.length; i++){
+            if(dataSlider[i].BrainRegion == value) {
+              checkboxes[element].parentElement.style.display = "";
+              break;
             }
-
-            // if node and children exist
-            if( typeof(dataMapSlider[value]) !== "undefined" ){
-              if(typeof(dataMapSlider[value].children) !== "undefined")
-              {
-                // see if the children are data or just other parent nodes
-                for(var i=0; i<dataMapSlider[value].children.length; i++){
-                  if(dataMapSlider[value].children[i].Study != ""){
-                    //has data
-                    // turn on list element
-                    checkboxes[element].parentElement.style.display = "";
-                    break;
-                  }
-                  else
-                  {
-                    // only has other parents, let's remove it from the checklist until we implement hierarchical checking of parent/children
-                    checkboxes[element].parentElement.style.display = "none";
-                  }
-                }
-              }
-            }
-        };
-      };
-
+          }
+        }
     };
-
+}
     // Processing Data *********************************************************************************************************************************************
     var data, data2, dataMap, emptyDataMap, emptyTree, node, groups, circles, titles, tooltips, parentPaths, parentTitles;
 
@@ -697,7 +676,7 @@
                     return (d.r > 30 ? d.name : "");
                 });
 
-     //updateFilters(data2);
+     updateFilters(genes);
     };
 
     updateChart();

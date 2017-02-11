@@ -342,17 +342,19 @@ function bubblechart_views_pre_render(&$view) {
       // Group/Study
       if (!empty($view->exposed_input['term_node_tid_depth_2'])) {
         $study = $view->exposed_input['term_node_tid_depth_2'];
-        //dsm($data_type);
+
         $terms = array();
+
         foreach($study as $tid) {
           $term = taxonomy_term_load($tid)->name;
-          //dsm($terms);
-          $filtered_mongo = array_filter($filtered_mongo,
+          array_push($terms, $term);
+        }
+        $filtered_mongo = array_filter($filtered_mongo,
           function($v) use ($terms){
             return in_array($v['Study'], $terms);
-            });
-          //dsm($filtered_mongo);
-        }
+           });
+        //dsm($filtered_mongo);
+
       }
 
 

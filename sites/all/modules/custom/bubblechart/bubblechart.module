@@ -290,7 +290,7 @@ function bubblechart_views_pre_render(&$view) {
 
     if (!empty($view->exposed_input['title'])) {
       $gene_list = $view->exposed_input['title'];
-      dsm($gene_list);
+      //dsm($gene_list);
       //var_dump($gene_list);
       $pval=$view->exposed_input['field_pvalue_value'];
       $mongo_array = _query_mongo($gene_list, $pval);

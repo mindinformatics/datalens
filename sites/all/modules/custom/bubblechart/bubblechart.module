@@ -251,23 +251,18 @@ function bubblechart_form_submit($form, & $form_state) {
 	$form_state['redirect'] = 'genomics/' . $valid_genes;
 }
 
-function bubblechart_views_post_execute(&$view) {
-
-}
-
 /**
  * Implements hook_form_alter().
  */
 
-function bubblechart_form_alter( &$form, &$form_state,$form_id ){
-  //dsm($form_id);
-  if ($form_id == 'views_exposed_form') {
-        //dsm($form);
-        dsm($form['#id']);
-        if ($form['#id'] == 'views-exposed-form-evidence-page' {
-            dsm($form);
-        }
-    }
+function bubblechart_form_alter(&$form, &$form_state,$form_id ){
+
+ if($form['#id'] == 'views-exposed-form-evidence-page') {
+    //dsm($form['title']['#type']);
+    $form['title']['#type']='textarea';
+    $form['title']['#cols']='30';
+    $form['title']['#rows']='9';
+ }
 
 }
 

@@ -22,7 +22,7 @@
     rows = settings.rows;
 
     var pValue = 0.05;
-    var FCValue = 1.5;
+    var FCValue = 1.0;
 
     var dataFile = "/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m0-B3-B1.csv";
 
@@ -676,7 +676,7 @@
                     return (d.r > 30 ? d.name : "");
                 });
 
-     updateFilters(genes);
+     //updateFilters(genes);
     };
 
     updateChart();

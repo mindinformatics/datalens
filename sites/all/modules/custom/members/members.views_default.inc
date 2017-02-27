@@ -2532,7 +2532,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'page' => 'page',
     'default' => 0,
   );
-  $handler->display->display_options['use_batch'] = 'batch';
   $handler->display->display_options['segment_size'] = '500';
   $export['evidence'] = $view;
 

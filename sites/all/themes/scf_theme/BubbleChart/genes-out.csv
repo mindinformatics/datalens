@@ -27,7 +27,6 @@ Study,parent,DataType,Contrast,name,LogFC,size,PValue,AdjPValue
 ,Parietal lobe,,,Superior Parietal Lobule,,5,,
 ,Temporal lobe,,,Superior Temporal Gyrus,,5,,
 ,Temporal lobe,,,Temporal Pole,,5,,
-,Cerebellum,,,Cerebellum,,5,,
 ,Temporal lobe,,,Temporal Cortex,,5,,
 MSBB,Anterior Cingulate,Microarray,B3-B2,ATR,-0.52685177,0.52685177,0.008473025,0.407231665
 MSBB,Anterior Cingulate,Microarray,AD-NCI,MET,-0.405232458,0.405232458,0.000228199,0.999998621

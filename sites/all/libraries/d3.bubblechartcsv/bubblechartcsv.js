@@ -39,7 +39,7 @@
         .startAngle(0)
         .endAngle(2*Math.PI);
 
-      d3.csv("/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m1-B3-B1.csv", function(error, data) {
+      d3.csv("/sites/all/themes/scf_theme/BubbleChart/genes-hypoxia-AD-NCI.csv", function(error, data) {
         console.debug(data);
           data.forEach(function(d) {
             d.LogFC = +d.LogFC;

@@ -2426,9 +2426,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_contrast_tid']['table'] = 'field_data_field_contrast';
   $handler->display->display_options['filters']['field_contrast_tid']['field'] = 'field_contrast_tid';
   $handler->display->display_options['filters']['field_contrast_tid']['relationship'] = 'field_result_data_target_id';
-  $handler->display->display_options['filters']['field_contrast_tid']['value'] = array(
-    19503 => '19503',
-  );
   $handler->display->display_options['filters']['field_contrast_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_contrast_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_contrast_tid']['expose']['operator_id'] = 'field_contrast_tid_op';

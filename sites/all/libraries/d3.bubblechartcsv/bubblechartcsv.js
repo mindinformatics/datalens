@@ -39,7 +39,7 @@
         .startAngle(0)
         .endAngle(2*Math.PI);
 
-      d3.csv("/sites/all/themes/scf_theme/BubbleChart/microglia-genes-m1-B3-B1.csv", function(error, data) {
+      d3.csv("/sites/all/themes/scf_theme/BubbleChart/genes-hypoxia-AD-NCI.csv", function(error, data) {
         console.debug(data);
           data.forEach(function(d) {
             d.LogFC = +d.LogFC;
@@ -111,13 +111,14 @@
          console.debug(color_scale(max_fc));
 
           node.filter(function(d){ return !(d.name == "WB"); }).append("circle")
-              .attr("r", function(d) { return d.r; })
-              .style('fill', function(d) { return (d.children ? "none" : color_scale(real_fc(d.LogFC))); })
-              .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '0' : '.7' ); })
+              .attr("r", function(d) { return  d.children ? 0.99 * d.r : d.r })
+              .style('fill', function(d) { return (d.children ? "#000" : color_scale(real_fc(d.LogFC))); })
+              .style('fill-opacity', function(d) { return ( (d.children || d.r<1) ? '.07' : '.6' );  })
               .style('stroke', function(d){ return d.children ? '#ccc' : 'none'})
+              .style('stroke-opacity','.1')
               .style('stroke-width', '2px');
 
-          //console.debug(node);
+          console.debug(node);
 
           //If no children, display title like this
           node.filter(function(d) { return !d.children; }).append("text")
@@ -140,11 +141,11 @@
          .filter(function(d){ return !(d.name == "WB"); })
          //.filter(function(d){ return !(d.parent.name == "WB"); })
               .append("text")
-                  .attr("dy", "-0.3em")
+                  .attr("dy", function(d){ return (-0.003 * d.r)+"em"})
                   .style("text-anchor", "start")
               .append("textPath")
                   .attr("xlink:href",function(d,i){return "#s"+i;})
-                  .attr("startOffset",function(d){return "25%";})
+                  .attr("startOffset","25%")
                   .text(function(d) { return d.name; });
 
         });

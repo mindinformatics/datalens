@@ -35,7 +35,7 @@
         //myChart.addMeasureAxis("x", "AgeAtDeath");
         myChart.addCategoryAxis("x", ["Diagnosis"]);
         myChart.addMeasureAxis("y", "ENSG00000133083");
-        myChart.addSeries(["Sex", "ApoE", "AgeAtDeath"], dimple.plot.bubble);
+        myChart.addSeries(["Sex", "AgeAtDeath", "ApoE"], dimple.plot.bubble);
         var myLegend = myChart.addLegend(530, 100, 60, 300, "Right");
         myChart.draw();
 
@@ -49,11 +49,11 @@
         // object to split it onto 2 lines.  This technique works with any
         // number of lines, it isn't dimple specific.
         svg.selectAll("title_text")
-          .data(["Click legend to","show/hide ApoE:"])
+          .data(["Click box to","show/hide ApoE:"," "])
           .enter()
           .append("text")
             .attr("x", 499)
-            .attr("y", function (d, i) { return 90 + i * 14; })
+            .attr("y", function (d, i) { return 80 + i * 14; })
             .style("font-family", "sans-serif")
             .style("font-size", "10px")
             .style("color", "Black")

@@ -35,7 +35,7 @@
         // We are coloring by Owner as that will be the key in the legend
         //myChart.addMeasureAxis("x", "AgeAtDeath");
         myChart.addCategoryAxis("x", ["Diagnosis"]);
-        myChart.addMeasureAxis("y", "ENSG00000133083");
+        myChart.addMeasureAxis("y", "DCLK1");
         myChart.addSeries(["Sex", "AgeAtDeath", "ApoE"], dimple.plot.bubble);
         var myLegend = myChart.addLegend(530, 100, 60, 300, "Right");
         myChart.draw();

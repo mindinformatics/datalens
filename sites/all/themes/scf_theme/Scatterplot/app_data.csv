@@ -1,4 +1,4 @@
-"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","ENSG00000142192"
+"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"
 "1000_CER","MayoBrainBank_Dickson","Cerebellum","AD","F","90_or_above","34","708.7612"
 "1010_CER","MayoBrainBank_Dickson","Cerebellum","AD","M","63","33","793.8495"
 "1015_CER","MayoBrainBank_Dickson","Cerebellum","AD","M","77","34","1236.8749"

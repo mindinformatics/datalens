@@ -9,8 +9,7 @@ dim(clinical)
 #fread for large files
 dataFile = fread("MayoRNAseq_RNAseq_CBE_geneCounts_normalized.tsv")
 colnames(dataFile)
-head(dataFile[1,])
-dim(dataFile)
+
 
 # Remove covariate information not also in dataFile
 clinical_removes = subset(clinical, !(clinical$SampleID %in% colnames(dataFile)))

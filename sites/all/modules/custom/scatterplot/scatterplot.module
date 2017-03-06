@@ -1,0 +1,33 @@
+<?php
+
+// Show PHP errors (during development only)
+    //error_reporting(E_ALL | E_STRICT);
+    //ini_set("display_errors", 2);
+
+
+/**
+* Implements hook_menu().
+*/
+function scatterplot_menu() {
+  $items['scatter'] = array(
+    'title' => 'D3 visualization',
+    'description' => 'Different visualization examples using d3.',
+    'page callback' => 'scatterplot_csv',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+function scatterplot_csv() {
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'scatterplotcsv',
+  );
+
+  return d3_draw($chart);
+}
+
+
+?>

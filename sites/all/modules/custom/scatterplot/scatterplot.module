@@ -16,6 +16,15 @@ function scatterplot_menu() {
     'access callback' => TRUE,
   );
 
+  $items['scatter-input'] = array(
+    'title' => 'Scatterplot input',
+    'description' => 'Choose inputs for scatterplot',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('scatterplot_form'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
   return $items;
 }
 
@@ -28,6 +37,100 @@ function scatterplot_csv() {
 
   return d3_draw($chart);
 }
+
+
+/**
+ * Return a form used to input gene names into bubblechart
+ *
+ * @return
+ *   An array which will be used by the form builder to build the import form
+ */
+
+function scatterplot_form($form, &$form_state) {
+
+  $image_options = array(
+    'path' => '/sites/all/themes/scf_theme/Scatterplot/Scatterplot-image.png',
+    'alt' => 'Test alt',
+    'title' => 'Scatterplot Annotated Result',
+    'width' => '50%',
+    'height' => '50%',
+    'attributes' => array('class' => 'some-img', 'id' => 'scatterplot-image'),
+  );
+
+
+  $image = theme('image', $image_options);
+  $form['start']['image'] = array(
+    '#markup' => $image,
+  );
+
+
+  $form['gene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 60
+  );
+
+  $form['study'] = array(
+       '#type' => 'select',
+       '#title' => t('Study'),
+       '#options' => array(
+          0 => t('MayoBB RNA-Seq Cerebellum'),
+          1 => t('MayoBB RNA-Seq Temporal Cortex'),
+       ),
+       '#description' => t('Please select the study of interest.'),
+   );
+
+   $form['xaxis'] = array(
+       '#type' => 'select',
+       '#title' => t('X-axis'),
+       '#options' => array(
+          0 => t('Diagnosis'),
+          1 => t('ApoE Genotype'),
+          2 => t('Sex'),
+       ),
+       '#description' => t('Please select the category for the x-axis'),
+   );
+
+   $form['color'] = array(
+       '#type' => 'select',
+       '#title' => t('Color'),
+       '#options' => array(
+          0 => t('Diagnosis'),
+          1 => t('ApoE Genotype'),
+          2 => t('Sex'),
+       ),
+       '#description' => t('Please select the category for the color'),
+   );
+
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+	return $form;
+}
+
+/**
+ * Implementation of hook_validate() for the bubblechart_input.
+ */
+
+function scatterplot_form_validate($form, & $form_state) {
+	 $valid_genes = $form_state['values']['gene'];
+
+}
+
+function scatterplot_form_submit($form, & $form_state) {
+	$valid_genes = $form_state['values']['gene'];
+
+	drupal_set_message(t('Your genes are %genes.', array('%genes' => $valid_genes)));
+	//return drupal_render(drupal_get_form('bubblechart_form'));
+
+	$form_state['redirect'] = 'scatterplot/' . $valid_genes;
+}
+
 
 
 ?>

@@ -1,6 +1,8 @@
 name = Scatterplot from CSV file
 description = D3 Scatterplot CSV library
 files[js][] = scatterplotcsv.js
+files[js][] = ../d3/d3.v4.3.0.js
+files[js][] = libs/dimple.v2.3.0.min.js
 files[css][] = scatterplotcsv.css
 version = 0.1
 dependencies[] = d3.extend

@@ -24,7 +24,8 @@
 
       //<script src="/lib/d3.v4.3.0.js"></script>
       //<script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
-    var svg = dimple.newSvg("#chartContainer", 590, 400);
+    //var svg = dimple.newSvg("#chartContainer", 590, 400);
+    var svg = dimple.newSvg("#visualization", 590, 400);
       d3.csv("/sites/all/themes/scf_theme/Scatterplot/dclk1_data.csv", function (data) {
         // Create the chart
         var myChart = new dimple.chart(svg, data);
@@ -92,7 +93,6 @@
             myChart.draw(800);
           });
       });
-  </script>
-
+  }
 
 })(jQuery);

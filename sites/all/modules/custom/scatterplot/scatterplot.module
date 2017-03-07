@@ -51,9 +51,9 @@ function scatterplot_form($form, &$form_state) {
   $image_options = array(
     'path' => '/sites/all/themes/scf_theme/Scatterplot/Scatterplot-image.png',
     'alt' => 'Test alt',
-    'title' => 'Scatterplot Annotated Result',
-    'width' => '50%',
-    'height' => '50%',
+    'title' => 'Scatterplot Annotated Example',
+    'width' => '40%',
+    'height' => '40%',
     'attributes' => array('class' => 'some-img', 'id' => 'scatterplot-image'),
   );
 
@@ -68,7 +68,7 @@ function scatterplot_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Gene Symbol'),
     '#default_value' => '',
-    '#description' => t('Please enter a gene symbol'),
+    '#description' => t('Please enter a gene symbol; the gene expression level will be the y-axis.'),
     '#size' => 60
   );
 
@@ -101,7 +101,7 @@ function scatterplot_form($form, &$form_state) {
           1 => t('ApoE Genotype'),
           2 => t('Sex'),
        ),
-       '#description' => t('Please select the category for the color'),
+       '#description' => t('Please select the category for the color.'),
    );
 
 

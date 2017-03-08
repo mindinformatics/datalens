@@ -24,6 +24,13 @@ function scatterplot_menu() {
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['scatterplot/%'] = array(
+    'title' => 'Scatterplot',
+    'description' => 'Return expression data',
+    'page callback' => 'scatterplot_build',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+  );
 
   return $items;
 }
@@ -33,6 +40,31 @@ function scatterplot_csv() {
   $chart = array(
     'id' => 'visualization',
     'type' => 'scatterplotcsv',
+  );
+
+  return d3_draw($chart);
+}
+
+function scatterplot_build($scatter_input) {
+  $path = libraries_get_path('d3.scatterplot');
+  drupal_add_css($path . '/scatterplot.css');
+
+  $gene = $scatter_input['gene'];
+	$study = $scatter_input['study'];
+	$xaxis = $scatter_input['xaxis'];
+	$color = $scatter_input['color'];
+
+	//dsm($scatter_input);
+
+
+  $result = _query_mongo_scatter($gene, $study);
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'scatterplotcsv',
+    'gene' => $gene,
+    'xaxis' => $xaxis,
+    'color' => $color,
   );
 
   return d3_draw($chart);
@@ -72,35 +104,39 @@ function scatterplot_form($form, &$form_state) {
     '#size' => 60
   );
 
+   # the values for the dropdown box
+  $form['study_options'] = array(
+      '#type' => 'value',
+      '#value' => array('MayoBB_CBE_RNASEQ_CPM' => t('MayoBB RNA-Seq Normalized - Cerebellum'),
+                        'MayoBB_TCX_RNASEQ_CPM' => t('MayoBB RNA-Seq Normalized -Temporal Cortex'))
+  );
+
   $form['study'] = array(
        '#type' => 'select',
        '#title' => t('Study'),
-       '#options' => array(
-          0 => t('MayoBB RNA-Seq Cerebellum'),
-          1 => t('MayoBB RNA-Seq Temporal Cortex'),
-       ),
-       '#description' => t('Please select the study of interest.'),
+       '#options' => $form['study_options']['#value'],
+       '#description' => t('Please select the study of interest. RNA-Seq normalized data normalized on Counts Per Million'),
    );
+
+   # the values for the dropdown box
+  $form['category_options'] = array(
+      '#type' => 'value',
+      '#value' => array('DIAGNOSIS' => t('Diagnosis'),
+                        'APOE' => t('ApoE Genotype'),
+                        'SEX' => t('Sex'))
+  );
 
    $form['xaxis'] = array(
        '#type' => 'select',
        '#title' => t('X-axis'),
-       '#options' => array(
-          0 => t('Diagnosis'),
-          1 => t('ApoE Genotype'),
-          2 => t('Sex'),
-       ),
+       '#options' => $form['category_options']['#value'],
        '#description' => t('Please select the category for the x-axis'),
    );
 
    $form['color'] = array(
        '#type' => 'select',
        '#title' => t('Color'),
-       '#options' => array(
-          0 => t('Diagnosis'),
-          1 => t('ApoE Genotype'),
-          2 => t('Sex'),
-       ),
+       '#options' => $form['category_options']['#value'],
        '#description' => t('Please select the category for the color.'),
    );
 
@@ -114,22 +150,124 @@ function scatterplot_form($form, &$form_state) {
 }
 
 /**
- * Implementation of hook_validate() for the bubblechart_input.
+ * Implementation of hook_validate() for the scatterplot_input.
  */
 
 function scatterplot_form_validate($form, & $form_state) {
 	 $valid_genes = $form_state['values']['gene'];
+	 $valid_study = $form_state['values']['study'];
+	 $valid_xaxis = $form_state['values']['xaxis'];
+	 $valid_color = $form_state['values']['color'];
 
 }
 
 function scatterplot_form_submit($form, & $form_state) {
+	//dsm($form_state['values']);
 	$valid_genes = $form_state['values']['gene'];
+	$valid_study = $form_state['values']['study'];
+	$valid_xaxis = $form_state['values']['xaxis'];
+	$valid_color = $form_state['values']['color'];
 
-	drupal_set_message(t('Your genes are %genes.', array('%genes' => $valid_genes)));
-	//return drupal_render(drupal_get_form('bubblechart_form'));
+  $scatter_input = array('gene'=>$valid_genes,'study'=>$valid_study,'xaxis'=>$valid_xaxis,'color'=>$valid_color);
 
-	$form_state['redirect'] = 'scatterplot/' . $valid_genes;
+	//drupal_set_message(t('Gene: %genes.', array('%genes' => $valid_genes)));
+	//drupal_set_message(t('Study: %study.', array('%study' => $valid_study)));
+	//drupal_set_message(t('X-axis: %xaxis.', array('%xaxis' => $valid_xaxis)));
+	//drupal_set_message(t('Color: %color', array('%color' => $valid_color)));
+
+	//return drupal_render(drupal_get_form('scatterplot_form'));
+
+  $form_state['redirect'] = 'scatter/';
+  return scatterplot_build($scatter_input);
+
 }
+
+
+function _query_mongo_scatter($input_genes, $study) {
+
+    //dsm($input_genes);
+    if (empty($input_genes)) {
+      $gene_list = array('DCLK1');
+    } else {
+      $input_genes = strtoupper($input_genes);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_genes);
+      $trimmed_array = array_map('trim', $gene_list);
+      $gene_list = $trimmed_array;
+      $gene_list = array_map('_query_synonyms', $gene_list);
+    }
+
+    //dsm($gene_list);
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Need something to map the study to the correct subject covariates and subject_expression
+    // Or just put study name in the file?
+    //subject_covariates
+    //subject_expression
+
+    // Select the expression collection for gene expression info
+    $coll = $db->subject_expression;
+
+
+    // Filter on gene and study
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+             array('Study' => $study ) ) );
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $total = (string)$cursor->count(); //To find total number of documents
+    //dsm("Total: " . $total);
+    //$cursor->limit( 5 );
+
+    //TODO:Sould only be 1 result- add if statement here.
+    $static_keys = array("GeneSymbol","Study","ensembl_id","_id");
+     foreach ($cursor as $doc) {
+       dsm($doc);
+       $exp_keys = array_keys($doc);
+       $result = $doc;
+       $sample_ids = array_diff($exp_keys, $static_keys);
+     }
+
+    //dsm($sample_ids);
+
+    // Check the covariates for the clinical data
+     $coll2 = $db->subject_covariates;
+     $query2 = array('Study' => $study );
+     $cursor2 = $coll2->find($query2);
+
+
+     $row = array();
+
+     foreach ($cursor2 as $doc) {
+       $sample_id = $doc['ID'];
+
+       if (array_key_exists($sample_id, $result)) {
+        $row[] = array(
+          'SampleID' => $sample_id,
+          'Tissue' => $doc['Tissue'],
+          'Diagnosis' => $doc['Diagnosis'],
+          'Sex' => $doc['Gender'],
+          'Apoe' => $doc['ApoE'],
+          'AgeAtDeath' => $doc['AgeAtDeath'],
+          'Expression' => $result[$sample_id],
+          );
+       }
+
+     }
+
+    //"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"
+    //  "1000_CER","MayoBrainBank_Dickson","Cerebellum","AD","F","90_or_above","34","708.7612"
+
+    dsm($row);
+
+    return $row;
+
+}
+
 
 
 

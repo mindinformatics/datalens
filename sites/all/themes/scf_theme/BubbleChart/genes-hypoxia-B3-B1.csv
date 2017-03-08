@@ -3,28 +3,25 @@ Study,parent,DataType,Contrast,name,LogFC,size,PValue,AdjPValue
 ,WB,,,Frontal lobe,,5,,
 ,WB,,,Cingulum,,5,,
 ,WB,,,Limbic system,,5,,
-,WB,,,Striatum,,5,,
-,WB,,,Temporal lobe,,5,,
-,WB,,,Parietal lobe,,5,,
-,Frontal lobe,,,Dorsolateral Prefrontal Cortex,,5,,
+,Frontal lobe,,,Dorsolateral PFC,,5,,
 ,Cingulum,,,Anterior Cingulate,,5,,
-,Frontal lobe,,,Prefrontal Cortex,,5,,
+,Frontal lobe,,,PFC,,5,,
 ,Frontal lobe,,,Frontal Pole,,5,,
-,Limbic system,,,Hippocampus,,5,,
+,Limbic system,,,Hipp.,,5,,
 ,Frontal lobe,,,Inferior Frontal Gyrus,,5,,
 ,Cingulum,,,Posterior Cingulate Cortex,,5,,
 ,Frontal lobe,,,Precentral Gyrus,,5,,
 ,Limbic system,,,Parahippocampal Gyrus,,5,,
-,Striatum,,,Putamen,,5,,
-,Parietal lobe,,,Superior Parietal Lobule,,5,,
-,Temporal lobe,,,Superior Temporal Gyrus,,5,,
+,WB,,,Putamen,,5,,
+,WB,,,SPL,,5,,
+,WB,,,Superior Temporal Gyrus,,5,,
 MSBB,Anterior Cingulate,Microarray,B3-B1,MET,-0.385491106,0.385491106,0.006422962,0.999786844
-MSBB,Prefrontal Cortex,Microarray,B3-B1,EGR1,-0.239911978,0.239911978,0.009830564,0.999797536
+MSBB,PFC,Microarray,B3-B1,EGR1,-0.239911978,0.239911978,0.009830564,0.999797536
 MSBB,Frontal Pole,Microarray,B3-B1,PLAU,0.128006114,0.128006114,0.006354461,0.451436314
 MSBB,Frontal Pole,RNA-Seq,B3-B1,MET,-0.335209099,0.335209099,0.001611475,0.017864397
 MSBB,Frontal Pole,RNA-Seq,B3-B1,ATR,-0.284174373,0.284174373,1.75E-06,0.000435756
 MSBB,Frontal Pole,RNA-Seq,B3-B1,SERPINE1,0.481181776,0.481181776,0.009874861,0.064657594
-MSBB,Hippocampus,Microarray,B3-B1,PLAU,0.135928464,0.135928464,0.003444611,0.3342749
+MSBB,Hipp.,Microarray,B3-B1,PLAU,0.135928464,0.135928464,0.003444611,0.3342749
 MSBB,Inferior Frontal Gyrus,Microarray,B3-B1,LGALS3,-0.836774984,0.836774984,0.001194961,0.432404585
 MSBB,Inferior Frontal Gyrus,RNA-Seq,B3-B1,EGR1,-0.703869274,0.703869274,1.54E-06,0.00011606
 MSBB,Inferior Frontal Gyrus,RNA-Seq,B3-B1,PGF,0.361542872,0.361542872,0.001328576,0.010796617
@@ -48,7 +45,7 @@ MSBB,Parahippocampal Gyrus,RNA-Seq,B3-B1,EIF4EBP1,0.524929553,0.524929553,3.55E-
 MSBB,Parahippocampal Gyrus,RNA-Seq,B3-B1,ATR,-0.37585257,0.37585257,2.36E-07,4.71E-06
 MSBB,Parahippocampal Gyrus,RNA-Seq,B3-B1,SERPINE1,1.302155441,1.302155441,2.31E-07,4.62E-06
 MSBB,Putamen,Microarray,B3-B1,LGALS3,-1.018747084,1.018747084,0.001966484,0.827469081
-MSBB,Superior Parietal Lobule,Microarray,B3-B1,MET,0.151128274,0.151128274,0.008070818,0.999791277
+MSBB,SPL,Microarray,B3-B1,MET,0.151128274,0.151128274,0.008070818,0.999791277
 MSBB,Superior Temporal Gyrus,Microarray,B3-B1,PLAU,0.171816703,0.171816703,0.005004296,0.464608959
 MSBB,Superior Temporal Gyrus,RNA-Seq,B3-B1,PLAU,0.226244453,0.226244453,0.005545391,0.355577161
 MSBB,Superior Temporal Gyrus,RNA-Seq,B3-B1,ATR,-0.074847048,0.074847048,0.009416021,0.369142164
@@ -56,7 +53,7 @@ MSBB,Superior Temporal Gyrus,RNA-Seq,B3-B1,PGF,0.452837423,0.452837423,0.0002240
 MSBB,Superior Temporal Gyrus,RNA-Seq,B3-B1,PLAU,0.486210223,0.486210223,7.97E-05,0.00626346
 MSBB,Superior Temporal Gyrus,RNA-Seq,B3-B1,ATR,-0.292607827,0.292607827,2.56E-05,0.003411242
 MSBB,Superior Temporal Gyrus,RNA-Seq,B3-B1,SERPINE1,0.662922343,0.662922343,0.002842345,0.041307869
-ROSMAP,Dorsolateral Prefrontal Cortex,Microarray,B3-B1,EGR1,-0.313416789,0.313416789,0.000915579,0.085959338
-ROSMAP,Dorsolateral Prefrontal Cortex,Microarray,B3-B1,LGALS3,-0.05733006,0.05733006,0.000492189,0.063581189
-ROSMAP,Dorsolateral Prefrontal Cortex,RNA-Seq,B3-B1,EGR1,-0.542082165,0.542082165,8.49E-05,0.004859376
-ROSMAP,Dorsolateral Prefrontal Cortex,RNA-Seq,B3-B1,PGF,0.306782972,0.306782972,0.00094998,0.021849158
+ROSMAP,Dorsolateral PFC,Microarray,B3-B1,EGR1,-0.313416789,0.313416789,0.000915579,0.085959338
+ROSMAP,Dorsolateral PFC,Microarray,B3-B1,LGALS3,-0.05733006,0.05733006,0.000492189,0.063581189
+ROSMAP,Dorsolateral PFC,RNA-Seq,B3-B1,EGR1,-0.542082165,0.542082165,8.49E-05,0.004859376
+ROSMAP,Dorsolateral PFC,RNA-Seq,B3-B1,PGF,0.306782972,0.306782972,0.00094998,0.021849158

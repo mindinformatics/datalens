@@ -24,11 +24,11 @@ function scatterplot_menu() {
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['scatterplot/%'] = array(
+  $items['scatterplot/%/%/%/%'] = array(
     'title' => 'Scatterplot',
     'description' => 'Return expression data',
     'page callback' => 'scatterplot_build',
-    'page arguments' => array(1),
+    'page arguments' => array(1,2,3,4),
     'access callback' => TRUE,
   );
 
@@ -45,26 +45,30 @@ function scatterplot_csv() {
   return d3_draw($chart);
 }
 
-function scatterplot_build($scatter_input) {
+function scatterplot_build($gene, $study, $xaxis, $color) {
   $path = libraries_get_path('d3.scatterplot');
   drupal_add_css($path . '/scatterplot.css');
 
-  $gene = $scatter_input['gene'];
-	$study = $scatter_input['study'];
-	$xaxis = $scatter_input['xaxis'];
-	$color = $scatter_input['color'];
-
-	//dsm($scatter_input);
-
+	dsm("Gene: " . $gene . ";  Study: " . $study . ";  X-axis: " . $xaxis . ";  Color: " . $color);
 
   $result = _query_mongo_scatter($gene, $study);
 
+  $series_full = array("Diagnosis", "Apoe", "Sex", "AgeAtDeath", "Tissue");
+  $used = array($xaxis, $color);
+  $series = array_diff($series_full, $used);
+  //Color has to be last option in series
+  array_push($series, $color);
+  dsm($series);
+
   $chart = array(
     'id' => 'visualization',
-    'type' => 'scatterplotcsv',
+    'type' => 'scatterplot',
     'gene' => $gene,
     'xaxis' => $xaxis,
     'color' => $color,
+    'study' => $study,
+    'series' => $series,
+    'rows' => $result,
   );
 
   return d3_draw($chart);
@@ -72,7 +76,7 @@ function scatterplot_build($scatter_input) {
 
 
 /**
- * Return a form used to input gene names into bubblechart
+ * Return a form used to input settings for scatterplot
  *
  * @return
  *   An array which will be used by the form builder to build the import form
@@ -115,15 +119,15 @@ function scatterplot_form($form, &$form_state) {
        '#type' => 'select',
        '#title' => t('Study'),
        '#options' => $form['study_options']['#value'],
-       '#description' => t('Please select the study of interest. RNA-Seq normalized data normalized on Counts Per Million'),
+       '#description' => t('Please select the study of interest. RNA-Seq normalized = Counts Per Million normalization'),
    );
 
    # the values for the dropdown box
   $form['category_options'] = array(
       '#type' => 'value',
-      '#value' => array('DIAGNOSIS' => t('Diagnosis'),
-                        'APOE' => t('ApoE Genotype'),
-                        'SEX' => t('Sex'))
+      '#value' => array('Diagnosis' => t('Diagnosis'),
+                        'Apoe' => t('ApoE Genotype'),
+                        'Sex' => t('Sex'))
   );
 
    $form['xaxis'] = array(
@@ -154,10 +158,18 @@ function scatterplot_form($form, &$form_state) {
  */
 
 function scatterplot_form_validate($form, & $form_state) {
+
 	 $valid_genes = $form_state['values']['gene'];
-	 $valid_study = $form_state['values']['study'];
 	 $valid_xaxis = $form_state['values']['xaxis'];
 	 $valid_color = $form_state['values']['color'];
+
+	 if( strpos($valid_genes, ',') !== false ) {
+     form_set_error('gene', 'Please enter only one gene symbol');
+   }
+
+	 if ($valid_xaxis === $valid_color) {
+	  form_set_error('color', 'Please choose a different category for the Color; cannot be the same as the X-axis.');
+	 }
 
 }
 
@@ -177,8 +189,8 @@ function scatterplot_form_submit($form, & $form_state) {
 
 	//return drupal_render(drupal_get_form('scatterplot_form'));
 
-  $form_state['redirect'] = 'scatter/';
-  return scatterplot_build($scatter_input);
+  $form_state['redirect'] = 'scatterplot/' . $valid_genes . "/" . $valid_study . "/" . $valid_xaxis . "/" . $valid_color;
+  //return scatterplot_build($scatter_input);
 
 }
 
@@ -195,6 +207,8 @@ function _query_mongo_scatter($input_genes, $study) {
       $trimmed_array = array_map('trim', $gene_list);
       $gene_list = $trimmed_array;
       $gene_list = array_map('_query_synonyms', $gene_list);
+      //TODO:Should only use a single gene in scatterplot
+      //$gene_list = $gene_list[1];
     }
 
     //dsm($gene_list);
@@ -226,29 +240,28 @@ function _query_mongo_scatter($input_genes, $study) {
     //TODO:Sould only be 1 result- add if statement here.
     $static_keys = array("GeneSymbol","Study","ensembl_id","_id");
      foreach ($cursor as $doc) {
-       dsm($doc);
+       //dsm($doc);
        $exp_keys = array_keys($doc);
        $result = $doc;
        $sample_ids = array_diff($exp_keys, $static_keys);
      }
+     //dsm($result);
 
     //dsm($sample_ids);
 
     // Check the covariates for the clinical data
      $coll2 = $db->subject_covariates;
-     $query2 = array('Study' => $study );
+     $query2 = array('Study' => $study);
      $cursor2 = $coll2->find($query2);
 
-
      $row = array();
-
      foreach ($cursor2 as $doc) {
        $sample_id = $doc['ID'];
-
+       //dsm($doc);
        if (array_key_exists($sample_id, $result)) {
         $row[] = array(
           'SampleID' => $sample_id,
-          'Tissue' => $doc['Tissue'],
+          //'Tissue' => $doc['Tissue'],
           'Diagnosis' => $doc['Diagnosis'],
           'Sex' => $doc['Gender'],
           'Apoe' => $doc['ApoE'],
@@ -256,7 +269,6 @@ function _query_mongo_scatter($input_genes, $study) {
           'Expression' => $result[$sample_id],
           );
        }
-
      }
 
     //"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"
@@ -264,7 +276,7 @@ function _query_mongo_scatter($input_genes, $study) {
 
     dsm($row);
 
-    return $row;
+    return ($row);
 
 }
 

@@ -23,8 +23,6 @@
       console.log('gene');
       console.log(gene);
 
-      //TODO: Change APOE to string, not number?
-      //Buckets for Age at Death?
 
       //These arrays come in as an object; this converts them back to an array
       var series = $.map(settings.series, function(value, index) {
@@ -35,22 +33,33 @@
       });
       console.log(data);
 
+      //Legend doesn't seem to work right when Apoe is numeric?
+      //Works as string, but should test more as numeric
       data.forEach(function(d) {
           d.Apoe = String(d.Apoe);
         });
 
 
-    var svg = dimple.newSvg("#visualization", 590, 400);
+    var svg = dimple.newSvg("#visualization", 600, 400);
     //d3.csv("/sites/all/themes/scf_theme/Scatterplot/dclk1_data.csv", function (data) {
         // Create the chart
         var myChart = new dimple.chart(svg, data);
         myChart.setBounds(60, 30, 420, 330)
 
+// This section can be used to add a graph title if we want one.
+//         svg.append("text")
+//           .attr("x", 295)
+//           .attr("y", 30)
+//           .attr("text-anchor", "middle")
+//           .style("font-size", "16px")
+//           .style("text-decoration", "underline")
+//           .text(gene + " expression vs. " + xaxis);
+
         // Create a standard bubble for each Subject
         // Color = key in the legend
         myChart.addCategoryAxis("x", [xaxis]);
-        myChart.addMeasureAxis("y", "Expression");
-        //myAxis.title = "My Awesome New Title";
+        var y = myChart.addMeasureAxis("y", "Expression");
+        y.title = gene;
         myChart.addSeries(series, dimple.plot.bubble);
         var myLegend = myChart.addLegend(530, 100, 60, 300, "Right");
         myChart.draw();

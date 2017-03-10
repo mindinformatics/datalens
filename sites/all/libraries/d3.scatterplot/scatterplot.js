@@ -35,6 +35,10 @@
       });
       console.log(data);
 
+      data.forEach(function(d) {
+          d.Apoe = String(d.Apoe);
+        });
+
 
     var svg = dimple.newSvg("#visualization", 590, 400);
     //d3.csv("/sites/all/themes/scf_theme/Scatterplot/dclk1_data.csv", function (data) {

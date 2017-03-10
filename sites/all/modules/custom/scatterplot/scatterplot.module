@@ -127,7 +127,8 @@ function scatterplot_form($form, &$form_state) {
       '#type' => 'value',
       '#value' => array('Diagnosis' => t('Diagnosis'),
                         'Apoe' => t('ApoE Genotype'),
-                        'Sex' => t('Sex'))
+                        'Sex' => t('Sex'),
+                        'AgeAtDeath' => t('Age at Death'))
   );
 
    $form['xaxis'] = array(
@@ -191,6 +192,33 @@ function scatterplot_form_submit($form, & $form_state) {
 
   $form_state['redirect'] = 'scatterplot/' . $valid_genes . "/" . $valid_study . "/" . $valid_xaxis . "/" . $valid_color;
   //return scatterplot_build($scatter_input);
+
+}
+
+function _age_buckets($input) {
+  switch ($input) {
+    case ($input>0 && $input<60):
+        $age = "< 60";
+        break;
+    case ($input>=60 && $input<70):
+        $age = "60 - 69";
+        break;
+    case ($input>=70 && $input<80):
+        $age = "70 - 79";
+        break;
+    case ($input>=80 && $input<90):
+        $age = "80 - 89";
+        break;
+    case ($input== "90_or_above"):
+        $age = "90+";
+        break;
+    case ($input>=90):
+        $age = "90+";
+        break;
+
+  }
+
+  return($age);
 
 }
 
@@ -265,7 +293,7 @@ function _query_mongo_scatter($input_genes, $study) {
           'Diagnosis' => $doc['Diagnosis'],
           'Sex' => $doc['Gender'],
           'Apoe' => $doc['ApoE'],
-          'AgeAtDeath' => $doc['AgeAtDeath'],
+          'AgeAtDeath' => _age_buckets($doc['AgeAtDeath']),
           'Expression' => $result[$sample_id],
           );
        }

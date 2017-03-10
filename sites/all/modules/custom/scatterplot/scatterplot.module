@@ -49,7 +49,7 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
   $path = libraries_get_path('d3.scatterplot');
   drupal_add_css($path . '/scatterplot.css');
 
-	dsm("Gene: " . $gene . ";  Study: " . $study . ";  X-axis: " . $xaxis . ";  Color: " . $color);
+	//dsm("Gene: " . $gene . ";  Study: " . $study . ";  X-axis: " . $xaxis . ";  Color: " . $color);
 
   $result = _query_mongo_scatter($gene, $study);
 
@@ -58,7 +58,7 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
   $series = array_diff($series_full, $used);
   //Color has to be last option in series
   array_push($series, $color);
-  dsm($series);
+  //dsm($series);
 
   $chart = array(
     'id' => 'visualization',
@@ -302,7 +302,7 @@ function _query_mongo_scatter($input_genes, $study) {
     //"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"
     //  "1000_CER","MayoBrainBank_Dickson","Cerebellum","AD","F","90_or_above","34","708.7612"
 
-    dsm($row);
+    //dsm($row);
 
     return ($row);
 

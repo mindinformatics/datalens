@@ -51,6 +51,15 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
 
 	//dsm("Gene: " . $gene . ";  Study: " . $study . ";  X-axis: " . $xaxis . ";  Color: " . $color);
 
+	// Process gene input- all caps first
+	$gene = strtoupper($gene);
+  //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+  $gene_list = preg_split('/[\s ,]+/', $gene);
+  $trimmed_array = array_map('trim', $gene_list);
+  $gene_list = $trimmed_array;
+  $gene_list = array_map('_query_synonyms', $gene_list);
+  $gene = current($gene_list);
+
   $result = _query_mongo_scatter($gene, $study);
 
   $series_full = array("Diagnosis", "Apoe", "Sex", "AgeAtDeath");
@@ -229,14 +238,7 @@ function _query_mongo_scatter($input_genes, $study) {
     if (empty($input_genes)) {
       $gene_list = array('DCLK1');
     } else {
-      $input_genes = strtoupper($input_genes);
-      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
-      $gene_list = preg_split('/[\s ,]+/', $input_genes);
-      $trimmed_array = array_map('trim', $gene_list);
-      $gene_list = $trimmed_array;
-      $gene_list = array_map('_query_synonyms', $gene_list);
-      //TODO:Should only use a single gene in scatterplot
-      //$gene_list = $gene_list[1];
+      $gene_list = array($input_genes);
     }
 
     //dsm($gene_list);

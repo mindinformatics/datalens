@@ -117,40 +117,60 @@ function scatterplot_form($form, &$form_state) {
     '#size' => 60
   );
 
-   # the values for the dropdown box
-  $form['study_options'] = array(
-      '#type' => 'value',
-      '#value' => array('MayoBB_CBE_RNASEQ_CPM' => t('MayoBB RNA-Seq Normalized - Cerebellum'),
-                        'MayoBB_TCX_RNASEQ_CPM' => t('MayoBB RNA-Seq Normalized -Temporal Cortex'))
+  $study_options_list = array('MayoBB_CBE_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Cerebellum',
+                              'MayoBB_TCX_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Temporal Cortex'
   );
 
   $form['study'] = array(
        '#type' => 'select',
        '#title' => t('Study'),
-       '#options' => $form['study_options']['#value'],
+       '#options' => array(0 => t('- Select -')) + $study_options_list,
+       '#default_value' =>  0,
        '#description' => t('Please select the study of interest. RNA-Seq normalized = Counts Per Million normalization'),
+       '#ajax' => array(
+        'event' => 'change',
+        'callback' => 'ajax_select_callback',
+        'wrapper' => 'dropdown_second_replace',
+       ),
    );
 
-   # the values for the dropdown box
-  $form['category_options'] = array(
-      '#type' => 'value',
-      '#value' => array('Diagnosis' => t('Diagnosis'),
-                        'Apoe' => t('ApoE Genotype'),
-                        'Sex' => t('Sex'),
-                        'AgeAtDeath' => t('Age at Death'))
+   $form['study_container'] = array(
+      '#type' => 'container',
+      '#prefix' => '<div id="dropdown_second_replace">',
+      '#suffix' => '</div>',
   );
 
-   $form['xaxis'] = array(
+  $category_options_list = array();
+
+  if (isset($form_state['values']['study'])) {
+     $study_input = $form_state['values']['study'];
+     switch ($study_input) {
+            case ($study_input == "MayoBB_CBE_RNASEQ_CPM"):
+                $category_options_list = array('AgeAtDeath' => 'Age at Death CBE', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                break;
+
+            case ($study_input == "MayoBB_TCX_RNASEQ_CPM"):
+                $category_options_list = array('AgeAtDeath' => 'Age at Death TCX', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                break;
+
+            default:
+                break;
+        }
+  }
+
+   $form['study_container']['xaxis'] = array(
        '#type' => 'select',
        '#title' => t('X-axis'),
-       '#options' => $form['category_options']['#value'],
+       '#options' => array(0 => t('- Select -')) + $category_options_list,
+       '#default_value' =>  0,
        '#description' => t('Please select the category for the x-axis'),
    );
 
-   $form['color'] = array(
+   $form['study_container']['color'] = array(
        '#type' => 'select',
        '#title' => t('Color'),
-       '#options' => $form['category_options']['#value'],
+       '#options' => array(0 => t('- Select -')) + $category_options_list,
+       '#default_value' =>  0,
        '#description' => t('Please select the category for the color.'),
    );
 
@@ -161,6 +181,10 @@ function scatterplot_form($form, &$form_state) {
   );
 
 	return $form;
+}
+
+function ajax_select_callback($form, $form_state) {
+  return $form['study_container'];
 }
 
 /**
@@ -179,6 +203,14 @@ function scatterplot_form_validate($form, & $form_state) {
 
 	 if ($valid_xaxis === $valid_color) {
 	  form_set_error('color', 'Please choose a different category for the Color; cannot be the same as the X-axis.');
+	 }
+
+	 if ($valid_xaxis === 0) {
+	  form_set_error('xaxis', 'Please choose a category for the X-axis.');
+	 }
+
+	 if ($valid_color === 0) {
+	  form_set_error('color', 'Please choose a category for the Color.');
 	 }
 
 }
@@ -203,6 +235,9 @@ function scatterplot_form_submit($form, & $form_state) {
   //return scatterplot_build($scatter_input);
 
 }
+
+
+
 
 function _age_buckets($input) {
   switch ($input) {

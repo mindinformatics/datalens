@@ -31,14 +31,14 @@
       var data = $.map(settings.rows, function(value, index) {
           return [value];
       });
-      console.log(data);
 
-      //Legend doesn't seem to work right when Apoe is numeric?
-      //Works as string, but should test more as numeric
+
+      //Legend doesn't work right when Apoe is numeric, but works correctly as string
       data.forEach(function(d) {
           d.Apoe = String(d.Apoe);
         });
 
+      console.log(data);
 
     var svg = dimple.newSvg("#visualization", 600, 400);
     //d3.csv("/sites/all/themes/scf_theme/Scatterplot/dclk1_data.csv", function (data) {

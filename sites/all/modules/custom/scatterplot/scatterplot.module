@@ -62,7 +62,8 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
 
   $result = _query_mongo_scatter($gene, $study);
 
-  $series_full = array("Diagnosis", "Apoe", "Sex", "AgeAtDeath", "Tissue");
+  //Note: Having SampleID in this list seems important. Results weird without it.
+  $series_full = array("Diagnosis", "Apoe", "Sex", "AgeAtDeath", "Tissue", "SampleID");
   $used = array($xaxis, $color);
   $series = array_diff($series_full, $used);
   //Color has to be last option in series
@@ -145,12 +146,13 @@ function scatterplot_form($form, &$form_state) {
   if (isset($form_state['values']['study'])) {
      $study_input = $form_state['values']['study'];
      switch ($study_input) {
+            //To test this works, change label- "Age at Death" to "Age at Death CBE"
             case ($study_input == "MayoBB_CBE_RNASEQ_CPM"):
-                $category_options_list = array('AgeAtDeath' => 'Age at Death CBE', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
                 break;
 
             case ($study_input == "MayoBB_TCX_RNASEQ_CPM"):
-                $category_options_list = array('AgeAtDeath' => 'Age at Death TCX', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
                 break;
 
             default:

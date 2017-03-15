@@ -62,7 +62,7 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
 
   $result = _query_mongo_scatter($gene, $study);
 
-  $series_full = array("Diagnosis", "Apoe", "Sex", "AgeAtDeath");
+  $series_full = array("Diagnosis", "Apoe", "Sex", "AgeAtDeath", "Tissue");
   $used = array($xaxis, $color);
   $series = array_diff($series_full, $used);
   //Color has to be last option in series
@@ -291,7 +291,7 @@ function _query_mongo_scatter($input_genes, $study) {
        if (array_key_exists($sample_id, $result)) {
         $row[] = array(
           'SampleID' => $sample_id,
-          //'Tissue' => $doc['Tissue'],
+          'Tissue' => $doc['Tissue'],
           'Diagnosis' => $doc['Diagnosis'],
           'Sex' => $doc['Gender'],
           'Apoe' => $doc['ApoE'],

@@ -59,12 +59,19 @@
 
         // Create a standard bubble for each Subject
         // Color = key in the legend
-        myChart.addCategoryAxis("x", [xaxis]);
+
+
+        var x = myChart.addCategoryAxis("x", [xaxis]);
         var y = myChart.addMeasureAxis("y", "Expression");
         y.title = gene;
+
         myChart.addSeries(series, dimple.plot.bubble);
-        series.aggregate = dimple.aggregateMethod.avg;
-        console.log(series.aggregate);
+
+        var avg = myChart.addSeries("Avg", dimple.plot.bar, [x, y]);
+        avg.aggregate = dimple.aggregateMethod.avg;
+        avg.stacked = false;
+        myChart.assignColor("Avg", "#C0C0C0", "#C0C0C0", 1);
+
         var myLegend = myChart.addLegend(900, 100, 60, 300, "Right");
         myChart.draw();
 

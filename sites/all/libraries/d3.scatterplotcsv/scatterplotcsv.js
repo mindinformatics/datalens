@@ -34,9 +34,16 @@
         // Create a standard bubble of SKUs by Price and Sales Value
         // We are coloring by Owner as that will be the key in the legend
         //myChart.addMeasureAxis("x", "AgeAtDeath");
-        myChart.addCategoryAxis("x", ["Diagnosis"]);
-        myChart.addMeasureAxis("y", "DCLK1");
+        var x = myChart.addCategoryAxis("x", ["Diagnosis"]);
+        var y1 = myChart.addMeasureAxis("y", "DCLK1");
         myChart.addSeries(["Sex", "AgeAtDeath", "ApoE"], dimple.plot.bubble);
+
+
+        var avg = myChart.addSeries("Avg", dimple.plot.bar, [x, y1]);
+        avg.aggregate = dimple.aggregateMethod.avg;
+        avg.stacked = false;
+        myChart.assignColor("Avg", "#C0C0C0", "#C0C0C0", 1);
+
         var myLegend = myChart.addLegend(530, 100, 60, 300, "Right");
         myChart.draw();
 

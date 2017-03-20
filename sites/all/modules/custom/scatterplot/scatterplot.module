@@ -119,7 +119,8 @@ function scatterplot_form($form, &$form_state) {
   );
 
   $study_options_list = array('MayoBB_CBE_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Cerebellum',
-                              'MayoBB_TCX_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Temporal Cortex'
+                              'MayoBB_TCX_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Temporal Cortex',
+                              'ROSMAP_PFC_RNASEQ_FPKM' => 'ROSMAP RNA-Seq Normalized - Prefrontal Cortex'
   );
 
   $form['study'] = array(
@@ -153,6 +154,10 @@ function scatterplot_form($form, &$form_state) {
 
             case ($study_input == "MayoBB_TCX_RNASEQ_CPM"):
                 $category_options_list = array('AgeAtDeath' => 'Age at Death', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                break;
+
+            case ($study_input == "ROSMAP_PFC_RNASEQ_FPKM"):
+                $category_options_list = array('AgeAtOnset' => 'Age of Onset', 'AgeAtDeath' => 'Age at Death', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
                 break;
 
             default:
@@ -261,7 +266,9 @@ function _age_buckets($input) {
     case ($input>=90):
         $age = "90+";
         break;
-
+    case ($input == "NA"):
+        $age = "NA";
+        break;
   }
 
   return($age);
@@ -328,13 +335,15 @@ function _query_mongo_scatter($input_genes, $study) {
        if (array_key_exists($sample_id, $result)) {
         $row[] = array(
           'SampleID' => $sample_id,
-          'Tissue' => $doc['Tissue'],
+          'Tissue' => (isset($doc['Tissue']))? $doc['Tissue']: null,
           'Diagnosis' => $doc['Diagnosis'],
           'Sex' => $doc['Gender'],
           'Apoe' => $doc['ApoE'],
           'AgeAtDeath' => _age_buckets($doc['AgeAtDeath']),
+          'AgeAtOnset' => (isset($doc['AgeAtOnset']))? _age_buckets($doc['AgeAtOnset']): null,
           'Expression' => $result[$sample_id],
           );
+
        }
      }
 

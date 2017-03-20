@@ -32,6 +32,8 @@
           return [value];
       });
 
+      console.log('series');
+      console.log(series);
 
       //Legend doesn't work right when Apoe is numeric, but works correctly as string
       data.forEach(function(d) {
@@ -40,11 +42,11 @@
 
       console.log(data);
 
-    var svg = dimple.newSvg("#visualization", 600, 400);
+    var svg = dimple.newSvg("#visualization", 1200, 400);
     //d3.csv("/sites/all/themes/scf_theme/Scatterplot/dclk1_data.csv", function (data) {
         // Create the chart
         var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(60, 30, 420, 330)
+        myChart.setBounds(60, 30, 820, 330)
 
 // This section can be used to add a graph title if we want one.
 //         svg.append("text")
@@ -61,7 +63,9 @@
         var y = myChart.addMeasureAxis("y", "Expression");
         y.title = gene;
         myChart.addSeries(series, dimple.plot.bubble);
-        var myLegend = myChart.addLegend(530, 100, 60, 300, "Right");
+        series.aggregate = dimple.aggregateMethod.avg;
+        console.log(series.aggregate);
+        var myLegend = myChart.addLegend(900, 100, 60, 300, "Right");
         myChart.draw();
 
         // This is a critical step.  By doing this we orphan the legend. This
@@ -77,7 +81,7 @@
           .data(["Click box to show/hide", color, " "])
           .enter()
           .append("text")
-            .attr("x", 499)
+            .attr("x", 900)
             .attr("y", function (d, i) { return 80 + i * 14; })
             .style("font-family", "sans-serif")
             .style("font-size", "10px")

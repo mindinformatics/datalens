@@ -32,7 +32,24 @@ function scatterplot_menu() {
     'access callback' => TRUE,
   );
 
+  $items['scatter-plot'] = array(
+    'title' => 'Scatterplot',
+    'description' => 'Scatterplot comparing differential expression.',
+    'page callback' => 'scatterplot_csv1',
+    'access callback' => TRUE,
+  );
+
   return $items;
+}
+
+function scatterplot_csv1() {
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'scattercsv',
+  );
+
+  return d3_draw($chart);
 }
 
 function scatterplot_csv() {

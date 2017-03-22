@@ -1,4 +1,4 @@
-name = Scatterplot from CSV file
+name = Scatterplot from user input
 description = D3 Scatterplot CSV library
 files[js][] = scatterplot.js
 files[js][] = ../d3/d3.v4.3.0.js

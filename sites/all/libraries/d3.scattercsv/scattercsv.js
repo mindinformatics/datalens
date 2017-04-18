@@ -19,10 +19,16 @@ Drupal.d3.scattercsv = function (select, settings) {
        console.log(data);
         var myChart = new dimple.chart(svg, data);
         myChart.setBounds(60, 30, 800, 530)
-        myChart.addMeasureAxis("x", "FC");
-        myChart.addMeasureAxis("y", "FC1");
-        //myChart.addMeasureAxis("z", "logFC");
-        myChart.addSeries(["GeneSymbol", "PValue", "PValue1", "logFC1"], dimple.plot.bubble);
+        var myXAxis = myChart.addMeasureAxis("x", "logFC");
+        var myYAxis =myChart.addMeasureAxis("y", "logFC1");
+        //myXAxis.overrideMin = 1;
+        //myYAxis.overrideMin = 1;
+
+        myXAxis.colors = ["#DA9694"];
+        myYAxis.colors = ["#DA9694"];
+        myChart.addColorAxis("logFC", "#000000")
+        myChart.addColorAxis("GeneSymbol", "#000000")
+        myChart.addSeries(["GeneSymbol", "PValue", "PValue1"], dimple.plot.bubble);
         //myChart.addLegend(200, 10, 360, 20, "right");
         myChart.draw();
       });

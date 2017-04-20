@@ -50,10 +50,12 @@ var color = d3.scale.category10();
 
 var xAxis = d3.svg.axis()
     .scale(x)
+    .tickSize(-height,0)
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
+    .tickSize(-width+400, 0)
     .orient("left");
 
 var svg = d3.select('#' + settings.id).append("svg")
@@ -61,22 +63,6 @@ var svg = d3.select('#' + settings.id).append("svg")
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    svg.append("line")
-      .attr("x1", 0)
-      .attr("y1", 187.5)
-      .attr("x2", 800)
-      .attr("y2", 187.5)
-      .attr("stroke-width", 2)
-      .attr("stroke", "black");
-
-    svg.append("line")
-      .attr("x1", 462.5)
-      .attr("y1", 0)
-      .attr("x2", 462.5)
-      .attr("y2", 500)
-      .attr("stroke-width", 2)
-      .attr("stroke", "black");
 
 
 // Lasso functions to execute while lassoing
@@ -174,27 +160,35 @@ d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD_Pval.csv", func
   x.domain(d3.extent(data, function(d) { return d.logFC; })).nice();
   y.domain(d3.extent(data, function(d) { return d.logFC1; })).nice();
 
-  svg.append("g")
-      .attr("class", "x axis")
+  var x_axis = svg.append("g")
+      .attr("class", "x axis axis--x")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .append("text")
+      .call(xAxis);
+
+   x_axis.append("text")
       .attr("class", "label")
       .attr("x", width-400)
       .attr("y", -6)
       .style("text-anchor", "end")
       .text("log(FC) using Braak scores");
 
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
+  x_axis.selectAll(".tick")
+        .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
+
+  var y_axis = svg.append("g")
+      .attr("class", "y axis axis--y")
+      .call(yAxis);
+
+   y_axis.append("text")
       .attr("class", "label")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("log(FC) using Cerad scores")
+      .text("log(FC) using Cerad scores");
+
+  y_axis.selectAll(".tick")
+        .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
 
   svg.selectAll(".dot")
       .data(data)
@@ -212,7 +206,7 @@ d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD_Pval.csv", func
       .data(color.domain())
     .enter().append("g")
       .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(-350," + i * 20 + ")"; });
+      .attr("transform", function(d, i) { return "translate(-290," + i * 20 + ")"; });
 
   legend.append("rect")
       .attr("x", width - 18)

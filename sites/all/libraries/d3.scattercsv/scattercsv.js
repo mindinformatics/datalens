@@ -40,8 +40,6 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
 var x = d3.scale.linear()
     .range([0, width-400]);
 
-console.debug("x");
-console.debug(x);
 
 var y = d3.scale.linear()
     .range([height, 0]);
@@ -93,29 +91,26 @@ var lasso_end = function() {
     .classed({"not_possible":false,"possible":false})
     .attr("r",7);
 
-   var genes1= lasso.items().filter(function(d) {return d.selected===true})
-   console.debug("genes1");
-   console.debug(genes1);
+   var genes= lasso.items().filter(function(d) {return d.selected===true})
+   console.debug("genes");
+   console.debug(genes);
 
+   var labels = svg.selectAll(".labels")
+    .data(genes[0]);
 
-   var genes = svg.selectAll(".genes")
-      .data(genes)
-    .enter().append("g")
-      .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(-200," + i * 20 + ")"; });
+   console.debug("labels");
+   console.debug(labels);
 
-   genes.append("rect")
-      .attr("x", width - 18)
-      .attr("width", 18)
-      .attr("height", 18)
-      .style("fill", color);
+    labels.enter().append("g")
+      .attr("class", "labels")
+      .attr("transform", function(d, i) { return "translate(-100," + i * 20 + ")"; });
 
-   genes.append("text")
+    labels.append("text")
       .attr("x", width - 24)
       .attr("y", 9)
       .attr("dy", ".35em")
       .style("text-anchor", "end")
-      .text(function(d) { return d.GeneSymbol; });
+      .text(function(d) { return d.id; });
 
 
   // Reset the style of the not selected dots
@@ -144,8 +139,7 @@ var lasso = d3.lasso()
 
 
 // Init the lasso on the svg:g that contains the dots
-console.debug("lasso");
-console.debug(lasso);
+
 d3.select("svg").call(lasso);
 
 d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD_Pval.csv", function(error, data) {
@@ -193,7 +187,7 @@ d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD_Pval.csv", func
   svg.selectAll(".dot")
       .data(data)
     .enter().append("circle")
-      .attr("id",function(d,i) {return "dot_" + i;}) // added
+      .attr("id",function(d) {return d.GeneSymbol;}) // added
       .attr("class", "dot")
       .attr("r", 3.5)
       .attr("cx", function(d) { return x(d.logFC); })

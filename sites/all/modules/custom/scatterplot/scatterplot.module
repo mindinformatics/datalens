@@ -17,8 +17,8 @@ function scatterplot_menu() {
   );
 
   $items['scatter-input'] = array(
-    'title' => 'Scatterplot input',
-    'description' => 'Choose inputs for scatterplot',
+    'title' => 'Scatterchart input',
+    'description' => 'Choose inputs for scatterchart',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('scatterplot_form'),
     'access callback' => TRUE,

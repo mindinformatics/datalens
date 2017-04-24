@@ -1,0 +1,38 @@
+<?php
+
+// Show PHP errors (during development only)
+    //error_reporting(E_ALL | E_STRICT);
+    //ini_set("display_errors", 2);
+
+
+/**
+* Implements hook_menu().
+*/
+function forcedirected_menu() {
+  $items['forcedirected'] = array(
+    'title' => 'ForceDirected Graph',
+    'description' => 'Different visualization examples using d3.',
+    'page callback' => 'forcedirected_json',
+    'access callback' => TRUE,
+  );
+
+
+  return $items;
+}
+
+function forcedirected_json() {
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'forcedirected',
+  );
+
+  return d3_draw($chart);
+}
+
+
+
+
+
+
+?>

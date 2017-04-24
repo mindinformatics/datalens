@@ -1,0 +1,13 @@
+name = Force Directed Graph
+description = D3 ForceDirected Graph library
+files[js][] = libs/d3.v4.min.js
+files[js][] = forcedirected.js
+files[css][] = forcedirected.css
+version = 0.1
+
+
+; Information added by Drupal.org packaging script on 2015-12-27
+version = "7.x-1.0-alpha2"
+core = "7.x"
+project = "d3"
+datestamp = "1451186943"

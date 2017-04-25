@@ -12,14 +12,21 @@ unique(dat$color)
 write.table(dat, file="ad_meta_analysis_filtered_0.001.csv", sep=",", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 
-dat <- fread("ad_meta_analysis_filtered_0.05.tsv")
-require(bit64)
+#dat <- fread("ad_meta_analysis_filtered_0.05.tsv")
+dat <- read.table("ad_meta_analysis_filtered_0.05.tsv", sep="\t", header=TRUE)
 head(dat)
 
 unique(dat$chr)
 dat$color[dat$chr %% 2 == 0] = "pink"
 dat$color[dat$chr %% 2 != 0] = "blue"
 unique(dat$color)
+colnames(dat)
+colnames(dat)[8] = "Pvalue"
+colnames(dat)[15] = "HGNC"
+function (chr) {
+  dat[dat$chr= chr,]
+  
+}
 write.table(dat, file="ad_meta_analysis_filtered_0.05.csv", sep=",", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 # Change P-value to Pvalue

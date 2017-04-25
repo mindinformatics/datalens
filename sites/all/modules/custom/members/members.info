@@ -43,7 +43,6 @@ dependencies[] = filter
 dependencies[] = fixed_field
 dependencies[] = flag
 dependencies[] = flag_anon
-dependencies[] = googleanalytics
 dependencies[] = image
 dependencies[] = imce_wysiwyg
 dependencies[] = libraries

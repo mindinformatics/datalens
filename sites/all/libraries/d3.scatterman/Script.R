@@ -40,11 +40,9 @@ sapply(chrs, function(chr) {
   }
   
   mid=median(dat1$cumulative_pos)
-  if(chr == 1) {
-    dat$xlabel[dat$chr== chr] <<- mid
-  } else {
-    dat$xlabel[dat$chr== chr] <<-max2+mid
-  }
+  
+  dat$xlabel[dat$chr== chr] <<- mid
+
 })
 
 

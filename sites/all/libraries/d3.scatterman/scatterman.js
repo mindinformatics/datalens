@@ -33,7 +33,7 @@ Drupal.d3.scatterman = function (select, settings) {
         myChart.draw();
       });
  */
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
+var margin = {top: 20, right: 20, bottom: 50, left: 40},
     width = 1200 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -46,9 +46,14 @@ var y = d3.scale.linear()
 
 var color = d3.scale.ordinal().range(["#0D66FE", "#F800FE"]);
 
+var tickLabels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','','19','','21','','XY', 'MT'];
+
 var xAxis = d3.svg.axis()
     .scale(x)
-    .tickSize(-height,0)
+    .tickValues([149067279, 363074478, 591315308, 785709935, 978046680, 1144100478, 1313205909, 1464130770, 1623277730, 1748605215, 1892253176, 2016468450, 2151868098, 2262265200, 2367463699, 2462467876, 2533014977, 2621303898, 2693441634, 2755549660, 2816636825, 2869330135, 2887510102, 3039705353])
+    .tickSize(6,0)
+    .tickFormat(function(d, i) {
+      return tickLabels[i]})
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
@@ -160,13 +165,15 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.05.csv", 
   var x_axis = svg.append("g")
       .attr("class", "x axis axis--x")
       .attr("transform", "translate(0," + height + ")")
+      .style("font-size","9px")
       .call(xAxis);
 
    x_axis.append("text")
       .attr("class", "label")
-      .attr("x", width-700)
-      .attr("y", 20)
+      .attr("x", width-750)
+      .attr("y", 35)
       .style("text-anchor", "end")
+      .style("font-size","12px")
       .text("Chromosome Position");
 
   x_axis.selectAll(".tick")
@@ -174,14 +181,17 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.05.csv", 
 
   var y_axis = svg.append("g")
       .attr("class", "y axis axis--y")
+      .style("font-size","9px")
       .call(yAxis);
 
    y_axis.append("text")
       .attr("class", "label")
       .attr("transform", "rotate(-90)")
+      .attr("x", -120)
       .attr("y", -30)
       .attr("dy", "0.4em")
       .style("text-anchor", "end")
+      .style("font-size","12px")
       .text("-log10(P-value)");
 
   y_axis.selectAll(".tick")
@@ -192,19 +202,22 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.05.csv", 
     .enter().append("circle")
       .attr("id",function(d) {return d.HGNC;}) // added
       .attr("class", "dot")
-      .attr("r", 1)
+      .attr("r", function(d) { return (d.Pvalue > 6 ? 2:1); })
       .attr("cx", function(d) { return x(d.cumulative_pos); })
       .attr("cy", function(d) { return y(d.Pvalue); })
       .style("fill", function(d) { return color(d.color); });
 
   lasso.items(d3.selectAll(".dot"));
 
+/*
   var legend = svg.selectAll(".legend")
       .data(color.domain())
     .enter().append("g")
       .attr("class", "legend")
       .attr("transform", function(d, i) { return "translate(-290," + i * 20 + ")"; });
+ */
 
+/*
   legend.append("rect")
       .attr("x", width - 18)
       .attr("width", 18)
@@ -217,6 +230,7 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.05.csv", 
       .attr("dy", ".35em")
       .style("text-anchor", "end")
       .text(function(d) { return d; });
+ */
 
 });
 

@@ -38,9 +38,26 @@ function scatterplot_menu() {
     'page callback' => 'scatterplot_csv1',
     'access callback' => TRUE,
   );
+  $items['manhattan-plot'] = array(
+    'title' => 'Manhattan Plot',
+    'description' => 'Manhattan Plot of SNPs',
+    'page callback' => 'scatterplot_man',
+    'access callback' => TRUE,
+  );
 
   return $items;
 }
+
+function scatterplot_man() {
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'scatterman',
+  );
+
+  return d3_draw($chart);
+}
+
 
 function scatterplot_csv1() {
 

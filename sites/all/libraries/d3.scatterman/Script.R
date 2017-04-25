@@ -23,10 +23,31 @@ unique(dat$color)
 colnames(dat)
 colnames(dat)[8] = "Pvalue"
 colnames(dat)[15] = "HGNC"
-function (chr) {
-  dat[dat$chr= chr,]
+
+
+chrs = unique(dat$chr)
+
+sapply(chrs, function(chr) {
+  dat1=dat[dat$chr== chr,]
+  if(chr == 25) {
+    dat2=dat[dat$chr== chr-3,]
+    max2=max(dat2$cumulative_pos)
+  } else if(chr == 1) {
+    
+  }else {
+    dat2=dat[dat$chr== chr-1,]
+    max2=max(dat2$cumulative_pos)
+  }
   
-}
+  mid=median(dat1$cumulative_pos)
+  if(chr == 1) {
+    dat$xlabel[dat$chr== chr] <<- mid
+  } else {
+    dat$xlabel[dat$chr== chr] <<-max2+mid
+  }
+})
+
+
 write.table(dat, file="ad_meta_analysis_filtered_0.05.csv", sep=",", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 # Change P-value to Pvalue

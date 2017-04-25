@@ -6,33 +6,6 @@
 
 Drupal.d3.scatterman = function (select, settings) {
 
-  /*
-    var svg = dimple.newSvg("#visualization", 900, 600);
-      var real_fc  = function(x){ return (x>0 ? Math.pow(2,x) : -1/Math.pow(2,x)) };
-
-      d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD.csv", function (data) {
-       data = data.filter(function(d) { return d.PValue < 0.01 })
-       data.forEach(function(d) {
-            d.FC = real_fc(+d.cumulative_pos);
-            d.FC1 = real_fc(+d.P-value);
-
-          });
-       console.log(data);
-        var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(60, 30, 800, 530)
-        var myXAxis = myChart.addMeasureAxis("x", "logFC");
-        var myYAxis =myChart.addMeasureAxis("y", "logFC1");
-        //myXAxis.overrideMin = 1;
-        //myYAxis.overrideMin = 1;
-
-        myXAxis.colors = ["#DA9694"];
-        myYAxis.colors = ["#DA9694"];
-        myChart.addColorAxis("logFC", "#000000")
-        myChart.addSeries(["GeneSymbol", "PValue", "PValue1"], dimple.plot.bubble);
-        //myChart.addLegend(200, 10, 360, 20, "right");
-        myChart.draw();
-      });
- */
 var margin = {top: 20, right: 20, bottom: 50, left: 40},
     width = 1200 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -46,7 +19,7 @@ var y = d3.scale.linear()
 
 var color = d3.scale.ordinal().range(["#0D66FE", "#F800FE"]);
 
-var tickLabels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','','19','','21','','XY', 'MT'];
+var tickLabels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','','XY', 'MT'];
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -71,7 +44,7 @@ var svg = d3.select('#' + settings.id).append("svg")
 // Lasso functions to execute while lassoing
 var lasso_start = function() {
   lasso.items()
-    .attr("r",3.5) // reset size
+    .attr("r", function(d) { return (d.Pvalue > 6 ? 2:1); }) // reset size
     .style("fill",null) // clear all of the fills
     .classed({"not_possible":true,"selected":false}); // style as not possible
 };
@@ -96,11 +69,12 @@ var lasso_end = function() {
     .classed({"not_possible":false,"possible":false})
     .attr("r",7);
 
-   var genes= lasso.items().filter(function(d) {return d.selected===true})
+
+   var genes = lasso.items().filter(function(d) {return d.selected===true})
    console.debug("genes");
    console.debug(genes);
 
-  /*
+
  var labels = svg.selectAll(".labels")
     .data(genes[0]);
 
@@ -117,13 +91,13 @@ var lasso_end = function() {
       .attr("dy", ".35em")
       .style("text-anchor", "end")
       .text(function(d) { return d.id; });
- */
+
 
 
   // Reset the style of the not selected dots
   lasso.items().filter(function(d) {return d.selected===false})
     .classed({"not_possible":false,"possible":false})
-    .attr("r",3.5);
+    .attr("r", function(d) { return (d.Pvalue > 6 ? 2:1); });
 
 };
 

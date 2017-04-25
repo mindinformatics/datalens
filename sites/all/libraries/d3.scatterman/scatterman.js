@@ -19,11 +19,16 @@ var y = d3.scale.linear()
 
 var color = d3.scale.ordinal().range(["#0D66FE", "#F800FE"]);
 
-var tickLabels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','','XY', 'MT'];
+// .05
+//var tickLabels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','','XY', 'MT'];
+
+var tickLabels = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'];
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .tickValues([149067279, 363074478, 591315308, 785709935, 978046680, 1144100478, 1313205909, 1464130770, 1623277730, 1748605215, 1892253176, 2016468450, 2151868098, 2262265200, 2367463699, 2462467876, 2533014977, 2621303898, 2693441634, 2755549660, 2816636825, 2869330135, 2887510102, 3039705353])
+    // .05
+    //.tickValues([149067279, 363074478, 591315308, 785709935, 978046680, 1144100478, 1313205909, 1464130770, 1623277730, 1748605215, 1892253176, 2016468450, 2151868098, 2262265200, 2367463699, 2462467876, 2533014977, 2621303898, 2693441634, 2755549660, 2816636825, 2869330135, 2887510102, 3039705353])
+    .tickValues([170615041, 375507593, 612515574, 734913473, 999514507, 1154737085, 1331915028, 1488108426, 1647193879, 1755910900, 1916510926, 2054246074, 2153648306, 2255302529, 2376445692, 2430547484, 2529871005, 2620593637, 2708963206, 2738150816, 2817252334, 2862663588])
     .tickSize(6,0)
     .tickFormat(function(d, i) {
       return tickLabels[i]})
@@ -44,7 +49,7 @@ var svg = d3.select('#' + settings.id).append("svg")
 // Lasso functions to execute while lassoing
 var lasso_start = function() {
   lasso.items()
-    .attr("r", function(d) { return (d.Pvalue > 6 ? 2:1); }) // reset size
+    .attr("r", function(d) { return (d.Pvalue > 6 ? 3:2); }) // reset size
     .style("fill",null) // clear all of the fills
     .classed({"not_possible":true,"selected":false}); // style as not possible
 };
@@ -71,12 +76,19 @@ var lasso_end = function() {
 
 
    var genes = lasso.items().filter(function(d) {return d.selected===true})
+   genes = genes[0];
    console.debug("genes");
-   console.debug(genes);
+   console.debug(genes[0].pval);
+
+   //nodeValue
+
+   genes = genes.sort(function(x, y){
+    return d3.ascending(x.cy, y.cy);
+    })
 
 
  var labels = svg.selectAll(".labels")
-    .data(genes[0]);
+    .data(genes);
 
    console.debug("labels");
    console.debug(labels);
@@ -97,7 +109,7 @@ var lasso_end = function() {
   // Reset the style of the not selected dots
   lasso.items().filter(function(d) {return d.selected===false})
     .classed({"not_possible":false,"possible":false})
-    .attr("r", function(d) { return (d.Pvalue > 6 ? 2:1); });
+    .attr("r", function(d) { return (d.Pvalue > 6 ? 3:2); });
 
 };
 
@@ -123,7 +135,7 @@ var lasso = d3.lasso()
 
 d3.select("svg").call(lasso);
 
-d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.05.csv", function(error, data) {
+d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv", function(error, data) {
   data.forEach(function(d) {
     d.cumulative_pos = +d.cumulative_pos;
     d.Pvalue = -(Math.log10(+d.Pvalue));
@@ -134,7 +146,7 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.05.csv", 
 
   x.domain(d3.extent(data, function(d) { return d.cumulative_pos; })).nice();
   //y.domain(d3.extent(data, function(d) { return d.Pvalue; })).nice();
-  y.domain(d3.extent([0, 22])).nice();
+  y.domain(d3.extent([2, 22])).nice();
 
   var x_axis = svg.append("g")
       .attr("class", "x axis axis--x")
@@ -174,9 +186,10 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.05.csv", 
   svg.selectAll(".dot")
       .data(data)
     .enter().append("circle")
-      .attr("id",function(d) {return d.HGNC;}) // added
+      .attr("id",function(d) {return (d.Pvalue + ": " + d.MarkerName + ": " + d.HGNC);})
+      .attr("pval",function(d) {return d.Pvalue;}) // added
       .attr("class", "dot")
-      .attr("r", function(d) { return (d.Pvalue > 6 ? 2:1); })
+      .attr("r", function(d) { return (d.Pvalue > 6 ? 3:2); })
       .attr("cx", function(d) { return x(d.cumulative_pos); })
       .attr("cy", function(d) { return y(d.Pvalue); })
       .style("fill", function(d) { return color(d.color); });

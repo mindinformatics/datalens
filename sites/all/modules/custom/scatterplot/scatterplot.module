@@ -39,7 +39,7 @@ function scatterplot_menu() {
     'access callback' => TRUE,
   );
   $items['manhattan-plot'] = array(
-    'title' => 'Manhattan Plot',
+    'title' => 'Alzheimers GWAS Meta-Analysis',
     'description' => 'Manhattan Plot of SNPs',
     'page callback' => 'scatterplot_man',
     'access callback' => TRUE,

@@ -78,7 +78,7 @@ var lasso_end = function() {
    var genes = lasso.items().filter(function(d) {return d.selected===true})
    genes = genes[0];
    console.debug("genes");
-   console.debug(genes[0].pval);
+   console.debug(genes);
 
    //nodeValue
 
@@ -123,7 +123,7 @@ var lasso_area = svg.append("rect")
 var lasso = d3.lasso()
       .closePathDistance(75) // max distance for the lasso loop to be closed
       .closePathSelect(true) // can items be selected by closing the path?
-      .hoverSelect(true) // can items by selected by hovering over them?
+      //.hoverSelect(true) // can items by selected by hovering over them?
       .area(lasso_area) // area where the lasso can be started
       .on("start",lasso_start) // lasso start function
       .on("draw",lasso_draw) // lasso draw function
@@ -138,6 +138,7 @@ d3.select("svg").call(lasso);
 d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv", function(error, data) {
   data.forEach(function(d) {
     d.cumulative_pos = +d.cumulative_pos;
+    d.DisplayP = +d.Pvalue;
     d.Pvalue = -(Math.log10(+d.Pvalue));
   });
 
@@ -147,6 +148,7 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv",
   x.domain(d3.extent(data, function(d) { return d.cumulative_pos; })).nice();
   //y.domain(d3.extent(data, function(d) { return d.Pvalue; })).nice();
   y.domain(d3.extent([2, 22])).nice();
+
 
   var x_axis = svg.append("g")
       .attr("class", "x axis axis--x")
@@ -183,18 +185,30 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv",
   y_axis.selectAll(".tick")
         .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
 
+  var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .html(function(d) { return (d.MarkerName + ": " + d.HGNC); })
+      .direction('nw')
+      .offset([0, 3]);
+
+  svg.call(tip);
+
+  var sformat = d3.format(".1e");
+
   svg.selectAll(".dot")
       .data(data)
     .enter().append("circle")
-      .attr("id",function(d) {return (d.Pvalue + ": " + d.MarkerName + ": " + d.HGNC);})
-      .attr("pval",function(d) {return d.Pvalue;}) // added
+      .attr("id",function(d) {return ( d.MarkerName + ": " + d.HGNC + ", " + sformat(d.DisplayP));})
       .attr("class", "dot")
       .attr("r", function(d) { return (d.Pvalue > 6 ? 3:2); })
       .attr("cx", function(d) { return x(d.cumulative_pos); })
       .attr("cy", function(d) { return y(d.Pvalue); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .style("fill", function(d) { return color(d.color); });
 
   lasso.items(d3.selectAll(".dot"));
+
 
 /*
   var legend = svg.selectAll(".legend")

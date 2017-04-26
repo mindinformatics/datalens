@@ -16,9 +16,14 @@
    */
   Drupal.d3.forcedirected = function (select, settings) {
 
-    var svg = d3.select("#visualization").append("svg").attr("width", 940).attr("height",600),
-        width = +svg.attr("width"),
-       height = +svg.attr("height");
+
+    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = 1200 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    var svg = d3.select('#' + settings.id).append("svg")
+               .attr("width", width + margin.left + margin.right)
+               .attr("height", height + margin.top + margin.bottom);
 
 
     var color = d3.scaleOrdinal(d3.schemeCategory20);

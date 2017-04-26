@@ -138,6 +138,7 @@ d3.select("svg").call(lasso);
 d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv", function(error, data) {
   data.forEach(function(d) {
     d.cumulative_pos = +d.cumulative_pos;
+    d.DisplayP = +d.Pvalue;
     d.Pvalue = -(Math.log10(+d.Pvalue));
   });
 
@@ -147,6 +148,7 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv",
   x.domain(d3.extent(data, function(d) { return d.cumulative_pos; })).nice();
   //y.domain(d3.extent(data, function(d) { return d.Pvalue; })).nice();
   y.domain(d3.extent([2, 22])).nice();
+
 
   var x_axis = svg.append("g")
       .attr("class", "x axis axis--x")
@@ -191,10 +193,12 @@ d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv",
 
   svg.call(tip);
 
+  var sformat = d3.format(".1e");
+
   svg.selectAll(".dot")
       .data(data)
     .enter().append("circle")
-      .attr("id",function(d) {return ( d.MarkerName + ": " + d.HGNC + ", " + d.Pvalue.toFixed(2));})
+      .attr("id",function(d) {return ( d.MarkerName + ": " + d.HGNC + ", " + sformat(d.DisplayP));})
       .attr("class", "dot")
       .attr("r", function(d) { return (d.Pvalue > 6 ? 3:2); })
       .attr("cx", function(d) { return x(d.cumulative_pos); })

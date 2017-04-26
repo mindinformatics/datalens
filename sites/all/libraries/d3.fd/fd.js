@@ -14,7 +14,7 @@
    *   id: required. This will be needed to attach your
    *       visualization to the DOM.
    */
-  Drupal.d3.forcedirected = function (select, settings) {
+  Drupal.d3.fd = function (select, settings) {
 
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},

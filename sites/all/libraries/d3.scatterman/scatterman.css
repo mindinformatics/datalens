@@ -47,3 +47,10 @@ body {
 .axis--x .tick:not(.tick--one) line {
   stroke-opacity: .15;
 }
+
+.d3-tip text {
+    fill: #fff;
+    font-size: 12px;
+    stroke: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

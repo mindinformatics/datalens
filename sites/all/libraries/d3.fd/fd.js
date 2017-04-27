@@ -37,37 +37,49 @@
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    d3.json("/sites/all/libraries/d3.fd/miserables.json", function(error, graph) {
+    d3.tsv("/sites/all/libraries/d3.fd/Tau.tsv", function(error, links) {
+     d3.csv("/sites/all/libraries/d3.fd/Tau-genes.csv", function(error, nodes) {
+
       if (error) throw error;
 
       var link = svg.append("g")
           .attr("class", "links")
         .selectAll("line")
-        .data(graph.links)
+        .data(links)
         .enter().append("line")
-          .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+          .attr("stroke-width", function(d) { return d.value * 5; });
 
       var node = svg.append("g")
           .attr("class", "nodes")
-        .selectAll("circle")
-        .data(graph.nodes)
-        .enter().append("circle")
-          .attr("r", 5)
-          .attr("fill", function(d) { return color(d.group); })
-          .call(d3.drag()
+        .selectAll(".node")
+        .data(nodes)
+        .enter().append("g")
+        .call(d3.drag()
               .on("start", dragstarted)
               .on("drag", dragged)
               .on("end", dragended));
 
+      var circle=  node.append("circle")
+          .attr("r", 10)
+          .attr("fill", function(d) { return color(d.group); })
+
       node.append("title")
           .text(function(d) { return d.id; });
 
+
+      node.append("text")
+          .attr("dx", function(d) { return d.x; })
+          .attr("dy", function(d) { return d.y; })
+          .style("text-anchor", "middle")
+          .style("font-size", function(d) { return 10 + "px" })
+          .text(function(d) { return d.id; });
+
       simulation
-          .nodes(graph.nodes)
+          .nodes(nodes)
           .on("tick", ticked);
 
       simulation.force("link")
-          .links(graph.links);
+          .links(links);
 
       function ticked() {
         link
@@ -76,15 +88,16 @@
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
 
-        node
+        circle
             .attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
       }
 
-      svg.on("mousemove", function() {
+    /*
+  svg.on("mousemove", function() {
        fisheye.focus(d3.mouse(this));
 
-       node.each(function(d) { d.fisheye = fisheye(d); })
+       circle.each(function(d) { d.fisheye = fisheye(d); })
           .attr("cx", function(d) { return d.fisheye.x; })
           .attr("cy", function(d) { return d.fisheye.y; })
           .attr("r", function(d) { return d.fisheye.z * 4.5; });
@@ -94,8 +107,9 @@
           .attr("x2", function(d) { return d.target.fisheye.x; })
           .attr("y2", function(d) { return d.target.fisheye.y; });
       });
+ */
     });
-
+    });
     function dragstarted(d) {
       if (!d3.event.active) simulation.alphaTarget(0.3).restart();
       d.fx = d.x;

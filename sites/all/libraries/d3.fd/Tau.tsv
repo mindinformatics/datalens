@@ -1,4 +1,4 @@
-Entity1	Entity2	Weight	Network group	Network
+source	target	value	networkGroup	network
 AATF	FKBP4	0.018415289	Co-expression	Wang-Maris-2006
 AATF	G3BP1	0.017585505	Co-expression	Ramaswamy-Golub-2001
 CAMK2A	MAP2	0.0075232964	Co-expression	Bild-Nevins-2006 B

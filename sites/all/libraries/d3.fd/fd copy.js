@@ -28,23 +28,22 @@
         .charge(-100)
         .size([width, height]);
 
-    d3.json("/sites/all/libraries/d3.fd/graph.json", function(error, json) {
+    d3.tsv("/sites/all/libraries/d3.fd/Tau.tsv", function(error, links) {
+     d3.csv("/sites/all/libraries/d3.fd/Tau-genes.csv", function(error, nodes) {
       if (error) throw error;
 
-      console.log(json);
-
       force
-          .nodes(json.nodes)
-          .links(json.links)
+          .nodes(nodes)
+          .links(links)
           .start();
 
       var link = svg.selectAll(".link")
-          .data(json.links)
+          .data(links)
         .enter().append("line")
           .attr("class", "link");
 
       var node = svg.selectAll(".node")
-          .data(json.nodes)
+          .data(nodes)
         .enter().append("g")
           .attr("class", "node")
           .call(force.drag);
@@ -59,7 +58,7 @@
       node.append("text")
           .attr("dx", 12)
           .attr("dy", ".35em")
-          .text(function(d) { return d.name });
+          .text(function(d) { return d.id });
 
       force.on("tick", function() {
         link.attr("x1", function(d) { return d.source.x; })
@@ -70,7 +69,7 @@
         node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
       });
     });
-
+  });
 
   }
 })(jQuery);

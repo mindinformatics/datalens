@@ -19,7 +19,7 @@
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = 1200 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        height = 700 - margin.top - margin.bottom;
 
     var svg = d3.select('#' + settings.id).append("svg")
                .attr("width", width + margin.left + margin.right)
@@ -27,6 +27,10 @@
 
 
     var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+    var fisheye = d3.fisheye.circular()
+        .radius(200)
+        .distortion(2);
 
     var simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function(d) { return d.id; }))
@@ -76,6 +80,20 @@
             .attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
       }
+
+      svg.on("mousemove", function() {
+       fisheye.focus(d3.mouse(this));
+
+       node.each(function(d) { d.fisheye = fisheye(d); })
+          .attr("cx", function(d) { return d.fisheye.x; })
+          .attr("cy", function(d) { return d.fisheye.y; })
+          .attr("r", function(d) { return d.fisheye.z * 4.5; });
+
+       link.attr("x1", function(d) { return d.source.fisheye.x; })
+          .attr("y1", function(d) { return d.source.fisheye.y; })
+          .attr("x2", function(d) { return d.target.fisheye.x; })
+          .attr("y2", function(d) { return d.target.fisheye.y; });
+      });
     });
 
     function dragstarted(d) {
@@ -94,6 +112,7 @@
       d.fx = null;
       d.fy = null;
     }
+
 
   }
 })(jQuery);

@@ -1,8 +1,9 @@
 name = Force Directed Graph
 description = D3 ForceDirected Graph library
 files[js][] = fd.js
-files[js][] = libs/d3.v4.min.js
-files[js][] = libs/fisheye.js
+;files[js][] = libs/d3.v4.min.js
+;files[js][] = libs/fisheye.js
+files[js][] = libs/d3.v3.min.js
 files[css][] = fd.css
 version = 0.1
 

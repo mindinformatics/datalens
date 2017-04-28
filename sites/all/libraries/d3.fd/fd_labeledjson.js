@@ -22,15 +22,13 @@
         .attr("width", width)
         .attr("height", height);
 
-    var color = d3.scale.category20b();
-
     var force = d3.layout.force()
         .gravity(0.05)
         .distance(100)
         .charge(-100)
         .size([width, height]);
 
-    d3.json("/sites/all/libraries/d3.fd/genes_tau.json", function(error, json) {
+    d3.json("/sites/all/libraries/d3.fd/graph.json", function(error, json) {
       if (error) throw error;
 
       console.log(json);
@@ -51,18 +49,12 @@
           .attr("class", "node")
           .call(force.drag);
 
-/*
       node.append("image")
           .attr("xlink:href", "https://github.com/favicon.ico")
           .attr("x", -8)
           .attr("y", -8)
           .attr("width", 16)
           .attr("height", 16);
- */
-
-      node.append("circle")
-          .attr("r", 5)
-          .attr("fill", function(d) { return color(d.group); });
 
       node.append("text")
           .attr("dx", 12)
@@ -74,10 +66,6 @@
             .attr("y1", function(d) { return d.source.y; })
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
-
-        node
-            .attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
 
         node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
       });

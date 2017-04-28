@@ -28,7 +28,7 @@ var xAxis = d3.svg.axis()
     .scale(x)
     // .05
     //.tickValues([149067279, 363074478, 591315308, 785709935, 978046680, 1144100478, 1313205909, 1464130770, 1623277730, 1748605215, 1892253176, 2016468450, 2151868098, 2262265200, 2367463699, 2462467876, 2533014977, 2621303898, 2693441634, 2755549660, 2816636825, 2869330135, 2887510102, 3039705353])
-    .tickValues([170615041, 375507593, 612515574, 734913473, 999514507, 1154737085, 1331915028, 1488108426, 1647193879, 1755910900, 1916510926, 2054246074, 2153648306, 2255302529, 2376445692, 2430547484, 2529871005, 2620593637, 2708963206, 2738150816, 2817252334, 2862663588])
+    .tickValues(settings.tickval)
     .tickSize(6,0)
     .tickFormat(function(d, i) {
       return tickLabels[i]})
@@ -135,7 +135,7 @@ var lasso = d3.lasso()
 
 d3.select("svg").call(lasso);
 
-d3.csv("/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv", function(error, data) {
+d3.csv(settings.input, function(error, data) {
   data.forEach(function(d) {
     d.cumulative_pos = +d.cumulative_pos;
     d.DisplayP = +d.Pvalue;

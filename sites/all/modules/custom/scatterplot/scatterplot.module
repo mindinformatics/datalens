@@ -44,15 +44,43 @@ function scatterplot_menu() {
     'page callback' => 'scatterplot_man',
     'access callback' => TRUE,
   );
+  $items['manhattan-plot2'] = array(
+    'title' => 'Manhattan plot of IGAP Stage 1 results',
+    'description' => 'Manhattan Plot of SNPs',
+    'page callback' => 'scatterplot_man2',
+    'access callback' => TRUE,
+  );
 
   return $items;
 }
 
 function scatterplot_man() {
 
+  $ticks = array(170615041, 375507593, 612515574, 734913473, 999514507, 1154737085, 1331915028, 1488108426, 1647193879, 1755910900, 1916510926, 2054246074, 2153648306, 2255302529, 2376445692, 2430547484, 2529871005, 2620593637, 2708963206, 2738150816, 2817252334, 2862663588);
+  $file = "/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv";
+
   $chart = array(
     'id' => 'visualization',
     'type' => 'scatterman',
+    'tickval' => $ticks,
+    'input' => $file,
+
+  );
+
+  return d3_draw($chart);
+}
+
+function scatterplot_man2() {
+
+  $ticks = array(2663093002, 318359125, 1408963204, 1851861554, 193685374, 1258522306, 1082619176, 2245315267, 2563350438, 1010922542, 2471177181, 2726411339, 691766475, 1718846870, 2341721881, 613581801, 2398089766, 2013524318, 1618853060, 2790885297, 2757406834, 2163238299);
+  $file = "/sites/all/libraries/d3.scatterman/IGAP_stage_1_filtered_new.csv";
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'scatterman',
+    'tickval' => $ticks,
+    'input' => $file,
+
   );
 
   return d3_draw($chart);

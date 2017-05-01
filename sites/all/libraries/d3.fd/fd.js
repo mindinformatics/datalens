@@ -16,13 +16,13 @@
    */
   Drupal.d3.fd = function (select, settings) {
     var width = 960,
-       height = 500;
+       height = 700;
 
     var svg = d3.select('#' + settings.id).append("svg")
         .attr("width", width)
         .attr("height", height);
 
-    var color = d3.scale.category20b();
+    var color = d3.scale.category10();
 
     var force = d3.layout.force()
         .gravity(0.05)
@@ -30,23 +30,35 @@
         .charge(-100)
         .size([width, height]);
 
-    d3.json("/sites/all/libraries/d3.fd/genes_tau.json", function(error, json) {
+    d3.csv("/sites/all/libraries/d3.fd/snp-links.csv", function(error, links) {
+     d3.csv("/sites/all/libraries/d3.fd/snp-genes.csv", function(error, nodes) {
       if (error) throw error;
 
-      console.log(json);
+      console.log(nodes);
+      console.log(links);
+
+      links.forEach(function(d) {
+        d.source = +d.source;
+        d.target = +d.target;
+        if (typeof d.source == "number") { d.source = nodes[d.source]; }
+        if (typeof d.target == "number") { d.target = nodes[d.target]; }
+      });
+
+      console.log(nodes);
+      console.log(links);
 
       force
-          .nodes(json.nodes)
-          .links(json.links)
+          .nodes(nodes)
+          .links(links)
           .start();
 
       var link = svg.selectAll(".link")
-          .data(json.links)
+          .data(links)
         .enter().append("line")
           .attr("class", "link");
 
       var node = svg.selectAll(".node")
-          .data(json.nodes)
+          .data(nodes)
         .enter().append("g")
           .attr("class", "node")
           .call(force.drag);
@@ -75,14 +87,10 @@
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
 
-        node
-            .attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
-
         node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
       });
     });
-
+  });
 
   }
 })(jQuery);

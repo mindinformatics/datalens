@@ -1,4 +1,4 @@
-"Entity.1","Entity.2","Weight","Network.group","Network","source","target"
+"Entity.1","Entity.2","value","Network.group","Network","source","target"
 "HBEGF","PICALM",0.014346324,"Co-expression","Ramaswamy-Golub-2001",0,48
 "APOE","APOC1",0.035035618,"Co-expression","Ramaswamy-Golub-2001",1,42
 "BIN1","DMWD",0.02015458,"Co-expression","Ramaswamy-Golub-2001",2,41

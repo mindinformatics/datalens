@@ -2,15 +2,24 @@ setwd("~/Sites/cats/sites/all/libraries/d3.fd/")
 options(stringsAsFactors = FALSE)
 
 
-
-#dat <- fread("ad_meta_analysis_filtered_0.05.tsv")
-dat <- read.table("Tau.tsv", sep="\t", header=TRUE)
+dat <- read.table("genemania-network.tsv", sep="\t", header=TRUE)
+#dat <- read.table("Tau.tsv",  sep="\t", header=TRUE)
 head(dat)
 
-all=c(dat$source,dat$target)
-genes=unique(all)
-groups=c(rep(1,5), rep(2,5),rep(3,5), rep(4,5),rep(5,2))
+all=c(dat$Entity.1,dat$Entity.2)
+name=unique(all)
 
-dat1=cbind(genes, groups)
-write.csv(dat1,"Tau-genes.csv", row.names = F)
+group=rep(1,69)
 
+dat1=cbind(name, group)
+write.csv(dat1,"snp-genes.csv", row.names = F)
+
+dat$source = match(dat$Entity.1, name)
+dat$target = match(dat$Entity.2, name)
+
+dat2=dat[dat$Network.group != "Co-expression",]
+write.csv(dat2, "snp-links-wo-coexp.csv", row.names = F)
+write.csv(dat,"Tau-w-id.csv", row.names = F)
+
+
+exp=read.csv("/Users/sdas/Dropbox (Partners HealthCare)/MSBB/mongo/mongo_ROSMAP_PFC_FPKM_Braak_B3-B1.csv")

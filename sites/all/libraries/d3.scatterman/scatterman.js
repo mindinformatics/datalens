@@ -147,7 +147,7 @@ d3.csv(settings.input, function(error, data) {
 
   x.domain(d3.extent(data, function(d) { return d.cumulative_pos; })).nice();
   //y.domain(d3.extent(data, function(d) { return d.Pvalue; })).nice();
-  y.domain(d3.extent([2, 22])).nice();
+  y.domain(d3.extent([2, 40])).nice();
 
 
   var x_axis = svg.append("g")

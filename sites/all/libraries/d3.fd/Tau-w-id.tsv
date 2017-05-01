@@ -1,0 +1,226 @@
+"Entity.1","Entity.2","value","networkGroup","network","source","target"
+"AATF","FKBP4",0.018415289,"Co-expression","Wang-Maris-2006",1,12
+"AATF","G3BP1",0.017585505,"Co-expression","Ramaswamy-Golub-2001",1,18
+"CAMK2A","MAP2",0.0075232964,"Co-expression","Bild-Nevins-2006 B",2,14
+"PSEN1","CALM1",0.011321075,"Co-expression","Salaverria-Siebert-2011",3,10
+"CAMK2A","CAMK2G",0.0068202717,"Co-expression","Burington-Shaughnessy-2008",2,16
+"PSEN1","CALM1",0.025765577,"Co-expression","Burington-Shaughnessy-2008",3,10
+"HSPA8","G3BP1",0.008670453,"Co-expression","Burington-Shaughnessy-2008",4,18
+"MAPK12","CAMK2A",0.010395305,"Co-expression","Burington-Shaughnessy-2008",5,2
+"AATF","MAP4",0.010421933,"Co-expression","Bahr-Bowler-2013",1,20
+"CAMK2A","MAPT",0.008727227,"Co-expression","Mallon-McKay-2013",2,21
+"CAMK2A","ELAVL4",0.010517399,"Co-expression","Mallon-McKay-2013",2,13
+"CDK5","STUB1",0.008379401,"Co-expression","Mallon-McKay-2013",6,11
+"CAMK2B","MAPT",0.018785758,"Co-expression","Mallon-McKay-2013",7,21
+"CAMK2B","CAMK2A",0.008600694,"Co-expression","Mallon-McKay-2013",7,2
+"BAG1","CDK5",0.012298165,"Co-expression","Alizadeh-Staudt-2000",8,6
+"GSK3B","CDK5",0.012423215,"Co-expression","Alizadeh-Staudt-2000",9,6
+"CDK5","STUB1",0.006105653,"Co-expression","Smirnov-Cheung-2009",6,11
+"HSPA8","G3BP1",0.018855987,"Co-expression","Smirnov-Cheung-2009",4,18
+"CDK5","STUB1",0.003499164,"Co-expression","Roth-Zlotnik-2006",6,11
+"CALM1","MAPT",0.010671539,"Co-expression","Roth-Zlotnik-2006",10,21
+"CALM1","MAP2",0.016727094,"Co-expression","Roth-Zlotnik-2006",10,14
+"CAMK2B","CDK5",0.0044154846,"Co-expression","Roth-Zlotnik-2006",7,6
+"AATF","G3BP1",0.014949137,"Co-expression","Innocenti-Brown-2011",1,18
+"HSPA8","FKBP4",0.018123992,"Co-expression","Innocenti-Brown-2011",4,12
+"STUB1","MAP4",0.007596474,"Co-expression","Kang-Willman-2010",11,20
+"CALM1","DCLK1",0.025498223,"Co-expression","Boldrick-Relman-2002",10,22
+"FKBP4","MAPT",0.014478079,"Co-expression","Perou-Botstein-1999",12,21
+"CAMK2B","CAMK2D",0.014014759,"Co-localization","Schadt-Shoemaker-2004",7,15
+"ELAVL4","DCLK1",0.00598371,"Co-localization","Johnson-Shoemaker-2003",13,22
+"ELAVL4","MAPT",0.008447442,"Co-localization","Johnson-Shoemaker-2003",13,21
+"MAP2","ELAVL4",0.005954019,"Co-localization","Johnson-Shoemaker-2003",14,13
+"CAMK2A","DCLK1",0.0077712242,"Co-localization","Johnson-Shoemaker-2003",2,22
+"CAMK2A","ELAVL4",0.002665016,"Co-localization","Johnson-Shoemaker-2003",2,13
+"CAMK2D","CALM1",0.012391536,"Co-localization","Johnson-Shoemaker-2003",15,10
+"CAMK2B","MAPT",0.006975907,"Co-localization","Johnson-Shoemaker-2003",7,21
+"CAMK2B","ELAVL4",0.0015198084,"Co-localization","Johnson-Shoemaker-2003",7,13
+"CAMK2B","MAP2",0.0044953017,"Co-localization","Johnson-Shoemaker-2003",7,14
+"CAMK2B","CAMK2A",0.0019386348,"Co-localization","Johnson-Shoemaker-2003",7,2
+"CAMK2B","CALM1",0.0031419045,"Co-localization","Johnson-Shoemaker-2003",7,10
+"CAMK2B","CAMK2D",0.004769308,"Co-localization","Johnson-Shoemaker-2003",7,15
+"CAMK2G","MAPT",0.1213878,"Pathway","Wu-Stein-2010",16,21
+"CAMK2A","MAPT",0.06618219,"Pathway","Wu-Stein-2010",2,21
+"CAMK2A","CAMK2G",0.051607523,"Pathway","Wu-Stein-2010",2,16
+"CDK5","MAPT",0.077317595,"Pathway","Wu-Stein-2010",6,21
+"CAMK2D","MAPT",0.071555644,"Pathway","Wu-Stein-2010",15,21
+"CAMK2D","CAMK2G",0.055797637,"Pathway","Wu-Stein-2010",15,16
+"CAMK2D","CAMK2A",0.030421587,"Pathway","Wu-Stein-2010",15,2
+"CAMK2B","MAPT",0.046172902,"Pathway","Wu-Stein-2010",7,21
+"CAMK2B","CAMK2G",0.036004692,"Pathway","Wu-Stein-2010",7,16
+"CAMK2B","CAMK2A",0.01963022,"Pathway","Wu-Stein-2010",7,2
+"CAMK2B","CAMK2D",0.021224033,"Pathway","Wu-Stein-2010",7,15
+"GSK3B","MAPT",0.028980048,"Pathway","Wu-Stein-2010",9,21
+"HSPA8","STUB1",0.061753545,"Pathway","Wu-Stein-2010",4,11
+"MAPK12","MAPT",0.034402374,"Pathway","Wu-Stein-2010",5,21
+"CAMK2B","CALM1",0.08773736,"Pathway","PATHWAYCOMMONS-NCI_NATURE",7,10
+"CAMK2D","CAMK2A",0.24047317,"Pathway","PATHWAYCOMMONS-CELL_MAP",15,2
+"CAMK2B","CAMK2A",0.24047317,"Pathway","PATHWAYCOMMONS-CELL_MAP",7,2
+"CAMK2B","CAMK2D",0.21272907,"Pathway","PATHWAYCOMMONS-CELL_MAP",7,15
+"DYRK1A","MAPT",0.32933658,"Pathway","PATHWAYCOMMONS-IMID",17,21
+"CAMK2A","MAP2",0.060715128,"Pathway","PATHWAYCOMMONS-IMID",2,14
+"CALM1","CAMK2A",0.0115545485,"Pathway","PATHWAYCOMMONS-IMID",10,2
+"PSEN1","MAPT",0.21552388,"Pathway","PATHWAYCOMMONS-IMID",3,21
+"CALM1","DCLK1",0.08137885,"Physical interactions","BerggÃ¥rd-James-2006",10,22
+"CALM1","MAP2",0.08137885,"Physical interactions","BerggÃ¥rd-James-2006",10,14
+"CALM1","CAMK2A",0.08137885,"Physical interactions","BerggÃ¥rd-James-2006",10,2
+"CAMK2D","CALM1",0.08137885,"Physical interactions","BerggÃ¥rd-James-2006",15,10
+"CAMK2B","CALM1",0.08137885,"Physical interactions","BerggÃ¥rd-James-2006",7,10
+"HSPA8","CDK5",0.011556547,"Physical interactions","Varjosalo-Superti-Furga-2013",4,6
+"HSPA8","GSK3B",0.014540702,"Physical interactions","Varjosalo-Superti-Furga-2013",4,9
+"FKBP4","MAPT",0.44017345,"Physical interactions","IREF-DIP",12,21
+"STUB1","MAPT",0.347697,"Physical interactions","IREF-DIP",11,21
+"CALM1","CAMK2G",0.08726849,"Physical interactions","IREF-DIP",10,16
+"CALM1","CAMK2A",0.12759165,"Physical interactions","IREF-DIP",10,2
+"CAMK2D","CAMK2G",0.2618967,"Physical interactions","IREF-DIP",15,16
+"CAMK2D","CAMK2A",0.38290837,"Physical interactions","IREF-DIP",15,2
+"CAMK2D","CALM1",0.046348788,"Physical interactions","IREF-DIP",15,10
+"CAMK2B","CALM1",0.12759165,"Physical interactions","IREF-DIP",7,10
+"CAMK2B","CAMK2D",0.38290837,"Physical interactions","IREF-DIP",7,15
+"AATF","MAPT",0.04328313,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",1,21
+"STUB1","MAPT",0.0056168484,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",11,21
+"CAMK2A","MAPT",0.022661362,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",2,21
+"CDK5","MAPT",0.015441889,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",6,21
+"CALM1","MAPT",0.0037548803,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",10,21
+"CALM1","FKBP4",0.007859151,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",10,12
+"CALM1","CAMK2G",0.008279519,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",10,16
+"PSEN1","MAPT",0.014153876,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",3,21
+"BAG1","MAPT",0.03218654,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",8,21
+"BAG1","STUB1",0.013704935,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",8,11
+"GSK3B","MAPT",0.007286772,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",9,21
+"GSK3B","PSEN1",0.007818448,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",9,3
+"HSPA8","MAPT",0.0058099083,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",4,21
+"HSPA8","STUB1",0.0024738424,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",4,11
+"HSPA8","BAG1",0.014175996,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",4,8
+"MAPK12","MAPT",0.054146,"Physical interactions","BIOGRID-SMALL-SCALE-STUDIES",5,21
+"GSK3B","MAPT",0.2826454,"Physical interactions","IREF-BIND",9,21
+"HSPA8","STUB1",0.2522833,"Physical interactions","IREF-BIND",4,11
+"HSPA8","BAG1",0.3028445,"Physical interactions","IREF-BIND",4,8
+"CALM1","CAMK2A",0.13579106,"Physical interactions","Ewing-Figeys-2007",10,2
+"CAMK2D","CAMK2A",0.52682513,"Physical interactions","Ewing-Figeys-2007",15,2
+"CAMK2B","CAMK2A",0.52682513,"Physical interactions","Ewing-Figeys-2007",7,2
+"AATF","MAPT",0.035219613,"Physical interactions","IREF-INTACT",1,21
+"STUB1","MAPT",0.036500737,"Physical interactions","IREF-INTACT",11,21
+"CAMK2A","MAPT",0.041963153,"Physical interactions","IREF-INTACT",2,21
+"CDK5","MAPT",0.045323912,"Physical interactions","IREF-INTACT",6,21
+"CALM1","CAMK2A",0.014017371,"Physical interactions","IREF-INTACT",10,2
+"CAMK2D","CAMK2A",0.05249892,"Physical interactions","IREF-INTACT",15,2
+"PSEN1","CDK5",0.030402327,"Physical interactions","IREF-INTACT",3,6
+"CAMK2B","CAMK2A",0.17131872,"Physical interactions","IREF-INTACT",7,2
+"GSK3B","MAPT",0.006345795,"Physical interactions","IREF-INTACT",9,21
+"GSK3B","MAP4",0.02030352,"Physical interactions","IREF-INTACT",9,20
+"GSK3B","PSEN1",0.0042566257,"Physical interactions","IREF-INTACT",9,3
+"HSPA8","STUB1",0.0193138,"Physical interactions","IREF-INTACT",4,11
+"HSPA8","BAG1",0.03115362,"Physical interactions","IREF-INTACT",4,8
+"AATF","MAPT",0.034565043,"Physical interactions","IREF-HPRD",1,21
+"STUB1","MAPT",0.019032603,"Physical interactions","IREF-HPRD",11,21
+"CAMK2A","MAPT",0.019190567,"Physical interactions","IREF-HPRD",2,21
+"CDK5","MAPT",0.01404962,"Physical interactions","IREF-HPRD",6,21
+"CALM1","MAPT",0.0057669277,"Physical interactions","IREF-HPRD",10,21
+"CALM1","CAMK2G",0.0074381046,"Physical interactions","IREF-HPRD",10,16
+"PSEN1","MAPT",0.012843643,"Physical interactions","IREF-HPRD",3,21
+"PSEN1","CDK5",0.010844185,"Physical interactions","IREF-HPRD",3,6
+"BAG1","STUB1",0.04785454,"Physical interactions","IREF-HPRD",8,11
+"CAMK2B","CAMK2D",0.1261762,"Physical interactions","IREF-HPRD",7,15
+"HSPA8","MAPT",0.01320251,"Physical interactions","IREF-HPRD",4,21
+"HSPA8","STUB1",0.015100759,"Physical interactions","IREF-HPRD",4,11
+"HSPA8","BAG1",0.033195667,"Physical interactions","IREF-HPRD",4,8
+"MAPK12","MAPT",0.032741517,"Physical interactions","IREF-HPRD",5,21
+"AATF","MAPT",0.07893079,"Physical interactions","IREF-OPHID",1,21
+"ELAVL4","STUB1",0.040692743,"Physical interactions","IREF-OPHID",13,11
+"CALM1","MAPT",0.013065234,"Physical interactions","IREF-OPHID",10,21
+"CALM1","CAMK2G",0.016121054,"Physical interactions","IREF-OPHID",10,16
+"PSEN1","MAPT",0.033289537,"Physical interactions","IREF-OPHID",3,21
+"BAG1","STUB1",0.034127742,"Physical interactions","IREF-OPHID",8,11
+"CAMK2B","CAMK2A",0.381602,"Physical interactions","IREF-OPHID",7,2
+"GSK3B","MAPT",0.035942886,"Physical interactions","IREF-OPHID",9,21
+"HSPA8","STUB1",0.011956907,"Physical interactions","IREF-OPHID",4,11
+"HSPA8","BAG1",0.023395265,"Physical interactions","IREF-OPHID",4,8
+"GSK3B","MAP4",0.1294437,"Physical interactions","Vinayagam-Wanker-2011",9,20
+"PSEN1","CDK5",0.0758999,"Physical interactions","Soler-LÃ³pez-Aloy-2011",3,6
+"G3BP1","MAPT",0.7962252,"Predicted","I2D-INNATEDB-Mouse2Human",18,21
+"ELAVL4","MAPT",0.30920425,"Predicted","I2D-INNATEDB-Mouse2Human",13,21
+"CAMK2B","CAMK2A",0.13997895,"Predicted","I2D-IntAct-Mouse2Human",7,2
+"AATF","MAPT",1,"Predicted","I2D-MINT-Rat2Human",1,21
+"HSPA8","BAG1",0.29257905,"Predicted","I2D-BioGRID-Worm2Human",4,8
+"CAMK2D","MAP2",0.2580246,"Predicted","I2D-MINT-Mouse2Human",15,14
+"BAG1","MAPT",0.70710677,"Predicted","I2D-BioGRID-Mouse2Human",8,21
+"HSPA8","MAPT",0.70710677,"Predicted","I2D-BioGRID-Mouse2Human",4,21
+"HSPA8","STUB1",0.033664443,"Predicted","I2D-IntAct-Fly2Human",4,11
+"HSPA8","BAG1",0.29257905,"Predicted","I2D-MINT-Worm2Human",4,8
+"HSPA8","STUB1",0.3868645,"Predicted","I2D-BIND-Worm2Human",4,11
+"HSPA8","BAG1",0.25174433,"Predicted","I2D-BIND-Worm2Human",4,8
+"AC217779.2","MAPT",0.53703034,"Shared protein domains","INTERPRO",19,21
+"MAP4","MAPT",0.32931325,"Shared protein domains","INTERPRO",20,21
+"MAP4","AC217779.2",0.32931325,"Shared protein domains","INTERPRO",20,19
+"STUB1","FKBP4",0.017599443,"Shared protein domains","INTERPRO",11,12
+"DYRK1A","DCLK1",0.0038389456,"Shared protein domains","INTERPRO",17,22
+"DYRK1A","CAMK2G",0.004403335,"Shared protein domains","INTERPRO",17,16
+"MAP2","MAPT",0.16224466,"Shared protein domains","INTERPRO",14,21
+"MAP2","AC217779.2",0.16224466,"Shared protein domains","INTERPRO",14,19
+"MAP2","MAP4",0.2158181,"Shared protein domains","INTERPRO",14,20
+"CAMK2A","CAMK2G",0.022953352,"Shared protein domains","INTERPRO",2,16
+"CAMK2A","DYRK1A",0.004403335,"Shared protein domains","INTERPRO",2,17
+"CDK5","DCLK1",0.0038144593,"Shared protein domains","INTERPRO",6,22
+"CDK5","CAMK2G",0.0043752487,"Shared protein domains","INTERPRO",6,16
+"CDK5","DYRK1A",0.0017495407,"Shared protein domains","INTERPRO",6,17
+"CDK5","CAMK2A",0.0043752487,"Shared protein domains","INTERPRO",6,2
+"CAMK2D","CAMK2G",0.022953352,"Shared protein domains","INTERPRO",15,16
+"CAMK2D","DYRK1A",0.004403335,"Shared protein domains","INTERPRO",15,17
+"CAMK2D","CAMK2A",0.022953352,"Shared protein domains","INTERPRO",15,2
+"CAMK2D","CDK5",0.0043752487,"Shared protein domains","INTERPRO",15,6
+"CAMK2B","CAMK2G",0.023080604,"Shared protein domains","INTERPRO",7,16
+"CAMK2B","DYRK1A",0.0044277473,"Shared protein domains","INTERPRO",7,17
+"CAMK2B","CAMK2A",0.023080604,"Shared protein domains","INTERPRO",7,2
+"CAMK2B","CDK5",0.004399505,"Shared protein domains","INTERPRO",7,6
+"CAMK2B","CAMK2D",0.023080604,"Shared protein domains","INTERPRO",7,15
+"GSK3B","DCLK1",0.004191711,"Shared protein domains","INTERPRO",9,22
+"GSK3B","CAMK2G",0.0048079626,"Shared protein domains","INTERPRO",9,16
+"GSK3B","DYRK1A",0.0019225709,"Shared protein domains","INTERPRO",9,17
+"GSK3B","CAMK2A",0.0048079626,"Shared protein domains","INTERPRO",9,2
+"GSK3B","CDK5",0.0019103079,"Shared protein domains","INTERPRO",9,6
+"GSK3B","CAMK2D",0.0048079626,"Shared protein domains","INTERPRO",9,15
+"GSK3B","CAMK2B",0.004834618,"Shared protein domains","INTERPRO",9,7
+"MAPK12","DYRK1A",0.004402418,"Shared protein domains","INTERPRO",5,17
+"MAPK12","CDK5",0.0043743383,"Shared protein domains","INTERPRO",5,6
+"MAPK12","GSK3B",0.004806962,"Shared protein domains","INTERPRO",5,9
+"AC217779.2","MAPT",0.38661933,"Shared protein domains","PFAM",19,21
+"MAP4","MAPT",0.38661933,"Shared protein domains","PFAM",20,21
+"MAP4","AC217779.2",0.38661933,"Shared protein domains","PFAM",20,19
+"STUB1","FKBP4",0.014076486,"Shared protein domains","PFAM",11,12
+"DYRK1A","DCLK1",0.0030234084,"Shared protein domains","PFAM",17,22
+"DYRK1A","CAMK2G",0.0034619516,"Shared protein domains","PFAM",17,16
+"ELAVL4","G3BP1",0.0053727175,"Shared protein domains","PFAM",13,18
+"MAP2","MAPT",0.1953729,"Shared protein domains","PFAM",14,21
+"MAP2","AC217779.2",0.1953729,"Shared protein domains","PFAM",14,19
+"MAP2","MAP4",0.1953729,"Shared protein domains","PFAM",14,20
+"CAMK2A","CAMK2G",0.024467627,"Shared protein domains","PFAM",2,16
+"CAMK2A","DYRK1A",0.0034953442,"Shared protein domains","PFAM",2,17
+"CDK5","DCLK1",0.0029905688,"Shared protein domains","PFAM",6,22
+"CDK5","CAMK2G",0.0034243485,"Shared protein domains","PFAM",6,16
+"CDK5","DYRK1A",0.0018301848,"Shared protein domains","PFAM",6,17
+"CDK5","CAMK2A",0.0034573784,"Shared protein domains","PFAM",6,2
+"CAMK2D","CAMK2G",0.024237515,"Shared protein domains","PFAM",15,16
+"CAMK2D","DYRK1A",0.0034624713,"Shared protein domains","PFAM",15,17
+"CAMK2D","CAMK2A",0.0244713,"Shared protein domains","PFAM",15,2
+"CAMK2D","CDK5",0.0034248626,"Shared protein domains","PFAM",15,6
+"CAMK2B","CAMK2G",0.024467627,"Shared protein domains","PFAM",7,16
+"CAMK2B","DYRK1A",0.0034953442,"Shared protein domains","PFAM",7,17
+"CAMK2B","CAMK2A",0.024703631,"Shared protein domains","PFAM",7,2
+"CAMK2B","CDK5",0.0034573784,"Shared protein domains","PFAM",7,6
+"CAMK2B","CAMK2D",0.0244713,"Shared protein domains","PFAM",7,15
+"GSK3B","DCLK1",0.0035009554,"Shared protein domains","PFAM",9,22
+"GSK3B","CAMK2G",0.0040087663,"Shared protein domains","PFAM",9,16
+"GSK3B","DYRK1A",0.0021425341,"Shared protein domains","PFAM",9,17
+"GSK3B","CAMK2A",0.0040474334,"Shared protein domains","PFAM",9,2
+"GSK3B","CDK5",0.0021192622,"Shared protein domains","PFAM",9,6
+"GSK3B","CAMK2D",0.0040093684,"Shared protein domains","PFAM",9,15
+"GSK3B","CAMK2B",0.0040474334,"Shared protein domains","PFAM",9,7
+"MAPK12","DCLK1",0.0035009554,"Shared protein domains","PFAM",5,22
+"MAPK12","CAMK2G",0.0040087663,"Shared protein domains","PFAM",5,16
+"MAPK12","DYRK1A",0.0021425341,"Shared protein domains","PFAM",5,17
+"MAPK12","CAMK2A",0.0040474334,"Shared protein domains","PFAM",5,2
+"MAPK12","CDK5",0.0021192622,"Shared protein domains","PFAM",5,6
+"MAPK12","CAMK2D",0.0040093684,"Shared protein domains","PFAM",5,15
+"MAPK12","CAMK2B",0.0040474334,"Shared protein domains","PFAM",5,7
+"MAPK12","GSK3B",0.0024809474,"Shared protein domains","PFAM",5,9

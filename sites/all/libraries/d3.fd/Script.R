@@ -17,9 +17,10 @@ write.csv(dat1,"snp-genes.csv", row.names = F)
 dat$source = match(dat$Entity.1, name)-1
 dat$target = match(dat$Entity.2, name)-1
 
-
+dat2=dat[dat$Network.group != "Co-expression",]
 
 #write.csv(dat,"Tau-w-id.csv", row.names = F)
-write.csv(dat,"Tau-w-id.csv", row.names = F)
+write.csv(dat,"snp-links.csv", row.names = F)
+write.csv(dat2,"snp-links-wo-coexp.csv", row.names = F)
 
 exp=read.csv("/Users/sdas/Dropbox (Partners HealthCare)/MSBB/mongo/mongo_ROSMAP_PFC_FPKM_Braak_B3-B1.csv")

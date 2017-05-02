@@ -5,6 +5,7 @@ files[js][] = fd.js
 ;files[js][] = libs/fisheye.js
 files[js][] = libs/d3.v3.min.js
 files[css][] = fd.css
+dependencies[] = d3.tooltip
 version = 0.1
 
 

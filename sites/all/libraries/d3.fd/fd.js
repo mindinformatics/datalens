@@ -30,7 +30,7 @@
         .charge(-100)
         .size([width, height]);
 
-    d3.csv("/sites/all/libraries/d3.fd/snp-links.csv", function(error, links) {
+    d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp.csv", function(error, links) {
      d3.csv("/sites/all/libraries/d3.fd/snp-genes.csv", function(error, nodes) {
       if (error) throw error;
 
@@ -44,6 +44,10 @@
         if (typeof d.target == "number") { d.target = nodes[d.target]; }
       });
 
+      nodes.forEach(function(d) {
+        d.fc = +d.fc;
+      });
+
       console.log(nodes);
       console.log(links);
 
@@ -51,6 +55,14 @@
           .nodes(nodes)
           .links(links)
           .start();
+
+      var max_fc = d3.max( nodes, function(d) { return d.fc });
+      console.debug(max_fc);
+
+      var min_fc = d3.min( nodes, function(d) { return d.fc });
+      console.debug(min_fc);
+
+      var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
 
       var link = svg.selectAll(".link")
           .data(links)
@@ -73,13 +85,23 @@
  */
 
       node.append("circle")
-          .attr("r", 5)
-          .attr("fill", function(d) { return color(d.group); });
+          .attr("r", function(d) { return (Math.abs(d.fc) * 13.33); })
+          .attr("fill", function(d) { return ( (d.group == 20 ) ? "#aec7e8" : color_scale(d.fc) ); })
+          .style('fill-opacity', function(d) { return '.6'; });
+          //.style("stroke-width", function(d) { return ( (d.group == 20 ) ? "2" : "" ); })
+          //.style('stroke', function(d) { return ( (d.group == 20 ) ? "black" : "" ); });
+
 
       node.append("text")
-          .attr("dx", 12)
+          .attr("dx", 15)
           .attr("dy", ".35em")
           .text(function(d) { return d.name });
+
+      node.append("title")
+          .style("font-family", "sans-serif")
+          .style("font-size", "10px")
+          .style("color", "Black")
+          .html(function (d) { return color_scale(d.fc); });
 
       force.on("tick", function() {
         link.attr("x1", function(d) { return d.source.x; })

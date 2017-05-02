@@ -24,3 +24,20 @@ write.csv(dat,"snp-links.csv", row.names = F)
 write.csv(dat2,"snp-links-wo-coexp.csv", row.names = F)
 
 exp=read.csv("/Users/sdas/Dropbox (Partners HealthCare)/MSBB/mongo/mongo_ROSMAP_PFC_FPKM_Braak_B3-B1.csv")
+
+all_logFC = exp[match(name,exp$GeneSymbol), "logFC"]
+all_logFC[is.na(all_logFC)] <- 0
+genes=read.csv("snp-genes.csv")
+dat3=cbind(genes,real_fc(all_logFC))
+write.csv(dat1,"snp-genes.csv", row.names = F)
+
+
+real_fc <- function(x) {
+ x=2^x
+ for(i in 1:length(x))
+  if(x[i]<1) {
+    x[i]=-1/x[i] 
+  }
+ return(x)
+}
+ 

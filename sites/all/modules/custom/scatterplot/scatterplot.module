@@ -394,7 +394,7 @@ function _query_mongo_scatter($input_genes, $study) {
     //$cursor->limit( 5 );
 
     //TODO:Sould only be 1 result- add if statement here.
-    $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval");
+    $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval", "gene_id");
      foreach ($cursor as $doc) {
        //dsm($doc);
        $exp_keys = array_keys($doc);

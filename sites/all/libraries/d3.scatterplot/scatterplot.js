@@ -22,7 +22,13 @@
       var pval = settings.apoe_pvalue;
 
       var sformat = d3.format(".2f");
-      var pval_string = "ApoE ANOVA p-value: " + sformat(pval);
+
+      if(!pval){
+        var legendText = Array("Click box to show/hide " + color);
+      } else {
+        var pvalString = "ApoE ANOVA p-value: " + sformat(pval);
+        var legendText = Array(pvalString, "Click box to show/hide " + color);
+      }
 
       console.log(pval);
 
@@ -43,7 +49,7 @@
 
       //Legend doesn't work right when Apoe is numeric, but works correctly as string
       data.forEach(function(d) {
-          d.Apoe = String(d.Apoe);
+          d.ApoE = String(d.ApoE);
         });
 
       console.log(data);
@@ -92,7 +98,7 @@
         // object to split it onto 2 lines.  This technique works with any
         // number of lines, it isn't dimple specific.
         svg.selectAll("title_text")
-          .data([pval_string, "Click box to show/hide " + color])
+          .data(legendText)
           .enter()
           .append("text")
             .attr("x", 900)

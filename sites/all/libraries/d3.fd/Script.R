@@ -29,7 +29,7 @@ all_logFC = exp[match(name,exp$GeneSymbol), "logFC"]
 all_logFC[is.na(all_logFC)] <- 0
 genes=read.csv("snp-genes.csv")
 dat3=cbind(genes,real_fc(all_logFC))
-write.csv(dat1,"snp-genes.csv", row.names = F)
+write.csv(dat3,"snp-genes.csv", row.names = F)
 
 
 real_fc <- function(x) {

@@ -222,7 +222,7 @@ d3.csv(settings.input, function(error, data) {
 
     svg.append("line")
         .attr("class", "pval")
-        .style("stroke-dasharray", ("3, 3"))
+        .style("stroke-dasharray", ("2, 2"))
         .attr('x1',x(0))
         .attr('x2',x(xMax))
         .attr('y1',yLower(8))

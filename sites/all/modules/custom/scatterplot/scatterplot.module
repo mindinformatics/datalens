@@ -139,7 +139,7 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
   $apoe_pval = $result[1]['ApoEPval'];
 
   //Note: Having SampleID in this list seems important. Results weird without it.
-  $series_full = array("Diagnosis", "ApoE", "Sex", "AgeAtDeath", "Tissue", "ApoEPval", "SampleID");
+  $series_full = array("Diagnosis", "ApoE", "Sex", "AgeAtDeath", "Tissue", "ApoEPval", "ID");
   $used = array($xaxis, $color);
   $series = array_diff($series_full, $used);
   //Color has to be last option in series
@@ -411,12 +411,13 @@ function _query_mongo_scatter($input_genes, $study) {
      $cursor2 = $coll2->find($query2);
 
      $row = array();
+     $i = 1;
      foreach ($cursor2 as $doc) {
        $sample_id = $doc['ID'];
        //dsm($doc);
        if (array_key_exists($sample_id, $result) && ($doc['ApoE'] != "NA") ) {
         $row[] = array(
-          'SampleID' => $sample_id,
+          'ID' => $i,
           'Tissue' => (isset($doc['Tissue']))? $doc['Tissue']: null,
           'Diagnosis' => $doc['Diagnosis'],
           'Sex' => $doc['Gender'],
@@ -428,6 +429,7 @@ function _query_mongo_scatter($input_genes, $study) {
           );
 
        }
+       $i++;
      }
 
     //"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"

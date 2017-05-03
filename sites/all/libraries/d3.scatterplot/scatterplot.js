@@ -23,11 +23,15 @@
 
       var sformat = d3.format(".2f");
 
-      if(!pval){
+      // This makes sure the pvalue is not null, and that ApoE is the x axis
+      // in order to display the ApoE ANOVA pvalue.
+      if(!pval) {
         var legendText = Array("Click box to show/hide " + color);
-      } else {
+      } else if (xaxis === "ApoE") {
         var pvalString = "ApoE ANOVA p-value: " + sformat(pval);
         var legendText = Array(pvalString, "Click box to show/hide " + color);
+      } else {
+        var legendText = Array("Click box to show/hide " + color);
       }
 
       console.log(pval);

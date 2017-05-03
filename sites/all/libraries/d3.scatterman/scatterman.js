@@ -175,8 +175,6 @@ d3.csv(settings.input, function(error, data) {
       .style("font-size","12px")
       .text("Chromosome Position");
 
-   x_axis.selectAll(".tick")
-        .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
 
    var tip = d3.tip()
       .attr('class', 'd3-tip')
@@ -218,10 +216,17 @@ d3.csv(settings.input, function(error, data) {
       .text("-log10(P-value)");
 
 
+    var xMax = d3.max( data, function(d) { return d.cumulative_pos });
+    console.debug("xMax");
+    console.debug(xMax);
 
-    y_axis_lower.selectAll(".tick")
-          .classed("tick--one", function(d) { return Math.abs(d-8)<1e-6;  });
-
+    svg.append("line")
+        .attr("class", "pval")
+        .style("stroke-dasharray", ("3, 3"))
+        .attr('x1',x(0))
+        .attr('x2',x(xMax))
+        .attr('y1',yLower(8))
+        .attr('y2',yLower(8));
 
 
     svg.selectAll(".dot")
@@ -229,7 +234,7 @@ d3.csv(settings.input, function(error, data) {
       .enter().append("circle")
         .attr("id",function(d) {return ( d.MarkerName + ": " + d.HGNC + ", " + sformat(d.DisplayP));})
         .attr("class", "dot")
-        .attr("r", function(d) { return (d.Pvalue > 6 ? settings.bigr:settings.smallr); })
+        .attr("r", function(d) { return (d.Pvalue > 8 ? settings.bigr:settings.smallr); })
         .attr("cx", function(d) { return x(d.cumulative_pos); })
         .attr("cy", function(d) { return (d.Pvalue > 31 ? yUpper(d.Pvalue):yLower(d.Pvalue)); })
         .on('mouseover', tip.show)

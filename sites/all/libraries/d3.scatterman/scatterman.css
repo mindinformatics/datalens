@@ -40,15 +40,15 @@ body {
   fill:#EC888C;
 }
 
-.axis--y .tick:not(.tick--one) line {
+.axis--y .tick line {
   stroke-opacity: .15;
 }
 
-.tick--one line {
-  stroke: green;
+.pval {
+  stroke: black;
 }
 
-.axis--x .tick:not(.tick--one) line {
+.axis--x .tick line {
   stroke-opacity: .15;
 }
 

@@ -17,8 +17,8 @@ function scatterplot_menu() {
   );
 
   $items['scatter-input'] = array(
-    'title' => 'Scatterchart input',
-    'description' => 'Choose inputs for scatterchart',
+    'title' => 'Gene Expression Scatterplot',
+    'description' => 'Choose inputs for gene expression scatterplot',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('scatterplot_form'),
     'access callback' => TRUE,
@@ -155,6 +155,11 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
  */
 
 function scatterplot_form($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Plot gene expression across subject data such as diagnosis, ApoE, sex and age at death. A labeled example output image is below.</p>'
+  );
 
   $image_options = array(
     'path' => '/sites/all/themes/scf_theme/Scatterplot/Scatterplot-image.png',

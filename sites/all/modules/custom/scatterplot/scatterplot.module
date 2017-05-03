@@ -58,12 +58,20 @@ function scatterplot_man() {
 
   $ticks = array(170615041, 375507593, 612515574, 734913473, 999514507, 1154737085, 1331915028, 1488108426, 1647193879, 1755910900, 1916510926, 2054246074, 2153648306, 2255302529, 2376445692, 2430547484, 2529871005, 2620593637, 2708963206, 2738150816, 2817252334, 2862663588);
   $file = "/sites/all/libraries/d3.scatterman/ad_meta_analysis_filtered_0.001.csv";
+  $yextent = array(2, 24);
+  $bigr = 3;
+  $smallr = 2;
+  $ybreak = 0;
 
   $chart = array(
     'id' => 'visualization',
     'type' => 'scatterman',
     'tickval' => $ticks,
     'input' => $file,
+    'yextent' => $yextent,
+    'bigr' => $bigr,
+    'smallr' => $smallr,
+    'ybreak' => $ybreak,
 
   );
 
@@ -75,11 +83,21 @@ function scatterplot_man2() {
   $ticks = array(124548726, 366183576, 582857036, 775868357, 960677315, 1135633234, 1300020712, 1449790612, 1591914176, 1725853577, 1858263994, 1990792808, 2124587886, 2237398312, 2343880025, 2421326734, 2506999940, 2582419655, 2646421506, 2702305214, 2762857447, 2800418266);
   $file = "/sites/all/libraries/d3.scatterman/IGAP_stage_1_filtered.csv";
 
+  $yextent = array(2, 600);
+
+  $bigr = 2;
+  $smallr = 1;
+  $ybreak = 1;
+
   $chart = array(
     'id' => 'visualization',
     'type' => 'scatterman',
     'tickval' => $ticks,
     'input' => $file,
+    'yextent' => $yextent,
+    'bigr' => $bigr,
+    'smallr' => $smallr,
+    'ybreak' => $ybreak,
 
   );
 

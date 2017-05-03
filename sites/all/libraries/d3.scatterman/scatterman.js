@@ -17,6 +17,12 @@ var x = d3.scale.linear()
 var y = d3.scale.linear()
     .range([height, 0]);
 
+var yLower = d3.scale.linear()
+    .range([height, (height - height/3)]);
+
+var yUpper = d3.scale.linear()
+    .range([(height - height/3), 0]);
+
 var color = d3.scale.ordinal().range(["#0D66FE", "#F800FE"]);
 
 // .05
@@ -37,6 +43,18 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
     .scale(y)
     .tickSize(-width+400, 0)
+    .orient("left");
+
+var yLowerAxis = d3.svg.axis()
+    .scale(yLower)
+    .tickSize(-width+400, 0)
+    .ticks(5)
+    .orient("left");
+
+var yUpperAxis = d3.svg.axis()
+    .scale(yUpper)
+    .tickSize(-width+400, 0)
+    .ticks(5)
     .orient("left");
 
 var svg = d3.select('#' + settings.id).append("svg")
@@ -139,7 +157,11 @@ d3.csv(settings.input, function(error, data) {
   data.forEach(function(d) {
     d.cumulative_pos = +d.cumulative_pos;
     d.DisplayP = +d.Pvalue;
-    d.Pvalue = -(Math.log10(+d.Pvalue));
+    if (d.logpval) {
+      d.Pvalue = +d.logpval;
+    } else {
+      d.Pvalue = -(Math.log10(+d.Pvalue));
+    }
   });
 
   //console.debug("data");
@@ -147,68 +169,117 @@ d3.csv(settings.input, function(error, data) {
 
   x.domain(d3.extent(data, function(d) { return d.cumulative_pos; })).nice();
   //y.domain(d3.extent(data, function(d) { return d.Pvalue; })).nice();
-  y.domain(d3.extent([2, 40])).nice();
+
+   var x_axis = svg.append("g")
+        .attr("class", "x axis axis--x")
+        .attr("transform", "translate(0," + height + ")")
+        .style("font-size","9px")
+        .call(xAxis);
+
+      x_axis.append("text")
+        .attr("class", "label")
+        .attr("x", width-750)
+        .attr("y", 35)
+        .style("text-anchor", "end")
+        .style("font-size","12px")
+        .text("Chromosome Position");
+
+     x_axis.selectAll(".tick")
+          .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
+
+     var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .html(function(d) { return (d.MarkerName + ": " + d.HGNC); })
+        .direction('nw')
+        .offset([0, 3]);
+
+      svg.call(tip);
+
+      var sformat = d3.format(".1e");
+
+  if (settings.ybreak === 0 ) {
+      y.domain(d3.extent(settings.yextent)).nice();
+
+    var y_axis = svg.append("g")
+        .attr("class", "y axis axis--y")
+        .style("font-size","9px")
+        .call(yAxis);
+
+     y_axis.append("text")
+        .attr("class", "label")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -120)
+        .attr("y", -30)
+        .attr("dy", "0.4em")
+        .style("text-anchor", "end")
+        .style("font-size","12px")
+        .text("-log10(P-value)");
+
+      y_axis.selectAll(".tick")
+            .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
+
+      svg.selectAll(".dot")
+          .data(data)
+        .enter().append("circle")
+          .attr("id",function(d) {return ( d.MarkerName + ": " + d.HGNC + ", " + sformat(d.DisplayP));})
+          .attr("class", "dot")
+          .attr("r", function(d) { return (d.Pvalue > 6 ? settings.bigr:settings.smallr); })
+          .attr("cx", function(d) { return x(d.cumulative_pos); })
+          .attr("cy", function(d) { return y(d.Pvalue); })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide)
+          .style("fill", function(d) { return color(d.color); });
 
 
-  var x_axis = svg.append("g")
-      .attr("class", "x axis axis--x")
-      .attr("transform", "translate(0," + height + ")")
-      .style("font-size","9px")
-      .call(xAxis);
 
-   x_axis.append("text")
-      .attr("class", "label")
-      .attr("x", width-750)
-      .attr("y", 35)
-      .style("text-anchor", "end")
-      .style("font-size","12px")
-      .text("Chromosome Position");
+  } else {
+      yLower.domain(d3.extent([2,30])).nice();
+      yUpper.domain(d3.extent([35,600])).nice();
 
-  x_axis.selectAll(".tick")
-        .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
+    var y_axis_lower = svg.append("g")
+        .attr("class", "y axis axis--y ylower")
+        .style("font-size","9px")
+        .call(yLowerAxis);
 
-  var y_axis = svg.append("g")
-      .attr("class", "y axis axis--y")
-      .style("font-size","9px")
-      .call(yAxis);
+    var y_axis_upper = svg.append("g")
+        .attr("class", "y axis axis--y yupper")
+        .style("font-size","9px")
+        .call(yUpperAxis);
 
-   y_axis.append("text")
-      .attr("class", "label")
-      .attr("transform", "rotate(-90)")
-      .attr("x", -120)
-      .attr("y", -30)
-      .attr("dy", "0.4em")
-      .style("text-anchor", "end")
-      .style("font-size","12px")
-      .text("-log10(P-value)");
+     y_axis_upper.append("text")
+        .attr("class", "label")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -120)
+        .attr("y", -30)
+        .attr("dy", "0.4em")
+        .style("text-anchor", "end")
+        .style("font-size","12px")
+        .text("-log10(P-value)");
 
-  y_axis.selectAll(".tick")
-        .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
 
-  var tip = d3.tip()
-      .attr('class', 'd3-tip')
-      .html(function(d) { return (d.MarkerName + ": " + d.HGNC); })
-      .direction('nw')
-      .offset([0, 3]);
+/*
+      y_axis_lower.selectAll(".tick")
+            .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
+ */
 
-  svg.call(tip);
 
-  var sformat = d3.format(".1e");
+      svg.selectAll(".dot")
+          .data(data)
+        .enter().append("circle")
+          .attr("id",function(d) {return ( d.MarkerName + ": " + d.HGNC + ", " + sformat(d.DisplayP));})
+          .attr("class", "dot")
+          .attr("r", function(d) { return (d.Pvalue > 6 ? settings.bigr:settings.smallr); })
+          .attr("cx", function(d) { return x(d.cumulative_pos); })
+          .attr("cy", function(d) { return (d.Pvalue > 35 ? yUpper(d.Pvalue):yLower(d.Pvalue)); })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide)
+          .style("fill", function(d) { return color(d.color); });
 
-  svg.selectAll(".dot")
-      .data(data)
-    .enter().append("circle")
-      .attr("id",function(d) {return ( d.MarkerName + ": " + d.HGNC + ", " + sformat(d.DisplayP));})
-      .attr("class", "dot")
-      .attr("r", function(d) { return (d.Pvalue > 6 ? 3:2); })
-      .attr("cx", function(d) { return x(d.cumulative_pos); })
-      .attr("cy", function(d) { return y(d.Pvalue); })
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
-      .style("fill", function(d) { return color(d.color); });
 
-  lasso.items(d3.selectAll(".dot"));
 
+  }
+
+   lasso.items(d3.selectAll(".dot"));
 
 /*
   var legend = svg.selectAll(".legend")

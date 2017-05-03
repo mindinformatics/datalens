@@ -44,6 +44,10 @@ body {
   stroke-opacity: .15;
 }
 
+.tick--one line {
+  stroke: green;
+}
+
 .axis--x .tick:not(.tick--one) line {
   stroke-opacity: .15;
 }

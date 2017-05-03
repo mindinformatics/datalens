@@ -61,7 +61,6 @@ function scatterplot_man() {
   $yextent = array(2, 24);
   $bigr = 3;
   $smallr = 2;
-  $ybreak = 0;
 
   $chart = array(
     'id' => 'visualization',
@@ -71,7 +70,6 @@ function scatterplot_man() {
     'yextent' => $yextent,
     'bigr' => $bigr,
     'smallr' => $smallr,
-    'ybreak' => $ybreak,
 
   );
 
@@ -87,7 +85,6 @@ function scatterplot_man2() {
 
   $bigr = 2;
   $smallr = 1;
-  $ybreak = 1;
 
   $chart = array(
     'id' => 'visualization',
@@ -97,8 +94,6 @@ function scatterplot_man2() {
     'yextent' => $yextent,
     'bigr' => $bigr,
     'smallr' => $smallr,
-    'ybreak' => $ybreak,
-
   );
 
   return d3_draw($chart);

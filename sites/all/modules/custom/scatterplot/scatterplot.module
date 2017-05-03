@@ -25,7 +25,7 @@ function scatterplot_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
   $items['scatterplot/%/%/%/%'] = array(
-    'title' => 'Scatterplot',
+    'title' => 'Gene Expression Scatterplot',
     'description' => 'Return expression data',
     'page callback' => 'scatterplot_build',
     'page arguments' => array(1,2,3,4),
@@ -136,9 +136,10 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
   $gene = current($gene_list);
 
   $result = _query_mongo_scatter($gene, $study);
+  $apoe_pval = $result[1]['ApoEPval'];
 
   //Note: Having SampleID in this list seems important. Results weird without it.
-  $series_full = array("Diagnosis", "Apoe", "Sex", "AgeAtDeath", "Tissue", "SampleID");
+  $series_full = array("Diagnosis", "ApoE", "Sex", "AgeAtDeath", "Tissue", "ApoEPval", "SampleID");
   $used = array($xaxis, $color);
   $series = array_diff($series_full, $used);
   //Color has to be last option in series
@@ -153,6 +154,7 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
     'color' => $color,
     'study' => $study,
     'series' => $series,
+    'apoe_pvalue' => $apoe_pval,
     'rows' => $result,
   );
 
@@ -229,15 +231,15 @@ function scatterplot_form($form, &$form_state) {
      switch ($study_input) {
             //To test this works, change label- "Age at Death" to "Age at Death CBE"
             case ($study_input == "MayoBB_CBE_RNASEQ_CPM"):
-                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'ApoE' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
                 break;
 
             case ($study_input == "MayoBB_TCX_RNASEQ_CPM"):
-                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'ApoE' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
                 break;
 
             case ($study_input == "ROSMAP_PFC_RNASEQ_FPKM"):
-                $category_options_list = array('AgeAtOnset' => 'Age of Onset', 'AgeAtDeath' => 'Age at Death', 'Apoe' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'ApoE' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
                 break;
 
             default:
@@ -392,7 +394,7 @@ function _query_mongo_scatter($input_genes, $study) {
     //$cursor->limit( 5 );
 
     //TODO:Sould only be 1 result- add if statement here.
-    $static_keys = array("GeneSymbol","Study","ensembl_id","_id");
+    $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval");
      foreach ($cursor as $doc) {
        //dsm($doc);
        $exp_keys = array_keys($doc);
@@ -412,16 +414,17 @@ function _query_mongo_scatter($input_genes, $study) {
      foreach ($cursor2 as $doc) {
        $sample_id = $doc['ID'];
        //dsm($doc);
-       if (array_key_exists($sample_id, $result)) {
+       if (array_key_exists($sample_id, $result) && ($doc['ApoE'] != "NA") ) {
         $row[] = array(
           'SampleID' => $sample_id,
           'Tissue' => (isset($doc['Tissue']))? $doc['Tissue']: null,
           'Diagnosis' => $doc['Diagnosis'],
           'Sex' => $doc['Gender'],
-          'Apoe' => $doc['ApoE'],
+          'ApoE' => $doc['ApoE'],
           'AgeAtDeath' => _age_buckets($doc['AgeAtDeath']),
           'AgeAtOnset' => (isset($doc['AgeAtOnset']))? _age_buckets($doc['AgeAtOnset']): null,
           'Expression' => $result[$sample_id],
+          'ApoEPval' => (isset($result['apoe_pval']))? $result['apoe_pval']: null,
           );
 
        }

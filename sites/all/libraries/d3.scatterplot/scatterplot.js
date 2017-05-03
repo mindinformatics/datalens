@@ -19,6 +19,12 @@
       var color = settings.color;
       var study = settings.study;
       var gene = settings.gene;
+      var pval = settings.apoe_pvalue;
+
+      var sformat = d3.format(".2f");
+      var pval_string = "ApoE ANOVA p-value: " + sformat(pval);
+
+      console.log(pval);
 
       console.log('gene');
       console.log(gene);
@@ -72,7 +78,7 @@
         avg.stacked = false;
         myChart.assignColor("Avg", "#C0C0C0", "#C0C0C0", 1);
 
-        var myLegend = myChart.addLegend(900, 100, 60, 300, "Right");
+        var myLegend = myChart.addLegend(960, 100, 100, 300, "Right");
         myChart.draw();
 
         // This is a critical step.  By doing this we orphan the legend. This
@@ -81,11 +87,12 @@
         // also dropping the events we define below.
         myChart.legends = [];
 
+
         // This block simply adds the legend title. I put it into a d3 data
         // object to split it onto 2 lines.  This technique works with any
         // number of lines, it isn't dimple specific.
         svg.selectAll("title_text")
-          .data(["Click box to show/hide", color, " "])
+          .data([pval_string, "Click box to show/hide " + color])
           .enter()
           .append("text")
             .attr("x", 900)

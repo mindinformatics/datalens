@@ -158,7 +158,7 @@ function scatterplot_form($form, &$form_state) {
 
   // Header
   $form['header'] = array(
-    '#markup' => '<p>Plot gene expression across subject data such as diagnosis, ApoE, sex and age at death. A labeled example output image is below.</p>'
+    '#markup' => '<p>Plot expression of a gene across subject data such as diagnosis, ApoE, sex and age at death. A labeled example output image is below.</p>'
   );
 
   $image_options = array(

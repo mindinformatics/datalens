@@ -141,8 +141,8 @@ var lasso = d3.lasso()
 
 
 // Init the lasso on the svg:g that contains the dots
-
-d3.select("svg").call(lasso);
+//d3.select("svg").call(lasso);
+svg.call(lasso);
 
 d3.csv(settings.input, function(error, data) {
   data.forEach(function(d) {

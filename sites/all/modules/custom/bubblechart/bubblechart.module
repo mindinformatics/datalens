@@ -542,7 +542,7 @@ function _query_mongo($input_genes, $pval) {
        $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
        $main_result[$i]['parent'] = $doc['BrainRegionFull'];
        $main_result[$i]['DataType'] = $doc['DataType'];
-       $main_result[$i]['Contrast'] = $doc['Contrast'];
+       $main_result[$i]['Contrast'] = $doc['Contrast'] . ": " . $doc['StratFactor'];
        $i++;
      }
  	  //var_dump($main_result);

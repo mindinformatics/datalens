@@ -506,6 +506,8 @@ function _query_mongo($input_genes, $pval) {
 
     $cursor = $coll->find($query);
     $cursor->timeout(-1);
+    $cursor->sort(array('PValue' => 1));
+    $cursor->limit( 500 );
     //$total = (string)$cursor->count(); //To find total number of documents
     //dsm($total);
     //$cursor->limit( 5 );

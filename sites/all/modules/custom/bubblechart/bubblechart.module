@@ -152,6 +152,34 @@ function bubblechart_genomics($input_genes) {
 
   $page .= _call_genomics($result);
 
+  $page .= '<div id="result-table">';
+
+  //$rows = unset($result['parent']);
+  //$rows = unset($result['size']);
+  //$rows = unset($result['name']);
+
+  //$rows1 = array_values($rows);
+
+  $header = array(t('Study'), t('BrainRegion'), t('Parent'), t('DataType'), t('Contrast'), t('GeneSymbol'), t('LogFC'), t('PValue'), t('FileName'), t('ProbeID'), t('LogFC'), t('name'));
+  //$header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('Study'), t('Contrast'),  t('BrainRegion'), t('DataType'));
+  $rows = array(array('cell1', 'cell2', 'cell3'),array('Cell4', 'cell5', 'cell6'));
+  // Output of table with the paging
+  $output = theme('table',
+    array(
+      "header" => $header,
+      "rows" => $result,
+      "attributes" => array(),
+      "sticky" => TRUE,
+      "caption" => "",
+      "colgroups" => array(),
+      "empty" => t("No Records has been found")
+    )
+  );
+
+  dsm($result);
+  $page .= $output;
+  $page .= '</div>';
+
   return ($page);
 
 }

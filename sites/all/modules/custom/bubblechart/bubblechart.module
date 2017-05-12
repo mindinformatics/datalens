@@ -133,7 +133,13 @@ function bubblechart_genomics($input_genes) {
 
   $page = '<div id="facet-group">';
 
-  $page .= $study_checkbox . $contrast_checkbox .  $datatype_checkbox .  $br_checkbox;
+  $page .= '<table id="facet-table">';
+  $page .= '<tr><td>';
+  $page .= $study_checkbox . $contrast_checkbox;
+  $page .= '</td><td>';
+  $page .= $datatype_checkbox .  $br_checkbox;
+   $page .= '</td></tr>';
+  $page .= '</table>';
   $page .= '</div>';
   $page .=  t(
 
@@ -159,6 +165,8 @@ function bubblechart_genomics($input_genes) {
   //$rows = unset($result['name']);
 
   //$rows1 = array_values($rows);
+
+
 
   $header = array(t('Study'), t('BrainRegion'), t('Parent'), t('DataType'), t('Contrast'), t('GeneSymbol'), t('LogFC'), t('PValue'), t('FileName'), t('ProbeID'), t('LogFC'), t('name'));
   //$header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('Study'), t('Contrast'),  t('BrainRegion'), t('DataType'));

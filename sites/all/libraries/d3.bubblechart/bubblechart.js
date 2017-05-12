@@ -374,7 +374,7 @@
         });
 
 
-      // check constrast
+      // check contrast
       var checkboxes = $(".cbox.contrast");
       for(var element in checkboxes){
         if(!isNaN(element)){
@@ -453,7 +453,7 @@
 
     var root;
 
-    var diameter = 880, //960,
+    var diameter = 800, //960,
     format = d3.format(",d");
 
     var pack = d3.layout.pack()

@@ -160,54 +160,41 @@ function bubblechart_genomics($input_genes) {
 
   $page .= '<div id="result-table">';
 
-
-  //$rows1 = array_values($rows);
-  $result_table = $result;
-
-  for($i = count($result_table)-1; $i >= 0; $i--){
-        if($result_table[$i]["parent"]){
-            unset($result_table[$i]["parent"]);
-        }
-        if($result_table[$i]["size"]){
-            unset($result_table[$i]["size"]);
-        }
-        if($result_table[$i]["name"]){
-            unset($result_table[$i]["name"]);
-        }
-        if(($result_table[$i]["GeneSymbol"]) && ($result_table[$i]["ProbeID"]))    {
-            $result_table[$i]["GeneSymbol"] = $result_table[$i]["GeneSymbol"] . " " . $result_table[$i]["ProbeID"];
-
+  for($i = count($result)-1; $i >= 0; $i--){
+        if(($result[$i]["GeneSymbol"]) && ($result[$i]["ProbeID"]))    {
+            $result[$i]["GeneSymbol"] = $result[$i]["GeneSymbol"] . " " . $result[$i]["ProbeID"];
         }
 
-        $result_table[$i][0] = $result_table[$i]["GeneSymbol"];
-        $result_table[$i][1] = $result_table[$i]["LogFC"];
-        $result_table[$i][2] = $result_table[$i]["PValue"];
-        $result_table[$i][3] = $result_table[$i]["BrainRegion"];
-        $result_table[$i][4] = $result_table[$i]["FileName"];
-        $result_table[$i][5] = $result_table[$i]["Study"];
-        $result_table[$i][6] = $result_table[$i]["Contrast"];
-        $result_table[$i][7] = $result_table[$i]["DataType"];
+        $result[$i][0] = $result[$i]["GeneSymbol"];
+        $result[$i][1] = $result[$i]["LogFC"];
+        $result[$i][2] = $result[$i]["PValue"];
+        $result[$i][3] = $result[$i]["BrainRegion"];
+        $result[$i][4] = $result[$i]["FileName"];
+        $result[$i][5] = $result[$i]["Study"];
+        $result[$i][6] = $result[$i]["Contrast"];
+        $result[$i][7] = $result[$i]["DataType"];
 
-        unset($result_table[$i]["GeneSymbol"]);
-        unset($result_table[$i]["LogFC"]);
-        unset($result_table[$i]["PValue"]);
-        unset($result_table[$i]["BrainRegion"]);
-        unset($result_table[$i]["FileName"]);
-        unset($result_table[$i]["Study"]);
-        unset($result_table[$i]["Contrast"]);
-        unset($result_table[$i]["DataType"]);
-        unset($result_table[$i]["ProbeID"]);
+        unset($result[$i]["GeneSymbol"]);
+        unset($result[$i]["LogFC"]);
+        unset($result[$i]["PValue"]);
+        unset($result[$i]["BrainRegion"]);
+        unset($result[$i]["FileName"]);
+        unset($result[$i]["Study"]);
+        unset($result[$i]["Contrast"]);
+        unset($result[$i]["DataType"]);
+        unset($result[$i]["ProbeID"]);
+        unset($result[$i]["parent"]);
+        unset($result[$i]["size"]);
+        unset($result[$i]["name"]);
     }
-    dsm($result_table);
 
   $header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('BrainRegion'), t('FileName'), t('Study'), t('Contrast'), t('DataType'));
-
 
   // Output of table with the paging
   $output = theme('table',
     array(
       "header" => $header,
-      "rows" => $result_table,
+      "rows" => $result,
       "attributes" => array(),
       "sticky" => TRUE,
       "caption" => "",
@@ -216,7 +203,6 @@ function bubblechart_genomics($input_genes) {
     )
   );
 
-  dsm($result);
   $page .= $output;
   $page .= '</div>';
 

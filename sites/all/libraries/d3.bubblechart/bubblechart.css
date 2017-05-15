@@ -67,6 +67,10 @@ label {
   display: none;
 }
 
+#facet-table td {
+  vertical-align: top;
+}
+
 
 /******* Sliders *******/
 
@@ -168,8 +172,8 @@ label {
 
 #legend {
   position: absolute;
-  top: 20%;
-  left: 25px;
+  top: 160px;
+  left: 6px;
 }
 
 #legend .axis text {
@@ -177,6 +181,6 @@ label {
 }
 
 #result-table {
-  padding-top: 70px;
+  padding-top: 20px;
 
 }

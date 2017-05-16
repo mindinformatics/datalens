@@ -195,7 +195,7 @@ function bubblechart_genomics($input_genes) {
     array(
       "header" => $header,
       "rows" => $result,
-      "attributes" => array(),
+      "attributes" => array('class' => array('tablesorter')),
       "sticky" => TRUE,
       "caption" => "",
       "colgroups" => array(),

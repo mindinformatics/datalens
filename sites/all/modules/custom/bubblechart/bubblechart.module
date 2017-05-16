@@ -646,7 +646,8 @@ function _create_facet($result, $type) {
     $terms = array_map(function($element){return $element['Contrast'];}, $result);
     $terms_unique = array_flip($terms);
     $lines .= '<div class="list-group"><h4>Contrast</h4><div class="facet-list">';
-    foreach ($terms_unique as $key => $value) {
+    $sorted_contrast = _sort_contrast($terms_unique);
+    foreach ($sorted_contrast as $key => $value) {
       $lines .= '<label><input type="checkbox" class="cbox contrast" value="' . $key . '"> '. $key . '</label><br>';
     }
     $lines .='</div></div>';
@@ -677,7 +678,61 @@ function _create_facet($result, $type) {
 
 }
 
+//array_diff($series_full, $used);
 
+function _key_contrast($input_key) {
+    switch($input_key) {
+        case 'AD-NCI: CDR': return 1;
+        case 'AD-NCI: ClinicalDiagnosis': return 2;
+        case 'AD-NCI: MMSE': return 3;
+        case 'AD-NCI: CpDxAll': return 4;
+        case 'AD-NCI: CpDxLow': return 5;
+        case 'AD-NCI: CpDxStrict': return 6;
+        case 'B3-B1: Braak': return 7;
+        case 'B2-B1: Braak': return 8;
+        case 'B3-B2: Braak': return 9;
+        case 'C1-C0: CERAD': return 10;
+        case 'C2-C0: CERAD': return 11;
+        case 'C3-C0: CERAD': return 12;
+        case 'AD-DNAD: ClinicalDiagnosis': return 13;
+        case 'AD-DNAD: CpDxAll': return 14;
+        case 'AD-DNAD: CpDxLow': return 15;
+        case 'AD-DNAD: CpDxStrict': return 16;
+        case 'AD-PC: CpDxAll': return 17;
+        case 'AD-PC: CpDxLow': return 18;
+        case 'AD-PC: CpDxStrict': return 19;
+        case 'AD-HD: ClinicalDiagnosis': return 20;
+        case 'AD-PA: ClinicalDiagnosis': return 21;
+        case 'AD-PSP: ClinicalDiagnosis': return 22;
+        case 'PC-NCI: CpDxAll': return 23;
+        case 'PC-NCI: CpDxLow': return 24;
+        case 'PC-NCI: CpDxStrict': return 25;
+        case 'DNAD-NCI: ClinicalDiagnosis': return 26;
+        case 'DNAD-NCI: CpDxAll': return 27;
+        case 'DNAD-NCI: CpDxLow': return 28;
+        case 'DNAD-NCI: CpDxStrict': return 29;
+        case 'HD-NCI: ClinicalDiagnosis': return 30;
+        case 'PA-NCI: ClinicalDiagnosis': return 31;
+        case 'PSP-NCI: ClinicalDiagnosis': return 32;
+        default: return $key;
+    }
+}
 
+function _sort_contrast($input) {
+
+  foreach ($input as $key => $value) {
+    $input[$key] = _key_contrast($key);
+  }
+
+  function cmp($a, $b) {
+    if ($a == $b) {
+        return 0;
+    }
+    return ($a < $b) ? -1 : 1;
+   }
+
+   uasort($input, 'cmp');
+   return($input);
+}
 
 ?>

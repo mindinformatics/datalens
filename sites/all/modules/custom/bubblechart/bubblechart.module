@@ -170,10 +170,11 @@ function bubblechart_genomics($input_genes) {
         $result[$i][2] = $result[$i]["PValue"];
         $result[$i][3] = $result[$i]["AdjPValue"];
         $result[$i][4] = $result[$i]["BrainRegion"];
-        $result[$i][5] = $result[$i]["FileName"];
-        $result[$i][6] = $result[$i]["Study"];
-        $result[$i][7] = $result[$i]["Contrast"];
-        $result[$i][8] = $result[$i]["DataType"];
+        //$result[$i][5] = $result[$i]["FileName"];
+        $result[$i][6] = l($result[$i]["FileName"],'/node/' . _query_analysisId($result[$i]["FileName"]));
+        $result[$i][7] = $result[$i]["Study"];
+        $result[$i][8] = $result[$i]["Contrast"];
+        $result[$i][9] = $result[$i]["DataType"];
 
         unset($result[$i]["GeneSymbol"]);
         unset($result[$i]["LogFC"]);
@@ -190,14 +191,14 @@ function bubblechart_genomics($input_genes) {
         unset($result[$i]["name"]);
     }
 
-  $header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('AdjPValue'), t('BrainRegion'), t('FileName'), t('Study'), t('Contrast'), t('DataType'));
+  $header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('AdjPValue'), t('BrainRegion'), t('Analysis'), t('Study'), t('Contrast'), t('DataType'));
 
   $genes_string = strtoupper($input_genes);
   $genes_string = preg_replace('/\s+/', '_', $genes_string);
 
 
   //Create a download file
-  $filename = $genes_string . "_" . REQUEST_TIME . ".csv";
+  $filename = "bubbletable_" . $genes_string . "_" . REQUEST_TIME . ".csv";
   //dsm($filename);
   $file_uri = _download_file($filename, $header, $result);
 

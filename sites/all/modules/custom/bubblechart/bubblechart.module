@@ -168,15 +168,17 @@ function bubblechart_genomics($input_genes) {
         $result[$i][0] = $result[$i]["GeneSymbol"];
         $result[$i][1] = $result[$i]["LogFC"];
         $result[$i][2] = $result[$i]["PValue"];
-        $result[$i][3] = $result[$i]["BrainRegion"];
-        $result[$i][4] = $result[$i]["FileName"];
-        $result[$i][5] = $result[$i]["Study"];
-        $result[$i][6] = $result[$i]["Contrast"];
-        $result[$i][7] = $result[$i]["DataType"];
+        $result[$i][3] = $result[$i]["AdjPValue"];
+        $result[$i][4] = $result[$i]["BrainRegion"];
+        $result[$i][5] = $result[$i]["FileName"];
+        $result[$i][6] = $result[$i]["Study"];
+        $result[$i][7] = $result[$i]["Contrast"];
+        $result[$i][8] = $result[$i]["DataType"];
 
         unset($result[$i]["GeneSymbol"]);
         unset($result[$i]["LogFC"]);
         unset($result[$i]["PValue"]);
+        unset($result[$i]["AdjPValue"]);
         unset($result[$i]["BrainRegion"]);
         unset($result[$i]["FileName"]);
         unset($result[$i]["Study"]);
@@ -577,6 +579,7 @@ function _query_mongo($input_genes, $pval) {
        $result[$i]['GeneSymbol'] = $doc['GeneSymbol'];
        $result[$i]['LogFC'] = $doc['logFC'];
        $result[$i]['PValue'] = $doc['PValue'];
+       $result[$i]['AdjPValue'] = !empty($doc['adjPVal']) ? $doc['adjPVal'] : "";
        $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
        $result[$i]['size'] = abs($doc['logFC']);
        $filenames[] = $doc['FileName'];
@@ -620,6 +623,7 @@ function _query_mongo($input_genes, $pval) {
  		    'GeneSymbol' => $value['GeneSymbol'],
  		    'LogFC' => $value['LogFC'],
  		    'PValue' => $value['PValue'],
+ 		    'AdjPValue' => $value['AdjPValue'],
  		    'FileName' => $value['FileName'],
  		    'ProbeID' => $value['ProbeID'],
  		    'size' => $value['size'],
@@ -734,5 +738,6 @@ function _sort_contrast($input) {
    uasort($input, 'cmp');
    return($input);
 }
+
 
 ?>

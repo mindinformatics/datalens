@@ -599,7 +599,7 @@
       tooltips = groups.append("title")
             //(d.children ? "" : ": " + format(d.size)
             .html(function(d) { return (d.children ? d.name : d.name + "&nbsp;&nbsp;&nbsp;" + d.ProbeID
-+ "<br/>" + "FC: " + real_fc(d.LogFC) + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "<br/>" + "Study: " + d.Study + "<br/>" + "Contrast: " + d.Contrast + "<br/>" + "DataType: " + d.DataType + "<br/>" + "Filename: " + d.FileName) });
++ "<br/>" + "FC: " + real_fc(d.LogFC) + "<br/>" + "Pvalue: " + d.PValue + "<br/>" + "Adjusted Pvalue: " + d.AdjPValue + "<br/>" + "<br/>" + "Study: " + d.Study + "<br/>" + "Contrast: " + d.Contrast + "<br/>" + "DataType: " + d.DataType + "<br/>" + "Filename: " + d.FileName) });
 
 
       // Color Map

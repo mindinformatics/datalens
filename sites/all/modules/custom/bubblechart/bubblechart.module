@@ -781,6 +781,7 @@ function _download_file($filename, $header, $rows) {
 
   // Notify the filesystem of the size change
   $file->filesize = filesize($file->uri);
+  $file->status = ""; //Not FILE_STATUS_PERMANENT
   file_save($file);
 
   $file_url = file_create_url($file->uri);

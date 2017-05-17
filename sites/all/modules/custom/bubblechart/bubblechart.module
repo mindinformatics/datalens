@@ -190,7 +190,26 @@ function bubblechart_genomics($input_genes) {
         unset($result[$i]["name"]);
     }
 
-  $header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('BrainRegion'), t('FileName'), t('Study'), t('Contrast'), t('DataType'));
+  $header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('AdjPValue'), t('BrainRegion'), t('FileName'), t('Study'), t('Contrast'), t('DataType'));
+
+  $genes_string = strtoupper($input_genes);
+  $genes_string = preg_replace('/\s+/', '_', $genes_string);
+
+
+  //Create a download file
+  $filename = $genes_string . "_" . REQUEST_TIME . ".csv";
+  //dsm($filename);
+  $file_uri = _download_file($filename, $header, $result);
+
+  // Add a link to download file
+  $links = array();
+  $links['bubbletable-download'] = array(
+    'title' => t('Download Table'),
+    'href' => $file_uri,
+    );
+
+  $page .= theme('links', array('links' => $links));
+
 
   // Output of table with the paging
   $output = theme('table',
@@ -739,5 +758,34 @@ function _sort_contrast($input) {
    return($input);
 }
 
+function _download_file($filename, $header, $rows) {
+ $path = 'public://';
+
+ $file = file_save_data('', $path . $filename);
+  if( !$file ){
+    drupal_set_message( t('Unable to write to file system. Check permissions and try again.'), 'error' );
+    return;
+  }
+  // Stream data - This is a simplified example. Better to do it in a batch if you have a high volume of data
+  $fh = fopen($file->uri, 'w');
+  if( !$fh ){
+    drupal_set_message( t('Unable open file for writing. Check permissions and try again.'), 'error' );
+    return;
+  }
+  fputcsv($fh, $header);
+  foreach ($rows as $row) {
+    fputcsv($fh, $row);
+  }
+  fclose($fh);
+
+  // Notify the filesystem of the size change
+  $file->filesize = filesize($file->uri);
+  file_save($file);
+
+  $file_url = file_create_url($file->uri);
+
+  return($file_url);
+
+}
 
 ?>

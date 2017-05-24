@@ -29,11 +29,13 @@ function bubblechart_menu() {
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['analysis'] = array(
-    'title' => 'Gene Expression',
-    'description' => 'Gene expression from SAGE',
-    'page callback' => 'bubblechart_table',
+  $items['downloadbubble'] = array(
+    'title' => 'Download Bubblechart Table',
+    'description' => 'Download Bubblechart Table',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('bubbledownload_form'),
     'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
   );
 
   return $items;
@@ -62,7 +64,8 @@ function bubblechart_genomics($input_genes) {
   $datatype_checkbox = _create_facet($result, 'DataType');
   $br_checkbox = _create_facet($result, 'BrainRegion');
 
-  $page = '<div id="facet-group">';
+  $page = '<div id="bubblechart-faq"><p>Every colored bubble is a gene, and the color indicates the fold change; red is up and blue is down. The size of the bubble indicates the size of the fold change. If you hover over a colored bubble (gene), a pop-up will give you the gene name, p-value, fold change, and study. You can filter the data using the checkboxes at the right and the sliders at the top. For more information about the Contrast, <a href="/contrast" target="_blank">view the Contrasts page</a>.</p></div>';
+  $page .= '<div id="facet-group">';
 
   $page .= '<table id="facet-table">';
   $page .= '<tr><td>';
@@ -89,7 +92,7 @@ function bubblechart_genomics($input_genes) {
 
   $page .= _call_genomics($result);
 
-  $page .= '<div id="result-table">';
+
 
   for($i = count($result)-1; $i >= 0; $i--){
         if(($result[$i]["GeneSymbol"]) && ($result[$i]["ProbeID"]))    {
@@ -127,23 +130,13 @@ function bubblechart_genomics($input_genes) {
   $genes_string = strtoupper($input_genes);
   $genes_string = preg_replace('/\s+/', '_', $genes_string);
 
-
-  //Create a download file
+  // Create a download file button/form.
   $filename = "bubbletable_" . $genes_string . "_" . REQUEST_TIME . ".csv";
-  //dsm($filename);
-  $file_uri = _download_file($filename, $header, $result);
+  $download_table_form = drupal_get_form('bubbledownload_form', $filename, $header, $result);
+  $page .= drupal_render($download_table_form);
 
-  // Add a link to download file
-  $links = array();
-  $links['bubbletable-download'] = array(
-    'title' => t('Download Table'),
-    'href' => $file_uri,
-    );
-
-  $page .= theme('links', array('links' => $links));
-
-
-  // Output of table with the paging
+  // Result table display with paging
+  $page .= '<div id="result-table">';
   $output = theme('table',
     array(
       "header" => $header,
@@ -271,6 +264,52 @@ function bubblechart_form_alter(&$form, &$form_state,$form_id ){
     $form['title']['#rows']='9';
  }
 
+}
+
+/**
+ * Return a form used to input gene names into bubblechart
+ *
+ * @return
+ *   An array which will be used by the form builder to build the import form
+ */
+
+function bubbledownload_form($form, &$form_state, $filename, $header, $result) {
+  $form['button_download'] = array(
+    '#type' => 'submit',
+    '#value' => t('Download Table'),
+  );
+  $form['filename'] = array(
+   '#type' => 'hidden',
+   '#value' => $filename,
+  );
+  $form['header'] = array(
+   '#type' => 'hidden',
+   '#value' => $header,
+  );
+  $form['result'] = array(
+   '#type' => 'value',
+   '#value' => $result,
+  );
+  //dsm($form);
+	return $form;
+}
+
+/**
+ * Implementation of hook_validate() for the bubblechart_input.
+ */
+
+function bubbledownload_form_validate($form, & $form_state) {
+
+}
+
+function bubbledownload_form_submit($form, & $form_state) {
+	$filename1 = $form_state['values']['filename'];
+	$header1 = $form_state['values']['header'];
+	$result1 = $form_state['values']['result'];
+
+	$file_uri = _download_file($filename1, $header1, $result1);
+
+	$form_state['redirect'] = $file_uri;
 }
 
 

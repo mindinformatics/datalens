@@ -2589,7 +2589,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Taxonomy term: Chromosome (field_chromosome) */
+  /* Filter criterion: Field: Chromosome (field_chromosome) */
   $handler->display->display_options['filters']['field_chromosome_value']['id'] = 'field_chromosome_value';
   $handler->display->display_options['filters']['field_chromosome_value']['table'] = 'field_data_field_chromosome';
   $handler->display->display_options['filters']['field_chromosome_value']['field'] = 'field_chromosome_value';
@@ -3292,6 +3292,133 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['tid']['vocabulary'] = 'forums_category';
   $handler->display->display_options['path'] = 'forums/Interviews';
   $export['forums'] = $view;
+
+  $view = new view();
+  $view->name = 'genetic_association';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'genetic association';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Genetic Association';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '100';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Marker Name';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Alleles */
+  $handler->display->display_options['fields']['field_allele1']['id'] = 'field_allele1';
+  $handler->display->display_options['fields']['field_allele1']['table'] = 'field_data_field_allele1';
+  $handler->display->display_options['fields']['field_allele1']['field'] = 'field_allele1';
+  $handler->display->display_options['fields']['field_allele1']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['field_allele1']['delta_offset'] = '0';
+  /* Field: Content: EffectSize */
+  $handler->display->display_options['fields']['field_effectsize']['id'] = 'field_effectsize';
+  $handler->display->display_options['fields']['field_effectsize']['table'] = 'field_data_field_effectsize';
+  $handler->display->display_options['fields']['field_effectsize']['field'] = 'field_effectsize';
+  $handler->display->display_options['fields']['field_effectsize']['label'] = 'Effect Size';
+  $handler->display->display_options['fields']['field_effectsize']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: StandardError */
+  $handler->display->display_options['fields']['field_standarderror']['id'] = 'field_standarderror';
+  $handler->display->display_options['fields']['field_standarderror']['table'] = 'field_data_field_standarderror';
+  $handler->display->display_options['fields']['field_standarderror']['field'] = 'field_standarderror';
+  $handler->display->display_options['fields']['field_standarderror']['label'] = 'Standard Error';
+  $handler->display->display_options['fields']['field_standarderror']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: P-value */
+  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Field: Chromosome */
+  $handler->display->display_options['fields']['field_chromosome']['id'] = 'field_chromosome';
+  $handler->display->display_options['fields']['field_chromosome']['table'] = 'field_data_field_chromosome';
+  $handler->display->display_options['fields']['field_chromosome']['field'] = 'field_chromosome';
+  /* Field: Content: Position */
+  $handler->display->display_options['fields']['field_position']['id'] = 'field_position';
+  $handler->display->display_options['fields']['field_position']['table'] = 'field_data_field_position';
+  $handler->display->display_options['fields']['field_position']['field'] = 'field_position';
+  $handler->display->display_options['fields']['field_position']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: Nearest Gene */
+  $handler->display->display_options['fields']['field_gene']['id'] = 'field_gene';
+  $handler->display->display_options['fields']['field_gene']['table'] = 'field_data_field_gene';
+  $handler->display->display_options['fields']['field_gene']['field'] = 'field_gene';
+  $handler->display->display_options['fields']['field_gene']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_gene']['delta_offset'] = '0';
+  /* Field: Content: N Sample */
+  $handler->display->display_options['fields']['field_n_sample']['id'] = 'field_n_sample';
+  $handler->display->display_options['fields']['field_n_sample']['table'] = 'field_data_field_n_sample';
+  $handler->display->display_options['fields']['field_n_sample']['field'] = 'field_n_sample';
+  $handler->display->display_options['fields']['field_n_sample']['label'] = 'No. Samples';
+  $handler->display->display_options['fields']['field_n_sample']['settings'] = array(
+    'thousand_separator' => '',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: Supporting Analysis */
+  $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'claim_snp' => 'claim_snp',
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'genetic-association';
+  $export['genetic_association'] = $view;
 
   $view = new view();
   $view->name = 'latest_news';

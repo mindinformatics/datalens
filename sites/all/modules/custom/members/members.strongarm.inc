@@ -41,6 +41,13 @@ function members_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_claim_snp';
+  $strongarm->value = 0;
+  $export['comment_anonymous_claim_snp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_dataset';
   $strongarm->value = 0;
   $export['comment_anonymous_dataset'] = $strongarm;
@@ -104,6 +111,13 @@ function members_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_claim_snp';
+  $strongarm->value = '2';
+  $export['comment_claim_snp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_dataset';
   $strongarm->value = '1';
   $export['comment_dataset'] = $strongarm;
@@ -128,6 +142,13 @@ function members_strongarm() {
   $strongarm->name = 'comment_default_mode_claim';
   $strongarm->value = 1;
   $export['comment_default_mode_claim'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_claim_snp';
+  $strongarm->value = 1;
+  $export['comment_default_mode_claim_snp'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -198,6 +219,13 @@ function members_strongarm() {
   $strongarm->name = 'comment_default_per_page_claim';
   $strongarm->value = '50';
   $export['comment_default_per_page_claim'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_claim_snp';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_claim_snp'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -282,6 +310,13 @@ function members_strongarm() {
   $strongarm->name = 'comment_form_location_claim';
   $strongarm->value = 1;
   $export['comment_form_location_claim'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_claim_snp';
+  $strongarm->value = 1;
+  $export['comment_form_location_claim_snp'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -377,6 +412,13 @@ function members_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_claim_snp';
+  $strongarm->value = '1';
+  $export['comment_preview_claim_snp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_dataset';
   $strongarm->value = '1';
   $export['comment_preview_dataset'] = $strongarm;
@@ -443,6 +485,13 @@ function members_strongarm() {
   $strongarm->name = 'comment_subject_field_claim';
   $strongarm->value = 1;
   $export['comment_subject_field_claim'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_claim_snp';
+  $strongarm->value = 1;
+  $export['comment_subject_field_claim_snp'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1709,6 +1758,29 @@ function members_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__claim_snp';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'title' => array(
+          'weight' => '-5',
+        ),
+        'path' => array(
+          'weight' => '30',
+        ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__claim_snp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__dataset';
   $strongarm->value = array(
     'view_modes' => array(
@@ -2006,6 +2078,15 @@ function members_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_claim_snp';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_claim_snp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_clinical_trials';
   $strongarm->value = array();
   $export['menu_options_clinical_trials'] = $strongarm;
@@ -2115,6 +2196,13 @@ function members_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_claim_snp';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_claim_snp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_clinical_trials';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_clinical_trials'] = $strongarm;
@@ -2208,6 +2296,16 @@ function members_strongarm() {
     0 => 'status',
   );
   $export['node_options_claim'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_claim_snp';
+  $strongarm->value = array(
+    0 => 'status',
+    1 => 'promote',
+  );
+  $export['node_options_claim_snp'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -2323,6 +2421,13 @@ function members_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_claim_snp';
+  $strongarm->value = '1';
+  $export['node_preview_claim_snp'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_dataset';
   $strongarm->value = '1';
   $export['node_preview_dataset'] = $strongarm;
@@ -2389,6 +2494,13 @@ function members_strongarm() {
   $strongarm->name = 'node_submitted_claim';
   $strongarm->value = 0;
   $export['node_submitted_claim'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_claim_snp';
+  $strongarm->value = 1;
+  $export['node_submitted_claim_snp'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

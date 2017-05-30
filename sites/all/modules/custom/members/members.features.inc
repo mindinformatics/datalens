@@ -288,6 +288,14 @@ function members_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'claim_snp' => array(
+      'name' => t('Claim Genetic Association'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'dataset' => array(
       'name' => t('Dataset'),
       'base' => 'node_content',

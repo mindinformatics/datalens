@@ -640,7 +640,7 @@ function _create_facet($result, $type) {
     $terms = array_map(function($element){return $element['Contrast'];}, $result);
     $terms_unique = array_flip($terms);
     $lines .= '<div class="list-group"><h4>Contrast</h4><div class="facet-list">';
-    $sorted_contrast = _sort_contrast($terms_unique);
+    $sorted_contrast = _sort_facet($terms_unique, $type);
     foreach ($sorted_contrast as $key => $value) {
       $lines .= '<label><input type="checkbox" class="cbox contrast" value="' . $key . '"> '. $key . '</label><br>';
     }
@@ -650,7 +650,8 @@ function _create_facet($result, $type) {
     $terms = array_map(function($element){return $element['BrainRegion'];}, $result);
     $terms_unique = array_flip($terms);
     $lines .= '<div class="list-group"><h4>Brain Region</h4><div class="facet-list">';
-    foreach ($terms_unique as $key => $value) {
+    $sorted_br = _sort_facet($terms_unique, $type);
+    foreach ($sorted_br as $key => $value) {
       $lines .= '<label><input type="checkbox" class="cbox brainRegion" value="' . $key . '"> '. $key . '</label><br>';
     }
     $lines .='</div></div>';
@@ -712,20 +713,66 @@ function _key_contrast($input_key) {
     }
 }
 
-function _sort_contrast($input) {
+function _key_brain_region($input_key) {
+    switch($input_key) {
+        case 'Cerebellum': return 100;
+        case 'Cingulum': return 200;
+        case 'Anterior Cingulate': return 201;
+        case 'Posterior Cingulate Cortex': return 202;
+        case 'Forebrain': return 300;
+        case 'Frontal lobe': return 400;
+        case 'Dorsolateral Prefrontal Cortex': return 401;
+        case 'Frontal Pole': return 402;
+        case 'Inferior Frontal Gyrus': return 403;
+        case 'Medial Frontal Gyrus': return 404;
+        case 'Prefrontal Cortex': return 405;
+        case 'Precentral Gyrus': return 405;
+        case 'Global': return 500;
+        case 'Cortex': return 501;
+        case 'Limbic system': return 600;
+        case 'Amygdala': return 601;
+        case 'Dentate Gyrus': return 602;
+        case 'Hippocampus': return 603;
+        case 'Nucleus Accumbens': return 604;
+        case 'Parahippocampal Gyrus': return 605;
+        case 'Occipital lobe': return 700;
+        case 'Occipital Visual Cortex': return 701;
+        case 'Parietal': return 800;
+        case 'Superior Parietal Lobule': return 801;
+        case 'Striatum': return 900;
+        case 'Caudate Nucleus': return 901;
+        case 'Putamen': return 902;
+        case 'Temporal lobe': return 1000;
+        case 'Entorhinal Cortex': return 1001;
+        case 'Inferior Temporal Gyrus': return 1002;
+        case 'Middle Temporal Gyrus': return 1003;
+        case 'Superior Temporal Gyrus': return 1004;
+        case 'Temporal': return 1005;
+        case 'Temporal Cortex': return 1006;
+        case 'Temporal Pole': return 1007;
+        default: return $key;
+    }
+}
 
-  foreach ($input as $key => $value) {
-    $input[$key] = _key_contrast($key);
-  }
-
-  function cmp($a, $b) {
+function _cmp($a, $b) {
     if ($a == $b) {
         return 0;
     }
     return ($a < $b) ? -1 : 1;
-   }
+}
 
-   uasort($input, 'cmp');
+function _sort_facet($input, $facet_type) {
+  if ($facet_type === "Contrast") {
+    foreach ($input as $key => $value) {
+      $input[$key] = _key_contrast($key);
+    }
+  }
+  if ($facet_type === "BrainRegion") {
+    foreach ($input as $key => $value) {
+      $input[$key] = _key_brain_region($key);
+    }
+  }
+   uasort($input, '_cmp');
    return($input);
 }
 

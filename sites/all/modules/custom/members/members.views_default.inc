@@ -3354,12 +3354,26 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
   $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
   $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['label'] = '';
+  $handler->display->display_options['fields']['field_pvalue']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_pvalue']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
     'thousand_separator' => '',
     'decimal_separator' => '.',
-    'scale' => '2',
+    'scale' => '10',
     'prefix_suffix' => 1,
   );
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php']['id'] = 'php';
+  $handler->display->display_options['fields']['php']['table'] = 'views';
+  $handler->display->display_options['fields']['php']['field'] = 'php';
+  $handler->display->display_options['fields']['php']['label'] = 'P-value';
+  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php']['php_output'] = '<?php 
+printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
+?> ';
+  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Field: Field: Chromosome */
   $handler->display->display_options['fields']['field_chromosome']['id'] = 'field_chromosome';
   $handler->display->display_options['fields']['field_chromosome']['table'] = 'field_data_field_chromosome';
@@ -3413,6 +3427,83 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'claim_snp' => 'claim_snp',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['group'] = 1;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Marker Names:';
+  $handler->display->display_options['filters']['title']['expose']['description'] = 'Paste a list of marker names';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Content: Nearest Gene (field_gene) */
+  $handler->display->display_options['filters']['field_gene_tid']['id'] = 'field_gene_tid';
+  $handler->display->display_options['filters']['field_gene_tid']['table'] = 'field_data_field_gene';
+  $handler->display->display_options['filters']['field_gene_tid']['field'] = 'field_gene_tid';
+  $handler->display->display_options['filters']['field_gene_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_gene_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_gene_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_gene_tid']['expose']['operator_id'] = 'field_gene_tid_op';
+  $handler->display->display_options['filters']['field_gene_tid']['expose']['label'] = 'Nearest Gene(s):';
+  $handler->display->display_options['filters']['field_gene_tid']['expose']['description'] = 'Paste a list of gene symbols';
+  $handler->display->display_options['filters']['field_gene_tid']['expose']['operator'] = 'field_gene_tid_op';
+  $handler->display->display_options['filters']['field_gene_tid']['expose']['identifier'] = 'field_gene_tid';
+  $handler->display->display_options['filters']['field_gene_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_gene_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_gene_tid']['vocabulary'] = 'genes';
+  /* Filter criterion: Content: EffectSize (field_effectsize) */
+  $handler->display->display_options['filters']['field_effectsize_value']['id'] = 'field_effectsize_value';
+  $handler->display->display_options['filters']['field_effectsize_value']['table'] = 'field_data_field_effectsize';
+  $handler->display->display_options['filters']['field_effectsize_value']['field'] = 'field_effectsize_value';
+  $handler->display->display_options['filters']['field_effectsize_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_effectsize_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_effectsize_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_effectsize_value']['expose']['operator_id'] = 'field_effectsize_value_op';
+  $handler->display->display_options['filters']['field_effectsize_value']['expose']['label'] = 'ABS(Effect Size) greater than:';
+  $handler->display->display_options['filters']['field_effectsize_value']['expose']['operator'] = 'field_effectsize_value_op';
+  $handler->display->display_options['filters']['field_effectsize_value']['expose']['identifier'] = 'field_effectsize_value';
+  $handler->display->display_options['filters']['field_effectsize_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  /* Filter criterion: Content: P-value (field_pvalue) */
+  $handler->display->display_options['filters']['field_pvalue_value']['id'] = 'field_pvalue_value';
+  $handler->display->display_options['filters']['field_pvalue_value']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['filters']['field_pvalue_value']['field'] = 'field_pvalue_value';
+  $handler->display->display_options['filters']['field_pvalue_value']['operator'] = '<';
+  $handler->display->display_options['filters']['field_pvalue_value']['value']['value'] = '0.05';
+  $handler->display->display_options['filters']['field_pvalue_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_pvalue_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['operator_id'] = 'field_pvalue_value_op';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['label'] = 'P-value less than:';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['operator'] = 'field_pvalue_value_op';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['identifier'] = 'field_pvalue_value';
+  $handler->display->display_options['filters']['field_pvalue_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
   );
 
   /* Display: Page */

@@ -326,7 +326,156 @@ function scatterplot_form_submit($form, & $form_state) {
 }
 
 
+/**
+ * Implements hook_form_alter().
+ */
 
+function scatterplot_form_alter(&$form, &$form_state,$form_id ){
+  //dsm($form['#id']);
+
+ if($form['#id'] == 'views-exposed-form-genetic-association-page') {
+    dsm($form);
+    $form['title']['#type']='textarea';
+    $form['title']['#cols']='30';
+    $form['title']['#rows']='9';
+
+    $form['field_gene_tid']['#type']='textarea';
+    $form['field_gene_tid']['#cols']='30';
+    $form['field_gene_tid']['#rows']='9';
+ }
+
+}
+
+function scatterplot_views_pre_render(&$view) {
+
+  if ($view->name=='genetic_association') {
+    //dsm($view->result);
+    dsm($view->exposed_input);
+
+    if (empty($view->exposed_input['title'])) {
+        //$view->result = array();
+        //$view->total_rows = 0;
+        //$view->query->pager->total_items = 0;
+        //$view->query->pager->update_page_info();
+        //$view->empty['area']->options['content'] = "Please select 1 or more filter options above and click the Apply button.";
+    }
+
+    if (!empty($view->exposed_input['title'])) {
+      $markers_list = $view->exposed_input['title'];
+      //dsm($markers_list);
+      //var_dump($markers_list);
+      $pval = $view->exposed_input['field_pvalue_value'];
+      $mongo_array = _query_mongo_gv($markers_list, $pval);
+      $filtered_mongo = $mongo_array;
+      //var_dump($mongo_array);
+
+
+      if (!empty($view->exposed_input['field_effectsize_value'])) {
+        $es_gt = $view->exposed_input['field_effectsize_value'];
+        $filtered_mongo = array_filter($filtered_mongo,
+        function($v) use ($es_gt){return abs($v['EffectSize']) >= $es_gt;});
+      }
+
+      //field_gene_tid
+      if (!empty($view->exposed_input['field_pvalue_value'])) {
+        $pvalue = $view->exposed_input['field_pvalue_value'];
+        //dsm($pvalue);
+        $filtered_mongo = array_filter($filtered_mongo,
+        function($v) use ($pvalue){return $v['Pvalue'] < $pvalue;});
+      }
+
+      $new_result_array = array();
+      foreach($filtered_mongo as $row) {
+        $analysis_nid = intval(_query_analysisId($row['FileName']));
+        $temp = new stdClass;
+        $temp->node_title = $row['MarkerName'];
+        $temp->field_field_allele1[0]['rendered']['#markup'] = $row['Alleles'];
+        $temp->field_field_effectsize[0]['rendered']['#markup'] = $row['EffectSize'];
+        $temp->field_field_standarderror[0]['rendered']['#markup'] = $row['StdErr'];
+        $temp->field_field_chromosome[0]['rendered']['#markup'] = $row['chr'];
+        $temp->field_field_position[0]['rendered']['#markup'] = $row['pos'];;
+        $temp->field_field_gene[0]['rendered']['#markup'] = $row['NearestGene'];
+        $temp->field_field_n_sample[0]['rendered']['#markup'] = $row['Nsample'];
+        $temp->field_field_pvalue[0]['raw']['value'] = $row['Pvalue'];
+        $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['FileName']);
+        $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $row['FileName'] . '</a>';
+        $new_result_array[] = $temp;
+      }
+
+
+      $view->result = $new_result_array;
+      $view->total_rows = count($new_result_array);
+    }
+  }
+}
+
+
+function _query_mongo_gv($input_markers, $pval) {
+
+    if (empty($input_markers)) {
+      $markers_list = array('rs72642149');
+    } else {
+      //$input_markers = strtoupper($input_markers);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $markers_list = preg_split('/[\s ,]+/', $input_markers);
+      $trimmed_array = array_map('trim', $markers_list);
+      $markers_list = $trimmed_array;
+      //var_dump($markers_list);
+
+    }
+
+    if(empty($pval)) {
+      $pval = 0.05;
+    }
+
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Select the genomic variation collection for genetic variation info
+    $coll = $db->genomic_variation;
+
+    // Filter on markers and p-value
+    // Mongo on server is version 2.6.12 and p-values in scientific notation were being stored as string
+    // Fixed by finding p-value that are string and updating to double
+    $query = array( '$and' => array( array("MarkerName" => array('$in' => $markers_list)),
+             array('Pvalue' => array('$lt' => (float)$pval) ) ) );
+
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $cursor->sort(array('Pvalue' => 1));
+    $cursor->limit( 500 );
+
+     //Access query results
+     $result = array();
+     $filenames = array();
+     $i = 0;
+
+     foreach ($cursor as $doc) {
+       //var_dump($doc);
+                           //MarkerName,Allele1,Allele2,Freq1,FreqSE,Effect,StdErr,Pvalue,Direction,Nsample,chr,pos,cumulative_pos,HGNC_nearest_gene_snpsnap,HGNC,logpval,color,xlabel,FileName
+       $result[$i]['MarkerName'] = $doc['MarkerName'];
+       $result[$i]['Alleles'] = $doc['Allele1'] . "," . $doc['Allele2'];
+       $result[$i]['EffectSize'] = $doc['Effect'];
+       $result[$i]['Pvalue'] = $doc['Pvalue'];
+       $result[$i]['chr'] = $doc['chr'];
+       $result[$i]['pos'] = $doc['pos'];
+       $result[$i]['cumulative_pos'] = $doc['cumulative_pos'];
+       $result[$i]['color'] = $doc['color'];
+       $result[$i]['xlabel'] = $doc['xlabel'];
+       $result[$i]['FileName'] = $doc['FileName'];
+
+       $result[$i]['StdErr'] = !empty($doc['StdErr']) ? $doc['StdErr'] : "";
+       $result[$i]['NearestGene'] = !empty($doc['HGNC']) ? $doc['HGNC'] : "";
+       $result[$i]['Nsample'] = !empty($doc['Nsample']) ? $doc['Nsample'] : "";
+       $result[$i]['Freq1'] = !empty($doc['Freq1']) ? $doc['Freq1'] : "";
+       $i++;
+     }
+
+     return $result;
+}
 
 function _age_buckets($input) {
   switch ($input) {

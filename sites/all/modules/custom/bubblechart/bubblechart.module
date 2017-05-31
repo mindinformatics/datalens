@@ -544,7 +544,7 @@ function _query_mongo($input_genes, $pval) {
 
     // Filter on genes and p-value
     //$query = array("GeneSymbol" => array('$in' => $gene_list));
-    //Mongo on server is version 2.6.12 and p-values in scientific notation were ebing stored as string
+    //Mongo on server is version 2.6.12 and p-values in scientific notation were being stored as string
     // Fixed by finding p-value that are string and updating to double
     $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
              array('PValue' => array('$lt' => (float)$pval) ) ) );

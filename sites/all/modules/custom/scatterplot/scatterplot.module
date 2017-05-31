@@ -350,39 +350,33 @@ function scatterplot_views_pre_render(&$view) {
 
   if ($view->name=='genetic_association') {
     //dsm($view->result);
-    dsm($view->exposed_input);
+    //dsm($view->exposed_input);
 
-    if (empty($view->exposed_input['title'])) {
-        //$view->result = array();
-        //$view->total_rows = 0;
-        //$view->query->pager->total_items = 0;
-        //$view->query->pager->update_page_info();
-        //$view->empty['area']->options['content'] = "Please select 1 or more filter options above and click the Apply button.";
+    if ( (empty($view->exposed_input['title'])) && (empty($view->exposed_input['field_gene_tid'])) && (empty($view->exposed_input['field_pvalue_value'])) && (empty($view->exposed_input['field_effectsize_value']))) {
+        $view->result = array();
+        $view->total_rows = 0;
+        $view->query->pager->total_items = 0;
+        $view->query->pager->update_page_info();
+        $view->empty['area']->options['content'] = "Please select 1 or more filter options above and click the Apply button.";
     }
 
-    if (!empty($view->exposed_input['title'])) {
+    if ( (!empty($view->exposed_input['title'])) || (!empty($view->exposed_input['field_gene_tid'])) || (!empty($view->exposed_input['field_pvalue_value'])) || (!empty($view->exposed_input['field_effectsize_value']))) {
+      dsm("true");
       $markers_list = $view->exposed_input['title'];
-      //dsm($markers_list);
-      //var_dump($markers_list);
+      $genes_list = $view->exposed_input['field_gene_tid'];
       $pval = $view->exposed_input['field_pvalue_value'];
-      $mongo_array = _query_mongo_gv($markers_list, $pval);
+
+      $mongo_array = _query_mongo_gv($markers_list, $genes_list, $pval);
       $filtered_mongo = $mongo_array;
       //var_dump($mongo_array);
 
-
+      //Only one filter here because the others are set during query
       if (!empty($view->exposed_input['field_effectsize_value'])) {
         $es_gt = $view->exposed_input['field_effectsize_value'];
         $filtered_mongo = array_filter($filtered_mongo,
         function($v) use ($es_gt){return abs($v['EffectSize']) >= $es_gt;});
       }
 
-      //field_gene_tid
-      if (!empty($view->exposed_input['field_pvalue_value'])) {
-        $pvalue = $view->exposed_input['field_pvalue_value'];
-        //dsm($pvalue);
-        $filtered_mongo = array_filter($filtered_mongo,
-        function($v) use ($pvalue){return $v['Pvalue'] < $pvalue;});
-      }
 
       $new_result_array = array();
       foreach($filtered_mongo as $row) {
@@ -410,25 +404,7 @@ function scatterplot_views_pre_render(&$view) {
 }
 
 
-function _query_mongo_gv($input_markers, $pval) {
-
-    if (empty($input_markers)) {
-      $markers_list = array('rs72642149');
-    } else {
-      //$input_markers = strtoupper($input_markers);
-      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
-      $markers_list = preg_split('/[\s ,]+/', $input_markers);
-      $trimmed_array = array_map('trim', $markers_list);
-      $markers_list = $trimmed_array;
-      //var_dump($markers_list);
-
-    }
-
-    if(empty($pval)) {
-      $pval = 0.05;
-    }
-
-
+function _query_mongo_gv($input_markers, $input_genes, $pval) {
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
     $db = $mongo->cats;
@@ -436,12 +412,57 @@ function _query_mongo_gv($input_markers, $pval) {
     // Select the genomic variation collection for genetic variation info
     $coll = $db->genomic_variation;
 
-    // Filter on markers and p-value
-    // Mongo on server is version 2.6.12 and p-values in scientific notation were being stored as string
-    // Fixed by finding p-value that are string and updating to double
-    $query = array( '$and' => array( array("MarkerName" => array('$in' => $markers_list)),
+
+    if(empty($pval)) {
+      $pval = 0.05;
+    }
+
+    // Filter on p-value only
+    if ( (empty($input_markers)) && (empty($input_genes)) ) {
+      $query = array('Pvalue' => array('$lt' => (float)$pval) );
+    }
+
+    // Filter on markers, p-value
+    if ( (!empty($input_markers)) && (empty($input_genes)) ) {
+      $markers_list = preg_split('/[\s ,]+/', $input_markers);
+      $trimmed_array = array_map('trim', $markers_list);
+      $markers_list = $trimmed_array;
+
+      $query = array( '$and' => array( array("MarkerName" => array('$in' => $markers_list)),
+             array('Pvalue' => array('$lt' => (float)$pval) ) ) );
+    }
+
+    // Filter on genes, p-value
+    if ( (empty($input_markers)) && (!empty($input_genes)) ) {
+      $input_genes = strtoupper($input_genes);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_genes);
+      $trimmed_array = array_map('trim', $gene_list);
+      $gene_list = $trimmed_array;
+      $gene_list = array_map('_query_synonyms', $gene_list);
+
+      $query = array( '$and' => array( array("HGNC" => array('$in' => $gene_list)),
              array('Pvalue' => array('$lt' => (float)$pval) ) ) );
 
+    }
+    //Filter on markers, genes, p-value
+    if ( (!empty($input_markers)) && (!empty($input_genes)) ) {
+      $markers_list = preg_split('/[\s ,]+/', $input_markers);
+      $trimmed_array = array_map('trim', $markers_list);
+      $markers_list = $trimmed_array;
+
+      $input_genes = strtoupper($input_genes);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_genes);
+      $trimmed_array = array_map('trim', $gene_list);
+      $gene_list = $trimmed_array;
+      $gene_list = array_map('_query_synonyms', $gene_list);
+
+      $query = array( '$and' => array( array("MarkerName" => array('$in' => $markers_list)),
+        array("HGNC" => array('$in' => $gene_list)), array('Pvalue' => array('$lt' => (float)$pval) ) ) );
+    }
+
+    var_dump($query);
 
     $cursor = $coll->find($query);
     $cursor->timeout(-1);

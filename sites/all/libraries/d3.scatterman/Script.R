@@ -48,3 +48,11 @@ write.table(dat, file="IGAP_stage_1_filtered.csv", sep=",", row.names=FALSE, col
 #   dat2=dat[dat$chr== chr-1,]
 #   max2=max(dat2$cumulative_pos)
 # }
+
+
+####### To create mongo file- must have analysis name
+mongo1 = read.csv("IGAP_stage_1_filtered.csv", header=T, as.is=T, colClasses="character", fill=T)
+colnames(mongo1)
+# Remove NA and make blank
+mongo1[is.na(mongo1)] <- ""
+# Add analysis name

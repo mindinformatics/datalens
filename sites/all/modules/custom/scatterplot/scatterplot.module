@@ -130,6 +130,7 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
 	$gene = strtoupper($gene);
   //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
   $gene_list = preg_split('/[\s ,]+/', $gene);
+  $gene_list = array_filter($gene_list);
   $trimmed_array = array_map('trim', $gene_list);
   $gene_list = $trimmed_array;
   $gene_list = array_map('_query_synonyms', $gene_list);
@@ -424,6 +425,7 @@ function _query_mongo_gv($input_markers, $input_genes, $pval) {
     // Filter on markers, p-value
     if ( (!empty($input_markers)) && (empty($input_genes)) ) {
       $markers_list = preg_split('/[\s ,]+/', $input_markers);
+      $markers_list = array_filter($markers_list);
       $trimmed_array = array_map('trim', $markers_list);
       $markers_list = $trimmed_array;
 
@@ -436,6 +438,7 @@ function _query_mongo_gv($input_markers, $input_genes, $pval) {
       $input_genes = strtoupper($input_genes);
       //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
       $gene_list = preg_split('/[\s ,]+/', $input_genes);
+      $gene_list = array_filter($gene_list);
       $trimmed_array = array_map('trim', $gene_list);
       $gene_list = $trimmed_array;
       $gene_list = array_map('_query_synonyms', $gene_list);
@@ -447,12 +450,14 @@ function _query_mongo_gv($input_markers, $input_genes, $pval) {
     //Filter on markers, genes, p-value
     if ( (!empty($input_markers)) && (!empty($input_genes)) ) {
       $markers_list = preg_split('/[\s ,]+/', $input_markers);
+      $markers_list = array_filter($markers_list);
       $trimmed_array = array_map('trim', $markers_list);
       $markers_list = $trimmed_array;
 
       $input_genes = strtoupper($input_genes);
       //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
       $gene_list = preg_split('/[\s ,]+/', $input_genes);
+      $gene_list = array_filter($gene_list);
       $trimmed_array = array_map('trim', $gene_list);
       $gene_list = $trimmed_array;
       $gene_list = array_map('_query_synonyms', $gene_list);

@@ -334,7 +334,7 @@ function scatterplot_form_alter(&$form, &$form_state,$form_id ){
   //dsm($form['#id']);
 
  if($form['#id'] == 'views-exposed-form-genetic-association-page') {
-    dsm($form);
+    //dsm($form);
     $form['title']['#type']='textarea';
     $form['title']['#cols']='30';
     $form['title']['#rows']='9';
@@ -352,16 +352,15 @@ function scatterplot_views_pre_render(&$view) {
     //dsm($view->result);
     //dsm($view->exposed_input);
 
-    if ( (empty($view->exposed_input['title'])) && (empty($view->exposed_input['field_gene_tid'])) && (empty($view->exposed_input['field_pvalue_value'])) && (empty($view->exposed_input['field_effectsize_value']))) {
+    if ( (empty($view->exposed_input['title'])) && (empty($view->exposed_input['field_gene_tid'])) && (empty($view->exposed_input['field_pvalue_value'])) && (empty($view->exposed_input['field_effectsize_value'])) ) {
         $view->result = array();
         $view->total_rows = 0;
-        $view->query->pager->total_items = 0;
-        $view->query->pager->update_page_info();
-        $view->empty['area']->options['content'] = "Please select 1 or more filter options above and click the Apply button.";
+        //$view->query->pager->total_items = 0;
+        //$view->query->pager->update_page_info();
+        //$view->empty['area']->options['content'] = "Please select 1 or more filter options above and click the Apply button.";
     }
 
     if ( (!empty($view->exposed_input['title'])) || (!empty($view->exposed_input['field_gene_tid'])) || (!empty($view->exposed_input['field_pvalue_value'])) || (!empty($view->exposed_input['field_effectsize_value']))) {
-      dsm("true");
       $markers_list = $view->exposed_input['title'];
       $genes_list = $view->exposed_input['field_gene_tid'];
       $pval = $view->exposed_input['field_pvalue_value'];
@@ -462,7 +461,7 @@ function _query_mongo_gv($input_markers, $input_genes, $pval) {
         array("HGNC" => array('$in' => $gene_list)), array('Pvalue' => array('$lt' => (float)$pval) ) ) );
     }
 
-    var_dump($query);
+    //var_dump($query);
 
     $cursor = $coll->find($query);
     $cursor->timeout(-1);

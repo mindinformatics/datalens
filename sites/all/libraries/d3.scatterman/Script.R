@@ -56,3 +56,8 @@ colnames(mongo1)
 # Remove NA and make blank
 mongo1[is.na(mongo1)] <- ""
 # Add analysis name
+#IGAP_stage_1_filtered.csv
+mongo1$FileName = "IGAP_stage_1_filtered.csv"
+#mongo1$Analysis = "IGAP-Stage1-Filtered"
+
+write.table(mongo1, file="IGAP_stage_1_filtered_mongo.csv", sep=",", row.names=FALSE, col.names=TRUE, quote=FALSE)

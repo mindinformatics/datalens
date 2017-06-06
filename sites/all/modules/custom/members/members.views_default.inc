@@ -3476,7 +3476,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_effectsize_value']['group'] = 1;
   $handler->display->display_options['filters']['field_effectsize_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_effectsize_value']['expose']['operator_id'] = 'field_effectsize_value_op';
-  $handler->display->display_options['filters']['field_effectsize_value']['expose']['label'] = 'ABS(Effect Size) greater than:';
+  $handler->display->display_options['filters']['field_effectsize_value']['expose']['label'] = 'Effect Size greater than:';
   $handler->display->display_options['filters']['field_effectsize_value']['expose']['operator'] = 'field_effectsize_value_op';
   $handler->display->display_options['filters']['field_effectsize_value']['expose']['identifier'] = 'field_effectsize_value';
   $handler->display->display_options['filters']['field_effectsize_value']['expose']['remember_roles'] = array(

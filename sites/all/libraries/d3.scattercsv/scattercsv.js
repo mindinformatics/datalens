@@ -140,7 +140,8 @@ var lasso = d3.lasso()
 
 // Init the lasso on the svg:g that contains the dots
 
-d3.select("svg").call(lasso);
+//d3.select("svg").call(lasso);
+svg.call(lasso);
 
 d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD_Pval.csv", function(error, data) {
   data.forEach(function(d) {

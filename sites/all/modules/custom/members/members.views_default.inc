@@ -3429,24 +3429,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'claim_snp' => 'claim_snp',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Title */
-  $handler->display->display_options['filters']['title']['id'] = 'title';
-  $handler->display->display_options['filters']['title']['table'] = 'node';
-  $handler->display->display_options['filters']['title']['field'] = 'title';
-  $handler->display->display_options['filters']['title']['group'] = 1;
-  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['label'] = 'Marker Names:';
-  $handler->display->display_options['filters']['title']['expose']['description'] = 'Paste a list of marker names';
-  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
-  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
   /* Filter criterion: Content: Nearest Gene (field_gene) */
   $handler->display->display_options['filters']['field_gene_tid']['id'] = 'field_gene_tid';
   $handler->display->display_options['filters']['field_gene_tid']['table'] = 'field_data_field_gene';
@@ -3468,6 +3450,24 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     5 => 0,
   );
   $handler->display->display_options['filters']['field_gene_tid']['vocabulary'] = 'genes';
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['group'] = 1;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Marker Names:';
+  $handler->display->display_options['filters']['title']['expose']['description'] = 'Paste a list of marker names';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
   /* Filter criterion: Content: EffectSize (field_effectsize) */
   $handler->display->display_options['filters']['field_effectsize_value']['id'] = 'field_effectsize_value';
   $handler->display->display_options['filters']['field_effectsize_value']['table'] = 'field_data_field_effectsize';

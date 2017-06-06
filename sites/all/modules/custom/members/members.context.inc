@@ -90,11 +90,17 @@ function members_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'block-33' => array(
+          'module' => 'block',
+          'delta' => '33',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
         'views-datasets-block' => array(
           'module' => 'views',
           'delta' => 'datasets-block',
           'region' => 'content',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'views-biblio_view-block_1' => array(
           'module' => 'views',

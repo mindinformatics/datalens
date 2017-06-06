@@ -1734,6 +1734,15 @@ ul.bef-tree-child.bef-tree-depth-2 {
   width: 50%;
 }
 
+.node-type-analysis .field-name-field-result {
+  padding-top: 10px;
+}
+
+.node-type-analysis .field-collection-view {
+  padding: 0;
+}
+
+
 
 
 /* D3 CSS */

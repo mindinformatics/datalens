@@ -609,6 +609,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 .region-sidebar-second p {
 	font-weight: bold;
+	padding-bottom: 20px;
 }
 
 .region-sidebar-second .block .content {

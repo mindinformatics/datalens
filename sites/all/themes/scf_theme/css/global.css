@@ -121,7 +121,8 @@ a:hover {
 .logo-img img{
   height: auto;
   padding-top: 10px;
-  width: 25%;
+  width: 21%;
+  padding-left: 65%;
 }
 
 /* Social block */
@@ -132,7 +133,7 @@ a:hover {
 
 /* Search button etc */
 input[type="submit"] {
-  background: none repeat scroll 0 0 #A41034;
+  background: none repeat scroll 0 0 #004466;
 
   border: 0 solid #aaaeb1;
   border-radius: 3px;
@@ -226,6 +227,11 @@ nav {
 
 .block-nice-menus {
   line-height: 17px;
+  /*background-color: #004466;*/
+}
+
+.region-menu-inner {
+  padding-left: 20%;
 }
 
 #region-menu ul ul {
@@ -275,13 +281,17 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 #region-menu ul.nice-menu li {
+  border: none;
+}
+
+#region-menu ul.nice-menu li {
   	background: none;
   	border-top: 0;
   	border-bottom: 0;
   	border-left: 0;
   	margin-top: 1px;
   	margin-bottom: 1px;
-  	padding: 6px 12px;
+  	padding: 8px 12px;
 }
 
 #region-menu ul.nice-menu li.last {
@@ -289,7 +299,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 #region-menu ul.nice-menu a {
-  	color: black;
+  	color: #004466;
   	font-size: 11px;
   	font-family: Helvetica, Arial, Verdana, sans-serif;
   	font-weight: normal;
@@ -362,26 +372,14 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .front .nivo-caption {
-  width: 25%;
+  width: 20%;
   height: 25%;
   font-family: Helvetica, Arial, Verdana, sans-serif;
   font-size: 15px;
   opacity: 0.8;
-  padding: 20px 20px;
+  padding: 5px 5px 5px 5px;
   background-color: black	;
 }
-
-/*
-.front .nivoSlider {
-  height: 200px;
-  width: 940px;
-}
-
-.front .nivoSlider img {
-  max-height: 200px;
-  max-width: 940px;
-}
- */
 
 .nivo-caption h2 {
   color: #ddd7d7;
@@ -391,7 +389,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 .nivo-caption p {
   color: #ddd7d7;
-  padding: 0;
+  padding-bottom: 5px;
   line-height: 1.5em;
 }
 
@@ -586,7 +584,6 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .front .region-sidebar-second {
-	height: 910px;
 	top: 0px;
 }
 

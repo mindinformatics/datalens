@@ -102,12 +102,6 @@ function members_context_default_contexts() {
           'region' => 'content',
           'weight' => '-9',
         ),
-        'views-biblio_view-block_1' => array(
-          'module' => 'views',
-          'delta' => 'biblio_view-block_1',
-          'region' => 'content',
-          'weight' => '-8',
-        ),
         'scfmembers-scfmembers_user_top_menu' => array(
           'module' => 'scfmembers',
           'delta' => 'scfmembers_user_top_menu',
@@ -131,6 +125,12 @@ function members_context_default_contexts() {
           'delta' => 'meetings-block',
           'region' => 'sidebar_first',
           'weight' => '-9',
+        ),
+        'block-34' => array(
+          'module' => 'block',
+          'delta' => '34',
+          'region' => 'sidebar_second',
+          'weight' => '-10',
         ),
         'nivo_slider-nivo_slider' => array(
           'module' => 'nivo_slider',

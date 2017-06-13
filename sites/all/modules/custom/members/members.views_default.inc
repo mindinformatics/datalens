@@ -617,6 +617,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Study';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Group */
@@ -641,6 +642,14 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_links']['label'] = 'Link to Data';
   $handler->display->display_options['fields']['field_links']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_links']['delta_offset'] = '0';
+  /* Field: Content: Analysis */
+  $handler->display->display_options['fields']['field_analysis']['id'] = 'field_analysis';
+  $handler->display->display_options['fields']['field_analysis']['table'] = 'field_data_field_analysis';
+  $handler->display->display_options['fields']['field_analysis']['field'] = 'field_analysis';
+  $handler->display->display_options['fields']['field_analysis']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_analysis']['delta_offset'] = '0';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

@@ -431,21 +431,18 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	width: 68%;
 }
 
+#block-views-datasets-block {
+  padding-top: 20px;
+}
 /* Block Titles */
 .front .region-content h2.block-title,
 .front .region-sidebar-first h2.block-title {
 	font-family: Helvetica, Arial, Verdana, sans-serif;
 	letter-spacing: 0.05em;
-	background: #00AEEF	;
-	color: white;
-	font-size: 14px;
-	padding: 8px 4px 4px 10px;
+	color: #004466;
+	font-size: 11px;
+	padding: 0;
 	text-transform: uppercase;
-}
-
-.front .region-content h2.block-title{
-   background: #004466;
-
 }
 
 /* Titles within Blocks*/

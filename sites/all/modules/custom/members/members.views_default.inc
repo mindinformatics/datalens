@@ -4241,7 +4241,14 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->display->display_options['title'] = 'Members Directory';
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    3 => '3',
+    2 => '2',
+    4 => '4',
+    5 => '5',
+  );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
@@ -4249,9 +4256,15 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '8';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['columns'] = '2';
-  $handler->display->display_options['style_options']['alignment'] = 'vertical';
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_xfp_affiliation',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['class'] = 'member-names';
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['inline'] = array(
     'field_xfp_address_locality' => 'field_xfp_address_locality',
@@ -4282,17 +4295,24 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['relationships']['user']['id'] = 'user';
   $handler->display->display_options['relationships']['user']['table'] = 'profile';
   $handler->display->display_options['relationships']['user']['field'] = 'user';
-  /* Field: Profile: Upload Profile Image */
-  $handler->display->display_options['fields']['field_xfp_photo']['id'] = 'field_xfp_photo';
-  $handler->display->display_options['fields']['field_xfp_photo']['table'] = 'field_data_field_xfp_photo';
-  $handler->display->display_options['fields']['field_xfp_photo']['field'] = 'field_xfp_photo';
-  $handler->display->display_options['fields']['field_xfp_photo']['label'] = '';
-  $handler->display->display_options['fields']['field_xfp_photo']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_xfp_photo']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_xfp_photo']['settings'] = array(
-    'image_style' => 'profile_picture',
-    'image_link' => '',
+  $handler->display->display_options['relationships']['user']['required'] = TRUE;
+  /* Relationship: Profile: Affiliation(s) (field_xfp_affiliation) */
+  $handler->display->display_options['relationships']['field_xfp_affiliation_tid']['id'] = 'field_xfp_affiliation_tid';
+  $handler->display->display_options['relationships']['field_xfp_affiliation_tid']['table'] = 'field_data_field_xfp_affiliation';
+  $handler->display->display_options['relationships']['field_xfp_affiliation_tid']['field'] = 'field_xfp_affiliation_tid';
+  /* Field: Profile: Affiliation(s) */
+  $handler->display->display_options['fields']['field_xfp_affiliation']['id'] = 'field_xfp_affiliation';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['table'] = 'field_data_field_xfp_affiliation';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['field'] = 'field_xfp_affiliation';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['label'] = '';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_xfp_affiliation']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_xfp_affiliation']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['group_columns'] = array(
+    'tid' => 'tid',
   );
+  $handler->display->display_options['fields']['field_xfp_affiliation']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['multi_type'] = 'ul';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -4308,23 +4328,15 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['realname']['relationship'] = 'user';
   $handler->display->display_options['fields']['realname']['label'] = '';
   $handler->display->display_options['fields']['realname']['element_label_colon'] = FALSE;
-  /* Field: Profile: Affiliation(s) */
-  $handler->display->display_options['fields']['field_xfp_affiliation']['id'] = 'field_xfp_affiliation';
-  $handler->display->display_options['fields']['field_xfp_affiliation']['table'] = 'field_data_field_xfp_affiliation';
-  $handler->display->display_options['fields']['field_xfp_affiliation']['field'] = 'field_xfp_affiliation';
-  $handler->display->display_options['fields']['field_xfp_affiliation']['label'] = '';
-  $handler->display->display_options['fields']['field_xfp_affiliation']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_xfp_affiliation']['type'] = 'taxonomy_term_reference_plain';
-  $handler->display->display_options['fields']['field_xfp_affiliation']['delta_offset'] = '0';
-  /* Field: Profile: Address - Country */
-  $handler->display->display_options['fields']['field_xfp_address_country']['id'] = 'field_xfp_address_country';
-  $handler->display->display_options['fields']['field_xfp_address_country']['table'] = 'field_data_field_xfp_address';
-  $handler->display->display_options['fields']['field_xfp_address_country']['field'] = 'field_xfp_address_country';
-  $handler->display->display_options['fields']['field_xfp_address_country']['label'] = '';
-  $handler->display->display_options['fields']['field_xfp_address_country']['alter']['trim_whitespace'] = TRUE;
-  $handler->display->display_options['fields']['field_xfp_address_country']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_xfp_address_country']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_xfp_address_country']['display_name'] = 1;
+  $handler->display->display_options['fields']['realname']['link_to_user'] = FALSE;
+  /* Field: User: E-mail */
+  $handler->display->display_options['fields']['mail']['id'] = 'mail';
+  $handler->display->display_options['fields']['mail']['table'] = 'users';
+  $handler->display->display_options['fields']['mail']['field'] = 'mail';
+  $handler->display->display_options['fields']['mail']['relationship'] = 'user';
+  $handler->display->display_options['fields']['mail']['label'] = '';
+  $handler->display->display_options['fields']['mail']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['mail']['link_to_user'] = '0';
   /* Sort criterion: Profile: Last Name (field_xfp_lastname) */
   $handler->display->display_options['sorts']['field_xfp_lastname_value']['id'] = 'field_xfp_lastname_value';
   $handler->display->display_options['sorts']['field_xfp_lastname_value']['table'] = 'field_data_field_xfp_lastname';
@@ -4333,14 +4345,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['sorts']['field_xfp_firstname_value']['id'] = 'field_xfp_firstname_value';
   $handler->display->display_options['sorts']['field_xfp_firstname_value']['table'] = 'field_data_field_xfp_firstname';
   $handler->display->display_options['sorts']['field_xfp_firstname_value']['field'] = 'field_xfp_firstname_value';
-  /* Contextual filter: Profile: Last Name (field_xfp_lastname) */
-  $handler->display->display_options['arguments']['field_xfp_lastname']['id'] = 'field_xfp_lastname';
-  $handler->display->display_options['arguments']['field_xfp_lastname']['table'] = 'field_data_field_xfp_lastname';
-  $handler->display->display_options['arguments']['field_xfp_lastname']['field'] = 'field_xfp_lastname_value';
-  $handler->display->display_options['arguments']['field_xfp_lastname']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_xfp_lastname']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_xfp_lastname']['glossary'] = TRUE;
-  $handler->display->display_options['arguments']['field_xfp_lastname']['limit'] = '1';
   /* Filter criterion: User: Active */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'users';
@@ -4373,27 +4377,21 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['css_class'] = 'members_home_view';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '12';
+  $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Header: Global: Text area */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = '<span>Name:</span><span class="alpha-pager"><a class="alpha-page" href="/members/directory/a">A</a><a class="alpha-page" href="/members/directory/b">B</a><a class="alpha-page" href="/members/directory/c">C</a><a class="alpha-page" href="/members/directory/d">D</a><a class="alpha-page" href="/members/directory/e">E</a><a class="alpha-page" href="/members/directory/f">F</a><a class="alpha-page" href="/members/directory/g">G</a><a class="alpha-page" href="/members/directory/h">H</a><a class="alpha-page" href="/members/directory/i">I</a><a class="alpha-page" href="/members/directory/j">J</a><a class="alpha-page" href="/members/directory/k">K</a><a class="alpha-page" href="/members/directory/l">L</a><a class="alpha-page" href="/members/directory/m">M</a><a class="alpha-page" href="/members/directory/n">N</a><a class="alpha-page" href="/members/directory/o">O</a><a class="alpha-page" href="/members/directory/p">P</a><a class="alpha-page" href="/members/directory/q">Q</a><a class="alpha-page" href="/members/directory/r">R</a><a class="alpha-page" href="/members/directory/s">S</a><a class="alpha-page" href="/members/directory/t">T</a><a class="alpha-page" href="/members/directory/u">U</a><a class="alpha-page" href="/members/directory/v">V</a><a class="alpha-page" href="/members/directory/w">W</a><a class="alpha-page" href="/members/directory/x">X</a><a class="alpha-page" href="/members/directory/y">Y</a><a class="alpha-page" href="/members/directory/z">Z</a><a class="alpha-page alpha-page-all" href="/members/directory">ALL</a></span>';
-  $handler->display->display_options['header']['area']['format'] = 'full_html';
-  /* Header: Global: Result summary */
-  $handler->display->display_options['header']['result']['id'] = 'result';
-  $handler->display->display_options['header']['result']['table'] = 'views';
-  $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = '';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Global: Random */
-  $handler->display->display_options['sorts']['random']['id'] = 'random';
-  $handler->display->display_options['sorts']['random']['table'] = 'views';
-  $handler->display->display_options['sorts']['random']['field'] = 'random';
+  /* Sort criterion: Taxonomy term: Name */
+  $handler->display->display_options['sorts']['name']['id'] = 'name';
+  $handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['name']['field'] = 'name';
+  $handler->display->display_options['sorts']['name']['relationship'] = 'field_xfp_affiliation_tid';
+  $handler->display->display_options['sorts']['name']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['name']['expose']['label'] = 'Organization';
+  /* Sort criterion: Profile: Last Name (field_xfp_lastname) */
+  $handler->display->display_options['sorts']['field_xfp_lastname_value']['id'] = 'field_xfp_lastname_value';
+  $handler->display->display_options['sorts']['field_xfp_lastname_value']['table'] = 'field_data_field_xfp_lastname';
+  $handler->display->display_options['sorts']['field_xfp_lastname_value']['field'] = 'field_xfp_lastname_value';
   $handler->display->display_options['path'] = 'members';
   $handler->display->display_options['menu']['title'] = 'Members & Community';
   $handler->display->display_options['menu']['weight'] = '0';

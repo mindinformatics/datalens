@@ -837,41 +837,57 @@ form#user-profile-form .form-item-name {
 
 
 /* Members Directory Theming */
-.view-members2 td {
-    padding: 10px 10px 10px 0 ;
-    vertical-align: top;
-    width: 50%;
+
+.view-members2 .view-content {
+  width: 80%;
+
+  -webkit-column-count: 3; /* Chrome, Safari, Opera */
+  -moz-column-count: 3; /* Firefox */
+  column-count: 3;
+
+  -webkit-column-gap: 50px; /* Chrome, Safari, Opera */
+  -moz-column-gap: 50px; /* Firefox */
+  column-gap: 50px;
+
+  -webkit-column-rule: 1px outset #8899AA; /* Chrome, Safari, Opera */
+  -moz-column-rule: 1px outset #3D474C; /* Firefox */
+  column-rule: 1px outset #8899AA;
+
+  padding-top: 2%;
 }
 
-.view-members2 .views-field-field-xfp-photo {
-	float: left;
+/* Organization */
+.view-members2 .item-list h3 {
+  font-weight: bold;
+	font-size: 15px;
+	color: #004466;
+	padding-top: 7%;
 }
 
-.view-members2 .views-field-field-xfp-photo img {
-	padding-right: 19px;
+.view-members2 .item-list ul {
+  margin: 0;
 }
 
-.view-members2 .views-field-field-xfp-aoi {
-	width: 68%;
-	float: right;
-	padding-top: 15px;
+.view-members2 .item-list ul li {
+  margin: 0;
 }
 
-.view-members2 .views-field-field-xfp-aoi .field-content {
-	color: #4D317A;
+.view-members2 li.views-row {
+  padding-top: 5px;
 }
 
-.view-members2 .views-field-field-xfp-member-type {
-	font-weight: bold;
-}
 
-.view-members2 a.alpha-page {
-	padding: 5px;
-}
 
+/* Name */
 .view-members2 .views-field-realname {
 	font-weight: bold;
 	font-size: 13px;
+}
+
+.view-members2 .views-field-mail {
+  font-weight: normal;
+	font-size: 13px;
+	font-style: italic;
 }
 
 .page-members .region-content {

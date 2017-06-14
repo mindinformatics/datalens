@@ -887,7 +887,6 @@ form#user-profile-form .form-item-name {
 }
 
 
-
 /* Name */
 .view-members2 .views-field-realname {
 	font-weight: bold;
@@ -900,13 +899,19 @@ form#user-profile-form .form-item-name {
 	font-style: italic;
 }
 
-.page-members .region-content {
-	margin: 10px 25px;
+
+/* Side bar second */
+.page-investigators .region-sidebar-second {
+	background: #F1F5FA;
+	padding-top: 20px;
+	padding-left: 50px;
+	margin-top: -20px;
+	width: 20% !important;
+	float: right !important;
 }
 
-.page-members .container-12 .grid-9 {
-    width: 670px;
-}
+
+
 
 
 /* Member Page  */

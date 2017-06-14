@@ -871,7 +871,10 @@ form#user-profile-form .form-item-name {
   font-weight: bold;
 	font-size: 15px;
 	color: #004466;
-	padding-top: 7%;
+}
+
+.view-members2 .member-names {
+  padding-bottom: 15%;
 }
 
 .view-members2 .item-list ul {

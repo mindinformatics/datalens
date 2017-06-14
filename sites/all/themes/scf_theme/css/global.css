@@ -40,6 +40,12 @@ a:hover {
 	color: #004466;
 }
 
+.site-slogan {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: normal;
+  font-style: italic;
+  text-align: center;
+}
 
 #zone-branding,
 #zone-content,

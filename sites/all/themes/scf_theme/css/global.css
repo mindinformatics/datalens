@@ -462,11 +462,11 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 /* FP Datasets block table */
 .front .view-datasets .views-table .views-field-field-group {
-	width: 90px;
+	width: 12%;
 }
 
 .front .view-datasets .views-table .views-field-title {
-	width: 20%;
+	width: 24%;
 }
 
 .front .view-datasets .views-table .views-field-field-data-type {

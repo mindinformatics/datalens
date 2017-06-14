@@ -466,11 +466,11 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .front .view-datasets .views-table .views-field-title {
-	width: 130px;
+	width: 20%;
 }
 
 .front .view-datasets .views-table .views-field-field-data-type {
-	width: 70px;
+	width: 15%;
 }
 
 /* Rows within Blocks */

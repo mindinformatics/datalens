@@ -90,17 +90,23 @@ function members_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'block-35' => array(
+          'module' => 'block',
+          'delta' => '35',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
         'block-33' => array(
           'module' => 'block',
           'delta' => '33',
           'region' => 'content',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'views-datasets-block' => array(
           'module' => 'views',
           'delta' => 'datasets-block',
           'region' => 'content',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
         'scfmembers-scfmembers_user_top_menu' => array(
           'module' => 'scfmembers',

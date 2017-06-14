@@ -849,7 +849,7 @@ form#user-profile-form .form-item-name {
 
 
 .view-members2 .view-content {
-  width: 80%;
+  width: 78%;
 
   -webkit-column-count: 3; /* Chrome, Safari, Opera */
   -moz-column-count: 3; /* Firefox */
@@ -906,9 +906,10 @@ form#user-profile-form .form-item-name {
 /* Side bar second */
 .page-investigators .region-sidebar-second {
 	background: #F1F5FA;
+	margin-top: 4%;
 	padding-top: 20px;
-	padding-left: 50px;
-	margin-top: -20px;
+	padding-left: 2%;
+	padding-right: 2%;
 	width: 20% !important;
 	float: right !important;
 }

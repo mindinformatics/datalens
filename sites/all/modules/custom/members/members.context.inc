@@ -96,17 +96,23 @@ function members_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
+        'block-36' => array(
+          'module' => 'block',
+          'delta' => '36',
+          'region' => 'content',
+          'weight' => '-9',
+        ),
         'block-33' => array(
           'module' => 'block',
           'delta' => '33',
           'region' => 'content',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
         'views-datasets-block' => array(
           'module' => 'views',
           'delta' => 'datasets-block',
           'region' => 'content',
-          'weight' => '-8',
+          'weight' => '-7',
         ),
         'scfmembers-scfmembers_user_top_menu' => array(
           'module' => 'scfmembers',

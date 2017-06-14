@@ -611,6 +611,14 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	padding-right: 10px;
 }
 
+table#logo-table {
+  border: none;
+}
+
+#logo-table td{
+  height: 15%;
+}
+
 
 /* Interior Page Styling */
 .secondary-menu {
@@ -837,6 +845,8 @@ form#user-profile-form .form-item-name {
 
 
 /* Members Directory Theming */
+
+
 
 .view-members2 .view-content {
   width: 80%;

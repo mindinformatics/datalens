@@ -425,7 +425,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 }
 
 .front #zone-content .block .content {
-	padding-top: 10px;
+	padding-top: 5px;
 }
 
 .front #region-sidebar-first.grid-3 {
@@ -440,9 +440,14 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	width: 68%;
 }
 
-#block-views-datasets-block {
-  padding-top: 20px;
+.front #region-content p {
+  margin-bottom: 5px;
 }
+
+#block-views-datasets-block {
+/*  padding-top: 12px; */
+}
+
 /* Block Titles */
 .front .region-content h2.block-title,
 .front .region-sidebar-first h2.block-title {
@@ -451,7 +456,10 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	letter-spacing: 0.05em;
 	color: #004466;
 	font-size: 11px;
-	padding: 0;
+	padding-top: 9px;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
 	text-transform: uppercase;
 }
 

@@ -339,7 +339,7 @@ function bubblechart_views_pre_render(&$view) {
       //dsm($gene_list);
       //var_dump($gene_list);
       $pval=$view->exposed_input['field_pvalue_value'];
-      $mongo_array = _query_mongo($gene_list, $pval);
+      $mongo_array = _query_mongo_table($gene_list, $pval);
       $filtered_mongo = $mongo_array;
       //var_dump($mongo_array);
 
@@ -591,6 +591,117 @@ function _query_mongo($input_genes, $pval) {
        $main_result[$i]['parent'] = $doc['BrainRegionFull'];
        $main_result[$i]['DataType'] = $doc['DataType'];
        $main_result[$i]['Contrast'] = $doc['Contrast'] . ": " . $doc['StratFactor'];
+       $i++;
+     }
+ 	  //var_dump($main_result);
+
+ 	  // Incorporate main metadata into result array.
+ 	  $row = array();
+    	foreach($result as &$value){
+     	$file = $value['FileName'];
+     	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
+ 		  $value['Study'] = $main_result[$main_key]['Study'];
+ 		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
+ 		  $value['DataType'] = $main_result[$main_key]['DataType'];
+ 		  $value['Contrast'] = $main_result[$main_key]['Contrast'];
+ 		  $value['parent'] = $main_result[$main_key]['parent'];
+ 		  $row[] = array(
+ 		    'Study' => $value['Study'],
+ 		    'BrainRegion' => $value['BrainRegion'],
+ 		    'parent' => $value['parent'],
+ 		    'DataType' => $value['DataType'],
+ 		    'Contrast' => $value['Contrast'],
+ 		    'GeneSymbol' => $value['GeneSymbol'],
+ 		    'LogFC' => $value['LogFC'],
+ 		    'PValue' => $value['PValue'],
+ 		    'AdjPValue' => $value['AdjPValue'],
+ 		    'FileName' => $value['FileName'],
+ 		    'ProbeID' => $value['ProbeID'],
+ 		    'size' => $value['size'],
+ 		    'name' => $value['GeneSymbol'],
+ 		    );
+ 	  }
+
+  return $row;
+
+}
+
+function _query_mongo_table($input_genes, $pval) {
+
+    if (empty($input_genes)) {
+      $gene_list = array('PRELP');
+    } else {
+      $input_genes = strtoupper($input_genes);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_genes);
+      $gene_list = array_filter($gene_list);
+      $trimmed_array = array_map('trim', $gene_list);
+      $gene_list = $trimmed_array;
+      $gene_list = array_map('_query_synonyms', $gene_list);
+      //var_dump($gene_list);
+
+    }
+
+    if(empty($pval)) {
+      $pval=0.05;
+    }
+
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Select the expression collection for gene expression info
+    $coll = $db->expression;
+
+    // Filter on genes and p-value
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+    //Mongo on server is version 2.6.12 and p-values in scientific notation were being stored as string
+    // Fixed by finding p-value that are string and updating to double
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+             array('PValue' => array('$lt' => (float)$pval) ) ) );
+
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $cursor->sort(array('PValue' => 1));
+    $cursor->limit( 500 );
+    //$total = (string)$cursor->count(); //To find total number of documents
+    //dsm($total);
+    //$cursor->limit( 5 );
+
+     //Access query results
+     $result = array();
+     $filenames = array();
+     $i = 0;
+
+     foreach ($cursor as $doc) {
+       //var_dump($doc);
+       $result[$i]['FileName'] = $doc['FileName'];
+       $result[$i]['GeneSymbol'] = $doc['GeneSymbol'];
+       $result[$i]['LogFC'] = $doc['logFC'];
+       $result[$i]['PValue'] = $doc['PValue'];
+       $result[$i]['AdjPValue'] = !empty($doc['adjPVal']) ? $doc['adjPVal'] : "";
+       $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
+       $result[$i]['size'] = abs($doc['logFC']);
+       $filenames[] = $doc['FileName'];
+       $i++;
+     }
+
+
+// 		 Check the main for the meta data: Study,parent,DataType,Contrast
+     $coll2 = $db->main;
+     $query2 = array('FileName' => array('$in' => $filenames));
+     $cursor2 = $coll2->find($query2);
+     $main_result =  array();
+     $i = 0;
+     foreach ($cursor2 as $doc) {
+       $main_result[$i]['FileName'] = $doc['FileName'];
+       $main_result[$i]['Study'] = $doc['StudyName'];
+       $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+       $main_result[$i]['parent'] = $doc['BrainRegionFull'];
+       $main_result[$i]['DataType'] = $doc['DataType'];
+       $main_result[$i]['Contrast'] = $doc['Contrast'];
        $i++;
      }
  	  //var_dump($main_result);

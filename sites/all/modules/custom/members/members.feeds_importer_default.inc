@@ -192,7 +192,7 @@ function members_feeds_importer_default() {
     'parser' => array(
       'plugin_key' => 'FeedsCSVParser',
       'config' => array(
-        'delimiter' => ',',
+        'delimiter' => 'TAB',
         'encoding' => 'UTF-8',
         'no_headers' => 0,
       ),
@@ -202,7 +202,7 @@ function members_feeds_importer_default() {
       'config' => array(
         'expire' => '-1',
         'author' => 0,
-        'authorize' => 1,
+        'authorize' => 0,
         'mappings' => array(
           0 => array(
             'source' => 'Nid',
@@ -223,7 +223,7 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
         ),
-        'insert_new' => '1',
+        'insert_new' => '0',
         'update_existing' => '2',
         'update_non_existent' => 'skip',
         'input_format' => 'full_html',

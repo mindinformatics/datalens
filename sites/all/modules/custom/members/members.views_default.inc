@@ -34,6 +34,11 @@ function members_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['style_plugin'] = 'table';
+  /* Relationship: Content: Results (field_result) */
+  $handler->display->display_options['relationships']['field_result_value']['id'] = 'field_result_value';
+  $handler->display->display_options['relationships']['field_result_value']['table'] = 'field_data_field_result';
+  $handler->display->display_options['relationships']['field_result_value']['field'] = 'field_result_value';
+  $handler->display->display_options['relationships']['field_result_value']['delta'] = '-1';
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -44,6 +49,13 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Field: Files */
+  $handler->display->display_options['fields']['field_files']['id'] = 'field_files';
+  $handler->display->display_options['fields']['field_files']['table'] = 'field_data_field_files';
+  $handler->display->display_options['fields']['field_files']['field'] = 'field_files';
+  $handler->display->display_options['fields']['field_files']['relationship'] = 'field_result_value';
+  $handler->display->display_options['fields']['field_files']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_files']['delta_offset'] = '0';
   /* Field: Content: Originating Dataset */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
@@ -1068,6 +1080,50 @@ function members_views_default_views() {
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Study';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Group */
+  $handler->display->display_options['fields']['field_group']['id'] = 'field_group';
+  $handler->display->display_options['fields']['field_group']['table'] = 'field_data_field_group';
+  $handler->display->display_options['fields']['field_group']['field'] = 'field_group';
+  $handler->display->display_options['fields']['field_group']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Data Type */
+  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Species */
+  $handler->display->display_options['fields']['field_species']['id'] = 'field_species';
+  $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
+  $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
+  $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Identifiers */
+  $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
+  $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
+  $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
+  $handler->display->display_options['fields']['field_links']['label'] = 'Link to Data';
+  $handler->display->display_options['fields']['field_links']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_links']['delta_offset'] = '0';
+  /* Field: Content: Analysis */
+  $handler->display->display_options['fields']['field_analysis']['id'] = 'field_analysis';
+  $handler->display->display_options['fields']['field_analysis']['table'] = 'field_data_field_analysis';
+  $handler->display->display_options['fields']['field_analysis']['field'] = 'field_analysis';
+  $handler->display->display_options['fields']['field_analysis']['alter']['text'] = '[field_analysis]';
+  $handler->display->display_options['fields']['field_analysis']['alter']['max_length'] = '30';
+  $handler->display->display_options['fields']['field_analysis']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['field_analysis']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['field_analysis']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['field_analysis']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_analysis']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_analysis']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Updated date */
   $handler->display->display_options['sorts']['changed']['id'] = 'changed';

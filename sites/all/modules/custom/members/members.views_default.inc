@@ -1114,15 +1114,12 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_analysis']['id'] = 'field_analysis';
   $handler->display->display_options['fields']['field_analysis']['table'] = 'field_data_field_analysis';
   $handler->display->display_options['fields']['field_analysis']['field'] = 'field_analysis';
-  $handler->display->display_options['fields']['field_analysis']['alter']['text'] = '[field_analysis]';
   $handler->display->display_options['fields']['field_analysis']['alter']['max_length'] = '30';
   $handler->display->display_options['fields']['field_analysis']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['field_analysis']['alter']['strip_tags'] = TRUE;
-  $handler->display->display_options['fields']['field_analysis']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['field_analysis']['settings'] = array(
     'link' => 1,
   );
-  $handler->display->display_options['fields']['field_analysis']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_analysis']['delta_limit'] = '3';
   $handler->display->display_options['fields']['field_analysis']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Updated date */

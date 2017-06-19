@@ -1789,9 +1789,10 @@ ul.bef-tree-child.bef-tree-depth-2 {
   margin-bottom: 5px;
 }
 
+.node-type-dataset .group-analysis-tab .field-name-body img,
 .node-type-analysis .field-name-body img {
-  height: 50%;
-  width: 50%;
+  height: 28%;
+  width: 28%;
 }
 
 .node-type-analysis .field-name-field-result {

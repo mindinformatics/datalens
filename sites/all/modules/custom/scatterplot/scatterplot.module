@@ -33,7 +33,7 @@ function scatterplot_menu() {
   );
 
   $items['scatter-plot'] = array(
-    'title' => 'Scatterplot',
+    'title' => 'Gene Expression Profile Comparison',
     'description' => 'Scatterplot comparing differential expression.',
     'page callback' => 'scatterplot_csv1',
     'access callback' => TRUE,

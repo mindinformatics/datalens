@@ -29,6 +29,22 @@ function members_feeds_tamper_default() {
   $feeds_tamper = new stdClass();
   $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
   $feeds_tamper->api_version = 2;
+  $feeds_tamper->id = 'datasets_add_analysis_updater-analysis-explode';
+  $feeds_tamper->importer = 'datasets_add_analysis_updater';
+  $feeds_tamper->source = 'Analysis';
+  $feeds_tamper->plugin_id = 'explode';
+  $feeds_tamper->settings = array(
+    'separator' => ',',
+    'limit' => '',
+    'real_separator' => ',',
+  );
+  $feeds_tamper->weight = 0;
+  $feeds_tamper->description = 'Explode Analysis';
+  $export['datasets_add_analysis_updater-analysis-explode'] = $feeds_tamper;
+
+  $feeds_tamper = new stdClass();
+  $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
+  $feeds_tamper->api_version = 2;
   $feeds_tamper->id = 'datasets_importer-brain_regions-explode';
   $feeds_tamper->importer = 'datasets_importer';
   $feeds_tamper->source = 'Brain Regions';

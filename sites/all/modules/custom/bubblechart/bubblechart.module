@@ -818,9 +818,12 @@ function _key_contrast($input_key) {
         case 'DNAD-NCI: CpDxAll': return 27;
         case 'DNAD-NCI: CpDxLow': return 28;
         case 'DNAD-NCI: CpDxStrict': return 29;
-        case 'HD-NCI: ClinicalDiagnosis': return 30;
-        case 'PA-NCI: ClinicalDiagnosis': return 31;
-        case 'PSP-NCI: ClinicalDiagnosis': return 32;
+        case 'Dementia-Control: ACTClinicalDiagnosis': return 30;
+        case 'E4-NoE4: ApoE E4 Allele': return 31;
+        case 'TBI-Control: TBI History': return 32;
+        case 'HD-NCI: ClinicalDiagnosis': return 33;
+        case 'PA-NCI: ClinicalDiagnosis': return 34;
+        case 'PSP-NCI: ClinicalDiagnosis': return 35;
         default: return $key;
     }
 }
@@ -850,7 +853,8 @@ function _key_brain_region($input_key) {
         case 'Occipital lobe': return 700;
         case 'Occipital Visual Cortex': return 701;
         case 'Parietal': return 800;
-        case 'Superior Parietal Lobule': return 801;
+        case 'Parietal Neocortex': return 801;
+        case 'Superior Parietal Lobule': return 802;
         case 'Striatum': return 900;
         case 'Caudate Nucleus': return 901;
         case 'Putamen': return 902;

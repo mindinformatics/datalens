@@ -1130,7 +1130,7 @@ function members_views_default_views() {
   $handler->display->display_options['sorts']['changed']['table'] = 'node';
   $handler->display->display_options['sorts']['changed']['field'] = 'changed';
   $handler->display->display_options['sorts']['changed']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['changed']['granularity'] = 'day';
+  $handler->display->display_options['sorts']['changed']['granularity'] = 'minute';
   $export['datasets'] = $view;
 
   $view = new view();

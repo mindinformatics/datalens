@@ -838,7 +838,7 @@ function members_feeds_importer_default() {
           1 => array(
             'source' => 'ResultId',
             'target' => 'field_result_id',
-            'unique' => FALSE,
+            'unique' => 1,
             'language' => 'und',
           ),
           2 => array(

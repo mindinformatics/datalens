@@ -74,6 +74,11 @@ function members_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_input_1']['delta_offset'] = '0';
+  /* Field: Field collection item: Result Id */
+  $handler->display->display_options['fields']['field_result_id']['id'] = 'field_result_id';
+  $handler->display->display_options['fields']['field_result_id']['table'] = 'field_data_field_result_id';
+  $handler->display->display_options['fields']['field_result_id']['field'] = 'field_result_id';
+  $handler->display->display_options['fields']['field_result_id']['relationship'] = 'field_result_value';
   /* Sort criterion: Content: Nid */
   $handler->display->display_options['sorts']['nid']['id'] = 'nid';
   $handler->display->display_options['sorts']['nid']['table'] = 'node';

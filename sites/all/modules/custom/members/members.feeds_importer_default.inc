@@ -799,7 +799,7 @@ function members_feeds_importer_default() {
   $feeds_importer->id = 'result';
   $feeds_importer->config = array(
     'name' => 'Result',
-    'description' => 'Upload results fc with files: public://analysis_files/',
+    'description' => 'Add files to results fc (feeds moves public:// to private://)',
     'fetcher' => array(
       'plugin_key' => 'FeedsFileFetcher',
       'config' => array(
@@ -838,8 +838,7 @@ function members_feeds_importer_default() {
           1 => array(
             'source' => 'ResultId',
             'target' => 'field_result_id',
-            'unique' => 1,
-            'language' => 'und',
+            'unique' => 0,
           ),
           2 => array(
             'source' => 'ResultTitle',

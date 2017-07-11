@@ -240,7 +240,7 @@ function members_taxonomy_default_vocabularies() {
       ),
     ),
     'genes' => array(
-      'name' => 'Genes',
+      'name' => 'Human Genes',
       'machine_name' => 'genes',
       'description' => '',
       'hierarchy' => 0,
@@ -292,6 +292,29 @@ function members_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => -7,
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
+      ),
+    ),
+    'model_organism_genes' => array(
+      'name' => 'Model Organism Genes',
+      'machine_name' => 'model_organism_genes',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

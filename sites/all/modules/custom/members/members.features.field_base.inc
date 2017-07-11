@@ -1384,6 +1384,36 @@ function members_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_mouse_ortholog'.
+  $field_bases['field_mouse_ortholog'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_mouse_ortholog',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'model_organism_genes',
+          'parent' => 0,
+        ),
+      ),
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
   // Exported field_base: 'field_n_sample'.
   $field_bases['field_n_sample'] = array(
     'active' => 1,

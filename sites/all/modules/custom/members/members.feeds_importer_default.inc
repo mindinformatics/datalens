@@ -506,7 +506,7 @@ function members_feeds_importer_default() {
   $feeds_importer->api_version = 1;
   $feeds_importer->id = 'evidence_importer';
   $feeds_importer->config = array(
-    'name' => 'Evidence importer',
+    'name' => 'Evidence/Claim importer',
     'description' => 'Import evidence content',
     'fetcher' => array(
       'plugin_key' => 'FeedsFileFetcher',
@@ -555,44 +555,62 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
           3 => array(
+            'source' => 'Species',
+            'target' => 'field_species',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          4 => array(
             'source' => 'AnalysisNids',
             'target' => 'entityreference:field_result_data',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          4 => array(
+          5 => array(
             'source' => 'BrainRegion',
             'target' => 'field_brain_region',
             'term_search' => '0',
             'autocreate' => 1,
             'language' => 'und',
           ),
-          5 => array(
+          6 => array(
             'source' => 'Pvalue',
             'target' => 'field_pvalue',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          6 => array(
+          7 => array(
+            'source' => 'adjPValue',
+            'target' => 'field_adj_pvalue',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          8 => array(
             'source' => 'FoldChange',
             'target' => 'field_fold_change',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          7 => array(
+          9 => array(
+            'source' => 'ProbeID',
+            'target' => 'field_probe_id',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          10 => array(
             'source' => 'Genes_list',
             'target' => 'field_genes_diff',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          8 => array(
+          11 => array(
             'source' => 'Tags',
             'target' => 'field_tags',
             'term_search' => '0',
             'autocreate' => 1,
             'language' => 'und',
           ),
-          9 => array(
+          12 => array(
             'source' => 'Description',
             'target' => 'body',
             'format' => 'full_html',

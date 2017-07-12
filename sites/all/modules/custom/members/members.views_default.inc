@@ -3554,28 +3554,28 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'brain_region';
   $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
-  /* Filter criterion: Content: Contrast (field_contrast) */
-  $handler->display->display_options['filters']['field_contrast_tid']['id'] = 'field_contrast_tid';
-  $handler->display->display_options['filters']['field_contrast_tid']['table'] = 'field_data_field_contrast';
-  $handler->display->display_options['filters']['field_contrast_tid']['field'] = 'field_contrast_tid';
-  $handler->display->display_options['filters']['field_contrast_tid']['relationship'] = 'field_result_data_target_id';
-  $handler->display->display_options['filters']['field_contrast_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_contrast_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['operator_id'] = 'field_contrast_tid_op';
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['label'] = 'Contrast:';
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['operator'] = 'field_contrast_tid_op';
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['identifier'] = 'field_contrast_tid';
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['remember_roles'] = array(
+  /* Filter criterion: Content: Perturbation (field_perturbation) */
+  $handler->display->display_options['filters']['field_perturbation_tid']['id'] = 'field_perturbation_tid';
+  $handler->display->display_options['filters']['field_perturbation_tid']['table'] = 'field_data_field_perturbation';
+  $handler->display->display_options['filters']['field_perturbation_tid']['field'] = 'field_perturbation_tid';
+  $handler->display->display_options['filters']['field_perturbation_tid']['relationship'] = 'field_result_data_target_id';
+  $handler->display->display_options['filters']['field_perturbation_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_perturbation_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['operator_id'] = 'field_perturbation_tid_op';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['label'] = 'Perturbation';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['operator'] = 'field_perturbation_tid_op';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['identifier'] = 'field_perturbation_tid';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
   );
-  $handler->display->display_options['filters']['field_contrast_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_contrast_tid']['vocabulary'] = 'contrast';
-  $handler->display->display_options['filters']['field_contrast_tid']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['field_perturbation_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_perturbation_tid']['vocabulary'] = 'perturbation';
+  $handler->display->display_options['filters']['field_perturbation_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';
@@ -3827,27 +3827,28 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'brain_region';
   $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
-  /* Filter criterion: Content: Contrast (field_contrast) */
-  $handler->display->display_options['filters']['field_contrast_tid']['id'] = 'field_contrast_tid';
-  $handler->display->display_options['filters']['field_contrast_tid']['table'] = 'field_data_field_contrast';
-  $handler->display->display_options['filters']['field_contrast_tid']['field'] = 'field_contrast_tid';
-  $handler->display->display_options['filters']['field_contrast_tid']['relationship'] = 'field_result_data_target_id';
-  $handler->display->display_options['filters']['field_contrast_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_contrast_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['operator_id'] = 'field_contrast_tid_op';
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['label'] = 'Contrast:';
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['operator'] = 'field_contrast_tid_op';
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['identifier'] = 'field_contrast_tid';
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_contrast_tid']['expose']['remember_roles'] = array(
+  /* Filter criterion: Content: Perturbation (field_perturbation) */
+  $handler->display->display_options['filters']['field_perturbation_tid']['id'] = 'field_perturbation_tid';
+  $handler->display->display_options['filters']['field_perturbation_tid']['table'] = 'field_data_field_perturbation';
+  $handler->display->display_options['filters']['field_perturbation_tid']['field'] = 'field_perturbation_tid';
+  $handler->display->display_options['filters']['field_perturbation_tid']['relationship'] = 'field_result_data_target_id';
+  $handler->display->display_options['filters']['field_perturbation_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_perturbation_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['operator_id'] = 'field_perturbation_tid_op';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['label'] = 'Perturbation:';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['operator'] = 'field_perturbation_tid_op';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['identifier'] = 'field_perturbation_tid';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
   );
-  $handler->display->display_options['filters']['field_contrast_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_contrast_tid']['vocabulary'] = 'contrast';
+  $handler->display->display_options['filters']['field_perturbation_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_perturbation_tid']['vocabulary'] = 'perturbation';
+  $handler->display->display_options['filters']['field_perturbation_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';

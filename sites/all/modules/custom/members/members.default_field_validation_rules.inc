@@ -21,7 +21,7 @@ function members_default_field_validation_rule() {
   $rule->bundle = 'field_result';
   $rule->validator = 'field_validation_unique_validator';
   $rule->settings = array(
-    'data' => 'bundle',
+    'data' => 'entity',
     'per_user' => 0,
     'bypass' => 0,
     'roles' => array(

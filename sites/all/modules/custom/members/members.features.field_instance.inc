@@ -493,6 +493,46 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-analysis-field_perturbation'.
+  $field_instances['node-analysis-field_perturbation'] = array(
+    'bundle' => 'analysis',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_perturbation',
+    'label' => 'Perturbation',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 8,
+    ),
+  );
+
   // Exported field_instance: 'node-analysis-field_result'.
   $field_instances['node-analysis-field_result'] = array(
     'bundle' => 'analysis',
@@ -532,7 +572,7 @@ function members_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -581,7 +621,7 @@ function members_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 10,
+      'weight' => 11,
     ),
     'widget_type' => 'options_select',
   );
@@ -641,7 +681,7 @@ function members_field_default_field_instances() {
       'module' => 'og',
       'settings' => array(),
       'type' => 'og_complex',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -5803,6 +5843,7 @@ function members_field_default_field_instances() {
   t('Num_male');
   t('Originating Dataset');
   t('P-value');
+  t('Perturbation');
   t('Please indicate the Lab Group or Center.');
   t('Please indicate the brain region.');
   t('Please indicate whether this is a public or private data set.');

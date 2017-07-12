@@ -51,36 +51,50 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
           1 => array(
-            'source' => 'MethodsHTML',
-            'target' => 'body',
-            'unique' => FALSE,
-            'language' => 'und',
-          ),
-          2 => array(
             'source' => 'Input',
             'target' => 'field_input:etid',
             'unique' => FALSE,
             'language' => 'und',
           ),
+          2 => array(
+            'source' => 'Contrast',
+            'target' => 'field_contrast',
+            'term_search' => '0',
+            'autocreate' => 1,
+            'language' => 'und',
+          ),
           3 => array(
+            'source' => 'Perturbation',
+            'target' => 'field_perturbation',
+            'term_search' => '0',
+            'autocreate' => 1,
+            'language' => 'und',
+          ),
+          4 => array(
+            'source' => 'MethodsHTML',
+            'target' => 'body',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          5 => array(
             'source' => 'CodeTitle',
             'target' => 'field_links:title',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          4 => array(
+          6 => array(
             'source' => 'CodeURL',
             'target' => 'field_links:url',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          5 => array(
+          7 => array(
             'source' => 'Acknowledgement',
             'target' => 'field_acknowledgement',
             'unique' => FALSE,
             'language' => 'und',
           ),
-          6 => array(
+          8 => array(
             'source' => 'Public',
             'target' => 'group_content_access',
             'unique' => FALSE,
@@ -150,9 +164,10 @@ function members_feeds_importer_default() {
             'target' => 'field_contrast',
             'term_search' => '0',
             'autocreate' => 1,
+            'language' => 'und',
           ),
         ),
-        'insert_new' => '1',
+        'insert_new' => '0',
         'update_existing' => '2',
         'update_non_existent' => 'skip',
         'input_format' => 'full_html',

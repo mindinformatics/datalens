@@ -876,6 +876,7 @@ features[views_view][] = datasets
 features[views_view][] = datasets_node
 features[views_view][] = enable_comments
 features[views_view][] = evidence
+features[views_view][] = evidence_mouse
 features[views_view][] = filter_genes
 features[views_view][] = forums
 features[views_view][] = genetic_association

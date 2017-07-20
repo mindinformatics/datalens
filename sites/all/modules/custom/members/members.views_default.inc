@@ -56,7 +56,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_files']['relationship'] = 'field_result_value';
   $handler->display->display_options['fields']['field_files']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_files']['delta_offset'] = '0';
-  /* Field: Content: Originating Dataset */
+  /* Field: Content: Input */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
@@ -66,7 +66,7 @@ function members_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';
-  /* Field: Content: Originating Dataset */
+  /* Field: Content: Input */
   $handler->display->display_options['fields']['field_input_1']['id'] = 'field_input_1';
   $handler->display->display_options['fields']['field_input_1']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input_1']['field'] = 'field_input';
@@ -1455,7 +1455,7 @@ If no gene is specified, only results with P-value &lt; .001 are displayed by de
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Originating Dataset */
+  /* Field: Content: Input */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
@@ -2146,7 +2146,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Originating Dataset */
+  /* Field: Content: Input */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
@@ -2432,7 +2432,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Originating Dataset */
+  /* Field: Content: Input */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
@@ -2770,7 +2770,7 @@ If no gene is specified, only results with P-value &lt; .01 are displayed by def
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Originating Dataset */
+  /* Field: Content: Input */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
@@ -3461,7 +3461,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Originating Dataset */
+  /* Field: Content: Input */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
@@ -3514,6 +3514,24 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   );
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['vocabulary'] = 'evidence_data_type';
+  /* Filter criterion: Content: Claim ID (field_evidence_id) */
+  $handler->display->display_options['filters']['field_evidence_id_value']['id'] = 'field_evidence_id_value';
+  $handler->display->display_options['filters']['field_evidence_id_value']['table'] = 'field_data_field_evidence_id';
+  $handler->display->display_options['filters']['field_evidence_id_value']['field'] = 'field_evidence_id_value';
+  $handler->display->display_options['filters']['field_evidence_id_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_evidence_id_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['operator_id'] = 'field_evidence_id_value_op';
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['label'] = 'Mouse Gene(s):';
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['description'] = 'Paste a list of gene symbols';
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['operator'] = 'field_evidence_id_value_op';
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['identifier'] = 'field_evidence_id_value';
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
   /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
@@ -3521,7 +3539,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['label'] = 'Gene(s):';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Human Gene(s):';
   $handler->display->display_options['filters']['title']['expose']['description'] = 'Paste a list of gene symbols';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
@@ -3745,7 +3763,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
-  /* Field: Content: Originating Dataset */
+  /* Field: Content: Input */
   $handler->display->display_options['fields']['field_input']['id'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';

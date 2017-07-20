@@ -3221,6 +3221,46 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-evidence-field_genes_diff_model'.
+  $field_instances['node-evidence-field_genes_diff_model'] = array(
+    'bundle' => 'evidence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_genes_diff_model',
+    'label' => 'Mouse Differentially Expressed Genes',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 19,
+    ),
+  );
+
   // Exported field_instance: 'node-evidence-field_input'.
   $field_instances['node-evidence-field_input'] = array(
     'bundle' => 'evidence',
@@ -3362,7 +3402,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 19,
+      'weight' => 20,
     ),
   );
 
@@ -3590,7 +3630,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 20,
+      'weight' => 21,
     ),
   );
 
@@ -3649,7 +3689,7 @@ function members_field_default_field_instances() {
       'module' => 'og',
       'settings' => array(),
       'type' => 'og_complex',
-      'weight' => 21,
+      'weight' => 22,
     ),
   );
 
@@ -5530,7 +5570,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 4,
     ),
   );
 
@@ -5565,7 +5605,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 7,
     ),
   );
 
@@ -5600,7 +5640,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 2,
     ),
   );
 
@@ -5641,7 +5681,7 @@ function members_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 8,
+      'weight' => 6,
     ),
   );
 
@@ -5676,7 +5716,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 8,
     ),
   );
 
@@ -5711,7 +5751,42 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-model_organism_genes-field_synonyms'.
+  $field_instances['taxonomy_term-model_organism_genes-field_synonyms'] = array(
+    'bundle' => 'model_organism_genes',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_synonyms',
+    'label' => 'Synonyms',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 3,
     ),
   );
 
@@ -5752,7 +5827,7 @@ function members_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 11,
+      'weight' => 9,
     ),
   );
 
@@ -5835,6 +5910,7 @@ function members_field_default_field_instances() {
   t('Meeting Name');
   t('Method');
   t('Middle Name');
+  t('Mouse Differentially Expressed Genes');
   t('Mouse Ortholog');
   t('N Sample');
   t('Nearest Gene');

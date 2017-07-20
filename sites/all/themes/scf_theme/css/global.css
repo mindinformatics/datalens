@@ -1599,10 +1599,20 @@ div.horizontal-tabs .horizontal-tabs-panes {
   width: 20%;
 }
 
-.view-evidence .view-header {
+.view-evidence-mouse-mouse .views-exposed-form #edit-field-group-tid-wrapper,
+.view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-wrapper,
+.view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-1-wrapper,
+.view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-2-wrapper {
+  width: 18%;
+}
+
+.view-evidence .view-header,
+.view-evidence-mouse .view-header {
   font-size: 14px;
 }
-.view-evidence .view-empty p {
+
+.view-evidence .view-empty p,
+.view-evidence-mouse .view-empty p {
   color: #004466;
   font-weight: bold;
 }

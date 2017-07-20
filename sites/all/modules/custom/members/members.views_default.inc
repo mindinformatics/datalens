@@ -653,7 +653,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Code */
+  /* Field: Content: Identifiers */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -980,7 +980,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
-  /* Field: Content: Code */
+  /* Field: Content: Identifiers */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -1109,7 +1109,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Code */
+  /* Field: Content: Identifiers */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -1190,7 +1190,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_group']['field'] = 'field_group';
   $handler->display->display_options['fields']['field_group']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_group']['delta_offset'] = '0';
-  /* Field: Content: Code */
+  /* Field: Content: Identifiers */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -2650,7 +2650,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Gene Expression';
+  $handler->display->display_options['title'] = 'Mouse Gene Expression';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -3572,28 +3572,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'brain_region';
   $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
-  /* Filter criterion: Content: Perturbation (field_perturbation) */
-  $handler->display->display_options['filters']['field_perturbation_tid']['id'] = 'field_perturbation_tid';
-  $handler->display->display_options['filters']['field_perturbation_tid']['table'] = 'field_data_field_perturbation';
-  $handler->display->display_options['filters']['field_perturbation_tid']['field'] = 'field_perturbation_tid';
-  $handler->display->display_options['filters']['field_perturbation_tid']['relationship'] = 'field_result_data_target_id';
-  $handler->display->display_options['filters']['field_perturbation_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_perturbation_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['operator_id'] = 'field_perturbation_tid_op';
-  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['label'] = 'Perturbation';
-  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['operator'] = 'field_perturbation_tid_op';
-  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['identifier'] = 'field_perturbation_tid';
-  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['field_perturbation_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_perturbation_tid']['vocabulary'] = 'perturbation';
-  $handler->display->display_options['filters']['field_perturbation_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';
@@ -3640,6 +3618,28 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['term_node_tid_depth_2']['vocabulary'] = 'group';
   $handler->display->display_options['filters']['term_node_tid_depth_2']['hierarchy'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_2']['depth'] = '3';
+  /* Filter criterion: Content: Perturbation (field_perturbation) */
+  $handler->display->display_options['filters']['field_perturbation_tid']['id'] = 'field_perturbation_tid';
+  $handler->display->display_options['filters']['field_perturbation_tid']['table'] = 'field_data_field_perturbation';
+  $handler->display->display_options['filters']['field_perturbation_tid']['field'] = 'field_perturbation_tid';
+  $handler->display->display_options['filters']['field_perturbation_tid']['relationship'] = 'field_result_data_target_id';
+  $handler->display->display_options['filters']['field_perturbation_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_perturbation_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['operator_id'] = 'field_perturbation_tid_op';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['label'] = 'Perturbation';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['operator'] = 'field_perturbation_tid_op';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['identifier'] = 'field_perturbation_tid';
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_perturbation_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['field_perturbation_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_perturbation_tid']['vocabulary'] = 'perturbation';
+  $handler->display->display_options['filters']['field_perturbation_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: P-value (field_pvalue) */
   $handler->display->display_options['filters']['field_pvalue_value']['id'] = 'field_pvalue_value';
   $handler->display->display_options['filters']['field_pvalue_value']['table'] = 'field_data_field_pvalue';

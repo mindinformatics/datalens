@@ -480,8 +480,7 @@ function bubblechart_views_pre_render(&$view) {
 
   if($view->name=='evidence_mouse'){
     //dsm($view);
-    dsm($view->exposed_input);
-    //dsm($view);
+    //dsm($view->exposed_input);
 
     //field_evidence_id_value
 
@@ -502,17 +501,19 @@ function bubblechart_views_pre_render(&$view) {
     if ( !empty($view->exposed_input['field_evidence_id_value']) || !empty($view->exposed_input['title']) ) {
       $pval=$view->exposed_input['field_pvalue_value'];
 
-      if ( !empty($view->exposed_input['field_evidence_id_value']) ) {
-          $mgene_list = $view->exposed_input['field_evidence_id_value'];
-
-      } else {
+      //If mouse empty, take human, otherwise, always take mouse (even if both filled)
+      if ( empty($view->exposed_input['field_evidence_id_value']) ) {
+          $species = array("human");
           $gene_list = $view->exposed_input['title'];
-
+      } else {
+          $species = array("mouse");
+          $gene_list = $view->exposed_input['field_evidence_id_value'];
       }
       //dsm($gene_list);
       //var_dump($gene_list);
+      //dsm($species);
 
-      $mongo_array = _query_mongo_table($gene_list, $pval);
+      $mongo_array = _query_mongo_mouse_table($gene_list, $pval, $species);
       $filtered_mongo = $mongo_array;
       //var_dump($mongo_array);
 
@@ -588,18 +589,18 @@ function bubblechart_views_pre_render(&$view) {
 
 
       // Perturbation
-      if (!empty($view->exposed_input['field_contrast_tid'])) {
-        $contrast = $view->exposed_input['field_contrast_tid'];
-        //dsm($contrast);
+      if (!empty($view->exposed_input['field_perturbation_tid'])) {
+        $perturbation = $view->exposed_input['field_perturbation_tid'];
+        //dsm($$perturbation);
         $terms = array();
-        foreach($contrast as $tid) {
+        foreach($perturbation as $tid) {
           $term = taxonomy_term_load($tid)->name;
           array_push($terms, $term);
         }
           //dsm($terms);
           $filtered_mongo = array_filter($filtered_mongo,
           function($v) use ($terms){
-            return in_array($v['Contrast'], $terms);
+            return in_array($v['Perturbation'], $terms);
           });
       }
 
@@ -618,8 +619,9 @@ function bubblechart_views_pre_render(&$view) {
         $input_study_nid = intval(_query_inputId($analysis_nid));
         //var_dump($analysis_id);
         $temp = new stdClass;
-        $temp->node_title = $row['GeneSymbol'] . " " . $row['ProbeID'];
-        $temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ProbeID'];
+        $temp->node_title = $row['Mouse_Ortholog'] . " " . $row['ProbeID'];
+        //$temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ProbeID'];
+        $temp->field_field_genes_diff[0]['rendered']['#markup'] = $row['GeneSymbol'];
         $temp->field_field_pvalue[0]['raw']['value'] = $row['PValue'];
         $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
         $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
@@ -680,7 +682,9 @@ function _query_synonyms($input) {
       $query->join('taxonomy_term_data', 'tt', 'fs.entity_id = tt.tid');
       $query->fields('tt', array('name'));
       $query->condition('fs.field_synonyms_value',$input,'=');
+      $query->condition('tt.vid', $vid, '=');
       $result = $query->execute()->fetchfield();
+      //dsm($result);
       if(!$result) {
         drupal_set_message(t('Cannot find gene @var.', array('@var' => $input)));
       }
@@ -903,6 +907,133 @@ function _query_mongo_table($input_genes, $pval) {
  		    'FileName' => $value['FileName'],
  		    'ProbeID' => $value['ProbeID'],
  		    'size' => $value['size'],
+ 		    'name' => $value['GeneSymbol'],
+ 		    );
+ 	  }
+
+  return $row;
+
+}
+
+function _query_mongo_mouse_table($input_genes, $pval, $species) {
+
+    if (empty($input_genes)) {
+      $gene_list = array('PRELP');
+    } else {
+       $input_genes = strtoupper($input_genes);
+        //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+        $gene_list = preg_split('/[\s ,]+/', $input_genes);
+        $gene_list = array_filter($gene_list);
+        $trimmed_array = array_map('trim', $gene_list);
+        $gene_list = $trimmed_array;
+
+        $tax_species = array($species[0]);
+
+      if ($species[0] == "mouse" ) {
+        //Mouse genes: make first letter cap, and the rest lc
+        $mouse_lower = array_map('strtolower', $gene_list);
+        $gene_list = array_map('ucfirst', $mouse_lower);
+      }
+      //var_dump($gene_list);
+      $gene_list = array_map('_query_synonyms', $gene_list, $tax_species);
+    }
+
+    if(empty($pval)) {
+      $pval = 0.05;
+    }
+
+    // Create Mongo connection, connect to database and collection //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+    $coll = $db->mouse_expression;
+
+    // Filter on genes and p-value
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+    //Mongo on server is version 2.6.12 and p-values in scientific notation were being stored as string
+    // Fixed by finding p-value that are string and updating to double
+
+    var_dump($gene_list);
+    var_dump($species[0]);
+    if ($species[0] == "human") {
+      $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+             array('PValue' => array('$lt' => (float)$pval) ) ) );
+    }
+
+    if ($species[0] == "mouse") {
+       $query = array( '$and' => array( array("Mouse_Ortholog" => array('$in' => $gene_list)),
+             array('PValue' => array('$lt' => (float)$pval) ) ) );
+    }
+
+
+    #ProbeID,GeneSymbol,Mouse_Entrez,Mouse_Ortholog,logFC,AveExpr,t,PValue,adjPValue,FileName
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $cursor->sort(array('PValue' => 1));
+    $cursor->limit( 500 );
+    //$total = (string)$cursor->count(); //To find total number of documents
+    //dsm($total);
+    //$cursor->limit( 5 );
+
+     //Access query results
+     $result = array();
+     $filenames = array();
+     $i = 0;
+
+     foreach ($cursor as $doc) {
+       //var_dump($doc);
+       $result[$i]['FileName'] = $doc['FileName'];
+       $result[$i]['GeneSymbol'] = !empty($doc['GeneSymbol']) ? $doc['GeneSymbol'] : "";
+       $result[$i]['Mouse_Ortholog'] = $doc['Mouse_Ortholog'];
+       $result[$i]['LogFC'] = $doc['logFC'];
+       $result[$i]['PValue'] = $doc['PValue'];
+       $result[$i]['AdjPValue'] = !empty($doc['adjPVal']) ? $doc['adjPVal'] : "";
+       $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
+       $filenames[] = $doc['FileName'];
+       $i++;
+     }
+
+
+// 		 Check the mouse main for the meta data: Study,parent,DataType, Perturbation
+     $coll2 = $db->mouse_main;
+     $query2 = array('FileName' => array('$in' => $filenames));
+     $cursor2 = $coll2->find($query2);
+     $main_result =  array();
+     $i = 0;
+     foreach ($cursor2 as $doc) {
+       $main_result[$i]['FileName'] = $doc['FileName'];
+       $main_result[$i]['Study'] = $doc['StudyName'];
+       $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+       $main_result[$i]['parent'] = $doc['BrainRegionFull'];
+       $main_result[$i]['DataType'] = $doc['DataType'];
+       $main_result[$i]['Perturbation'] = $doc['Perturbation'];
+       $i++;
+     }
+ 	  //var_dump($main_result);
+
+ 	  // Incorporate main metadata into result array.
+ 	  $row = array();
+    	foreach($result as &$value){
+     	$file = $value['FileName'];
+     	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
+ 		  $value['Study'] = $main_result[$main_key]['Study'];
+ 		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
+ 		  $value['DataType'] = $main_result[$main_key]['DataType'];
+ 		  $value['Perturbation'] = $main_result[$main_key]['Perturbation'];
+ 		  $value['parent'] = $main_result[$main_key]['parent'];
+ 		  $row[] = array(
+ 		    'Study' => $value['Study'],
+ 		    'BrainRegion' => $value['BrainRegion'],
+ 		    'parent' => $value['parent'],
+ 		    'DataType' => $value['DataType'],
+ 		    'Perturbation' => $value['Perturbation'],
+ 		    'Mouse_Ortholog' => $value['Mouse_Ortholog'],
+ 		    'GeneSymbol' => $value['GeneSymbol'],
+ 		    'LogFC' => $value['LogFC'],
+ 		    'PValue' => $value['PValue'],
+ 		    'AdjPValue' => $value['AdjPValue'],
+ 		    'FileName' => $value['FileName'],
+ 		    'ProbeID' => $value['ProbeID'],
  		    'name' => $value['GeneSymbol'],
  		    );
  	  }

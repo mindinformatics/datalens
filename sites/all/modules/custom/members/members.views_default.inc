@@ -3398,6 +3398,13 @@ If no gene is specified, only results with P-value &lt; .01 are displayed by def
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Differentially Expressed Genes */
+  $handler->display->display_options['fields']['field_genes_diff']['id'] = 'field_genes_diff';
+  $handler->display->display_options['fields']['field_genes_diff']['table'] = 'field_data_field_genes_diff';
+  $handler->display->display_options['fields']['field_genes_diff']['field'] = 'field_genes_diff';
+  $handler->display->display_options['fields']['field_genes_diff']['label'] = 'Human Ortholog';
+  $handler->display->display_options['fields']['field_genes_diff']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_genes_diff']['delta_offset'] = '0';
   /* Field: Content: Fold change */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';

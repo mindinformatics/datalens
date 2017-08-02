@@ -1151,6 +1151,7 @@ function _key_brain_region($input_key) {
         case 'Anterior Cingulate': return 201;
         case 'Posterior Cingulate Cortex': return 202;
         case 'Forebrain': return 300;
+        case 'White Matter of Forebrain': return 301;
         case 'Frontal lobe': return 400;
         case 'Dorsolateral Prefrontal Cortex': return 401;
         case 'Frontal Pole': return 402;
@@ -1182,7 +1183,7 @@ function _key_brain_region($input_key) {
         case 'Temporal': return 1005;
         case 'Temporal Cortex': return 1006;
         case 'Temporal Pole': return 1007;
-        default: return $key;
+        default: return $input_key;
     }
 }
 

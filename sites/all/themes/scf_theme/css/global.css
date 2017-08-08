@@ -1560,6 +1560,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
 
 
 /* Datasets Filter better */
+.form-checkboxes .bef-checkboxes,
 .form-checkboxes .bef-tree,
 .bef-select-as-radios .form-radios {
   /*
@@ -1604,6 +1605,10 @@ div.horizontal-tabs .horizontal-tabs-panes {
 .view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-1-wrapper,
 .view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-2-wrapper {
   width: 18%;
+}
+
+.view-evidence-mouse .views-widget-filter-field_perturbation_tid .form-type-bef-checkbox {
+  padding-left: 3px;
 }
 
 .view-evidence .view-header,

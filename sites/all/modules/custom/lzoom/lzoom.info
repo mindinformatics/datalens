@@ -1,0 +1,5 @@
+name = "Locus Zoom"
+description = "Provides visualization of GWAS results"
+package = custom
+core = 7.x
+dependencies[] = block

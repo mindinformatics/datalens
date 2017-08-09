@@ -1,0 +1,70 @@
+<?php
+/**
+* Implements hook_menu().
+*/
+function lzoom_menu() {
+  $items['lzoom'] = array(
+    'title' => 'Locus Zoom Test',
+    'description' => 'Test using Locus Zoom',
+    'page callback' => 'lzoom_test',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+function lzoom_libraries_info() {
+  $libraries = array();
+  $libraries['locuszoom'] = array(
+    'name' => 'Locus Zoom',
+    'vendor url' => 'http://locuszoom.sph.umich.edu/',
+    'download url' => 'https://github.com/statgen/locuszoom',
+    'version callback' => '_short_circuit_version',
+    'files' => array(
+      'js' => array(
+        'locuszoom.vendor.min.js',
+        'locuszoom.app.js',
+      ),
+      'css' => array(
+        'locuszoom.css'
+      ),
+    ),
+  );
+
+  return $libraries;
+}
+
+
+
+function lzoom_test() {
+
+  libraries_load('locuszoom');
+  $path = libraries_get_path('locuszoom');
+  drupal_add_css($path . '/locuszoom.css');
+
+
+  //$test = $path . '/index.html';
+
+  $test = file_get_contents($path . '/index_drupal.html');
+
+  $page_text = "<p>Locus Zoom page</p><p></p>" . $path . "<p></p><p></p>";
+
+  return ($test);
+
+}
+
+
+
+
+function _query_mongo_lzoom($input_genes, $study) {
+
+}
+
+/**
+* Short-circuit the version argument.
+*/
+function _short_circuit_version() {
+  return TRUE;
+}
+
+?>

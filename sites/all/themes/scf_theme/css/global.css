@@ -1611,6 +1611,11 @@ div.horizontal-tabs .horizontal-tabs-panes {
   padding-left: 3px;
 }
 
+.view-evidence-mouse .views-exposed-form .views-exposed-widget {
+  float: none;
+  display: inline-block;
+}
+
 .view-evidence .view-header,
 .view-evidence-mouse .view-header {
   font-size: 14px;

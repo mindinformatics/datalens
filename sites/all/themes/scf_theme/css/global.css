@@ -1600,20 +1600,24 @@ div.horizontal-tabs .horizontal-tabs-panes {
   width: 20%;
 }
 
-.view-evidence-mouse-mouse .views-exposed-form #edit-field-group-tid-wrapper,
+
 .view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-wrapper,
 .view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-1-wrapper,
 .view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-2-wrapper {
   width: 18%;
 }
 
+.view-evidence-mouse-mouse .views-exposed-form #edit-field-group-tid-wrapper {
+  width: 18%;
+}
+
 .view-evidence-mouse .views-widget-filter-field_perturbation_tid .form-type-bef-checkbox {
-  padding-left: 3px;
+  padding-left: 5px;
 }
 
 .view-evidence-mouse .views-exposed-form .views-exposed-widget {
-  float: none;
-  display: inline-block;
+  float: left;
+  /*display: inline-block; */
 }
 
 .view-evidence .view-header,

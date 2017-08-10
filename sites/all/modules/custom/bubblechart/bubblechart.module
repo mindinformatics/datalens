@@ -266,11 +266,11 @@ function bubblechart_form_alter(&$form, &$form_state,$form_id ){
 
  if($form['#id'] == 'views-exposed-form-evidence-mouse-page') {
     $form['field_evidence_id_value']['#type']='textarea';
-    $form['field_evidence_id_value']['#cols']='25';
+    $form['field_evidence_id_value']['#cols']='17';
     $form['field_evidence_id_value']['#rows']='9';
 
     $form['title']['#type']='textarea';
-    $form['title']['#cols']='25';
+    $form['title']['#cols']='17';
     $form['title']['#rows']='9';
  }
 

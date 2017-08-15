@@ -4,7 +4,6 @@
     //error_reporting(E_ALL | E_STRICT);
     //ini_set("display_errors", 2);
 
-
 /**
 * Implements hook_menu().
 */
@@ -53,6 +52,56 @@ function scatterplot_menu() {
 
   return $items;
 }
+
+function scatterplot_block_info() {
+  $blocks = array();
+  $blocks['genelinks'] = array(
+    // info: The name of the block.
+    'info' => t('GeneLinks'),
+    'status' => TRUE,
+    'theme' => 'scf-theme',
+    'weight' => 15,
+    'visibility' => 1,
+    'pages' => "scatterplot/*",
+    'custom' => FALSE
+  );
+
+  return $blocks;
+}
+
+function scatterplot_block_view($delta = '') {
+  // The $delta parameter tells us which block is being requested.
+  switch ($delta) {
+    case 'genelinks':
+      // Create your block content here
+    //$block['subject'] = t('External Gene Data Links');
+    $block['content'] = scatterplot_block_contents();
+    break;
+  }
+  return $block;
+}
+
+function scatterplot_block_contents() {
+  //$gene_links_url = "scatterplot/" . $gene ."/". $study."/".$xaxis."/".$color;
+  $path = current_path();
+  $path_parts = explode("/", $path);
+  $block_gene = $path_parts[1];
+
+  //External Gene Links Data
+  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $block_gene;
+  $barres_name = $block_gene . " Distribution by Cell Type (Barres Lab)";
+
+  $gtex_link = "https://www.gtexportal.org/home/gene/" . $block_gene;
+  $gtex_name = $block_gene . " eQTL data (GTExPortal)";
+
+  $links = "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
+  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a>";
+
+  return $links;
+
+}
+
+
 
 function scatterplot_man() {
 

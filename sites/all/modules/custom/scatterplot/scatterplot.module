@@ -92,7 +92,9 @@ function scatterplot_block_contents() {
   $links = "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
   "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a>";
 
-  return $links;
+  $test = "Test links";
+
+  return $test;
 
 }
 

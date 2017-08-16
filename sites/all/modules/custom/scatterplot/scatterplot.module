@@ -64,7 +64,7 @@ function scatterplot_block_info() {
     'weight' => 15,
     'visibility' => 1,
     'pages' => "scatterplot/*",
-    'custom' => FALSE
+    'custom' => FALSE,
   );
 
   return $blocks;

@@ -59,6 +59,7 @@ function scatterplot_block_info() {
     // info: The name of the block.
     'info' => t('GeneLinks'),
     'status' => TRUE,
+    'region' => 'none',
   );
 
   return $blocks;

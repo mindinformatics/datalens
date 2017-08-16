@@ -59,7 +59,12 @@ function scatterplot_block_info() {
     // info: The name of the block.
     'info' => t('GeneLinks'),
     'status' => TRUE,
-    'region' => -1,
+    'theme' => 'scf-theme',
+    'region' => 'sidebar-second',
+    'weight' => 15,
+    'visibility' => 1,
+    'pages' => "scatterplot/*",
+    'custom' => FALSE,
   );
 
   return $blocks;
@@ -94,9 +99,9 @@ function scatterplot_block_contents() {
   $links = "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
   "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a>";
 
-  $test = "Test links";
+  //$test = "Test links";
 
-  return $test;
+  return $links;
 
 }
 

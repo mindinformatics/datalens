@@ -59,10 +59,6 @@ function scatterplot_block_info() {
     // info: The name of the block.
     'info' => t('GeneLinks'),
     'status' => TRUE,
-    'theme' => 'scf-theme',
-    'region' => 'content',
-    'weight' => 15,
-    'visibility' => 1,
     'pages' => "scatterplot/*",
     'custom' => FALSE,
   );

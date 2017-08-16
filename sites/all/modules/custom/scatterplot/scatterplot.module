@@ -74,7 +74,7 @@ function scatterplot_block_view($delta = '') {
   switch ($delta) {
     case 'genelinks':
       // Create your block content here
-    //$block['subject'] = t('External Gene Data Links');
+    $block['subject'] = t('Gene Data Links');
     $block['content'] = scatterplot_block_contents();
     break;
   }
@@ -89,10 +89,10 @@ function scatterplot_block_contents() {
 
   //External Gene Links Data
   $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $block_gene;
-  $barres_name = $block_gene . " Distribution by Cell Type (Barres Lab)";
+  $barres_name = $block_gene . " Expression by Cell Type (Barres Lab)";
 
   $gtex_link = "https://www.gtexportal.org/home/gene/" . $block_gene;
-  $gtex_name = $block_gene . " eQTL data (GTExPortal)";
+  $gtex_name = $block_gene . " Expression across Tissues (GTExPortal)";
 
   $links = "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
   "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a>";

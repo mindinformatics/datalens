@@ -59,13 +59,14 @@ function scatterplot_block_info() {
     // info: The name of the block.
     'info' => t('GeneLinks'),
     'status' => TRUE,
-    'region' => 'none',
+    'region' => -1,
   );
 
   return $blocks;
 }
 
 function scatterplot_block_view($delta = '') {
+  $block = array();
   // The $delta parameter tells us which block is being requested.
   switch ($delta) {
     case 'genelinks':

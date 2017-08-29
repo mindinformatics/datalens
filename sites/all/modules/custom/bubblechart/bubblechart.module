@@ -99,16 +99,21 @@ function bubblechart_genomics($input_genes) {
             $result[$i]["GeneSymbol"] = $result[$i]["GeneSymbol"] . " " . $result[$i]["ProbeID"];
         }
 
+        $analysis_nid = intval(_query_analysisId($result[$i]["FileName"]));
+        $analysis_script_url = _query_analysis_script_link($analysis_nid);
+        $analysis_script_title = _query_analysis_script_title($analysis_nid);
+
         $result[$i][0] = $result[$i]["GeneSymbol"];
         $result[$i][1] = $result[$i]["LogFC"];
         $result[$i][2] = $result[$i]["PValue"];
         $result[$i][3] = $result[$i]["AdjPValue"];
         $result[$i][4] = $result[$i]["BrainRegion"];
         //$result[$i][5] = $result[$i]["FileName"];
-        $result[$i][6] = l($result[$i]["FileName"],'/node/' . _query_analysisId($result[$i]["FileName"]));
-        $result[$i][7] = $result[$i]["Study"];
-        $result[$i][8] = $result[$i]["Contrast"];
-        $result[$i][9] = $result[$i]["DataType"];
+        $result[$i][6] = l($result[$i]["FileName"],'/node/' . $analysis_nid);
+        $result[$i][7] = l($analysis_script_title, $analysis_script_url);
+        $result[$i][8] = $result[$i]["Study"];
+        $result[$i][9] = $result[$i]["Contrast"];
+        $result[$i][10] = $result[$i]["DataType"];
 
         unset($result[$i]["GeneSymbol"]);
         unset($result[$i]["LogFC"]);
@@ -123,9 +128,11 @@ function bubblechart_genomics($input_genes) {
         unset($result[$i]["parent"]);
         unset($result[$i]["size"]);
         unset($result[$i]["name"]);
+        unset($analysis_nid);
+        unset($analysis_script_url);
     }
 
-  $header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('AdjPValue'), t('BrainRegion'), t('Analysis'), t('Study'), t('Contrast'), t('DataType'));
+  $header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('AdjPValue'), t('BrainRegion'), t('Analysis'), t('Analysis Script'), t('Study'), t('Contrast'), t('DataType'));
 
   $genes_string = strtoupper($input_genes);
   $genes_string = preg_replace('/\s+/', '_', $genes_string);
@@ -653,6 +660,22 @@ function _query_analysisId($input) {
     $result = $query->execute()->fetchfield();
     return($result);
 
+}
+
+function _query_analysis_script_link($input) {
+    $query = db_select('field_data_field_links', 'fl');
+    $query->fields('fl', array('field_links_url'));
+    $query->condition('fl.entity_id',$input,'=');
+    $result = $query->execute()->fetchfield();
+    return($result);
+}
+
+function _query_analysis_script_title($input) {
+    $query = db_select('field_data_field_links', 'fl');
+    $query->fields('fl', array('field_links_title'));
+    $query->condition('fl.entity_id',$input,'=');
+    $result = $query->execute()->fetchfield();
+    return($result);
 }
 
 function _query_inputId($input) {

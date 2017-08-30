@@ -986,8 +986,8 @@ function _query_mongo_mouse_table($input_genes, $pval, $species) {
     //Mongo on server is version 2.6.12 and p-values in scientific notation were being stored as string
     // Fixed by finding p-value that are string and updating to double
 
-    var_dump($gene_list);
-    var_dump($species[0]);
+    //var_dump($gene_list);
+    //var_dump($species[0]);
     if ($species[0] == "human") {
       $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
              array('PValue' => array('$lt' => (float)$pval) ) ) );

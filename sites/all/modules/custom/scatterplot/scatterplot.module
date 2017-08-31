@@ -30,7 +30,6 @@ function scatterplot_menu() {
     'page arguments' => array(1,2,3,4),
     'access callback' => TRUE,
   );
-
   $items['scatter-plot'] = array(
     'title' => 'Gene Expression Profile Comparison',
     'description' => 'Scatterplot comparing differential expression.',
@@ -47,6 +46,12 @@ function scatterplot_menu() {
     'title' => 'Manhattan plot of IGAP Stage 1 results',
     'description' => 'Manhattan Plot of SNPs',
     'page callback' => 'scatterplot_man2',
+    'access callback' => TRUE,
+  );
+  $items['explode'] = array(
+    'title' => 'Exploding Boxplot',
+    'description' => 'Test Exploding boxplot code',
+    'page callback' => 'scatterplot_build2',
     'access callback' => TRUE,
   );
 
@@ -105,8 +110,6 @@ function scatterplot_block_contents() {
 
 }
 
-
-
 function scatterplot_man() {
 
   $ticks = array(170615041, 375507593, 612515574, 734913473, 999514507, 1154737085, 1331915028, 1488108426, 1647193879, 1755910900, 1916510926, 2054246074, 2153648306, 2255302529, 2376445692, 2430547484, 2529871005, 2620593637, 2708963206, 2738150816, 2817252334, 2862663588);
@@ -151,7 +154,6 @@ function scatterplot_man2() {
 
   return d3_draw($chart);
 }
-
 
 function scatterplot_csv1() {
 
@@ -214,6 +216,23 @@ function scatterplot_build($gene, $study, $xaxis, $color) {
   );
 
   return d3_draw($chart);
+}
+
+function scatterplot_build2() {
+
+  $path = libraries_get_path('d3.eboxplot');
+  libraries_load('d3.eboxplot');
+  //drupal_add_js($path . '/exploding_boxplot.js');
+  //drupal_add_js($path . '/d3_exploding_boxplot.js');
+  //drupal_add_js($path . '/d3-tip.js');
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'eboxplot',
+  );
+
+  return d3_draw($chart);  //return ("<p>This is a test.</p>");
+
 }
 
 

@@ -3902,51 +3902,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_perturbation_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_perturbation_tid']['vocabulary'] = 'perturbation';
   $handler->display->display_options['filters']['field_perturbation_tid']['hierarchy'] = 1;
-  /* Filter criterion: Content: Has taxonomy terms (with depth) */
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['field'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['group'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator_id'] = 'term_node_tid_depth_1_op';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['label'] = 'Data Type:';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator'] = 'term_node_tid_depth_1_op';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['identifier'] = 'term_node_tid_depth_1';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['type'] = 'select';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['vocabulary'] = 'data_type';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['hierarchy'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['depth'] = '3';
-  /* Filter criterion: Content: Has taxonomy terms (with depth) */
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['id'] = 'term_node_tid_depth_2';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['table'] = 'node';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['field'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['value'] = '';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['group'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['operator_id'] = 'term_node_tid_depth_2_op';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['label'] = 'Group/Study:';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['operator'] = 'term_node_tid_depth_2_op';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['identifier'] = 'term_node_tid_depth_2';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['vocabulary'] = 'group';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['depth'] = '0';
   /* Filter criterion: Content: P-value (field_pvalue) */
   $handler->display->display_options['filters']['field_pvalue_value']['id'] = 'field_pvalue_value';
   $handler->display->display_options['filters']['field_pvalue_value']['table'] = 'field_data_field_pvalue';

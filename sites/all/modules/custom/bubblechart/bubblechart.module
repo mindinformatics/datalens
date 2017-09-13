@@ -624,7 +624,9 @@ function bubblechart_views_pre_render(&$view) {
          //$row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['AdjPVal'], $value['FileName']););
         $analysis_nid = intval(_query_analysisId($row['FileName']));
         $input_study_nid = intval(_query_inputId($analysis_nid));
-        //var_dump($analysis_id);
+        $analysis_name = _query_nodeName($analysis_nid);
+        //var_dump($analysis_nid);
+        //var_dump($analysis_name);
         $temp = new stdClass;
         $temp->node_title = $row['Mouse_Ortholog'] . " " . $row['ProbeID'];
         //$temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ProbeID'];
@@ -633,7 +635,7 @@ function bubblechart_views_pre_render(&$view) {
         $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
         $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
         $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['FileName']);
-        $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $row['FileName'] . '</a>';
+        $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $analysis_name . '</a>';
         $temp->field_field_brain_region[0]['rendered']['#markup']= $row['BrainRegion'];
         $temp->field_field_data_type[0]['rendered']['#markup'] = $row['DataType'];
         $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/node/' . $input_study_nid . '">' . $row['Study']. '</a>';
@@ -659,7 +661,6 @@ function _query_analysisId($input) {
     $query->condition('fm.filename',$input,'=');
     $result = $query->execute()->fetchfield();
     return($result);
-
 }
 
 function _query_analysis_script_link($input) {
@@ -686,6 +687,14 @@ function _query_inputId($input) {
     $result = $query->execute()->fetchfield();
     return($result);
 
+}
+
+function _query_nodeName($input) {
+    $query = db_select('node', 'n');
+    $query->fields('n', array('title'));
+    $query->condition('n.nid',$input,'=');
+    $result = $query->execute()->fetchfield();
+    return($result);
 }
 
 function _query_synonyms($input, $species) {

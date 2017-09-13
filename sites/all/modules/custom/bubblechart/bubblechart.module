@@ -100,8 +100,8 @@ function bubblechart_genomics($input_genes) {
         }
 
         $analysis_nid = intval(_query_analysisId($result[$i]["FileName"]));
-        $analysis_script_url = _query_analysis_script_link($analysis_nid);
-        $analysis_script_title = _query_analysis_script_title($analysis_nid);
+        //$analysis_script_url = _query_analysis_script_link($analysis_nid);
+        //$analysis_script_title = _query_analysis_script_title($analysis_nid);
 
         $result[$i][0] = $result[$i]["GeneSymbol"];
         $result[$i][1] = $result[$i]["LogFC"];
@@ -110,7 +110,7 @@ function bubblechart_genomics($input_genes) {
         $result[$i][4] = $result[$i]["BrainRegion"];
         //$result[$i][5] = $result[$i]["FileName"];
         $result[$i][6] = l($result[$i]["FileName"],'/node/' . $analysis_nid);
-        $result[$i][7] = l($analysis_script_title, $analysis_script_url);
+        //$result[$i][7] = l($analysis_script_title, $analysis_script_url);
         $result[$i][8] = $result[$i]["Study"];
         $result[$i][9] = $result[$i]["Contrast"];
         $result[$i][10] = $result[$i]["DataType"];
@@ -132,7 +132,7 @@ function bubblechart_genomics($input_genes) {
         unset($analysis_script_url);
     }
 
-  $header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('AdjPValue'), t('BrainRegion'), t('Analysis'), t('Analysis Script'), t('Study'), t('Contrast'), t('DataType'));
+  $header = array(t('GeneSymbol'), t('LogFC'), t('PValue'), t('AdjPValue'), t('BrainRegion'), t('Analysis'), t('Study'), t('Contrast'), t('DataType'));
 
   $genes_string = strtoupper($input_genes);
   $genes_string = preg_replace('/\s+/', '_', $genes_string);

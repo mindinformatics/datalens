@@ -21,6 +21,74 @@
 
     rows = settings.rows;
 
+    //console.log("userInfo");
+    //console.log(settings.person);
+
+
+    $("button").click(function(){
+        var http = new XMLHttpRequest();
+        var url = "http://sbdomeo-env.msiqmr2dqm.us-east-2.elasticbeanstalk.com/api-v1/snapshots/create";
+
+        var person = {};
+        var figure = {};
+        var parameters = {};
+        var inputRecord = new Array();
+
+        person["name"] = "Emily Local 2";
+        person["username"] = "newLocal";
+        person["memberId"] = "1234";
+        person["affiliations"] = "Massachusetts General Hospital";
+
+        figure["caption"] = "Expression Data Bubblechart";
+        figure["imageData"] = "SVG placeholder";
+
+        parameters["foldChange"] = "1.0";
+        parameters["pValue"] = "0.05";
+
+        inputRecord[0] = {};
+        inputRecord[0]["gene"] = "APO";
+        inputRecord[0]["logFC"] = "2";
+        inputRecord[0]["pValue"] = ".005";
+        inputRecord[0]["adjPValue"] = ".05";
+        inputRecord[0]["brainRegion"] = "Cerebellum";
+        inputRecord[0]["analysis"] = "<a href=\"/node/2308\">MayoBB_CBE_RC_ClinicalDiagnosis_AD-NCI.csv</a>";
+        inputRecord[0]["study"] = "MayoBB";
+        inputRecord[0]["contrast"] = "AD-NCI: ClinicalDiagnosis";
+        inputRecord[0]["dataType"] = "RC";
+        inputRecord[0]["analysisInput"] = "MayoBB_CBE_RNASEQ_RC";
+        inputRecord[0]["analysisInputUrl"] = "http://cats.partners.org/mayobbcbernaseqrc";
+        inputRecord[0]["analysisScript"] = "RNASeq_pipeline.R";
+        inputRecord[0]["analysisScriptUrl"] = "https://github.com/mindinformatics/CATS";
+        inputRecord[0]["analysisData"] = "MayoBB_CBE_RC_ClinicalDiagnosis_AD-NCI";
+        inputRecord[0]["analysisDataUrl"] = "http://cats.partners.org/system/files/MayoBB_CBE_RC_ClinicalDiagnosis_AD-NCI.csv";
+
+        var payload = {person,figure,parameters,inputRecord};
+        console.log(payload);
+        var payload_json = JSON.stringify(payload);
+        console.log(payload_json);
+
+        http.open("POST", url, true);
+
+        test = encodeURI("payload=");
+        full = test + payload_json;
+        console.log(full);
+
+        //Send the proper header information along with the request
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        http.onreadystatechange = function() { // Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                //console.log(http);
+                console.log(http.getAllResponseHeaders());
+                console.log(http.responseText);
+            }
+        }
+
+        http.send(full);
+
+      });
+
+
     var pValue = 0.05;
     var FCValue = 1.0;
 

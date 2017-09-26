@@ -3,10 +3,16 @@
 * Implements hook_menu().
 */
 function lzoom_menu() {
-  $items['lzoom'] = array(
-    'title' => 'Locus Zoom Test',
+  $items['lzoom-test'] = array(
+    'title' => " ",
     'description' => 'Test using Locus Zoom',
     'page callback' => 'lzoom_test',
+    'access callback' => TRUE,
+  );
+  $items['lzoom'] = array(
+    'title' => " ",
+    'description' => 'Locus Zoom plot',
+    'page callback' => 'lzoom_viz',
     'access callback' => TRUE,
   );
 
@@ -37,26 +43,22 @@ function lzoom_libraries_info() {
 
 
 function lzoom_test() {
-
-  libraries_load('locuszoom');
   $path = libraries_get_path('locuszoom');
+  libraries_load('locuszoom');
+  drupal_add_js($path . '/locuszoom.vendor.min.js');
+  drupal_add_js($path . '/locuszoom.app.js');
+  drupal_add_js($path . '/assets/js/vendor/d3.min.js');
   drupal_add_css($path . '/locuszoom.css');
 
 
   //$test = $path . '/index.html';
 
-  $test = file_get_contents($path . '/index_drupal.html');
+  $test = file_get_contents($path . '/igap_stage1.html');
+  //$test = file_get_contents($path . '/index_drupal.html');
 
-  $page_text = "<p>Locus Zoom page</p><p></p>" . $path . "<p></p><p></p>";
+  //$page_text = "<p>Locus Zoom page</p><p></p>" . $path . "<p></p><p></p>";
 
   return ($test);
-
-}
-
-
-
-
-function _query_mongo_lzoom($input_genes, $study) {
 
 }
 
@@ -65,6 +67,36 @@ function _query_mongo_lzoom($input_genes, $study) {
 */
 function _short_circuit_version() {
   return TRUE;
+}
+
+function lzoom_viz() {
+
+  $result = _query_mongo_lzoom();
+  return theme('lzoom');
+
+  $chart = array(
+        'id' => 'plot',
+        'type' => 'lzoom',
+        'rows' => $result,
+      );
+
+    return d3_draw($chart);
+}
+
+
+
+function _query_mongo_lzoom() {
+  //return javascript object
+  $test = array();
+  return $test;
+}
+
+
+function lzoom_theme() {
+    $path = drupal_get_path('module', 'lzoom');
+    return array(
+        'lzoom' => array('template' => 'lzoom', 'path' => $path),
+    );
 }
 
 ?>

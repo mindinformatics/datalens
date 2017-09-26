@@ -97,6 +97,7 @@
     var real_fc  = function(x){ return (x>0 ? Math.pow(2,x) : -1/Math.pow(2,x)) };
 
 
+
     // pValue Slider ****************************************************************************************************************************************************************************
     // Axis
     var pValue_x_min = 1e-8; //1e0
@@ -560,15 +561,15 @@
     var updateChart = function() {
       d3.selectAll("svg").selectAll("g.node").remove();
 
-      console.log('rows');
-      console.log(rows);
+      //console.log('rows');
+      //console.log(rows);
 
 //    var data2 = rows.filter(function(d){ return  d.PValue < pValue && Math.abs(real_fc(d.LogFC)) < FCValue && checkBoxMatch(d)});
       var genes = jQuery.extend(true, new Array(),
       rows.filter(function(d) {return d.Study &&  d.PValue < pValue && Math.abs(real_fc(d.LogFC)) > FCValue && checkBoxMatch(d)}));
 
-      console.log('genes');
-      console.log(genes);
+      //console.log('genes');
+      //console.log(genes);
 
       // Create a map of objects
       dataMap = jQuery.extend(true, new Array(), rows.reduce(function(map, node) {
@@ -576,9 +577,9 @@
             return map
         }, {}));
 
-      console.log('dataMap');
-      console.log(dataMap);
-      console.log('dataMap');
+      //console.log('dataMap');
+      //console.log(dataMap);
+      //console.log('dataMap');
 
       // Find genes with distinct parents
 
@@ -592,8 +593,8 @@
       });
 
 
-      console.log('distinctGenes');
-      console.log(distinctGenes);
+      //console.log('distinctGenes');
+      //console.log(distinctGenes);
 
       // Add the parents of these genes with distinct parents
       var parents=[];
@@ -612,8 +613,8 @@
       }
 
       distinctGenes.forEach(getParents);
-      console.log('parents');
-      console.log(parents);
+      //console.log('parents');
+      //console.log(parents);
 
       // Concatenate genes with parents
 
@@ -638,20 +639,20 @@
           }
         });
 
-       console.log("treeData");
-       console.log(treeData);
+       //console.log("treeData");
+       //console.log(treeData);
 
 
       // Graphing *********************************************************************************************************************************************
       root = treeData[0];
-      console.log('root');
-      console.log(root);
+      //console.log('root');
+      //console.log(root);
 
       node = svg.datum(root).selectAll(".node")
               .data(pack.nodes);
 
-      console.debug('node');
-      console.debug(node);
+      //console.debug('node');
+      //console.debug(node);
 
       pack.value(function(d){return d.size;} );
       pack.nodes(root);

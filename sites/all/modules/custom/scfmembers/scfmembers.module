@@ -87,7 +87,7 @@ function scfmembers_user_top_menu_block_content() {
     $links[] = l(t('Log Out'), 'user/logout');
     $links[] = l(t('Edit Profile'), 'user/' . $user->uid . '/edit');
     $links[] = l(t('My Favorites'), 'user/' . $user->uid . '/bookmarks');
-  }  
+  }
   else {
     $links[] = t('Welcome') . ', ' . 'Guest';
     $links[] = l(t('Join'), 'user/register');
@@ -120,5 +120,25 @@ function _scfmembers_current_user_full_name() {
     $lastname_item = field_get_items('profile2', $account, 'field_xfp_lastname');
     return $firstname_item[0]['safe_value'] . ' ' . $lastname_item[0]['safe_value'];
   }
+}
+
+/**
+  * Implements hook_profile2_insert
+  * Updates realname
+*/
+ function scfmembers_profile2_insert($profile) {
+  if (isset($profile->field_xfp_degrees['und'][0])){
+   $realname = $profile->field_xfp_firstname['und'][0]['value'].'
+    '.$profile->field_xfp_lastname['und'][0]['value'].', '.$profile->field_xfp_degrees['und'][0]['name'];
+  }
+  else {
+   $realname = $profile->field_xfp_firstname['und'][0]['value'].'
+   '.$profile->field_xfp_lastname['und'][0]['value'].', ';
+  }
+  // Table name no longer needs {}
+  db_update('realname')
+   ->fields(array('realname' => $realname))
+   ->condition('uid', $profile->uid)
+   ->execute();
 }
 

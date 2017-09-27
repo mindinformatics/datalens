@@ -72,12 +72,16 @@ function _short_circuit_version() {
 function lzoom_viz() {
 
   $result = _query_mongo_lzoom();
-  return theme('lzoom');
 
   $chart = array(
         'id' => 'plot',
         'type' => 'lzoom',
-        'rows' => $result,
+        'assoc' => $result,
+        'ld' => $result,
+        'gene' => $result,
+        'assoc' => $result,
+        'assoc' => $result,
+
       );
 
     return d3_draw($chart);
@@ -98,5 +102,17 @@ function lzoom_theme() {
         'lzoom' => array('template' => 'lzoom', 'path' => $path),
     );
 }
+
+function lzoom_theme_registry_alter(&$theme_registry) {
+  $path = drupal_get_path('module', 'lzoom');
+  // Override the content type summary info.
+    //dsm($theme_registry);
+  if (isset($theme_registry['d3']['template'])) {
+    dsm($theme_registry['d3']);
+    $theme_registry['d3']['template'] = $path . '/lzoom';
+    dsm($theme_registry['d3']);
+  }
+}
+
 
 ?>

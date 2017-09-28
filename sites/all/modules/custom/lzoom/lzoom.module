@@ -15,6 +15,15 @@ function lzoom_menu() {
     'page callback' => 'lzoom_viz',
     'access callback' => TRUE,
   );
+    $items['lzoom-input'] = array(
+    'title' => 'Enter Locus Zoom inputs',
+    'description' => 'Input genes to view Locus Zoom GWAS visualization',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('lzoom_form'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
 
   return $items;
 }
@@ -39,8 +48,6 @@ function lzoom_libraries_info() {
 
   return $libraries;
 }
-
-
 
 function lzoom_test() {
   $path = libraries_get_path('locuszoom');
@@ -88,7 +95,6 @@ function lzoom_viz() {
 }
 
 
-
 function _query_mongo_lzoom() {
   //return javascript object
   $test = array();
@@ -112,6 +118,60 @@ function lzoom_theme_registry_alter(&$theme_registry) {
     $theme_registry['d3']['template'] = $path . '/lzoom';
     dsm($theme_registry['d3']);
   }
+}
+
+function lzoom_form($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Visualize GWAS results in Locus Zoom by choosing a gene and a study.</p>'
+  );
+
+
+  $form['input_gene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+  );
+
+  $study_list = array('IGAP' => 'IGAP GWAS',
+                      'METAL' => 'METAL GWAS');
+
+  $form['study'] = array(
+       '#type' => 'select',
+       '#title' => t('Study'),
+       '#options' => array(0 => t('- Select -')) + $study_list,
+       '#default_value' =>  0,
+       '#description' => t('Please select the study'),
+   );
+
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+	return $form;
+}
+
+/**
+ * Implementation of hook_validate() for the lzoom_input.
+ */
+
+function lzoom_form_validate($form, & $form_state) {
+	 $valid_gene = $form_state['values']['input_gene'];
+
+}
+
+function lzoom_form_submit($form, & $form_state) {
+	$valid_gene = $form_state['values']['input_gene'];
+
+	drupal_set_message(t('Your gene is %gene.', array('%gene' => $valid_gene)));
+	//return drupal_render(drupal_get_form('lzoom_form'));
+
+	$form_state['redirect'] = 'lzoom/' . $valid_gene;
 }
 
 

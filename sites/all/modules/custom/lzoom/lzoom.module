@@ -114,9 +114,9 @@ function lzoom_theme_registry_alter(&$theme_registry) {
   // Override the content type summary info.
     //dsm($theme_registry);
   if (isset($theme_registry['d3']['template'])) {
-    dsm($theme_registry['d3']);
+    //dsm($theme_registry['d3']);
     $theme_registry['d3']['template'] = $path . '/lzoom';
-    dsm($theme_registry['d3']);
+    //dsm($theme_registry['d3']);
   }
 }
 

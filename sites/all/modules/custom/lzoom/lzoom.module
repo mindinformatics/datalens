@@ -23,6 +23,12 @@ function lzoom_menu() {
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['lzoom-data'] = array(
+    'title' => " ",
+    'description' => 'Locus Zoom Post',
+    'page callback' => 'lzoom_post',
+    'access callback' => TRUE,
+  );
 
 
   return $items;
@@ -76,17 +82,39 @@ function _short_circuit_version() {
   return TRUE;
 }
 
-function lzoom_viz() {
 
-  $result = _query_mongo_lzoom();
+function lzoom_post() {
 
   $full_url = "https://portaldev.sph.umich.edu/api/v1/annotation/genes/?filter=source%20in%202%20and%20chrom%20eq%20%2710%27%20and%20start%20le%20115058349%20and%20end%20ge%20114458349";
 
   $my_test = drupal_http_request($full_url);
+  $data = $my_test->data;
 
-  dsm($my_test);
-  //dsm($my_test['data']);
+  //dsm($data);
 
+  $lzoom_url = $GLOBALS['base_url'] . "/lzoom-data";
+
+  $post_url = url( $lzoom_url, array('absolute' => TRUE,
+                                   'query' => array('gene' => 'APP  ')));
+
+  dsm($post_url);
+  $options = array(
+                  'method' => 'POST',
+                  'data' => $data,
+                  'timeout' => 15,
+                  'headers' => array('Content-Type' => 'application/json', 'Accept' => 'application/json'),
+          );
+
+  //$result = drupal_http_request($post_url, $options);
+
+  return drupal_json_output($data);
+
+}
+
+
+function lzoom_viz() {
+
+  $result = _query_mongo_lzoom();
 
   $chart = array(
         'id' => 'plot',

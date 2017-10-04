@@ -95,7 +95,7 @@ function lzoom_post() {
   $lzoom_url = $GLOBALS['base_url'] . "/lzoom-data";
 
   $post_url = url( $lzoom_url, array('absolute' => TRUE,
-                                   'query' => array('gene' => 'APP  ')));
+                                   'query' => array('gene' => 'APP')));
 
   dsm($post_url);
   $options = array(

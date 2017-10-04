@@ -659,6 +659,11 @@
 
       console.log(gene_1);
 
+  LocusZoom.Data.AssociationSource.prototype.getURL = function(state, chain, fields) {
+    var analysis = state.analysis || chain.header.analysis || this.params.analysis || 3;
+    return this.url;
+};
+
     // Define Data Sources
     apiBase = "https://portaldev.sph.umich.edu/api/v1/";
     var data_sources = new LocusZoom.DataSources()

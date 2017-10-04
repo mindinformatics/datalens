@@ -92,12 +92,15 @@ function lzoom_post() {
 
   //dsm($data);
 
-  $lzoom_url = $GLOBALS['base_url'] . "/lzoom-data";
+  $lzoom_url = $GLOBALS['base_url'] . "/lzoom-data/results";
+
+//http://localhost:8888/lzoom-data/results/?filter=analysis in 3 and chromosome in  '10' and position ge 114550452 and position le 115067678
+
+  $filter_string = "analysis in 3 and chromosome in '10' and position ge 114550452 and position le 115067678";
 
   $post_url = url( $lzoom_url, array('absolute' => TRUE,
-                                   'query' => array('gene' => 'APP')));
+                                   'query' => array('filter' => $filter_string)));
 
-  dsm($post_url);
   $options = array(
                   'method' => 'POST',
                   'data' => $data,

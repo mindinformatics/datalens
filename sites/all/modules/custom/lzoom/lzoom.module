@@ -80,15 +80,19 @@ function lzoom_viz() {
 
   $result = _query_mongo_lzoom();
 
+  $full_url = "https://portaldev.sph.umich.edu/api/v1/annotation/genes/?filter=source%20in%202%20and%20chrom%20eq%20%2710%27%20and%20start%20le%20115058349%20and%20end%20ge%20114458349";
+
+  $my_test = drupal_http_request($full_url);
+
+  dsm($my_test);
+  //dsm($my_test['data']);
+
+
   $chart = array(
         'id' => 'plot',
         'type' => 'lzoom',
-        'assoc' => $result,
-        'ld' => $result,
         'gene' => $result,
-        'assoc' => $result,
-        'assoc' => $result,
-
+        'study' => $result,
       );
 
     return d3_draw($chart);

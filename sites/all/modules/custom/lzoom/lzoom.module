@@ -85,10 +85,10 @@ function _short_circuit_version() {
 
 function lzoom_post() {
 
-  $full_url = "https://portaldev.sph.umich.edu/api/v1/annotation/genes/?filter=source%20in%202%20and%20chrom%20eq%20%2710%27%20and%20start%20le%20115058349%20and%20end%20ge%20114458349";
+  $full_url = "https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=analysis%20in%203%20and%20chromosome%20in%20%20%2710%27%20and%20position%20ge%20114550452%20and%20position%20le%20115067678";
 
   $my_test = drupal_http_request($full_url);
-  $data = $my_test->data;
+  $data = drupal_json_decode($my_test->data);
 
   //dsm($data);
 
@@ -117,13 +117,15 @@ function lzoom_post() {
 
 function lzoom_viz() {
 
-  $result = _query_mongo_lzoom();
+  $data_region = '10:114550452-115067678';
+  $study = '3';
+  variable_set('data_region', $data_region);
 
   $chart = array(
         'id' => 'plot',
         'type' => 'lzoom',
-        'gene' => $result,
-        'study' => $result,
+        'data_region' => $data_region,
+        'study' => $study,
       );
 
     return d3_draw($chart);
@@ -147,13 +149,28 @@ function lzoom_theme() {
 function lzoom_theme_registry_alter(&$theme_registry) {
   $path = drupal_get_path('module', 'lzoom');
   // Override the content type summary info.
-    //dsm($theme_registry);
+  //dsm($theme_registry['d3']);
   if (isset($theme_registry['d3']['template'])) {
     //dsm($theme_registry['d3']);
     $theme_registry['d3']['template'] = $path . '/lzoom';
     //dsm($theme_registry['d3']);
   }
+  if (isset($theme_registry['d3']['preprocess functions'])) {
+    //dsm($theme_registry['d3']);
+    $theme_registry['d3']['preprocess functions'][4] = 'template_preprocess_lzoom';
+    //dsm($theme_registry['d3']);
+  }
+  //dsm($theme_registry['d3']);
+
 }
+
+function template_preprocess_lzoom(&$variables) {
+
+  $variables['data_region'] =  variable_get('data_region');
+
+  return $variables;
+}
+
 
 function lzoom_form($form, &$form_state) {
 

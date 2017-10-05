@@ -4,4 +4,5 @@
  * Default theme file for d3 visualizations.
  */
  ?>
-<div <?php print $attributes ?> data-region="10:114550452-115067678" class="<?php print implode(' ', $classes_array); ?>"></div>
+<?php //dsm($data_region);  ?>
+<div <?php print $attributes; ?> data-region="<?php print $data_region; ?>" class="<?php print implode(' ', $classes_array); ?>"></div>

@@ -9,10 +9,11 @@ function lzoom_menu() {
     'page callback' => 'lzoom_test',
     'access callback' => TRUE,
   );
-  $items['lzoom'] = array(
+  $items['lzoom/%'] = array(
     'title' => " ",
     'description' => 'Locus Zoom plot',
     'page callback' => 'lzoom_viz',
+    'page arguments' => array(1),
     'access callback' => TRUE,
   );
     $items['lzoom-input'] = array(
@@ -115,14 +116,32 @@ function lzoom_post() {
 }
 
 
-function lzoom_viz() {
+function lzoom_viz($input_gene) {
+
+  //dsm($input_gene);
+    //http://portaldev.sph.umich.edu/api_internal_dev/v1/annotation/genes/?filter=source%20in%202%20and%20gene_name%20eq%20%27APP%27
+
+  $base_api = "http://portaldev.sph.umich.edu/api/v1/annotation/genes/?filter=";
+  $filter = "source in 2 and gene_name eq '" . $input_gene . "'";
+  $full_url = $base_api . rawurlencode(utf8_encode(($filter)));
+  //dsm($full_url);
+
+  $gene_source = drupal_http_request($full_url);
+  $gene_data = $gene_source->data;
+  $gene_data = drupal_json_decode($gene_data);
+  //dsm($gene_data);
+
+  $chr = $gene_data['data'][0]['chrom'];
+  $start = $gene_data['data'][0]['start'];
+  $end = $gene_data['data'][0]['end'];
+  //dsm($chr);
 
   $result = _query_mongo_lzoom();
 
   $chart = array(
         'id' => 'plot',
         'type' => 'lzoom',
-        'gene' => $result,
+        'gene' => $input_gene,
         'study' => $result,
       );
 

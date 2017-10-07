@@ -9,18 +9,16 @@ function lzoom_menu() {
     'page callback' => 'lzoom_test',
     'access callback' => TRUE,
   );
-  $items['lzoom/%'] = array(
+  $items['lzoom-test-1'] = array(
     'title' => " ",
-    'description' => 'Locus Zoom plot',
+    'description' => 'Locus Zoom plot with fixed input',
     'page callback' => 'lzoom_viz',
-    'page arguments' => array(1),
     'access callback' => TRUE,
   );
-    $items['lzoom-input'] = array(
-    'title' => 'Enter Locus Zoom inputs',
-    'description' => 'Input genes to view Locus Zoom GWAS visualization',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('lzoom_form'),
+    $items['lzoom'] = array(
+    'title' => 'Interactive Plot of Genetic Association Data',
+    'description' => 'Locus Zoom visualization',
+    'page callback' => 'lzoom_plot',
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
@@ -116,25 +114,7 @@ function lzoom_post() {
 }
 
 
-function lzoom_viz($input_gene) {
-
-  //dsm($input_gene);
-    //http://portaldev.sph.umich.edu/api_internal_dev/v1/annotation/genes/?filter=source%20in%202%20and%20gene_name%20eq%20%27APP%27
-
-  $base_api = "http://portaldev.sph.umich.edu/api/v1/annotation/genes/?filter=";
-  $filter = "source in 2 and gene_name eq '" . $input_gene . "'";
-  $full_url = $base_api . rawurlencode(utf8_encode(($filter)));
-  //dsm($full_url);
-
-  $gene_source = drupal_http_request($full_url);
-  $gene_data = $gene_source->data;
-  $gene_data = drupal_json_decode($gene_data);
-  //dsm($gene_data);
-
-  $chr = $gene_data['data'][0]['chrom'];
-  $start = $gene_data['data'][0]['start'];
-  $end = $gene_data['data'][0]['end'];
-  //dsm($chr);
+function lzoom_viz() {
 
   $data_region = '10:114550452-115067678';
   $study = '3';
@@ -143,10 +123,6 @@ function lzoom_viz($input_gene) {
   $chart = array(
         'id' => 'plot',
         'type' => 'lzoom',
-        'gene' => $input_gene,
-        'study' => $result,
-        'data_region' => $data_region,
-        'study' => $study,
       );
 
     return d3_draw($chart);
@@ -192,12 +168,32 @@ function template_preprocess_lzoom(&$variables) {
   return $variables;
 }
 
+/** Most of above is the test code **/
 
+
+function lzoom_plot() {
+
+  $gene_form=drupal_get_form('lzoom_form');
+  $output = drupal_render($gene_form);
+
+   $data_region = '10:114550452-115067678';
+   $study = '3';
+   variable_set('data_region', $data_region);
+
+    $chart = array(
+        'id' => 'plot',
+        'type' => 'lzoom',
+      );
+
+    $output .= d3_draw($chart);
+  return $output;
+
+}
 function lzoom_form($form, &$form_state) {
 
   // Header
   $form['header'] = array(
-    '#markup' => '<p>Visualize GWAS results in Locus Zoom by choosing a gene and a study.</p>'
+    '#markup' => '<p></p>'
   );
 
 
@@ -207,26 +203,49 @@ function lzoom_form($form, &$form_state) {
     '#default_value' => '',
     '#description' => t('Please enter a gene symbol'),
     '#size' => 20,
+    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
+    '#ajax' => array(
+      'callback' => 'ajax_example_simplest_callback',
+      'wrapper' => 'replace_textfield_div',
+     ),
   );
 
-  $study_list = array('IGAP' => 'IGAP GWAS',
-                      'METAL' => 'METAL GWAS');
+//  $study_list = array('IGAP' => 'IGAP GWAS',
+//                       'METAL' => 'METAL GWAS');
+//
+//   $form['study'] = array(
+//        '#type' => 'select',
+//        '#title' => t('Study'),
+//        '#options' => array(0 => t('- Select -')) + $study_list,
+//        '#default_value' =>  0,
+//        '#description' => t('Please select the study'),
+//    );
+//
+//
+//   $form['submit'] = array(
+//     '#type' => 'submit',
+//     '#value' => t('Submit'),
+//   );
 
-  $form['study'] = array(
-       '#type' => 'select',
-       '#title' => t('Study'),
-       '#options' => array(0 => t('- Select -')) + $study_list,
-       '#default_value' =>  0,
-       '#description' => t('Please select the study'),
-   );
-
-
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Submit'),
-  );
 
 	return $form;
+}
+
+
+function ajax_example_simplest_callback($form, $form_state) {
+
+   drupal_set_message($form_state['values']['input_gene']);
+   $data_region = '10:114550452-115067678';
+   $study = '3';
+   variable_set('data_region', $data_region);
+
+    $chart = array(
+        'id' => 'plot',
+        'type' => 'lzoom',
+      );
+
+    return d3_draw($chart);
+
 }
 
 /**
@@ -238,13 +257,25 @@ function lzoom_form_validate($form, & $form_state) {
 
 }
 
-function lzoom_form_submit($form, & $form_state) {
-	$valid_gene = $form_state['values']['input_gene'];
+function get_gene_info($input_gene) {
 
-	drupal_set_message(t('Your gene is %gene.', array('%gene' => $valid_gene)));
-	//return drupal_render(drupal_get_form('lzoom_form'));
+  $base_api = "http://portaldev.sph.umich.edu/api/v1/annotation/genes/?filter=";
+  $filter = "source in 2 and gene_name eq '" . $input_gene . "'";
+  $full_url = $base_api . rawurlencode(utf8_encode(($filter)));
+  //dsm($full_url);
 
-	$form_state['redirect'] = 'lzoom/' . $valid_gene;
+  $gene_source = drupal_http_request($full_url);
+  $gene_data = $gene_source->data;
+  $gene_data = drupal_json_decode($gene_data);
+  //dsm($gene_data);
+
+  $chr = $gene_data['data'][0]['chrom'];
+  $start = $gene_data['data'][0]['start'];
+  $end = $gene_data['data'][0]['end'];
+  //dsm($chr);
+
+  return(array('chr'=>$chr, 'start'=>$start, 'end'=>$end));
+
 }
 
 

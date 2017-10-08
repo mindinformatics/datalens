@@ -184,9 +184,8 @@ function lzoom_form($form, &$form_state) {
   $form['input_gene'] = array (
     '#type' => 'textfield',
     '#title' => t('Gene Symbol'),
-    '#default_value' => 'APOE',
+    '#default_value' => '',
     '#description' => t('Please enter a gene symbol'),
-    '#attributes' => array('class' => array('container-inline')),
     '#size' => 20,
     '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
   );
@@ -199,15 +198,15 @@ function lzoom_form($form, &$form_state) {
        '#title' => t('Study'),
        '#options' => array(0 => t('- Select -')) + $study_list,
        '#default_value' =>  0,
-       '#attributes' => array('class' => array('container-inline')),
        '#description' => t('Please select the study'),
    );
 
 
   $form['submit'] = array(
+   '#prefix' => '<div class="lzoom-go-inline">',
+    '#suffix' => '</div>',
     '#type' => 'submit',
     '#value' => t('Go'),
-    '#attributes' => array('class' => array('container-inline'), 'id' => 'lzoom-go'),
     '#ajax' => array(
       'callback' => 'ajax_lzoom_callback',
       'wrapper'  => 'lzoom-plot',
@@ -238,7 +237,16 @@ function ajax_lzoom_callback($form, $form_state) {
 
   $data_region=$data_region['chr'] . ':' . $start . '-' . $end;
 
-  return '<div id="lzoom-plot">'. lzoom_viz($data_region) . '</div>';
+  return '<div id="lzoom-plot">'.  lzoom_viz($data_region) . '</div>';
+
+}
+
+/**
+ * Implementation of hook_validate() for the lzoom_input.
+ */
+
+function lzoom_form_validate($form, & $form_state) {
+     $valid_gene = $form_state['values']['input_gene'];
 
 }
 

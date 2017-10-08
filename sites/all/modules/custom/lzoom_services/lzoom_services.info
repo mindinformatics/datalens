@@ -1,0 +1,7 @@
+name = LocusZoom Services
+description = WebService APIs for LocusZoom Association Data.
+core = 7.x
+package = LocusZoom
+project = lzoom
+dependencies[] = services
+dependencies[] = rest_server

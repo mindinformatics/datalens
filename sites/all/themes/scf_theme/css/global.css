@@ -2000,4 +2000,13 @@ ul.bef-tree-child.bef-tree-depth-2 {
 }
 
 
+.form-item-input-gene,
+.form-item-study,
+#lzoom-go {
+  display: inline-block;
+  margin-right: 20px;
+}
 
+#lzoom-go {
+  margin-top: -40px;
+}

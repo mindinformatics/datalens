@@ -184,8 +184,9 @@ function lzoom_form($form, &$form_state) {
   $form['input_gene'] = array (
     '#type' => 'textfield',
     '#title' => t('Gene Symbol'),
-    '#default_value' => '',
+    '#default_value' => 'APOE',
     '#description' => t('Please enter a gene symbol'),
+    '#attributes' => array('class' => array('container-inline')),
     '#size' => 20,
     '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
   );
@@ -198,6 +199,7 @@ function lzoom_form($form, &$form_state) {
        '#title' => t('Study'),
        '#options' => array(0 => t('- Select -')) + $study_list,
        '#default_value' =>  0,
+       '#attributes' => array('class' => array('container-inline')),
        '#description' => t('Please select the study'),
    );
 
@@ -205,6 +207,7 @@ function lzoom_form($form, &$form_state) {
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Go'),
+    '#attributes' => array('class' => array('container-inline'), 'id' => 'lzoom-go'),
     '#ajax' => array(
       'callback' => 'ajax_lzoom_callback',
       'wrapper'  => 'lzoom-plot',
@@ -239,14 +242,6 @@ function ajax_lzoom_callback($form, $form_state) {
 
 }
 
-/**
- * Implementation of hook_validate() for the lzoom_input.
- */
-
-function lzoom_form_validate($form, & $form_state) {
-	 $valid_gene = $form_state['values']['input_gene'];
-
-}
 
 function get_gene_info($input_gene) {
 

@@ -17,8 +17,8 @@ function lzoom_services_resource() {
       	'access arguments append' => FALSE,
       	'args' => array(
         	array(
-          	'name' => 'nid',
-          	'type' => 'int',
+          	'name' => 'filter',
+          	'type' => 'string',
           	'description' => 'Function to perform',
           	'source' => array(
             	'path' => '0'

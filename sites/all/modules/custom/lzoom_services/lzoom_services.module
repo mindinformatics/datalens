@@ -32,16 +32,11 @@ function lzoom_services_services_resources() {
  */
 function lzoom_services_resource_retrieve($nid) {
 
-//   $full_url = "https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=analysis%20in%203%20and%20chromosome%20in%20%20%2710%27%20and%20position%20ge%20114550452%20and%20position%20le%20115067678";
-//   $my_test = drupal_http_request($full_url);
-//   $data = drupal_json_decode($my_test->data);
+  $full_url = "https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=analysis%20in%203%20and%20chromosome%20in%20%20%2710%27%20and%20position%20ge%20114550452%20and%20position%20le%20115067678";
+  $my_test = drupal_http_request($full_url);
+  $data = drupal_json_decode($my_test->data);
 
-  drupal_set_message("In here");
-  $return_obj = array(
-  	'scheme_id' => $nid,
-	);
-
-  return $return_obj;
+  return $data;
 
 }
 

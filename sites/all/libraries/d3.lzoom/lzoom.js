@@ -20,10 +20,18 @@
 
     console.log("I am here!");
 
+    LocusZoom.Data.AssociationSource.prototype.getURL = function(state, chain, fields) {
+      var analysis = state.analysis || chain.header.analysis || this.params.analysis || 3;
+      return this.url + analysis  +
+        " and chromosome in  '" + state.chr + "'" +
+        " and position ge " + state.start +
+        " and position le " + state.end;
+   };
+
 // https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=analysis in 3 and chromosome in  '10' and position ge 114550452 and position le 115067678
     // Define Data Sources
     apiBase = "https://portaldev.sph.umich.edu/api/v1/";
-    ourAPI = "http://localhost:8888/lzoom-data/";
+    ourAPI = "http://localhost:8888/assoc/lzoom/";
     var data_sources = new LocusZoom.DataSources()
 
         //.add("assoc", ["AssociationLZ", { url: apiBase + "statistic/single/", params: {analysis: 3, id_field: "variant"}}])

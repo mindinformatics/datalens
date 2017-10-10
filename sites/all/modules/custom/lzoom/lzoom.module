@@ -173,12 +173,13 @@ function template_preprocess_lzoom(&$variables) {
 
 function lzoom_plot() {
 
-  $gene_form=drupal_get_form('lzoom_form');
+  $gene_form = drupal_get_form('lzoom_form');
   $output = drupal_render($gene_form);
 
   return $output;
 
 }
+
 function lzoom_form($form, &$form_state) {
 
   $form['input_gene'] = array (
@@ -214,7 +215,7 @@ function lzoom_form($form, &$form_state) {
      ),
   );
 
-  //Define deafult data region as APOE
+  // Define default data region as APOE
   $data_region='10:114550452-115067678';
   $output = lzoom_viz($data_region);
 
@@ -230,14 +231,13 @@ function lzoom_form($form, &$form_state) {
 function ajax_lzoom_callback($form, $form_state) {
 
   // Get region of gene and return the new lzoom-plot div
+  $data_region = get_gene_info($form_state['values']['input_gene']);
+  $start = intval($data_region['start'])-50000;
+  $end = intval($data_region['end']) + 50000;
 
-  $data_region=get_gene_info($form_state['values']['input_gene']);
-  $start=intval($data_region['start'])-50000;
-  $end=intval($data_region['end']) + 50000;
+  $data_region = $data_region['chr'] . ':' . $start . '-' . $end;
 
-  $data_region=$data_region['chr'] . ':' . $start . '-' . $end;
-
-  return '<div id="lzoom-plot">'.  lzoom_viz($data_region) . '</div>';
+  return '<div id="lzoom-plot">' .  lzoom_viz($data_region) . '</div>';
 
 }
 

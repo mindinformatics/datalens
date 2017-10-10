@@ -129,17 +129,11 @@ function lzoom_viz($arg) {
   $chart = array(
         'id' => 'plot',
         'type' => 'lzoom',
-      );
+  );
 
-    return d3_draw($chart);
+  return d3_draw($chart);
 }
 
-
-function _query_mongo_lzoom() {
-  //return javascript object
-  $test = array();
-  return $test;
-}
 
 
 function lzoom_theme() {
@@ -207,7 +201,7 @@ function lzoom_form($form, &$form_state) {
 
 
   $form['submit'] = array(
-   '#prefix' => '<div class="lzoom-go-inline">',
+    '#prefix' => '<div class="lzoom-go-inline">',
     '#suffix' => '</div>',
     '#type' => 'submit',
     '#value' => t('Go'),

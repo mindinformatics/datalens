@@ -53,7 +53,7 @@ function lzoom_services_resource_retrieve($filter) {
 // 							);
 
   $data = _query_mongo_lzoom($chr, $start, $end, $analysis);
-  return $data;
+  return array('data' => $data, 'lastPage' => null);
 }
 
 function _query_mongo_lzoom($chr, $start, $end, $analysis) {

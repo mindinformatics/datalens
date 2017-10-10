@@ -23,7 +23,7 @@
     LocusZoom.Data.AssociationSource.prototype.getURL = function(state, chain, fields) {
       var analysis = state.analysis || chain.header.analysis || this.params.analysis || 3;
       return this.url + "analysis in " + analysis  +
-        " and chromosome in  '" + state.chr + "'" +
+        " and chromosome in " + state.chr +
         " and position ge " + state.start +
         " and position le " + state.end + ".json";
    };
@@ -35,7 +35,7 @@
     var data_sources = new LocusZoom.DataSources()
 
         //.add("assoc", ["AssociationLZ", { url: apiBase + "statistic/single/", params: {analysis: 3, id_field: "variant"}}])
-        .add("assoc", ["AssociationLZ", { url: ourAPI, params: {analysis: 50, id_field: "variant"}}])
+        .add("assoc", ["AssociationLZ", { url: ourAPI, params: {analysis: 3, id_field: "variant"}}])
         .add("ld", ["LDLZ", { url: apiBase + "pair/LD/" }])
         .add("gene", ["GeneLZ", { url: apiBase + "annotation/genes/", params: {source: 2} }])
         .add("recomb", ["RecombLZ", { url: apiBase + "annotation/recomb/results/", params: {source: 15} }])

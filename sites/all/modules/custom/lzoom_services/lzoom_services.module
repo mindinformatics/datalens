@@ -45,7 +45,7 @@ function lzoom_services_resource_retrieve($filter) {
   $start    = preg_replace('/.*position ge (\d+) +.*/', '$1', $filter);
   $end      = preg_replace('/.*position le (\d+)/', '$1', $filter);
 
-// 	return array('filter_string' => $filter,
+	// return array('filter_string' => $filter,
 // 							'analysis' => $analysis,
 // 							'chr' => $chr,
 // 							'start' => $start,
@@ -57,6 +57,10 @@ function lzoom_services_resource_retrieve($filter) {
 }
 
 function _query_mongo_lzoom($chr, $start, $end, $analysis) {
+
+    $start = intval($start);
+    $end = intval($end);
+    $chr = intval($chr);
 
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
@@ -93,7 +97,7 @@ function _query_mongo_lzoom($chr, $start, $end, $analysis) {
        $result['position'][$i] = $doc['pos'];
        $result['refAlleleFreq'][$i] = null;
        $result['ref_allele'][$i] = $doc['Allele2'];
-       $result['pvalue'][$i] = pow(10, $doc['Pvalue']);
+       $result['pvalue'][$i] = pow(10, -$doc['Pvalue']);
        $result['log_pvalue'][$i] = $doc['Pvalue'];
        $result['scoreTestStat'][$i] = null;
 

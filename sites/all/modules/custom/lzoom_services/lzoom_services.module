@@ -32,15 +32,69 @@ function lzoom_services_services_resources() {
  */
 function lzoom_services_resource_retrieve($filter) {
 
-
   $full_url = "https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=" .  rawurlencode(utf8_encode(($filter)));
 
  	$my_test = drupal_http_request($full_url);
 	$data = drupal_json_decode($my_test->data);
 
- 	return $data;
+	$test = _query_mongo_lzoom(10, 114550452, 130901927, 3);
+
+ 	return $test;
 
 	//return array('filter_string' => $full_url);
+}
+
+function _query_mongo_lzoom($chr, $start, $end, $analysis) {
+    $chr = 10;
+    $start = 114550452;
+    $end = 130901927;
+    $analysis = 3;
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Select the genomic variation collection for genetic variation info
+    $coll = $db->genomic_variation;
+
+    // Filter on position and chromosome
+    $query = array( '$and' => array( array('chr' => $chr),
+             array('pos' => array('$lt' => $end,
+                                  '$gt' => $start)
+                   )  ) );
+
+    //dsm($query);
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $cursor->sort(array('Pvalue' => 1));
+    $cursor->limit( 500 );
+
+     //Access query results
+     $result = array();
+     $filenames = array();
+     $i = 0;
+
+     foreach ($cursor as $doc) {
+       //var_dump($doc);
+       //analysis, variant, chr, position, refAlleleFreq, ref_allele, pvalue, log_pvalue, scoreTestStat (null)
+       $result['analysis'][$i] = $analysis;
+       //The last allele should be the reference allele- need to check with nate?
+       $result['variant'][$i] = $doc['chr'] . ":" . $doc['pos'] . "_" . $doc['Allele1'] . "/" . $doc['Allele2'];
+       $result['chr'][$i] = $doc['chr'];
+       $result['position'][$i] = $doc['pos'];
+       $result['refAlleleFreq'][$i] = null;
+       $result['ref_allele'][$i] = $doc['Allele2'];
+       $result['pvalue'][$i] = pow(10, $doc['Pvalue']);
+       $result['log_pvalue'][$i] = $doc['Pvalue'];
+       $result['scoreTestStat'][$i] = null;
+
+       //$result[$i]['MarkerName'] = $doc['MarkerName'];
+       //$result[$i]['NearestGene'] = !empty($doc['HGNC']) ? $doc['HGNC'] : "";
+       $i++;
+     }
+
+     return $result;
 }
 
 

@@ -229,8 +229,8 @@ function ajax_lzoom_callback($form, $form_state) {
 
   // Get region of gene and return the new lzoom-plot div
   $data_region = get_gene_info($form_state['values']['input_gene']);
-  $start = intval($data_region['start'])-50000;
-  $end = intval($data_region['end']) + 50000;
+  $start = intval($data_region['start'])-500000;
+  $end = intval($data_region['end']) + 500000;
 
   $data_region = $data_region['chr'] . ':' . $start . '-' . $end;
 

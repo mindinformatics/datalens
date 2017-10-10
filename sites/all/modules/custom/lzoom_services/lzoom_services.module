@@ -32,23 +32,31 @@ function lzoom_services_services_resources() {
  */
 function lzoom_services_resource_retrieve($filter) {
 
-  $full_url = "https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=" .  rawurlencode(utf8_encode(($filter)));
 
- 	$my_test = drupal_http_request($full_url);
-	$data = drupal_json_decode($my_test->data);
+// $full_url = "https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=" .  rawurlencode(utf8_encode(($filter)));
+//
+//  	$my_test = drupal_http_request($full_url);
+// 	$data = drupal_json_decode($my_test->data);
 
-	$test = _query_mongo_lzoom(10, 114550452, 130901927, 3);
+//return $data;
 
- 	return $test;
+  $analysis = preg_replace('/analysis in (\d+) +.*/', '$1', $filter);
+  $chr      = preg_replace('/.*chromosome in (\d+) +.*/', '$1', $filter);
+  $start    = preg_replace('/.*position ge (\d+) +.*/', '$1', $filter);
+  $end      = preg_replace('/.*position le (\d+)/', '$1', $filter);
 
-	//return array('filter_string' => $full_url);
+// 	return array('filter_string' => $filter,
+// 							'analysis' => $analysis,
+// 							'chr' => $chr,
+// 							'start' => $start,
+// 							'end' => $end,
+// 							);
+
+  $data = _query_mongo_lzoom($chr, $start, $end, $analysis);
+  return $data;
 }
 
 function _query_mongo_lzoom($chr, $start, $end, $analysis) {
-    $chr = 10;
-    $start = 114550452;
-    $end = 130901927;
-    $analysis = 3;
 
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");

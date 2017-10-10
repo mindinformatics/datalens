@@ -87,32 +87,35 @@ function _short_circuit_version() {
 
 function lzoom_post() {
 
-  $full_url = "https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=analysis%20in%203%20and%20chromosome%20in%20%20%2710%27%20and%20position%20ge%20114550452%20and%20position%20le%20115067678";
-
-  $my_test = drupal_http_request($full_url);
-  $data = drupal_json_decode($my_test->data);
-
-  //dsm($data);
-
-  $lzoom_url = $GLOBALS['base_url'] . "/lzoom-data/results";
-
-//http://localhost:8888/lzoom-data/results/?filter=analysis in 3 and chromosome in  '10' and position ge 114550452 and position le 115067678
-
-  $filter_string = "analysis in 3 and chromosome in '10' and position ge 114550452 and position le 115067678";
-
-  $post_url = url( $lzoom_url, array('absolute' => TRUE,
-                                   'query' => array('filter' => $filter_string)));
-
-  $options = array(
-                  'method' => 'POST',
-                  'data' => $data,
-                  'timeout' => 15,
-                  'headers' => array('Content-Type' => 'application/json', 'Accept' => 'application/json'),
-          );
+ //  $full_url = "https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=analysis%20in%203%20and%20chromosome%20in%20%20%2710%27%20and%20position%20ge%20114550452%20and%20position%20le%20115067678";
+//
+//   $my_test = drupal_http_request($full_url);
+//   $data = drupal_json_decode($my_test->data);
+//
+//   //dsm($data);
+//
+//   $lzoom_url = $GLOBALS['base_url'] . "/lzoom-data/results";
+//
+// //http://localhost:8888/lzoom-data/results/?filter=analysis in 3 and chromosome in  '10' and position ge 114550452 and position le 115067678
+//
+//   $filter_string = "analysis in 3 and chromosome in '10' and position ge 114550452 and position le 115067678";
+//
+//   $options = array(
+//                   'method' => 'POST',
+//                   'data' => $data,
+//                   'timeout' => 15,
+//                   'headers' => array('Content-Type' => 'application/json', 'Accept' => 'application/json'),
+//           );
 
   //$result = drupal_http_request($post_url, $options);
 
-  return drupal_json_output($data);
+  $test = _query_mongo_lzoom(10, 114550452, 130901927, 3);
+
+  $test2 = json_encode($test, JSON_UNESCAPED_SLASHES);
+
+  //return drupal_json_output($test, JSON_UNESCAPED_SLASHES);
+
+  return $test2;
 
 }
 

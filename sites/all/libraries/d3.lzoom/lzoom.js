@@ -40,11 +40,12 @@
         .add("gene", ["GeneLZ", { url: apiBase + "annotation/genes/", params: {source: 2} }])
         .add("recomb", ["RecombLZ", { url: apiBase + "annotation/recomb/results/", params: {source: 15} }])
         .add("constraint", ["GeneConstraintLZ", { url: "http://exac.broadinstitute.org/api/constraint" }])
-        .add("intervals", ["IntervalLZ", { url: "sites/all/libraries/locuszoom/staticdata/intervals_10_114550452-115067678.json?"}]);
+        .add("intervals", ["IntervalLZ", { url: "http://portaldev.sph.umich.edu/api/v1/annotation/intervals/results/",
+                              params: { source: 18 }}]);
 
     console.log(data_sources);
 
-    console.log("I am here 2!");
+    //console.log("I am here 2!");
     // Get the standard assocation plot layout from LocusZoom's built-in layouts
     var mods = {
       namespace: {

@@ -57,8 +57,10 @@
       }
     };
     layout = LocusZoom.Layouts.get("plot", "interval_association", mods);
+    // This adds the navigation region
+    layout.dashboard = LocusZoom.Layouts.get("dashboard", "region_nav_plot");
 
-    console.log("I am here 3!");
+    //console.log("I am here 3!");
 
     // Generate the LocusZoom plot
     var plot = LocusZoom.populate("#plot", data_sources, layout);

@@ -92,11 +92,11 @@ function _query_mongo_lzoom($chr, $start, $end, $analysis) {
        //analysis, variant, chr, position, refAlleleFreq, ref_allele, pvalue, log_pvalue, scoreTestStat (null)
        $result['analysis'][$i] = $analysis;
        //The last allele should be the reference allele- need to check with nate?
-       $result['variant'][$i] = $doc['chr'] . ":" . $doc['pos'] . "_" . $doc['Allele1'] . "/" . $doc['Allele2'];
+       $result['variant'][$i] = $doc['chr'] . ":" . $doc['pos'] . "_" . $doc['Allele2'] . "/" . $doc['Allele1'];
        $result['chr'][$i] = $doc['chr'];
        $result['position'][$i] = $doc['pos'];
        $result['refAlleleFreq'][$i] = null;
-       $result['ref_allele'][$i] = $doc['Allele2'];
+       $result['ref_allele'][$i] = $doc['Allele1'];
        $result['pvalue'][$i] = $doc['Pvalue'];
        $result['log_pvalue'][$i] = $doc['logPvalue'];
        $result['scoreTestStat'][$i] = null;

@@ -98,7 +98,7 @@ function _query_mongo_lzoom($chr, $start, $end, $analysis) {
        $result['refAlleleFreq'][$i] = null;
        $result['ref_allele'][$i] = $doc['Allele2'];
        $result['pvalue'][$i] = $doc['Pvalue'];
-       $result['log_pvalue'][$i] = log(10, $doc['Pvalue']);
+       $result['log_pvalue'][$i] = -log($doc['Pvalue']+1.0E-700,10);
        $result['scoreTestStat'][$i] = null;
 
        //$result[$i]['MarkerName'] = $doc['MarkerName'];

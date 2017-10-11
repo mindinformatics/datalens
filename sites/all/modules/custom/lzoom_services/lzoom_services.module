@@ -67,7 +67,7 @@ function _query_mongo_lzoom($chr, $start, $end, $analysis) {
     $db = $mongo->cats;
 
     // Select the genomic variation collection for genetic variation info
-    $coll = $db->genomic_variation;
+    $coll = $db->genetic_association;
 
     // Filter on position and chromosome
     $query = array( '$and' => array( array('chr' => $chr),

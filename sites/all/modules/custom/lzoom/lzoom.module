@@ -213,7 +213,7 @@ function lzoom_form($form, &$form_state) {
   );
 
   // Define default data region as APOE
-  $data_region='10:114550452-115067678';
+  $data_region='19:44909011-45912650';
   $output = lzoom_viz($data_region);
 
   $form['wrapper'] = array(

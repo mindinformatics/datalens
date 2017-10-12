@@ -51,13 +51,30 @@ write.table(dat, file="IGAP_stage_1_filtered.csv", sep=",", row.names=FALSE, col
 
 
 ####### To create mongo file- must have analysis name
-mongo1 = read.csv("IGAP_stage_1_filtered.csv", header=T, as.is=T, colClasses="character", fill=T)
+options("scipen"=999)
+mongo1 = read.csv("IGAP_stage_1_filtered.csv", header=T, as.is=T, fill=T)
 colnames(mongo1)
 # Remove NA and make blank
 mongo1[is.na(mongo1)] <- ""
 # Add analysis name
 #IGAP_stage_1_filtered.csv
-mongo1$FileName = "IGAP_stage_1_filtered.csv"
+mongo1$FileName = "IGAP_stage_1_filtered.tsv"
 #mongo1$Analysis = "IGAP-Stage1-Filtered"
 
+#mongo1$Pvalue <- format(mongo1$Pvalue, scientific = FALSE)
 write.table(mongo1, file="IGAP_stage_1_filtered_mongo.csv", sep=",", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+
+######### 
+options("scipen"=999)
+dat = read.table("IGAP_stage_1.tsv", header=T, as.is=T, sep="\t", colClasses="character", fill=T, stringsAsFactors = F)
+dat$logPvalue = as.numeric(-log10(mpfr(dat$Pvalue)))
+# Remove NA and make blank
+dat[is.na(dat)] <- ""
+
+#Change to HGNC_nearest_gene_snpsnap_protein_coding to HGNC
+colnames(dat)[15] = "HGNC"
+dat$FileName = "IGAP_stage_1.tsv"
+
+write.table(dat, file="IGAP_stage_1_mongo.csv", sep=",", row.names=FALSE, col.names=TRUE, quote=FALSE, na = "")
+

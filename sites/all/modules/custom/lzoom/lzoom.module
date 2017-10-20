@@ -252,16 +252,6 @@ function ajax_lzoom_callback($form, $form_state) {
 
 }
 
-/**
- * Implementation of hook_validate() for the lzoom_input.
- */
-
-function lzoom_form_validate($form, & $form_state) {
-     $valid_gene = $form_state['values']['input_gene'];
-
-}
-
-
 function get_gene_info($input_gene) {
 
   $base_api = "http://portaldev.sph.umich.edu/api/v1/annotation/genes/?filter=";

@@ -62,6 +62,11 @@ function _query_mongo_lzoom($chr, $start, $end, $analysis) {
     $end = intval($end);
     $chr = intval($chr);
 
+    $study_list = array('1' => 'IGAP_stage_1.tsv',
+                        '2' => 'AMP-AD.tsv');
+
+    $study_file = $study_list[$analysis];
+
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
     $db = $mongo->cats;
@@ -70,10 +75,13 @@ function _query_mongo_lzoom($chr, $start, $end, $analysis) {
     $coll = $db->genetic_association;
 
     // Filter on position and chromosome
-    $query = array( '$and' => array( array('chr' => $chr),
-             array('pos' => array('$lt' => $end,
-                                  '$gt' => $start)
-                   )  ) );
+    $query = array('$and' =>
+               array(
+               array('chr' => $chr),
+               array('pos' => array('$lt' => $end, '$gt' => $start) ),
+               array('FileName' => $study_file)
+               )
+             );
 
     //dsm($query);
 
@@ -90,7 +98,7 @@ function _query_mongo_lzoom($chr, $start, $end, $analysis) {
      foreach ($cursor as $doc) {
        //var_dump($doc);
        //analysis, variant, chr, position, refAlleleFreq, ref_allele, pvalue, log_pvalue, scoreTestStat (null)
-       $result['analysis'][$i] = $analysis;
+       $result['analysis'][$i] = intval($analysis);
        //The last allele should be the reference allele- need to check with nate?
        $result['variant'][$i] = $doc['chr'] . ":" . $doc['pos'] . "_" . $doc['Allele2'] . "/" . $doc['Allele1'];
        $result['chr'][$i] = $doc['chr'];

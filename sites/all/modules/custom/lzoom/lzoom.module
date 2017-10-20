@@ -120,11 +120,9 @@ function lzoom_post() {
 }
 
 
-function lzoom_viz($arg, $study) {
+function lzoom_viz($data_region, $study) {
 
-  $data_region = $arg;
-
-  variable_set('data_region', $data_region);
+  $_SESSION['lzoom_data_region'] = $data_region;
 
   $chart = array(
         'id' => 'plot',
@@ -164,7 +162,7 @@ function lzoom_theme_registry_alter(&$theme_registry) {
 
 function template_preprocess_lzoom(&$variables) {
 
-  $variables['data_region'] =  variable_get('data_region');
+  $variables['data_region'] =  $_SESSION['lzoom_data_region'];
 
   return $variables;
 }
@@ -239,8 +237,6 @@ function ajax_lzoom_callback($form, $form_state) {
 
   // Get region of gene and return the new lzoom-plot div
   $data_region = get_gene_info($form_state['values']['input_gene']);
-
-  dsm($study);
 
   $start = intval($data_region['start'])-100000;
   $end = intval($data_region['end']) + 100000;

@@ -16,9 +16,11 @@
    */
   Drupal.d3.lzoom = function (select, settings) {
 
+    var study_id = settings.study;
     window.module = "locuszoom";
 
-    console.log("I am here!");
+    //console.log("I am here!");
+    //console.log(study_id);
 
     LocusZoom.Data.AssociationSource.prototype.getURL = function(state, chain, fields) {
       var analysis = state.analysis || chain.header.analysis || this.params.analysis || 3;
@@ -35,7 +37,7 @@
     var data_sources = new LocusZoom.DataSources()
 
         //.add("assoc", ["AssociationLZ", { url: apiBase + "statistic/single/", params: {analysis: 3, id_field: "variant"}}])
-        .add("assoc", ["AssociationLZ", { url: ourAPI, params: {analysis: 3, id_field: "variant"}}])
+        .add("assoc", ["AssociationLZ", { url: ourAPI, params: {analysis: study_id, id_field: "variant"}}])
         .add("ld", ["LDLZ", { url: apiBase + "pair/LD/" }])
         .add("gene", ["GeneLZ", { url: apiBase + "annotation/genes/", params: {source: 2} }])
         .add("recomb", ["RecombLZ", { url: apiBase + "annotation/recomb/results/", params: {source: 15} }])
@@ -65,7 +67,7 @@
     // Generate the LocusZoom plot
     var plot = LocusZoom.populate("#plot", data_sources, layout);
 
-    console.log("I am here 4!");
+    //console.log("I am here 4!");
 
   }
 

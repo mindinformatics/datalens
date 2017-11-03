@@ -1005,17 +1005,17 @@ function _query_mongo_mouse_table($input_genes, $pval, $species) {
     //var_dump($gene_list);
     //var_dump($species[0]);
     if ($species[0] == "human") {
-      $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+      $query = array( '$and' => array( array("HumanGene" => array('$in' => $gene_list)),
              array('PValue' => array('$lt' => (float)$pval) ) ) );
     }
 
     if ($species[0] == "mouse") {
-       $query = array( '$and' => array( array("Mouse_Ortholog" => array('$in' => $gene_list)),
+       $query = array( '$and' => array( array("MouseGene" => array('$in' => $gene_list)),
              array('PValue' => array('$lt' => (float)$pval) ) ) );
     }
 
 
-    #ProbeID,GeneSymbol,Mouse_Entrez,Mouse_Ortholog,logFC,AveExpr,t,PValue,adjPValue,FileName
+    //ProbeID,adjPValue,PValue,t,B,logFC,MouseGene,GeneTitle,Filename,BrainRegion,Perturbation,DataType,Group,Study,HumanGene
 
     $cursor = $coll->find($query);
     $cursor->timeout(-1);
@@ -1032,63 +1032,25 @@ function _query_mongo_mouse_table($input_genes, $pval, $species) {
 
      foreach ($cursor as $doc) {
        //var_dump($doc);
-       $result[$i]['FileName'] = $doc['FileName'];
-       $result[$i]['GeneSymbol'] = !empty($doc['GeneSymbol']) ? $doc['GeneSymbol'] : "";
-       $result[$i]['Mouse_Ortholog'] = $doc['Mouse_Ortholog'];
+       $result[$i]['Study'] = $doc['Study'];
+       $result[$i]['BrainRegion'] = $doc['BrainRegion'];
+       $result[$i]['parent'] = $doc['BrainRegion'];
+       $result[$i]['DataType'] = $doc['DataType'];
+       $result[$i]['Perturbation'] = $doc['Perturbation'];
+
+       $result[$i]['Mouse_Ortholog'] = $doc['MouseGene'];
+       $result[$i]['GeneSymbol'] = !empty($doc['HumanGene']) ? $doc['HumanGene'] : "";
+
        $result[$i]['LogFC'] = $doc['logFC'];
        $result[$i]['PValue'] = $doc['PValue'];
-       $result[$i]['AdjPValue'] = !empty($doc['adjPVal']) ? $doc['adjPVal'] : "";
+       $result[$i]['AdjPValue'] = !empty($doc['adjPValue']) ? $doc['adjPValue'] : "";
+       $result[$i]['FileName'] = $doc['Filename'];
        $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
-       $filenames[] = $doc['FileName'];
+       $result[$i]['name'] = !empty($doc['HumanGene']) ? $doc['HumanGene'] : "";
        $i++;
      }
 
-
-// 		 Check the mouse main for the meta data: Study,parent,DataType, Perturbation
-     $coll2 = $db->mouse_main;
-     $query2 = array('FileName' => array('$in' => $filenames));
-     $cursor2 = $coll2->find($query2);
-     $main_result =  array();
-     $i = 0;
-     foreach ($cursor2 as $doc) {
-       $main_result[$i]['FileName'] = $doc['FileName'];
-       $main_result[$i]['Study'] = $doc['StudyName'];
-       $main_result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
-       $main_result[$i]['parent'] = $doc['BrainRegionFull'];
-       $main_result[$i]['DataType'] = $doc['DataType'];
-       $main_result[$i]['Perturbation'] = $doc['Perturbation'];
-       $i++;
-     }
- 	  //var_dump($main_result);
-
- 	  // Incorporate main metadata into result array.
- 	  $row = array();
-    	foreach($result as &$value){
-     	$file = $value['FileName'];
-     	$main_key = array_search($file, array_map(function($element){return $element['FileName'];}, $main_result));
- 		  $value['Study'] = $main_result[$main_key]['Study'];
- 		  $value['BrainRegion'] = $main_result[$main_key]['BrainRegion'];
- 		  $value['DataType'] = $main_result[$main_key]['DataType'];
- 		  $value['Perturbation'] = $main_result[$main_key]['Perturbation'];
- 		  $value['parent'] = $main_result[$main_key]['parent'];
- 		  $row[] = array(
- 		    'Study' => $value['Study'],
- 		    'BrainRegion' => $value['BrainRegion'],
- 		    'parent' => $value['parent'],
- 		    'DataType' => $value['DataType'],
- 		    'Perturbation' => $value['Perturbation'],
- 		    'Mouse_Ortholog' => $value['Mouse_Ortholog'],
- 		    'GeneSymbol' => $value['GeneSymbol'],
- 		    'LogFC' => $value['LogFC'],
- 		    'PValue' => $value['PValue'],
- 		    'AdjPValue' => $value['AdjPValue'],
- 		    'FileName' => $value['FileName'],
- 		    'ProbeID' => $value['ProbeID'],
- 		    'name' => $value['GeneSymbol'],
- 		    );
- 	  }
-
-  return $row;
+  return $result;
 
 }
 

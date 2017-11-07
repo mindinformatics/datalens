@@ -615,17 +615,16 @@ function members_feeds_importer_default() {
             'language' => 'und',
           ),
           1 => array(
-            'source' => 'Study Name',
+            'source' => 'StudyName',
             'target' => 'title',
-            'unique' => FALSE,
+            'unique' => 1,
             'language' => 'und',
           ),
           2 => array(
-            'source' => 'Data Type',
+            'source' => 'DataType',
             'target' => 'field_data_type',
             'term_search' => '0',
             'autocreate' => 1,
-            'language' => 'und',
           ),
           3 => array(
             'source' => 'Data',

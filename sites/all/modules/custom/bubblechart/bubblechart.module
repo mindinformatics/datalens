@@ -1251,7 +1251,7 @@ function _user_info($user) {
     $firstname = field_get_items('profile2', $account, 'field_xfp_firstname');
     $lastname = field_get_items('profile2', $account, 'field_xfp_lastname');
     $affiliation_array = field_get_items('profile2', $account, 'field_xfp_affiliation');
-    $position = field_get_items('profile2', $account, 'field_xfp_position')[0]['safe_value'];
+    //$position = field_get_items('profile2', $account, 'field_xfp_position')[0]['safe_value'];
   }
 
  $affiliation_names;

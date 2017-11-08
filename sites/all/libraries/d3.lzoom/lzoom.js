@@ -33,11 +33,12 @@
 // https://portaldev.sph.umich.edu/api/v1/statistic/single/results/?filter=analysis in 3 and chromosome in  '10' and position ge 114550452 and position le 115067678
     // Define Data Sources
     apiBase = "https://portaldev.sph.umich.edu/api/v1/";
-    ourAPI = "http://localhost:8888/assoc/lzoom/";
+    localAPI = "http://localhost:8888/assoc/lzoom/";
+    serverAPI = "http://cats.partners.org/assoc/lzoom/";
     var data_sources = new LocusZoom.DataSources()
 
         //.add("assoc", ["AssociationLZ", { url: apiBase + "statistic/single/", params: {analysis: 3, id_field: "variant"}}])
-        .add("assoc", ["AssociationLZ", { url: ourAPI, params: {analysis: study_id, id_field: "variant"}}])
+        .add("assoc", ["AssociationLZ", { url: serverAPI, params: {analysis: study_id, id_field: "variant"}}])
         .add("ld", ["LDLZ", { url: apiBase + "pair/LD/" }])
         .add("gene", ["GeneLZ", { url: apiBase + "annotation/genes/", params: {source: 2} }])
         .add("recomb", ["RecombLZ", { url: apiBase + "annotation/recomb/results/", params: {source: 15} }])

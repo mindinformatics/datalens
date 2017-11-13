@@ -1453,6 +1453,11 @@ div.horizontal-tabs .horizontal-tabs-panes {
 	padding: 10px;
 }
 
+.node-dataset .fieldset-wrapper {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .node-targets .group-evidence-tab .field-collection-view {
 	padding: 0;
 	margin: 0;
@@ -1529,6 +1534,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
 	color: #4D317A;
 	font-size: 13px;
 	font-weight: bold;
+	padding-top: 3px;
 }
 
 .node-dataset .group-analysis-tab .field-name-field-input .field-items,
@@ -1554,6 +1560,22 @@ div.horizontal-tabs .horizontal-tabs-panes {
 
 .node-type-page .field-name-field-files {
   padding-bottom: 20px;
+}
+
+.node-dataset .field-collection-container {
+    border-bottom: 2px solid #D3D7D9;
+    margin-bottom: 1em;
+    margin-left: -5px;
+}
+
+.node-dataset .field-name-field-result .field-label {
+  padding-left: 5px;
+}
+
+.node-dataset .field-collection-view {
+    padding: 0;
+    margin: 0 1em 0 1em;
+    border-bottom: 1px dotted #D3D7D9;
 }
 
 

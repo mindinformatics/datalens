@@ -162,7 +162,12 @@ function lzoom_theme_registry_alter(&$theme_registry) {
 
 function template_preprocess_lzoom(&$variables) {
 
-  $variables['data_region'] =  $_SESSION['lzoom_data_region'];
+  // Define default data region as APOE
+  if (isset($_SESSION['lzoom_data_region'])) {
+    $variables['data_region'] =  $_SESSION['lzoom_data_region'];
+  } else {
+    $variables['data_region'] = '19:44909011-45912650';
+  }
 
   return $variables;
 }

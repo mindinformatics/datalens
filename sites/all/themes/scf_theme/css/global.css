@@ -1435,7 +1435,7 @@ div.horizontal-tabs {
 
 div.horizontal-tabs .horizontal-tabs-panes {
 	border: 1px solid #ccc;
-	margin-top: -4px;
+	margin-top: -5px;
 }
 
 .horizontal-tabs fieldset.horizontal-tabs-pane {

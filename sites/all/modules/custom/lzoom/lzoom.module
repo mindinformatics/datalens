@@ -127,6 +127,7 @@ function lzoom_viz($data_region, $study) {
   $chart = array(
         'id' => 'plot',
         'type' => 'lzoom',
+        'host' => $GLOBALS['base_url'],
         'study' => $study,
   );
 

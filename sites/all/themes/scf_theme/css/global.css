@@ -1576,7 +1576,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
 .node-dataset .field-collection-view {
     padding: 0;
     margin: 0 1em 0 1em;
-    border-bottom: 1px dotted #D3D7D9;
+   /* border-bottom: 1px dotted #D3D7D9; */
 }
 
 

@@ -1,0 +1,5 @@
+name = Horizontal Boxplot
+description = D3 Horizontal Boxplot library
+files[js][] = hboxplot.js
+files[css][] = hboxplot.css
+version = 1.0

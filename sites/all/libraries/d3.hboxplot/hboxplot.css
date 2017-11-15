@@ -1,0 +1,30 @@
+svg {
+  border: 1px solid gray;
+}
+
+line {
+  shape-rendering: crispEdges;
+  stroke: #000000;
+}
+
+line.minor  {
+  /*stroke: #777777; */
+  stroke: #FF0000;
+  stroke-dasharray: 2,2;
+}
+
+path.domain {
+  fill: none;
+  stroke: black;
+}
+
+#block-hboxplot-hboxplot-block1 {
+  float: left;
+  width: 550px;
+
+}
+
+#block-hboxplot-hboxplot-block2 {
+  float: right;
+  width: 550px;
+}

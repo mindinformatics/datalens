@@ -1,0 +1,116 @@
+<?php
+
+// Show PHP errors (during development only)
+    //error_reporting(E_ALL | E_STRICT);
+    //ini_set("display_errors", 2);
+
+/**
+* Implements hook_menu().
+*/
+function hboxplot_menu() {
+
+  $items['hboxplot'] = array(
+    'title' => 'CD33 Expression Fold Change Across Brain Regions',
+    'description' => 'Horizontal boxplot of fold change',
+    'page callback' => 'hboxplot_page',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ *
+ * This hook declares what blocks are provided by the module.
+ */
+function hboxplot_block_info() {
+  $blocks = array();
+  $blocks['hboxplot_block1'] = array(
+    // info: The name of the block.
+    'info' => t('AD-Normal Boxplot'),
+    'status' => TRUE,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'hboxplot',
+    'weight' => '5',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['hboxplot_block2'] = array(
+    // info: The name of the block.
+    'info' => t('B3-B1 Boxplot'),
+    'status' => TRUE,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'hboxplot',
+    'weight' => '6',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ *
+ * This hook generates the contents of the blocks
+ */
+function hboxplot_block_view($delta = '') {
+  //The $delta parameter tells us which block is being requested.
+  $block = array();
+  switch ($delta) {
+    case 'hboxplot_block1':
+      if (user_is_logged_in()) {
+      	$block['subject'] = t("AD-NCI");
+		$block['content'] = hboxplot_b1();
+	  }
+		break;
+    case 'hboxplot_block2':
+      if (user_is_logged_in()) {
+		  $block['subject'] = t("B3-B1");
+		  $block['content'] = hboxplot_b2();
+      }
+      break;
+  }
+  return $block;
+}
+
+
+
+function hboxplot_b1() {
+  //$path = libraries_get_path('d3.hboxplot');
+  //libraries_load('d3.hboxplot');
+
+  $chart = array(
+    'id' => 'vis1',
+    'type' => 'hboxplot',
+  );
+
+  return d3_draw($chart);
+}
+
+function hboxplot_b2() {
+  //$path = libraries_get_path('d3.hboxplot');
+  //libraries_load('d3.hboxplot');
+
+  $chart = array(
+    'id' => 'vis2',
+    'type' => 'hboxplot',
+  );
+
+  return d3_draw($chart);
+
+}
+
+
+function hboxplot_page() {
+
+  return ("<p></p>");
+
+}
+
+
+
+
+?>

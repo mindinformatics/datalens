@@ -699,6 +699,135 @@ function members_feeds_importer_default() {
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
+  $feeds_importer->id = 'evidence_claim_importer_for_genes';
+  $feeds_importer->config = array(
+    'name' => 'Evidence/Claim Importer for Genes',
+    'description' => 'For gene lists',
+    'fetcher' => array(
+      'plugin_key' => 'FeedsFileFetcher',
+      'config' => array(
+        'allowed_extensions' => 'txt csv tsv xml opml',
+        'direct' => FALSE,
+        'directory' => 'private://feeds',
+        'allowed_schemes' => array(
+          0 => 'public',
+          1 => 'private',
+        ),
+      ),
+    ),
+    'parser' => array(
+      'plugin_key' => 'FeedsCSVParser',
+      'config' => array(
+        'delimiter' => ',',
+        'encoding' => 'UTF-8',
+        'no_headers' => 0,
+      ),
+    ),
+    'processor' => array(
+      'plugin_key' => 'FeedsNodeProcessor',
+      'config' => array(
+        'expire' => '-1',
+        'author' => '1',
+        'authorize' => 1,
+        'mappings' => array(
+          0 => array(
+            'source' => 'Title',
+            'target' => 'title',
+            'unique' => 0,
+          ),
+          1 => array(
+            'source' => 'AnalysisNids',
+            'target' => 'entityreference:field_result_data',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          2 => array(
+            'source' => 'EvidenceType',
+            'target' => 'field_evidence_data_type',
+            'term_search' => '0',
+            'autocreate' => 1,
+            'language' => 'und',
+          ),
+          3 => array(
+            'source' => 'Species',
+            'target' => 'field_species',
+            'term_search' => '0',
+            'autocreate' => 1,
+            'language' => 'und',
+          ),
+          4 => array(
+            'source' => 'BrainRegion',
+            'target' => 'field_brain_region',
+            'term_search' => '0',
+            'autocreate' => 1,
+            'language' => 'und',
+          ),
+          5 => array(
+            'source' => 'ProbeID',
+            'target' => 'field_probe_id',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          6 => array(
+            'source' => 'Genes_list',
+            'target' => 'field_genes_diff',
+            'term_search' => '0',
+            'autocreate' => 0,
+            'language' => 'und',
+          ),
+          7 => array(
+            'source' => 'Genes_list_model',
+            'target' => 'field_genes_diff_model',
+            'term_search' => '0',
+            'autocreate' => 0,
+            'language' => 'und',
+          ),
+          8 => array(
+            'source' => 'logFC',
+            'target' => 'field_fold_change',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          9 => array(
+            'source' => 'PValue',
+            'target' => 'field_pvalue',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          10 => array(
+            'source' => 'adjPValue',
+            'target' => 'field_adj_pvalue',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          11 => array(
+            'source' => 'Description',
+            'target' => 'body',
+            'format' => 'full_html',
+            'language' => 'und',
+          ),
+        ),
+        'insert_new' => '1',
+        'update_existing' => '0',
+        'update_non_existent' => 'skip',
+        'input_format' => 'full_html',
+        'skip_hash_check' => 0,
+        'bundle' => 'evidence',
+        'language' => 'und',
+      ),
+    ),
+    'content_type' => '',
+    'update' => 0,
+    'import_period' => '-1',
+    'expire_period' => 3600,
+    'import_on_create' => 1,
+    'process_in_background' => 0,
+  );
+  $export['evidence_claim_importer_for_genes'] = $feeds_importer;
+
+  $feeds_importer = new stdClass();
+  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
+  $feeds_importer->api_version = 1;
   $feeds_importer->id = 'evidence_importer';
   $feeds_importer->config = array(
     'name' => 'Evidence/Claim importer',

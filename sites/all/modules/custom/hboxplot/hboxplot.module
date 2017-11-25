@@ -21,10 +21,18 @@ function hboxplot_menu() {
 
 function hboxplot_page() {
 
-  $page = "TEST";
-  $block = module_invoke('hboxplot', 'block_view', 'hboxplot_block1');
-  dsm($block);
-  $page .= $block['content'];
+  $page = "";
+  $block1 = module_invoke('hboxplot', 'block_view', 'hboxplot_block1');
+  $block2 = module_invoke('hboxplot', 'block_view', 'hboxplot_block2');
+  //dsm($block);
+  $page .= '<table id="forest-plot">';
+  $page .= '<tr><td>';
+  $page .= $block1['content'];
+  $page .= '</td><td>';
+  $page .= $block2['content'];
+  $page .= '</td></tr>';
+  $page .= '</table>';
+
 
   return $page;
 }

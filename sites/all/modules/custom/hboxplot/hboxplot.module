@@ -8,12 +8,35 @@
 * Implements hook_menu().
 */
 
+function hboxplot_menu() {
+  $items['forest-plot'] = array(
+    'title' => 'Forest Plot',
+    'description' => 'Forest Plot using D3 visualization',
+    'page callback' => 'hboxplot_page',
+    'access callback' => TRUE,
+);
+
+  return $items;
+}
+
+function hboxplot_page() {
+
+  $page = "TEST";
+  $block = module_invoke('hboxplot', 'block_view', 'hboxplot_block1');
+  dsm($block);
+  $page .= $block['content'];
+
+  return $page;
+}
+
 
 /**
  * Implements hook_block_info().
  *
  * This hook declares what blocks are provided by the module.
  */
+
+
 function hboxplot_block_info() {
   $blocks = array();
   $blocks['hboxplot_block1'] = array(
@@ -41,7 +64,7 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block1':
       if (user_is_logged_in()) {
       	$block['subject'] = t("AD-NCI");
-		    $block['content'] = hboxplot_b1();
+		    $block['content'] = "blah" . hboxplot_b1();
 	  }
 		break;
     case 'hboxplot_block2':
@@ -57,11 +80,11 @@ function hboxplot_block_view($delta = '') {
 
 
 function hboxplot_b1() {
-  //$path = libraries_get_path('d3.hboxplot');
-  //libraries_load('d3.hboxplot');
+  $path = libraries_get_path('d3.hboxplot');
+  libraries_load('d3.hboxplot');
 
   $chart = array(
-    'id' => 'vis1',
+    'id' => 'visualization',
     'type' => 'hboxplot',
   );
 

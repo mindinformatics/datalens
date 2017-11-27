@@ -30,7 +30,9 @@ function boxplot(data){
             d.row = +d.row;
           });
 
-  var h = 500,
+
+
+  var h = data.length * 25 + 100,
       w = 400;
 
   var margin = {
@@ -46,7 +48,7 @@ function boxplot(data){
 
 
   xScale = d3.scale.linear()
-    //.domain([0,100]) // 0% to 100%
+    //.domain([0.2, 3]) // 0% to 100%
     .domain([d3.min(data, function(d){ return d.min }), d3.max(data, function(d){ return d.max })])
     .range([
       margin.left,
@@ -72,8 +74,10 @@ function boxplot(data){
     .tickSize(-12)
     .tickSubdivide(true); // deprecated, I know
 
+  var yt = h - 20;
+
   chart.append("g")
-    .attr("transform", "translate(0,480)")
+    .attr("transform", "translate(0," + yt + ")")
     .attr("id", "xAxisG")
     .call(xAxis);
 
@@ -87,9 +91,10 @@ function boxplot(data){
     .tickValues(rows)
     .tickFormat(function(d,i) { return brain_regions[i] });
 
+var xt = w - 30;
 
   chart.append("g")
-    .attr("transform", "translate(370,0)")
+    .attr("transform", "translate(" + xt + ",0)")
     .attr("id", "yAxisG")
     .call(yAxis);
 

@@ -31,7 +31,7 @@ function boxplot(data){
           });
 
   var h = 500,
-      w = 500;
+      w = 400;
 
   var margin = {
     'top': 20,
@@ -40,9 +40,9 @@ function boxplot(data){
     'right': 30
   }
 
-  d3.select('#' + settings.id).append("svg")
+  var chart = d3.select('#' + settings.id).append("svg")
     .attr("height", h)
-    .attr("width", 520);
+    .attr("width", w + 30);
 
 
   xScale = d3.scale.linear()
@@ -72,7 +72,7 @@ function boxplot(data){
     .tickSize(-12)
     .tickSubdivide(true); // deprecated, I know
 
-  d3.select("svg").append("g")
+  chart.append("g")
     .attr("transform", "translate(0,480)")
     .attr("id", "xAxisG")
     .call(xAxis);
@@ -88,20 +88,20 @@ function boxplot(data){
     .tickFormat(function(d,i) { return brain_regions[i] });
 
 
-  d3.select("svg").append("g")
-    .attr("transform", "translate(470,0)")
+  chart.append("g")
+    .attr("transform", "translate(370,0)")
     .attr("id", "yAxisG")
     .call(yAxis);
 
-  d3.select("svg").append("line")
+  chart.append("line")
     .attr("x1", xScale(1))
     .attr("x2", xScale(1))
     .attr("y1", 0)
-    .attr("y2", 470)
+    .attr("y2", w-30)
     .style("stroke", "gray")
     .style("stroke-width", "1px");
 
-  d3.select("svg").selectAll("circle.median")
+  chart.selectAll("circle.median")
     .data(data)
     .enter()
     .append("circle")
@@ -111,7 +111,7 @@ function boxplot(data){
     .attr("cy", function(d) {return yScale(d.row)})
     .style("fill", "none");
 
-  d3.select("svg").selectAll("g.box")
+  chart.selectAll("g.box")
     .data(data)
     .enter()
     .append("g")
@@ -139,7 +139,7 @@ function boxplot(data){
         .attr("x2", xScale(d.max) - xScale(d.median))
         .attr("y1", -10)
         .attr("y2", 10)
-        .style("stroke", "red")
+        .style("stroke", "black")
         .style("stroke-width", "4px");
 
       d3.select(this)
@@ -149,7 +149,7 @@ function boxplot(data){
         .attr("x2", xScale(d.min) - xScale(d.median))
         .attr("y1", -10)
         .attr("y2", 10)
-        .style("stroke", "orange")
+        .style("stroke", "black")
         .style("stroke-width", "4px");
 
     /*  d3.select(this)

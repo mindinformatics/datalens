@@ -24,10 +24,13 @@ function hboxplot_page() {
   $page = "";
   $block1 = module_invoke('hboxplot', 'block_view', 'hboxplot_block1');
   $block2 = module_invoke('hboxplot', 'block_view', 'hboxplot_block2');
+  $block3 = module_invoke('hboxplot', 'block_view', 'hboxplot_block3');
   //dsm($block);
   $page .= '<table id="forest-plot">';
   $page .= '<tr><td>';
   $page .= $block1['content'];
+  $page .= '</td><td>';
+  $page .= $block3['content'];
   $page .= '</td><td>';
   $page .= $block2['content'];
   $page .= '</td></tr>';
@@ -55,6 +58,10 @@ function hboxplot_block_info() {
     // info: The name of the block.
     'info' => t('B3-B1 Boxplot'),
   );
+  $blocks['hboxplot_block3'] = array(
+    // info: The name of the block.
+    'info' => t('Legend'),
+  );
 
   return $blocks;
 }
@@ -79,6 +86,12 @@ function hboxplot_block_view($delta = '') {
       if (user_is_logged_in()) {
 		  $block['subject'] = t("B3-B1");
 		  $block['content'] = hboxplot_b2();
+      }
+      break;
+    case 'hboxplot_block3':
+      if (user_is_logged_in()) {
+		  $block['subject'] = t("B3-B1");
+		  $block['content'] = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend.png' style='width:100%;'/>";
       }
       break;
   }

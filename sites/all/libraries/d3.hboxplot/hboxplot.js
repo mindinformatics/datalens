@@ -97,7 +97,7 @@ function boxplot(data){
     .attr("x1", xScale(1))
     .attr("x2", xScale(1))
     .attr("y1", 0)
-    .attr("y2", w-30)
+    .attr("y2", h - 20)
     .style("stroke", "gray")
     .style("stroke-width", "1px");
 
@@ -129,7 +129,7 @@ function boxplot(data){
         .attr("x2", xScale(d.min) - xScale(d.median))
         .attr("y1", 0)
         .attr("y2", 0)
-        .style("stroke", "black")
+        .style("stroke", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
         .style("stroke-width", "4px");
 
       d3.select(this)
@@ -139,7 +139,7 @@ function boxplot(data){
         .attr("x2", xScale(d.max) - xScale(d.median))
         .attr("y1", -10)
         .attr("y2", 10)
-        .style("stroke", "black")
+        .style("stroke", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
         .style("stroke-width", "4px");
 
       d3.select(this)
@@ -149,7 +149,7 @@ function boxplot(data){
         .attr("x2", xScale(d.min) - xScale(d.median))
         .attr("y1", -10)
         .attr("y2", 10)
-        .style("stroke", "black")
+        .style("stroke", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
         .style("stroke-width", "4px");
 
     /*  d3.select(this)
@@ -169,8 +169,8 @@ function boxplot(data){
         .attr("y", -5)
         .attr("height", 10)
         .attr("width", 10)
-        .style("fill", "darkgray")
-        .style("stroke", "darkgray")
+        .style("fill", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
+        .style("stroke", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
         .style("stroke-width", "4px");
 
     })

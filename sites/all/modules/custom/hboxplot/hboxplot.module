@@ -25,14 +25,23 @@ function hboxplot_page() {
   $block1 = module_invoke('hboxplot', 'block_view', 'hboxplot_block1');
   $block2 = module_invoke('hboxplot', 'block_view', 'hboxplot_block2');
   $block3 = module_invoke('hboxplot', 'block_view', 'hboxplot_block3');
+  $block4 = module_invoke('hboxplot', 'block_view', 'hboxplot_block4');
+  $block5 = module_invoke('hboxplot', 'block_view', 'hboxplot_block5');
+  $block6 = module_invoke('hboxplot', 'block_view', 'hboxplot_block6');
   //dsm($block);
   $page .= '<table id="forest-plot">';
   $page .= '<tr><td>';
-  $page .= $block1['content'];
+  $page .= $block1['subject'] . $block1['content'];
   $page .= '</td><td>';
-  $page .= $block3['content'];
+  $page .= $block2['subject'] . $block2['content'];
   $page .= '</td><td>';
-  $page .= $block2['content'];
+  $page .= $block3['subject'] . $block3['content'];
+  $page .= '</td></tr><tr><td>';
+  $page .= $block4['subject'] . $block4['content'];
+  $page .= '</td><td>';
+  $page .= $block5['subject'] . $block5['content'];
+  $page .= '</td><td>';
+  $page .= $block6['content'];
   $page .= '</td></tr>';
   $page .= '</table>';
 
@@ -52,15 +61,27 @@ function hboxplot_block_info() {
   $blocks = array();
   $blocks['hboxplot_block1'] = array(
     // info: The name of the block.
-    'info' => t('AD-Normal Boxplot'),
+    'info' => t('AD-Normal Microarray'),
   );
   $blocks['hboxplot_block2'] = array(
     // info: The name of the block.
-    'info' => t('B3-B1 Boxplot'),
+    'info' => t('B3-B1 Microarray'),
   );
   $blocks['hboxplot_block3'] = array(
     // info: The name of the block.
     'info' => t('Legend'),
+  );
+  $blocks['hboxplot_block4'] = array(
+    // info: The name of the block.
+    'info' => t('AD-Normal RNA-Seq'),
+  );
+  $blocks['hboxplot_block5'] = array(
+    // info: The name of the block.
+    'info' => t('B3-B1 RNA-Seq'),
+  );
+  $blocks['hboxplot_block6'] = array(
+    // info: The name of the block.
+    'info' => t('Boxplot Legend Spacer'),
   );
 
   return $blocks;
@@ -78,20 +99,38 @@ function hboxplot_block_view($delta = '') {
   switch ($delta) {
     case 'hboxplot_block1':
       if (user_is_logged_in()) {
-      	$block['subject'] = t("AD-NCI");
-		    $block['content'] = hboxplot_b1();
+      	$block['subject'] = t("AD-NCI Microarray");
+		    $block['content'] = hboxplot_block('vis1', 'CD33.csv');
 	  }
 		break;
     case 'hboxplot_block2':
       if (user_is_logged_in()) {
-		  $block['subject'] = t("B3-B1");
-		  $block['content'] = hboxplot_b2();
+		  $block['subject'] = t("B3-B1 Microarray");
+		  $block['content'] = hboxplot_block('vis2','CD33-Braak.csv');
       }
       break;
     case 'hboxplot_block3':
       if (user_is_logged_in()) {
-		  $block['subject'] = t("B3-B1");
+		  $block['subject'] = t("Legend");
 		  $block['content'] = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend.png' style='width:100%;'/>";
+      }
+      break;
+    case 'hboxplot_block4':
+      if (user_is_logged_in()) {
+		  $block['subject'] = t("AD-NCI RNA-Seq");
+		  $block['content'] = hboxplot_block('vis4', 'CD33.csv');
+      }
+      break;
+    case 'hboxplot_block5':
+      if (user_is_logged_in()) {
+		  $block['subject'] = t("B3-B1 RNA-Seq");
+		  $block['content'] = hboxplot_block('vis5','CD33-Braak.csv');
+      }
+      break;
+    case 'hboxplot_block6':
+      if (user_is_logged_in()) {
+		  $block['subject'] = t("");
+		  $block['content'] = "";
       }
       break;
   }
@@ -100,31 +139,17 @@ function hboxplot_block_view($delta = '') {
 
 
 
-function hboxplot_b1() {
+function hboxplot_block($id, $file) {
   $path = libraries_get_path('d3.hboxplot');
   libraries_load('d3.hboxplot');
 
   $chart = array(
-    'id' => 'vis1',
+    'id' => $id,
     'type' => 'hboxplot',
-    'file' => 'CD33.csv',
+    'file' => $file,
   );
 
   return d3_draw($chart);
-}
-
-function hboxplot_b2() {
-  //$path = libraries_get_path('d3.hboxplot');
-  //libraries_load('d3.hboxplot');
-
-  $chart = array(
-    'id' => 'vis2',
-    'type' => 'hboxplot',
-    'file' => 'CD33-Braak.csv',
-  );
-
-  return d3_draw($chart);
-
 }
 
 

@@ -7,11 +7,13 @@ line {
   stroke: #000000;
 }
 
+/*
 line.minor  {
-  /*stroke: #777777; */
+  stroke: #777777;
   stroke: #FF0000;
   stroke-dasharray: 2,2;
 }
+*/
 
 path.domain {
   fill: none;
@@ -20,11 +22,11 @@ path.domain {
 
 #block-hboxplot-hboxplot-block1 {
   float: left;
-  width: 550px;
+  width: 540px;
 
 }
 
 #block-hboxplot-hboxplot-block2 {
   float: right;
-  width: 550px;
+  width: 540px;
 }

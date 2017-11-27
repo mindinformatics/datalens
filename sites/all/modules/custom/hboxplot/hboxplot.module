@@ -118,13 +118,13 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block4':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("AD-NCI RNA-Seq");
-		  $block['content'] = hboxplot_block('vis4', 'CD33.csv');
+		  $block['content'] = hboxplot_block('vis4', 'CD33-RNASeq.csv');
       }
       break;
     case 'hboxplot_block5':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("B3-B1 RNA-Seq");
-		  $block['content'] = hboxplot_block('vis5','CD33-Braak.csv');
+		  $block['content'] = hboxplot_block('vis5','CD33-RNASeq-B3-B1.csv');
       }
       break;
     case 'hboxplot_block6':
@@ -153,6 +153,66 @@ function hboxplot_block($id, $file) {
 }
 
 
+function hboxplot_query_mongo($input_gene) {
+
+    if (empty($input_gene)) {
+      $gene_list = array('PRELP');
+    } else {
+      $input_gene = strtoupper($input_gene);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_gene);
+      $gene_list = array_filter($gene_list);
+      $trimmed_array = array_map('trim', $gene_list);
+      $gene_list = $trimmed_array;
+      $species = array("human");
+      $gene_list = array_map('_query_synonyms', $gene_list, $species);
+      //var_dump($gene_list);
+
+    }
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Select the expression collection for gene expression info
+    $coll = $db->human_expression;
+
+    // Filter on gene
+    $query = array("GeneSymbol" => array('$in' => $gene_list));
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $cursor->sort(array('Rank' => 1));
+    $cursor->limit( 500 );
+    //$total = (string)$cursor->count(); //To find total number of documents
+    //dsm($total);
+    //$cursor->limit( 5 );
+
+     //Access query results
+     $result = array();
+     $i = 0;
+
+     #Study,BrainRegion,Technology,logFC,CI.L,CI.R,P.Value,median,min,max,Rank,row
+     foreach ($cursor as $doc) {
+       var_dump($doc);
+       $result[$i]['Study'] = $doc['StudyName'];
+       $result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+       $result[$i]['Technology'] = $doc['DataType'];
+       $result[$i]['logFC'] = $doc['logFC'];
+       $result[$i]['CI.L'] = $doc['CI.L'];
+       $result[$i]['CI.R'] = $doc['CI.R'];
+       $result[$i]['P.Value'] = $doc['P.Value'];
+       $result[$i]['median'] = $doc['median'];
+       $result[$i]['min'] = $doc['min'];
+       $result[$i]['max'] = $doc['max'];
+       $result[$i]['Rank'] = $doc['Rank'];
+       $result[$i]['row'] = $i;
+       $i++;
+     }
+
+  return $result;
+
+}
 
 
 

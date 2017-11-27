@@ -15,7 +15,11 @@
    */
 Drupal.d3.hboxplot = function (select, settings) {
 
-d3.csv("/sites/all/themes/scf_theme/HBoxplot/CD33.csv", boxplot)
+fname = settings.file;
+console.log(fname);
+file =  "/sites/all/themes/scf_theme/HBoxplot/" + settings.file;
+
+d3.csv(file, boxplot)
 
 function boxplot(data){
 

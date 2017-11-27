@@ -72,7 +72,7 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block1':
       if (user_is_logged_in()) {
       	$block['subject'] = t("AD-NCI");
-		    $block['content'] = "blah" . hboxplot_b1();
+		    $block['content'] = hboxplot_b1();
 	  }
 		break;
     case 'hboxplot_block2':
@@ -92,8 +92,9 @@ function hboxplot_b1() {
   libraries_load('d3.hboxplot');
 
   $chart = array(
-    'id' => 'visualization',
+    'id' => 'vis1',
     'type' => 'hboxplot',
+    'file' => 'CD33.csv',
   );
 
   return d3_draw($chart);
@@ -106,6 +107,7 @@ function hboxplot_b2() {
   $chart = array(
     'id' => 'vis2',
     'type' => 'hboxplot',
+    'file' => 'CD33-Braak.csv',
   );
 
   return d3_draw($chart);

@@ -15,20 +15,27 @@
    */
 Drupal.d3.hboxplot = function (select, settings) {
 
-fname = settings.file;
-console.log(fname);
-file =  "/sites/all/themes/scf_theme/HBoxplot/" + settings.file;
 
-d3.csv(file, boxplot)
+  if (settings.dtype == "file") {
+    file =  "/sites/all/themes/scf_theme/HBoxplot/" + settings.file;
+    d3.csv(file, boxplot)
+  }
 
-function boxplot(data){
+  var data = $.map(settings.rows, function(value, index) {
+          return [value];
+      });
+
+  console.log(settings.rows);
+  console.log(data);
+
+//function boxplot(data){
 
   data.forEach(function(d) {
             d.max = +d.max;
             d.min = +d.min;
             d.median = +d.median;
             d.row = +d.row;
-          });
+  });
 
 
 
@@ -179,7 +186,7 @@ var xt = w - 30;
         .style("stroke-width", "4px");
 
     })
-}
+//}
 
 
 }

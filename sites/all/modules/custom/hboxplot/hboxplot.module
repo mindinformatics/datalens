@@ -100,13 +100,16 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block1':
       if (user_is_logged_in()) {
       	$block['subject'] = t("AD-NCI Microarray");
-		    $block['content'] = hboxplot_block('vis1', 'CD33.csv');
+		    $data_rows = hboxplot_query_mongo("CD33", "uArray", "AD-NCI", "CpDxAll");
+		    //dsm($data_rows);
+		    $block['content'] = hboxplot_block('vis1', $data_rows);
 	  }
 		break;
     case 'hboxplot_block2':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("B3-B1 Microarray");
-		  $block['content'] = hboxplot_block('vis2','CD33-Braak.csv');
+		  $data_rows = hboxplot_query_mongo("CD33", "uArray", "B3-B1", "Braak");
+		  $block['content'] = hboxplot_block('vis2',$data_rows);
       }
       break;
     case 'hboxplot_block3':
@@ -118,13 +121,15 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block4':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("AD-NCI RNA-Seq");
-		  $block['content'] = hboxplot_block('vis4', 'CD33-RNASeq.csv');
+		  $data_rows = hboxplot_query_mongo("CD33", "uArray", "AD-NCI", "CpDxAll");
+		  $block['content'] = hboxplot_block('vis4', $data_rows);
       }
       break;
     case 'hboxplot_block5':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("B3-B1 RNA-Seq");
-		  $block['content'] = hboxplot_block('vis5','CD33-RNASeq-B3-B1.csv');
+		  $data_rows = hboxplot_query_mongo("CD33", "uArray", "AD-NCI", "CpDxAll");
+		  $block['content'] = hboxplot_block('vis5', $data_rows);
       }
       break;
     case 'hboxplot_block6':
@@ -139,13 +144,28 @@ function hboxplot_block_view($delta = '') {
 
 
 
-function hboxplot_block($id, $file) {
+function hboxplot_block($id, $rows) {
   $path = libraries_get_path('d3.hboxplot');
   libraries_load('d3.hboxplot');
 
   $chart = array(
     'id' => $id,
     'type' => 'hboxplot',
+    'dtype' => 'data',
+    'rows' => $rows,
+  );
+
+  return d3_draw($chart);
+}
+
+function hboxplot_block_file($id, $file) {
+  $path = libraries_get_path('d3.hboxplot');
+  libraries_load('d3.hboxplot');
+
+  $chart = array(
+    'id' => $id,
+    'type' => 'hboxplot',
+    'dtype' => 'file',
     'file' => $file,
   );
 
@@ -153,7 +173,8 @@ function hboxplot_block($id, $file) {
 }
 
 
-function hboxplot_query_mongo($input_gene) {
+function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor) {
+
 
     if (empty($input_gene)) {
       $gene_list = array('PRELP');
@@ -178,7 +199,15 @@ function hboxplot_query_mongo($input_gene) {
     $coll = $db->human_expression;
 
     // Filter on gene
-    $query = array("GeneSymbol" => array('$in' => $gene_list));
+    //db.human_expression.find({"GeneSymbol":"CD33","Contrast":"AD-NCI","StratFactor":"CpDxAll"}).count()
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+             array('DataType' =>  $data_type),
+             array('Contrast' => $contrast),
+             array('StratFactor' => $strat_factor),
+             ) );
+
+  //dsm($query);
 
     $cursor = $coll->find($query);
     $cursor->timeout(-1);
@@ -192,16 +221,16 @@ function hboxplot_query_mongo($input_gene) {
      $result = array();
      $i = 0;
 
-     #Study,BrainRegion,Technology,logFC,CI.L,CI.R,P.Value,median,min,max,Rank,row
+     #Study,BrainRegion,Technology,logFC,CIL,CIR,PValue,median,min,max,Rank,row
      foreach ($cursor as $doc) {
-       var_dump($doc);
+       //var_dump($doc);
        $result[$i]['Study'] = $doc['StudyName'];
-       $result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+       $result[$i]['BrainRegion'] = $doc['BrainRegionCode'];
        $result[$i]['Technology'] = $doc['DataType'];
        $result[$i]['logFC'] = $doc['logFC'];
-       $result[$i]['CI.L'] = $doc['CI.L'];
-       $result[$i]['CI.R'] = $doc['CI.R'];
-       $result[$i]['P.Value'] = $doc['P.Value'];
+       $result[$i]['CIL'] = $doc['CIL'];
+       $result[$i]['CIR'] = $doc['CIR'];
+       $result[$i]['PValue'] = $doc['PValue'];
        $result[$i]['median'] = $doc['median'];
        $result[$i]['min'] = $doc['min'];
        $result[$i]['max'] = $doc['max'];
@@ -209,6 +238,8 @@ function hboxplot_query_mongo($input_gene) {
        $result[$i]['row'] = $i;
        $i++;
      }
+
+  //dsm($result);
 
   return $result;
 

@@ -493,17 +493,14 @@ function bubblechart_views_pre_render(&$view) {
 
 
   if($view->name=='evidence_mouse'){
-    //dsm($view);
-    //dsm($view->exposed_input);
+    dsm($view);
+    dsm($view->exposed_input);
 
     //field_evidence_id_value
 
     if (empty($view->exposed_input['field_evidence_id_value']) &&
         empty($view->exposed_input['title']) &&
         empty($view->exposed_input['term_node_tid_depth']) &&
-        empty($view->exposed_input['field_perturbation_tid']) &&
-        empty($view->exposed_input['term_node_tid_depth_1']) &&
-        empty($view->exposed_input['term_node_tid_depth_2']) &&
         empty($view->exposed_input['field_fold_change_value']) ) {
         $view->result = array();
         $view->total_rows = 0;
@@ -527,70 +524,24 @@ function bubblechart_views_pre_render(&$view) {
       //var_dump($gene_list);
       //dsm($species);
 
+      // Perturbation
+      if (!empty($view->exposed_input['term_node_tid_depth'])) {
+        $perturbation = $view->exposed_input['term_node_tid_depth'];
+        dsm($perturbation);
+        $terms = array();
+        foreach($perturbation as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          array_push($terms, $term);
+        }
+      }
+
       $mongo_array = _query_mongo_mouse_table($gene_list, $pval, $species);
-      $filtered_mongo = $mongo_array;
+
       //var_dump($mongo_array);
 
 
-      // Brain Region
-      if (!empty($view->exposed_input['term_node_tid_depth'])) {
-        $brain_region = $view->exposed_input['term_node_tid_depth'];
-        //dsm($brain_region);
-        $terms = array();
-        foreach($brain_region as $tid) {
-          $term = taxonomy_term_load($tid)->name;
-          array_push($terms, $term);
-          }
-          //dsm($terms);
-          $filtered_mongo = array_filter($filtered_mongo,
-          function($v) use ($terms){
-            return in_array($v['BrainRegion'], $terms);
-            });
-          //dsm($filtered_mongo);
-      }
-
-      // Data Type
-      if (!empty($view->exposed_input['term_node_tid_depth_1'])) {
-        $data_type = $view->exposed_input['term_node_tid_depth_1'];
-        //dsm($data_type);
-        $terms = array();
-        foreach($data_type as $tid) {
-          $term = taxonomy_term_load($tid)->name;
-          if ($term === "Array Expression" ) {
-            $term = "uArray";
-          }
-          if ($term === "RNA-seq" ) {
-            array_push($terms, "CPM", "RC", "FPKM");
-
-          } else {
-            array_push($terms, $term);
-          }
-        }
-          //dsm($terms);
-          $filtered_mongo = array_filter($filtered_mongo,
-          function($v) use ($terms){
-            return in_array($v['DataType'], $terms);
-            });
-          //dsm($filtered_mongo);
-      }
-
       // Group/Study
-      if (!empty($view->exposed_input['term_node_tid_depth_2'])) {
-        $study = $view->exposed_input['term_node_tid_depth_2'];
 
-        $terms = array();
-
-        foreach($study as $tid) {
-          $term = taxonomy_term_load($tid)->name;
-          array_push($terms, $term);
-        }
-        $filtered_mongo = array_filter($filtered_mongo,
-          function($v) use ($terms){
-            return in_array($v['Study'], $terms);
-           });
-        //dsm($filtered_mongo);
-
-      }
 
 
       // Fold Change
@@ -599,23 +550,6 @@ function bubblechart_views_pre_render(&$view) {
         //dsm($fc_gt);
         $filtered_mongo = array_filter($filtered_mongo,
         function($v) use ($fc_gt){return pow(2,abs($v['LogFC'])) >= $fc_gt;});
-      }
-
-
-      // Perturbation
-      if (!empty($view->exposed_input['field_perturbation_tid'])) {
-        $perturbation = $view->exposed_input['field_perturbation_tid'];
-        //dsm($$perturbation);
-        $terms = array();
-        foreach($perturbation as $tid) {
-          $term = taxonomy_term_load($tid)->name;
-          array_push($terms, $term);
-        }
-          //dsm($terms);
-          $filtered_mongo = array_filter($filtered_mongo,
-          function($v) use ($terms){
-            return in_array($v['Perturbation'], $terms);
-          });
       }
 
       if (!empty($view->exposed_input['field_pvalue_value'])) {

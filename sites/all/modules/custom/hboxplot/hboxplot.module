@@ -121,14 +121,14 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block4':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("AD-NCI RNA-Seq");
-		  $data_rows = hboxplot_query_mongo("CD33", "uArray", "AD-NCI", "CpDxAll");
+		  $data_rows = hboxplot_query_mongo("CD33", "RC, FPKM", "AD-NCI", "CpDxAll");
 		  $block['content'] = hboxplot_block('vis4', $data_rows);
       }
       break;
     case 'hboxplot_block5':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("B3-B1 RNA-Seq");
-		  $data_rows = hboxplot_query_mongo("CD33", "uArray", "AD-NCI", "CpDxAll");
+		  $data_rows = hboxplot_query_mongo("CD33", "RC, FPKM", "B3-B1", "Braak");
 		  $block['content'] = hboxplot_block('vis5', $data_rows);
       }
       break;
@@ -191,6 +191,9 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
 
     }
 
+    $data_type = preg_split('/[\s ,]+/', $data_type);
+
+
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
     $db = $mongo->cats;
@@ -202,12 +205,12 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
     //db.human_expression.find({"GeneSymbol":"CD33","Contrast":"AD-NCI","StratFactor":"CpDxAll"}).count()
     //$query = array("GeneSymbol" => array('$in' => $gene_list));
     $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
-             array('DataType' =>  $data_type),
+             array("DataType" => array('$in' => $data_type)),
              array('Contrast' => $contrast),
              array('StratFactor' => $strat_factor),
              ) );
 
-  //dsm($query);
+    //dsm($query);
 
     $cursor = $coll->find($query);
     $cursor->timeout(-1);

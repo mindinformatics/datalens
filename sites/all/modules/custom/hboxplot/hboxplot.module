@@ -193,6 +193,7 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
 
     }
 
+
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
     $db = $mongo->cats;
@@ -204,12 +205,12 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
     //db.human_expression.find({"GeneSymbol":"CD33","Contrast":"AD-NCI","StratFactor":"CpDxAll"}).count()
     //$query = array("GeneSymbol" => array('$in' => $gene_list));
     $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
-             array('DataType' =>  array('$in' => $data_type)),
+             array('DataType' => array('$in' => $data_type)),
              array('Contrast' => $contrast),
              array('StratFactor' => $strat_factor),
              ) );
 
-  //dsm($query);
+    //dsm($query);
 
     $cursor = $coll->find($query);
     $cursor->timeout(-1);

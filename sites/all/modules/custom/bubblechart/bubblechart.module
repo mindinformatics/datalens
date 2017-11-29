@@ -493,8 +493,8 @@ function bubblechart_views_pre_render(&$view) {
 
 
   if($view->name=='evidence_mouse'){
-    dsm($view);
-    dsm($view->exposed_input);
+    //dsm($view);
+    //dsm($view->exposed_input);
 
     //field_evidence_id_value
 
@@ -524,25 +524,26 @@ function bubblechart_views_pre_render(&$view) {
       //var_dump($gene_list);
       //dsm($species);
 
+      $mongo_array = _query_mongo_mouse_table($gene_list, $pval, $species);
+      $filtered_mongo = $mongo_array;
+      //dsm($mongo_array);
+
+
       // Perturbation
       if (!empty($view->exposed_input['term_node_tid_depth'])) {
         $perturbation = $view->exposed_input['term_node_tid_depth'];
-        dsm($perturbation);
+        //dsm($perturbation);
         $terms = array();
         foreach($perturbation as $tid) {
           $term = taxonomy_term_load($tid)->name;
           array_push($terms, $term);
         }
+        //dsm($terms);
+        $filtered_mongo = array_filter($filtered_mongo,
+          function($v) use ($terms){
+            return in_array($v['Perturbation'], $terms);
+          });
       }
-
-      $mongo_array = _query_mongo_mouse_table($gene_list, $pval, $species);
-
-      //var_dump($mongo_array);
-
-
-      // Group/Study
-
-
 
       // Fold Change
       if (!empty($view->exposed_input['field_fold_change_value'])) {

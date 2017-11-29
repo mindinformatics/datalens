@@ -22,29 +22,11 @@ function hboxplot_menu() {
 function hboxplot_page() {
 
   $page = "";
-  $block1 = module_invoke('hboxplot', 'block_view', 'hboxplot_block1');
-  $block2 = module_invoke('hboxplot', 'block_view', 'hboxplot_block2');
-  $block3 = module_invoke('hboxplot', 'block_view', 'hboxplot_block3');
-  $block4 = module_invoke('hboxplot', 'block_view', 'hboxplot_block4');
-  $block5 = module_invoke('hboxplot', 'block_view', 'hboxplot_block5');
-  $block6 = module_invoke('hboxplot', 'block_view', 'hboxplot_block6');
-  //dsm($block);
-  $page .= '<table id="forest-plot">';
-  $page .= '<tr><td>';
-  $page .= $block1['subject'] . $block1['content'];
-  $page .= '</td><td>';
-  $page .= $block2['subject'] . $block2['content'];
-  $page .= '</td><td>';
-  $page .= $block3['subject'] . $block3['content'];
-  $page .= '</td></tr><tr><td>';
-  $page .= $block4['subject'] . $block4['content'];
-  $page .= '</td><td>';
-  $page .= $block5['subject'] . $block5['content'];
-  $page .= '</td><td>';
-  $page .= $block6['content'];
-  $page .= '</td></tr>';
-  $page .= '</table>';
 
+  //dsm($block);
+
+  $hplot_form = drupal_get_form('choosegene_form');
+  $page .= drupal_render($hplot_form);
 
   return $page;
 }
@@ -96,13 +78,16 @@ function hboxplot_block_info() {
 function hboxplot_block_view($delta = '') {
   //The $delta parameter tells us which block is being requested.
   $block = array();
+  $gene=$form_state['values']['input_gene'];
+
   switch ($delta) {
     case 'hboxplot_block1':
       if (user_is_logged_in()) {
       	$block['subject'] = t("AD-NCI Microarray");
 		    $data_rows = hboxplot_query_mongo("DCLK1", array("uArray"), "AD-NCI", "CpDxAll");
 		    //dsm($data_rows);
-		    $block['content'] = hboxplot_block('vis1', $data_rows);
+		    $block['content'] = $gene;
+		    $block['content'] .= hboxplot_block('vis1', $data_rows);
 		    //$block['content'] = hboxplot_block('vis1', 'CD33.csv');
 	  }
 		break;
@@ -146,8 +131,6 @@ function hboxplot_block_view($delta = '') {
   return $block;
 }
 
-
-
 function hboxplot_block($id, $rows) {
   $path = libraries_get_path('d3.hboxplot');
   libraries_load('d3.hboxplot');
@@ -172,6 +155,117 @@ function hboxplot_block_file($id, $file) {
   );
 
   return d3_draw($chart);
+}
+
+
+function choosegene_form($form, &$form_state) {
+
+  $form['input_gene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+  );
+
+
+  $form['submit'] = array(
+    '#prefix' => '<div class="hplot-inline">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_hplot_callback',
+      'wrapper'  => 'hplots',
+      'effect'   => 'fade',
+     ),
+  );
+
+
+  // Define default study as IGAP
+  //if (!isset($form_state['values'])) {
+  //  $_SESSION['lzoom_study'] = "IGAP_stage_1.tsv";
+  //}
+
+  // Define default plot for CD33
+
+
+	$data_rows = hboxplot_query_mongo("CD33", array("uArray"), "AD-NCI", "CpDxAll");
+	$content1 = "<span id='htitle'>AD-NCI Microarray</span>" .  hboxplot_block('vis1', $data_rows);
+	$data_rows = hboxplot_query_mongo("CD33", array("uArray"), "B3-B1", "Braak");
+	$content2 = "<span id='htitle'>B3-B1 Microarray</span>" . hboxplot_block('vis2',$data_rows);
+	$content3 = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend.png' style='width:100%;'/>";
+	$data_rows = hboxplot_query_mongo("CD33", array("RC","FPKM"), "AD-NCI", "CpDxAll");
+	$content4 = "<span id='htitle'>AD-NCI RNA-Seq</span>" . hboxplot_block('vis4', $data_rows);
+	$data_rows = hboxplot_query_mongo("CD33", array("RC","FPKM"), "B3-B1", "Braak");
+	$content5 = "<span id='htitle'>B3-B1 RNA-Seq</span>" . hboxplot_block('vis5', $data_rows);
+  $content6  = "";
+
+
+  $content = '<div id="hplots">';
+  $content .= "<span id='gtitle'>" . "CD33" . "</span>";
+  $content .= '<table id="forest-plot">';
+  $content .= '<tr><td>';
+  $content .= $content1;
+  $content .= '</td><td>';
+  $content .= $content2;
+  $content .= '</td><td>';
+  $content .= $content3;
+  $content .= '</td></tr><tr><td>';
+  $content .= $content4;
+  $content .= '</td><td>';
+  $content .= $content5;
+  $content .= '</td><td>';
+  $content .= $content6;
+  $content .= '</td></tr>';
+  $content .= '</table>';
+  $content .= '</div>';
+
+  $form['wrapper'] = array(
+    '#markup' => '<div id="hplots">' . $content . '</div>',
+  );
+
+
+	return $form;
+}
+
+function ajax_hplot_callback($form, $form_state) {
+
+  $gene= $form_state['values']['input_gene'];
+
+  $data_rows = hboxplot_query_mongo($gene, array("uArray"), "AD-NCI", "CpDxAll");
+	$content1 = "<span id='htitle'>AD-NCI Microarray</span>" .  hboxplot_block('vis1', $data_rows);
+	$data_rows = hboxplot_query_mongo($gene, array("uArray"), "B3-B1", "Braak");
+	$content2 = "<span id='htitle'>B3-B1 Microarray</span>" . hboxplot_block('vis2',$data_rows);
+	$content3 = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend.png' style='width:100%;'/>";
+	$data_rows = hboxplot_query_mongo($gene, array("RC","FPKM"), "AD-NCI", "CpDxAll");
+	$content4 = "<span id='htitle'>AD-NCI RNA-Seq</span>" . hboxplot_block('vis4', $data_rows);
+	$data_rows = hboxplot_query_mongo($gene, array("RC","FPKM"), "B3-B1", "Braak");
+	$content5 = "<span id='htitle'>B3-B1 RNA-Seq</span>" . hboxplot_block('vis5', $data_rows);
+  $content6  = "";
+
+
+  $content = '<div id="hplots">';
+  $content .= "<span id='gtitle'>" . $gene . "</span>";
+  $content .= '<table id="forest-plot">';
+  $content .= '<tr><td>';
+  $content .= $content1;
+  $content .= '</td><td>';
+  $content .= $content2;
+  $content .= '</td><td>';
+  $content .= $content3;
+  $content .= '</td></tr><tr><td>';
+  $content .= $content4;
+  $content .= '</td><td>';
+  $content .= $content5;
+  $content .= '</td><td>';
+  $content .= $content6;
+  $content .= '</td></tr>';
+  $content .= '</table>';
+  $content .= '</div>';
+
+  return $content;
+
 }
 
 

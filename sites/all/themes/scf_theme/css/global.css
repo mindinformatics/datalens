@@ -1993,7 +1993,6 @@ ul.bef-tree-child.bef-tree-depth-2 {
   padding-bottom: 25px;
 }
 
-
 /* Contrast "Table" */
 .not-front .ctable {
   padding-bottom: 2%;
@@ -2028,3 +2027,21 @@ ul.bef-tree-child.bef-tree-depth-2 {
   margin-right: 20px;
 }
 
+/* Foreset plot */
+
+.hplot-inline {
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 33px;
+}
+
+#gtitle ,
+#htitle {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+#gtitle {
+  padding-left: 400px;
+}

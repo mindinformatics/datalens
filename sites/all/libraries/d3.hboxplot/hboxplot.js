@@ -15,19 +15,17 @@
    */
 Drupal.d3.hboxplot = function (select, settings) {
 
-
-  if (settings.dtype == "file") {
-    file =  "/sites/all/themes/scf_theme/HBoxplot/" + settings.file;
-    d3.csv(file, boxplot)
-  }
-
+  // Change mongo data from object to array
   var data = $.map(settings.rows, function(value, index) {
           return [value];
       });
+  //console.log(settings.rows);
+  //console.log(data);
 
-  console.log(settings.rows);
-  console.log(data);
 
+  // For files: Uncomment the next 3 lines, and uncomment the closing brace for the boxplot function
+  //file =  "/sites/all/themes/scf_theme/HBoxplot/" + settings.file;
+  //d3.csv(file, boxplot)
 //function boxplot(data){
 
   data.forEach(function(d) {
@@ -186,8 +184,7 @@ var xt = w - 30;
         .style("stroke-width", "4px");
 
     })
-//}
-
+// }
 
 }
 

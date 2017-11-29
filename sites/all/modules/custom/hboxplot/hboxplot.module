@@ -100,16 +100,18 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block1':
       if (user_is_logged_in()) {
       	$block['subject'] = t("AD-NCI Microarray");
-		    $data_rows = hboxplot_query_mongo("CD33", "uArray", "AD-NCI", "CpDxAll");
+		    $data_rows = hboxplot_query_mongo("CD33", array("uArray"), "AD-NCI", "CpDxAll");
 		    //dsm($data_rows);
 		    $block['content'] = hboxplot_block('vis1', $data_rows);
+		    //$block['content'] = hboxplot_block('vis1', 'CD33.csv');
 	  }
 		break;
     case 'hboxplot_block2':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("B3-B1 Microarray");
-		  $data_rows = hboxplot_query_mongo("CD33", "uArray", "B3-B1", "Braak");
+		  $data_rows = hboxplot_query_mongo("CD33", array("uArray"), "B3-B1", "Braak");
 		  $block['content'] = hboxplot_block('vis2',$data_rows);
+		  //$block['content'] = hboxplot_block('vis2', 'CD33-Braak.csv');
       }
       break;
     case 'hboxplot_block3':
@@ -121,15 +123,17 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block4':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("AD-NCI RNA-Seq");
-		  $data_rows = hboxplot_query_mongo("CD33", "uArray", "AD-NCI", "CpDxAll");
+		  $data_rows = hboxplot_query_mongo("CD33", array("RC","FPKM"), "AD-NCI", "CpDxAll");
 		  $block['content'] = hboxplot_block('vis4', $data_rows);
+		  //$block['content'] = hboxplot_block('vis4', 'CD33-RNASeq.csv');
       }
       break;
     case 'hboxplot_block5':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("B3-B1 RNA-Seq");
-		  $data_rows = hboxplot_query_mongo("CD33", "uArray", "AD-NCI", "CpDxAll");
+		  $data_rows = hboxplot_query_mongo("CD33", array("RC","FPKM"), "B3-B1", "Braak");
 		  $block['content'] = hboxplot_block('vis5', $data_rows);
+		  //$block['content'] = hboxplot_block('vis5', 'CD33-RNASeq-B3-B1.csv');
       }
       break;
     case 'hboxplot_block6':
@@ -151,7 +155,6 @@ function hboxplot_block($id, $rows) {
   $chart = array(
     'id' => $id,
     'type' => 'hboxplot',
-    'dtype' => 'data',
     'rows' => $rows,
   );
 
@@ -165,7 +168,6 @@ function hboxplot_block_file($id, $file) {
   $chart = array(
     'id' => $id,
     'type' => 'hboxplot',
-    'dtype' => 'file',
     'file' => $file,
   );
 
@@ -202,7 +204,7 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
     //db.human_expression.find({"GeneSymbol":"CD33","Contrast":"AD-NCI","StratFactor":"CpDxAll"}).count()
     //$query = array("GeneSymbol" => array('$in' => $gene_list));
     $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
-             array('DataType' =>  $data_type),
+             array('DataType' =>  array('$in' => $data_type)),
              array('Contrast' => $contrast),
              array('StratFactor' => $strat_factor),
              ) );

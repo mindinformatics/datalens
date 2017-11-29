@@ -100,7 +100,7 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block1':
       if (user_is_logged_in()) {
       	$block['subject'] = t("AD-NCI Microarray");
-		    $data_rows = hboxplot_query_mongo("CD33", array("uArray"), "AD-NCI", "CpDxAll");
+		    $data_rows = hboxplot_query_mongo("DCLK1", array("uArray"), "AD-NCI", "CpDxAll");
 		    //dsm($data_rows);
 		    $block['content'] = hboxplot_block('vis1', $data_rows);
 		    //$block['content'] = hboxplot_block('vis1', 'CD33.csv');
@@ -109,7 +109,7 @@ function hboxplot_block_view($delta = '') {
     case 'hboxplot_block2':
       if (user_is_logged_in()) {
 		  $block['subject'] = t("B3-B1 Microarray");
-		  $data_rows = hboxplot_query_mongo("CD33", array("uArray"), "B3-B1", "Braak");
+		  $data_rows = hboxplot_query_mongo("DCLK1", array("uArray"), "B3-B1", "Braak");
 		  $block['content'] = hboxplot_block('vis2',$data_rows);
 		  //$block['content'] = hboxplot_block('vis2', 'CD33-Braak.csv');
       }
@@ -222,14 +222,17 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
 
      //Access query results
      $result = array();
+     $filenames = array();
      $i = 0;
 
-     #Study,BrainRegion,Technology,logFC,CIL,CIR,PValue,median,min,max,Rank,row
+     //Study,BrainRegion,Technology,logFC,CIL,CIR,PValue,median,min,max,Rank,row
      foreach ($cursor as $doc) {
        //var_dump($doc);
        $result[$i]['Study'] = $doc['StudyName'];
        $result[$i]['BrainRegion'] = $doc['BrainRegionCode'];
        $result[$i]['Technology'] = $doc['DataType'];
+       $result[$i]['FileName'] = $doc['FileName'];
+       $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
        $result[$i]['logFC'] = $doc['logFC'];
        $result[$i]['CIL'] = $doc['CIL'];
        $result[$i]['CIR'] = $doc['CIR'];
@@ -238,14 +241,69 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
        $result[$i]['min'] = $doc['min'];
        $result[$i]['max'] = $doc['max'];
        $result[$i]['Rank'] = $doc['Rank'];
-       $result[$i]['row'] = $i;
+       $filenames[] = $doc['FileName'];
        $i++;
      }
+
+  //Some genes have multiple probes; these will appear in the same file.
+   if ($data_type[0] == "uArray" ) {
+      //var_dump("All Filenames");
+      //var_dump($filenames);
+      $dup_files =  _array_dup($filenames);
+      //var_dump("Duplicate Files");
+      //var_dump($dup_files);
+
+
+
+      foreach ($dup_files as $dup) {
+        $abs_logfc = array();
+        $array_id = array();
+        $probe_id = array();
+        //find it
+
+
+        //probes = result['Filename'] == $dup
+        //find max probe
+        //unset everyting that is not the max
+
+        foreach ($result as $key => $value ) {
+          if ($value['FileName'] == $dup) {
+            $array_id[] = $key;
+            $abs_logfc[] = abs($value['logFC']);
+            $probe_id[] = $value['ProbeID'];
+            //dsm($array_id);
+          }
+        }
+
+        $max_val = max($abs_logfc);
+        $index = array_search(max($abs_logfc),$abs_logfc);
+
+        //dsm($array_id);
+        //dsm("Max abs logFC");
+        //dsm($max_val);
+        //dsm("Index of max");
+        //dsm($index);
+
+        foreach($array_id as $key=>$value) {
+          if ($key != $index) {
+            unset($result[$value]);
+          }
+        }
+
+      }
+   }
+
+
 
   //dsm($result);
 
   return $result;
 
+}
+
+
+function _array_dup($ar){
+   return array_unique(array_diff_assoc($ar,array_unique($ar)));
 }
 
 

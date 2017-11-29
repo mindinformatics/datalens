@@ -19,7 +19,7 @@ Drupal.d3.hboxplot = function (select, settings) {
   var data = $.map(settings.rows, function(value, index) {
           return [value];
       });
-  //console.log(settings.rows);
+  console.log(settings.rows);
   //console.log(data);
 
 
@@ -28,11 +28,13 @@ Drupal.d3.hboxplot = function (select, settings) {
   //d3.csv(file, boxplot)
 //function boxplot(data){
 
+  var rn = 1;
   data.forEach(function(d) {
             d.max = +d.max;
             d.min = +d.min;
             d.median = +d.median;
-            d.row = +d.row;
+            d.row = rn;
+            rn++;
   });
 
 

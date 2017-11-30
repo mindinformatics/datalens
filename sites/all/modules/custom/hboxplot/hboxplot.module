@@ -194,7 +194,7 @@ function choosegene_form($form, &$form_state) {
 	$content1 = "<span id='htitle'>AD-NCI Microarray</span>" .  hboxplot_block('vis1', $data_rows);
 	$data_rows = hboxplot_query_mongo("CD33", array("uArray"), "B3-B1", "Braak");
 	$content2 = "<span id='htitle'>B3-B1 Microarray</span>" . hboxplot_block('vis2',$data_rows);
-	$content3 = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend.png' style='width:100%;'/>";
+	$content3 = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend2.png' style='width:100%;'/>";
 	$data_rows = hboxplot_query_mongo("CD33", array("RC","FPKM"), "AD-NCI", "CpDxAll");
 	$content4 = "<span id='htitle'>AD-NCI RNA-Seq</span>" . hboxplot_block('vis4', $data_rows);
 	$data_rows = hboxplot_query_mongo("CD33", array("RC","FPKM"), "B3-B1", "Braak");
@@ -237,7 +237,7 @@ function ajax_hplot_callback($form, $form_state) {
 	$content1 = "<span id='htitle'>AD-NCI Microarray</span>" .  hboxplot_block('vis1', $data_rows);
 	$data_rows = hboxplot_query_mongo($gene, array("uArray"), "B3-B1", "Braak");
 	$content2 = "<span id='htitle'>B3-B1 Microarray</span>" . hboxplot_block('vis2',$data_rows);
-	$content3 = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend.png' style='width:100%;'/>";
+	$content3 = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend2.png' style='width:100%;'/>";
 	$data_rows = hboxplot_query_mongo($gene, array("RC","FPKM"), "AD-NCI", "CpDxAll");
 	$content4 = "<span id='htitle'>AD-NCI RNA-Seq</span>" . hboxplot_block('vis4', $data_rows);
 	$data_rows = hboxplot_query_mongo($gene, array("RC","FPKM"), "B3-B1", "Braak");

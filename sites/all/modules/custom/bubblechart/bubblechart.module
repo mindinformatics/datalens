@@ -279,13 +279,15 @@ function bubblechart_form_alter(&$form, &$form_state,$form_id ){
  }
 
  if($form['#id'] == 'views-exposed-form-evidence-mouse-page') {
+    //dsm($form);
     $form['field_evidence_id_value']['#type']='textarea';
-    $form['field_evidence_id_value']['#cols']='17';
+    $form['field_evidence_id_value']['#cols']='20';
     $form['field_evidence_id_value']['#rows']='9';
 
     $form['title']['#type']='textarea';
-    $form['title']['#cols']='17';
+    $form['title']['#cols']='20';
     $form['title']['#rows']='9';
+
  }
 
 }

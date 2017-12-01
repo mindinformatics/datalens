@@ -1611,6 +1611,11 @@ div.horizontal-tabs .horizontal-tabs-panes {
   font-weight: bold;
 }
 
+.view-evidence .views-exposed-form .views-exposed-widget,
+.view-genetic-association .views-exposed-form .views-exposed-widget {
+  padding: .5em 1em 0 .6em;
+}
+
 .views-exposed-form #edit-field-group-tid-wrapper,
 .views-exposed-form #edit-term-node-tid-depth-wrapper,
 .views-exposed-form #edit-term-node-tid-depth-1-wrapper {
@@ -1640,6 +1645,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
 
 .view-evidence-mouse .views-exposed-form .views-exposed-widget {
   float: left;
+  padding: .5em 1em 0 .6em;
   /*display: inline-block; */
 }
 
@@ -1654,16 +1660,33 @@ div.horizontal-tabs .horizontal-tabs-panes {
   font-weight: bold;
 }
 .views-exposed-form .views-widget-filter-field_pvalue_value,
-.views-exposed-form .views-widget-filter-field_fold_change_value{
+.views-exposed-form .views-widget-filter-field_fold_change_value {
   margin-top: 0%;
 }
 
 .form-item-field-pvalue-value input {
   width: 85%;
 }
-#edit-field-pvalue-value-wrapper {
-  width: 20%;
+
+.view-evidence-mouse #edit-field-pvalue-value-wrapper {
+  width: 12%;
 }
+
+.form-item-field-fold-change-value input {
+  width: 85%;
+}
+
+.view-evidence-mouse #edit-field-fold-change-value-wrapper {
+  width: 12%;
+}
+
+/*.form-item-field-genes-diff-tid,
+#edit-field-fold-change-value-wrapper {
+  padding-right: 40px;
+
+}
+*/
+
 
 ul.bef-tree-child.bef-tree-depth-0,
 ul.bef-tree-child.bef-tree-depth-1,
@@ -1673,19 +1696,16 @@ ul.bef-tree-child.bef-tree-depth-2 {
 	margin-bottom: 0;
 }
 
-.views-exposed-form .views-exposed-widget .form-submit {
+/*.view-evidence .views-exposed-form .views-exposed-widget .form-submit {
     margin-top: 1.0em;
 }
+*/
 
 .view .feed-icon {
   padding-bottom: 1%;
 }
 
-.form-item-field-genes-diff-tid,
-#edit-field-fold-change-value-wrapper {
-  padding-right: 40px;
 
-}
 
 
 /* Line up multi-line options nicely */

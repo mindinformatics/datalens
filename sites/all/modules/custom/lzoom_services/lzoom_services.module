@@ -40,6 +40,7 @@ function lzoom_services_resource_retrieve($filter) {
 
 //return $data;
 
+//http://localhost:8888/assoc/lzoom/analysis%20in%201%20and%20chromosome%20in%2019%20and%20position%20ge%2044910831%20and%20position%20le%2045910831.json
   $analysis = preg_replace('/analysis in (\d+) +.*/', '$1', $filter);
   $chr      = preg_replace('/.*chromosome in (\d+) +.*/', '$1', $filter);
   $start    = preg_replace('/.*position ge (\d+) +.*/', '$1', $filter);
@@ -62,8 +63,10 @@ function _query_mongo_lzoom($chr, $start, $end, $analysis) {
     $end = intval($end);
     $chr = intval($chr);
 
+    // Add MayoEGWAS_analysis_eQTL_TCX_imputedResults_AD.csv
     $study_list = array('1' => 'IGAP_stage_1.tsv',
-                        '2' => 'AMP-AD.tsv');
+                        '2' => 'AMP-AD.tsv',
+                        '3' => 'MayoEGWAS_analysis_eQTL_TCX_imputedResults_AD.csv');
 
     $study_file = $study_list[$analysis];
 

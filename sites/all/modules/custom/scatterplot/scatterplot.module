@@ -37,14 +37,14 @@ function scatterplot_menu() {
     'access callback' => TRUE,
   );
   $items['manhattan-plot'] = array(
-    'title' => 'Alzheimers GWAS Meta-Analysis',
-    'description' => 'Manhattan Plot of SNPs',
+    'title' => 'Manhattan plot of AMP-AD GWAS',
+    'description' => 'Manhattan Plot AMP-AD',
     'page callback' => 'scatterplot_man',
     'access callback' => TRUE,
   );
   $items['manhattan-plot2'] = array(
-    'title' => 'Manhattan plot of IGAP Stage 1 results',
-    'description' => 'Manhattan Plot of SNPs',
+    'title' => 'Manhattan plot of IGAP Stage 1 GWAS',
+    'description' => 'Manhattan Plot IGAP',
     'page callback' => 'scatterplot_man2',
     'access callback' => TRUE,
   );

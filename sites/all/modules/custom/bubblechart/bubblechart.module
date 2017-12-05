@@ -274,7 +274,7 @@ function bubblechart_form_alter(&$form, &$form_state,$form_id ){
  if($form['#id'] == 'views-exposed-form-evidence-page') {
     //dsm($form['title']['#type']);
     $form['title']['#type']='textarea';
-    $form['title']['#cols']='30';
+    $form['title']['#cols']='20';
     $form['title']['#rows']='9';
  }
 

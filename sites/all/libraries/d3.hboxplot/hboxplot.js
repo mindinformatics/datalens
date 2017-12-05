@@ -30,6 +30,8 @@ Drupal.d3.hboxplot = function (select, settings) {
 
   var rn = 1;
   data.forEach(function(d) {
+            //d.PValue = +d.PValue.toPrecision(2);
+            d.PValue = +d.PValue;
             d.max = +d.max;
             d.min = +d.min;
             d.median = +d.median;
@@ -38,6 +40,7 @@ Drupal.d3.hboxplot = function (select, settings) {
   });
 
 
+  var sformat = d3.format(".1e");
 
   var h = data.length * 25 + 100,
       w = 400;
@@ -46,12 +49,12 @@ Drupal.d3.hboxplot = function (select, settings) {
     'top': 20,
     'bottom': 20,
     'left': 20,
-    'right': 30
+    'right': 53
   }
 
   var chart = d3.select('#' + settings.id).append("svg")
     .attr("height", h)
-    .attr("width", w + 30);
+    .attr("width", w + 53);
 
 
   xScale = d3.scale.linear()
@@ -89,20 +92,23 @@ Drupal.d3.hboxplot = function (select, settings) {
     .call(xAxis);
 
   var rows = data.map(function(d){return Number(d.row)});
-  var brain_regions = data.map(function(d){return (d.BrainRegion)});
+  var brain_regions = data.map(function(d){return (d.BrainRegion + " (" + sformat(d.PValue)+ ")" )});
+  var p_vals = data.map(function(d){return (d.PValue) });
 
   yAxis = d3.svg.axis()
     .scale(yScale)
     .orient("right")
     .tickSize(-12)
     .tickValues(rows)
-    .tickFormat(function(d,i) { return brain_regions[i] });
+    .tickFormat(function(d,i) { return brain_regions[i] })
+    //.text("fill", function(d,i) { return (p_vals[i] <= .05 ? "green" : "black")});
 
 var xt = w - 30;
 
   chart.append("g")
     .attr("transform", "translate(" + xt + ",0)")
     .attr("id", "yAxisG")
+    .attr("class", "yaxis axis")
     .call(yAxis);
 
   chart.append("line")
@@ -112,6 +118,9 @@ var xt = w - 30;
     .attr("y2", h - 20)
     .style("stroke", "gray")
     .style("stroke-width", "1px");
+
+  chart.selectAll(".yaxis text")  // select all the text elements for the y-axis
+    .style("fill", function(d,i) { return (p_vals[i] <= .05 ? "red" : "black")});
 
   chart.selectAll("circle.median")
     .data(data)

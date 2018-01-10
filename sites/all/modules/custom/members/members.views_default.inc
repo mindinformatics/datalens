@@ -1415,7 +1415,7 @@ function members_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['content'] = 'Query expression of gene(s) across studies, brain regions and various criteria. See <a href="/faq" target="_blank">FAQ</a> page for help. 
-If no gene is specified, only results with P-value &lt; .001 are displayed by default.  If a gene is specified, results with P-value &lt; .05 are displayed unless the P-value filter is specified.';
+Only the top 500 results are displayed, ordered by P-value.  Results with P-value &lt; .05 are displayed unless the P-value filter is specified. ';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';

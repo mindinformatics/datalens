@@ -1615,7 +1615,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
 .view-genetic-association .views-exposed-form .views-exposed-widget,
 .view-evidence-mouse .views-exposed-form .views-exposed-widget {
   padding: .5em 1em 0 .6em;
-  margin-left: 5px;
+  margin-left: 3px;
 }
 
 .views-exposed-form #edit-field-group-tid-wrapper,

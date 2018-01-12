@@ -890,6 +890,27 @@ function members_field_default_field_bases() {
     'type' => 'number_float',
   );
 
+  // Exported field_base: 'field_fold_change_raw'.
+  $field_bases['field_fold_change_raw'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_fold_change_raw',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(
+      'decimal_separator' => '.',
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'number_float',
+  );
+
   // Exported field_base: 'field_forum_category'.
   $field_bases['field_forum_category'] = array(
     'active' => 1,

@@ -662,7 +662,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -989,7 +989,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -1118,7 +1118,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -1199,7 +1199,7 @@ function members_views_default_views() {
   $handler->display->display_options['fields']['field_group']['field'] = 'field_group';
   $handler->display->display_options['fields']['field_group']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_group']['delta_offset'] = '0';
-  /* Field: Content: Identifiers */
+  /* Field: Content: Code */
   $handler->display->display_options['fields']['field_links']['id'] = 'field_links';
   $handler->display->display_options['fields']['field_links']['table'] = 'field_data_field_links';
   $handler->display->display_options['fields']['field_links']['field'] = 'field_links';
@@ -1439,7 +1439,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Fold change */
+  /* Field: Content: LogFC */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['field'] = 'field_fold_change';
@@ -1492,7 +1492,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
   $handler->display->display_options['fields']['php']['field'] = 'php';
-  /* Sort criterion: Content: Fold change (field_fold_change) */
+  /* Sort criterion: Content: LogFC (field_fold_change) */
   $handler->display->display_options['sorts']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['sorts']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['sorts']['field_fold_change_value']['field'] = 'field_fold_change_value';
@@ -1547,7 +1547,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   );
   $handler->display->display_options['filters']['field_genes_diff_tid']['type'] = 'synonyms_autocomplete';
   $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
-  /* Filter criterion: Content: Fold change (field_fold_change) */
+  /* Filter criterion: Content: LogFC (field_fold_change) */
   $handler->display->display_options['filters']['field_fold_change_value_1']['id'] = 'field_fold_change_value_1';
   $handler->display->display_options['filters']['field_fold_change_value_1']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['filters']['field_fold_change_value_1']['field'] = 'field_fold_change_value';
@@ -1565,7 +1565,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Content: Fold change (field_fold_change) */
+  /* Filter criterion: Content: LogFC (field_fold_change) */
   $handler->display->display_options['filters']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['filters']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['filters']['field_fold_change_value']['field'] = 'field_fold_change_value';
@@ -2150,7 +2150,17 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Fold change */
+  /* Field: Content: P-value */
+  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: LogFC */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['field'] = 'field_fold_change';
@@ -2161,44 +2171,16 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
     'scale' => '1',
     'prefix_suffix' => 1,
   );
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = 'Fold Change';
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php 
-$dat=$data->field_field_fold_change[0][\'raw\'][\'value\'];
-$fc_up =pow(2,$dat);
-$fc_down= -1/pow(2,$dat);
-$fc = ($dat>= 0) ? $fc_up : $fc_down;
-printf("%.2f",$fc);
-?> 
-';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
-  /* Field: Content: P-value */
-  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
+  /* Field: Content: Fold Change */
+  $handler->display->display_options['fields']['field_fold_change_raw']['id'] = 'field_fold_change_raw';
+  $handler->display->display_options['fields']['field_fold_change_raw']['table'] = 'field_data_field_fold_change_raw';
+  $handler->display->display_options['fields']['field_fold_change_raw']['field'] = 'field_fold_change_raw';
+  $handler->display->display_options['fields']['field_fold_change_raw']['settings'] = array(
     'thousand_separator' => '',
     'decimal_separator' => '.',
     'scale' => '2',
     'prefix_suffix' => 1,
   );
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php_1']['id'] = 'php_1';
-  $handler->display->display_options['fields']['php_1']['table'] = 'views';
-  $handler->display->display_options['fields']['php_1']['field'] = 'php';
-  $handler->display->display_options['fields']['php_1']['label'] = 'P-value';
-  $handler->display->display_options['fields']['php_1']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php_1']['php_output'] = '<?php 
-printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
-?> ';
-  $handler->display->display_options['fields']['php_1']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php_1']['php_click_sortable'] = '';
   /* Field: Content: Brain region */
   $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
@@ -2395,7 +2377,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Content: Fold change (field_fold_change) */
+  /* Filter criterion: Content: LogFC (field_fold_change) */
   $handler->display->display_options['filters']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['filters']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['filters']['field_fold_change_value']['field'] = 'field_fold_change_value';
@@ -2403,7 +2385,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['field_fold_change_value']['group'] = 1;
   $handler->display->display_options['filters']['field_fold_change_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_fold_change_value']['expose']['operator_id'] = 'field_fold_change_value_op';
-  $handler->display->display_options['filters']['field_fold_change_value']['expose']['label'] = 'ABS(FC) greater than:';
+  $handler->display->display_options['filters']['field_fold_change_value']['expose']['label'] = 'ABS(log2FC)';
   $handler->display->display_options['filters']['field_fold_change_value']['expose']['operator'] = 'field_fold_change_value_op';
   $handler->display->display_options['filters']['field_fold_change_value']['expose']['identifier'] = 'field_fold_change_value';
   $handler->display->display_options['filters']['field_fold_change_value']['expose']['remember_roles'] = array(
@@ -2436,7 +2418,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Fold change */
+  /* Field: Content: LogFC */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['field'] = 'field_fold_change';
@@ -2679,7 +2661,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Content: Fold change (field_fold_change) */
+  /* Filter criterion: Content: LogFC (field_fold_change) */
   $handler->display->display_options['filters']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['filters']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['filters']['field_fold_change_value']['field'] = 'field_fold_change_value';
@@ -2836,7 +2818,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Fold change */
+  /* Field: Content: LogFC */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['field'] = 'field_fold_change';
@@ -2889,7 +2871,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['php']['id'] = 'php';
   $handler->display->display_options['fields']['php']['table'] = 'views';
   $handler->display->display_options['fields']['php']['field'] = 'php';
-  /* Sort criterion: Content: Fold change (field_fold_change) */
+  /* Sort criterion: Content: LogFC (field_fold_change) */
   $handler->display->display_options['sorts']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['sorts']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['sorts']['field_fold_change_value']['field'] = 'field_fold_change_value';
@@ -2913,16 +2895,29 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'evidence' => 'evidence',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Species (field_species) */
+  $handler->display->display_options['filters']['field_species_tid']['id'] = 'field_species_tid';
+  $handler->display->display_options['filters']['field_species_tid']['table'] = 'field_data_field_species';
+  $handler->display->display_options['filters']['field_species_tid']['field'] = 'field_species_tid';
+  $handler->display->display_options['filters']['field_species_tid']['value'] = array(
+    18 => '18',
+  );
+  $handler->display->display_options['filters']['field_species_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_species_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_species_tid']['vocabulary'] = 'species';
+  $handler->display->display_options['filters']['field_species_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Claim Type (field_evidence_data_type) */
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['id'] = 'field_evidence_data_type_tid';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['table'] = 'field_data_field_evidence_data_type';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['field'] = 'field_evidence_data_type_tid';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['operator'] = 'not';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['value'] = array(
-    0 => '19448',
+    19448 => '19448',
   );
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_evidence_data_type_tid']['vocabulary'] = 'evidence_data_type';
+  $handler->display->display_options['filters']['field_evidence_data_type_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Differentially Expressed Genes (field_genes_diff) */
   $handler->display->display_options['filters']['field_genes_diff_tid']['id'] = 'field_genes_diff_tid';
   $handler->display->display_options['filters']['field_genes_diff_tid']['table'] = 'field_data_field_genes_diff';
@@ -2944,25 +2939,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   );
   $handler->display->display_options['filters']['field_genes_diff_tid']['type'] = 'synonyms_autocomplete';
   $handler->display->display_options['filters']['field_genes_diff_tid']['vocabulary'] = 'genes';
-  /* Filter criterion: Content: Fold change (field_fold_change) */
-  $handler->display->display_options['filters']['field_fold_change_value_1']['id'] = 'field_fold_change_value_1';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['table'] = 'field_data_field_fold_change';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['field'] = 'field_fold_change_value';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['operator'] = '<';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['group'] = 1;
-  $handler->display->display_options['filters']['field_fold_change_value_1']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['operator_id'] = 'field_fold_change_value_1_op';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['label'] = 'Log(FC) less than:';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['operator'] = 'field_fold_change_value_1_op';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['identifier'] = 'field_fold_change_value_1';
-  $handler->display->display_options['filters']['field_fold_change_value_1']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  /* Filter criterion: Content: Fold change (field_fold_change) */
+  /* Filter criterion: Content: LogFC (field_fold_change) */
   $handler->display->display_options['filters']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['filters']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['filters']['field_fold_change_value']['field'] = 'field_fold_change_value';
@@ -2999,28 +2976,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Content: Has taxonomy terms (with depth) */
-  $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
-  $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['group'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Brain region(s):';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
-  $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
-  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'brain_region';
-  $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
   /* Filter criterion: Content: Contrast (field_contrast) */
   $handler->display->display_options['filters']['field_contrast_tid']['id'] = 'field_contrast_tid';
   $handler->display->display_options['filters']['field_contrast_tid']['table'] = 'field_data_field_contrast';
@@ -3071,11 +3026,21 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  /* Filter criterion: Content: Claim ID (field_evidence_id) */
+  $handler->display->display_options['filters']['field_evidence_id_value']['id'] = 'field_evidence_id_value';
+  $handler->display->display_options['filters']['field_evidence_id_value']['table'] = 'field_data_field_evidence_id';
+  $handler->display->display_options['filters']['field_evidence_id_value']['field'] = 'field_evidence_id_value';
+  $handler->display->display_options['filters']['field_evidence_id_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['operator_id'] = 'field_evidence_id_value_op';
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['label'] = 'Claim ID (field_evidence_id)';
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['operator'] = 'field_evidence_id_value_op';
+  $handler->display->display_options['filters']['field_evidence_id_value']['expose']['identifier'] = 'field_evidence_id_value';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -3396,7 +3361,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['field_genes_diff']['label'] = 'Human Ortholog';
   $handler->display->display_options['fields']['field_genes_diff']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_genes_diff']['delta_offset'] = '0';
-  /* Field: Content: Fold change */
+  /* Field: Content: LogFC */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['field'] = 'field_fold_change';
@@ -3590,7 +3555,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Content: Fold change (field_fold_change) */
+  /* Filter criterion: Content: LogFC (field_fold_change) */
   $handler->display->display_options['filters']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['filters']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['filters']['field_fold_change_value']['field'] = 'field_fold_change_value';

@@ -2828,7 +2828,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 18,
@@ -2908,7 +2908,7 @@ function members_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 16,
@@ -3130,7 +3130,7 @@ function members_field_default_field_instances() {
     'bundle' => 'evidence',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Log2 of the Fold Change',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -3147,7 +3147,7 @@ function members_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_fold_change',
-    'label' => 'Fold change',
+    'label' => 'LogFC',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -3162,6 +3162,46 @@ function members_field_default_field_instances() {
       'settings' => array(),
       'type' => 'number',
       'weight' => 16,
+    ),
+  );
+
+  // Exported field_instance: 'node-evidence-field_fold_change_raw'.
+  $field_instances['node-evidence-field_fold_change_raw'] = array(
+    'bundle' => 'evidence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Raw Fold Change',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_fold_change_raw',
+    'label' => 'Fold Change',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 17,
     ),
   );
 
@@ -3217,7 +3257,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 18,
+      'weight' => 19,
     ),
   );
 
@@ -3273,7 +3313,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 19,
+      'weight' => 20,
     ),
   );
 
@@ -3418,7 +3458,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 20,
+      'weight' => 21,
     ),
   );
 
@@ -3550,7 +3590,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -3646,7 +3686,7 @@ function members_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 21,
+      'weight' => 22,
     ),
   );
 
@@ -3705,7 +3745,7 @@ function members_field_default_field_instances() {
       'module' => 'og',
       'settings' => array(),
       'type' => 'og_complex',
-      'weight' => 22,
+      'weight' => 23,
     ),
   );
 
@@ -5901,7 +5941,7 @@ function members_field_default_field_instances() {
   t('Figure');
   t('Files');
   t('First Name');
-  t('Fold change');
+  t('Fold Change');
   t('Forum Category');
   t('Full Name');
   t('Group');
@@ -5920,6 +5960,8 @@ function members_field_default_field_instances() {
   t('Links to claim for this target.');
   t('Literature');
   t('Location');
+  t('Log2 of the Fold Change');
+  t('LogFC');
   t('Map Location');
   t('Meeting Date');
   t('Meeting Image');
@@ -5950,6 +5992,7 @@ function members_field_default_field_instances() {
   t('Public or Private');
   t('Rank');
   t('Rationale');
+  t('Raw Fold Change');
   t('References');
   t('Related');
   t('Result Id');

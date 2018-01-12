@@ -374,7 +374,6 @@ function bubblechart_views_pre_render(&$view) {
           $term = taxonomy_term_load($tid)->name;
           array_push($br_terms, $term);
         }
-        dsm($br_terms);
     }
 
     // Contrast
@@ -422,16 +421,13 @@ function bubblechart_views_pre_render(&$view) {
     }
 
     // Fold Change
-    $fc_gt = "";
+    $fc_gt = 0;
     if (!empty($view->exposed_input['field_fold_change_value'])) {
-      $fc_gt = $view->exposed_input['field_fold_change_value'];
-      //dsm($fc_gt);
+      $fc_gt = abs($view->exposed_input['field_fold_change_value']);
     }
 
-
     $mongo_array = _query_mongo2($gene_list, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt);
-    dsm($mongo_array);
-
+    //dsm($mongo_array);
 
     $new_result_array = array();
     foreach($mongo_array as $row) {
@@ -443,8 +439,11 @@ function bubblechart_views_pre_render(&$view) {
       $temp->node_title = $row['GeneSymbol'] . " " . $row['ProbeID'];
       $temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ProbeID'];
       $temp->field_field_pvalue[0]['raw']['value'] = $row['PValue'];
+      $temp->field_field_pvalue[0]['rendered']['#markup'] = sprintf('%.2E', $row['PValue']);
       $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
       $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
+      $temp->field_field_fold_change_raw[0]['raw']['value'] = $row['FC'];
+      $temp->field_field_fold_change_raw[0]['rendered']['#markup'] = sprintf('%.2f', $row['FC']);
       $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['FileName']);
       $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $row['FileName'] . '</a>';
       $temp->field_field_brain_region[0]['rendered']['#markup']= $row['BrainRegion'];
@@ -777,8 +776,7 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
       $gene_list = array();
     }
 
-    dsm($gene_list);
-
+    //dsm($gene_list);
 
     // Create a Mongo connection and connect to database //echo $db;
     $mongo = new MongoClient("mongodb://localhost");
@@ -787,31 +785,36 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
     // Select the expression collection for gene expression info
     $coll = $db->human_expression;
 
-    // Filter on gene
-    //db.human_expression.find({"GeneSymbol":"PRELP","Contrast":"AD-NCI","BrainRegionFull":"Temporal Cortex"}).count()
-    //$query = array("GeneSymbol" => array('$in' => $gene_list));
-    //($input_gene, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt)
-    $query2 = array( '$and' => array(
-             array("GeneSymbol" => array('$in' => $gene_list)),
-             array('BrainRegionFull' => array('$in' => $br_terms)),
-             array('DataType' => array('$in' => $dt_terms)),
-             array('Contrast' => array('$in' => $con_terms)),
-             ) );
-    //dsm($query2);
-
     // Build mongo query: use wildcard for unspecified values
-    // db.human_expression.find({"GeneSymbol":"PRELP","Contrast":"AD-NCI","BrainRegionFull": { $regex:  '.*', $options: "si" } })
-    $query1 = !empty($gene_list) ? array('GeneSymbol' => array('$in' => $gene_list)) : array('GeneSymbol' => array('$regex' => '.*', '$options' => "si"));
-    $query2 = !empty($br_terms) ? array('BrainRegionFull' => array('$in' => $br_terms)) : array('BrainRegionFull' => array('$regex' => '.*', '$options' => "si"));
-    $query3 = !empty($con_terms) ? array('Contrast' => array('$in' => $con_terms)) : array('Contrast' => array('$regex' => '.*', '$options' => "si"));
-    $query4 = !empty($dt_terms) ? array('DataType' => array('$in' => $dt_terms)) : array('DataType' => array('$regex' => '.*', '$options' => "si"));
-    $query5 = !empty($study_terms) ? array('StudyName' => array('$in' => $study_terms)) : array('StudyName' => array('$regex' => '.*', '$options' => "si"));
-    $query6 = !empty($pvalue) ? array('PValue' => array('$lt' => (float)$pvalue)) : array('PValue' => array('$regex' => '.*', '$options' => "si"));
-    $query7 = !empty($fc_gt) ? array('logFC' => array('$gt' => abs($fc_gt))) : array('logFC' => array('$regex' => '.*', '$options' => "si"));
+    // db.human_expression.find({"GeneSymbol": "PRELP", "BrainRegionFull": { $regex:  '.*', $options: "si" }, "Contrast": { $regex:  '.*', $options: "si" }, "DataType": { $regex:  '.*', $options: "si" }, "StudyName": { $regex:  '.*', $options: "si" }, "PValue": { $regex:  '.*', $options: "si" }, "PValue": { $regex:  '.*', $options: "si" }, "logFC": { $regex:  '.*', $options: "si" },  })
+    $query1 = !empty($gene_list) ? array('GeneSymbol' => array('$in' => $gene_list)) : NULL;
+    $query2 = !empty($br_terms) ? array('BrainRegionFull' => array('$in' => $br_terms)) : NULL;
+    $query3 = !empty($con_terms) ? array('Contrast' => array('$in' => $con_terms)) : NULL;
+    $query4 = !empty($dt_terms) ? array('DataType' => array('$in' => $dt_terms)) : NULL;
+    $query5 = !empty($study_terms) ? array('StudyName' => array('$in' => $study_terms)) : NULL;
+    $query6 = array('PValue' => array('$lt' => (float)$pvalue));
 
-    $query = array( '$and' => array($query1, $query2, $query3, $query4, $query5, $query6, $query7));
+    // Fold change
+    if ($fc_gt != 0) {
+      $fc_pos = $fc_gt;
+      $fc_neg = -($fc_gt);
+      $query7 = array('$or' => array(array('logFC' => array('$gt' => $fc_pos)), array('logFC' => array('$lt' => $fc_neg))) );
+    } else {
+      $query7 = NULL;
+    }
 
-    dsm($query);
+    $query_check = array($query1, $query2, $query3, $query4, $query5, $query6, $query7);
+    $query_total = array();
+    foreach ($query_check as $value) {
+      if (!empty($value)) {
+        $query_total[] = $value;
+      }
+    }
+
+    //dsm($query_check);
+    //dsm($query_total);
+    $query = array( '$and' => $query_total);
+    //dsm($query);
 
     $cursor = $coll->find($query);
     $cursor->timeout(-1);
@@ -841,6 +844,8 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
        $result[$i]['DataType'] = $doc['DataType'];
        //Old version was LogFC?
        $result[$i]['LogFC'] = $doc['logFC'];
+       $result[$i]['FC'] = ($doc['logFC'] >= 0) ? pow(2,$doc['logFC']) : -1/pow(2,$doc['logFC']);
+
        $result[$i]['PValue'] = $doc['PValue'];
 
        $result[$i]['FileName'] = $doc['FileName'];

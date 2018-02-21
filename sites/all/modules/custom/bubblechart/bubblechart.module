@@ -737,8 +737,9 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
      foreach ($cursor as $doc) {
        //var_dump($doc);
        $result[$i]['Study'] = $doc['StudyName'];
-       $result[$i]['BrainRegion'] = $doc['BrainRegionCode'];
-       $result[$i]['parent'] = $doc['BrainRegionCode'];
+       $result[$i]['BrainRegionCode'] = $doc['BrainRegionCode'];
+       $result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+       $result[$i]['parent'] = $doc['BrainRegionFull'];
        $result[$i]['Contrast'] = $doc['Contrast'] . ": " . $doc['StratFactor'];
        $result[$i]['GeneSymbol'] = $doc['GeneSymbol'];
        $result[$i]['AdjPValue'] = $doc['adjPVal'];

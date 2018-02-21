@@ -57,8 +57,15 @@ function bubblechart_genomics($input_genes) {
   drupal_add_css($path . '/bubblechart.css');
 
   $pval = 0.05;
-  $result = _query_mongo($input_genes, $pval);
+  $br_terms = array();
+  $con_terms = array();
+  $dt_terms = array();
+  $study_terms = array();
+  $fc_gt = 0;
 
+  $result = _query_mongo2($input_genes, $br_terms, $con_terms, $dt_terms, $study_terms, $pval, $fc_gt);
+
+  //dsm($result);
   $study_checkbox = _create_facet($result, 'Study');    // Returns string 35-44
   $contrast_checkbox = _create_facet($result, 'Contrast');
   $datatype_checkbox = _create_facet($result, 'DataType');
@@ -72,7 +79,7 @@ function bubblechart_genomics($input_genes) {
   $page .= $study_checkbox . $contrast_checkbox;
   $page .= '</td><td>';
   $page .= $datatype_checkbox .  $br_checkbox;
-   $page .= '</td></tr>';
+  $page .= '</td></tr>';
   $page .= '</table>';
   $page .= '</div>';
   $page .=  t(
@@ -131,6 +138,14 @@ function bubblechart_genomics($input_genes) {
         unset($result[$i]["parent"]);
         unset($result[$i]["size"]);
         unset($result[$i]["name"]);
+        unset($result[$i]["BrainRegionCode"]);
+        unset($result[$i]["FC"]);
+        unset($result[$i]["CIL"]);
+        unset($result[$i]["CIR"]);
+        unset($result[$i]["min"]);
+        unset($result[$i]["median"]);
+        unset($result[$i]["max"]);
+        unset($result[$i]["Rank"]);
         unset($analysis_nid);
         unset($analysis_script_url);
     }

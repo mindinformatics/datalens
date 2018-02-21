@@ -23,6 +23,7 @@
 
     //console.log("userInfo");
     //console.log(settings.person);
+    //console.log(rows);
 
 
     $("button").click(function(){

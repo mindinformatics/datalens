@@ -90,7 +90,7 @@ function scfmembers_user_top_menu_block_content() {
   }
   else {
     $links[] = t('Welcome') . ', ' . 'Guest';
-    $links[] = l(t('Join'), 'user/register');
+    //$links[] = l(t('Join'), 'user/register');
     $links[] = l(t('Log In'), 'user/login');
   }
 

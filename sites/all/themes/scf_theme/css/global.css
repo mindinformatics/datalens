@@ -1612,6 +1612,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
 }
 
 .view-evidence .views-exposed-form .views-exposed-widget,
+.view-evidence-simple .views-exposed-form .views-exposed-widget,
 .view-genetic-association .views-exposed-form .views-exposed-widget,
 .view-evidence-mouse .views-exposed-form .views-exposed-widget {
   padding: .5em 1em 0 .6em;
@@ -1627,6 +1628,12 @@ div.horizontal-tabs .horizontal-tabs-panes {
 .view-evidence .views-exposed-form #edit-field-group-tid-wrapper,
 .view-evidence .views-exposed-form #edit-term-node-tid-depth-wrapper,
 .view-evidence .views-exposed-form #edit-term-node-tid-depth-1-wrapper {
+  width: 20%;
+}
+
+.view-evidence-simple .views-exposed-form #edit-field-group-tid-wrapper,
+.view-evidence-simple .views-exposed-form #edit-term-node-tid-depth-wrapper,
+.view-evidence-simple .views-exposed-form #edit-term-node-tid-depth-1-wrapper {
   width: 20%;
 }
 

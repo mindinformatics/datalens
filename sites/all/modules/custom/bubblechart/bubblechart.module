@@ -293,6 +293,14 @@ function bubblechart_form_alter(&$form, &$form_state,$form_id ){
     $form['title']['#rows']='9';
  }
 
+ if($form['#id'] == 'views-exposed-form-evidence-simple-page') {
+    //dsm($form['title']['#type']);
+    $form['title']['#type']='textarea';
+    $form['title']['#cols']='20';
+    $form['title']['#rows']='9';
+ }
+
+
  if($form['#id'] == 'views-exposed-form-evidence-mouse-page') {
     //dsm($form);
     $form['field_evidence_id_value']['#type']='textarea';
@@ -358,6 +366,125 @@ function bubblechart_views_pre_render(&$view) {
   //dsm($view);
 
   if($view->name=='evidence'){
+    //dsm($view);
+    //dsm($view->exposed_input);
+    //dsm($view);
+
+    if (empty($view->exposed_input['title']) &&
+        empty($view->exposed_input['term_node_tid_depth']) &&
+        empty($view->exposed_input['term_node_tid_depth_1']) &&
+        empty($view->exposed_input['field_contrast_tid']) &&
+        empty($view->exposed_input['field_fold_change_value']) &&
+        empty($view->exposed_input['term_node_tid_depth_2']) ) {
+        $view->result = array();
+        $view->total_rows = 0;
+        $view->query->pager->total_items = 0;
+        $view->query->pager->update_page_info();
+        $view->empty['area']->options['content'] = "Please select 1 or more filter options above and click the Apply button.";
+    } else {
+
+    // Gene
+    $gene_list = "";
+    if (!empty($view->exposed_input['title'])) {
+      $gene_list = $view->exposed_input['title'];
+    }
+
+    // Brain Region
+    $br_terms = array();
+    if (!empty($view->exposed_input['term_node_tid_depth'])) {
+        $brain_region = $view->exposed_input['term_node_tid_depth'];
+        foreach($brain_region as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          array_push($br_terms, $term);
+        }
+    }
+
+    // Contrast
+    $con_terms = array();
+      if (!empty($view->exposed_input['field_contrast_tid'])) {
+        $contrast = $view->exposed_input['field_contrast_tid'];
+        //dsm($contrast);
+        foreach($contrast as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          array_push($con_terms, $term);
+        }
+      }
+
+    // Data Type
+    $dt_terms = array();
+    if (!empty($view->exposed_input['term_node_tid_depth_1'])) {
+      $data_type = $view->exposed_input['term_node_tid_depth_1'];
+        foreach($data_type as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          if ($term === "Array Expression" ) {
+            $term = "uArray";
+          }
+          if ($term === "RNA-seq" ) {
+            array_push($dt_terms, "CPM", "RC", "FPKM");
+          } else {
+            array_push($dt_terms, $term);
+          }
+        }
+    }
+
+    // Group/Study
+    $study_terms = array();
+    if (!empty($view->exposed_input['term_node_tid_depth_2'])) {
+      $study = $view->exposed_input['term_node_tid_depth_2'];
+      foreach($study as $tid) {
+        $term = taxonomy_term_load($tid)->name;
+        array_push($study_terms, $term);
+      }
+    }
+
+    // PValue
+    $pvalue = ".05";
+    if (!empty($view->exposed_input['field_pvalue_value'])) {
+      $pvalue = $view->exposed_input['field_pvalue_value'];
+    }
+
+    // Fold Change
+    $fc_gt = 0;
+    if (!empty($view->exposed_input['field_fold_change_value'])) {
+      $fc_gt = abs($view->exposed_input['field_fold_change_value']);
+    }
+
+    $mongo_array = _query_mongo2($gene_list, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt);
+    //dsm($mongo_array);
+
+    $new_result_array = array();
+    foreach($mongo_array as $row) {
+       //$row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['AdjPVal'], $value['FileName']););
+      $analysis_nid = intval(_query_analysisId($row['FileName']));
+      $input_study_nid = intval(_query_inputId($analysis_nid));
+      //var_dump($analysis_id);
+      $temp = new stdClass;
+      $temp->node_title = $row['GeneSymbol'] . " " . $row['ProbeID'];
+      $temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ProbeID'];
+      $temp->field_field_pvalue[0]['raw']['value'] = $row['PValue'];
+      $temp->field_field_pvalue[0]['rendered']['#markup'] = sprintf('%.2E', $row['PValue']);
+      $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
+      $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
+      $temp->field_field_fold_change_raw[0]['raw']['value'] = $row['FC'];
+      $temp->field_field_fold_change_raw[0]['rendered']['#markup'] = sprintf('%.2f', $row['FC']);
+      $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['FileName']);
+      $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $row['FileName'] . '</a>';
+      $temp->field_field_brain_region[0]['rendered']['#markup']= $row['BrainRegion'];
+      $temp->field_field_data_type[0]['rendered']['#markup'] = $row['DataType'];
+      $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/node/' . $input_study_nid . '">' . $row['Study']. '</a>';
+      $new_result_array[] = $temp;
+    }
+
+
+    $view->result = $new_result_array;
+    $view->total_rows = count($new_result_array);
+    //$view->query->pager->total_items = count($new_result_array);
+    //$view->query->pager->update_page_info();
+
+    }
+  }
+
+  if($view->name=='evidence_simple'){
     //dsm($view);
     //dsm($view->exposed_input);
     //dsm($view);

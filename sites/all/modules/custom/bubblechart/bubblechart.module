@@ -61,9 +61,10 @@ function bubblechart_genomics($input_genes) {
   $con_terms = array();
   $dt_terms = array();
   $study_terms = array();
+  $file_list = array();
   $fc_gt = 0;
 
-  $result = _query_mongo2($input_genes, $br_terms, $con_terms, $dt_terms, $study_terms, $pval, $fc_gt);
+  $result = _query_mongo2($input_genes, $br_terms, $con_terms, $dt_terms, $study_terms, $pval, $fc_gt, $file_list);
 
   //dsm($result);
   $study_checkbox = _create_facet($result, 'Study');    // Returns string 35-44
@@ -449,7 +450,9 @@ function bubblechart_views_pre_render(&$view) {
       $fc_gt = abs($view->exposed_input['field_fold_change_value']);
     }
 
-    $mongo_array = _query_mongo2($gene_list, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt);
+    $file_list = array();
+
+    $mongo_array = _query_mongo2($gene_list, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list);
     //dsm($mongo_array);
 
     $new_result_array = array();
@@ -488,18 +491,18 @@ function bubblechart_views_pre_render(&$view) {
     //dsm($view);
     //dsm($view->exposed_input);
     //dsm($view);
+    dsm($view->display_handler->get_option('filters'));
 
-    if (empty($view->exposed_input['title']) &&
-        empty($view->exposed_input['term_node_tid_depth']) &&
-        empty($view->exposed_input['term_node_tid_depth_1']) &&
-        empty($view->exposed_input['field_contrast_tid']) &&
-        empty($view->exposed_input['field_fold_change_value']) &&
-        empty($view->exposed_input['term_node_tid_depth_2']) ) {
+    //Data Type
+    dsm($view->display_handler->get_option('filters')['field_evidence_data_type_tid']['value']);
+
+
+    if (empty($view->exposed_input['title']) ) {
         $view->result = array();
         $view->total_rows = 0;
         $view->query->pager->total_items = 0;
         $view->query->pager->update_page_info();
-        $view->empty['area']->options['content'] = "Please select 1 or more filter options above and click the Apply button.";
+        $view->empty['area']->options['content'] = "Please enter a list of genes and click the Apply button.";
     } else {
 
     // Gene
@@ -508,67 +511,29 @@ function bubblechart_views_pre_render(&$view) {
       $gene_list = $view->exposed_input['title'];
     }
 
+
     // Brain Region
     $br_terms = array();
-    if (!empty($view->exposed_input['term_node_tid_depth'])) {
-        $brain_region = $view->exposed_input['term_node_tid_depth'];
-        foreach($brain_region as $tid) {
-          $term = taxonomy_term_load($tid)->name;
-          array_push($br_terms, $term);
-        }
-    }
 
     // Contrast
     $con_terms = array();
-      if (!empty($view->exposed_input['field_contrast_tid'])) {
-        $contrast = $view->exposed_input['field_contrast_tid'];
-        //dsm($contrast);
-        foreach($contrast as $tid) {
-          $term = taxonomy_term_load($tid)->name;
-          array_push($con_terms, $term);
-        }
-      }
 
     // Data Type
     $dt_terms = array();
-    if (!empty($view->exposed_input['term_node_tid_depth_1'])) {
-      $data_type = $view->exposed_input['term_node_tid_depth_1'];
-        foreach($data_type as $tid) {
-          $term = taxonomy_term_load($tid)->name;
-          if ($term === "Array Expression" ) {
-            $term = "uArray";
-          }
-          if ($term === "RNA-seq" ) {
-            array_push($dt_terms, "CPM", "RC", "FPKM");
-          } else {
-            array_push($dt_terms, $term);
-          }
-        }
-    }
 
     // Group/Study
     $study_terms = array();
-    if (!empty($view->exposed_input['term_node_tid_depth_2'])) {
-      $study = $view->exposed_input['term_node_tid_depth_2'];
-      foreach($study as $tid) {
-        $term = taxonomy_term_load($tid)->name;
-        array_push($study_terms, $term);
-      }
-    }
 
     // PValue
     $pvalue = ".05";
-    if (!empty($view->exposed_input['field_pvalue_value'])) {
-      $pvalue = $view->exposed_input['field_pvalue_value'];
-    }
 
     // Fold Change
     $fc_gt = 0;
-    if (!empty($view->exposed_input['field_fold_change_value'])) {
-      $fc_gt = abs($view->exposed_input['field_fold_change_value']);
-    }
 
-    $mongo_array = _query_mongo2($gene_list, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt);
+
+    $file_list = array("ROSMAP_PFC_FPKM_CpDxAll_AD-NCI.csv", "MayoBB_TCX_CPM_ClinicalDiagnosis_AD-NCI.csv", "MayoBB_CBE_CPM_ClinicalDiagnosis_AD-NCI.csv", "MSBB_STG_CPM_CpDxAll_AD-NCI.csv", "MSBB_IFG_CPM_CpDxAll_AD-NCI.csv", "MSBB_PHG_CPM_CpDxAll_AD-NCI.csv", "MSBB_FP_CPM_CpDxAll_AD-NCI.csv");
+
+    $mongo_array = _query_mongo2($gene_list, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list);
     //dsm($mongo_array);
 
     $new_result_array = array();
@@ -791,7 +756,7 @@ function _query_synonyms($input, $species) {
 
 //Gene, Brain Region, Contrast, Data Type, Group/Study, PValue, ABS(LogFC)
 //_query_mongo2($gene_list, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt);
-function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt) {
+function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list) {
 
     // Check gene input
     if (!empty($input_gene)) {
@@ -824,6 +789,9 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
     $query4 = !empty($dt_terms) ? array('DataType' => array('$in' => $dt_terms)) : NULL;
     $query5 = !empty($study_terms) ? array('StudyName' => array('$in' => $study_terms)) : NULL;
     $query6 = array('PValue' => array('$lt' => (float)$pvalue));
+    //see $query7 below
+    $query8 = !empty($file_list) ? array('FileName' => array('$in' => $file_list)) : NULL;
+
 
     // Fold change
     if ($fc_gt != 0) {
@@ -834,7 +802,7 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
       $query7 = NULL;
     }
 
-    $query_check = array($query1, $query2, $query3, $query4, $query5, $query6, $query7);
+    $query_check = array($query1, $query2, $query3, $query4, $query5, $query6, $query7, $query8);
     $query_total = array();
     foreach ($query_check as $value) {
       if (!empty($value)) {

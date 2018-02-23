@@ -491,10 +491,10 @@ function bubblechart_views_pre_render(&$view) {
     //dsm($view);
     //dsm($view->exposed_input);
     //dsm($view);
-    dsm($view->display_handler->get_option('filters'));
+    //dsm($view->display_handler->get_option('filters'));
 
     //Data Type
-    dsm($view->display_handler->get_option('filters')['field_evidence_data_type_tid']['value']);
+    //dsm($view->display_handler->get_option('filters')['field_evidence_data_type_tid']['value']);
 
 
     if (empty($view->exposed_input['title']) ) {

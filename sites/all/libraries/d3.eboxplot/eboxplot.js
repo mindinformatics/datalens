@@ -41,7 +41,6 @@ Drupal.d3.eboxplot = function (select, settings) {
                d[options.data.identifier] : 'undefined';
             var value = options.axes.y.label && d[options.axes.y.label] ?
                options.axes.y.tickFormat(d[options.axes.y.label]) : '';
-
             var message = "<span style='font-size: 11px; text-align: center;'>";
             message += d[options.data.identifier] + ': ' + d[options.axes.y.label] + "</span>";
 
@@ -78,9 +77,13 @@ Drupal.d3.eboxplot = function (select, settings) {
    boxPlotFunctions.defaultDistribution = defaultDistribution;
    function defaultDistribution(tooltip) {
       var default_distributions = "/sites/all/libraries/d3.eboxplot/atp_wta.dat";
+      rows = settings.rows;
+      console.debug(rows);
+
       var container = d3.select('#' + settings.id);
 
       d3.json(default_distributions, function(error, result) {
+         //console.debug(result.data);
          if (error || !result) return;
 
          var xbp = explodingBoxplot();
@@ -91,24 +94,42 @@ Drupal.d3.eboxplot = function (select, settings) {
             if (tooltip == 'd3-tip') xbp.events({ 'update': { 'ready': defineTooltip } });
          }
 
+         var study = settings.study;
+         var mygene = settings.gene;
+         //console.log(gene);
+         //console.log(study);
+
+/*
+ID (Integer) 1
+Tissue (String, 14 characters ) TemporalCortex
+Diagnosis (String, 2 characters ) AD
+Sex (String, 1 characters ) F
+ApoE (Integer) 33
+AgeAtDeath (String, 3 characters ) 90+
+AgeAtOnset (NULL)
+Expression (Float) 1841.666
+ApoEPval (NULL)
+ */
+
          xbp.options(
             {
                id:   'demo',
                data: {
-                  group: 'Set Score',
-                  color_index: 'Set Score',
-                  identifier: 'h2h'
+                  group: 'Diagnosis',
+                  color_index: 'Diagnosis',
+                  identifier: 'ID',
+                  gene: settings.gene
                },
                width: 700,
                height: 480,
                axes: {
-                  x: { label: 'Set Score' },
-                  y: { label: 'Total Points' }
+                  x: { label: 'Diagnosis' },
+                  y: { label: 'Expression' }
                }
             }
          );
 
-         xbp.data(result.data);
+         xbp.data(rows);
          container.call(xbp);
          xbp.update();
 
@@ -127,22 +148,27 @@ Drupal.d3.eboxplot = function (select, settings) {
       var row1 = viztable.append('tr').append('td').attr('align', 'left');
       row1.append('input').attr('name', 'tooltip').attr('id', 'popover').attr('type', 'radio').attr('value', 'popover');
       row1.append('label').html('&nbsp; Bootstrap Popover').style('font-size', '12px');
-      document.getElementById("popover").addEventListener("change", function() {
+      /*
+document.getElementById("popover").addEventListener("change", function() {
          boxPlotFunctions.xbp.events({ 'point': { 'mouseover': showTooltip, 'mouseout': removeTooltip }, 'update': { 'ready': null } });
       });
+ */
 
       var row2 = viztable.append('tr').append('td').attr('align', 'left');
       row2.append('input').attr('name', 'tooltip').attr('id', 'd3tip').attr('type', 'radio').attr('value', 'd3tip').attr('checked', 'checked');
       row2.append('label').html('&nbsp; d3-tip Tooltip').style('font-size', '12px');
+/*
       document.getElementById("d3tip").addEventListener("change", function() {
          boxPlotFunctions.xbp.events({ 'update': { 'ready': defineTooltip } });
          boxPlotFunctions.xbp.update();
       });
+ */
       var row3 = viztable.append('tr').append('td').append('hr');
 
-      var row4 = viztable.append('tr').append('td').attr('align', 'left');
+/*      var row4 = viztable.append('tr').append('td').attr('align', 'left');
       row4.append('input').attr('name', 'colors').attr('id', 'shuffle').attr('type', 'radio').attr('value', 'shuffle');
       row4.append('label').html('&nbsp; Shuffle Colors').style('font-size', '12px');
+
       document.getElementById("shuffle").addEventListener("change", function() {
          var shuffle_colors = {
             7: "#a6cee3", 4: "#ff7f00", 1: "#b2df8a", 3: "#1f78b4", 2: "#fdbf6f",  0: "#33a02c",
@@ -151,7 +177,9 @@ Drupal.d3.eboxplot = function (select, settings) {
          boxPlotFunctions.xbp.colors(shuffle_colors);
          boxPlotFunctions.xbp.update();
       });
+ */
 
+/*
       var row5 = viztable.append('tr').append('td').attr('align', 'left');
       row5.append('input').attr('name', 'colors').attr('id', 'default').attr('type', 'radio').attr('value', 'default').attr('checked', 'checked');
       row5.append('label').html('&nbsp; Default Colors').style('font-size', '12px');
@@ -159,9 +187,11 @@ Drupal.d3.eboxplot = function (select, settings) {
          boxPlotFunctions.xbp.colors({foo: 'bogus'});
          boxPlotFunctions.xbp.update();
       });
+ */
 
       var row6 = viztable.append('tr').append('td').append('hr');
 
+/*
       var row7 = viztable.append('tr').append('td').attr('align', 'left');
       row7.append('input').attr('name', 'size').attr('id', 'resize').attr('type', 'radio').attr('value', 'resize');
       row7.append('label').html('&nbsp; Resize').style('font-size', '12px');
@@ -171,7 +201,9 @@ Drupal.d3.eboxplot = function (select, settings) {
          boxPlotFunctions.xbp.width(400).height(300);
          boxPlotFunctions.xbp.update();
       });
+ */
 
+/*
       var row8 = viztable.append('tr').append('td').attr('align', 'left');
       row8.append('input').attr('name', 'size').attr('id', 'original').attr('type', 'radio').attr('value', 'original').attr('checked', 'checked');
       row8.append('label').html('&nbsp; Original Dimensions').style('font-size', '12px');
@@ -204,7 +236,9 @@ Drupal.d3.eboxplot = function (select, settings) {
       });
 
       var row12 = viztable.append('tr').append('td').append('hr');
+ */
 
+/*
       var row13 = viztable.append('tr').append('td').attr('align', 'left');
       row13.append('input').attr('name', 'attribute').attr('id', 'shots').attr('type', 'radio').attr('value', 'shots');
       row13.append('label').html('&nbsp; Change Attribute').style('font-size', '12px');
@@ -212,7 +246,9 @@ Drupal.d3.eboxplot = function (select, settings) {
          boxPlotFunctions.xbp.options( { axes: { y: { label: 'Total Shots' } } });
          boxPlotFunctions.xbp.update();
       });
+ */
 
+/*
       var row14 = viztable.append('tr').append('td').attr('align', 'left');
       row14.append('input').attr('name', 'attribute').attr('id', 'points').attr('type', 'radio').attr('value', 'points').attr('checked', 'checked');
       row14.append('label').html('&nbsp; Original Attribute').style('font-size', '12px');
@@ -220,6 +256,7 @@ Drupal.d3.eboxplot = function (select, settings) {
          boxPlotFunctions.xbp.options( { axes: { y: { label: 'Total Points' } } });
          boxPlotFunctions.xbp.update();
       });
+ */
 
 
       var row12 = viztable.append('tr').append('td').append('hr');
@@ -253,8 +290,8 @@ function explodingBoxplot() {
       margins: {
          top:     10,
          right:   10,
-         bottom:  30,
-         left:    40
+         bottom:  35,
+         left:    55
       },
 
       axes: {
@@ -448,6 +485,7 @@ function explodingBoxplot() {
                      .attr('y', -options.margins.left + 5)
                      .style("text-anchor", "middle")
                      .text(options.axes.y.label);
+                     //.text(options.data.gene + ' ' + options.axes.y.label);
 
 
                var boxContent = chartWrapper.selectAll('.boxcontent')
@@ -763,7 +801,8 @@ function explodingBoxplot() {
 
     chart.data = function(value) {
         if (!arguments.length) return data_set;
-        value.sort(function(x, y) { return x['Set Score'].split('-').join('')-y['Set Score'].split('-').join('') });
+        //value.sort(function(x, y) { return x['Set Score'].split('-').join('')-y['Set Score'].split('-').join('') });
+        value.sort(function(x, y) { return x['Diagnosis'] });
         data_set = JSON.parse(JSON.stringify(value));
         return chart;
     };

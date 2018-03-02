@@ -1,0 +1,438 @@
+<?php
+
+// Show PHP errors (during development only)
+    //error_reporting(E_ALL | E_STRICT);
+    //ini_set("display_errors", 2);
+
+/**
+* Implements hook_menu().
+*/
+function eboxplot_menu() {
+
+  $items['eboxplot-input'] = array(
+    'title' => 'Gene Expression Scatterplot',
+    'description' => 'Choose inputs for gene expression eboxplot',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('eboxplot_form'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['eboxplot/%/%/%/%'] = array(
+    'title' => 'Gene Expression Scatterplot',
+    'description' => 'Return expression data',
+    'page callback' => 'eboxplot_build',
+    'page arguments' => array(1,2,3,4),
+    'access callback' => TRUE,
+  );
+  $items['test_explode'] = array(
+    'title' => 'Exploding Boxplot',
+    'description' => 'Test Exploding boxplot code',
+    'page callback' => 'eboxplot_build2',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+function eboxplot_block_info() {
+  $blocks = array();
+  $blocks['genelinks2'] = array(
+    // info: The name of the block.
+    'info' => t('GeneLinks'),
+    'status' => TRUE,
+    'theme' => 'scf-theme',
+    'region' => 'sidebar-second',
+    'weight' => 15,
+    'visibility' => 1,
+    'pages' => "eboxplot/*",
+    'custom' => FALSE,
+  );
+
+  return $blocks;
+}
+
+function eboxplot_block_view($delta = '') {
+  $block = array();
+  // The $delta parameter tells us which block is being requested.
+  switch ($delta) {
+    case 'genelinks2':
+      // Create your block content here
+    $block['subject'] = t('Gene Data Links');
+    $block['content'] = eboxplot_block_contents();
+    break;
+  }
+  return $block;
+}
+
+function eboxplot_block_contents() {
+  //$gene_links_url = "eboxplot/" . $gene ."/". $study."/".$xaxis."/".$color;
+  $path = current_path();
+  $path_parts = explode("/", $path);
+  $block_gene = $path_parts[1];
+
+  //External Gene Links Data
+  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $block_gene;
+  $barres_name = $block_gene . " Expression by Cell Type (Barres Lab)";
+
+  $gtex_link = "https://www.gtexportal.org/home/gene/" . $block_gene;
+  $gtex_name = $block_gene . " Expression across Tissues (GTExPortal)";
+
+  $links = "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
+  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a>";
+
+  //$test = "Test links";
+
+  return $links;
+
+}
+
+function eboxplot_build($gene, $study, $xaxis, $color) {
+  $path = libraries_get_path('d3.eboxplot');
+  drupal_add_css($path . '/eboxplot.css');
+
+	//dsm("Gene: " . $gene . ";  Study: " . $study . ";  X-axis: " . $xaxis . ";  Color: " . $color);
+
+	// Process gene input- all caps first
+	$gene = strtoupper($gene);
+  //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+  $gene_list = preg_split('/[\s ,]+/', $gene);
+  $gene_list = array_filter($gene_list);
+  $trimmed_array = array_map('trim', $gene_list);
+  $gene_list = $trimmed_array;
+  $species = array("human");
+  $gene_list = array_map('_query_synonyms', $gene_list, $species);
+  $gene = current($gene_list);
+
+  $result = _query_mongo_scatter($gene, $study);
+  $apoe_pval = $result[1]['ApoEPval'];
+
+  //Note: Having SampleID in this list seems important. Results weird without it.
+  $series_full = array("Diagnosis", "ApoE", "Sex", "AgeAtDeath", "Tissue", "ApoEPval", "ID");
+  $used = array($xaxis, $color);
+  $series = array_diff($series_full, $used);
+  //Color has to be last option in series
+  array_push($series, $color);
+  //dsm($series);
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'eboxplot',
+    'gene' => $gene,
+    'xaxis' => $xaxis,
+    'color' => $color,
+    'study' => $study,
+    'series' => $series,
+    'apoe_pvalue' => $apoe_pval,
+    'rows' => $result,
+  );
+
+  return d3_draw($chart);
+}
+
+function eboxplot_build2() {
+
+  $path = libraries_get_path('d3.eboxplot');
+  libraries_load('d3.eboxplot');
+  //drupal_add_js($path . '/exploding_boxplot.js');
+  //drupal_add_js($path . '/d3_exploding_boxplot.js');
+  //drupal_add_js($path . '/d3-tip.js');
+
+  $study = "MayoBB_TCX_RNASEQ_CPM";
+  $gene = "APP";
+
+  $result = _query_mongo_eboxplot($gene, $study);
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'eboxplot',
+    'gene' => $gene,
+    'study' => $study,
+    'rows' => $result,
+  );
+
+  return d3_draw($chart);  //return ("<p>This is a test.</p>");
+
+}
+
+
+/**
+ * Return a form used to input settings for eboxplot
+ *
+ * @return
+ *   An array which will be used by the form builder to build the import form
+ */
+
+function eboxplot_form($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Plot expression of a gene across subject data such as diagnosis, ApoE, sex and age at death. A labeled example output image is below.</p>'
+  );
+
+  $image_options = array(
+    'path' => '/sites/all/themes/scf_theme/Scatterplot/Scatterplot-image.png',
+    'alt' => 'Test alt',
+    'title' => 'Scatterplot Annotated Example',
+    'width' => '40%',
+    'height' => '40%',
+    'attributes' => array('class' => 'some-img', 'id' => 'scatterplot-image'),
+  );
+
+
+  $image = theme('image', $image_options);
+  $form['start']['image'] = array(
+    '#markup' => $image,
+  );
+
+
+  $form['gene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol; the gene expression level will be the y-axis.'),
+    '#size' => 60
+  );
+
+  $study_options_list = array('MayoBB_CBE_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Cerebellum',
+                              'MayoBB_TCX_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Temporal Cortex',
+                              'ROSMAP_PFC_RNASEQ_FPKM' => 'ROSMAP RNA-Seq Normalized - Prefrontal Cortex'
+  );
+
+  $form['study'] = array(
+       '#type' => 'select',
+       '#title' => t('Study'),
+       '#options' => array(0 => t('- Select -')) + $study_options_list,
+       '#default_value' =>  0,
+       '#description' => t('Please select the study of interest. RNA-Seq normalized = Counts Per Million normalization'),
+       '#ajax' => array(
+        'event' => 'change',
+        'callback' => 'ajax_select_callback',
+        'wrapper' => 'dropdown_second_replace',
+       ),
+   );
+
+   $form['study_container'] = array(
+      '#type' => 'container',
+      '#prefix' => '<div id="dropdown_second_replace">',
+      '#suffix' => '</div>',
+  );
+
+  $category_options_list = array();
+
+  if (isset($form_state['values']['study'])) {
+     $study_input = $form_state['values']['study'];
+     switch ($study_input) {
+            //To test this works, change label- "Age at Death" to "Age at Death CBE"
+            case ($study_input == "MayoBB_CBE_RNASEQ_CPM"):
+                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'ApoE' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                break;
+
+            case ($study_input == "MayoBB_TCX_RNASEQ_CPM"):
+                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'ApoE' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                break;
+
+            case ($study_input == "ROSMAP_PFC_RNASEQ_FPKM"):
+                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'ApoE' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
+                break;
+
+            default:
+                break;
+        }
+  }
+
+   $form['study_container']['xaxis'] = array(
+       '#type' => 'select',
+       '#title' => t('X-axis'),
+       '#options' => array(0 => t('- Select -')) + $category_options_list,
+       '#default_value' =>  0,
+       '#description' => t('Please select the category for the x-axis'),
+   );
+
+   $form['study_container']['color'] = array(
+       '#type' => 'select',
+       '#title' => t('Color'),
+       '#options' => array(0 => t('- Select -')) + $category_options_list,
+       '#default_value' =>  0,
+       '#description' => t('Please select the category for the color.'),
+   );
+
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+	return $form;
+}
+
+function ajax_select_callback2($form, $form_state) {
+  return $form['study_container'];
+}
+
+/**
+ * Implementation of hook_validate() for the eboxplot_input.
+ */
+
+function eboxplot_form_validate($form, & $form_state) {
+
+	 $valid_genes = $form_state['values']['gene'];
+	 $valid_xaxis = $form_state['values']['xaxis'];
+	 $valid_color = $form_state['values']['color'];
+
+	 if( strpos($valid_genes, ',') !== false ) {
+     form_set_error('gene', 'Please enter only one gene symbol');
+   }
+
+	 if ($valid_xaxis === $valid_color) {
+	  form_set_error('color', 'Please choose a different category for the Color; cannot be the same as the X-axis.');
+	 }
+
+	 if ($valid_xaxis === 0) {
+	  form_set_error('xaxis', 'Please choose a category for the X-axis.');
+	 }
+
+	 if ($valid_color === 0) {
+	  form_set_error('color', 'Please choose a category for the Color.');
+	 }
+
+}
+
+function eboxplot_form_submit($form, & $form_state) {
+	//dsm($form_state['values']);
+	$valid_genes = $form_state['values']['gene'];
+	$valid_study = $form_state['values']['study'];
+	$valid_xaxis = $form_state['values']['xaxis'];
+	$valid_color = $form_state['values']['color'];
+
+  $scatter_input = array('gene'=>$valid_genes,'study'=>$valid_study,'xaxis'=>$valid_xaxis,'color'=>$valid_color);
+
+	//drupal_set_message(t('Gene: %genes.', array('%genes' => $valid_genes)));
+	//drupal_set_message(t('Study: %study.', array('%study' => $valid_study)));
+	//drupal_set_message(t('X-axis: %xaxis.', array('%xaxis' => $valid_xaxis)));
+	//drupal_set_message(t('Color: %color', array('%color' => $valid_color)));
+
+	//return drupal_render(drupal_get_form('eboxplot_form'));
+
+  $form_state['redirect'] = 'eboxplot/' . $valid_genes . "/" . $valid_study . "/" . $valid_xaxis . "/" . $valid_color;
+  //return eboxplot_build($scatter_input);
+
+}
+
+
+function _age_buckets2($input) {
+  switch ($input) {
+    case ($input>0 && $input<60):
+        $age = "< 60";
+        break;
+    case ($input>=60 && $input<70):
+        $age = "60 - 69";
+        break;
+    case ($input>=70 && $input<80):
+        $age = "70 - 79";
+        break;
+    case ($input>=80 && $input<90):
+        $age = "80 - 89";
+        break;
+    case ($input== "90_or_above"):
+        $age = "90+";
+        break;
+    case ($input>=90):
+        $age = "90+";
+        break;
+    case ($input == "NA"):
+        $age = "NA";
+        break;
+  }
+
+  return($age);
+
+}
+
+
+function _query_mongo_eboxplot($input_genes, $study) {
+
+    //dsm($input_genes);
+    if (empty($input_genes)) {
+      $gene_list = array('DCLK1');
+    } else {
+      $gene_list = array($input_genes);
+    }
+
+    //dsm($gene_list);
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Need something to map the study to the correct subject covariates and subject_expression
+    // Or just put study name in the file?
+    //subject_covariates
+    //subject_expression
+
+    // Select the expression collection for gene expression info
+    $coll = $db->subject_expression;
+
+
+    // Filter on gene and study
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+             array('Study' => $study ) ) );
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $total = (string)$cursor->count(); //To find total number of documents
+    //dsm("Total: " . $total);
+    //$cursor->limit( 5 );
+
+    //TODO:Sould only be 1 result- add if statement here.
+    $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval", "gene_id");
+     foreach ($cursor as $doc) {
+       //dsm($doc);
+       $exp_keys = array_keys($doc);
+       $result = $doc;
+       $sample_ids = array_diff($exp_keys, $static_keys);
+     }
+     //dsm($result);
+
+    //dsm($sample_ids);
+
+    // Check the covariates for the clinical data
+     $coll2 = $db->subject_covariates;
+     $query2 = array('Study' => $study);
+     $cursor2 = $coll2->find($query2);
+
+     $row = array();
+     $i = 1;
+     foreach ($cursor2 as $doc) {
+       $sample_id = $doc['ID'];
+       //dsm($doc);
+       if (array_key_exists($sample_id, $result) && ($doc['ApoE'] != "NA") ) {
+        $row[] = array(
+          'ID' => $i,
+          'Tissue' => (isset($doc['Tissue']))? $doc['Tissue']: null,
+          'Diagnosis' => $doc['Diagnosis'],
+          'Sex' => $doc['Gender'],
+          'ApoE' => $doc['ApoE'],
+          'AgeAtDeath' => _age_buckets2($doc['AgeAtDeath']),
+          'AgeAtOnset' => (isset($doc['AgeAtOnset']))? _age_buckets($doc['AgeAtOnset']): null,
+          'Expression' => $result[$sample_id],
+          'ApoEPval' => (isset($result['apoe_pval']))? $result['apoe_pval']: null,
+          );
+
+       }
+       $i++;
+     }
+
+    //"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"
+    //  "1000_CER","MayoBrainBank_Dickson","Cerebellum","AD","F","90_or_above","34","708.7612"
+
+    //dsm($row);
+
+    return ($row);
+
+}
+
+
+
+
+?>

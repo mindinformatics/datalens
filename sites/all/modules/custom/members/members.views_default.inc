@@ -34,6 +34,10 @@ function members_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['style_plugin'] = 'table';
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
   /* Relationship: Content: Results (field_result) */
   $handler->display->display_options['relationships']['field_result_value']['id'] = 'field_result_value';
   $handler->display->display_options['relationships']['field_result_value']['table'] = 'field_data_field_result';

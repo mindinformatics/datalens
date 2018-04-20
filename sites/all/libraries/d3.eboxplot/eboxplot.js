@@ -372,17 +372,22 @@ function explodingBoxplot() {
             var domParent = d3.select(this);
             constituents.elements.domParent = domParent;
 
+
+            domParent.selectAll('svg').remove();
+
+
             var chartRoot = domParent.append('svg')
                 .attr('class', 'svg-class')
             constituents.elements.chartRoot = chartRoot;
 
+
             // background click area added first
             var resetArea = chartRoot.append('g').append('rect')
-               .attr('id', 'resetArea')
-					.attr('width',options.width)
-					.attr('height',options.height)
-					.style('color','white')
-					.style('opacity',0);
+                .attr('id', 'resetArea')
+					      .attr('width',options.width)
+					      .attr('height',options.height)
+					      .style('color','white')
+					      .style('opacity',0);
 
             // main chart area
             var chartWrapper = chartRoot.append("g").attr("class", "chartWrapper").attr('id', 'chartWrapper' + options.id)

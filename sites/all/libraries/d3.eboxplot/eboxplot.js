@@ -76,28 +76,24 @@ Drupal.d3.eboxplot = function (select, settings) {
 
    boxPlotFunctions.defaultDistribution = defaultDistribution;
    function defaultDistribution(tooltip) {
-      var default_distributions = "/sites/all/libraries/d3.eboxplot/atp_wta.dat";
-      rows = settings.rows;
-      console.debug(rows);
+     var default_distributions = "/sites/all/libraries/d3.eboxplot/atp_wta.dat";
+     rows = settings.rows;
+     console.debug(rows);
 
-      var container = d3.select('#' + settings.id);
+     var container = d3.select('#' + settings.id);
 
-      d3.json(default_distributions, function(error, result) {
-         //console.debug(result.data);
-         if (error || !result) return;
+     var xbp = explodingBoxplot();
+     boxPlotFunctions.xbp = xbp;
 
-         var xbp = explodingBoxplot();
-         boxPlotFunctions.xbp = xbp;
+     if (tooltip) {
+        if (tooltip == 'popover') xbp.events({ 'point': { 'mouseover': showTooltip, 'mouseout': removeTooltip } });
+        if (tooltip == 'd3-tip') xbp.events({ 'update': { 'ready': defineTooltip } });
+     }
 
-         if (tooltip) {
-            if (tooltip == 'popover') xbp.events({ 'point': { 'mouseover': showTooltip, 'mouseout': removeTooltip } });
-            if (tooltip == 'd3-tip') xbp.events({ 'update': { 'ready': defineTooltip } });
-         }
-
-         var study = settings.study;
-         var mygene = settings.gene;
-         //console.log(gene);
-         //console.log(study);
+     var study = settings.study;
+     var mygene = settings.gene;
+     //console.log(gene);
+     //console.log(study);
 
 /*
 ID (Integer) 1
@@ -109,31 +105,31 @@ AgeAtDeath (String, 3 characters ) 90+
 AgeAtOnset (NULL)
 Expression (Float) 1841.666
 ApoEPval (NULL)
- */
+*/
 
-         xbp.options(
-            {
-               id:   'demo',
-               data: {
-                  group: 'Diagnosis',
-                  color_index: 'Diagnosis',
-                  identifier: 'ID',
-                  gene: settings.gene
-               },
-               width: 700,
-               height: 480,
-               axes: {
-                  x: { label: 'Diagnosis' },
-                  y: { label: 'Expression' }
-               }
-            }
-         );
+     xbp.options(
+        {
+           id:   'demo',
+           data: {
+              group: 'Diagnosis',
+              color_index: 'Diagnosis',
+              identifier: 'ID',
+              gene: settings.gene
+           },
+           width: 500,
+           height: 480,
+           axes: {
+              x: { label: 'Diagnosis' },
+              y: { label: 'Expression' }
+           }
+        }
+     );
 
-         xbp.data(rows);
-         container.call(xbp);
-         xbp.update();
+     xbp.data(rows);
+     container.call(xbp);
+     xbp.update();
 
-      });
+
    }
 
    boxPlotFunctions.demoSetup = demoSetup;

@@ -1884,6 +1884,10 @@ ul.bef-tree-child.bef-tree-depth-2 {
 
 /* D3 CSS */
 
+#forest-plot td {
+  vertical-align: top;
+}
+
 #block-nice-menus-2 .nice-menu-hide-title {
   display: none;
 }

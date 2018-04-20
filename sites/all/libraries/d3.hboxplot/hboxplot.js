@@ -53,7 +53,7 @@ Drupal.d3.hboxplot = function (select, settings) {
   }
 
   var chart = d3.select('#' + settings.id).append("svg")
-    .attr("height", h)
+    .attr("height", h + 40)
     .attr("width", w + 53);
 
 
@@ -91,6 +91,13 @@ Drupal.d3.hboxplot = function (select, settings) {
     .attr("id", "xAxisG")
     .call(xAxis);
 
+
+  chart.append("text")
+    .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+    //.attr("transform", "translate("+ (width/2) +","+(height-(padding/3))+")")  // centre below axis
+    .attr("transform", "translate(" + (w/2) + " ," + (h + margin.top) + ")")
+    .text("log Fold Change");
+
   var rows = data.map(function(d){return Number(d.row)});
   var brain_regions = data.map(function(d){return (d.BrainRegion + " (" + sformat(d.PValue)+ ")" )});
   var p_vals = data.map(function(d){return (d.PValue) });
@@ -103,7 +110,7 @@ Drupal.d3.hboxplot = function (select, settings) {
     .tickFormat(function(d,i) { return brain_regions[i] })
     //.text("fill", function(d,i) { return (p_vals[i] <= .05 ? "green" : "black")});
 
-var xt = w - 30;
+  var xt = w - 30;
 
   chart.append("g")
     .attr("transform", "translate(" + xt + ",0)")

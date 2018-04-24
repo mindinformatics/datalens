@@ -76,9 +76,9 @@ Drupal.d3.eboxplot = function (select, settings) {
 
    boxPlotFunctions.defaultDistribution = defaultDistribution;
    function defaultDistribution(tooltip) {
-     var default_distributions = "/sites/all/libraries/d3.eboxplot/atp_wta.dat";
+     //var default_distributions = "/sites/all/libraries/d3.eboxplot/atp_wta.dat";
      rows = settings.rows;
-     console.debug(rows);
+     console.log(rows);
 
      var container = d3.select('#' + settings.id);
 
@@ -92,35 +92,24 @@ Drupal.d3.eboxplot = function (select, settings) {
 
      var study = settings.study;
      var mygene = settings.gene;
-     //console.log(gene);
+     var category = settings.xaxis;
+     //console.log(mygene);
      //console.log(study);
-
-/*
-ID (Integer) 1
-Tissue (String, 14 characters ) TemporalCortex
-Diagnosis (String, 2 characters ) AD
-Sex (String, 1 characters ) F
-ApoE (Integer) 33
-AgeAtDeath (String, 3 characters ) 90+
-AgeAtOnset (NULL)
-Expression (Float) 1841.666
-ApoEPval (NULL)
-*/
 
      xbp.options(
         {
            id:   'demo',
            data: {
-              group: 'Diagnosis',
-              color_index: 'Diagnosis',
+              group: settings.xaxis,
+              color_index: settings.xaxis,
               identifier: 'ID',
               gene: settings.gene
            },
            width: 500,
            height: 480,
            axes: {
-              x: { label: 'Diagnosis' },
-              y: { label: 'Expression' }
+              x: { label: settings.xaxis },
+              y: { label: settings.yaxis }
            }
         }
      );
@@ -128,7 +117,6 @@ ApoEPval (NULL)
      xbp.data(rows);
      container.call(xbp);
      xbp.update();
-
 
    }
 
@@ -277,10 +265,10 @@ function explodingBoxplot() {
 
     var options = {
 
-      id: '',
-      class: 'xBoxPlot',
+     id: '',
+     class: 'xBoxPlot',
 
-      width: window.innerWidth,
+     width: window.innerWidth,
 	   height: window.innerHeight,
 
       margins: {
@@ -384,6 +372,7 @@ function explodingBoxplot() {
 					      .attr('height',options.height)
 					      .style('color','white')
 					      .style('opacity',0);
+
 
             // main chart area
             var chartWrapper = chartRoot.append("g").attr("class", "chartWrapper").attr('id', 'chartWrapper' + options.id)
@@ -803,7 +792,7 @@ function explodingBoxplot() {
     chart.data = function(value) {
         if (!arguments.length) return data_set;
         //value.sort(function(x, y) { return x['Set Score'].split('-').join('')-y['Set Score'].split('-').join('') });
-        value.sort(function(x, y) { return x['Diagnosis'] });
+        value.sort(function(x, y) { return x[settings.xaxis] });
         data_set = JSON.parse(JSON.stringify(value));
         return chart;
     };
@@ -884,7 +873,7 @@ function explodingBoxplot() {
 
    return chart;
 }
-    boxPlotFunctions.defaultDistribution('popover');
+    //boxPlotFunctions.defaultDistribution('popover');
     boxPlotFunctions.defaultDistribution('d3-tip');
     boxPlotFunctions.demoSetup();
 

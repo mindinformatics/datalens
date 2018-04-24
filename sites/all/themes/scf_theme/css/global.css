@@ -2053,15 +2053,15 @@ ul.bef-tree-child.bef-tree-depth-2 {
   width: 78%;
 }
 
-
+.form-item-egene,
 .form-item-input-gene,
 .form-item-study {
   display: inline-block;
   margin-right: 20px;
 }
 
-/* Foreset plot */
-
+/* Forest plot and Exploding Boxplot*/
+.eplot-inline,
 .hplot-inline {
   display: inline-block;
   vertical-align: top;

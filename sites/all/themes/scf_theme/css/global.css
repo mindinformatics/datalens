@@ -1884,6 +1884,10 @@ ul.bef-tree-child.bef-tree-depth-2 {
 
 /* D3 CSS */
 
+#elinks {
+  float: right;
+}
+
 #forest-plot td {
   vertical-align: top;
 }

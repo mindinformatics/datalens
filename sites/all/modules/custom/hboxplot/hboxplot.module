@@ -14,7 +14,14 @@ function hboxplot_menu() {
     'description' => 'Forest Plot using D3 visualization',
     'page callback' => 'hboxplot_page',
     'access callback' => TRUE,
-);
+  );
+
+    $items['compare-studies'] = array(
+    'title' => 'Study Comparison',
+    'description' => 'Compare studies',
+    'page callback' => 'hboxplot_file',
+    'access callback' => TRUE,
+  );
 
   return $items;
 }
@@ -22,11 +29,17 @@ function hboxplot_menu() {
 function hboxplot_page() {
 
   $page = "";
-
-  //dsm($block);
-
   $hplot_form = drupal_get_form('choosegene_form');
   $page .= drupal_render($hplot_form);
+
+  return $page;
+}
+
+function hboxplot_file() {
+
+  $page = "";
+  $hplot_form2 = drupal_get_form('choosegene_form_file');
+  $page .= drupal_render($hplot_form2);
 
   return $page;
 }
@@ -131,27 +144,16 @@ function hboxplot_block_view($delta = '') {
   return $block;
 }
 
-function hboxplot_block($id, $rows) {
+function hboxplot_block($id, $rows, $category, $chart_size) {
   $path = libraries_get_path('d3.hboxplot');
   libraries_load('d3.hboxplot');
 
   $chart = array(
     'id' => $id,
     'type' => 'hboxplot',
+    'category' => $category,
+    'chart_size' => $chart_size,
     'rows' => $rows,
-  );
-
-  return d3_draw($chart);
-}
-
-function hboxplot_block_file($id, $file) {
-  $path = libraries_get_path('d3.hboxplot');
-  libraries_load('d3.hboxplot');
-
-  $chart = array(
-    'id' => $id,
-    'type' => 'hboxplot',
-    'file' => $file,
   );
 
   return d3_draw($chart);
@@ -181,24 +183,19 @@ function choosegene_form($form, &$form_state) {
      ),
   );
 
-
-  // Define default study as IGAP
-  //if (!isset($form_state['values'])) {
-  //  $_SESSION['lzoom_study'] = "IGAP_stage_1.tsv";
-  //}
+  $category = "BrainRegion";
+  $chart_size = "multi";
 
   // Define default plot for CD33
-
-
 	$data_rows = hboxplot_query_mongo("CD33", array("uArray"), "AD-NCI", "CpDxAll");
-	$content1 = "<span id='htitle'>AD-NCI Microarray</span>" .  hboxplot_block('vis1', $data_rows);
+	$content1 = "<span id='htitle'>AD-NCI Microarray</span>" .  hboxplot_block('vis1', $data_rows, $category, $chart_size);
 	$data_rows = hboxplot_query_mongo("CD33", array("uArray"), "B3-B1", "Braak");
-	$content2 = "<span id='htitle'>B3-B1 Microarray</span>" . hboxplot_block('vis2',$data_rows);
+	$content2 = "<span id='htitle'>B3-B1 Microarray</span>" . hboxplot_block('vis2',$data_rows, $category, $chart_size);
 	$content3 = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend2.png' style='width:100%;'/>";
-	$data_rows = hboxplot_query_mongo("CD33", array("RC","FPKM"), "AD-NCI", "CpDxAll");
-	$content4 = "<span id='htitle'>AD-NCI RNA-Seq</span>" . hboxplot_block('vis4', $data_rows);
-	$data_rows = hboxplot_query_mongo("CD33", array("RC","FPKM"), "B3-B1", "Braak");
-	$content5 = "<span id='htitle'>B3-B1 RNA-Seq</span>" . hboxplot_block('vis5', $data_rows);
+	$data_rows = hboxplot_query_mongo("CD33", array("CPM","FPKM"), "AD-NCI", "CpDxAll");
+	$content4 = "<span id='htitle'>AD-NCI RNA-Seq</span>" . hboxplot_block('vis4', $data_rows, $category, $chart_size);
+	$data_rows = hboxplot_query_mongo("CD33", array("CPM","FPKM"), "B3-B1", "Braak");
+	$content5 = "<span id='htitle'>B3-B1 RNA-Seq</span>" . hboxplot_block('vis5', $data_rows, $category, $chart_size);
   $content6  = "";
 
 
@@ -229,19 +226,94 @@ function choosegene_form($form, &$form_state) {
 	return $form;
 }
 
+function choosegene_form_file($form, &$form_state) {
+
+  $form['input_gene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+  );
+
+
+  $form['submit'] = array(
+    '#prefix' => '<div class="hplot-inline">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_hplot_callback_file',
+      'wrapper'  => 'hplots2',
+      'effect'   => 'fade',
+     ),
+  );
+
+
+  $data_files = array(
+    "MSBB_HIPP_Braak_B3-B1.csv",
+    "MSBB_HIPP_CDR_AD-NCI.csv",
+    "MSBB_HIPP_CERAD_C3-C0.csv",
+    "MSBB_HIPP_CpDxAll_AD-NCI.csv",
+    "MSBB_HIPP_CpDxLow_AD-NCI.csv",
+    "ROSMAP_PFC_Braak_B3-B1.csv",
+    "ROSMAP_PFC_CERAD_C3-C0.csv",
+    "ROSMAP_PFC_ClinicalDiagnosis_AD-NCI.csv",
+    "ROSMAP_PFC_CpDxAll_AD-NCI.csv",
+    "ROSMAP_PFC_CpDxLow_AD-NCI.csv",
+    "ROSMAP_PFC_CpDxStrict_AD-NCI.csv",
+    "ROSMAP_PFC_MMSE_AD-NCI.csv",
+    "MayoBB_CBE_CPM_ClinicalDiagnosis_AD-NCI.csv",
+    "MayoBB_TCX_CPM_ClinicalDiagnosis_AD-NCI.csv",
+    "MSBB_PHG_CPM_Braak_B3-B1.csv",
+    "MSBB_PHG_CPM_CDR_AD-NCI.csv",
+    "MSBB_PHG_CPM_CERAD_C3-C0.csv",
+    "MSBB_PHG_CPM_CpDxAll_AD-NCI.csv",
+    "MSBB_PHG_CPM_CpDxLow_AD-NCI.csv",
+    "MSBB_PHG_CPM_CpDxStrict_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_Braak_B3-B1.csv",
+    "ROSMAP_PFC_FPKM_CERAD_C3-C0.csv",
+    "ROSMAP_PFC_FPKM_ClinicalDiagnosis_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_CpDxAll_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_CpDxLow_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_CpDxStrict_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_MMSE_AD-NCI.csv"
+  );
+
+  $category = "FileName";
+  $chart_size = "single";
+
+	$data_rows = hboxplot_query_mongo_file("CD33", $data_files);
+	$content1 = "<span id='htitle'>CD33</span>" .  hboxplot_block('vis1', $data_rows, $category, $chart_size);
+
+  $content = '<div id="hplots2">';
+  $content .= "<span id='gtitle'></span>";
+  $content .= $content1;
+  $content .= '</div>';
+
+  $form['wrapper'] = array(
+    '#markup' => '<div id="hplots2">' . $content . '</div>',
+  );
+
+
+	return $form;
+}
+
 function ajax_hplot_callback($form, $form_state) {
 
   $gene= $form_state['values']['input_gene'];
+  $category = "BrainRegion";
+  $chart_size = "multi";
 
   $data_rows = hboxplot_query_mongo($gene, array("uArray"), "AD-NCI", "CpDxAll");
-	$content1 = "<span id='htitle'>AD-NCI Microarray</span>" .  hboxplot_block('vis1', $data_rows);
+	$content1 = "<span id='htitle'>AD-NCI Microarray</span>" .  hboxplot_block('vis1', $data_rows, $category, $chart_size);
 	$data_rows = hboxplot_query_mongo($gene, array("uArray"), "B3-B1", "Braak");
-	$content2 = "<span id='htitle'>B3-B1 Microarray</span>" . hboxplot_block('vis2',$data_rows);
+	$content2 = "<span id='htitle'>B3-B1 Microarray</span>" . hboxplot_block('vis2',$data_rows, $category, $chart_size);
 	$content3 = "<img src='/sites/all/themes/scf_theme/HBoxplot/Legend2.png' style='width:100%;'/>";
-	$data_rows = hboxplot_query_mongo($gene, array("RC","FPKM"), "AD-NCI", "CpDxAll");
-	$content4 = "<span id='htitle'>AD-NCI RNA-Seq</span>" . hboxplot_block('vis4', $data_rows);
-	$data_rows = hboxplot_query_mongo($gene, array("RC","FPKM"), "B3-B1", "Braak");
-	$content5 = "<span id='htitle'>B3-B1 RNA-Seq</span>" . hboxplot_block('vis5', $data_rows);
+	$data_rows = hboxplot_query_mongo($gene, array("CPM","FPKM"), "AD-NCI", "CpDxAll");
+	$content4 = "<span id='htitle'>AD-NCI RNA-Seq</span>" . hboxplot_block('vis4', $data_rows, $category, $chart_size);
+	$data_rows = hboxplot_query_mongo($gene, array("CPM","FPKM"), "B3-B1", "Braak");
+	$content5 = "<span id='htitle'>B3-B1 RNA-Seq</span>" . hboxplot_block('vis5', $data_rows, $category, $chart_size);
   $content6  = "";
 
 
@@ -263,6 +335,55 @@ function ajax_hplot_callback($form, $form_state) {
   $content .= '</td></tr>';
   $content .= '</table>';
   $content .= '</div>';
+
+  return $content;
+
+}
+
+function ajax_hplot_callback_file($form, $form_state) {
+
+  $gene = $form_state['values']['input_gene'];
+  $category = "FileName";
+  $chart_size = "single";
+
+  $data_files = array(
+    "MSBB_HIPP_Braak_B3-B1.csv",
+    "MSBB_HIPP_CDR_AD-NCI.csv",
+    "MSBB_HIPP_CERAD_C3-C0.csv",
+    "MSBB_HIPP_CpDxAll_AD-NCI.csv",
+    "MSBB_HIPP_CpDxLow_AD-NCI.csv",
+    "ROSMAP_PFC_Braak_B3-B1.csv",
+    "ROSMAP_PFC_CERAD_C3-C0.csv",
+    "ROSMAP_PFC_ClinicalDiagnosis_AD-NCI.csv",
+    "ROSMAP_PFC_CpDxAll_AD-NCI.csv",
+    "ROSMAP_PFC_CpDxLow_AD-NCI.csv",
+    "ROSMAP_PFC_CpDxStrict_AD-NCI.csv",
+    "ROSMAP_PFC_MMSE_AD-NCI.csv",
+    "MayoBB_CBE_CPM_ClinicalDiagnosis_AD-NCI.csv",
+    "MayoBB_TCX_CPM_ClinicalDiagnosis_AD-NCI.csv",
+    "MSBB_PHG_CPM_Braak_B3-B1.csv",
+    "MSBB_PHG_CPM_CDR_AD-NCI.csv",
+    "MSBB_PHG_CPM_CERAD_C3-C0.csv",
+    "MSBB_PHG_CPM_CpDxAll_AD-NCI.csv",
+    "MSBB_PHG_CPM_CpDxLow_AD-NCI.csv",
+    "MSBB_PHG_CPM_CpDxStrict_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_Braak_B3-B1.csv",
+    "ROSMAP_PFC_FPKM_CERAD_C3-C0.csv",
+    "ROSMAP_PFC_FPKM_ClinicalDiagnosis_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_CpDxAll_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_CpDxLow_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_CpDxStrict_AD-NCI.csv",
+    "ROSMAP_PFC_FPKM_MMSE_AD-NCI.csv"
+  );
+
+  $data_rows = hboxplot_query_mongo_file($gene, $data_files);
+	$content1 = "<span id='htitle'>" . $gene . "</span>" .  hboxplot_block('vis1', $data_rows, $category, $chart_size);
+
+  $content = '<div id="hplots2">';
+  $content .= "<span id='gtitle'></span>";
+  $content .= $content1;
+  $content .= '</div>';
+
 
   return $content;
 
@@ -395,8 +516,115 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
 
 }
 
+function hboxplot_query_mongo_file($input_gene, $file_list) {
 
-function _array_dup($ar){
+    if (empty($input_gene)) {
+      $gene_list = array('PRELP');
+    } else {
+      $input_gene = strtoupper($input_gene);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_gene);
+      $gene_list = array_filter($gene_list);
+      $trimmed_array = array_map('trim', $gene_list);
+      $gene_list = $trimmed_array;
+      $species = array("human");
+      $gene_list = array_map('_query_synonyms', $gene_list, $species);
+      //var_dump($gene_list);
+
+    }
+
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Select the expression collection for gene expression info
+    $coll = $db->human_expression;
+
+    // Filter on gene
+    //db.human_expression.find({"GeneSymbol":"CD33","Contrast":"AD-NCI","StratFactor":"CpDxAll"}).count()
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+             array('FileName' => array('$in' => $file_list),
+             ) ) );
+
+    //dsm($query);
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $cursor->sort(array('Rank' => 1));
+    $cursor->limit( 500 );
+    //$total = (string)$cursor->count(); //To find total number of documents
+    //dsm($total);
+    //$cursor->limit( 5 );
+
+     //Access query results
+     $result = array();
+     $filenames = array();
+     $i = 0;
+
+     //Study,BrainRegion,Technology,logFC,CIL,CIR,PValue,median,min,max,Rank,row
+     foreach ($cursor as $doc) {
+       //var_dump($doc);
+       $result[$i]['Study'] = $doc['StudyName'];
+       $result[$i]['BrainRegion'] = $doc['BrainRegionCode'];
+       $result[$i]['Technology'] = $doc['DataType'];
+       $result[$i]['FileName'] = $doc['FileName'];
+       $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
+       $result[$i]['logFC'] = $doc['logFC'];
+       $result[$i]['CIL'] = $doc['CIL'];
+       $result[$i]['CIR'] = $doc['CIR'];
+       $result[$i]['PValue'] = $doc['PValue'];
+       $result[$i]['median'] = $doc['median'];
+       $result[$i]['min'] = $doc['min'];
+       $result[$i]['max'] = $doc['max'];
+       $result[$i]['Rank'] = $doc['Rank'];
+       $filenames[] = $doc['FileName'];
+       $i++;
+     }
+
+    $files_result = array_map(function($element){return $element['FileName'];}, $result);
+
+    $unique_files = array_unique($files_result);
+
+  //Some genes have multiple probes; these will appear in the same file.
+   if (count($files_result) > count($unique_files)) {
+      $dup_files =  _array_dup($filenames);
+
+      foreach ($dup_files as $dup) {
+        $abs_logfc = array();
+        $array_id = array();
+        $probe_id = array();
+
+        //find max probe
+        //unset everyting that is not the max
+        foreach ($result as $key => $value ) {
+          if ($value['FileName'] == $dup) {
+            $array_id[] = $key;
+            $abs_logfc[] = abs($value['logFC']);
+            $probe_id[] = $value['ProbeID'];
+            //dsm($array_id);
+          }
+        }
+
+        $max_val = max($abs_logfc);
+        $index = array_search(max($abs_logfc),$abs_logfc);
+
+        foreach($array_id as $key=>$value) {
+          if ($key != $index) {
+            unset($result[$value]);
+          }
+        }
+
+      }
+   }
+
+  return $result;
+
+}
+
+
+function _array_dup($ar) {
    return array_unique(array_diff_assoc($ar,array_unique($ar)));
 }
 

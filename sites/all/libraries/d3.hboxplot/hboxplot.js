@@ -42,19 +42,38 @@ Drupal.d3.hboxplot = function (select, settings) {
 
   var sformat = d3.format(".1e");
 
-  var h = data.length * 25 + 100,
+  if (settings.chart_size == "multi") {
+    var h = data.length * 25 + 100,
       w = 400;
 
-  var margin = {
+    var margin = {
     'top': 20,
     'bottom': 20,
     'left': 20,
     'right': 53
+    }
+
+    var chart = d3.select('#' + settings.id).append("svg")
+      .attr("height", h + 40)
+      .attr("width", w + 53);
+
+  } else {
+    var h = data.length * 25 + 100,
+      w = 700;
+
+    var margin = {
+    'top': 20,
+    'bottom': 20,
+    'left': 20,
+    'right': 280
+    }
+
+    var chart = d3.select('#' + settings.id).append("svg")
+      .attr("height", h + 40)
+      .attr("width", w + 280);
   }
 
-  var chart = d3.select('#' + settings.id).append("svg")
-    .attr("height", h + 40)
-    .attr("width", w + 53);
+
 
 
   xScale = d3.scale.linear()
@@ -62,7 +81,7 @@ Drupal.d3.hboxplot = function (select, settings) {
     .domain([d3.min(data, function(d){ return d.min }), d3.max(data, function(d){ return d.max })])
     .range([
       margin.left,
-      w - margin.right
+      w - 49
     ]);
 
   yScale = d3.scale.linear()
@@ -96,18 +115,25 @@ Drupal.d3.hboxplot = function (select, settings) {
     .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
     //.attr("transform", "translate("+ (width/2) +","+(height-(padding/3))+")")  // centre below axis
     .attr("transform", "translate(" + (w/2) + " ," + (h + margin.top) + ")")
-    .text("log Fold Change");
+    .text("Fold Change");
 
   var rows = data.map(function(d){return Number(d.row)});
-  var brain_regions = data.map(function(d){return (d.BrainRegion + " (" + sformat(d.PValue)+ ")" )});
   var p_vals = data.map(function(d){return (d.PValue) });
+
+  if (settings.category == "BrainRegion") {
+    var yLabels = data.map(function(d){return (d.BrainRegion + " (" + sformat(d.PValue)+ ")" )});
+  }
+
+  if (settings.category == "FileName") {
+    var yLabels = data.map(function(d){return (d.FileName.replace(".csv", "") + " (" + sformat(d.PValue)+ ")" ) });
+  }
 
   yAxis = d3.svg.axis()
     .scale(yScale)
     .orient("right")
     .tickSize(-12)
     .tickValues(rows)
-    .tickFormat(function(d,i) { return brain_regions[i] })
+    .tickFormat(function(d,i) { return yLabels[i] })
     //.text("fill", function(d,i) { return (p_vals[i] <= .05 ? "green" : "black")});
 
   var xt = w - 30;
@@ -157,7 +183,7 @@ Drupal.d3.hboxplot = function (select, settings) {
         .attr("x2", xScale(d.min) - xScale(d.median))
         .attr("y1", 0)
         .attr("y2", 0)
-        .style("stroke", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
+        .style("stroke", function(d) { return ((d.Study !="MSBB" && settings.chart_size == "multi")? "#3182bd" : "#ADCAD8")})
         .style("stroke-width", "4px");
 
       d3.select(this)
@@ -167,7 +193,7 @@ Drupal.d3.hboxplot = function (select, settings) {
         .attr("x2", xScale(d.max) - xScale(d.median))
         .attr("y1", -10)
         .attr("y2", 10)
-        .style("stroke", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
+        .style("stroke", function(d) { return ((d.Study !="MSBB" && settings.chart_size == "multi")? "#3182bd" : "#ADCAD8")})
         .style("stroke-width", "4px");
 
       d3.select(this)
@@ -177,7 +203,7 @@ Drupal.d3.hboxplot = function (select, settings) {
         .attr("x2", xScale(d.min) - xScale(d.median))
         .attr("y1", -10)
         .attr("y2", 10)
-        .style("stroke", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
+        .style("stroke", function(d) { return ((d.Study !="MSBB" && settings.chart_size == "multi")? "#3182bd" : "#ADCAD8")})
         .style("stroke-width", "4px");
 
     /*  d3.select(this)
@@ -197,8 +223,8 @@ Drupal.d3.hboxplot = function (select, settings) {
         .attr("y", -5)
         .attr("height", 10)
         .attr("width", 10)
-        .style("fill", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
-        .style("stroke", function(d) { return (d.Study !="MSBB" ? "#3182bd" : "#ADCAD8")})
+        .style("fill", function(d) { return ((d.Study !="MSBB" && settings.chart_size == "multi") ? "#3182bd" : "#ADCAD8")})
+        .style("stroke", function(d) { return ((d.Study !="MSBB" && settings.chart_size == "multi")? "#3182bd" : "#ADCAD8")})
         .style("stroke-width", "4px");
 
     })

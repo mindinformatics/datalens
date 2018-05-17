@@ -1,320 +1,255 @@
 <?php
 
 // Show PHP errors (during development only)
-    //error_reporting(E_ALL | E_STRICT);
-    //ini_set("display_errors", 2);
+    error_reporting(E_ALL | E_STRICT);
+    ini_set("display_errors", 2);
 
 /**
 * Implements hook_menu().
 */
 function eboxplot_menu() {
 
-  $items['eboxplot-input'] = array(
-    'title' => 'Gene Expression Scatterplot',
-    'description' => 'Choose inputs for gene expression eboxplot',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('eboxplot_form'),
-    'access callback' => TRUE,
-    'type' => MENU_NORMAL_ITEM,
-  );
-  $items['eboxplot/%/%/%/%'] = array(
-    'title' => 'Gene Expression Scatterplot',
-    'description' => 'Return expression data',
-    'page callback' => 'eboxplot_build',
-    'page arguments' => array(1,2,3,4),
-    'access callback' => TRUE,
-  );
-  $items['test-explode'] = array(
+    $items['explode2'] = array(
     'title' => 'Exploding Boxplot',
-    'description' => 'Test Exploding boxplot code',
-    'page callback' => 'eboxplot_build2',
+    'description' => 'Exploding boxplot with user input',
+    'page callback' => 'eboxplot',
+    'access callback' => TRUE,
+  );
+  $items['explode-multi'] = array(
+    'title' => 'Exploding Boxplot',
+    'description' => 'Exploding boxplot with user input',
+    'page callback' => 'eboxplot_multi',
     'access callback' => TRUE,
   );
 
   return $items;
 }
 
-function eboxplot_block_info() {
-  $blocks = array();
-  $blocks['genelinks2'] = array(
-    // info: The name of the block.
-    'info' => t('GeneLinks Explode'),
-    'status' => TRUE,
-    'theme' => 'scf-theme',
-    'region' => 'sidebar-second',
-    'weight' => 15,
-    'visibility' => 1,
-    'pages' => "test-explode/*",
-    'custom' => FALSE,
-  );
 
-  return $blocks;
-}
-
-function eboxplot_block_view($delta = '') {
-  $block = array();
-  // The $delta parameter tells us which block is being requested.
-  switch ($delta) {
-    case 'genelinks2':
-      // Create your block content here
-    $block['subject'] = t('Gene Data Links');
-    $block['content'] = eboxplot_block_contents();
-    break;
-  }
-  return $block;
-}
-
-function eboxplot_block_contents() {
-  //$gene_links_url = "eboxplot/" . $gene ."/". $study."/".$xaxis."/".$color;
-  $path = current_path();
-  $path_parts = explode("/", $path);
-  //$block_gene = $path_parts[1];
-  $block_gene = "APP";
-
-  //External Gene Links Data
-  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $block_gene;
-  $barres_name = $block_gene . " Expression by Cell Type (Barres Lab)";
-
-  $gtex_link = "https://www.gtexportal.org/home/gene/" . $block_gene;
-  $gtex_name = $block_gene . " Expression across Tissues (GTExPortal)";
-
-  $links = "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
-  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a>";
-
-  //$test = "Test links";
-
-  return $links;
-
-}
-
-function eboxplot_build($gene, $study, $xaxis, $color) {
-  $path = libraries_get_path('d3.eboxplot');
-  drupal_add_css($path . '/eboxplot.css');
-
-	//dsm("Gene: " . $gene . ";  Study: " . $study . ";  X-axis: " . $xaxis . ";  Color: " . $color);
-
-	// Process gene input- all caps first
-	$gene = strtoupper($gene);
-  //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
-  $gene_list = preg_split('/[\s ,]+/', $gene);
-  $gene_list = array_filter($gene_list);
-  $trimmed_array = array_map('trim', $gene_list);
-  $gene_list = $trimmed_array;
-  $species = array("human");
-  $gene_list = array_map('_query_synonyms', $gene_list, $species);
-  $gene = current($gene_list);
-
-  $result = _query_mongo_scatter($gene, $study);
-  $apoe_pval = $result[1]['ApoEPval'];
-
-  //Note: Having SampleID in this list seems important. Results weird without it.
-  $series_full = array("Diagnosis", "ApoE", "Sex", "AgeAtDeath", "Tissue", "ApoEPval", "ID");
-  $used = array($xaxis, $color);
-  $series = array_diff($series_full, $used);
-  //Color has to be last option in series
-  array_push($series, $color);
-  //dsm($series);
-
-  $chart = array(
-    'id' => 'visualization',
-    'type' => 'eboxplot',
-    'gene' => $gene,
-    'xaxis' => $xaxis,
-    'color' => $color,
-    'study' => $study,
-    'series' => $series,
-    'apoe_pvalue' => $apoe_pval,
-    'rows' => $result,
-  );
-
-  return d3_draw($chart);
-}
-
-function eboxplot_build2() {
+function eboxplot_build($gene, $study) {
 
   $path = libraries_get_path('d3.eboxplot');
   libraries_load('d3.eboxplot');
 
-  $study = "MayoBB_TCX_RNASEQ_CPM";
-  $gene = "APP";
-
   $result = _query_mongo_eboxplot($gene, $study);
+  //dsm($result);
 
   $chart = array(
     'id' => 'visualization',
     'type' => 'eboxplot',
     'gene' => $gene,
     'study' => $study,
+    'xaxis' => 'Braak',
+    'yaxis' => 'Expression',
     'rows' => $result,
   );
 
-  return d3_draw($chart);  //return ("<p>This is a test.</p>");
+  return d3_draw($chart);
 
 }
 
+function eboxplot_build_multi($id, $gene, $study, $rows) {
 
-/**
- * Return a form used to input settings for eboxplot
- *
- * @return
- *   An array which will be used by the form builder to build the import form
- */
+  $path = libraries_get_path('d3.eboxplot');
+  libraries_load('d3.eboxplot');
+
+  $chart = array(
+    'id' => $id,
+    'type' => 'eboxplot',
+    'gene' => $gene,
+    'study' => $study,
+    'xaxis' => 'Diagnosis',
+    'yaxis' => 'Expression',
+    'rows' => $rows,
+  );
+
+  return d3_draw($chart);
+
+}
+
+function eboxplot() {
+
+  $gene_form = drupal_get_form('eboxplot_form');
+  $output = drupal_render($gene_form);
+  //$output = "This is a test";
+
+  return $output;
+
+}
+
+function eboxplot_multi() {
+
+  $gene_form = drupal_get_form('eboxplot_form_multi');
+  $output = drupal_render($gene_form);
+  //$output = "This is a test";
+
+  return $output;
+
+}
+
 
 function eboxplot_form($form, &$form_state) {
 
   // Header
   $form['header'] = array(
-    '#markup' => '<p>Plot expression of a gene across subject data such as diagnosis, ApoE, sex and age at death. A labeled example output image is below.</p>'
+    '#markup' => '<p>Plot logFC of gene across Contrasts.</p>'
   );
 
-  $image_options = array(
-    'path' => '/sites/all/themes/scf_theme/Scatterplot/Scatterplot-image.png',
-    'alt' => 'Test alt',
-    'title' => 'Scatterplot Annotated Example',
-    'width' => '40%',
-    'height' => '40%',
-    'attributes' => array('class' => 'some-img', 'id' => 'scatterplot-image'),
-  );
-
-
-  $image = theme('image', $image_options);
-  $form['start']['image'] = array(
-    '#markup' => $image,
-  );
-
-
-  $form['gene'] = array (
+  $form['egene'] = array (
     '#type' => 'textfield',
     '#title' => t('Gene Symbol'),
     '#default_value' => '',
-    '#description' => t('Please enter a gene symbol; the gene expression level will be the y-axis.'),
-    '#size' => 60
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
   );
+
 
   $study_options_list = array('MayoBB_CBE_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Cerebellum',
                               'MayoBB_TCX_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Temporal Cortex',
                               'ROSMAP_PFC_RNASEQ_FPKM' => 'ROSMAP RNA-Seq Normalized - Prefrontal Cortex'
   );
 
-  $form['study'] = array(
-       '#type' => 'select',
-       '#title' => t('Study'),
-       '#options' => array(0 => t('- Select -')) + $study_options_list,
-       '#default_value' =>  0,
-       '#description' => t('Please select the study of interest. RNA-Seq normalized = Counts Per Million normalization'),
-       '#ajax' => array(
-        'event' => 'change',
-        'callback' => 'ajax_select_callback',
-        'wrapper' => 'dropdown_second_replace',
-       ),
-   );
-
-   $form['study_container'] = array(
-      '#type' => 'container',
-      '#prefix' => '<div id="dropdown_second_replace">',
-      '#suffix' => '</div>',
-  );
-
-  $category_options_list = array();
-
-  if (isset($form_state['values']['study'])) {
-     $study_input = $form_state['values']['study'];
-     switch ($study_input) {
-            //To test this works, change label- "Age at Death" to "Age at Death CBE"
-            case ($study_input == "MayoBB_CBE_RNASEQ_CPM"):
-                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'ApoE' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
-                break;
-
-            case ($study_input == "MayoBB_TCX_RNASEQ_CPM"):
-                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'ApoE' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
-                break;
-
-            case ($study_input == "ROSMAP_PFC_RNASEQ_FPKM"):
-                $category_options_list = array('AgeAtDeath' => 'Age at Death', 'ApoE' => 'ApoE Genotype', 'Diagnosis' => 'Diagnosis', 'Sex' => 'Sex');
-                break;
-
-            default:
-                break;
-        }
-  }
-
-   $form['study_container']['xaxis'] = array(
-       '#type' => 'select',
-       '#title' => t('X-axis'),
-       '#options' => array(0 => t('- Select -')) + $category_options_list,
-       '#default_value' =>  0,
-       '#description' => t('Please select the category for the x-axis'),
-   );
-
-   $form['study_container']['color'] = array(
-       '#type' => 'select',
-       '#title' => t('Color'),
-       '#options' => array(0 => t('- Select -')) + $category_options_list,
-       '#default_value' =>  0,
-       '#description' => t('Please select the category for the color.'),
-   );
-
-
-  $form['submit'] = array(
+    $form['submit'] = array(
+    '#prefix' => '<div class="eplot-inline">',
+    '#suffix' => '</div>',
     '#type' => 'submit',
-    '#value' => t('Submit'),
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_eboxplot_callback',
+      'wrapper'  => 'eplots',
+      'effect'   => 'fade',
+     ),
   );
+
+  $content = "";
+    $form['wrapper'] = array(
+    '#markup' => '<div id="eplots">' . $content . '</div>',
+  );
+
+  //$result = _query_mongo_eboxplot($gene, $study);
 
 	return $form;
 }
 
-function ajax_select_callback2($form, $form_state) {
-  return $form['study_container'];
+function eboxplot_form_multi($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Plot expression of a gene across diagnosis.</p>'
+  );
+
+  $form['egene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
+  );
+
+
+  $study_options_list = array('MayoBB_CBE_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Cerebellum',
+                              'MayoBB_TCX_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Temporal Cortex',
+                              'ROSMAP_PFC_RNASEQ_FPKM' => 'ROSMAP RNA-Seq Normalized - Prefrontal Cortex'
+  );
+
+    $form['submit'] = array(
+    '#prefix' => '<div class="eplot-inline">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_eboxplot_callback_multi',
+      'wrapper'  => 'eplots',
+      'effect'   => 'fade',
+     ),
+  );
+
+  $content = "";
+    $form['wrapper'] = array(
+    '#markup' => '<div id="eplots">' . $content . '</div>',
+  );
+
+
+	return $form;
 }
 
-/**
- * Implementation of hook_validate() for the eboxplot_input.
- */
+function ajax_eboxplot_callback($form, $form_state) {
 
-function eboxplot_form_validate($form, & $form_state) {
+  $gene = $form_state['values']['egene'];
+  $study = "ROSMAP_PFC_RNASEQ_FPKM";
+  //$gene = "APP";
 
-	 $valid_genes = $form_state['values']['gene'];
-	 $valid_xaxis = $form_state['values']['xaxis'];
-	 $valid_color = $form_state['values']['color'];
+  $content = "<p></p>";
 
-	 if( strpos($valid_genes, ',') !== false ) {
-     form_set_error('gene', 'Please enter only one gene symbol');
-   }
+  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $gene;
+  $barres_name = $gene . " Expression by Cell Type (Barres Lab)";
 
-	 if ($valid_xaxis === $valid_color) {
-	  form_set_error('color', 'Please choose a different category for the Color; cannot be the same as the X-axis.');
-	 }
+  $gtex_link = "https://www.gtexportal.org/home/gene/" . $gene;
+  $gtex_name = $gene . " Expression across Tissues (GTExPortal)";
 
-	 if ($valid_xaxis === 0) {
-	  form_set_error('xaxis', 'Please choose a category for the X-axis.');
-	 }
+  $links = "<div id='elinks'>" . "Gene Data Links<br />" . "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
+  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a></div>";
 
-	 if ($valid_color === 0) {
-	  form_set_error('color', 'Please choose a category for the Color.');
-	 }
+  $content .= $links;
+
+	$content .= "<span id='etitle'>". $study . ": ". $gene . "</span>" .  eboxplot_build($gene, $study);
+
+
+  return $content;
 
 }
 
-function eboxplot_form_submit($form, & $form_state) {
-	//dsm($form_state['values']);
-	$valid_genes = $form_state['values']['gene'];
-	$valid_study = $form_state['values']['study'];
-	$valid_xaxis = $form_state['values']['xaxis'];
-	$valid_color = $form_state['values']['color'];
+function ajax_eboxplot_callback_multi($form, $form_state) {
 
-  $scatter_input = array('gene'=>$valid_genes,'study'=>$valid_study,'xaxis'=>$valid_xaxis,'color'=>$valid_color);
+  $gene = $form_state['values']['egene'];
+  $study = "MayoBB_TCX_RNASEQ_CPM";
+  //$gene = "APP";
 
-	//drupal_set_message(t('Gene: %genes.', array('%genes' => $valid_genes)));
-	//drupal_set_message(t('Study: %study.', array('%study' => $valid_study)));
-	//drupal_set_message(t('X-axis: %xaxis.', array('%xaxis' => $valid_xaxis)));
-	//drupal_set_message(t('Color: %color', array('%color' => $valid_color)));
+  $content = "<p></p>";
 
-	//return drupal_render(drupal_get_form('eboxplot_form'));
+  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $gene;
+  $barres_name = $gene . " Expression by Cell Type (Barres Lab)";
 
-  $form_state['redirect'] = 'eboxplot/' . $valid_genes . "/" . $valid_study . "/" . $valid_xaxis . "/" . $valid_color;
-  //return eboxplot_build($scatter_input);
+  $gtex_link = "https://www.gtexportal.org/home/gene/" . $gene;
+  $gtex_name = $gene . " Expression across Tissues (GTExPortal)";
+
+  $links = "<div id='elinks'>" . "Gene Data Links<br />" . "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
+  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a></div>";
+
+  $content .= $links;
+
+  $data1 = _query_mongo_eboxplot($gene, "MayoBB_CBE_RNASEQ_CPM");
+	$content1 = "<span id='etitle'>MayoBB RNA-Seq Cerebellum</span>" . eboxplot_build_multi('vis1', $gene, "MayoBB_CBE_RNASEQ_CPM", $data1);
+	$data2 = _query_mongo_eboxplot($gene, "MayoBB_TCX_RNASEQ_CPM");
+	$content2 = "<span id='etitle'>MayoBB RNA-Seq Temporal Cortex</span>" . eboxplot_build_multi('vis2', $gene, "MayoBB_TCX_RNASEQ_CPM", $data2);
+	$data3 = _query_mongo_eboxplot($gene, "ROSMAP_PFC_RNASEQ_FPKM");
+	$content3 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . eboxplot_build_multi('vis3', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data3);
+	$data4 = "";
+	$content4 ="";
+
+
+	$content = '<div id="ebplots">';
+  $content .= "<span id='ebtitle'>" . $gene . "</span>";
+  $content .= '<table id="explodingbox-plot">';
+  $content .= '<tr><td>';
+  $content .= $content1;
+  $content .= '</td><td>';
+  $content .= $content2;
+  $content .= '</td></tr>';
+  $content .= '<tr><td>';
+  $content .= $content3;
+  $content .= '</td><td>';
+  $content .= $content4;
+  $content .= '</table>';
+  $content .= '</div>';
+
+
+  return $content;
 
 }
+
 
 
 function _age_buckets2($input) {
@@ -415,6 +350,8 @@ function _query_mongo_eboxplot($input_genes, $study) {
           'AgeAtOnset' => (isset($doc['AgeAtOnset']))? _age_buckets($doc['AgeAtOnset']): null,
           'Expression' => $result[$sample_id],
           'ApoEPval' => (isset($result['apoe_pval']))? $result['apoe_pval']: null,
+          'Braak' => (isset($doc['Braak']))? _braak_bucket($doc['Braak']): null,
+          'CERAD' => (isset($doc['Cerad']))? $doc['Cerad']: null
           );
 
        }
@@ -430,6 +367,29 @@ function _query_mongo_eboxplot($input_genes, $study) {
 
 }
 
+function _braak_bucket($input) {
+#//Braak: B1 = 0/I/II, B2 = III/IV, B3 = V/VI
+  switch ($input) {
+    case ($input >= 0 && $input <= 2):
+        $braak = "B1";
+        break;
+    case ($input >= 3 && $input <= 4):
+        $braak = "B2";
+        break;
+    case ($input >= 5 && $input <= 6):
+        $braak = "B3";
+        break;
+    case ($input > 6):  //ROSMAP: values or 8 or 9 are DK or Missing
+        $braak = "NA";
+        break;
+    case ($input == "NA"):
+        $braak = "NA";
+        break;
+  }
+
+  return($braak);
+
+}
 
 
 

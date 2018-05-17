@@ -3776,20 +3776,17 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
   $handler->display->display_options['header']['result']['content'] = 'Total rows: @total';
-  /* Header: Global: Text area */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = 'Query expression of gene(s) across studies, brain regions and various criteria. See <a href="/faq" target="_blank">FAQ</a> page for help. 
-Only the top 500 results are displayed, ordered by P-value.  Results with P-value &lt; .05 are displayed unless the P-value filter is specified. ';
-  $handler->display->display_options['header']['area']['format'] = 'full_html';
+  /* Header: Global: Unfiltered text */
+  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['content'] = 'Query expression of a gene across studies, brain regions and various criteria. See <a href="/faq" target="_blank">FAQ</a> page for help. ';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'No Results Found';
+  $handler->display->display_options['empty']['area']['content'] = 'Please enter a gene and click Apply.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_result_data_target_id']['id'] = 'field_result_data_target_id';
@@ -3849,16 +3846,6 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';
-  /* Field: Content: Data Type */
-  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
   /* Sort criterion: Content: LogFC (field_fold_change) */
   $handler->display->display_options['sorts']['field_fold_change_value']['id'] = 'field_fold_change_value';
   $handler->display->display_options['sorts']['field_fold_change_value']['table'] = 'field_data_field_fold_change';
@@ -3900,8 +3887,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['label'] = 'Gene(s):';
-  $handler->display->display_options['filters']['title']['expose']['description'] = 'Paste a list of gene symbols';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Gene:';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
   $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(

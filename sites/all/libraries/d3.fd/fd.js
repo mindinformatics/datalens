@@ -14,113 +14,83 @@
    *   id: required. This will be needed to attach your
    *       visualization to the DOM.
    */
-  Drupal.d3.fd = function (select, settings) {
-    var width = 1080,
-       height = 900;
+Drupal.d3.fd = function (select, settings) {
 
-    var svg = d3.select('#' + settings.id).append("svg")
+var width = 1080,
+    height = 900;
+
+var svg = d3.select('#' + settings.id).append("svg")
         .attr("width", width)
         .attr("height", height);
 
-    var color = d3.scale.category10();
+var color = d3.scaleOrdinal(d3.schemeCategory20);
 
-    var force = d3.layout.force()
-        .gravity(0.05)
-        .distance(200)
-        .charge(-200)
-        .size([width, height]);
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
 
-    d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp-ca.csv", function(error, links) {
-     d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca.csv", function(error, nodes) {
-      if (error) throw error;
+d3.json("/sites/all/libraries/d3.fd/miserables.json", function(error, graph) {
+  if (error) throw error;
 
-      console.log(nodes);
-      console.log(links);
+  var link = svg.append("g")
+      .attr("class", "links")
+    .selectAll("line")
+    .data(graph.links)
+    .enter().append("line")
+      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-      links.forEach(function(d) {
-        d.source = +d.source;
-        d.target = +d.target;
-        if (typeof d.source == "number") { d.source = nodes[d.source]; }
-        if (typeof d.target == "number") { d.target = nodes[d.target]; }
-      });
+  var node = svg.append("g")
+      .attr("class", "nodes")
+    .selectAll("circle")
+    .data(graph.nodes)
+    .enter().append("circle")
+      .attr("r", 5)
+      .attr("fill", function(d) { return color(d.group); })
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
 
-      nodes.forEach(function(d) {
-        d.fc = +d.fc;
-        d.log10_exp= +d.log10_exp
-        d.log10_IGAP= +d.log10_IGAP
-        d.log10_eQTL = +d.log10_eQTL
-      });
+  node.append("title")
+      .text(function(d) { return d.id; });
 
-      console.log(nodes);
-      console.log(links);
+  simulation
+      .nodes(graph.nodes)
+      .on("tick", ticked);
 
-      force
-          .nodes(nodes)
-          .links(links)
-          .start();
+  simulation.force("link")
+      .links(graph.links);
 
-      var max_fc = d3.max( nodes, function(d) { return d.fc });
-      console.debug(max_fc);
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
 
-      var min_fc = d3.min( nodes, function(d) { return d.fc });
-      console.debug(min_fc);
-
-      var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
-
-      var link = svg.selectAll(".link")
-          .data(links)
-        .enter().append("line")
-          .attr("class", "link");
-
-      var node = svg.selectAll(".node")
-          .data(nodes)
-        .enter().append("g")
-          .attr("class", "node")
-          .call(force.drag);
-
-/*
-      node.append("image")
-          .attr("xlink:href", "https://github.com/favicon.ico")
-          .attr("x", -8)
-          .attr("y", -8)
-          .attr("width", 16)
-          .attr("height", 16);
- */
-
-      node.append("circle")
-          .attr("r", function(d) { return ( (d.group == 20 ) ? 4 : (Math.abs(d.log10_exp) * 5)); })
-          .attr("fill", function(d) { return ( (d.group == 20 ) ? "#aec7e8" : color_scale(d.fc) ); })
-          .style('fill-opacity', function(d) { return '1'; });
-
-          //.style("stroke-width", function(d) { return ( (d.group == 20 ) ? "2" : "" ); })
-          //.style('stroke', function(d) { return ( (d.group == 20 ) ? "black" : "" ); });
-
-
-      node.append("text")
-          .attr("dx", function(d) {return ( (Math.abs(d.log10_exp) * 5) +1 )})
-          .attr("dy", ".35em")
-          .style("font-size", "10px" )
-          //.style("color", "green")
-          .style("font-size", function(d) { return ((Math.abs(d.log10_IGAP) + 8) + "px") })
-          .text(function(d) { return ( (d.group == 20 ) ? "" : d.name) });
-
-
-      node.append("title")
-          .style("font-family", "sans-serif")
-          .style("font-size", "10px")
-          .style("color", "Black")
-          .html(function (d) { return d.name; });
-
-      force.on("tick", function() {
-        link.attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
-
-        node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-      });
-    });
-  });
-
+    node
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
   }
+});
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+}
 })(jQuery);

@@ -1,6 +1,15 @@
 setwd("~/Sites/cats/sites/all/libraries/d3.fd/")
 options(stringsAsFactors = FALSE)
 
+real_fc <- function(x) {
+  x=2^x
+  for(i in 1:length(x))
+    if(x[i]<1) {
+      x[i]=-1/x[i] 
+    }
+  return(x)
+}
+
 
 #dat <- read.table("genemania-network.tsv", sep="\t", header=TRUE)
 #dat <- read.table("Tau.tsv",  sep="\t", header=TRUE)
@@ -41,12 +50,7 @@ dat3=dat3[,-c(3,4,5,6)]
 write.csv(dat3,"snp-genes-ca.csv", row.names = F)
 
 
-real_fc <- function(x) {
- x=2^x
- for(i in 1:length(x))
-  if(x[i]<1) {
-    x[i]=-1/x[i] 
-  }
- return(x)
-}
- 
+
+source("https://bioconductor.org/biocLite.R")
+biocLite("STRINGdb")
+

@@ -15,8 +15,8 @@
    *       visualization to the DOM.
    */
   Drupal.d3.fd = function (select, settings) {
-    var width = 960,
-       height = 700;
+    var width = 1080,
+       height = 900;
 
     var svg = d3.select('#' + settings.id).append("svg")
         .attr("width", width)
@@ -26,12 +26,12 @@
 
     var force = d3.layout.force()
         .gravity(0.05)
-        .distance(100)
-        .charge(-100)
+        .distance(200)
+        .charge(-200)
         .size([width, height]);
 
-    d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp.csv", function(error, links) {
-     d3.csv("/sites/all/libraries/d3.fd/snp-genes.csv", function(error, nodes) {
+    d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp-ca.csv", function(error, links) {
+     d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca.csv", function(error, nodes) {
       if (error) throw error;
 
       console.log(nodes);
@@ -46,6 +46,9 @@
 
       nodes.forEach(function(d) {
         d.fc = +d.fc;
+        d.log10_exp= +d.log10_exp
+        d.log10_IGAP= +d.log10_IGAP
+        d.log10_eQTL = +d.log10_eQTL
       });
 
       console.log(nodes);
@@ -85,23 +88,28 @@
  */
 
       node.append("circle")
-          .attr("r", function(d) { return (Math.abs(d.fc) * 13.33); })
+          .attr("r", function(d) { return ( (d.group == 20 ) ? 4 : (Math.abs(d.log10_exp) * 5)); })
           .attr("fill", function(d) { return ( (d.group == 20 ) ? "#aec7e8" : color_scale(d.fc) ); })
-          .style('fill-opacity', function(d) { return '.6'; });
+          .style('fill-opacity', function(d) { return '1'; });
+
           //.style("stroke-width", function(d) { return ( (d.group == 20 ) ? "2" : "" ); })
           //.style('stroke', function(d) { return ( (d.group == 20 ) ? "black" : "" ); });
 
 
       node.append("text")
-          .attr("dx", 15)
+          .attr("dx", function(d) {return ( (Math.abs(d.log10_exp) * 5) +1 )})
           .attr("dy", ".35em")
-          .text(function(d) { return d.name });
+          .style("font-size", "10px" )
+          //.style("color", "green")
+          .style("font-size", function(d) { return ((Math.abs(d.log10_IGAP) + 8) + "px") })
+          .text(function(d) { return ( (d.group == 20 ) ? "" : d.name) });
+
 
       node.append("title")
           .style("font-family", "sans-serif")
           .style("font-size", "10px")
           .style("color", "Black")
-          .html(function (d) { return color_scale(d.fc); });
+          .html(function (d) { return d.name; });
 
       force.on("tick", function() {
         link.attr("x1", function(d) { return d.source.x; })

@@ -68,7 +68,7 @@ d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) 
 
 
   var node = svg.append("g")
-      .attr("class", "nodes")
+    .attr("class", "nodes")
     .selectAll("circle")
     .data(gnodes)
     .enter().append("circle")
@@ -80,11 +80,15 @@ d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) 
           .on("drag", dragged)
           .on("end", dragended));
 
-  node.append("text")
-          .attr("dx", function(d) {return ( (Math.abs(d.log10_exp) * 5) +1 )})
-          .attr("dy", ".35em")
-          .style("font-size", function(d) { return ((Math.abs(d.log10_IGAP) + 30) + "px") })
-          .text(function(d) { return ( (d.group == 2 ) ? "" : d.id) });
+  var textElements = svg.append("g")
+	.selectAll("text")
+	.data(gnodes)
+	.enter().append("text")
+		.text(function(d) { return ( (d.group == 2 ) ? "" : d.id) })
+		.style("font-size", function(d) { return ((Math.abs(d.log10_IGAP) + 8) + "px") })
+		.attr("dx", function(d) {return ( (Math.abs(d.log10_exp) * 5) +1 )})
+		.attr("dy", ".35em")
+
 
   node.append("title")
       .text(function(d) { return d.id; });
@@ -106,6 +110,10 @@ d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) 
     node
         .attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
+
+    textElements
+        .attr("x", function(d) { return d.x; })
+        .attr("y", function(d) { return d.y; });
   }
 });
 });

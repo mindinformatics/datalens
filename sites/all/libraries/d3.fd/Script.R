@@ -45,7 +45,7 @@ all$log10_IGAP[is.infinite(all$log10_IGAP)]<-0
 
 genes=read.csv("snp-genes-ca.csv")
 dat3=cbind(genes,all)
-dat3$group[dat3$fc == 1]=20
+dat3$group[dat3$fc == 1]=2
 dat3=dat3[,-c(3,4,5,6)]
 write.csv(dat3,"snp-genes-ca.csv", row.names = F)
 

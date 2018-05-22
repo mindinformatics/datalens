@@ -30,37 +30,71 @@ var simulation = d3.forceSimulation()
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
 
-d3.json("/sites/all/libraries/d3.fd/miserables.json", function(error, graph) {
+d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp-ca-1.csv", function(error, glinks) {
+d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) {
   if (error) throw error;
+
+  glinks.forEach(function(d) {
+        d.source = +d.source;
+        d.target = +d.target;
+        if (typeof d.source == "number") { d.source = gnodes[d.source]; }
+        if (typeof d.target == "number") { d.target = gnodes[d.target]; }
+      });
+
+  gnodes.forEach(function(d) {
+        d.fc = +d.fc;
+        d.log10_exp= +d.log10_exp
+        d.log10_IGAP= +d.log10_IGAP
+        d.log10_eQTL = +d.log10_eQTL
+      });
+
+      console.log(gnodes);
+      console.log(glinks);
+
+  var max_fc = d3.max( gnodes, function(d) { return d.fc });
+      console.debug(max_fc);
+
+  var min_fc = d3.min( gnodes, function(d) { return d.fc });
+      console.debug(min_fc);
+
+  var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
 
   var link = svg.append("g")
       .attr("class", "links")
     .selectAll("line")
-    .data(graph.links)
+    .data(glinks)
     .enter().append("line")
-      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+      .attr("stroke-width", 1);
+
 
   var node = svg.append("g")
       .attr("class", "nodes")
     .selectAll("circle")
-    .data(graph.nodes)
+    .data(gnodes)
     .enter().append("circle")
-      .attr("r", 5)
-      .attr("fill", function(d) { return color(d.group); })
+      .attr("r", function(d) { return ( (d.group == 2 ) ? 4 : (Math.abs(d.log10_exp) * 4)); })
+      .attr("fill", function(d) { return ( (d.group == 2 ) ? "#aec7e8" : color_scale(d.fc) ); })
+      .style('fill-opacity', function(d) { return '0.8'; })
       .call(d3.drag()
           .on("start", dragstarted)
           .on("drag", dragged)
           .on("end", dragended));
 
+  node.append("text")
+          .attr("dx", function(d) {return ( (Math.abs(d.log10_exp) * 5) +1 )})
+          .attr("dy", ".35em")
+          .style("font-size", function(d) { return ((Math.abs(d.log10_IGAP) + 30) + "px") })
+          .text(function(d) { return ( (d.group == 2 ) ? "" : d.id) });
+
   node.append("title")
       .text(function(d) { return d.id; });
 
   simulation
-      .nodes(graph.nodes)
+      .nodes(gnodes)
       .on("tick", ticked);
 
   simulation.force("link")
-      .links(graph.links);
+      .links(glinks);
 
   function ticked() {
     link
@@ -73,6 +107,7 @@ d3.json("/sites/all/libraries/d3.fd/miserables.json", function(error, graph) {
         .attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
   }
+});
 });
 
 function dragstarted(d) {

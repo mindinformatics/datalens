@@ -6,7 +6,7 @@ echo "Clearing database...Loading new database"
 #Comment out next 2 lines to prevent dropping/reloading db
 drush sql-drop -y
 #drush sqlc < ../downloads/mind-template_dev_2016-05-06T15-12-17_UTC_database.sql
-drush sqlc < cats_2017_01_31.sql
+drush sqlc < cats_2018_03_07.sql
 echo "Finished loading drupal db."
 echo "Running db updates.."
 drush -y updb

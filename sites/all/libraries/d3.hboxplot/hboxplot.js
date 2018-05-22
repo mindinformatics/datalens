@@ -153,7 +153,8 @@ Drupal.d3.hboxplot = function (select, settings) {
     .style("stroke-width", "1px");
 
   chart.selectAll(".yaxis text")  // select all the text elements for the y-axis
-    .style("fill", function(d,i) { return (p_vals[i] <= .05 ? "red" : "black")});
+    .style("fill", function(d,i) { return (p_vals[i] <= .05 ? "#74c476" : "black")})
+    .style("font-weight", function(d,i) { return (p_vals[i] <= .05 ? "bold" : "")});
 
   chart.selectAll("circle.median")
     .data(data)

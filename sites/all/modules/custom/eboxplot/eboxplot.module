@@ -92,7 +92,7 @@ function eboxplot_form($form, &$form_state) {
 
   // Header
   $form['header'] = array(
-    '#markup' => '<p>Plot logFC of gene across Contrasts.</p>'
+    '#markup' => '<p>Plot Expression of gene across Contrasts.</p>'
   );
 
   $form['egene'] = array (

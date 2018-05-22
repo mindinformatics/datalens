@@ -370,6 +370,7 @@ function ajax_hplot_callback_file($form, $form_state) {
   );
 
   $data_rows = hboxplot_query_mongo_file($gene, $data_files);
+  usort($data_rows, '_compare_filenames');
 	$content1 = "<span id='htitle'>" . $gene . "</span>" .  hboxplot_block('vis1', $data_rows, $category, $chart_size);
 
   $content = '<div id="hplots2">';
@@ -693,6 +694,14 @@ function hboxplot_views_pre_render(&$view) {
 
     $view->result = $new_result_array;
     $view->total_rows = count($new_result_array);
+
+    $plot_array = array();
+    foreach($mongo_array as $row) {
+      $temp1 = $row;
+      $pieces = explode("_", $temp1['FileName']);
+      $temp1['FileName'] = $pieces[0] . "_" . $pieces[1];
+      $plot_array[] = $temp1;
+    }
 
 
     // For the Forest Plot

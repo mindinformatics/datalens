@@ -22,8 +22,8 @@ function forcedirected_menu() {
 
 function forcedirected_json() {
 
- //$path = libraries_get_path('d3.fd');
- //drupal_add_js($path . '/libs/d3.v4.min.js');
+ $path = libraries_get_path('d3.fd');
+ drupal_add_js($path . '/libs/d3.v4.min.js');
 
   $chart = array(
     'id' => 'visualization',

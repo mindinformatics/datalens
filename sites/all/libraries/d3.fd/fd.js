@@ -14,105 +14,126 @@
    *   id: required. This will be needed to attach your
    *       visualization to the DOM.
    */
-  Drupal.d3.fd = function (select, settings) {
-    var width = 960,
-       height = 700;
+Drupal.d3.fd = function (select, settings) {
 
-    var svg = d3.select('#' + settings.id).append("svg")
+var width = 1080,
+    height = 900;
+
+var svg = d3.select('#' + settings.id).append("svg")
         .attr("width", width)
         .attr("height", height);
 
-    var color = d3.scale.category10();
+var color = d3.scaleOrdinal(d3.schemeCategory20);
 
-    var force = d3.layout.force()
-        .gravity(0.05)
-        .distance(100)
-        .charge(-100)
-        .size([width, height]);
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
 
-    d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp.csv", function(error, links) {
-     d3.csv("/sites/all/libraries/d3.fd/snp-genes.csv", function(error, nodes) {
-      if (error) throw error;
+d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp-ca-1.csv", function(error, glinks) {
+d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) {
+  if (error) throw error;
 
-      console.log(nodes);
-      console.log(links);
-
-      links.forEach(function(d) {
+  glinks.forEach(function(d) {
         d.source = +d.source;
         d.target = +d.target;
-        if (typeof d.source == "number") { d.source = nodes[d.source]; }
-        if (typeof d.target == "number") { d.target = nodes[d.target]; }
+        if (typeof d.source == "number") { d.source = gnodes[d.source]; }
+        if (typeof d.target == "number") { d.target = gnodes[d.target]; }
       });
 
-      nodes.forEach(function(d) {
+  gnodes.forEach(function(d) {
         d.fc = +d.fc;
+        d.log10_exp= +d.log10_exp
+        d.log10_IGAP= +d.log10_IGAP
+        d.log10_eQTL = +d.log10_eQTL
       });
 
-      console.log(nodes);
-      console.log(links);
+      console.log(gnodes);
+      console.log(glinks);
 
-      force
-          .nodes(nodes)
-          .links(links)
-          .start();
-
-      var max_fc = d3.max( nodes, function(d) { return d.fc });
+  var max_fc = d3.max( gnodes, function(d) { return d.fc });
       console.debug(max_fc);
 
-      var min_fc = d3.min( nodes, function(d) { return d.fc });
+  var min_fc = d3.min( gnodes, function(d) { return d.fc });
       console.debug(min_fc);
 
-      var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
+  var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
 
-      var link = svg.selectAll(".link")
-          .data(links)
-        .enter().append("line")
-          .attr("class", "link");
-
-      var node = svg.selectAll(".node")
-          .data(nodes)
-        .enter().append("g")
-          .attr("class", "node")
-          .call(force.drag);
-
-/*
-      node.append("image")
-          .attr("xlink:href", "https://github.com/favicon.ico")
-          .attr("x", -8)
-          .attr("y", -8)
-          .attr("width", 16)
-          .attr("height", 16);
- */
-
-      node.append("circle")
-          .attr("r", function(d) { return (Math.abs(d.fc) * 13.33); })
-          .attr("fill", function(d) { return ( (d.group == 20 ) ? "#aec7e8" : color_scale(d.fc) ); })
-          .style('fill-opacity', function(d) { return '.6'; });
-          //.style("stroke-width", function(d) { return ( (d.group == 20 ) ? "2" : "" ); })
-          //.style('stroke', function(d) { return ( (d.group == 20 ) ? "black" : "" ); });
+  var link = svg.append("g")
+      .attr("class", "links")
+    .selectAll("line")
+    .data(glinks)
+    .enter().append("line")
+      .attr("stroke-width", 1);
 
 
-      node.append("text")
-          .attr("dx", 15)
-          .attr("dy", ".35em")
-          .text(function(d) { return d.name });
+  var node = svg.append("g")
+    .attr("class", "nodes")
+    .selectAll("circle")
+    .data(gnodes)
+    .enter().append("circle")
+      .attr("r", function(d) { return ( (d.group == 2 ) ? 4 : (Math.abs(d.log10_exp) * 4)); })
+      .attr("fill", function(d) { return ( (d.group == 2 ) ? "#aec7e8" : color_scale(d.fc) ); })
+      .style('fill-opacity', function(d) { return '0.8'; })
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
 
-      node.append("title")
-          .style("font-family", "sans-serif")
-          .style("font-size", "10px")
-          .style("color", "Black")
-          .html(function (d) { return color_scale(d.fc); });
+  var textElements = svg.append("g")
+	.selectAll("text")
+	.data(gnodes)
+	.enter().append("text")
+		.text(function(d) { return ( (d.group == 2 ) ? "" : d.id) })
+		.style("font-size", function(d) { return ((Math.abs(d.log10_IGAP) + 8) + "px") })
+		.attr("dx", function(d) {return ( (Math.abs(d.log10_exp) * 5) +1 )})
+		.attr("dy", ".35em")
 
-      force.on("tick", function() {
-        link.attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
 
-        node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-      });
-    });
-  });
+  node.append("title")
+      .text(function(d) { return d.id; });
 
+  simulation
+      .nodes(gnodes)
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(glinks);
+
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+
+    textElements
+        .attr("x", function(d) { return d.x; })
+        .attr("y", function(d) { return d.y; });
   }
+});
+});
+
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+}
 })(jQuery);

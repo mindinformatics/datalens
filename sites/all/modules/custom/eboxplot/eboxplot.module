@@ -294,7 +294,6 @@ function ajax_eboxplot_callback_braak($form, $form_state) {
   $gene = $form_state['values']['egene'];
   $study = "MayoBB_TCX_RNASEQ_CPM";
   $x_axis = "Braak";
-  //$gene = "APP";
 
   $content = "<p></p>";
 
@@ -309,15 +308,19 @@ function ajax_eboxplot_callback_braak($form, $form_state) {
 
   $content .= $links;
 
-  $data1 = _query_mongo_eboxplot($gene, "MayoBB_CBE_RNASEQ_CPM");
-	$content1 = "<span id='etitle'>MayoBB RNA-Seq Cerebellum</span>" . eboxplot_build_multi('vis1', $gene, "MayoBB_CBE_RNASEQ_CPM", $data1, $x_axis);
-	$data2 = _query_mongo_eboxplot($gene, "MayoBB_TCX_RNASEQ_CPM");
-	$content2 = "<span id='etitle'>MayoBB RNA-Seq Temporal Cortex</span>" . eboxplot_build_multi('vis2', $gene, "MayoBB_TCX_RNASEQ_CPM", $data2, $x_axis);
-	$data3 = _query_mongo_eboxplot($gene, "ROSMAP_PFC_RNASEQ_FPKM");
-	$content3 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . eboxplot_build_multi('vis3', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data3, $x_axis);
-	$data4 = "";
-	$content4 ="";
+  $data5 = _query_mongo_eboxplot($gene, "MSBB_FP_RNASEQ_CPM");
+	$content5 = "<span id='etitle'>MSBB RNA-Seq Frontal Pole</span>" . eboxplot_build_multi('vis5', $gene, "MSBB_FP_RNASEQ_CPM", $data5, $x_axis);
+	$data2 = _query_mongo_eboxplot($gene, "MSBB_IFG_RNASEQ_CPM");
+	$content2 = "<span id='etitle'>MSBB RNA-Seq Inferior Frontal Gyrus</span>" . eboxplot_build_multi('vis2', $gene, "MSBB_IFG_RNASEQ_CPM", $data2, $x_axis);
 
+	$data3 = _query_mongo_eboxplot($gene, "MSBB_PHG_RNASEQ_CPM");
+	$content3 = "<span id='etitle'>MSBB RNA-Seq Parahippocampal Gyrus</span>" . eboxplot_build_multi('vis3', $gene, "MSBB_PHG_RNASEQ_CPM", $data3, $x_axis);
+	$data4 = _query_mongo_eboxplot($gene, "MSBB_STG_RNASEQ_CPM");
+	$content4 = "<span id='etitle'>MSBB RNA-Seq Superior Temporal Gyrus</span>" . eboxplot_build_multi('vis4', $gene, "MSBB_STG_RNASEQ_CPM", $data4, $x_axis);
+
+	$data1 = _query_mongo_eboxplot($gene, "ROSMAP_PFC_RNASEQ_FPKM");
+	$content1 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . eboxplot_build_multi('vis1', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data1, $x_axis);
+  $content6 = "";
 
 	$content = '<div id="ebplots">';
   $content .= "<span id='ebtitle'>" . $gene . "</span>";
@@ -331,6 +334,12 @@ function ajax_eboxplot_callback_braak($form, $form_state) {
   $content .= $content3;
   $content .= '</td><td>';
   $content .= $content4;
+  $content .= '</td></tr>';
+  $content .= '<tr><td>';
+  $content .= $content5;
+  $content .= '</td><td>';
+  $content .= $content6;
+  $content .= '</td></tr>';
   $content .= '</table>';
   $content .= '</div>';
 
@@ -408,7 +417,8 @@ function _query_mongo_eboxplot($input_genes, $study) {
     //$cursor->limit( 5 );
 
     //TODO:Sould only be 1 result- add if statement here.
-    $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval", "gene_id");
+    $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval", "gene_id","apoe_mean_22","apoe_mean_23","apoe_mean_24","apoe_mean_33","apoe_mean_34", "apoe_mean_44");
+    //gene_id	ensembl_id	GeneSymbol	Study	apoe_pval	apoe_mean_22	apoe_mean_23	apoe_mean_24	apoe_mean_33	apoe_mean_34	apoe_mean_44
      foreach ($cursor as $doc) {
        //dsm($doc);
        $exp_keys = array_keys($doc);
@@ -431,7 +441,7 @@ function _query_mongo_eboxplot($input_genes, $study) {
        //dsm($doc);
        if (array_key_exists($sample_id, $result) && ($doc['ApoE'] != "NA") ) {
         $row[] = array(
-          'ID' => $i,
+          'ID' => $sample_id,
           'Tissue' => (isset($doc['Tissue']))? $doc['Tissue']: null,
           'Diagnosis' => $doc['Diagnosis'],
           'Sex' => $doc['Gender'],

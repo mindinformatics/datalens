@@ -25,10 +25,14 @@ var svg = d3.select('#' + settings.id).append("svg")
 
 var color = d3.scaleOrdinal(d3.schemeCategory20);
 
+/*
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
+ */
+
+
 
 d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp-ca-1.csv", function(error, glinks) {
 d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) {
@@ -50,6 +54,11 @@ d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) 
 
       console.log(gnodes);
       console.log(glinks);
+
+  var simulation = d3.forceSimulation()
+      .nodes(gnodes);
+
+  var link_force =  d3.forceLink(glinks).id(function(d) { return d.id; });
 
   var max_fc = d3.max( gnodes, function(d) { return d.fc });
       console.debug(max_fc);
@@ -74,11 +83,7 @@ d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) 
     .enter().append("circle")
       .attr("r", function(d) { return ( (d.group == 2 ) ? 4 : (Math.abs(d.log10_exp) * 4)); })
       .attr("fill", function(d) { return ( (d.group == 2 ) ? "#aec7e8" : color_scale(d.fc) ); })
-      .style('fill-opacity', function(d) { return '0.8'; })
-      .call(d3.drag()
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended));
+      .style('fill-opacity', function(d) { return '0.8'; });
 
   var textElements = svg.append("g")
 	.selectAll("text")
@@ -94,11 +99,11 @@ d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) 
       .text(function(d) { return d.id; });
 
   simulation
-      .nodes(gnodes)
-      .on("tick", ticked);
+    .force("charge_force", d3.forceManyBody())
+    .force("center_force", d3.forceCenter(width / 2, height / 2))
+    .force("links",link_force);
 
-  simulation.force("link")
-      .links(glinks);
+  simulation.on("tick", ticked);
 
   function ticked() {
     link
@@ -115,25 +120,32 @@ d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) 
         .attr("x", function(d) { return d.x; })
         .attr("y", function(d) { return d.y; });
   }
+
+  var drag_handler = d3.drag()
+	.on("start", drag_start)
+	.on("drag", drag_drag)
+	.on("end", drag_end);
+
+	drag_handler(node)
+
+	function drag_start(d) {
+   if (!d3.event.active) simulation.alphaTarget(0.3	).restart();
+     d.fx = d.x;
+     d.fy = d.y;
+  }
+  function drag_drag(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+  }
+  function drag_end(d) {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+
+
 });
 });
-
-function dragstarted(d) {
-  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-  d.fx = d.x;
-  d.fy = d.y;
-}
-
-function dragged(d) {
-  d.fx = d3.event.x;
-  d.fy = d3.event.y;
-}
-
-function dragended(d) {
-  if (!d3.event.active) simulation.alphaTarget(0);
-  d.fx = null;
-  d.fy = null;
-}
 
 }
 })(jQuery);

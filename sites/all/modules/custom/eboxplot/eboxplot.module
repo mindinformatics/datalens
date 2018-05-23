@@ -15,10 +15,16 @@ function eboxplot_menu() {
     'page callback' => 'eboxplot',
     'access callback' => TRUE,
   );
-  $items['explode-multi'] = array(
-    'title' => 'Exploding Boxplot',
+  $items['explode-dx'] = array(
+    'title' => 'Diagnosis vs. Gene Expression',
     'description' => 'Exploding boxplot with user input',
-    'page callback' => 'eboxplot_multi',
+    'page callback' => 'eboxplot_dx',
+    'access callback' => TRUE,
+  );
+  $items['explode-braak'] = array(
+    'title' => 'Braak vs. Gene Expression',
+    'description' => 'Exploding boxplot with user input',
+    'page callback' => 'eboxplot_braak',
     'access callback' => TRUE,
   );
 
@@ -48,7 +54,7 @@ function eboxplot_build($gene, $study) {
 
 }
 
-function eboxplot_build_multi($id, $gene, $study, $rows) {
+function eboxplot_build_multi($id, $gene, $study, $rows, $x_axis) {
 
   $path = libraries_get_path('d3.eboxplot');
   libraries_load('d3.eboxplot');
@@ -58,7 +64,7 @@ function eboxplot_build_multi($id, $gene, $study, $rows) {
     'type' => 'eboxplot',
     'gene' => $gene,
     'study' => $study,
-    'xaxis' => 'Diagnosis',
+    'xaxis' => $x_axis,
     'yaxis' => 'Expression',
     'rows' => $rows,
   );
@@ -77,9 +83,19 @@ function eboxplot() {
 
 }
 
-function eboxplot_multi() {
+function eboxplot_dx() {
 
-  $gene_form = drupal_get_form('eboxplot_form_multi');
+  $gene_form = drupal_get_form('eboxplot_form_dx');
+  $output = drupal_render($gene_form);
+  //$output = "This is a test";
+
+  return $output;
+
+}
+
+function eboxplot_braak() {
+
+  $gene_form = drupal_get_form('eboxplot_form_braak');
   $output = drupal_render($gene_form);
   //$output = "This is a test";
 
@@ -104,12 +120,6 @@ function eboxplot_form($form, &$form_state) {
     '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
   );
 
-
-  $study_options_list = array('MayoBB_CBE_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Cerebellum',
-                              'MayoBB_TCX_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Temporal Cortex',
-                              'ROSMAP_PFC_RNASEQ_FPKM' => 'ROSMAP RNA-Seq Normalized - Prefrontal Cortex'
-  );
-
     $form['submit'] = array(
     '#prefix' => '<div class="eplot-inline">',
     '#suffix' => '</div>',
@@ -127,12 +137,10 @@ function eboxplot_form($form, &$form_state) {
     '#markup' => '<div id="eplots">' . $content . '</div>',
   );
 
-  //$result = _query_mongo_eboxplot($gene, $study);
-
 	return $form;
 }
 
-function eboxplot_form_multi($form, &$form_state) {
+function eboxplot_form_dx($form, &$form_state) {
 
   // Header
   $form['header'] = array(
@@ -148,10 +156,41 @@ function eboxplot_form_multi($form, &$form_state) {
     '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
   );
 
+    $form['submit'] = array(
+    '#prefix' => '<div class="eplot-inline">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_eboxplot_callback_dx',
+      'wrapper'  => 'eplots',
+      'effect'   => 'fade',
+     ),
+  );
 
-  $study_options_list = array('MayoBB_CBE_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Cerebellum',
-                              'MayoBB_TCX_RNASEQ_CPM' => 'MayoBB RNA-Seq Normalized - Temporal Cortex',
-                              'ROSMAP_PFC_RNASEQ_FPKM' => 'ROSMAP RNA-Seq Normalized - Prefrontal Cortex'
+  $content = "";
+    $form['wrapper'] = array(
+    '#markup' => '<div id="eplots">' . $content . '</div>',
+  );
+
+
+	return $form;
+}
+
+function eboxplot_form_braak($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Plot expression of a gene across Braak stages.</p>'
+  );
+
+  $form['egene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
   );
 
     $form['submit'] = array(
@@ -160,7 +199,7 @@ function eboxplot_form_multi($form, &$form_state) {
     '#type' => 'submit',
     '#value' => t('Go'),
     '#ajax' => array(
-      'callback' => 'ajax_eboxplot_callback_multi',
+      'callback' => 'ajax_eboxplot_callback_braak',
       'wrapper'  => 'eplots',
       'effect'   => 'fade',
      ),
@@ -178,7 +217,8 @@ function eboxplot_form_multi($form, &$form_state) {
 function ajax_eboxplot_callback($form, $form_state) {
 
   $gene = $form_state['values']['egene'];
-  $study = "ROSMAP_PFC_RNASEQ_FPKM";
+  //$study = "ROSMAP_PFC_RNASEQ_FPKM";
+  $study = "MSBB_FP_RNASEQ_CPM";
   //$gene = "APP";
 
   $content = "<p></p>";
@@ -201,10 +241,11 @@ function ajax_eboxplot_callback($form, $form_state) {
 
 }
 
-function ajax_eboxplot_callback_multi($form, $form_state) {
+function ajax_eboxplot_callback_dx($form, $form_state) {
 
   $gene = $form_state['values']['egene'];
   $study = "MayoBB_TCX_RNASEQ_CPM";
+  $x_axis = "Diagnosis";
   //$gene = "APP";
 
   $content = "<p></p>";
@@ -221,11 +262,11 @@ function ajax_eboxplot_callback_multi($form, $form_state) {
   $content .= $links;
 
   $data1 = _query_mongo_eboxplot($gene, "MayoBB_CBE_RNASEQ_CPM");
-	$content1 = "<span id='etitle'>MayoBB RNA-Seq Cerebellum</span>" . eboxplot_build_multi('vis1', $gene, "MayoBB_CBE_RNASEQ_CPM", $data1);
+	$content1 = "<span id='etitle'>MayoBB RNA-Seq Cerebellum</span>" . eboxplot_build_multi('vis1', $gene, "MayoBB_CBE_RNASEQ_CPM", $data1, $x_axis);
 	$data2 = _query_mongo_eboxplot($gene, "MayoBB_TCX_RNASEQ_CPM");
-	$content2 = "<span id='etitle'>MayoBB RNA-Seq Temporal Cortex</span>" . eboxplot_build_multi('vis2', $gene, "MayoBB_TCX_RNASEQ_CPM", $data2);
+	$content2 = "<span id='etitle'>MayoBB RNA-Seq Temporal Cortex</span>" . eboxplot_build_multi('vis2', $gene, "MayoBB_TCX_RNASEQ_CPM", $data2, $x_axis);
 	$data3 = _query_mongo_eboxplot($gene, "ROSMAP_PFC_RNASEQ_FPKM");
-	$content3 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . eboxplot_build_multi('vis3', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data3);
+	$content3 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . eboxplot_build_multi('vis3', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data3, $x_axis);
 	$data4 = "";
 	$content4 ="";
 
@@ -245,10 +286,59 @@ function ajax_eboxplot_callback_multi($form, $form_state) {
   $content .= '</table>';
   $content .= '</div>';
 
+  return $content;
+}
+
+function ajax_eboxplot_callback_braak($form, $form_state) {
+
+  $gene = $form_state['values']['egene'];
+  $study = "MayoBB_TCX_RNASEQ_CPM";
+  $x_axis = "Braak";
+  //$gene = "APP";
+
+  $content = "<p></p>";
+
+  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $gene;
+  $barres_name = $gene . " Expression by Cell Type (Barres Lab)";
+
+  $gtex_link = "https://www.gtexportal.org/home/gene/" . $gene;
+  $gtex_name = $gene . " Expression across Tissues (GTExPortal)";
+
+  $links = "<div id='elinks'>" . "Gene Data Links<br />" . "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
+  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a></div>";
+
+  $content .= $links;
+
+  $data1 = _query_mongo_eboxplot($gene, "MayoBB_CBE_RNASEQ_CPM");
+	$content1 = "<span id='etitle'>MayoBB RNA-Seq Cerebellum</span>" . eboxplot_build_multi('vis1', $gene, "MayoBB_CBE_RNASEQ_CPM", $data1, $x_axis);
+	$data2 = _query_mongo_eboxplot($gene, "MayoBB_TCX_RNASEQ_CPM");
+	$content2 = "<span id='etitle'>MayoBB RNA-Seq Temporal Cortex</span>" . eboxplot_build_multi('vis2', $gene, "MayoBB_TCX_RNASEQ_CPM", $data2, $x_axis);
+	$data3 = _query_mongo_eboxplot($gene, "ROSMAP_PFC_RNASEQ_FPKM");
+	$content3 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . eboxplot_build_multi('vis3', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data3, $x_axis);
+	$data4 = "";
+	$content4 ="";
+
+
+	$content = '<div id="ebplots">';
+  $content .= "<span id='ebtitle'>" . $gene . "</span>";
+  $content .= '<table id="explodingbox-plot">';
+  $content .= '<tr><td>';
+  $content .= $content1;
+  $content .= '</td><td>';
+  $content .= $content2;
+  $content .= '</td></tr>';
+  $content .= '<tr><td>';
+  $content .= $content3;
+  $content .= '</td><td>';
+  $content .= $content4;
+  $content .= '</table>';
+  $content .= '</div>';
 
   return $content;
-
 }
+
+
+
 
 
 

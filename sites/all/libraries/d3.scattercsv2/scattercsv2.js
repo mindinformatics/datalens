@@ -4,35 +4,8 @@
  */
 (function($) {
 
-Drupal.d3.scattercsv = function (select, settings) {
+Drupal.d3.scattercsv2 = function (select, settings) {
 
-  /*
-    var svg = dimple.newSvg("#visualization", 900, 600);
-      var real_fc  = function(x){ return (x>0 ? Math.pow(2,x) : -1/Math.pow(2,x)) };
-
-      d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD.csv", function (data) {
-       data = data.filter(function(d) { return d.PValue < 0.01 })
-       data.forEach(function(d) {
-            d.FC = real_fc(+d.logFC);
-            d.FC1 = real_fc(+d.logFC1);
-
-          });
-       console.log(data);
-        var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(60, 30, 800, 530)
-        var myXAxis = myChart.addMeasureAxis("x", "logFC");
-        var myYAxis =myChart.addMeasureAxis("y", "logFC1");
-        //myXAxis.overrideMin = 1;
-        //myYAxis.overrideMin = 1;
-
-        myXAxis.colors = ["#DA9694"];
-        myYAxis.colors = ["#DA9694"];
-        myChart.addColorAxis("logFC", "#000000")
-        myChart.addSeries(["GeneSymbol", "PValue", "PValue1"], dimple.plot.bubble);
-        //myChart.addLegend(200, 10, 360, 20, "right");
-        myChart.draw();
-      });
- */
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 1200 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -44,16 +17,20 @@ var x = d3.scale.linear()
 var y = d3.scale.linear()
     .range([height, 0]);
 
-var color = d3.scale.category10();
+//var color = d3.scale.category10();
+var color = d3.scale.category10() // D3 Version 4
+  //.domain(["Not Significant","eQTL pval < 1.0E-6","GWAS pval < 1.0E-6"])
+  .range(["#d9d9d9", "#6baed6" , "#fe9929"]);
+
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .tickSize(-height,0)
+   // .tickSize(-height,0)
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .tickSize(-width+400, 0)
+   // .tickSize(-width+400, 0)
     .orient("left");
 
 var svg = d3.select('#' + settings.id).append("svg")
@@ -143,17 +120,17 @@ var lasso = d3.lasso()
 //d3.select("svg").call(lasso);
 svg.call(lasso);
 
-d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD_Pval.csv", function(error, data) {
+d3.csv("/sites/all/libraries/d3.scattercsv2/ROSMAP-logFC-GWAS-Pval.csv", function(error, data) {
   data.forEach(function(d) {
     d.logFC = +d.logFC;
-    d.logFC1 = +d.logFC1;
+    d.Pval = +d.Pval;
   });
 
-  console.debug("data");
-  console.debug(data);
+  console.log("data");
+  console.log(data);
 
   x.domain(d3.extent(data, function(d) { return d.logFC; })).nice();
-  y.domain(d3.extent(data, function(d) { return d.logFC1; })).nice();
+  y.domain(d3.extent(data, function(d) { return d.Pval; })).nice();
 
   var x_axis = svg.append("g")
       .attr("class", "x axis axis--x")
@@ -165,7 +142,7 @@ d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD_Pval.csv", func
       .attr("x", width-400)
       .attr("y", -6)
       .style("text-anchor", "end")
-      .text("log(FC) using Braak scores");
+      .text("ROSMAP PFC logFC");
 
   x_axis.selectAll(".tick")
         .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
@@ -180,7 +157,7 @@ d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD_Pval.csv", func
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("log(FC) using Cerad scores");
+      .text("GWAS Significance (-log10 Pvalue)");
 
   y_axis.selectAll(".tick")
         .classed("tick--one", function(d) { return Math.abs(d)<1e-6;  });
@@ -192,7 +169,7 @@ d3.csv("/sites/all/libraries/d3.scattercsv/MSBB_HIPP_Braak_CERAD_Pval.csv", func
       .attr("class", "dot")
       .attr("r", 3.5)
       .attr("cx", function(d) { return x(d.logFC); })
-      .attr("cy", function(d) { return y(d.logFC1); })
+      .attr("cy", function(d) { return y(d.Pval); })
       .style("fill", function(d) { return color(d.color); });
 
   lasso.items(d3.selectAll(".dot"));

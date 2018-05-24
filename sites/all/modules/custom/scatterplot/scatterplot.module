@@ -48,10 +48,10 @@ function scatterplot_menu() {
     'page callback' => 'scatterplot_man2',
     'access callback' => TRUE,
   );
-  $items['explode'] = array(
-    'title' => 'Exploding Boxplot',
-    'description' => 'Test Exploding boxplot code',
-    'page callback' => 'scatterplot_build2',
+  $items['integration-plot'] = array(
+    'title' => 'LogFC vs. GWAS Pvalue',
+    'description' => 'LogFC vs. GWAS Pvalue',
+    'page callback' => 'scatterplot_csv2',
     'access callback' => TRUE,
   );
 
@@ -160,6 +160,16 @@ function scatterplot_csv1() {
   $chart = array(
     'id' => 'visualization',
     'type' => 'scattercsv',
+  );
+
+  return d3_draw($chart);
+}
+
+function scatterplot_csv2() {
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'scattercsv2',
   );
 
   return d3_draw($chart);

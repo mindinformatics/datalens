@@ -13,19 +13,19 @@ function eboxplot_menu() {
     'title' => 'Exploding Boxplot',
     'description' => 'Exploding boxplot with user input',
     'page callback' => 'eboxplot',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
   $items['explode-dx'] = array(
     'title' => 'Diagnosis vs. Gene Expression',
     'description' => 'Exploding boxplot with user input',
     'page callback' => 'eboxplot_dx',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
   $items['explode-braak'] = array(
     'title' => 'Braak vs. Gene Expression',
     'description' => 'Exploding boxplot with user input',
     'page callback' => 'eboxplot_braak',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
 
   return $items;

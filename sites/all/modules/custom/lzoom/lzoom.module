@@ -20,7 +20,7 @@ function lzoom_menu() {
     'title' => 'Interactive Plot of Genetic Association Data',
     'description' => 'Locus Zoom visualization',
     'page callback' => 'lzoom_plot',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'type' => MENU_NORMAL_ITEM,
   );
   $items['lzoom-data'] = array(

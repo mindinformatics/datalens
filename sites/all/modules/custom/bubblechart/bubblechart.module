@@ -12,21 +12,21 @@ function bubblechart_menu() {
     'title' => 'D3 visualization',
     'description' => 'Different visualization examples using d3.',
     'page callback' => 'bubblechart_csv',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
   $items['genomics/%'] = array(
     'title' => 'Expression Data Bubblechart',
     'description' => 'Return expression data',
     'page callback' => 'bubblechart_genomics',
     'page arguments' => array(1),
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
   $items['input'] = array(
     'title' => 'Gene Symbols input',
     'description' => 'Input genes to return expression data',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('bubblechart_form'),
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'type' => MENU_NORMAL_ITEM,
   );
   $items['downloadbubble'] = array(
@@ -34,7 +34,7 @@ function bubblechart_menu() {
     'description' => 'Download Bubblechart Table',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('bubbledownload_form'),
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'type' => MENU_NORMAL_ITEM,
   );
 

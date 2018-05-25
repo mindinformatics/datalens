@@ -12,7 +12,7 @@ function scatterplot_menu() {
     'title' => 'Scatterplot',
     'description' => 'Different visualization examples using d3.',
     'page callback' => 'scatterplot_csv',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
 
   $items['scatter-input'] = array(
@@ -20,7 +20,7 @@ function scatterplot_menu() {
     'description' => 'Choose inputs for gene expression scatterplot',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('scatterplot_form'),
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
     'type' => MENU_NORMAL_ITEM,
   );
   $items['scatterplot/%/%/%/%'] = array(
@@ -28,31 +28,31 @@ function scatterplot_menu() {
     'description' => 'Return expression data',
     'page callback' => 'scatterplot_build',
     'page arguments' => array(1,2,3,4),
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
   $items['scatter-plot'] = array(
     'title' => 'Gene Expression Profile Comparison',
     'description' => 'Scatterplot comparing differential expression.',
     'page callback' => 'scatterplot_csv1',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
   $items['manhattan-plot'] = array(
     'title' => 'Manhattan plot of AMP-AD GWAS',
     'description' => 'Manhattan Plot AMP-AD',
     'page callback' => 'scatterplot_man',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
   $items['manhattan-plot2'] = array(
     'title' => 'Manhattan plot of IGAP Stage 1 GWAS',
     'description' => 'Manhattan Plot IGAP',
     'page callback' => 'scatterplot_man2',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
   $items['integration-plot'] = array(
     'title' => 'LogFC vs. GWAS Pvalue',
     'description' => 'LogFC vs. GWAS Pvalue',
     'page callback' => 'scatterplot_csv2',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
 
   return $items;

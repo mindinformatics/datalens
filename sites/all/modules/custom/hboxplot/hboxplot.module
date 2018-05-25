@@ -13,14 +13,14 @@ function hboxplot_menu() {
     'title' => 'Forest Plot',
     'description' => 'Forest Plot using D3 visualization',
     'page callback' => 'hboxplot_page',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
 
     $items['compare-studies'] = array(
     'title' => 'Study Comparison',
     'description' => 'Compare studies',
     'page callback' => 'hboxplot_file',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
 
   return $items;

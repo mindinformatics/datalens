@@ -46,7 +46,6 @@ function eboxplot_build($gene, $study) {
 
   $result = _query_mongo_eboxplot($gene, $study);
   //dsm($result);
- // $result = array();
 
   $chart = array(
     'id' => 'visualization',

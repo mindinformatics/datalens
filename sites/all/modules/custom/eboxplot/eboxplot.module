@@ -9,7 +9,7 @@
 */
 function eboxplot_menu() {
 
-    $items['explode2'] = array(
+    $items['explode'] = array(
     'title' => 'Exploding Boxplot',
     'description' => 'Exploding boxplot with user input',
     'page callback' => 'eboxplot',
@@ -28,6 +28,13 @@ function eboxplot_menu() {
     'access callback' => 'user_is_logged_in',
   );
 
+  $items['explode-new'] = array(
+    'title' => 'Exploding Boxplot',
+    'description' => 'Exploding boxplot with user input',
+    'page callback' => 'eboxplot_new',
+    'access callback' => 'user_is_logged_in',
+  );
+
   return $items;
 }
 
@@ -39,6 +46,7 @@ function eboxplot_build($gene, $study) {
 
   $result = _query_mongo_eboxplot($gene, $study);
   //dsm($result);
+ // $result = array();
 
   $chart = array(
     'id' => 'visualization',
@@ -53,6 +61,23 @@ function eboxplot_build($gene, $study) {
   return d3_draw($chart);
 
 }
+
+
+function eboxplot_new() {
+
+  $path = libraries_get_path('d3.eboxplot2');
+  libraries_load('d3.eboxplot2');
+
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'eboxplot2',
+  );
+
+  return d3_draw($chart);
+
+}
+
 
 function eboxplot_build_multi($id, $gene, $study, $rows, $x_axis) {
 

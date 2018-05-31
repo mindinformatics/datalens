@@ -1,0 +1,7 @@
+name = Exploding Boxplot
+description = D3 Exploding Boxplot2 library
+files[js][] = d3.v3.js
+files[js][] = d3-tip.min.js
+files[js][] = eboxplot2.js
+files[css][] = eboxplot2.css
+version = 1.0

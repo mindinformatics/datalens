@@ -49,8 +49,8 @@ function scatterplot_menu() {
     'access callback' => 'user_is_logged_in',
   );
   $items['integration-plot'] = array(
-    'title' => 'LogFC vs. GWAS Pvalue',
-    'description' => 'LogFC vs. GWAS Pvalue',
+    'title' => 'LogFC vs. GWAS Significance',
+    'description' => 'LogFC vs. Significance',
     'page callback' => 'scatterplot_csv2',
     'access callback' => 'user_is_logged_in',
   );

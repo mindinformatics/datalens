@@ -20,7 +20,7 @@ var y = d3.scale.linear()
 //var color = d3.scale.category10();
 var color = d3.scale.category10() // D3 Version 4
   //.domain(["Not Significant","eQTL pval < 1.0E-6","GWAS pval < 1.0E-6"])
-  .range(["#d9d9d9", "#6baed6" , "#fe9929"]);
+  .range(["#d9d9d9", "#6baed6" , "#fe9929", "#d62728"]);
 
 
 var xAxis = d3.svg.axis()

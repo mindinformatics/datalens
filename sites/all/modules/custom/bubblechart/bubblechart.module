@@ -748,7 +748,8 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
        $result[$i]['Contrast'] = $doc['Contrast'] . ": " . $doc['StratFactor'];
        $result[$i]['GeneSymbol'] = $doc['GeneSymbol'];
        $result[$i]['AdjPValue'] = $doc['adjPVal'];
-       $result[$i]['size'] = abs($doc['logFC']);
+       //$result[$i]['size'] = abs($doc['logFC']);
+       $result[$i]['size'] = -log10($doc['adjPVal']);
        $result[$i]['name'] = $doc['GeneSymbol'];
 
        $result[$i]['DataType'] = $doc['DataType'];

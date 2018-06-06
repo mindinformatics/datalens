@@ -1,0 +1,310 @@
+Gene 1	Gene 2	Weight	Network group	Network
+LTBR	NFAM1	0.0059921513	Co-expression	Bahr-Bowler-2013
+S100A4	LTBR	0.0070728175	Co-expression	Bahr-Bowler-2013
+FGR	LTBR	0.004897671	Co-expression	Bahr-Bowler-2013
+FGR	S100A4	0.011959095	Co-expression	Bahr-Bowler-2013
+CLIC1	S100A4	0.015343118	Co-expression	Bahr-Bowler-2013
+CORO7	GPSM3	0.016312772	Co-expression	Bahr-Bowler-2013
+LSP1	GPSM3	0.02580257	Co-expression	Bahr-Bowler-2013
+DNM2	GPSM3	0.0068642637	Co-expression	Bahr-Bowler-2013
+DNM2	CORO7	0.0047533587	Co-expression	Bahr-Bowler-2013
+DNM2	LSP1	0.008169176	Co-expression	Bahr-Bowler-2013
+FXYD5	UBA52	0.01578437	Co-expression	Bahr-Bowler-2013
+FXYD5	GPSM3	0.014186417	Co-expression	Bahr-Bowler-2013
+FXYD5	DNM2	0.004903411	Co-expression	Bahr-Bowler-2013
+EMP3	S100A4	0.018988615	Co-expression	Bahr-Bowler-2013
+FCER1G	LTBR	0.005579266	Co-expression	Bahr-Bowler-2013
+FCER1G	S100A4	0.014098477	Co-expression	Bahr-Bowler-2013
+FCER1G	FGR	0.009548066	Co-expression	Bahr-Bowler-2013
+ALOX5	SLC15A3	0.008449152	Co-expression	Bahr-Bowler-2013
+TNFRSF1B	SLC15A3	0.0050702775	Co-expression	Bahr-Bowler-2013
+TNFRSF1B	FCER1G	0.00886722	Co-expression	Bahr-Bowler-2013
+PRKD3	SKAP2	0.013008219	Co-expression	Ramaswamy-Golub-2001
+FGR	S100A4	0.016205609	Co-expression	Ramaswamy-Golub-2001
+CLIC1	S100A4	0.006120049	Co-expression	Ramaswamy-Golub-2001
+SLC15A4	SKAP2	0.01207495	Co-expression	Ramaswamy-Golub-2001
+FXYD5	S100A4	0.015712863	Co-expression	Ramaswamy-Golub-2001
+SPI1	FXYD5	0.013429887	Co-expression	Ramaswamy-Golub-2001
+EMP3	S100A4	0.011136567	Co-expression	Ramaswamy-Golub-2001
+EMP3	FGR	0.012138531	Co-expression	Ramaswamy-Golub-2001
+EMP3	CLIC1	0.0046341172	Co-expression	Ramaswamy-Golub-2001
+FCER1G	S100A4	0.011235396	Co-expression	Ramaswamy-Golub-2001
+FCER1G	PRKCD	0.011245846	Co-expression	Ramaswamy-Golub-2001
+FCER1G	NFKBIA	0.0067435526	Co-expression	Ramaswamy-Golub-2001
+FCER1G	SPI1	0.008622836	Co-expression	Ramaswamy-Golub-2001
+IRF4	NLRC5	0.0146048665	Co-expression	Ramaswamy-Golub-2001
+TNFRSF1B	SLC15A3	0.009925815	Co-expression	Ramaswamy-Golub-2001
+TNFRSF1B	SPI1	0.013683206	Co-expression	Ramaswamy-Golub-2001
+NLRC5	NFATC2	0.020575834	Co-expression	Mallon-McKay-2013
+FGR	SLC15A3	0.010011819	Co-expression	Mallon-McKay-2013
+NFKBIA	SLC15A3	0.008306194	Co-expression	Mallon-McKay-2013
+LSP1	NLRC5	0.010837839	Co-expression	Mallon-McKay-2013
+CD40	SLC15A3	0.010661072	Co-expression	Mallon-McKay-2013
+CD40	PRKCD	0.01594018	Co-expression	Mallon-McKay-2013
+CD40	NFKBIA	0.0136324	Co-expression	Mallon-McKay-2013
+SPI1	NFATC2	0.015703194	Co-expression	Mallon-McKay-2013
+SPI1	FGR	0.0145201795	Co-expression	Mallon-McKay-2013
+EMP3	S100A4	0.006078982	Co-expression	Mallon-McKay-2013
+FCER1G	FGR	0.015686212	Co-expression	Mallon-McKay-2013
+ALOX5	SLC15A3	0.00878171	Co-expression	Mallon-McKay-2013
+ALOX5	FGR	0.012545933	Co-expression	Mallon-McKay-2013
+SKAP2	TNFRSF10C	0.018880522	Co-expression	Innocenti-Brown-2011
+S100A4	SKAP2	0.019554934	Co-expression	Innocenti-Brown-2011
+CORO7	SLC15A3	0.009745598	Co-expression	Innocenti-Brown-2011
+LSP1	TNFRSF10C	0.009479367	Co-expression	Innocenti-Brown-2011
+LSP1	SLC15A3	0.0060611	Co-expression	Innocenti-Brown-2011
+LSP1	S100A4	0.009984757	Co-expression	Innocenti-Brown-2011
+LSP1	PRKCD	0.00847622	Co-expression	Innocenti-Brown-2011
+FXYD5	SLC15A3	0.0059739705	Co-expression	Innocenti-Brown-2011
+FXYD5	PRKCD	0.009261784	Co-expression	Innocenti-Brown-2011
+FXYD5	LSP1	0.005918648	Co-expression	Innocenti-Brown-2011
+SPI1	FGR	0.016590254	Co-expression	Innocenti-Brown-2011
+SPI1	FXYD5	0.008223455	Co-expression	Innocenti-Brown-2011
+EMP3	SLC15A3	0.00637165	Co-expression	Innocenti-Brown-2011
+EMP3	PRKCD	0.008793126	Co-expression	Innocenti-Brown-2011
+EMP3	FGR	0.008908358	Co-expression	Innocenti-Brown-2011
+EMP3	CLIC1	0.00460319	Co-expression	Innocenti-Brown-2011
+EMP3	LSP1	0.005978492	Co-expression	Innocenti-Brown-2011
+EMP3	FXYD5	0.0062802425	Co-expression	Innocenti-Brown-2011
+FCER1G	SKAP2	0.012658827	Co-expression	Innocenti-Brown-2011
+FCER1G	FGR	0.012457898	Co-expression	Innocenti-Brown-2011
+FCER1G	EMP3	0.005980881	Co-expression	Innocenti-Brown-2011
+ALOX5	TNFRSF10C	0.020955082	Co-expression	Innocenti-Brown-2011
+ALOX5	S100A4	0.01918454	Co-expression	Innocenti-Brown-2011
+ALOX5	FCER1G	0.01504441	Co-expression	Innocenti-Brown-2011
+FGR	S100A4	0.01534723	Co-expression	Wang-Maris-2006
+CLIC1	PRKCD	0.013013412	Co-expression	Wang-Maris-2006
+LSP1	SKAP2	0.0109752165	Co-expression	Wang-Maris-2006
+LSP1	GPSM3	0.009000552	Co-expression	Wang-Maris-2006
+LSP1	NFKBIA	0.013764544	Co-expression	Wang-Maris-2006
+TNFSF10	SKAP2	0.008928529	Co-expression	Wang-Maris-2006
+CD40	TNFRSF10C	0.012917111	Co-expression	Wang-Maris-2006
+CD40	FGR	0.014360841	Co-expression	Wang-Maris-2006
+EMP3	LTBR	0.0075607025	Co-expression	Wang-Maris-2006
+EMP3	GPSM3	0.00412504	Co-expression	Wang-Maris-2006
+EMP3	NFKBIA	0.0078072147	Co-expression	Wang-Maris-2006
+EMP3	LSP1	0.007404153	Co-expression	Wang-Maris-2006
+FCER1G	NFKBIA	0.00876626	Co-expression	Wang-Maris-2006
+FCER1G	LSP1	0.008353429	Co-expression	Wang-Maris-2006
+FCER1G	EMP3	0.0050173695	Co-expression	Wang-Maris-2006
+ALOX5	GPSM3	0.009037671	Co-expression	Wang-Maris-2006
+ALOX5	EMP3	0.008571768	Co-expression	Wang-Maris-2006
+ALOX5	FCER1G	0.011654796	Co-expression	Wang-Maris-2006
+IRF4	TNFSF10	0.01122203	Co-expression	Wang-Maris-2006
+TNFRSF1B	SKAP2	0.007383268	Co-expression	Wang-Maris-2006
+TNFRSF1B	GPSM3	0.0052890144	Co-expression	Wang-Maris-2006
+TNFRSF1B	NFKBIA	0.010331738	Co-expression	Wang-Maris-2006
+TNFRSF1B	LSP1	0.00958043	Co-expression	Wang-Maris-2006
+TNFRSF1B	EMP3	0.0049596597	Co-expression	Wang-Maris-2006
+TNFRSF1B	FCER1G	0.005908033	Co-expression	Wang-Maris-2006
+TNFRSF1B	ALOX5	0.011390302	Co-expression	Wang-Maris-2006
+FGR	SORL1	0.011805331	Co-expression	Rieger-Chu-2004
+CLIC1	SKAP2	0.010346496	Co-expression	Rieger-Chu-2004
+LSP1	PRDM1	0.005532765	Co-expression	Rieger-Chu-2004
+LSP1	GPSM3	0.0067234584	Co-expression	Rieger-Chu-2004
+LSP1	PRKCD	0.006952231	Co-expression	Rieger-Chu-2004
+TNFSF10	SKAP2	0.008689213	Co-expression	Rieger-Chu-2004
+CD40	NFKBIA	0.009743065	Co-expression	Rieger-Chu-2004
+CD40	TNFSF10	0.004939688	Co-expression	Rieger-Chu-2004
+SPI1	GPSM3	0.009973219	Co-expression	Rieger-Chu-2004
+FCER1G	CD40	0.007885865	Co-expression	Rieger-Chu-2004
+TNFRSF1B	PRKCD	0.014159213	Co-expression	Rieger-Chu-2004
+TNFRSF10C	NFAM1	0.020149164	Co-expression	Roth-Zlotnik-2006
+CLIC1	UBA52	0.0022649511	Co-expression	Roth-Zlotnik-2006
+CLIC1	S100A4	0.0023004925	Co-expression	Roth-Zlotnik-2006
+CLIC1	PRKCD	0.0051822974	Co-expression	Roth-Zlotnik-2006
+TNFRSF10A	NLRC5	0.0066265175	Co-expression	Roth-Zlotnik-2006
+SLC15A4	UBA52	0.008775084	Co-expression	Roth-Zlotnik-2006
+LSP1	NLRC5	0.0035361594	Co-expression	Roth-Zlotnik-2006
+LSP1	GPSM3	0.0050670067	Co-expression	Roth-Zlotnik-2006
+LSP1	PRKCD	0.012828562	Co-expression	Roth-Zlotnik-2006
+TNFSF10	CLIC1	0.0041942117	Co-expression	Roth-Zlotnik-2006
+FXYD5	NFATC2	0.011803736	Co-expression	Roth-Zlotnik-2006
+FXYD5	NLRC5	0.0033081218	Co-expression	Roth-Zlotnik-2006
+FXYD5	SLC15A3	0.0065934327	Co-expression	Roth-Zlotnik-2006
+FXYD5	TNFRSF10A	0.012633377	Co-expression	Roth-Zlotnik-2006
+FXYD5	SLC15A4	0.010215808	Co-expression	Roth-Zlotnik-2006
+FXYD5	LSP1	0.006847323	Co-expression	Roth-Zlotnik-2006
+CD40	NLRC5	0.0071179043	Co-expression	Roth-Zlotnik-2006
+CD40	FXYD5	0.012708506	Co-expression	Roth-Zlotnik-2006
+SPI1	TNFRSF10C	0.008638369	Co-expression	Roth-Zlotnik-2006
+SPI1	GPSM3	0.0044959025	Co-expression	Roth-Zlotnik-2006
+SPI1	FGR	0.0074637835	Co-expression	Roth-Zlotnik-2006
+EMP3	UBA52	0.0041704355	Co-expression	Roth-Zlotnik-2006
+EMP3	S100A4	0.005008471	Co-expression	Roth-Zlotnik-2006
+EMP3	NFKBIA	0.008424511	Co-expression	Roth-Zlotnik-2006
+EMP3	CLIC1	0.002301746	Co-expression	Roth-Zlotnik-2006
+EMP3	FXYD5	0.0052380566	Co-expression	Roth-Zlotnik-2006
+FCER1G	SKAP2	0.01155388	Co-expression	Roth-Zlotnik-2006
+FCER1G	FGR	0.008322333	Co-expression	Roth-Zlotnik-2006
+FCER1G	SPI1	0.008401896	Co-expression	Roth-Zlotnik-2006
+ALOX5	GPSM3	0.009726326	Co-expression	Roth-Zlotnik-2006
+ALOX5	FGR	0.013918143	Co-expression	Roth-Zlotnik-2006
+ALOX5	SPI1	0.013884904	Co-expression	Roth-Zlotnik-2006
+ALOX5	FCER1G	0.016157467	Co-expression	Roth-Zlotnik-2006
+IRF4	GPSM3	0.009617448	Co-expression	Roth-Zlotnik-2006
+TNFRSF1B	NLRC5	0.0031685208	Co-expression	Roth-Zlotnik-2006
+TNFRSF1B	FXYD5	0.0049615726	Co-expression	Roth-Zlotnik-2006
+SLC15A3	PRDM1	0.00646114	Co-expression	Dobbin-Giordano-2005
+S100A4	CELF2	0.018740864	Co-expression	Dobbin-Giordano-2005
+CORO7	PRKCD	0.012165853	Co-expression	Dobbin-Giordano-2005
+LSP1	SLC15A3	0.006289306	Co-expression	Dobbin-Giordano-2005
+HSPA14	CLIC1	0.011735536	Co-expression	Dobbin-Giordano-2005
+TNFSF10	PRDM1	0.015538142	Co-expression	Dobbin-Giordano-2005
+TNFSF10	SLC15A3	0.007114853	Co-expression	Dobbin-Giordano-2005
+CD40	GPSM3	0.02381135	Co-expression	Dobbin-Giordano-2005
+SPI1	FGR	0.011315926	Co-expression	Dobbin-Giordano-2005
+EMP3	CELF2	0.022680352	Co-expression	Dobbin-Giordano-2005
+EMP3	CLIC1	0.014910333	Co-expression	Dobbin-Giordano-2005
+FCER1G	SLC15A3	0.003910904	Co-expression	Dobbin-Giordano-2005
+FCER1G	FGR	0.007135407	Co-expression	Dobbin-Giordano-2005
+TNFRSF1B	FGR	0.015252836	Co-expression	Dobbin-Giordano-2005
+S100A4	LTBR	0.017279271	Co-expression	Rosenwald-Staudt-2001
+LSP1	PRKCD	0.012913796	Co-expression	Rosenwald-Staudt-2001
+CD40	PRKCD	0.0074455147	Co-expression	Rosenwald-Staudt-2001
+CD40	LSP1	0.0072632297	Co-expression	Rosenwald-Staudt-2001
+CD40	TNFSF10	0.0064581498	Co-expression	Rosenwald-Staudt-2001
+FCER1G	LTBR	0.011374803	Co-expression	Rosenwald-Staudt-2001
+FCER1G	S100A4	0.0116708	Co-expression	Rosenwald-Staudt-2001
+FCER1G	TNFSF10	0.011611342	Co-expression	Rosenwald-Staudt-2001
+FCER1G	CD40	0.006110637	Co-expression	Rosenwald-Staudt-2001
+IRF4	NFKBIA	0.013233727	Co-expression	Rosenwald-Staudt-2001
+PRKCD	LTBR	0.0050446102	Co-expression	Boldrick-Relman-2002
+FGR	PRKCD	0.010724906	Co-expression	Boldrick-Relman-2002
+TNFSF10	NLRC5	0.005140838	Co-expression	Boldrick-Relman-2002
+ALOX5	NLRC5	0.0063164714	Co-expression	Boldrick-Relman-2002
+ALOX5	SPI1	0.008115464	Co-expression	Boldrick-Relman-2002
+FGR	GPSM3	0.00913	Co-expression	Perou-Botstein-2000
+CORO7	GPSM3	0.010873467	Co-expression	Perou-Botstein-2000
+LSP1	GPSM3	0.0061656227	Co-expression	Perou-Botstein-2000
+LSP1	FGR	0.0070362315	Co-expression	Perou-Botstein-2000
+LSP1	CORO7	0.0076330695	Co-expression	Perou-Botstein-2000
+HSPA14	PRKD3	0.014184355	Co-expression	Perou-Botstein-2000
+TNFSF10	NFKBIA	0.008486131	Co-expression	Perou-Botstein-2000
+CD40	GPSM3	0.012703209	Co-expression	Perou-Botstein-2000
+CD40	TNFSF10	0.010569137	Co-expression	Perou-Botstein-2000
+FCER1G	FGR	0.004482858	Co-expression	Perou-Botstein-2000
+FCER1G	LSP1	0.003233513	Co-expression	Perou-Botstein-2000
+FCER1G	TNFSF10	0.00358583	Co-expression	Perou-Botstein-2000
+ALOX5	FCER1G	0.0065288525	Co-expression	Perou-Botstein-2000
+TNFRSF1B	GPSM3	0.010245209	Co-expression	Perou-Botstein-2000
+TNFRSF1B	CORO7	0.012783174	Co-expression	Perou-Botstein-2000
+TNFRSF1B	LSP1	0.007604532	Co-expression	Perou-Botstein-2000
+TNFRSF1B	CD40	0.015687875	Co-expression	Perou-Botstein-2000
+TNFRSF1B	FCER1G	0.0050697387	Co-expression	Perou-Botstein-2000
+GPSM3	CELF2	0.010631061	Co-expression	Chen-Brown-2002
+LSP1	GPSM3	0.0061047976	Co-expression	Chen-Brown-2002
+TNFSF10	LSP1	0.0050883605	Co-expression	Chen-Brown-2002
+CD40	PRKCD	0.020965973	Co-expression	Chen-Brown-2002
+CD40	TNFSF10	0.009773913	Co-expression	Chen-Brown-2002
+EMP3	GPSM1	0.0072158203	Co-expression	Chen-Brown-2002
+FCER1G	GPSM3	0.008557566	Co-expression	Chen-Brown-2002
+FCER1G	LSP1	0.006366032	Co-expression	Chen-Brown-2002
+FCER1G	TNFSF10	0.0076080337	Co-expression	Chen-Brown-2002
+ALOX5	CD40	0.012055325	Co-expression	Chen-Brown-2002
+TNFRSF1B	LSP1	0.0058373786	Co-expression	Chen-Brown-2002
+TNFRSF1B	TNFSF10	0.0067326515	Co-expression	Chen-Brown-2002
+TNFRSF1B	FCER1G	0.008520492	Co-expression	Chen-Brown-2002
+FGR	VENTX	0.009600068	Co-expression	Burington-Shaughnessy-2008
+EMP3	S100A4	0.01478612	Co-expression	Burington-Shaughnessy-2008
+EMP3	CLIC1	0.014605606	Co-expression	Burington-Shaughnessy-2008
+FCER1G	SPI1	0.01301066	Co-expression	Burington-Shaughnessy-2008
+TNFRSF1B	FGR	0.009845563	Co-expression	Burington-Shaughnessy-2008
+TNFRSF1B	SPI1	0.010636601	Co-expression	Burington-Shaughnessy-2008
+TNFRSF1B	FCER1G	0.013627548	Co-expression	Burington-Shaughnessy-2008
+PRDM1	NFATC2	0.025928155	Co-localization	Johnson-Shoemaker-2003
+PRKD3	RFT1	0.017955445	Co-localization	Johnson-Shoemaker-2003
+CLIC1	NFATC2	0.011012621	Co-localization	Johnson-Shoemaker-2003
+CLIC1	PRDM1	0.011509414	Co-localization	Johnson-Shoemaker-2003
+CLIC1	S100A4	0.011639781	Co-localization	Johnson-Shoemaker-2003
+HERC3	DOCK4	0.0072160373	Co-localization	Johnson-Shoemaker-2003
+TNFRSF10A	NFATC2	0.029821837	Co-localization	Johnson-Shoemaker-2003
+CORO7	NLRC5	0.02895385	Co-localization	Johnson-Shoemaker-2003
+TNFSF10	NFKBIA	0.0055767642	Co-localization	Johnson-Shoemaker-2003
+DNM2	SKAP2	0.026110362	Co-localization	Johnson-Shoemaker-2003
+FXYD5	NFATC2	0.0128566725	Co-localization	Johnson-Shoemaker-2003
+FXYD5	SKAP2	0.012358471	Co-localization	Johnson-Shoemaker-2003
+FXYD5	PRDM1	0.01013551	Co-localization	Johnson-Shoemaker-2003
+FXYD5	S100A4	0.011779853	Co-localization	Johnson-Shoemaker-2003
+FXYD5	CLIC1	0.006118045	Co-localization	Johnson-Shoemaker-2003
+FXYD5	TNFRSF10A	0.01269259	Co-localization	Johnson-Shoemaker-2003
+SPI1	SKAP2	0.01593501	Co-localization	Johnson-Shoemaker-2003
+SPI1	SLC15A3	0.014939988	Co-localization	Johnson-Shoemaker-2003
+SPI1	PRKCD	0.01765575	Co-localization	Johnson-Shoemaker-2003
+SPI1	FGR	0.012895015	Co-localization	Johnson-Shoemaker-2003
+EMP3	PRDM1	0.013150895	Co-localization	Johnson-Shoemaker-2003
+EMP3	S100A4	0.016046029	Co-localization	Johnson-Shoemaker-2003
+EMP3	CLIC1	0.008330727	Co-localization	Johnson-Shoemaker-2003
+EMP3	FXYD5	0.0078336885	Co-localization	Johnson-Shoemaker-2003
+FCER1G	SKAP2	0.0076784017	Co-localization	Johnson-Shoemaker-2003
+FCER1G	SLC15A3	0.009018456	Co-localization	Johnson-Shoemaker-2003
+FCER1G	S100A4	0.008186172	Co-localization	Johnson-Shoemaker-2003
+FCER1G	SPI1	0.0070620687	Co-localization	Johnson-Shoemaker-2003
+ALOX5	SKAP2	0.013091875	Co-localization	Johnson-Shoemaker-2003
+ALOX5	PRKCD	0.015348142	Co-localization	Johnson-Shoemaker-2003
+ALOX5	FGR	0.013556952	Co-localization	Johnson-Shoemaker-2003
+ALOX5	SPI1	0.0137379905	Co-localization	Johnson-Shoemaker-2003
+TNFRSF1B	NFATC2	0.024514936	Co-localization	Johnson-Shoemaker-2003
+TNFRSF1B	FXYD5	0.009755541	Co-localization	Johnson-Shoemaker-2003
+CLIC1	PRDM1	0.005518328	Co-localization	Schadt-Shoemaker-2004
+ALOX5	CD40	0.021153536	Co-localization	Schadt-Shoemaker-2004
+NFKBIA	PRKCD	0.029535802	Pathway	NCI_NATURE
+TNFSF10	TNFRSF10C	0.39131525	Pathway	NCI_NATURE
+TNFSF10	TNFRSF10A	0.12845002	Pathway	NCI_NATURE
+DNM2	DOCK4	0.34623626	Pathway	NCI_NATURE
+CD40	NFKBIA	0.0395962	Pathway	NCI_NATURE
+FCER1G	NFATC2	0.018975256	Pathway	NCI_NATURE
+NFKBIA	PRKCD	0.010156246	Pathway	Wu-Stein-2010
+TNFSF10	TNFRSF10C	0.23501866	Pathway	Wu-Stein-2010
+TNFSF10	TNFRSF10A	0.05447513	Pathway	Wu-Stein-2010
+SPI1	LSP1	0.0685431	Pathway	Wu-Stein-2010
+FCER1G	NFATC2	0.013140114	Pathway	Wu-Stein-2010
+IRF4	NFATC2	0.01940146	Pathway	Wu-Stein-2010
+LTBR	RFT1	0.027051125	Physical Interactions	Huttlin-Gygi-2015
+HSPA14	NFAM1	1	Physical Interactions	Huttlin-Gygi-2015
+FGR	PRKCD	0.049466867	Predicted	Wu-Stein-2010
+HERC3	UBA52	0.8660254	Predicted	Wu-Stein-2010
+TNFRSF10A	TNFRSF10C	0.31917623	Predicted	Wu-Stein-2010
+CORO7	PRKD3	0.50343615	Predicted	Wu-Stein-2010
+LSP1	GPSM3	0.4592143	Predicted	Wu-Stein-2010
+CD40	TNFRSF10A	0.03884166	Predicted	Wu-Stein-2010
+CD40	TNFSF10	0.09594915	Predicted	Wu-Stein-2010
+IRF4	PRDM1	0.5916637	Predicted	Wu-Stein-2010
+IRF4	SPI1	0.19109474	Predicted	Wu-Stein-2010
+LTBR	TNFRSF10C	0.054839008	Shared protein domains	PFAM
+PRKCD	PRKD3	0.021224469	Shared protein domains	PFAM
+RP11-894J14.5	RFT1	1	Shared protein domains	PFAM
+TNFRSF10A	TNFRSF10C	0.03166322	Shared protein domains	PFAM
+TNFRSF10A	LTBR	0.03166322	Shared protein domains	PFAM
+SLC15A5	SLC15A3	0.25	Shared protein domains	PFAM
+PCP2	GPSM3	0.2664297	Shared protein domains	PFAM
+SLC15A4	SLC15A3	0.25	Shared protein domains	PFAM
+SLC15A4	SLC15A5	0.25	Shared protein domains	PFAM
+GPSM1	GPSM3	0.2664297	Shared protein domains	PFAM
+GPSM1	PCP2	0.2664297	Shared protein domains	PFAM
+CD40	TNFRSF10C	0.054839008	Shared protein domains	PFAM
+CD40	LTBR	0.054839008	Shared protein domains	PFAM
+CD40	TNFRSF10A	0.03166322	Shared protein domains	PFAM
+TNFRSF1B	TNFRSF10C	0.054839008	Shared protein domains	PFAM
+TNFRSF1B	LTBR	0.054839008	Shared protein domains	PFAM
+TNFRSF1B	TNFRSF10A	0.03166322	Shared protein domains	PFAM
+TNFRSF1B	CD40	0.054839008	Shared protein domains	PFAM
+LTBR	TNFRSF10C	0.0351192	Shared protein domains	INTERPRO
+PRKCD	PRKD3	0.018786604	Shared protein domains	INTERPRO
+RP11-894J14.5	RFT1	1	Shared protein domains	INTERPRO
+TNFRSF10A	TNFRSF10C	0.052328255	Shared protein domains	INTERPRO
+TNFRSF10A	LTBR	0.016407905	Shared protein domains	INTERPRO
+SLC15A5	SLC15A3	0.05149047	Shared protein domains	INTERPRO
+PCP2	GPSM3	0.3616976	Shared protein domains	INTERPRO
+SLC15A4	SLC15A3	0.04966831	Shared protein domains	INTERPRO
+SLC15A4	SLC15A5	0.04966831	Shared protein domains	INTERPRO
+GPSM1	GPSM3	0.077792205	Shared protein domains	INTERPRO
+GPSM1	PCP2	0.077792205	Shared protein domains	INTERPRO
+CD40	TNFRSF10C	0.04832378	Shared protein domains	INTERPRO
+CD40	LTBR	0.039945394	Shared protein domains	INTERPRO
+CD40	TNFRSF10A	0.022577181	Shared protein domains	INTERPRO
+FCER1G	NFAM1	0.1930945	Shared protein domains	INTERPRO
+TNFRSF1B	TNFRSF10C	0.04832378	Shared protein domains	INTERPRO
+TNFRSF1B	LTBR	0.039945394	Shared protein domains	INTERPRO
+TNFRSF1B	TNFRSF10A	0.022577181	Shared protein domains	INTERPRO
+TNFRSF1B	CD40	0.054964587	Shared protein domains	INTERPRO

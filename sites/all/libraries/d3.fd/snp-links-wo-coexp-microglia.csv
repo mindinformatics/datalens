@@ -1,0 +1,310 @@
+"Entity.1","Entity.2","Weight","Network.group","Network","source","target"
+"LTBR","NFAM1",0.0059921513,"Co-expression","Bahr-Bowler-2013",0,33
+"S100A4","LTBR",0.0070728175,"Co-expression","Bahr-Bowler-2013",1,0
+"FGR","LTBR",0.004897671,"Co-expression","Bahr-Bowler-2013",2,0
+"FGR","S100A4",0.011959095,"Co-expression","Bahr-Bowler-2013",2,1
+"CLIC1","S100A4",0.015343118,"Co-expression","Bahr-Bowler-2013",3,1
+"CORO7","GPSM3",0.016312772,"Co-expression","Bahr-Bowler-2013",4,26
+"LSP1","GPSM3",0.02580257,"Co-expression","Bahr-Bowler-2013",5,26
+"DNM2","GPSM3",0.0068642637,"Co-expression","Bahr-Bowler-2013",6,26
+"DNM2","CORO7",0.0047533587,"Co-expression","Bahr-Bowler-2013",6,4
+"DNM2","LSP1",0.008169176,"Co-expression","Bahr-Bowler-2013",6,5
+"FXYD5","UBA52",0.01578437,"Co-expression","Bahr-Bowler-2013",7,34
+"FXYD5","GPSM3",0.014186417,"Co-expression","Bahr-Bowler-2013",7,26
+"FXYD5","DNM2",0.004903411,"Co-expression","Bahr-Bowler-2013",7,6
+"EMP3","S100A4",0.018988615,"Co-expression","Bahr-Bowler-2013",8,1
+"FCER1G","LTBR",0.005579266,"Co-expression","Bahr-Bowler-2013",9,0
+"FCER1G","S100A4",0.014098477,"Co-expression","Bahr-Bowler-2013",9,1
+"FCER1G","FGR",0.009548066,"Co-expression","Bahr-Bowler-2013",9,2
+"ALOX5","SLC15A3",0.008449152,"Co-expression","Bahr-Bowler-2013",10,23
+"TNFRSF1B","SLC15A3",0.0050702775,"Co-expression","Bahr-Bowler-2013",11,23
+"TNFRSF1B","FCER1G",0.00886722,"Co-expression","Bahr-Bowler-2013",11,9
+"PRKD3","SKAP2",0.013008219,"Co-expression","Ramaswamy-Golub-2001",12,19
+"FGR","S100A4",0.016205609,"Co-expression","Ramaswamy-Golub-2001",2,1
+"CLIC1","S100A4",0.006120049,"Co-expression","Ramaswamy-Golub-2001",3,1
+"SLC15A4","SKAP2",0.01207495,"Co-expression","Ramaswamy-Golub-2001",13,19
+"FXYD5","S100A4",0.015712863,"Co-expression","Ramaswamy-Golub-2001",7,1
+"SPI1","FXYD5",0.013429887,"Co-expression","Ramaswamy-Golub-2001",14,7
+"EMP3","S100A4",0.011136567,"Co-expression","Ramaswamy-Golub-2001",8,1
+"EMP3","FGR",0.012138531,"Co-expression","Ramaswamy-Golub-2001",8,2
+"EMP3","CLIC1",0.0046341172,"Co-expression","Ramaswamy-Golub-2001",8,3
+"FCER1G","S100A4",0.011235396,"Co-expression","Ramaswamy-Golub-2001",9,1
+"FCER1G","PRKCD",0.011245846,"Co-expression","Ramaswamy-Golub-2001",9,25
+"FCER1G","NFKBIA",0.0067435526,"Co-expression","Ramaswamy-Golub-2001",9,17
+"FCER1G","SPI1",0.008622836,"Co-expression","Ramaswamy-Golub-2001",9,14
+"IRF4","NLRC5",0.0146048665,"Co-expression","Ramaswamy-Golub-2001",15,16
+"TNFRSF1B","SLC15A3",0.009925815,"Co-expression","Ramaswamy-Golub-2001",11,23
+"TNFRSF1B","SPI1",0.013683206,"Co-expression","Ramaswamy-Golub-2001",11,14
+"NLRC5","NFATC2",0.020575834,"Co-expression","Mallon-McKay-2013",16,35
+"FGR","SLC15A3",0.010011819,"Co-expression","Mallon-McKay-2013",2,23
+"NFKBIA","SLC15A3",0.008306194,"Co-expression","Mallon-McKay-2013",17,23
+"LSP1","NLRC5",0.010837839,"Co-expression","Mallon-McKay-2013",5,16
+"CD40","SLC15A3",0.010661072,"Co-expression","Mallon-McKay-2013",18,23
+"CD40","PRKCD",0.01594018,"Co-expression","Mallon-McKay-2013",18,25
+"CD40","NFKBIA",0.0136324,"Co-expression","Mallon-McKay-2013",18,17
+"SPI1","NFATC2",0.015703194,"Co-expression","Mallon-McKay-2013",14,35
+"SPI1","FGR",0.0145201795,"Co-expression","Mallon-McKay-2013",14,2
+"EMP3","S100A4",0.006078982,"Co-expression","Mallon-McKay-2013",8,1
+"FCER1G","FGR",0.015686212,"Co-expression","Mallon-McKay-2013",9,2
+"ALOX5","SLC15A3",0.00878171,"Co-expression","Mallon-McKay-2013",10,23
+"ALOX5","FGR",0.012545933,"Co-expression","Mallon-McKay-2013",10,2
+"SKAP2","TNFRSF10C",0.018880522,"Co-expression","Innocenti-Brown-2011",19,21
+"S100A4","SKAP2",0.019554934,"Co-expression","Innocenti-Brown-2011",1,19
+"CORO7","SLC15A3",0.009745598,"Co-expression","Innocenti-Brown-2011",4,23
+"LSP1","TNFRSF10C",0.009479367,"Co-expression","Innocenti-Brown-2011",5,21
+"LSP1","SLC15A3",0.0060611,"Co-expression","Innocenti-Brown-2011",5,23
+"LSP1","S100A4",0.009984757,"Co-expression","Innocenti-Brown-2011",5,1
+"LSP1","PRKCD",0.00847622,"Co-expression","Innocenti-Brown-2011",5,25
+"FXYD5","SLC15A3",0.0059739705,"Co-expression","Innocenti-Brown-2011",7,23
+"FXYD5","PRKCD",0.009261784,"Co-expression","Innocenti-Brown-2011",7,25
+"FXYD5","LSP1",0.005918648,"Co-expression","Innocenti-Brown-2011",7,5
+"SPI1","FGR",0.016590254,"Co-expression","Innocenti-Brown-2011",14,2
+"SPI1","FXYD5",0.008223455,"Co-expression","Innocenti-Brown-2011",14,7
+"EMP3","SLC15A3",0.00637165,"Co-expression","Innocenti-Brown-2011",8,23
+"EMP3","PRKCD",0.008793126,"Co-expression","Innocenti-Brown-2011",8,25
+"EMP3","FGR",0.008908358,"Co-expression","Innocenti-Brown-2011",8,2
+"EMP3","CLIC1",0.00460319,"Co-expression","Innocenti-Brown-2011",8,3
+"EMP3","LSP1",0.005978492,"Co-expression","Innocenti-Brown-2011",8,5
+"EMP3","FXYD5",0.0062802425,"Co-expression","Innocenti-Brown-2011",8,7
+"FCER1G","SKAP2",0.012658827,"Co-expression","Innocenti-Brown-2011",9,19
+"FCER1G","FGR",0.012457898,"Co-expression","Innocenti-Brown-2011",9,2
+"FCER1G","EMP3",0.005980881,"Co-expression","Innocenti-Brown-2011",9,8
+"ALOX5","TNFRSF10C",0.020955082,"Co-expression","Innocenti-Brown-2011",10,21
+"ALOX5","S100A4",0.01918454,"Co-expression","Innocenti-Brown-2011",10,1
+"ALOX5","FCER1G",0.01504441,"Co-expression","Innocenti-Brown-2011",10,9
+"FGR","S100A4",0.01534723,"Co-expression","Wang-Maris-2006",2,1
+"CLIC1","PRKCD",0.013013412,"Co-expression","Wang-Maris-2006",3,25
+"LSP1","SKAP2",0.0109752165,"Co-expression","Wang-Maris-2006",5,19
+"LSP1","GPSM3",0.009000552,"Co-expression","Wang-Maris-2006",5,26
+"LSP1","NFKBIA",0.013764544,"Co-expression","Wang-Maris-2006",5,17
+"TNFSF10","SKAP2",0.008928529,"Co-expression","Wang-Maris-2006",20,19
+"CD40","TNFRSF10C",0.012917111,"Co-expression","Wang-Maris-2006",18,21
+"CD40","FGR",0.014360841,"Co-expression","Wang-Maris-2006",18,2
+"EMP3","LTBR",0.0075607025,"Co-expression","Wang-Maris-2006",8,0
+"EMP3","GPSM3",0.00412504,"Co-expression","Wang-Maris-2006",8,26
+"EMP3","NFKBIA",0.0078072147,"Co-expression","Wang-Maris-2006",8,17
+"EMP3","LSP1",0.007404153,"Co-expression","Wang-Maris-2006",8,5
+"FCER1G","NFKBIA",0.00876626,"Co-expression","Wang-Maris-2006",9,17
+"FCER1G","LSP1",0.008353429,"Co-expression","Wang-Maris-2006",9,5
+"FCER1G","EMP3",0.0050173695,"Co-expression","Wang-Maris-2006",9,8
+"ALOX5","GPSM3",0.009037671,"Co-expression","Wang-Maris-2006",10,26
+"ALOX5","EMP3",0.008571768,"Co-expression","Wang-Maris-2006",10,8
+"ALOX5","FCER1G",0.011654796,"Co-expression","Wang-Maris-2006",10,9
+"IRF4","TNFSF10",0.01122203,"Co-expression","Wang-Maris-2006",15,20
+"TNFRSF1B","SKAP2",0.007383268,"Co-expression","Wang-Maris-2006",11,19
+"TNFRSF1B","GPSM3",0.0052890144,"Co-expression","Wang-Maris-2006",11,26
+"TNFRSF1B","NFKBIA",0.010331738,"Co-expression","Wang-Maris-2006",11,17
+"TNFRSF1B","LSP1",0.00958043,"Co-expression","Wang-Maris-2006",11,5
+"TNFRSF1B","EMP3",0.0049596597,"Co-expression","Wang-Maris-2006",11,8
+"TNFRSF1B","FCER1G",0.005908033,"Co-expression","Wang-Maris-2006",11,9
+"TNFRSF1B","ALOX5",0.011390302,"Co-expression","Wang-Maris-2006",11,10
+"FGR","SORL1",0.011805331,"Co-expression","Rieger-Chu-2004",2,36
+"CLIC1","SKAP2",0.010346496,"Co-expression","Rieger-Chu-2004",3,19
+"LSP1","PRDM1",0.005532765,"Co-expression","Rieger-Chu-2004",5,27
+"LSP1","GPSM3",0.0067234584,"Co-expression","Rieger-Chu-2004",5,26
+"LSP1","PRKCD",0.006952231,"Co-expression","Rieger-Chu-2004",5,25
+"TNFSF10","SKAP2",0.008689213,"Co-expression","Rieger-Chu-2004",20,19
+"CD40","NFKBIA",0.009743065,"Co-expression","Rieger-Chu-2004",18,17
+"CD40","TNFSF10",0.004939688,"Co-expression","Rieger-Chu-2004",18,20
+"SPI1","GPSM3",0.009973219,"Co-expression","Rieger-Chu-2004",14,26
+"FCER1G","CD40",0.007885865,"Co-expression","Rieger-Chu-2004",9,18
+"TNFRSF1B","PRKCD",0.014159213,"Co-expression","Rieger-Chu-2004",11,25
+"TNFRSF10C","NFAM1",0.020149164,"Co-expression","Roth-Zlotnik-2006",21,33
+"CLIC1","UBA52",0.0022649511,"Co-expression","Roth-Zlotnik-2006",3,34
+"CLIC1","S100A4",0.0023004925,"Co-expression","Roth-Zlotnik-2006",3,1
+"CLIC1","PRKCD",0.0051822974,"Co-expression","Roth-Zlotnik-2006",3,25
+"TNFRSF10A","NLRC5",0.0066265175,"Co-expression","Roth-Zlotnik-2006",22,16
+"SLC15A4","UBA52",0.008775084,"Co-expression","Roth-Zlotnik-2006",13,34
+"LSP1","NLRC5",0.0035361594,"Co-expression","Roth-Zlotnik-2006",5,16
+"LSP1","GPSM3",0.0050670067,"Co-expression","Roth-Zlotnik-2006",5,26
+"LSP1","PRKCD",0.012828562,"Co-expression","Roth-Zlotnik-2006",5,25
+"TNFSF10","CLIC1",0.0041942117,"Co-expression","Roth-Zlotnik-2006",20,3
+"FXYD5","NFATC2",0.011803736,"Co-expression","Roth-Zlotnik-2006",7,35
+"FXYD5","NLRC5",0.0033081218,"Co-expression","Roth-Zlotnik-2006",7,16
+"FXYD5","SLC15A3",0.0065934327,"Co-expression","Roth-Zlotnik-2006",7,23
+"FXYD5","TNFRSF10A",0.012633377,"Co-expression","Roth-Zlotnik-2006",7,22
+"FXYD5","SLC15A4",0.010215808,"Co-expression","Roth-Zlotnik-2006",7,13
+"FXYD5","LSP1",0.006847323,"Co-expression","Roth-Zlotnik-2006",7,5
+"CD40","NLRC5",0.0071179043,"Co-expression","Roth-Zlotnik-2006",18,16
+"CD40","FXYD5",0.012708506,"Co-expression","Roth-Zlotnik-2006",18,7
+"SPI1","TNFRSF10C",0.008638369,"Co-expression","Roth-Zlotnik-2006",14,21
+"SPI1","GPSM3",0.0044959025,"Co-expression","Roth-Zlotnik-2006",14,26
+"SPI1","FGR",0.0074637835,"Co-expression","Roth-Zlotnik-2006",14,2
+"EMP3","UBA52",0.0041704355,"Co-expression","Roth-Zlotnik-2006",8,34
+"EMP3","S100A4",0.005008471,"Co-expression","Roth-Zlotnik-2006",8,1
+"EMP3","NFKBIA",0.008424511,"Co-expression","Roth-Zlotnik-2006",8,17
+"EMP3","CLIC1",0.002301746,"Co-expression","Roth-Zlotnik-2006",8,3
+"EMP3","FXYD5",0.0052380566,"Co-expression","Roth-Zlotnik-2006",8,7
+"FCER1G","SKAP2",0.01155388,"Co-expression","Roth-Zlotnik-2006",9,19
+"FCER1G","FGR",0.008322333,"Co-expression","Roth-Zlotnik-2006",9,2
+"FCER1G","SPI1",0.008401896,"Co-expression","Roth-Zlotnik-2006",9,14
+"ALOX5","GPSM3",0.009726326,"Co-expression","Roth-Zlotnik-2006",10,26
+"ALOX5","FGR",0.013918143,"Co-expression","Roth-Zlotnik-2006",10,2
+"ALOX5","SPI1",0.013884904,"Co-expression","Roth-Zlotnik-2006",10,14
+"ALOX5","FCER1G",0.016157467,"Co-expression","Roth-Zlotnik-2006",10,9
+"IRF4","GPSM3",0.009617448,"Co-expression","Roth-Zlotnik-2006",15,26
+"TNFRSF1B","NLRC5",0.0031685208,"Co-expression","Roth-Zlotnik-2006",11,16
+"TNFRSF1B","FXYD5",0.0049615726,"Co-expression","Roth-Zlotnik-2006",11,7
+"SLC15A3","PRDM1",0.00646114,"Co-expression","Dobbin-Giordano-2005",23,27
+"S100A4","CELF2",0.018740864,"Co-expression","Dobbin-Giordano-2005",1,37
+"CORO7","PRKCD",0.012165853,"Co-expression","Dobbin-Giordano-2005",4,25
+"LSP1","SLC15A3",0.006289306,"Co-expression","Dobbin-Giordano-2005",5,23
+"HSPA14","CLIC1",0.011735536,"Co-expression","Dobbin-Giordano-2005",24,3
+"TNFSF10","PRDM1",0.015538142,"Co-expression","Dobbin-Giordano-2005",20,27
+"TNFSF10","SLC15A3",0.007114853,"Co-expression","Dobbin-Giordano-2005",20,23
+"CD40","GPSM3",0.02381135,"Co-expression","Dobbin-Giordano-2005",18,26
+"SPI1","FGR",0.011315926,"Co-expression","Dobbin-Giordano-2005",14,2
+"EMP3","CELF2",0.022680352,"Co-expression","Dobbin-Giordano-2005",8,37
+"EMP3","CLIC1",0.014910333,"Co-expression","Dobbin-Giordano-2005",8,3
+"FCER1G","SLC15A3",0.003910904,"Co-expression","Dobbin-Giordano-2005",9,23
+"FCER1G","FGR",0.007135407,"Co-expression","Dobbin-Giordano-2005",9,2
+"TNFRSF1B","FGR",0.015252836,"Co-expression","Dobbin-Giordano-2005",11,2
+"S100A4","LTBR",0.017279271,"Co-expression","Rosenwald-Staudt-2001",1,0
+"LSP1","PRKCD",0.012913796,"Co-expression","Rosenwald-Staudt-2001",5,25
+"CD40","PRKCD",0.0074455147,"Co-expression","Rosenwald-Staudt-2001",18,25
+"CD40","LSP1",0.0072632297,"Co-expression","Rosenwald-Staudt-2001",18,5
+"CD40","TNFSF10",0.0064581498,"Co-expression","Rosenwald-Staudt-2001",18,20
+"FCER1G","LTBR",0.011374803,"Co-expression","Rosenwald-Staudt-2001",9,0
+"FCER1G","S100A4",0.0116708,"Co-expression","Rosenwald-Staudt-2001",9,1
+"FCER1G","TNFSF10",0.011611342,"Co-expression","Rosenwald-Staudt-2001",9,20
+"FCER1G","CD40",0.006110637,"Co-expression","Rosenwald-Staudt-2001",9,18
+"IRF4","NFKBIA",0.013233727,"Co-expression","Rosenwald-Staudt-2001",15,17
+"PRKCD","LTBR",0.0050446102,"Co-expression","Boldrick-Relman-2002",25,0
+"FGR","PRKCD",0.010724906,"Co-expression","Boldrick-Relman-2002",2,25
+"TNFSF10","NLRC5",0.005140838,"Co-expression","Boldrick-Relman-2002",20,16
+"ALOX5","NLRC5",0.0063164714,"Co-expression","Boldrick-Relman-2002",10,16
+"ALOX5","SPI1",0.008115464,"Co-expression","Boldrick-Relman-2002",10,14
+"FGR","GPSM3",0.00913,"Co-expression","Perou-Botstein-2000",2,26
+"CORO7","GPSM3",0.010873467,"Co-expression","Perou-Botstein-2000",4,26
+"LSP1","GPSM3",0.0061656227,"Co-expression","Perou-Botstein-2000",5,26
+"LSP1","FGR",0.0070362315,"Co-expression","Perou-Botstein-2000",5,2
+"LSP1","CORO7",0.0076330695,"Co-expression","Perou-Botstein-2000",5,4
+"HSPA14","PRKD3",0.014184355,"Co-expression","Perou-Botstein-2000",24,12
+"TNFSF10","NFKBIA",0.008486131,"Co-expression","Perou-Botstein-2000",20,17
+"CD40","GPSM3",0.012703209,"Co-expression","Perou-Botstein-2000",18,26
+"CD40","TNFSF10",0.010569137,"Co-expression","Perou-Botstein-2000",18,20
+"FCER1G","FGR",0.004482858,"Co-expression","Perou-Botstein-2000",9,2
+"FCER1G","LSP1",0.003233513,"Co-expression","Perou-Botstein-2000",9,5
+"FCER1G","TNFSF10",0.00358583,"Co-expression","Perou-Botstein-2000",9,20
+"ALOX5","FCER1G",0.0065288525,"Co-expression","Perou-Botstein-2000",10,9
+"TNFRSF1B","GPSM3",0.010245209,"Co-expression","Perou-Botstein-2000",11,26
+"TNFRSF1B","CORO7",0.012783174,"Co-expression","Perou-Botstein-2000",11,4
+"TNFRSF1B","LSP1",0.007604532,"Co-expression","Perou-Botstein-2000",11,5
+"TNFRSF1B","CD40",0.015687875,"Co-expression","Perou-Botstein-2000",11,18
+"TNFRSF1B","FCER1G",0.0050697387,"Co-expression","Perou-Botstein-2000",11,9
+"GPSM3","CELF2",0.010631061,"Co-expression","Chen-Brown-2002",26,37
+"LSP1","GPSM3",0.0061047976,"Co-expression","Chen-Brown-2002",5,26
+"TNFSF10","LSP1",0.0050883605,"Co-expression","Chen-Brown-2002",20,5
+"CD40","PRKCD",0.020965973,"Co-expression","Chen-Brown-2002",18,25
+"CD40","TNFSF10",0.009773913,"Co-expression","Chen-Brown-2002",18,20
+"EMP3","GPSM1",0.0072158203,"Co-expression","Chen-Brown-2002",8,32
+"FCER1G","GPSM3",0.008557566,"Co-expression","Chen-Brown-2002",9,26
+"FCER1G","LSP1",0.006366032,"Co-expression","Chen-Brown-2002",9,5
+"FCER1G","TNFSF10",0.0076080337,"Co-expression","Chen-Brown-2002",9,20
+"ALOX5","CD40",0.012055325,"Co-expression","Chen-Brown-2002",10,18
+"TNFRSF1B","LSP1",0.0058373786,"Co-expression","Chen-Brown-2002",11,5
+"TNFRSF1B","TNFSF10",0.0067326515,"Co-expression","Chen-Brown-2002",11,20
+"TNFRSF1B","FCER1G",0.008520492,"Co-expression","Chen-Brown-2002",11,9
+"FGR","VENTX",0.009600068,"Co-expression","Burington-Shaughnessy-2008",2,38
+"EMP3","S100A4",0.01478612,"Co-expression","Burington-Shaughnessy-2008",8,1
+"EMP3","CLIC1",0.014605606,"Co-expression","Burington-Shaughnessy-2008",8,3
+"FCER1G","SPI1",0.01301066,"Co-expression","Burington-Shaughnessy-2008",9,14
+"TNFRSF1B","FGR",0.009845563,"Co-expression","Burington-Shaughnessy-2008",11,2
+"TNFRSF1B","SPI1",0.010636601,"Co-expression","Burington-Shaughnessy-2008",11,14
+"TNFRSF1B","FCER1G",0.013627548,"Co-expression","Burington-Shaughnessy-2008",11,9
+"PRDM1","NFATC2",0.025928155,"Co-localization","Johnson-Shoemaker-2003",27,35
+"PRKD3","RFT1",0.017955445,"Co-localization","Johnson-Shoemaker-2003",12,39
+"CLIC1","NFATC2",0.011012621,"Co-localization","Johnson-Shoemaker-2003",3,35
+"CLIC1","PRDM1",0.011509414,"Co-localization","Johnson-Shoemaker-2003",3,27
+"CLIC1","S100A4",0.011639781,"Co-localization","Johnson-Shoemaker-2003",3,1
+"HERC3","DOCK4",0.0072160373,"Co-localization","Johnson-Shoemaker-2003",28,40
+"TNFRSF10A","NFATC2",0.029821837,"Co-localization","Johnson-Shoemaker-2003",22,35
+"CORO7","NLRC5",0.02895385,"Co-localization","Johnson-Shoemaker-2003",4,16
+"TNFSF10","NFKBIA",0.0055767642,"Co-localization","Johnson-Shoemaker-2003",20,17
+"DNM2","SKAP2",0.026110362,"Co-localization","Johnson-Shoemaker-2003",6,19
+"FXYD5","NFATC2",0.0128566725,"Co-localization","Johnson-Shoemaker-2003",7,35
+"FXYD5","SKAP2",0.012358471,"Co-localization","Johnson-Shoemaker-2003",7,19
+"FXYD5","PRDM1",0.01013551,"Co-localization","Johnson-Shoemaker-2003",7,27
+"FXYD5","S100A4",0.011779853,"Co-localization","Johnson-Shoemaker-2003",7,1
+"FXYD5","CLIC1",0.006118045,"Co-localization","Johnson-Shoemaker-2003",7,3
+"FXYD5","TNFRSF10A",0.01269259,"Co-localization","Johnson-Shoemaker-2003",7,22
+"SPI1","SKAP2",0.01593501,"Co-localization","Johnson-Shoemaker-2003",14,19
+"SPI1","SLC15A3",0.014939988,"Co-localization","Johnson-Shoemaker-2003",14,23
+"SPI1","PRKCD",0.01765575,"Co-localization","Johnson-Shoemaker-2003",14,25
+"SPI1","FGR",0.012895015,"Co-localization","Johnson-Shoemaker-2003",14,2
+"EMP3","PRDM1",0.013150895,"Co-localization","Johnson-Shoemaker-2003",8,27
+"EMP3","S100A4",0.016046029,"Co-localization","Johnson-Shoemaker-2003",8,1
+"EMP3","CLIC1",0.008330727,"Co-localization","Johnson-Shoemaker-2003",8,3
+"EMP3","FXYD5",0.0078336885,"Co-localization","Johnson-Shoemaker-2003",8,7
+"FCER1G","SKAP2",0.0076784017,"Co-localization","Johnson-Shoemaker-2003",9,19
+"FCER1G","SLC15A3",0.009018456,"Co-localization","Johnson-Shoemaker-2003",9,23
+"FCER1G","S100A4",0.008186172,"Co-localization","Johnson-Shoemaker-2003",9,1
+"FCER1G","SPI1",0.0070620687,"Co-localization","Johnson-Shoemaker-2003",9,14
+"ALOX5","SKAP2",0.013091875,"Co-localization","Johnson-Shoemaker-2003",10,19
+"ALOX5","PRKCD",0.015348142,"Co-localization","Johnson-Shoemaker-2003",10,25
+"ALOX5","FGR",0.013556952,"Co-localization","Johnson-Shoemaker-2003",10,2
+"ALOX5","SPI1",0.0137379905,"Co-localization","Johnson-Shoemaker-2003",10,14
+"TNFRSF1B","NFATC2",0.024514936,"Co-localization","Johnson-Shoemaker-2003",11,35
+"TNFRSF1B","FXYD5",0.009755541,"Co-localization","Johnson-Shoemaker-2003",11,7
+"CLIC1","PRDM1",0.005518328,"Co-localization","Schadt-Shoemaker-2004",3,27
+"ALOX5","CD40",0.021153536,"Co-localization","Schadt-Shoemaker-2004",10,18
+"NFKBIA","PRKCD",0.029535802,"Pathway","NCI_NATURE",17,25
+"TNFSF10","TNFRSF10C",0.39131525,"Pathway","NCI_NATURE",20,21
+"TNFSF10","TNFRSF10A",0.12845002,"Pathway","NCI_NATURE",20,22
+"DNM2","DOCK4",0.34623626,"Pathway","NCI_NATURE",6,40
+"CD40","NFKBIA",0.0395962,"Pathway","NCI_NATURE",18,17
+"FCER1G","NFATC2",0.018975256,"Pathway","NCI_NATURE",9,35
+"NFKBIA","PRKCD",0.010156246,"Pathway","Wu-Stein-2010",17,25
+"TNFSF10","TNFRSF10C",0.23501866,"Pathway","Wu-Stein-2010",20,21
+"TNFSF10","TNFRSF10A",0.05447513,"Pathway","Wu-Stein-2010",20,22
+"SPI1","LSP1",0.0685431,"Pathway","Wu-Stein-2010",14,5
+"FCER1G","NFATC2",0.013140114,"Pathway","Wu-Stein-2010",9,35
+"IRF4","NFATC2",0.01940146,"Pathway","Wu-Stein-2010",15,35
+"LTBR","RFT1",0.027051125,"Physical Interactions","Huttlin-Gygi-2015",0,39
+"HSPA14","NFAM1",1,"Physical Interactions","Huttlin-Gygi-2015",24,33
+"FGR","PRKCD",0.049466867,"Predicted","Wu-Stein-2010",2,25
+"HERC3","UBA52",0.8660254,"Predicted","Wu-Stein-2010",28,34
+"TNFRSF10A","TNFRSF10C",0.31917623,"Predicted","Wu-Stein-2010",22,21
+"CORO7","PRKD3",0.50343615,"Predicted","Wu-Stein-2010",4,12
+"LSP1","GPSM3",0.4592143,"Predicted","Wu-Stein-2010",5,26
+"CD40","TNFRSF10A",0.03884166,"Predicted","Wu-Stein-2010",18,22
+"CD40","TNFSF10",0.09594915,"Predicted","Wu-Stein-2010",18,20
+"IRF4","PRDM1",0.5916637,"Predicted","Wu-Stein-2010",15,27
+"IRF4","SPI1",0.19109474,"Predicted","Wu-Stein-2010",15,14
+"LTBR","TNFRSF10C",0.054839008,"Shared protein domains","PFAM",0,21
+"PRKCD","PRKD3",0.021224469,"Shared protein domains","PFAM",25,12
+"RP11-894J14.5","RFT1",1,"Shared protein domains","PFAM",29,39
+"TNFRSF10A","TNFRSF10C",0.03166322,"Shared protein domains","PFAM",22,21
+"TNFRSF10A","LTBR",0.03166322,"Shared protein domains","PFAM",22,0
+"SLC15A5","SLC15A3",0.25,"Shared protein domains","PFAM",30,23
+"PCP2","GPSM3",0.2664297,"Shared protein domains","PFAM",31,26
+"SLC15A4","SLC15A3",0.25,"Shared protein domains","PFAM",13,23
+"SLC15A4","SLC15A5",0.25,"Shared protein domains","PFAM",13,30
+"GPSM1","GPSM3",0.2664297,"Shared protein domains","PFAM",32,26
+"GPSM1","PCP2",0.2664297,"Shared protein domains","PFAM",32,31
+"CD40","TNFRSF10C",0.054839008,"Shared protein domains","PFAM",18,21
+"CD40","LTBR",0.054839008,"Shared protein domains","PFAM",18,0
+"CD40","TNFRSF10A",0.03166322,"Shared protein domains","PFAM",18,22
+"TNFRSF1B","TNFRSF10C",0.054839008,"Shared protein domains","PFAM",11,21
+"TNFRSF1B","LTBR",0.054839008,"Shared protein domains","PFAM",11,0
+"TNFRSF1B","TNFRSF10A",0.03166322,"Shared protein domains","PFAM",11,22
+"TNFRSF1B","CD40",0.054839008,"Shared protein domains","PFAM",11,18
+"LTBR","TNFRSF10C",0.0351192,"Shared protein domains","INTERPRO",0,21
+"PRKCD","PRKD3",0.018786604,"Shared protein domains","INTERPRO",25,12
+"RP11-894J14.5","RFT1",1,"Shared protein domains","INTERPRO",29,39
+"TNFRSF10A","TNFRSF10C",0.052328255,"Shared protein domains","INTERPRO",22,21
+"TNFRSF10A","LTBR",0.016407905,"Shared protein domains","INTERPRO",22,0
+"SLC15A5","SLC15A3",0.05149047,"Shared protein domains","INTERPRO",30,23
+"PCP2","GPSM3",0.3616976,"Shared protein domains","INTERPRO",31,26
+"SLC15A4","SLC15A3",0.04966831,"Shared protein domains","INTERPRO",13,23
+"SLC15A4","SLC15A5",0.04966831,"Shared protein domains","INTERPRO",13,30
+"GPSM1","GPSM3",0.077792205,"Shared protein domains","INTERPRO",32,26
+"GPSM1","PCP2",0.077792205,"Shared protein domains","INTERPRO",32,31
+"CD40","TNFRSF10C",0.04832378,"Shared protein domains","INTERPRO",18,21
+"CD40","LTBR",0.039945394,"Shared protein domains","INTERPRO",18,0
+"CD40","TNFRSF10A",0.022577181,"Shared protein domains","INTERPRO",18,22
+"FCER1G","NFAM1",0.1930945,"Shared protein domains","INTERPRO",9,33
+"TNFRSF1B","TNFRSF10C",0.04832378,"Shared protein domains","INTERPRO",11,21
+"TNFRSF1B","LTBR",0.039945394,"Shared protein domains","INTERPRO",11,0
+"TNFRSF1B","TNFRSF10A",0.022577181,"Shared protein domains","INTERPRO",11,22
+"TNFRSF1B","CD40",0.054964587,"Shared protein domains","INTERPRO",11,18

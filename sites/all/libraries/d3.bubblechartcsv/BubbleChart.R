@@ -111,12 +111,9 @@ sum(p2$p.adj < 0.25)
 
 #sum(p.adjust(dat$P.Value, method="BH") < 0.25)
 #dat$p.adjusted=p.adjust(dat$P.Value, method="BH")
-fname1="B3-B1-with-p.adjust.csv"
-write.table(p2, fname1, sep =",", col.names = T, row.names = F, na="")
 
 # Create a file for bubble chart
-dat=read.csv(fname1, header = T)
-dat1=dat[dat$p.adj < 0.1, c("study","bregion","dtype","contrast","GeneSymbol","logFC","FC","P.Value","adj.P.Val") ]
+dat1=p2[p2$p.adj < 0.1, c("study","bregion","dtype","contrast","GeneSymbol","logFC","FC","P.Value","adj.P.Val") ]
 colnames(dat1)=c("Study","parent","DataType","Contrast","name","LogFC","size","PValue","AdjPValue")
 dat1$size=abs(dat1$LogFC)
 

@@ -12,7 +12,6 @@ analysisFile = read.table("~/Dropbox (Partners HealthCare)/MSBB//Methods/Output/
 head(analysisFile)
 colnames(analysisFile)
 
-
 mouse_gene_list<-read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/mouse-genes.csv", sep=",", header = T)
 mouse_human<-read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/mapped_orthologs.tab_delimited.xls", sep="\t", header = T)
 genes=mouse_human[mouse_human$Homology.Type != "", "Human.Gene.Symbol"]
@@ -57,6 +56,10 @@ sapply(seq_along(analysisFile$FileName), function(i) {if (analysisFile$PipelineS
 }
 )
 
+
+# Convert columns that got changed to character back to numeric for processing
+# Else creating p1: Error in dat_br$P.Value * N : non-numeric argument to binary operator
+dat[,c(8:11)] <- sapply(dat[, c(8:11)], as.numeric)
 
 #sum(p.adjust(dat$P.Value, method="BH") < 0.30)
 

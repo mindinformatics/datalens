@@ -1,4 +1,4 @@
-setwd("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/")
+setwd("~/Sites/cats/sites/all/libraries/d3.bubblechartcsv")
 options(stringsAsFactors = FALSE)
 library(data.table)
 library(dplyr)
@@ -13,8 +13,8 @@ head(analysisFile)
 colnames(analysisFile)
 
 
-mouse_gene_list<-read.csv("mouse-genes.csv", sep=",", header = T)
-mouse_human<-read.csv("mapped_orthologs.tab_delimited.xls", sep="\t", header = T)
+mouse_gene_list<-read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/mouse-genes.csv", sep=",", header = T)
+mouse_human<-read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/mapped_orthologs.tab_delimited.xls", sep="\t", header = T)
 genes=mouse_human[mouse_human$Homology.Type != "", "Human.Gene.Symbol"]
 
 
@@ -117,7 +117,7 @@ colnames(dat1)=c("Study","parent","DataType","Contrast","name","LogFC","size","P
 dat1$size=abs(dat1$LogFC)
 
 xx=data.frame(table(dat1$name, dat1$parent)) ## check for multiple probes
-brparents = read.csv("BrainRegionParents.csv", header = T)
+brparents = read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/BrainRegionParents.csv", header = T)
 
 uparents = unique(dat1$parent)
 dat2 = data.frame("", brparents[match(uparents, brparents$BrainRegion), "Parent"], "", "", uparents, "", "5", "","")

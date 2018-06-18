@@ -2,22 +2,36 @@ setwd("~/Sites/cats/sites/all/libraries/d3.bubblechartcsv")
 options(stringsAsFactors = FALSE)
 library(data.table)
 library(dplyr)
+currdate=format(Sys.Date(), format="%Y-%m-%d")
 
 realfc <- function (x) {
   fc=ifelse(x>0,2^x,-1/2^x)
   return(fc)
 }
 
+# Directions:
+# 1. Put genes into input file: input_human_genes.txt
+# 2. Select Contrast/Data Types below
+# 3. Set output file name (just below selecting Contrast)
+
 analysisFile = read.table("~/Dropbox (Partners HealthCare)/MSBB//Methods/Output/main.csv", sep=",", header=T, stringsAsFactors=F)
 head(analysisFile)
 colnames(analysisFile)
 
-mouse_gene_list<-read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/mouse-genes.csv", sep=",", header = T)
-mouse_human<-read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/mapped_orthologs.tab_delimited.xls", sep="\t", header = T)
-genes=mouse_human[mouse_human$Homology.Type != "", "Human.Gene.Symbol"]
+# Must use human gene symbols!
+genes_list = read.csv("input_human_genes.txt", sep="\t", header = T)
+genes = genes_list[,"GeneSymbol"]
 
+# Select Contrast/StratFactor/DataType, etc
+#unique(analysisFile$StratFactor)
+#analysisFile=analysisFile[(analysisFile$Contrast == "B3-B1"), ] # Choose just B3-B1 and RNA-Seq
+#analysisFile=analysisFile[(analysisFile$StratFactor == "CpDxLow" & analysisFile$Contrast == "AD-NCI" & analysisFile$DataType != "RC"), ]
+#analysisFile=analysisFile[(analysisFile$StratFactor == "CpDxAll"), ]
+analysisFile=analysisFile[(analysisFile$StratFactor == "CpDxLow" & analysisFile$Contrast == "AD-NCI" & analysisFile$DataType != "RC"), ]
 
-analysisFile=analysisFile[(analysisFile$Contrast == "B3-B1"), ] # Choose just B3-B1 and RNA-Seq
+# Set Output File Name based on Contrast
+fname2 = "CpDxLow-Bubblechart-BinZhangGenes.csv"
+
 
 # Create output dataframe.
 dat <- data.frame(study=character(),bregion=character(),cbregion=character(),dtype=character(),contrast=character(),
@@ -51,7 +65,8 @@ sapply(seq_along(analysisFile$FileName), function(i) {if (analysisFile$PipelineS
   colnames(v4) =c("study", "bregion", "cbregion", "dtype", "contrast", "type", "GeneSymbol", "logFC", "FC", "P.Value", "adj.P.Val")
   dat <<- rbind(dat,v4)
 
-  return(dim(v4))
+  #Report error (if not genes*datasets)
+  return(dim(v4)[1])
   }
 }
 )
@@ -61,12 +76,12 @@ sapply(seq_along(analysisFile$FileName), function(i) {if (analysisFile$PipelineS
 # Else creating p1: Error in dat_br$P.Value * N : non-numeric argument to binary operator
 dat[,c(8:11)] <- sapply(dat[, c(8:11)], as.numeric)
 
+# TODO
+# If there are multiple probes per gene, pick the probe with the highest significance (lowest Pvalue)
+
 #sum(p.adjust(dat$P.Value, method="BH") < 0.30)
 
-## Revised analysis
-dat=dat[dat$type!="RC",]
-#dat=dat[dat$dtype != "RNA-Seq",] ??
-
+## 2 Step Pvalue Correction
 # First adjust for RNA-Seq and microarray for the 5 regions that have both
 genes=unique(dat$GeneSymbol)
 p1 = rbind.data.frame()
@@ -84,8 +99,6 @@ for(gene in genes) {
     p1=rbind(p1,cbind(dat_br,P1.BF=dat_br$P.Value*N,P1.BH=dat_br$P.Value*N/rank))
   }
 }
-
-#write.table(p1, "Bennet/genes-out-choose-probe-pvalue-new1.csv", sep =",", col.names = T, row.names = F, na="")
 
 # Next adjust for 19 brain regions
 p2 = rbind.data.frame()
@@ -113,11 +126,13 @@ sum(p2$p.adj < 0.25)
 #dat$p.adjusted=p.adjust(dat$P.Value, method="BH")
 
 # Create a file for bubble chart
-dat1=p2[p2$p.adj < 0.1, c("study","bregion","dtype","contrast","GeneSymbol","logFC","FC","P.Value","adj.P.Val") ]
-colnames(dat1)=c("Study","parent","DataType","Contrast","name","LogFC","size","PValue","AdjPValue")
-dat1$size=abs(dat1$LogFC)
+# TODO: Try with uncorrected Pvalue less than .05
+dat1 = p2[p2$p.adj < 0.25, c("study","bregion","dtype","contrast","GeneSymbol","logFC","FC","P.Value","p.adj") ]
+colnames(dat1) = c("Study","parent","DataType","Contrast","name","LogFC","size","PValue","AdjPValue")
+dat1$size = abs(dat1$LogFC)
 
 xx=data.frame(table(dat1$name, dat1$parent)) ## check for multiple probes
+#TODO: Move BRParent files to location of this script
 brparents = read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/BrainRegionParents.csv", header = T)
 
 uparents = unique(dat1$parent)
@@ -135,14 +150,6 @@ colnames(dat4)=c("Study","parent","DataType","Contrast","name","LogFC","size","P
 dat_all=rbind(dat4, dat3, dat2, dat1)
 colnames(dat_all)=c("Study","parent","DataType","Contrast","name","LogFC","size","PValue","AdjPValue")
 
-write.table(dat_all, "B3-B1-Bubblechart.csv", sep =",", col.names = T, row.names = F, na="")
+write.table(dat_all, fname2, sep =",", col.names = T, row.names = F, na="")
+#CpDxAll-Bubblechart-BinZhangGenes.csv
 
-
-## Reviewer #4 comments choose most significant probe
-dat=read.csv("Bennet/genes-out-choose-probe-pvalue-BH.csv", header = T)
-dat1=dat[dat$p.adjusted < 0.25, c("study","bregion","dtype","contrast","GeneSymbol","logFC","FC","P.Value","p.adjusted") ]
-tdat=data.frame(table(dat1$GeneSymbol, dat1$bregion))
-
-## Check code
-pval=read.csv("Bennet/mmp9.txt", header = T)
-p.adjust(pval$pval, method = "BH")

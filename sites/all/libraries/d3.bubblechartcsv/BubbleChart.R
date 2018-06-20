@@ -129,11 +129,12 @@ sum(p2$p.adj < 0.25)
 # TODO: Try with uncorrected Pvalue less than .05
 dat1 = p2[p2$p.adj < 0.25, c("study","bregion","dtype","contrast","GeneSymbol","logFC","FC","P.Value","p.adj") ]
 colnames(dat1) = c("Study","parent","DataType","Contrast","name","LogFC","size","PValue","AdjPValue")
-dat1$size = abs(dat1$LogFC)
+#TODO: Change size to be PValue
+dat1$size = abs(log10(dat1$AdjPValue))
 
 xx=data.frame(table(dat1$name, dat1$parent)) ## check for multiple probes
-#TODO: Move BRParent files to location of this script
-brparents = read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Queries/HymanHurdy/BrainRegionParents.csv", header = T)
+
+brparents = read.csv("BrainRegionParents.csv", header = T)
 
 uparents = unique(dat1$parent)
 dat2 = data.frame("", brparents[match(uparents, brparents$BrainRegion), "Parent"], "", "", uparents, "", "5", "","")

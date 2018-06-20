@@ -1,0 +1,28 @@
+﻿BrainRegion,Parent
+Amygdala,Limbic system
+Anterior Cingulate,Cingulum
+Caudate Nucleus,Striatum
+Dorsolateral Prefrontal Cortex,Frontal lobe
+Frontal Pole,Frontal lobe
+Hippocampus,Limbic system
+Inferior Frontal Gyrus,Frontal lobe
+Inferior Temporal Gyrus,Temporal lobe
+Middle Temporal Gyrus,Temporal lobe
+Nucleus Accumbens,Limbic system
+Occipital Visual Cortex,Occipital lobe
+Parahippocampal Gyrus,Limbic system
+Posterior Cingulate Cortex,Cingulum
+Precentral Gyrus,Frontal lobe
+Prefrontal Cortex,Frontal lobe
+Putamen,Striatum
+Superior Parietal Lobule,Parietal lobe
+Superior Temporal Gyrus,Temporal lobe
+Temporal Pole,Temporal lobe
+Limbic system,WB
+Cingulum,WB
+Striatum,WB
+Frontal lobe,WB
+Temporal lobe,WB
+Occipital lobe,WB
+Parietal lobe,WB
+WB,null

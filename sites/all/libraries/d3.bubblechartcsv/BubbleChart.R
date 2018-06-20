@@ -30,7 +30,7 @@ genes = genes_list[,"GeneSymbol"]
 analysisFile=analysisFile[(analysisFile$StratFactor == "CpDxLow" & analysisFile$Contrast == "AD-NCI" & analysisFile$DataType != "RC"), ]
 
 # Set Output File Name based on Contrast
-fname2 = "CpDxLow-Bubblechart-BinZhangGenes.csv"
+fname2 = "CpDxLow-AD-NCI-Bubblechart-IGAPGenes.csv"
 
 
 # Create output dataframe.
@@ -39,7 +39,6 @@ dat <- data.frame(study=character(),bregion=character(),cbregion=character(),dty
                   P.Value=double(), adj.P.Val=double(), stringsAsFactors=FALSE)
 
 sapply(seq_along(analysisFile$FileName), function(i) {if (analysisFile$PipelineScript[i] == "uArray_pipeline.R" | analysisFile$PipelineScript[i] == "RNASeq_pipeline.R") {
-  print(i)
   bregion = analysisFile$BrainRegionFull[i]
   cbregion = analysisFile$ClusteredBrainRegion[i]
   study = analysisFile$StudyName[i]
@@ -64,13 +63,15 @@ sapply(seq_along(analysisFile$FileName), function(i) {if (analysisFile$PipelineS
   v4 = as.data.frame(v3)
   colnames(v4) =c("study", "bregion", "cbregion", "dtype", "contrast", "type", "GeneSymbol", "logFC", "FC", "P.Value", "adj.P.Val")
   dat <<- rbind(dat,v4)
-
-  #Report error (if not genes*datasets)
-  return(dim(v4)[1])
+  check = paste0(dtype, ": ", study,": ",bregion,": ","Genes: ", dim(v4)[1])
+  #print(check)
+  return(check)
   }
 }
 )
-
+# Error Checking
+tot = dim(analysisFile)[1] * dim(genes_list)[1]
+if (tot == dim(dat)[1]) { print("All genes found in all studies!")} else {print("Gene(s) Not found in 1 or more studies!")}
 
 # Convert columns that got changed to character back to numeric for processing
 # Else creating p1: Error in dat_br$P.Value * N : non-numeric argument to binary operator

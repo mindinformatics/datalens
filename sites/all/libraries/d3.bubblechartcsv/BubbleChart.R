@@ -153,5 +153,6 @@ dat_all=rbind(dat4, dat3, dat2, dat1)
 colnames(dat_all)=c("Study","parent","DataType","Contrast","name","LogFC","size","PValue","AdjPValue")
 
 write.table(dat_all, fname2, sep =",", col.names = T, row.names = F, na="")
+write.table(dat_all, "js-bubblechart-input.csv", sep =",", col.names = T, row.names = F, na="")
 #CpDxAll-Bubblechart-BinZhangGenes.csv
 

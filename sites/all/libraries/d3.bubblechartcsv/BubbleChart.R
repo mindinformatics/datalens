@@ -30,7 +30,7 @@ genes = genes_list[,"GeneSymbol"]
 analysisFile=analysisFile[(analysisFile$StratFactor == "CpDxLow" & analysisFile$Contrast == "AD-NCI" & analysisFile$DataType != "RC"), ]
 
 # Set Output File Name based on Contrast
-fname2 = "CpDxLow-AD-NCI-Bubblechart-IGAPGenes.csv"
+fname2 = "Paper-CpDxLow-AD-NCI-Bubblechart-ZhangGenes.csv"
 
 
 # Create output dataframe.
@@ -79,6 +79,9 @@ dat[,c(8:11)] <- sapply(dat[, c(8:11)], as.numeric)
 
 # TODO
 # If there are multiple probes per gene, pick the probe with the highest significance (lowest Pvalue)
+xx=data.frame(table(dat$study, dat$bregion, dat$dtype, dat$GeneSymbol)) ## check for multiple probes
+#xx[xx$Freq >1,]
+if (dim(xx[xx$Freq >1,])[1] > 0) { print("Error! Remove multiple probes!")}
 
 #sum(p.adjust(dat$P.Value, method="BH") < 0.30)
 
@@ -128,7 +131,7 @@ sum(p2$p.adj < 0.25)
 
 # Create a file for bubble chart
 # TODO: Try with uncorrected Pvalue less than .05
-dat1 = p2[p2$p.adj < 0.25, c("study","bregion","dtype","contrast","GeneSymbol","logFC","FC","P.Value","p.adj") ]
+dat1 = p2[p2$p.adj < 0.2, c("study","bregion","dtype","contrast","GeneSymbol","logFC","FC","P.Value","p.adj") ]
 colnames(dat1) = c("Study","parent","DataType","Contrast","name","LogFC","size","PValue","AdjPValue")
 #TODO: Change size to be PValue
 dat1$size = abs(log10(dat1$AdjPValue))
@@ -152,7 +155,16 @@ colnames(dat4)=c("Study","parent","DataType","Contrast","name","LogFC","size","P
 dat_all=rbind(dat4, dat3, dat2, dat1)
 colnames(dat_all)=c("Study","parent","DataType","Contrast","name","LogFC","size","PValue","AdjPValue")
 
+# Abbreviations so that Paper figure looks nice.  "Occipital lobe" removed manually.
+dat_all = apply(dat_all, 2, function(y) gsub("Occipital Visual Cortex", "OVC", y, ignore.case = FALSE))
+dat_all = apply(dat_all, 2, function(y) gsub("Anterior Cingulate", "Ant Cingulate", y, ignore.case = FALSE))
+dat_all = apply(dat_all, 2, function(y) gsub("Middle Temporal Gyrus", "Mid Temp Gyrus", y, ignore.case = FALSE))
+dat_all = apply(dat_all, 2, function(y) gsub("Limbic system", "Limbic", y, ignore.case = FALSE))
+
+
 write.table(dat_all, fname2, sep =",", col.names = T, row.names = F, na="")
 write.table(dat_all, "js-bubblechart-input.csv", sep =",", col.names = T, row.names = F, na="")
+
+
 #CpDxAll-Bubblechart-BinZhangGenes.csv
 

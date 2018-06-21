@@ -46,6 +46,7 @@
             d.LogFC = +d.LogFC;
             d.PValue = +d.PValue;
             d.AdjPValue = +d.AdjPValue;
+            d.size = +d.size;
           });
 
         // *********** Convert flat data into a nice tree ***************
@@ -89,7 +90,7 @@
 
           node.append("title")
                 //(d.children ? "" : ": " + format(d.size)
-                .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + real_fc(d.LogFC) + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study + "<br/>" + "Contrast: " + d.Contrast) });
+                .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + real_fc(d.LogFC) + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study + "<br/>" + "Contrast: " + d.Contrast + "<br/>" + "DataType: " + d.DataType) });
 
 
 //These max and mins are not correct;
@@ -146,7 +147,10 @@
                   .style("text-anchor", "start")
               .append("textPath")
                   .attr("xlink:href",function(d,i){return "#s"+i;})
-                  .attr("startOffset","25%")
+                  //.attr("startOffset","25%")
+                  .attr("startOffset", function(d) {
+                    if (d.name === "Limbic") { return ('20%');} else {
+                  return ( (d.name.length > 8) ? '23%' : '25%' );  }  })
                   .text(function(d) { return d.name; });
 
         });

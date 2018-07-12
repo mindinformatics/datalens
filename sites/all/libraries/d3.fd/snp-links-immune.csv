@@ -1,0 +1,218 @@
+"Entity.1","Entity.2","Weight","Network.group","Network","source","target"
+"CR1","HLA-DRB5",0.01253039,"Co-localization","Schadt-Shoemaker-2004",0,30
+"IL10","HLA-DRB5",0.01563074,"Co-localization","Schadt-Shoemaker-2004",1,30
+"CR2","IL10",0.011734713,"Co-localization","Schadt-Shoemaker-2004",2,1
+"CLU","CLPTM1",0.008984957,"Co-localization","Schadt-Shoemaker-2004",3,7
+"IL10RA","HLA-DRB5",0.012982834,"Co-localization","Schadt-Shoemaker-2004",4,30
+"IL10RA","CR1",0.015578486,"Co-localization","Schadt-Shoemaker-2004",4,0
+"IL10RA","IL10",0.015130285,"Co-localization","Schadt-Shoemaker-2004",4,1
+"HLA-DMB","HLA-DRB5",0.022996383,"Co-localization","Schadt-Shoemaker-2004",5,30
+"HLA-DMB","IL10",0.017243471,"Co-localization","Schadt-Shoemaker-2004",5,1
+"HLA-DMB","IL10RA",0.014384854,"Co-localization","Schadt-Shoemaker-2004",5,4
+"PLD2","SCARA3",0.031133002,"Co-localization","Johnson-Shoemaker-2003",6,35
+"CLPTM1","CARTPT",0.014262962,"Co-localization","Johnson-Shoemaker-2003",7,36
+"CLU","CLPTM1",0.01178701,"Co-localization","Johnson-Shoemaker-2003",3,7
+"HLA-DRA","CR2",0.008013457,"Co-localization","Johnson-Shoemaker-2003",8,2
+"SOX18","DAPK2",0.0069295485,"Co-localization","Johnson-Shoemaker-2003",9,37
+"SOX18","MS4A2",0.0061573954,"Co-localization","Johnson-Shoemaker-2003",9,38
+"SOX18","CAV1",0.004933599,"Co-localization","Johnson-Shoemaker-2003",9,29
+"IL10RA","CR1",0.006407834,"Co-localization","Johnson-Shoemaker-2003",4,0
+"IL10RA","HLA-DRA",0.0046591307,"Co-localization","Johnson-Shoemaker-2003",4,8
+"PTEN","HLA-DRA",0.007837182,"Co-localization","Johnson-Shoemaker-2003",10,8
+"HLA-DMB","HLA-DRA",0.009518714,"Co-localization","Johnson-Shoemaker-2003",5,8
+"SYNGR2","HLA-DRA",0.007824749,"Co-localization","Johnson-Shoemaker-2003",11,8
+"SYNGR2","MAPKAPK2",0.013935521,"Co-localization","Johnson-Shoemaker-2003",11,33
+"SYNGR2","HLA-DMB",0.015627878,"Co-localization","Johnson-Shoemaker-2003",11,5
+"ARPC5","SPI1",0.01144277,"Co-localization","Johnson-Shoemaker-2003",12,17
+"CD74","HLA-DRA",0.005402189,"Co-localization","Johnson-Shoemaker-2003",13,8
+"CD74","IL10RA",0.006128403,"Co-localization","Johnson-Shoemaker-2003",13,4
+"CD74","HLA-DMB",0.008701284,"Co-localization","Johnson-Shoemaker-2003",13,5
+"HLA-DPB1","HLA-DRA",0.0066346945,"Co-localization","Johnson-Shoemaker-2003",14,8
+"HLA-DPB1","PTEN",0.009760317,"Co-localization","Johnson-Shoemaker-2003",14,10
+"HLA-DPB1","HLA-DMB",0.011521739,"Co-localization","Johnson-Shoemaker-2003",14,5
+"HLA-DPB1","SYNGR2",0.0104349125,"Co-localization","Johnson-Shoemaker-2003",14,11
+"HLA-DPB1","CD74",0.006186294,"Co-localization","Johnson-Shoemaker-2003",14,13
+"CD226","CR1",0.01368635,"Co-localization","Johnson-Shoemaker-2003",15,0
+"CD226","IL10RA",0.011827172,"Co-localization","Johnson-Shoemaker-2003",15,4
+"PLD2","MS4A2",0.037749615,"Pathway","Wu-Stein-2010",6,38
+"HLA-DRB1","HLA-DQA1",0.031195464,"Pathway","Wu-Stein-2010",16,39
+"SPI1","CD33",0.13557759,"Pathway","Wu-Stein-2010",17,40
+"HLA-DRA","HLA-DQA1",0.030030241,"Pathway","Wu-Stein-2010",8,39
+"HLA-DRA","HLA-DRB1",0.017523883,"Pathway","Wu-Stein-2010",8,16
+"IL10RA","IL10",0.106306106,"Pathway","Wu-Stein-2010",4,1
+"AP2B1","AP2A2",0.08440755,"Pathway","Wu-Stein-2010",18,41
+"PTPN1","CAV1",0.009884098,"Pathway","Wu-Stein-2010",19,29
+"NECTIN3","PVR",0.10635223,"Pathway","Wu-Stein-2010",20,42
+"NECTIN3","PVRL2",0.10313355,"Pathway","Wu-Stein-2010",20,31
+"HLA-DMB","HLA-DQA1",0.053458888,"Pathway","Wu-Stein-2010",5,39
+"HLA-DMB","HLA-DRB1",0.031195464,"Pathway","Wu-Stein-2010",5,16
+"HLA-DMB","HLA-DRA",0.030030241,"Pathway","Wu-Stein-2010",5,8
+"CD74","HLA-DRB1",0.08135257,"Pathway","Wu-Stein-2010",13,16
+"CD74","HLA-DRA",0.07831387,"Pathway","Wu-Stein-2010",13,8
+"HLA-DPB1","HLA-DQA1",0.053458888,"Pathway","Wu-Stein-2010",14,39
+"HLA-DPB1","HLA-DRB1",0.031195464,"Pathway","Wu-Stein-2010",14,16
+"HLA-DPB1","HLA-DRA",0.030030241,"Pathway","Wu-Stein-2010",14,8
+"HLA-DPB1","HLA-DMB",0.053458888,"Pathway","Wu-Stein-2010",14,5
+"CD226","PVR",0.3251435,"Pathway","Wu-Stein-2010",15,42
+"CD226","PVRL2",0.3153032,"Pathway","Wu-Stein-2010",15,31
+"HLA-DMA","HLA-DQA1",0.053458888,"Pathway","Wu-Stein-2010",21,39
+"HLA-DMA","HLA-DRB1",0.031195464,"Pathway","Wu-Stein-2010",21,16
+"HLA-DMA","HLA-DRA",0.030030241,"Pathway","Wu-Stein-2010",21,8
+"HLA-DMA","HLA-DMB",0.053458888,"Pathway","Wu-Stein-2010",21,5
+"HLA-DMA","HLA-DPB1",0.053458888,"Pathway","Wu-Stein-2010",21,14
+"CSF1R","PTPN1",0.09356726,"Pathway","Wu-Stein-2010",22,19
+"FLNB","PTK2B",0.006661506,"Pathway","Wu-Stein-2010",23,43
+"PLD2","MS4A2",0.055644814,"Pathway","NCI_NATURE",6,38
+"HLA-DRA","HLA-DRB1",0.0283226,"Pathway","NCI_NATURE",8,16
+"NECTIN3","PVR",0.26603603,"Pathway","NCI_NATURE",20,42
+"NECTIN3","PVRL2",0.16499773,"Pathway","NCI_NATURE",20,31
+"CSF1R","SPI1",0.09365285,"Pathway","NCI_NATURE",22,17
+"CSF1R","PTPN1",0.061946094,"Pathway","NCI_NATURE",22,19
+"HLA-DQB1","HLA-DQA1",0.9402348,"Physical Interactions","IREF-BIND",24,39
+"HLA-DRA","HLA-DRB5",0.611913,"Physical Interactions","IREF-BIND",8,30
+"HLA-DRA","HLA-DRB1",0.75548583,"Physical Interactions","IREF-BIND",8,16
+"SOX18","MEF2C",1,"Physical Interactions","IREF-BIND",9,44
+"CLUAP1","CLU",0.78304344,"Physical Interactions","IREF-BIND",25,3
+"HNRNPA0","MAPKAPK2",0.73854893,"Physical Interactions","IREF-BIND",26,33
+"PTEN","CAV1",0.4834384,"Physical Interactions","IREF-BIND",10,29
+"AP2B1","AP2A2",0.35845083,"Physical Interactions","IREF-BIND",18,41
+"PTPN1","CAV1",0.4834384,"Physical Interactions","IREF-BIND",19,29
+"GTF2B","PSMC3",0.43806463,"Physical Interactions","IREF-BIND",27,45
+"RALBP1","AP2A2",0.3125648,"Physical Interactions","IREF-BIND",28,41
+"ARPC5","MAPKAPK2",0.27888054,"Physical Interactions","IREF-BIND",12,33
+"HLA-DMA","HLA-DMB",0.9402348,"Physical Interactions","IREF-BIND",21,5
+"FLNB","CAV1",0.25570303,"Physical Interactions","IREF-BIND",23,29
+"HLA-DRA","HLA-DRB1",1,"Physical Interactions","IREF-DIP",8,16
+"IL10RA","IL10",0.76536685,"Physical Interactions","IREF-DIP",4,1
+"NECTIN3","PVR",0.3934015,"Physical Interactions","IREF-DIP",20,42
+"NECTIN3","PVRL2",0.6616198,"Physical Interactions","IREF-DIP",20,31
+"HLA-DMA","HLA-DMB",0.64359426,"Physical Interactions","IREF-DIP",21,5
+"CSF1R","IL34",0.70710677,"Physical Interactions","IREF-DIP",22,46
+"HLA-DQB1","HLA-DQA1",0.63972795,"Physical Interactions","IREF-INTACT",24,39
+"HLA-DRA","HLA-DRB1",0.42159334,"Physical Interactions","IREF-INTACT",8,16
+"IL10RA","IL10",0.93767196,"Physical Interactions","IREF-INTACT",4,1
+"PTEN","CAV1",0.01401797,"Physical Interactions","IREF-INTACT",10,29
+"PTPN1","CAV1",0.00878876,"Physical Interactions","IREF-INTACT",19,29
+"NECTIN3","PVRL2",0.07935726,"Physical Interactions","IREF-INTACT",20,31
+"GTF2B","PSMC3",0.051080238,"Physical Interactions","IREF-INTACT",27,45
+"SYNGR2","SCARA3",0.79387045,"Physical Interactions","IREF-INTACT",11,35
+"CD74","HLA-DQA1",0.13574135,"Physical Interactions","IREF-INTACT",13,39
+"CD74","HLA-DRA",0.23148279,"Physical Interactions","IREF-INTACT",13,8
+"CD226","PVR",0.35077158,"Physical Interactions","IREF-INTACT",15,42
+"CD226","PVRL2",0.2502353,"Physical Interactions","IREF-INTACT",15,31
+"HLA-DRB1","HLA-DRB5",0.17578188,"Physical Interactions","Huttlin-Gygi-2015",16,30
+"HLA-DRA","HLA-DRB5",0.06652111,"Physical Interactions","Huttlin-Gygi-2015",8,30
+"HLA-DRA","HLA-DRB1",0.04532686,"Physical Interactions","Huttlin-Gygi-2015",8,16
+"NECTIN3","PVRL2",0.13871634,"Physical Interactions","Huttlin-Gygi-2015",20,31
+"HLA-DMB","HLA-DRA",0.08155149,"Physical Interactions","Huttlin-Gygi-2015",5,8
+"HLA-DPB1","CD74",0.08558963,"Physical Interactions","Huttlin-Gygi-2015",14,13
+"CR2","CR1",0.5198669,"Physical Interactions","IREF-BIOGRID",2,0
+"CAV1","PLD2",0.016674189,"Physical Interactions","IREF-BIOGRID",29,6
+"SOX18","MEF2C",0.21005948,"Physical Interactions","IREF-BIOGRID",9,44
+"CLUAP1","CLU",0.0686597,"Physical Interactions","IREF-BIOGRID",25,3
+"HNRNPA0","MAPKAPK2",0.02254408,"Physical Interactions","IREF-BIOGRID",26,33
+"IL10RA","IL10",0.6190106,"Physical Interactions","IREF-BIOGRID",4,1
+"PTEN","PTK2B",0.0081544705,"Physical Interactions","IREF-BIOGRID",10,43
+"PTEN","CAV1",0.0051580677,"Physical Interactions","IREF-BIOGRID",10,29
+"PTPN1","CAV1",0.011756692,"Physical Interactions","IREF-BIOGRID",19,29
+"NECTIN3","PVR",0.08108288,"Physical Interactions","IREF-BIOGRID",20,42
+"NECTIN3","PVRL2",0.07154838,"Physical Interactions","IREF-BIOGRID",20,31
+"HLA-DMB","HLA-DRA",0.21202089,"Physical Interactions","IREF-BIOGRID",5,8
+"SYNGR2","SCARA3",0.8343761,"Physical Interactions","IREF-BIOGRID",11,35
+"CD226","PVR",0.19142307,"Physical Interactions","IREF-BIOGRID",15,42
+"CD226","PVRL2",0.16891372,"Physical Interactions","IREF-BIOGRID",15,31
+"HLA-DMA","HLA-DRB1",0.20210075,"Physical Interactions","IREF-BIOGRID",21,16
+"FLNB","HNRNPA0",0.0150277065,"Physical Interactions","IREF-BIOGRID",23,26
+"CR2","CR1",0.162256,"Predicted","Wu-Stein-2010",2,0
+"HLA-DRB1","HLA-DQA1",0.070440374,"Predicted","Wu-Stein-2010",16,39
+"HLA-DRA","HLA-DRB1",0.038169123,"Predicted","Wu-Stein-2010",8,16
+"CAV1","PLD2",0.032923345,"Predicted","Wu-Stein-2010",29,6
+"SOX18","MEF2C",0.28300425,"Predicted","Wu-Stein-2010",9,44
+"PTEN","CAV1",0.042385656,"Predicted","Wu-Stein-2010",10,29
+"PTPN1","PTK2B",0.031394973,"Predicted","Wu-Stein-2010",19,43
+"HLA-DMB","HLA-DRB1",0.054730035,"Predicted","Wu-Stein-2010",5,16
+"CD74","HLA-DQA1",0.10794925,"Predicted","Wu-Stein-2010",13,39
+"CD74","HLA-DRB1",0.03994691,"Predicted","Wu-Stein-2010",13,16
+"CD74","HLA-DMB",0.08387329,"Predicted","Wu-Stein-2010",13,5
+"HLA-DPB1","HLA-DRB1",0.08317906,"Predicted","Wu-Stein-2010",14,16
+"HLA-DPB1","CD74",0.12747116,"Predicted","Wu-Stein-2010",14,13
+"HLA-DMA","HLA-DRB1",0.12577592,"Predicted","Wu-Stein-2010",21,16
+"HLA-DMA","CD74",0.19275047,"Predicted","Wu-Stein-2010",21,13
+"HLA-DRB5","HLA-DQA1",0.017238082,"Shared protein domains","PFAM",30,39
+"HLA-DQB1","HLA-DQA1",0.017238082,"Shared protein domains","PFAM",24,39
+"HLA-DQB1","HLA-DRB5",0.04665368,"Shared protein domains","PFAM",24,30
+"PVRL2","PVR",0.012122413,"Shared protein domains","PFAM",31,42
+"CR2","CR1",0.02058784,"Shared protein domains","PFAM",2,0
+"HLA-DRB1","HLA-DQA1",0.017238082,"Shared protein domains","PFAM",16,39
+"HLA-DRB1","HLA-DRB5",0.04665368,"Shared protein domains","PFAM",16,30
+"HLA-DRB1","HLA-DQB1",0.04665368,"Shared protein domains","PFAM",16,24
+"NR1H3","RORA",0.021566309,"Shared protein domains","PFAM",32,47
+"HLA-DRA","HLA-DQA1",0.078386396,"Shared protein domains","PFAM",8,39
+"HLA-DRA","HLA-DRB5",0.017238082,"Shared protein domains","PFAM",8,30
+"HLA-DRA","HLA-DQB1",0.017238082,"Shared protein domains","PFAM",8,24
+"HLA-DRA","HLA-DRB1",0.017238082,"Shared protein domains","PFAM",8,16
+"MAPKAPK2","DAPK2",0.003275324,"Shared protein domains","PFAM",33,37
+"AP2B1","AP2A2",0.07887802,"Shared protein domains","PFAM",18,41
+"NECTIN3","PVR",0.0119862,"Shared protein domains","PFAM",20,42
+"NECTIN3","PVRL2",0.011991863,"Shared protein domains","PFAM",20,31
+"HLA-DMB","HLA-DQA1",0.017238082,"Shared protein domains","PFAM",5,39
+"HLA-DMB","HLA-DRB5",0.04665368,"Shared protein domains","PFAM",5,30
+"HLA-DMB","HLA-DQB1",0.04665368,"Shared protein domains","PFAM",5,24
+"HLA-DMB","HLA-DRB1",0.04665368,"Shared protein domains","PFAM",5,16
+"HLA-DMB","HLA-DRA",0.017238082,"Shared protein domains","PFAM",5,8
+"HLA-DPB1","HLA-DQA1",0.017238082,"Shared protein domains","PFAM",14,39
+"HLA-DPB1","HLA-DRB5",0.04665368,"Shared protein domains","PFAM",14,30
+"HLA-DPB1","HLA-DQB1",0.04665368,"Shared protein domains","PFAM",14,24
+"HLA-DPB1","HLA-DRB1",0.04665368,"Shared protein domains","PFAM",14,16
+"HLA-DPB1","HLA-DRA",0.017238082,"Shared protein domains","PFAM",14,8
+"HLA-DPB1","HLA-DMB",0.04665368,"Shared protein domains","PFAM",14,5
+"CD226","PVR",0.0050644176,"Shared protein domains","PFAM",15,42
+"CD226","PVRL2",0.0050668106,"Shared protein domains","PFAM",15,31
+"CD226","NECTIN3",0.005009877,"Shared protein domains","PFAM",15,20
+"HLA-DMA","HLA-DQA1",0.078386396,"Shared protein domains","PFAM",21,39
+"HLA-DMA","HLA-DRB5",0.017238082,"Shared protein domains","PFAM",21,30
+"HLA-DMA","HLA-DQB1",0.017238082,"Shared protein domains","PFAM",21,24
+"HLA-DMA","HLA-DRB1",0.017238082,"Shared protein domains","PFAM",21,16
+"HLA-DMA","HLA-DRA",0.078386396,"Shared protein domains","PFAM",21,8
+"HLA-DMA","HLA-DMB",0.017238082,"Shared protein domains","PFAM",21,5
+"HLA-DMA","HLA-DPB1",0.017238082,"Shared protein domains","PFAM",21,14
+"CLPTM1L","CLPTM1",1,"Shared protein domains","PFAM",34,7
+"CSF1R","CD33",0.0124259265,"Shared protein domains","PFAM",22,40
+"CSF1R","PTK2B",0.009132111,"Shared protein domains","PFAM",22,43
+"HLA-DRB5","HLA-DQA1",0.020753091,"Shared protein domains","INTERPRO",30,39
+"HLA-DQB1","HLA-DQA1",0.020752732,"Shared protein domains","INTERPRO",24,39
+"HLA-DQB1","HLA-DRB5",0.030931972,"Shared protein domains","INTERPRO",24,30
+"PVRL2","PVR",0.01441874,"Shared protein domains","INTERPRO",31,42
+"CR2","CR1",0.025368724,"Shared protein domains","INTERPRO",2,0
+"HLA-DRB1","HLA-DQA1",0.020751746,"Shared protein domains","INTERPRO",16,39
+"HLA-DRB1","HLA-DRB5",0.030930504,"Shared protein domains","INTERPRO",16,30
+"HLA-DRB1","HLA-DQB1",0.030929966,"Shared protein domains","INTERPRO",16,24
+"NR1H3","RORA",0.02114586,"Shared protein domains","INTERPRO",32,47
+"HLA-DRA","HLA-DQA1",0.04189572,"Shared protein domains","INTERPRO",8,39
+"HLA-DRA","HLA-DRB5",0.020753091,"Shared protein domains","INTERPRO",8,30
+"HLA-DRA","HLA-DQB1",0.020752732,"Shared protein domains","INTERPRO",8,24
+"HLA-DRA","HLA-DRB1",0.020751746,"Shared protein domains","INTERPRO",8,16
+"MAPKAPK2","DAPK2",0.0037871185,"Shared protein domains","INTERPRO",33,37
+"AP2B1","AP2A2",0.050156474,"Shared protein domains","INTERPRO",18,41
+"PTPN1","PTEN",0.010541794,"Shared protein domains","INTERPRO",19,10
+"NECTIN3","PVR",0.014410177,"Shared protein domains","INTERPRO",20,42
+"NECTIN3","PVRL2",0.0144113125,"Shared protein domains","INTERPRO",20,31
+"HLA-DMB","HLA-DQA1",0.020753091,"Shared protein domains","INTERPRO",5,39
+"HLA-DMB","HLA-DRB5",0.03093251,"Shared protein domains","INTERPRO",5,30
+"HLA-DMB","HLA-DQB1",0.030931972,"Shared protein domains","INTERPRO",5,24
+"HLA-DMB","HLA-DRB1",0.030930504,"Shared protein domains","INTERPRO",5,16
+"HLA-DMB","HLA-DRA",0.020753091,"Shared protein domains","INTERPRO",5,8
+"HLA-DPB1","HLA-DQA1",0.020752812,"Shared protein domains","INTERPRO",14,39
+"HLA-DPB1","HLA-DRB5",0.030932091,"Shared protein domains","INTERPRO",14,30
+"HLA-DPB1","HLA-DQB1",0.030931555,"Shared protein domains","INTERPRO",14,24
+"HLA-DPB1","HLA-DRB1",0.030930085,"Shared protein domains","INTERPRO",14,16
+"HLA-DPB1","HLA-DRA",0.020752812,"Shared protein domains","INTERPRO",14,8
+"HLA-DPB1","HLA-DMB",0.030932091,"Shared protein domains","INTERPRO",14,5
+"HLA-DMA","HLA-DQA1",0.04189572,"Shared protein domains","INTERPRO",21,39
+"HLA-DMA","HLA-DRB5",0.020753091,"Shared protein domains","INTERPRO",21,30
+"HLA-DMA","HLA-DQB1",0.020752732,"Shared protein domains","INTERPRO",21,24
+"HLA-DMA","HLA-DRB1",0.020751746,"Shared protein domains","INTERPRO",21,16
+"HLA-DMA","HLA-DRA",0.04189572,"Shared protein domains","INTERPRO",21,8
+"HLA-DMA","HLA-DMB",0.020753091,"Shared protein domains","INTERPRO",21,5
+"HLA-DMA","HLA-DPB1",0.020752812,"Shared protein domains","INTERPRO",21,14
+"CLPTM1L","CLPTM1",1,"Shared protein domains","INTERPRO",34,7

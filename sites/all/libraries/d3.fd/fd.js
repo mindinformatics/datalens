@@ -37,8 +37,8 @@ var simulation = d3.forceSimulation()
 //d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp-ca-1.csv", function(error, glinks) {
 //d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) {
 // Microglia
-d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp-microglia.csv", function(error, glinks) {
-d3.csv("/sites/all/libraries/d3.fd/snp-genes-microglia.csv", function(error, gnodes) {
+d3.csv("/sites/all/libraries/d3.fd/snp-links-cn-synapse.csv", function(error, glinks) {
+d3.csv("/sites/all/libraries/d3.fd/snp-genes-cn-synapse.csv", function(error, gnodes) {
   if (error) throw error;
 
   glinks.forEach(function(d) {
@@ -92,11 +92,11 @@ d3.csv("/sites/all/libraries/d3.fd/snp-genes-microglia.csv", function(error, gno
 	.selectAll("text")
 	.data(gnodes)
 	.enter().append("text")
-	//	.text(function(d) { return ( (Math.abs(d.log10_IGAP) > 4 || d.group == 1 ) ? d.id : "") })
-	  .text(function(d) { return (  d.id )})
- // .style('fill', function(d) {return ( (d.group ==1 && d.log10_IGAP < 4) ? '#1c9099' : 'black' )})
-		.style('fill', function(d) {return ( (d.log10_IGAP < 4) ? '#1c9099' : 'black' )})
-		.style("font-size", function(d) { return ((Math.abs(d.log10_IGAP) + 8) + "px") })
+		.text(function(d) { return ( (Math.abs(d.log10_IGAP) > 0 || d.group == 1 ) ? d.id : "") })
+//  .text(function(d) { return (  d.id )})
+//  .style('fill', function(d) {return ( (d.group ==1 && d.log10_IGAP < 4) ? '#1c9099' : 'black' )})
+		.style('fill', function(d) {return ( (d.log10_IGAP < 1) ? '#1c9099' : 'black' )})
+		.style("font-size", function(d) { return ((Math.abs(d.log10_IGAP)*4 + 12) + "px") })
 		.attr("dx", function(d) {return ( (Math.abs(d.log10_exp) * 5) +1 )})
 		.attr("dy", ".35em")
 

@@ -1,0 +1,746 @@
+Gene 1	Gene 2	Weight	Network group	Network
+CR2	CR1	0.01949832	Co-expression	Alizadeh-Staudt-2000
+PTK2B	HLA-DQB1	0.017590193	Co-expression	Alizadeh-Staudt-2000
+PTK2B	CR2	0.017929332	Co-expression	Alizadeh-Staudt-2000
+HLA-DRB1	HLA-DQB1	0.034619298	Co-expression	Alizadeh-Staudt-2000
+HLA-DRA	HLA-DQB1	0.033577107	Co-expression	Alizadeh-Staudt-2000
+HLA-DRA	PTK2B	0.01688091	Co-expression	Alizadeh-Staudt-2000
+HLA-DRA	HLA-DRB1	0.030719247	Co-expression	Alizadeh-Staudt-2000
+IL10RA	HLA-DQB1	0.011714196	Co-expression	Alizadeh-Staudt-2000
+IL10RA	HLA-DRA	0.011947477	Co-expression	Alizadeh-Staudt-2000
+PTEN	CR2	0.021608764	Co-expression	Alizadeh-Staudt-2000
+PTPN1	IL10RA	0.012311542	Co-expression	Alizadeh-Staudt-2000
+HLA-DMB	HLA-DQB1	0.021896536	Co-expression	Alizadeh-Staudt-2000
+HLA-DMB	HLA-DRB1	0.020009346	Co-expression	Alizadeh-Staudt-2000
+HLA-DMB	SPI1	0.011646457	Co-expression	Alizadeh-Staudt-2000
+HLA-DMB	HLA-DRA	0.021792876	Co-expression	Alizadeh-Staudt-2000
+CD74	HLA-DQB1	0.023721227	Co-expression	Alizadeh-Staudt-2000
+CD74	HLA-DRB1	0.021439824	Co-expression	Alizadeh-Staudt-2000
+CD74	HLA-DRA	0.022704063	Co-expression	Alizadeh-Staudt-2000
+CD74	IL10RA	0.009663918	Co-expression	Alizadeh-Staudt-2000
+CD74	HLA-DMB	0.017406628	Co-expression	Alizadeh-Staudt-2000
+HLA-DPB1	HLA-DQB1	0.030222584	Co-expression	Alizadeh-Staudt-2000
+HLA-DPB1	PTK2B	0.014948501	Co-expression	Alizadeh-Staudt-2000
+HLA-DPB1	HLA-DRB1	0.027715366	Co-expression	Alizadeh-Staudt-2000
+HLA-DPB1	HLA-DRA	0.028945042	Co-expression	Alizadeh-Staudt-2000
+HLA-DPB1	IL10RA	0.011339738	Co-expression	Alizadeh-Staudt-2000
+HLA-DPB1	HLA-DMB	0.019899314	Co-expression	Alizadeh-Staudt-2000
+HLA-DPB1	CD74	0.021775633	Co-expression	Alizadeh-Staudt-2000
+HLA-DMA	HLA-DQB1	0.022090523	Co-expression	Alizadeh-Staudt-2000
+HLA-DMA	HLA-DRB1	0.019633878	Co-expression	Alizadeh-Staudt-2000
+HLA-DMA	HLA-DRA	0.02084225	Co-expression	Alizadeh-Staudt-2000
+HLA-DMA	IL10RA	0.010436936	Co-expression	Alizadeh-Staudt-2000
+HLA-DMA	HLA-DMB	0.017414061	Co-expression	Alizadeh-Staudt-2000
+HLA-DMA	CD74	0.017491957	Co-expression	Alizadeh-Staudt-2000
+HLA-DMA	HLA-DPB1	0.019213537	Co-expression	Alizadeh-Staudt-2000
+CSF1R	CR1	0.0086315125	Co-expression	Alizadeh-Staudt-2000
+HLA-DQB1	HLA-DRB5	0.015732711	Co-expression	Mallon-McKay-2013
+IL10	CR1	0.018380629	Co-expression	Mallon-McKay-2013
+CR2	IL34	0.01993824	Co-expression	Mallon-McKay-2013
+CR2	CR1	0.019852327	Co-expression	Mallon-McKay-2013
+CR2	IL10	0.015523262	Co-expression	Mallon-McKay-2013
+HLA-DRB1	HLA-DRB5	0.011436873	Co-expression	Mallon-McKay-2013
+HLA-DRB1	MS4A2	0.012866388	Co-expression	Mallon-McKay-2013
+HLA-DRB1	HLA-DQB1	0.014938705	Co-expression	Mallon-McKay-2013
+HLA-DRA	HLA-DRB5	0.009913236	Co-expression	Mallon-McKay-2013
+HLA-DRA	HLA-DQB1	0.013551147	Co-expression	Mallon-McKay-2013
+HLA-DRA	HLA-DRB1	0.009354026	Co-expression	Mallon-McKay-2013
+MAPKAPK2	CLPTM1	0.016198779	Co-expression	Mallon-McKay-2013
+CAV1	CD33	0.012027716	Co-expression	Mallon-McKay-2013
+IL10RA	HLA-DQB1	0.018075723	Co-expression	Mallon-McKay-2013
+HLA-DMB	HLA-DRB5	0.014103077	Co-expression	Mallon-McKay-2013
+HLA-DMB	HLA-DQB1	0.020403005	Co-expression	Mallon-McKay-2013
+HLA-DMB	HLA-DRB1	0.0133702	Co-expression	Mallon-McKay-2013
+HLA-DMB	SPI1	0.016307754	Co-expression	Mallon-McKay-2013
+HLA-DMB	HLA-DRA	0.012513237	Co-expression	Mallon-McKay-2013
+ARPC5	PTEN	0.018858962	Co-expression	Mallon-McKay-2013
+ARPC5	PTPN1	0.013924144	Co-expression	Mallon-McKay-2013
+CD74	HLA-DRB5	0.009839137	Co-expression	Mallon-McKay-2013
+CD74	HLA-DQB1	0.0132620325	Co-expression	Mallon-McKay-2013
+CD74	HLA-DRB1	0.009237769	Co-expression	Mallon-McKay-2013
+CD74	HLA-DRA	0.008660485	Co-expression	Mallon-McKay-2013
+CD74	RELB	0.011065471	Co-expression	Mallon-McKay-2013
+CD74	HLA-DMB	0.012332067	Co-expression	Mallon-McKay-2013
+HLA-DPB1	HLA-DRB5	0.009863926	Co-expression	Mallon-McKay-2013
+HLA-DPB1	HLA-DQB1	0.013910935	Co-expression	Mallon-McKay-2013
+HLA-DPB1	HLA-DRB1	0.009307993	Co-expression	Mallon-McKay-2013
+HLA-DPB1	HLA-DRA	0.008758969	Co-expression	Mallon-McKay-2013
+HLA-DPB1	HLA-DMB	0.012784465	Co-expression	Mallon-McKay-2013
+HLA-DPB1	CD74	0.00859154	Co-expression	Mallon-McKay-2013
+CD226	IL10	0.0152517455	Co-expression	Mallon-McKay-2013
+HLA-DMA	HLA-DRB5	0.009787992	Co-expression	Mallon-McKay-2013
+HLA-DMA	MS4A2	0.011647153	Co-expression	Mallon-McKay-2013
+HLA-DMA	HLA-DQB1	0.013540644	Co-expression	Mallon-McKay-2013
+HLA-DMA	HLA-DRB1	0.009246677	Co-expression	Mallon-McKay-2013
+HLA-DMA	HLA-DRA	0.008349682	Co-expression	Mallon-McKay-2013
+HLA-DMA	HLA-DMB	0.01223134	Co-expression	Mallon-McKay-2013
+HLA-DMA	CD74	0.0082353	Co-expression	Mallon-McKay-2013
+HLA-DMA	HLA-DPB1	0.008472223	Co-expression	Mallon-McKay-2013
+CLPTM1L	ARPC5	0.007892724	Co-expression	Mallon-McKay-2013
+HLA-DQB1	HLA-DRB5	0.021149822	Co-expression	Ramaswamy-Golub-2001
+HLA-DRB1	HLA-DRB5	0.012830531	Co-expression	Ramaswamy-Golub-2001
+HLA-DRB1	HLA-DQB1	0.026888072	Co-expression	Ramaswamy-Golub-2001
+SPI1	CD33	0.014980416	Co-expression	Ramaswamy-Golub-2001
+HLA-DRA	HLA-DQB1	0.023441557	Co-expression	Ramaswamy-Golub-2001
+HLA-DRA	PTK2B	0.010458751	Co-expression	Ramaswamy-Golub-2001
+HLA-DRA	HLA-DRB1	0.023807118	Co-expression	Ramaswamy-Golub-2001
+MEF2C	PTK2B	0.012173984	Co-expression	Ramaswamy-Golub-2001
+IL10RA	RELB	0.010102211	Co-expression	Ramaswamy-Golub-2001
+PTPN1	RELB	0.0094008325	Co-expression	Ramaswamy-Golub-2001
+HLA-DMB	HLA-DQB1	0.02177431	Co-expression	Ramaswamy-Golub-2001
+HLA-DMB	HLA-DRB1	0.020764675	Co-expression	Ramaswamy-Golub-2001
+HLA-DMB	HLA-DRA	0.019492896	Co-expression	Ramaswamy-Golub-2001
+CD74	HLA-DQB1	0.019913496	Co-expression	Ramaswamy-Golub-2001
+CD74	HLA-DRB1	0.020926751	Co-expression	Ramaswamy-Golub-2001
+CD74	HLA-DRA	0.020625805	Co-expression	Ramaswamy-Golub-2001
+CD74	HLA-DMB	0.016617242	Co-expression	Ramaswamy-Golub-2001
+HLA-DPB1	HLA-DQB1	0.03118435	Co-expression	Ramaswamy-Golub-2001
+HLA-DPB1	HLA-DRB1	0.026161546	Co-expression	Ramaswamy-Golub-2001
+HLA-DPB1	HLA-DRA	0.023764163	Co-expression	Ramaswamy-Golub-2001
+HLA-DPB1	HLA-DMB	0.023715228	Co-expression	Ramaswamy-Golub-2001
+HLA-DPB1	CD74	0.02019882	Co-expression	Ramaswamy-Golub-2001
+HLA-DMA	HLA-DQB1	0.023531713	Co-expression	Ramaswamy-Golub-2001
+HLA-DMA	HLA-DRB1	0.023817107	Co-expression	Ramaswamy-Golub-2001
+HLA-DMA	HLA-DRA	0.022295121	Co-expression	Ramaswamy-Golub-2001
+HLA-DMA	HLA-DMB	0.02174206	Co-expression	Ramaswamy-Golub-2001
+HLA-DMA	CD74	0.01931578	Co-expression	Ramaswamy-Golub-2001
+HLA-DMA	HLA-DPB1	0.024912661	Co-expression	Ramaswamy-Golub-2001
+CSF1R	CD74	0.01494027	Co-expression	Ramaswamy-Golub-2001
+HLA-DQB1	HLA-DRB5	0.027043223	Co-expression	Noble-Diehl-2008
+HLA-DRB1	HLA-DRB5	0.020596616	Co-expression	Noble-Diehl-2008
+HLA-DRB1	HLA-DQB1	0.017139316	Co-expression	Noble-Diehl-2008
+HLA-DRA	HLA-DRB5	0.030092094	Co-expression	Noble-Diehl-2008
+HLA-DRA	HLA-DQB1	0.02444792	Co-expression	Noble-Diehl-2008
+HLA-DRA	HLA-DRB1	0.01928944	Co-expression	Noble-Diehl-2008
+RELB	NR1H3	0.018518044	Co-expression	Noble-Diehl-2008
+HLA-DMB	HLA-DRB5	0.02907659	Co-expression	Noble-Diehl-2008
+HLA-DMB	HLA-DRB1	0.020263826	Co-expression	Noble-Diehl-2008
+HLA-DMB	HLA-DRA	0.030824205	Co-expression	Noble-Diehl-2008
+SYNGR2	AP2B1	0.021382518	Co-expression	Noble-Diehl-2008
+ARPC5	PVRL2	0.01697347	Co-expression	Noble-Diehl-2008
+CD74	HLA-DRB5	0.02343438	Co-expression	Noble-Diehl-2008
+CD74	HLA-DQB1	0.020520864	Co-expression	Noble-Diehl-2008
+CD74	HLA-DRB1	0.01547371	Co-expression	Noble-Diehl-2008
+CD74	HLA-DRA	0.022109967	Co-expression	Noble-Diehl-2008
+CD74	HLA-DMB	0.024629882	Co-expression	Noble-Diehl-2008
+HLA-DPB1	HLA-DRB5	0.012978844	Co-expression	Noble-Diehl-2008
+HLA-DPB1	HLA-DQB1	0.010367192	Co-expression	Noble-Diehl-2008
+HLA-DPB1	HLA-DRB1	0.008529681	Co-expression	Noble-Diehl-2008
+HLA-DPB1	HLA-DRA	0.013724147	Co-expression	Noble-Diehl-2008
+HLA-DPB1	HLA-DMB	0.015058333	Co-expression	Noble-Diehl-2008
+HLA-DPB1	CD74	0.011394747	Co-expression	Noble-Diehl-2008
+HLA-DMA	HLA-DRB5	0.017352995	Co-expression	Noble-Diehl-2008
+HLA-DMA	HLA-DQB1	0.016963605	Co-expression	Noble-Diehl-2008
+HLA-DMA	HLA-DRB1	0.011849081	Co-expression	Noble-Diehl-2008
+HLA-DMA	HLA-DRA	0.016849702	Co-expression	Noble-Diehl-2008
+HLA-DMA	HLA-DMB	0.01860534	Co-expression	Noble-Diehl-2008
+HLA-DMA	CD74	0.014665693	Co-expression	Noble-Diehl-2008
+HLA-DMA	HLA-DPB1	0.007505978	Co-expression	Noble-Diehl-2008
+CSF1R	HLA-DRB5	0.010079901	Co-expression	Noble-Diehl-2008
+CSF1R	HLA-DRB1	0.0065938653	Co-expression	Noble-Diehl-2008
+CSF1R	HLA-DMB	0.012309774	Co-expression	Noble-Diehl-2008
+CSF1R	HLA-DPB1	0.006385167	Co-expression	Noble-Diehl-2008
+CR2	CR1	0.01920486	Co-expression	Rosenwald-Staudt-2001
+PTK2B	HLA-DQB1	0.014538937	Co-expression	Rosenwald-Staudt-2001
+HLA-DRB1	HLA-DQB1	0.03380724	Co-expression	Rosenwald-Staudt-2001
+HLA-DRA	HLA-DQB1	0.026339652	Co-expression	Rosenwald-Staudt-2001
+HLA-DRA	HLA-DRB1	0.023749843	Co-expression	Rosenwald-Staudt-2001
+PTEN	CR2	0.021077309	Co-expression	Rosenwald-Staudt-2001
+PTPN1	IL10RA	0.015622359	Co-expression	Rosenwald-Staudt-2001
+HLA-DMB	HLA-DQB1	0.020040913	Co-expression	Rosenwald-Staudt-2001
+HLA-DMB	HLA-DRB1	0.019158276	Co-expression	Rosenwald-Staudt-2001
+HLA-DMB	HLA-DRA	0.016710196	Co-expression	Rosenwald-Staudt-2001
+CD74	HLA-DQB1	0.02148881	Co-expression	Rosenwald-Staudt-2001
+CD74	HLA-DRB1	0.019870728	Co-expression	Rosenwald-Staudt-2001
+CD74	HLA-DRA	0.019205796	Co-expression	Rosenwald-Staudt-2001
+CD74	HLA-DMB	0.016380416	Co-expression	Rosenwald-Staudt-2001
+HLA-DPB1	HLA-DQB1	0.028866502	Co-expression	Rosenwald-Staudt-2001
+HLA-DPB1	PTK2B	0.0144989705	Co-expression	Rosenwald-Staudt-2001
+HLA-DPB1	HLA-DRB1	0.02575574	Co-expression	Rosenwald-Staudt-2001
+HLA-DPB1	HLA-DRA	0.022106722	Co-expression	Rosenwald-Staudt-2001
+HLA-DPB1	IL10RA	0.012403784	Co-expression	Rosenwald-Staudt-2001
+HLA-DPB1	HLA-DMB	0.017695697	Co-expression	Rosenwald-Staudt-2001
+HLA-DPB1	CD74	0.019214153	Co-expression	Rosenwald-Staudt-2001
+HLA-DMA	HLA-DQB1	0.019903064	Co-expression	Rosenwald-Staudt-2001
+HLA-DMA	HLA-DRB1	0.01715742	Co-expression	Rosenwald-Staudt-2001
+HLA-DMA	HLA-DRA	0.01638682	Co-expression	Rosenwald-Staudt-2001
+HLA-DMA	IL10RA	0.011799873	Co-expression	Rosenwald-Staudt-2001
+HLA-DMA	HLA-DMB	0.015213267	Co-expression	Rosenwald-Staudt-2001
+HLA-DMA	CD74	0.015042045	Co-expression	Rosenwald-Staudt-2001
+HLA-DMA	HLA-DPB1	0.01709192	Co-expression	Rosenwald-Staudt-2001
+HLA-DQB1	HLA-DRB5	0.02675835	Co-expression	Innocenti-Brown-2011
+CD33	CR1	0.011294419	Co-expression	Innocenti-Brown-2011
+CR2	HIST1H3J	0.008146558	Co-expression	Innocenti-Brown-2011
+CLPTM1	PVRL2	0.004744357	Co-expression	Innocenti-Brown-2011
+CLPTM1	PLD2	0.0042518456	Co-expression	Innocenti-Brown-2011
+HLA-DRB1	HLA-DRB5	0.012094913	Co-expression	Innocenti-Brown-2011
+HLA-DRB1	MS4A2	0.0075050844	Co-expression	Innocenti-Brown-2011
+HLA-DRB1	HLA-DQB1	0.011484556	Co-expression	Innocenti-Brown-2011
+SPI1	CD33	0.009339347	Co-expression	Innocenti-Brown-2011
+HLA-DRA	HLA-DRB5	0.012867022	Co-expression	Innocenti-Brown-2011
+HLA-DRA	HLA-DQB1	0.014481245	Co-expression	Innocenti-Brown-2011
+HLA-DRA	HLA-DRB1	0.0068655955	Co-expression	Innocenti-Brown-2011
+PSMC3	CLPTM1	0.0020136049	Co-expression	Innocenti-Brown-2011
+RELB	DAPK2	0.009526892	Co-expression	Innocenti-Brown-2011
+SOX18	HIST1H3J	0.004441785	Co-expression	Innocenti-Brown-2011
+IL10RA	CD33	0.01108866	Co-expression	Innocenti-Brown-2011
+IL10RA	HLA-DRB1	0.008708876	Co-expression	Innocenti-Brown-2011
+IL10RA	HLA-DRA	0.009739072	Co-expression	Innocenti-Brown-2011
+AP2B1	CLPTM1	0.00427486	Co-expression	Innocenti-Brown-2011
+AP2B1	PSMC3	0.009834032	Co-expression	Innocenti-Brown-2011
+HLA-DMB	HLA-DRB5	0.019325066	Co-expression	Innocenti-Brown-2011
+HLA-DMB	HLA-DRB1	0.010397415	Co-expression	Innocenti-Brown-2011
+HLA-DMB	HLA-DRA	0.012726519	Co-expression	Innocenti-Brown-2011
+HLA-DMB	MEF2C	0.0075550186	Co-expression	Innocenti-Brown-2011
+CD74	HLA-DRB5	0.011185266	Co-expression	Innocenti-Brown-2011
+CD74	HLA-DQB1	0.009781982	Co-expression	Innocenti-Brown-2011
+CD74	CD33	0.005647413	Co-expression	Innocenti-Brown-2011
+CD74	HLA-DRB1	0.0065020965	Co-expression	Innocenti-Brown-2011
+CD74	SPI1	0.008939568	Co-expression	Innocenti-Brown-2011
+CD74	HLA-DRA	0.0065162648	Co-expression	Innocenti-Brown-2011
+CD74	IL10RA	0.009333567	Co-expression	Innocenti-Brown-2011
+HLA-DPB1	HLA-DRB5	0.017350858	Co-expression	Innocenti-Brown-2011
+HLA-DPB1	HLA-DQB1	0.017483564	Co-expression	Innocenti-Brown-2011
+HLA-DPB1	HLA-DRB1	0.009867854	Co-expression	Innocenti-Brown-2011
+HLA-DPB1	HLA-DRA	0.010946044	Co-expression	Innocenti-Brown-2011
+HLA-DPB1	IL10RA	0.014510886	Co-expression	Innocenti-Brown-2011
+HLA-DPB1	HLA-DMB	0.017880682	Co-expression	Innocenti-Brown-2011
+HLA-DPB1	CD74	0.009305648	Co-expression	Innocenti-Brown-2011
+HLA-DMA	HLA-DRB5	0.012487975	Co-expression	Innocenti-Brown-2011
+HLA-DMA	MS4A2	0.009706715	Co-expression	Innocenti-Brown-2011
+HLA-DMA	HLA-DRB1	0.007283892	Co-expression	Innocenti-Brown-2011
+HLA-DMA	HLA-DRA	0.007901707	Co-expression	Innocenti-Brown-2011
+HLA-DMA	IL10RA	0.011756018	Co-expression	Innocenti-Brown-2011
+HLA-DMA	HLA-DMB	0.015166451	Co-expression	Innocenti-Brown-2011
+HLA-DMA	CD74	0.0070519918	Co-expression	Innocenti-Brown-2011
+HLA-DMA	HLA-DPB1	0.011371054	Co-expression	Innocenti-Brown-2011
+CSF1R	HLA-DRB5	0.007201914	Co-expression	Innocenti-Brown-2011
+CSF1R	CR1	0.008738332	Co-expression	Innocenti-Brown-2011
+CSF1R	CD33	0.0051472816	Co-expression	Innocenti-Brown-2011
+CSF1R	HLA-DRB1	0.0042583216	Co-expression	Innocenti-Brown-2011
+CSF1R	HLA-DRA	0.0041165496	Co-expression	Innocenti-Brown-2011
+CSF1R	IL10RA	0.008754125	Co-expression	Innocenti-Brown-2011
+CSF1R	HLA-DMB	0.008580319	Co-expression	Innocenti-Brown-2011
+CSF1R	HLA-DPB1	0.006137998	Co-expression	Innocenti-Brown-2011
+CSF1R	HLA-DMA	0.004940272	Co-expression	Innocenti-Brown-2011
+RORA	PLEKHA1	0.008879551	Co-expression	Wang-Cheung-2015
+IL10	CARTPT	0.007002187	Co-expression	Wang-Cheung-2015
+HLA-DRB1	HLA-DQB1	0.012409442	Co-expression	Wang-Cheung-2015
+CLU	SCARA3	0.018735796	Co-expression	Wang-Cheung-2015
+HLA-DRA	HLA-DRB1	0.021841751	Co-expression	Wang-Cheung-2015
+MAPKAPK2	CLPTM1	0.009290385	Co-expression	Wang-Cheung-2015
+CD74	HLA-DRB1	0.020190066	Co-expression	Wang-Cheung-2015
+CD74	HLA-DRA	0.031960946	Co-expression	Wang-Cheung-2015
+HLA-DPB1	IL10RA	0.01597905	Co-expression	Wang-Cheung-2015
+CD226	CARTPT	0.005119401	Co-expression	Wang-Cheung-2015
+HLA-DMA	HLA-DMB	0.025281122	Co-expression	Wang-Cheung-2015
+CR2	CR1	0.014692526	Co-expression	Rieger-Chu-2004
+PTK2B	PVRL2	0.008390885	Co-expression	Rieger-Chu-2004
+PTK2B	CR2	0.005855295	Co-expression	Rieger-Chu-2004
+SPI1	AP2A2	0.017638505	Co-expression	Rieger-Chu-2004
+MAPKAPK2	PTK2B	0.010953479	Co-expression	Rieger-Chu-2004
+MEF2C	PTK2B	0.0065479316	Co-expression	Rieger-Chu-2004
+HLA-DMB	HLA-DRA	0.009153949	Co-expression	Rieger-Chu-2004
+HLA-DMB	PTEN	0.0118259	Co-expression	Rieger-Chu-2004
+SYNGR2	HLA-DQB1	0.018935956	Co-expression	Rieger-Chu-2004
+SYNGR2	SPI1	0.015214283	Co-expression	Rieger-Chu-2004
+SYNGR2	HLA-DMB	0.016040146	Co-expression	Rieger-Chu-2004
+CD74	SPI1	0.0117235575	Co-expression	Rieger-Chu-2004
+CD74	HLA-DRA	0.010413277	Co-expression	Rieger-Chu-2004
+CD74	SYNGR2	0.010243486	Co-expression	Rieger-Chu-2004
+HLA-DPB1	HLA-DRA	0.017594486	Co-expression	Rieger-Chu-2004
+HLA-DPB1	HLA-DMB	0.016994305	Co-expression	Rieger-Chu-2004
+HLA-DPB1	SYNGR2	0.0144858295	Co-expression	Rieger-Chu-2004
+HLA-DPB1	CD74	0.013009827	Co-expression	Rieger-Chu-2004
+CD226	HLA-DQB1	0.015418887	Co-expression	Rieger-Chu-2004
+CD226	HLA-DMB	0.014784817	Co-expression	Rieger-Chu-2004
+CD226	SYNGR2	0.015119034	Co-expression	Rieger-Chu-2004
+HLA-DMA	HLA-DRA	0.009629485	Co-expression	Rieger-Chu-2004
+HLA-DMA	HLA-DMB	0.021812923	Co-expression	Rieger-Chu-2004
+HLA-DMA	SYNGR2	0.016816642	Co-expression	Rieger-Chu-2004
+HLA-DMA	CD74	0.008264673	Co-expression	Rieger-Chu-2004
+HLA-DMA	HLA-DPB1	0.016704187	Co-expression	Rieger-Chu-2004
+CSF1R	CLU	0.007762262	Co-expression	Rieger-Chu-2004
+CR2	CR1	0.035191987	Co-expression	Smirnov-Cheung-2009
+HLA-DRB1	PVRL2	0.004822206	Co-expression	Smirnov-Cheung-2009
+HLA-DRB1	CLPTM1	0.0018787396	Co-expression	Smirnov-Cheung-2009
+MAPKAPK2	IL10	0.018245887	Co-expression	Smirnov-Cheung-2009
+PSMC3	HLA-DRA	0.003670609	Co-expression	Smirnov-Cheung-2009
+GTF2B	PSMC3	0.003931721	Co-expression	Smirnov-Cheung-2009
+HLA-DMB	HLA-DQB1	0.008847424	Co-expression	Smirnov-Cheung-2009
+HLA-DMB	HLA-DRA	0.0070386427	Co-expression	Smirnov-Cheung-2009
+HLA-DMB	MAPKAPK2	0.009655235	Co-expression	Smirnov-Cheung-2009
+SYNGR2	PSMC3	0.0061134803	Co-expression	Smirnov-Cheung-2009
+SYNGR2	HLA-DMB	0.011242923	Co-expression	Smirnov-Cheung-2009
+ARPC5	HLA-DRA	0.005493074	Co-expression	Smirnov-Cheung-2009
+HLA-DPB1	HLA-DRA	0.015373497	Co-expression	Smirnov-Cheung-2009
+HLA-DPB1	HLA-DMB	0.012559139	Co-expression	Smirnov-Cheung-2009
+CD226	IL10	0.011647985	Co-expression	Smirnov-Cheung-2009
+HLA-DMA	HLA-DQB1	0.00970036	Co-expression	Smirnov-Cheung-2009
+HLA-DMA	HLA-DRA	0.009497954	Co-expression	Smirnov-Cheung-2009
+HLA-DMA	HLA-DMB	0.010905556	Co-expression	Smirnov-Cheung-2009
+HLA-DMA	SYNGR2	0.01209507	Co-expression	Smirnov-Cheung-2009
+HLA-DMA	HLA-DPB1	0.016017888	Co-expression	Smirnov-Cheung-2009
+HLA-DQB1	HLA-DRB5	0.004127266	Co-expression	Perou-Botstein-2000
+HLA-DRB1	HLA-DRB5	0.004040633	Co-expression	Perou-Botstein-2000
+HLA-DRB1	HLA-DQB1	0.0018653913	Co-expression	Perou-Botstein-2000
+NR1H3	HLA-DQB1	0.004543296	Co-expression	Perou-Botstein-2000
+NR1H3	HLA-DRB1	0.005329163	Co-expression	Perou-Botstein-2000
+HLA-DRA	HLA-DRB5	0.0039439253	Co-expression	Perou-Botstein-2000
+HLA-DRA	HLA-DQB1	0.0018836566	Co-expression	Perou-Botstein-2000
+HLA-DRA	HLA-DRB1	0.0020288187	Co-expression	Perou-Botstein-2000
+HLA-DRA	NR1H3	0.0048104865	Co-expression	Perou-Botstein-2000
+MEF2C	SCARA3	0.007974541	Co-expression	Perou-Botstein-2000
+MEF2C	HLA-DRB1	0.0029347115	Co-expression	Perou-Botstein-2000
+IL10RA	HLA-DQB1	0.0027660246	Co-expression	Perou-Botstein-2000
+IL10RA	HLA-DRB1	0.0026563227	Co-expression	Perou-Botstein-2000
+IL10RA	HLA-DRA	0.002698934	Co-expression	Perou-Botstein-2000
+PTPN1	AP2B1	0.006586789	Co-expression	Perou-Botstein-2000
+HLA-DPB1	HLA-DRB5	0.004247675	Co-expression	Perou-Botstein-2000
+HLA-DPB1	HLA-DQB1	0.0019346983	Co-expression	Perou-Botstein-2000
+HLA-DPB1	HLA-DRB1	0.0019813862	Co-expression	Perou-Botstein-2000
+HLA-DPB1	NR1H3	0.0051024156	Co-expression	Perou-Botstein-2000
+HLA-DPB1	HLA-DRA	0.0020091129	Co-expression	Perou-Botstein-2000
+HLA-DPB1	IL10RA	0.002634689	Co-expression	Perou-Botstein-2000
+HLA-DMA	HLA-DRB5	0.0073063774	Co-expression	Perou-Botstein-2000
+HLA-DMA	HLA-DQB1	0.0030495534	Co-expression	Perou-Botstein-2000
+HLA-DMA	HLA-DRB1	0.003400564	Co-expression	Perou-Botstein-2000
+HLA-DMA	NR1H3	0.009257678	Co-expression	Perou-Botstein-2000
+HLA-DMA	HLA-DRA	0.0032829752	Co-expression	Perou-Botstein-2000
+HLA-DMA	MEF2C	0.0051830285	Co-expression	Perou-Botstein-2000
+HLA-DMA	HLA-DPB1	0.003497882	Co-expression	Perou-Botstein-2000
+CSF1R	HLA-DRB5	0.0065567065	Co-expression	Perou-Botstein-2000
+CSF1R	HLA-DQB1	0.0029944782	Co-expression	Perou-Botstein-2000
+CSF1R	HLA-DRB1	0.0028652418	Co-expression	Perou-Botstein-2000
+CSF1R	NR1H3	0.007306008	Co-expression	Perou-Botstein-2000
+CSF1R	HLA-DRA	0.0028732484	Co-expression	Perou-Botstein-2000
+CSF1R	MAPKAPK2	0.007344492	Co-expression	Perou-Botstein-2000
+CSF1R	HLA-DPB1	0.00303899	Co-expression	Perou-Botstein-2000
+CSF1R	HLA-DMA	0.004972408	Co-expression	Perou-Botstein-2000
+RORA	PLEKHA1	0.010139677	Co-expression	Bahr-Bowler-2013
+CLPTM1	AP2A2	0.006483937	Co-expression	Bahr-Bowler-2013
+HLA-DRA	HLA-DQB1	0.014569459	Co-expression	Bahr-Bowler-2013
+HLA-DRA	HLA-DRB1	0.019271083	Co-expression	Bahr-Bowler-2013
+PSMC3	AP2A2	0.004280938	Co-expression	Bahr-Bowler-2013
+PSMC3	CLPTM1	0.003240816	Co-expression	Bahr-Bowler-2013
+HLA-DMB	CD33	0.010895925	Co-expression	Bahr-Bowler-2013
+HLA-DMB	HLA-DRA	0.01941731	Co-expression	Bahr-Bowler-2013
+HLA-DMB	MEF2C	0.0168844	Co-expression	Bahr-Bowler-2013
+SYNGR2	HLA-DRA	0.012613868	Co-expression	Bahr-Bowler-2013
+SYNGR2	RELB	0.016613612	Co-expression	Bahr-Bowler-2013
+CD74	HLA-DRB1	0.02153259	Co-expression	Bahr-Bowler-2013
+CD74	HLA-DRA	0.020013606	Co-expression	Bahr-Bowler-2013
+CD74	RELB	0.017786164	Co-expression	Bahr-Bowler-2013
+CD74	HLA-DMB	0.018313358	Co-expression	Bahr-Bowler-2013
+CD74	SYNGR2	0.017871432	Co-expression	Bahr-Bowler-2013
+HLA-DPB1	HLA-DRB1	0.021889579	Co-expression	Bahr-Bowler-2013
+HLA-DPB1	HLA-DRA	0.021530217	Co-expression	Bahr-Bowler-2013
+HLA-DPB1	HLA-DMB	0.024602424	Co-expression	Bahr-Bowler-2013
+HLA-DPB1	SYNGR2	0.01569065	Co-expression	Bahr-Bowler-2013
+HLA-DPB1	CD74	0.02345007	Co-expression	Bahr-Bowler-2013
+HLA-DMA	HLA-DQB1	0.015238834	Co-expression	Bahr-Bowler-2013
+HLA-DMA	HLA-DRB1	0.022027234	Co-expression	Bahr-Bowler-2013
+HLA-DMA	HLA-DRA	0.020612894	Co-expression	Bahr-Bowler-2013
+HLA-DMA	RELB	0.018217692	Co-expression	Bahr-Bowler-2013
+HLA-DMA	HLA-DMB	0.021950297	Co-expression	Bahr-Bowler-2013
+HLA-DMA	SYNGR2	0.016671598	Co-expression	Bahr-Bowler-2013
+HLA-DMA	CD74	0.02342163	Co-expression	Bahr-Bowler-2013
+HLA-DMA	HLA-DPB1	0.024435041	Co-expression	Bahr-Bowler-2013
+CLPTM1L	PSMC3	0.006218685	Co-expression	Bahr-Bowler-2013
+HLA-DQB1	HLA-DRB5	0.005824443	Co-expression	Chen-Brown-2002
+HLA-DRB1	HLA-DRB5	0.008706765	Co-expression	Chen-Brown-2002
+HLA-DRB1	HLA-DQB1	0.008654145	Co-expression	Chen-Brown-2002
+HLA-DRA	HLA-DRB5	0.009106565	Co-expression	Chen-Brown-2002
+HLA-DRA	HLA-DQB1	0.009092207	Co-expression	Chen-Brown-2002
+HLA-DRA	HLA-DRB1	0.014576162	Co-expression	Chen-Brown-2002
+IL10RA	HLA-DRB5	0.008524004	Co-expression	Chen-Brown-2002
+IL10RA	HLA-DQB1	0.008489441	Co-expression	Chen-Brown-2002
+HLA-DPB1	HLA-DRB5	0.0057095983	Co-expression	Chen-Brown-2002
+HLA-DPB1	HLA-DQB1	0.0053466093	Co-expression	Chen-Brown-2002
+HLA-DPB1	HLA-DRB1	0.007874544	Co-expression	Chen-Brown-2002
+HLA-DPB1	HLA-DRA	0.008097721	Co-expression	Chen-Brown-2002
+HLA-DPB1	IL10RA	0.008255669	Co-expression	Chen-Brown-2002
+HLA-DMA	HLA-DRB5	0.009466344	Co-expression	Chen-Brown-2002
+HLA-DMA	HLA-DQB1	0.009565978	Co-expression	Chen-Brown-2002
+HLA-DMA	HLA-DRB1	0.015028567	Co-expression	Chen-Brown-2002
+HLA-DMA	HLA-DRA	0.018067589	Co-expression	Chen-Brown-2002
+HLA-DMA	HLA-DPB1	0.008579047	Co-expression	Chen-Brown-2002
+CLPTM1L	ARPC5	0.011203166	Co-expression	Chen-Brown-2002
+CSF1R	HLA-DRB5	0.007849011	Co-expression	Chen-Brown-2002
+CSF1R	HLA-DQB1	0.007196137	Co-expression	Chen-Brown-2002
+CSF1R	HLA-DRB1	0.009982327	Co-expression	Chen-Brown-2002
+CSF1R	HLA-DRA	0.012979062	Co-expression	Chen-Brown-2002
+CSF1R	HLA-DPB1	0.0071143215	Co-expression	Chen-Brown-2002
+CSF1R	HLA-DMA	0.0136340475	Co-expression	Chen-Brown-2002
+NR1H3	CR1	0.011351667	Co-expression	Dobbin-Giordano-2005
+NR1H3	IL10	0.012886817	Co-expression	Dobbin-Giordano-2005
+SPI1	NR1H3	0.007911259	Co-expression	Dobbin-Giordano-2005
+HLA-DRA	HLA-DRB1	0.0053969333	Co-expression	Dobbin-Giordano-2005
+RELB	PTK2B	0.017508574	Co-expression	Dobbin-Giordano-2005
+IL10RA	HLA-DQB1	0.009443274	Co-expression	Dobbin-Giordano-2005
+IL10RA	AP2A2	0.006601048	Co-expression	Dobbin-Giordano-2005
+IL10RA	NR1H3	0.005209869	Co-expression	Dobbin-Giordano-2005
+IL10RA	SPI1	0.0057291077	Co-expression	Dobbin-Giordano-2005
+HLA-DMB	HLA-DQB1	0.013423875	Co-expression	Dobbin-Giordano-2005
+HLA-DMB	HLA-DRB1	0.0054124817	Co-expression	Dobbin-Giordano-2005
+HLA-DMB	NR1H3	0.007452986	Co-expression	Dobbin-Giordano-2005
+HLA-DMB	HLA-DRA	0.0068550115	Co-expression	Dobbin-Giordano-2005
+SYNGR2	HLA-DRA	0.0056407223	Co-expression	Dobbin-Giordano-2005
+SYNGR2	MAPKAPK2	0.013049552	Co-expression	Dobbin-Giordano-2005
+CD74	HLA-DQB1	0.008370259	Co-expression	Dobbin-Giordano-2005
+CD74	HLA-DRB1	0.003565643	Co-expression	Dobbin-Giordano-2005
+CD74	HLA-DRA	0.004173891	Co-expression	Dobbin-Giordano-2005
+CD74	IL10RA	0.0030072054	Co-expression	Dobbin-Giordano-2005
+CD74	HLA-DMB	0.004701753	Co-expression	Dobbin-Giordano-2005
+HLA-DPB1	HLA-DQB1	0.011733268	Co-expression	Dobbin-Giordano-2005
+HLA-DPB1	HLA-DRB1	0.004984753	Co-expression	Dobbin-Giordano-2005
+HLA-DPB1	HLA-DRA	0.0057646646	Co-expression	Dobbin-Giordano-2005
+HLA-DPB1	IL10RA	0.00430318	Co-expression	Dobbin-Giordano-2005
+HLA-DPB1	HLA-DMB	0.0063922103	Co-expression	Dobbin-Giordano-2005
+HLA-DPB1	CD74	0.0042388504	Co-expression	Dobbin-Giordano-2005
+CD226	CR1	0.019611599	Co-expression	Dobbin-Giordano-2005
+CD226	CD33	0.018764898	Co-expression	Dobbin-Giordano-2005
+HLA-DMA	HLA-DRB1	0.0040956303	Co-expression	Dobbin-Giordano-2005
+HLA-DMA	HLA-DRA	0.004957521	Co-expression	Dobbin-Giordano-2005
+HLA-DMA	IL10RA	0.0034649898	Co-expression	Dobbin-Giordano-2005
+HLA-DMA	HLA-DMB	0.0058734324	Co-expression	Dobbin-Giordano-2005
+HLA-DMA	CD74	0.003402243	Co-expression	Dobbin-Giordano-2005
+HLA-DMA	HLA-DPB1	0.004542088	Co-expression	Dobbin-Giordano-2005
+CSF1R	AP2A2	0.012896082	Co-expression	Dobbin-Giordano-2005
+CSF1R	HLA-DRB1	0.005511338	Co-expression	Dobbin-Giordano-2005
+CSF1R	NR1H3	0.007554356	Co-expression	Dobbin-Giordano-2005
+CSF1R	SPI1	0.009359989	Co-expression	Dobbin-Giordano-2005
+CSF1R	IL10RA	0.0061064265	Co-expression	Dobbin-Giordano-2005
+CSF1R	CD74	0.004971944	Co-expression	Dobbin-Giordano-2005
+CSF1R	HLA-DPB1	0.007161899	Co-expression	Dobbin-Giordano-2005
+CSF1R	HLA-DMA	0.005723884	Co-expression	Dobbin-Giordano-2005
+HLA-DRA	HLA-DQB1	0.015875243	Co-expression	Bild-Nevins-2006 B
+HLA-DRA	SPI1	0.009669537	Co-expression	Bild-Nevins-2006 B
+MEF2C	CR2	0.009571437	Co-expression	Bild-Nevins-2006 B
+RELB	CR2	0.010675559	Co-expression	Bild-Nevins-2006 B
+IL10RA	PTK2B	0.014153317	Co-expression	Bild-Nevins-2006 B
+IL10RA	NR1H3	0.012596994	Co-expression	Bild-Nevins-2006 B
+AP2B1	PVRL2	0.011553145	Co-expression	Bild-Nevins-2006 B
+PTPN1	MS4A2	0.023334133	Co-expression	Bild-Nevins-2006 B
+NECTIN3	PTEN	0.026567029	Co-expression	Bild-Nevins-2006 B
+HLA-DMB	HLA-DQB1	0.0082582785	Co-expression	Bild-Nevins-2006 B
+HLA-DMB	PTK2B	0.010788205	Co-expression	Bild-Nevins-2006 B
+HLA-DMB	NR1H3	0.008467524	Co-expression	Bild-Nevins-2006 B
+HLA-DMB	SPI1	0.0062532723	Co-expression	Bild-Nevins-2006 B
+HLA-DMB	HLA-DRA	0.0072695846	Co-expression	Bild-Nevins-2006 B
+HLA-DMB	IL10RA	0.006237367	Co-expression	Bild-Nevins-2006 B
+CD74	SPI1	0.014027568	Co-expression	Bild-Nevins-2006 B
+CD74	HLA-DRA	0.016865049	Co-expression	Bild-Nevins-2006 B
+CD74	IL10RA	0.008642029	Co-expression	Bild-Nevins-2006 B
+CD74	HLA-DMB	0.008049588	Co-expression	Bild-Nevins-2006 B
+HLA-DPB1	HLA-DRA	0.018014934	Co-expression	Bild-Nevins-2006 B
+HLA-DPB1	IL10RA	0.01143294	Co-expression	Bild-Nevins-2006 B
+HLA-DPB1	HLA-DMB	0.009085834	Co-expression	Bild-Nevins-2006 B
+HLA-DPB1	CD74	0.016447319	Co-expression	Bild-Nevins-2006 B
+HLA-DMA	HLA-DQB1	0.0114150215	Co-expression	Bild-Nevins-2006 B
+HLA-DMA	PTK2B	0.014084593	Co-expression	Bild-Nevins-2006 B
+HLA-DMA	NR1H3	0.011337646	Co-expression	Bild-Nevins-2006 B
+HLA-DMA	SPI1	0.007818528	Co-expression	Bild-Nevins-2006 B
+HLA-DMA	HLA-DRA	0.009430358	Co-expression	Bild-Nevins-2006 B
+HLA-DMA	IL10RA	0.007901162	Co-expression	Bild-Nevins-2006 B
+HLA-DMA	HLA-DMB	0.0068902066	Co-expression	Bild-Nevins-2006 B
+HLA-DMA	CD74	0.011013039	Co-expression	Bild-Nevins-2006 B
+HLA-DMA	HLA-DPB1	0.011346839	Co-expression	Bild-Nevins-2006 B
+CSF1R	SPI1	0.0191513	Co-expression	Bild-Nevins-2006 B
+CSF1R	HLA-DRA	0.012782686	Co-expression	Bild-Nevins-2006 B
+CSF1R	HLA-DMB	0.0077850777	Co-expression	Bild-Nevins-2006 B
+CSF1R	CD74	0.014668574	Co-expression	Bild-Nevins-2006 B
+CSF1R	HLA-DMA	0.008844003	Co-expression	Bild-Nevins-2006 B
+FLNB	PVRL2	0.007146991	Co-expression	Bild-Nevins-2006 B
+FLNB	CLUAP1	0.007960588	Co-expression	Bild-Nevins-2006 B
+FLNB	AP2B1	0.008185178	Co-expression	Bild-Nevins-2006 B
+HLA-DRB1	HLA-DQB1	0.015949652	Co-expression	Roth-Zlotnik-2006
+HLA-DRA	HLA-DQB1	0.021788606	Co-expression	Roth-Zlotnik-2006
+HLA-DRA	HLA-DRB1	0.01229803	Co-expression	Roth-Zlotnik-2006
+PSMC3	CLPTM1	0.014348275	Co-expression	Roth-Zlotnik-2006
+SOX18	CAV1	0.006944469	Co-expression	Roth-Zlotnik-2006
+IL10RA	HLA-DQB1	0.010094701	Co-expression	Roth-Zlotnik-2006
+IL10RA	HLA-DRB1	0.004397159	Co-expression	Roth-Zlotnik-2006
+IL10RA	HLA-DRA	0.005726741	Co-expression	Roth-Zlotnik-2006
+HLA-DMB	HLA-DQB1	0.013420873	Co-expression	Roth-Zlotnik-2006
+HLA-DMB	CR2	0.011449826	Co-expression	Roth-Zlotnik-2006
+HLA-DMB	HLA-DRB1	0.0061358237	Co-expression	Roth-Zlotnik-2006
+HLA-DMB	HLA-DRA	0.009011051	Co-expression	Roth-Zlotnik-2006
+HLA-DMB	IL10RA	0.0043850285	Co-expression	Roth-Zlotnik-2006
+SYNGR2	HLA-DMB	0.009314083	Co-expression	Roth-Zlotnik-2006
+CD74	HLA-DQB1	0.029245324	Co-expression	Roth-Zlotnik-2006
+CD74	HLA-DRB1	0.015998231	Co-expression	Roth-Zlotnik-2006
+CD74	HLA-DRA	0.023229374	Co-expression	Roth-Zlotnik-2006
+CD74	IL10RA	0.0070213573	Co-expression	Roth-Zlotnik-2006
+CD74	HLA-DMB	0.010935257	Co-expression	Roth-Zlotnik-2006
+HLA-DPB1	HLA-DQB1	0.033782583	Co-expression	Roth-Zlotnik-2006
+HLA-DPB1	HLA-DRB1	0.016357686	Co-expression	Roth-Zlotnik-2006
+HLA-DPB1	HLA-DRA	0.022186154	Co-expression	Roth-Zlotnik-2006
+HLA-DPB1	IL10RA	0.009941717	Co-expression	Roth-Zlotnik-2006
+HLA-DPB1	HLA-DMB	0.01340485	Co-expression	Roth-Zlotnik-2006
+HLA-DPB1	CD74	0.030692806	Co-expression	Roth-Zlotnik-2006
+HLA-DMA	HLA-DQB1	0.015028898	Co-expression	Roth-Zlotnik-2006
+HLA-DMA	HLA-DRB1	0.007892278	Co-expression	Roth-Zlotnik-2006
+HLA-DMA	HLA-DRA	0.010530969	Co-expression	Roth-Zlotnik-2006
+HLA-DMA	IL10RA	0.004355102	Co-expression	Roth-Zlotnik-2006
+HLA-DMA	HLA-DMB	0.0062307767	Co-expression	Roth-Zlotnik-2006
+HLA-DMA	SYNGR2	0.010160728	Co-expression	Roth-Zlotnik-2006
+HLA-DMA	CD74	0.012893599	Co-expression	Roth-Zlotnik-2006
+HLA-DMA	HLA-DPB1	0.014585002	Co-expression	Roth-Zlotnik-2006
+AP2A2	PVRL2	0.0038000087	Co-expression	Wu-Garvey-2007
+PLD2	MS4A2	0.013047543	Co-expression	Wu-Garvey-2007
+MAPKAPK2	CLPTM1	0.017186714	Co-expression	Wu-Garvey-2007
+IL10RA	PVR	0.009826613	Co-expression	Wu-Garvey-2007
+CD74	HLA-DRA	0.028153544	Co-expression	Wu-Garvey-2007
+HLA-DMA	HLA-DMB	0.013768209	Co-expression	Wu-Garvey-2007
+CSF1R	AP2A2	0.005260759	Co-expression	Wu-Garvey-2007
+PSMC3	AP2A2	0.011774535	Co-expression	Perou-Botstein-1999
+IL10RA	SPI1	0.013205523	Co-expression	Perou-Botstein-1999
+AP2B1	PSMC3	0.010589911	Co-expression	Perou-Botstein-1999
+PTPN1	IL10RA	0.013465029	Co-expression	Perou-Botstein-1999
+CD74	HLA-DRA	0.012705565	Co-expression	Perou-Botstein-1999
+HLA-DRB1	HLA-DQB1	0.0045807394	Co-expression	Boldrick-Relman-2002
+SPI1	NR1H3	0.002951306	Co-expression	Boldrick-Relman-2002
+HLA-DRA	HLA-DQB1	0.0032888395	Co-expression	Boldrick-Relman-2002
+HLA-DRA	CR2	0.0060073193	Co-expression	Boldrick-Relman-2002
+HLA-DRA	HLA-DRB1	0.0060471417	Co-expression	Boldrick-Relman-2002
+IL10RA	HLA-DQB1	0.0033914212	Co-expression	Boldrick-Relman-2002
+IL10RA	HLA-DRA	0.0041706553	Co-expression	Boldrick-Relman-2002
+PTPN1	RELB	0.008116355	Co-expression	Boldrick-Relman-2002
+HLA-DMB	HLA-DQB1	0.0048593762	Co-expression	Boldrick-Relman-2002
+HLA-DMB	HLA-DRB1	0.008614794	Co-expression	Boldrick-Relman-2002
+HLA-DMB	HLA-DRA	0.00561502	Co-expression	Boldrick-Relman-2002
+HLA-DMB	IL10RA	0.0068591232	Co-expression	Boldrick-Relman-2002
+CD74	HLA-DQB1	0.003144452	Co-expression	Boldrick-Relman-2002
+CD74	HLA-DRB1	0.005838378	Co-expression	Boldrick-Relman-2002
+CD74	HLA-DRA	0.0037204027	Co-expression	Boldrick-Relman-2002
+HLA-DPB1	HLA-DQB1	0.0027363263	Co-expression	Boldrick-Relman-2002
+HLA-DPB1	HLA-DRB1	0.004686729	Co-expression	Boldrick-Relman-2002
+HLA-DPB1	HLA-DRA	0.0033657611	Co-expression	Boldrick-Relman-2002
+HLA-DPB1	IL10RA	0.0035549668	Co-expression	Boldrick-Relman-2002
+HLA-DPB1	HLA-DMB	0.005066132	Co-expression	Boldrick-Relman-2002
+HLA-DPB1	CD74	0.0030145142	Co-expression	Boldrick-Relman-2002
+HLA-DMA	HLA-DQB1	0.0041625155	Co-expression	Boldrick-Relman-2002
+HLA-DMA	HLA-DRB1	0.0077701355	Co-expression	Boldrick-Relman-2002
+HLA-DMA	HLA-DRA	0.0051041185	Co-expression	Boldrick-Relman-2002
+HLA-DMA	IL10RA	0.005718433	Co-expression	Boldrick-Relman-2002
+HLA-DMA	HLA-DMB	0.010001347	Co-expression	Boldrick-Relman-2002
+HLA-DMA	HLA-DPB1	0.004372791	Co-expression	Boldrick-Relman-2002
+CSF1R	SPI1	0.014386801	Co-expression	Boldrick-Relman-2002
+CR1	HLA-DRB5	0.01253039	Co-localization	Schadt-Shoemaker-2004
+IL10	HLA-DRB5	0.01563074	Co-localization	Schadt-Shoemaker-2004
+CR2	IL10	0.011734713	Co-localization	Schadt-Shoemaker-2004
+CLU	CLPTM1	0.008984957	Co-localization	Schadt-Shoemaker-2004
+IL10RA	HLA-DRB5	0.012982834	Co-localization	Schadt-Shoemaker-2004
+IL10RA	CR1	0.015578486	Co-localization	Schadt-Shoemaker-2004
+IL10RA	IL10	0.015130285	Co-localization	Schadt-Shoemaker-2004
+HLA-DMB	HLA-DRB5	0.022996383	Co-localization	Schadt-Shoemaker-2004
+HLA-DMB	IL10	0.017243471	Co-localization	Schadt-Shoemaker-2004
+HLA-DMB	IL10RA	0.014384854	Co-localization	Schadt-Shoemaker-2004
+PLD2	SCARA3	0.031133002	Co-localization	Johnson-Shoemaker-2003
+CLPTM1	CARTPT	0.014262962	Co-localization	Johnson-Shoemaker-2003
+CLU	CLPTM1	0.01178701	Co-localization	Johnson-Shoemaker-2003
+HLA-DRA	CR2	0.008013457	Co-localization	Johnson-Shoemaker-2003
+SOX18	DAPK2	0.0069295485	Co-localization	Johnson-Shoemaker-2003
+SOX18	MS4A2	0.0061573954	Co-localization	Johnson-Shoemaker-2003
+SOX18	CAV1	0.004933599	Co-localization	Johnson-Shoemaker-2003
+IL10RA	CR1	0.006407834	Co-localization	Johnson-Shoemaker-2003
+IL10RA	HLA-DRA	0.0046591307	Co-localization	Johnson-Shoemaker-2003
+PTEN	HLA-DRA	0.007837182	Co-localization	Johnson-Shoemaker-2003
+HLA-DMB	HLA-DRA	0.009518714	Co-localization	Johnson-Shoemaker-2003
+SYNGR2	HLA-DRA	0.007824749	Co-localization	Johnson-Shoemaker-2003
+SYNGR2	MAPKAPK2	0.013935521	Co-localization	Johnson-Shoemaker-2003
+SYNGR2	HLA-DMB	0.015627878	Co-localization	Johnson-Shoemaker-2003
+ARPC5	SPI1	0.01144277	Co-localization	Johnson-Shoemaker-2003
+CD74	HLA-DRA	0.005402189	Co-localization	Johnson-Shoemaker-2003
+CD74	IL10RA	0.006128403	Co-localization	Johnson-Shoemaker-2003
+CD74	HLA-DMB	0.008701284	Co-localization	Johnson-Shoemaker-2003
+HLA-DPB1	HLA-DRA	0.0066346945	Co-localization	Johnson-Shoemaker-2003
+HLA-DPB1	PTEN	0.009760317	Co-localization	Johnson-Shoemaker-2003
+HLA-DPB1	HLA-DMB	0.011521739	Co-localization	Johnson-Shoemaker-2003
+HLA-DPB1	SYNGR2	0.0104349125	Co-localization	Johnson-Shoemaker-2003
+HLA-DPB1	CD74	0.006186294	Co-localization	Johnson-Shoemaker-2003
+CD226	CR1	0.01368635	Co-localization	Johnson-Shoemaker-2003
+CD226	IL10RA	0.011827172	Co-localization	Johnson-Shoemaker-2003
+PLD2	MS4A2	0.037749615	Pathway	Wu-Stein-2010
+HLA-DRB1	HLA-DQA1	0.031195464	Pathway	Wu-Stein-2010
+SPI1	CD33	0.13557759	Pathway	Wu-Stein-2010
+HLA-DRA	HLA-DQA1	0.030030241	Pathway	Wu-Stein-2010
+HLA-DRA	HLA-DRB1	0.017523883	Pathway	Wu-Stein-2010
+IL10RA	IL10	0.106306106	Pathway	Wu-Stein-2010
+AP2B1	AP2A2	0.08440755	Pathway	Wu-Stein-2010
+PTPN1	CAV1	0.009884098	Pathway	Wu-Stein-2010
+NECTIN3	PVR	0.10635223	Pathway	Wu-Stein-2010
+NECTIN3	PVRL2	0.10313355	Pathway	Wu-Stein-2010
+HLA-DMB	HLA-DQA1	0.053458888	Pathway	Wu-Stein-2010
+HLA-DMB	HLA-DRB1	0.031195464	Pathway	Wu-Stein-2010
+HLA-DMB	HLA-DRA	0.030030241	Pathway	Wu-Stein-2010
+CD74	HLA-DRB1	0.08135257	Pathway	Wu-Stein-2010
+CD74	HLA-DRA	0.07831387	Pathway	Wu-Stein-2010
+HLA-DPB1	HLA-DQA1	0.053458888	Pathway	Wu-Stein-2010
+HLA-DPB1	HLA-DRB1	0.031195464	Pathway	Wu-Stein-2010
+HLA-DPB1	HLA-DRA	0.030030241	Pathway	Wu-Stein-2010
+HLA-DPB1	HLA-DMB	0.053458888	Pathway	Wu-Stein-2010
+CD226	PVR	0.3251435	Pathway	Wu-Stein-2010
+CD226	PVRL2	0.3153032	Pathway	Wu-Stein-2010
+HLA-DMA	HLA-DQA1	0.053458888	Pathway	Wu-Stein-2010
+HLA-DMA	HLA-DRB1	0.031195464	Pathway	Wu-Stein-2010
+HLA-DMA	HLA-DRA	0.030030241	Pathway	Wu-Stein-2010
+HLA-DMA	HLA-DMB	0.053458888	Pathway	Wu-Stein-2010
+HLA-DMA	HLA-DPB1	0.053458888	Pathway	Wu-Stein-2010
+CSF1R	PTPN1	0.09356726	Pathway	Wu-Stein-2010
+FLNB	PTK2B	0.006661506	Pathway	Wu-Stein-2010
+PLD2	MS4A2	0.055644814	Pathway	NCI_NATURE
+HLA-DRA	HLA-DRB1	0.0283226	Pathway	NCI_NATURE
+NECTIN3	PVR	0.26603603	Pathway	NCI_NATURE
+NECTIN3	PVRL2	0.16499773	Pathway	NCI_NATURE
+CSF1R	SPI1	0.09365285	Pathway	NCI_NATURE
+CSF1R	PTPN1	0.061946094	Pathway	NCI_NATURE
+HLA-DQB1	HLA-DQA1	0.9402348	Physical Interactions	IREF-BIND
+HLA-DRA	HLA-DRB5	0.611913	Physical Interactions	IREF-BIND
+HLA-DRA	HLA-DRB1	0.75548583	Physical Interactions	IREF-BIND
+SOX18	MEF2C	1	Physical Interactions	IREF-BIND
+CLUAP1	CLU	0.78304344	Physical Interactions	IREF-BIND
+HNRNPA0	MAPKAPK2	0.73854893	Physical Interactions	IREF-BIND
+PTEN	CAV1	0.4834384	Physical Interactions	IREF-BIND
+AP2B1	AP2A2	0.35845083	Physical Interactions	IREF-BIND
+PTPN1	CAV1	0.4834384	Physical Interactions	IREF-BIND
+GTF2B	PSMC3	0.43806463	Physical Interactions	IREF-BIND
+RALBP1	AP2A2	0.3125648	Physical Interactions	IREF-BIND
+ARPC5	MAPKAPK2	0.27888054	Physical Interactions	IREF-BIND
+HLA-DMA	HLA-DMB	0.9402348	Physical Interactions	IREF-BIND
+FLNB	CAV1	0.25570303	Physical Interactions	IREF-BIND
+HLA-DRA	HLA-DRB1	1	Physical Interactions	IREF-DIP
+IL10RA	IL10	0.76536685	Physical Interactions	IREF-DIP
+NECTIN3	PVR	0.3934015	Physical Interactions	IREF-DIP
+NECTIN3	PVRL2	0.6616198	Physical Interactions	IREF-DIP
+HLA-DMA	HLA-DMB	0.64359426	Physical Interactions	IREF-DIP
+CSF1R	IL34	0.70710677	Physical Interactions	IREF-DIP
+HLA-DQB1	HLA-DQA1	0.63972795	Physical Interactions	IREF-INTACT
+HLA-DRA	HLA-DRB1	0.42159334	Physical Interactions	IREF-INTACT
+IL10RA	IL10	0.93767196	Physical Interactions	IREF-INTACT
+PTEN	CAV1	0.01401797	Physical Interactions	IREF-INTACT
+PTPN1	CAV1	0.00878876	Physical Interactions	IREF-INTACT
+NECTIN3	PVRL2	0.07935726	Physical Interactions	IREF-INTACT
+GTF2B	PSMC3	0.051080238	Physical Interactions	IREF-INTACT
+SYNGR2	SCARA3	0.79387045	Physical Interactions	IREF-INTACT
+CD74	HLA-DQA1	0.13574135	Physical Interactions	IREF-INTACT
+CD74	HLA-DRA	0.23148279	Physical Interactions	IREF-INTACT
+CD226	PVR	0.35077158	Physical Interactions	IREF-INTACT
+CD226	PVRL2	0.2502353	Physical Interactions	IREF-INTACT
+HLA-DRB1	HLA-DRB5	0.17578188	Physical Interactions	Huttlin-Gygi-2015
+HLA-DRA	HLA-DRB5	0.06652111	Physical Interactions	Huttlin-Gygi-2015
+HLA-DRA	HLA-DRB1	0.04532686	Physical Interactions	Huttlin-Gygi-2015
+NECTIN3	PVRL2	0.13871634	Physical Interactions	Huttlin-Gygi-2015
+HLA-DMB	HLA-DRA	0.08155149	Physical Interactions	Huttlin-Gygi-2015
+HLA-DPB1	CD74	0.08558963	Physical Interactions	Huttlin-Gygi-2015
+CR2	CR1	0.5198669	Physical Interactions	IREF-BIOGRID
+CAV1	PLD2	0.016674189	Physical Interactions	IREF-BIOGRID
+SOX18	MEF2C	0.21005948	Physical Interactions	IREF-BIOGRID
+CLUAP1	CLU	0.0686597	Physical Interactions	IREF-BIOGRID
+HNRNPA0	MAPKAPK2	0.02254408	Physical Interactions	IREF-BIOGRID
+IL10RA	IL10	0.6190106	Physical Interactions	IREF-BIOGRID
+PTEN	PTK2B	0.0081544705	Physical Interactions	IREF-BIOGRID
+PTEN	CAV1	0.0051580677	Physical Interactions	IREF-BIOGRID
+PTPN1	CAV1	0.011756692	Physical Interactions	IREF-BIOGRID
+NECTIN3	PVR	0.08108288	Physical Interactions	IREF-BIOGRID
+NECTIN3	PVRL2	0.07154838	Physical Interactions	IREF-BIOGRID
+HLA-DMB	HLA-DRA	0.21202089	Physical Interactions	IREF-BIOGRID
+SYNGR2	SCARA3	0.8343761	Physical Interactions	IREF-BIOGRID
+CD226	PVR	0.19142307	Physical Interactions	IREF-BIOGRID
+CD226	PVRL2	0.16891372	Physical Interactions	IREF-BIOGRID
+HLA-DMA	HLA-DRB1	0.20210075	Physical Interactions	IREF-BIOGRID
+FLNB	HNRNPA0	0.0150277065	Physical Interactions	IREF-BIOGRID
+CR2	CR1	0.162256	Predicted	Wu-Stein-2010
+HLA-DRB1	HLA-DQA1	0.070440374	Predicted	Wu-Stein-2010
+HLA-DRA	HLA-DRB1	0.038169123	Predicted	Wu-Stein-2010
+CAV1	PLD2	0.032923345	Predicted	Wu-Stein-2010
+SOX18	MEF2C	0.28300425	Predicted	Wu-Stein-2010
+PTEN	CAV1	0.042385656	Predicted	Wu-Stein-2010
+PTPN1	PTK2B	0.031394973	Predicted	Wu-Stein-2010
+HLA-DMB	HLA-DRB1	0.054730035	Predicted	Wu-Stein-2010
+CD74	HLA-DQA1	0.10794925	Predicted	Wu-Stein-2010
+CD74	HLA-DRB1	0.03994691	Predicted	Wu-Stein-2010
+CD74	HLA-DMB	0.08387329	Predicted	Wu-Stein-2010
+HLA-DPB1	HLA-DRB1	0.08317906	Predicted	Wu-Stein-2010
+HLA-DPB1	CD74	0.12747116	Predicted	Wu-Stein-2010
+HLA-DMA	HLA-DRB1	0.12577592	Predicted	Wu-Stein-2010
+HLA-DMA	CD74	0.19275047	Predicted	Wu-Stein-2010
+HLA-DRB5	HLA-DQA1	0.017238082	Shared protein domains	PFAM
+HLA-DQB1	HLA-DQA1	0.017238082	Shared protein domains	PFAM
+HLA-DQB1	HLA-DRB5	0.04665368	Shared protein domains	PFAM
+PVRL2	PVR	0.012122413	Shared protein domains	PFAM
+CR2	CR1	0.02058784	Shared protein domains	PFAM
+HLA-DRB1	HLA-DQA1	0.017238082	Shared protein domains	PFAM
+HLA-DRB1	HLA-DRB5	0.04665368	Shared protein domains	PFAM
+HLA-DRB1	HLA-DQB1	0.04665368	Shared protein domains	PFAM
+NR1H3	RORA	0.021566309	Shared protein domains	PFAM
+HLA-DRA	HLA-DQA1	0.078386396	Shared protein domains	PFAM
+HLA-DRA	HLA-DRB5	0.017238082	Shared protein domains	PFAM
+HLA-DRA	HLA-DQB1	0.017238082	Shared protein domains	PFAM
+HLA-DRA	HLA-DRB1	0.017238082	Shared protein domains	PFAM
+MAPKAPK2	DAPK2	0.003275324	Shared protein domains	PFAM
+AP2B1	AP2A2	0.07887802	Shared protein domains	PFAM
+NECTIN3	PVR	0.0119862	Shared protein domains	PFAM
+NECTIN3	PVRL2	0.011991863	Shared protein domains	PFAM
+HLA-DMB	HLA-DQA1	0.017238082	Shared protein domains	PFAM
+HLA-DMB	HLA-DRB5	0.04665368	Shared protein domains	PFAM
+HLA-DMB	HLA-DQB1	0.04665368	Shared protein domains	PFAM
+HLA-DMB	HLA-DRB1	0.04665368	Shared protein domains	PFAM
+HLA-DMB	HLA-DRA	0.017238082	Shared protein domains	PFAM
+HLA-DPB1	HLA-DQA1	0.017238082	Shared protein domains	PFAM
+HLA-DPB1	HLA-DRB5	0.04665368	Shared protein domains	PFAM
+HLA-DPB1	HLA-DQB1	0.04665368	Shared protein domains	PFAM
+HLA-DPB1	HLA-DRB1	0.04665368	Shared protein domains	PFAM
+HLA-DPB1	HLA-DRA	0.017238082	Shared protein domains	PFAM
+HLA-DPB1	HLA-DMB	0.04665368	Shared protein domains	PFAM
+CD226	PVR	0.0050644176	Shared protein domains	PFAM
+CD226	PVRL2	0.0050668106	Shared protein domains	PFAM
+CD226	NECTIN3	0.005009877	Shared protein domains	PFAM
+HLA-DMA	HLA-DQA1	0.078386396	Shared protein domains	PFAM
+HLA-DMA	HLA-DRB5	0.017238082	Shared protein domains	PFAM
+HLA-DMA	HLA-DQB1	0.017238082	Shared protein domains	PFAM
+HLA-DMA	HLA-DRB1	0.017238082	Shared protein domains	PFAM
+HLA-DMA	HLA-DRA	0.078386396	Shared protein domains	PFAM
+HLA-DMA	HLA-DMB	0.017238082	Shared protein domains	PFAM
+HLA-DMA	HLA-DPB1	0.017238082	Shared protein domains	PFAM
+CLPTM1L	CLPTM1	1	Shared protein domains	PFAM
+CSF1R	CD33	0.0124259265	Shared protein domains	PFAM
+CSF1R	PTK2B	0.009132111	Shared protein domains	PFAM
+HLA-DRB5	HLA-DQA1	0.020753091	Shared protein domains	INTERPRO
+HLA-DQB1	HLA-DQA1	0.020752732	Shared protein domains	INTERPRO
+HLA-DQB1	HLA-DRB5	0.030931972	Shared protein domains	INTERPRO
+PVRL2	PVR	0.01441874	Shared protein domains	INTERPRO
+CR2	CR1	0.025368724	Shared protein domains	INTERPRO
+HLA-DRB1	HLA-DQA1	0.020751746	Shared protein domains	INTERPRO
+HLA-DRB1	HLA-DRB5	0.030930504	Shared protein domains	INTERPRO
+HLA-DRB1	HLA-DQB1	0.030929966	Shared protein domains	INTERPRO
+NR1H3	RORA	0.02114586	Shared protein domains	INTERPRO
+HLA-DRA	HLA-DQA1	0.04189572	Shared protein domains	INTERPRO
+HLA-DRA	HLA-DRB5	0.020753091	Shared protein domains	INTERPRO
+HLA-DRA	HLA-DQB1	0.020752732	Shared protein domains	INTERPRO
+HLA-DRA	HLA-DRB1	0.020751746	Shared protein domains	INTERPRO
+MAPKAPK2	DAPK2	0.0037871185	Shared protein domains	INTERPRO
+AP2B1	AP2A2	0.050156474	Shared protein domains	INTERPRO
+PTPN1	PTEN	0.010541794	Shared protein domains	INTERPRO
+NECTIN3	PVR	0.014410177	Shared protein domains	INTERPRO
+NECTIN3	PVRL2	0.0144113125	Shared protein domains	INTERPRO
+HLA-DMB	HLA-DQA1	0.020753091	Shared protein domains	INTERPRO
+HLA-DMB	HLA-DRB5	0.03093251	Shared protein domains	INTERPRO
+HLA-DMB	HLA-DQB1	0.030931972	Shared protein domains	INTERPRO
+HLA-DMB	HLA-DRB1	0.030930504	Shared protein domains	INTERPRO
+HLA-DMB	HLA-DRA	0.020753091	Shared protein domains	INTERPRO
+HLA-DPB1	HLA-DQA1	0.020752812	Shared protein domains	INTERPRO
+HLA-DPB1	HLA-DRB5	0.030932091	Shared protein domains	INTERPRO
+HLA-DPB1	HLA-DQB1	0.030931555	Shared protein domains	INTERPRO
+HLA-DPB1	HLA-DRB1	0.030930085	Shared protein domains	INTERPRO
+HLA-DPB1	HLA-DRA	0.020752812	Shared protein domains	INTERPRO
+HLA-DPB1	HLA-DMB	0.030932091	Shared protein domains	INTERPRO
+HLA-DMA	HLA-DQA1	0.04189572	Shared protein domains	INTERPRO
+HLA-DMA	HLA-DRB5	0.020753091	Shared protein domains	INTERPRO
+HLA-DMA	HLA-DQB1	0.020752732	Shared protein domains	INTERPRO
+HLA-DMA	HLA-DRB1	0.020751746	Shared protein domains	INTERPRO
+HLA-DMA	HLA-DRA	0.04189572	Shared protein domains	INTERPRO
+HLA-DMA	HLA-DMB	0.020753091	Shared protein domains	INTERPRO
+HLA-DMA	HLA-DPB1	0.020752812	Shared protein domains	INTERPRO
+CLPTM1L	CLPTM1	1	Shared protein domains	INTERPRO

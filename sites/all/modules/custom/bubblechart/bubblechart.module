@@ -76,7 +76,7 @@ function bubblechart_genomics($input_genes) {
   $datatype_checkbox = _create_facet($result, 'DataType');
   $br_checkbox = _create_facet($result, 'BrainRegion');
 
-  $page = '<div id="bubblechart-faq"><p>Every colored bubble is a gene, and the color indicates the fold change; red is up and blue is down. The size of the bubble indicates the size of the fold change. If you hover over a colored bubble (gene), a pop-up will give you the gene name, p-value, fold change, and study. You can filter the data using the checkboxes at the right and the sliders at the top. For more information about the Contrast, <a href="/contrast" target="_blank">view the Contrasts page</a>.</p></div>';
+  $page = '<div id="bubblechart-faq"><p>Every colored bubble is a gene, and the color indicates the fold change; red is up and blue is down. The size of the bubble indicates the significance. If you hover over a colored bubble (gene), a pop-up will give you the gene name, p-value, fold change, and study. You can filter the data using the checkboxes at the right and the sliders at the top. For more information about the Contrast, <a href="/contrast" target="_blank">view the Contrasts page</a>.</p></div>';
   $page .= '<div id="facet-group">';
 
   $page .= '<table id="facet-table">';

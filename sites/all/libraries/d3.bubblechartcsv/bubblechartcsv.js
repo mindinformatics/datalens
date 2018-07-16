@@ -39,8 +39,8 @@
         .startAngle(0)
         .endAngle(2*Math.PI);
 
-      d3.csv("/sites/all/libraries/d3.bubblechartcsv/js-bubblechart-input.csv", function(error, data) {
-      //d3.csv("/sites/all/themes/scf_theme/BubbleChart/genes-hypoxia-revised-B3-B1.csv", function(error, data) {
+      //d3.csv("/sites/all/libraries/d3.bubblechartcsv/js-bubblechart-input.csv", function(error, data) {
+      d3.csv("/sites/all/themes/scf_theme/BubbleChart/genes-hypoxia-revised-B3-B1.csv", function(error, data) {
         console.debug(data);
           data.forEach(function(d) {
             d.LogFC = +d.LogFC;
@@ -230,27 +230,26 @@
    var slegendFullHeight = legendHeight + margin.bottom + margin.top;
 
 
- var genes = node.filter(function(d) { return !d.children; })
-            console.debug('genes');
-            console.debug(genes[[0]].g);
+  var genes= d3.selectAll("g.leaf.node");
+  // Make it a simple array
+  genes= genes[0];
+  // console.debug('genes');
+  // console.debug(genes);
 
+  i=0;
+  max_size=0;
+  genes.forEach(function() { rsize=genes[i].attributes.rsize.value; i++; console.debug(rsize);  if(rsize > max_size) {max_size=rsize}});
 
-  //var cc = 0;
-  //genes.forEach(function(d) { cc += 1;});
-  //var max_size = genes.filter(function(d) { return d.r})
+  console.debug('max_size');
+  console.debug(max_size);
 
-   //var genes_array = Object.values(genes)
-   //max_size = d3.max(genes_array,  function(d) { return d.r });
+  i=0;
+  min_size=100;
+  genes.forEach(function() { rsize=genes[i].attributes.rsize.value; i++; console.debug(rsize);  if(rsize < min_size) {min_size=rsize}});
 
-//node.filter(function(d){ return d.name == "Striatum"; }).append("circle")
+  console.debug('min_size');
+  console.debug(min_size);
 
-//var max_size = genes(return circle.radius);
-
-         //console.debug('max_size');
-         //console.debug(cc);
-  var min_size = d3.min(data, function(d) { return d.size });
-         console.debug('min_size');
-        console.debug(min_size);
 
    var slegendSvg = d3.select('#legend').append("svg")
         .attr('width', slegendFullWidth)
@@ -264,7 +263,10 @@
 
 
   slegendSvg.append("circle")
-    .attr("r", 2);
+    .attr("r", min_size)
+    .style('fill', "#ccc")
+    .style('stroke-opacity','.1')
+    .style('stroke-width', '2px');
 
 
 

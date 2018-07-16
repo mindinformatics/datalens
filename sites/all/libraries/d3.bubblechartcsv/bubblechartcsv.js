@@ -86,7 +86,9 @@
 
           node.enter().append("g")
                 .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
-                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+                .attr("rsize", function(d) {return d.r });
+
 
           node.append("title")
                 //(d.children ? "" : ": " + format(d.size)
@@ -117,11 +119,11 @@
     var legendMargin = { top: 20, bottom: 20, left: 20, right: 20 };
 
     // use same margins as main plot
-    var margin11 = { top: 20, bottom: 20, left: 30, right: 20 };
+    var margin = { top: 20, bottom: 20, left: 30, right: 20 };
     var legendWidth = 10;
     var legendHeight = 200;
     var legendFullWidth = 100;
-    var legendFullHeight = legendHeight + margin11.bottom + margin11.top;
+    var legendFullHeight = legendHeight + margin.bottom + margin.top;
 
     var legendSvg = d3.select('#legend').append("svg")
         .attr('width', legendFullWidth)
@@ -221,6 +223,52 @@
 // End Legend ********************************************************************************************************************************************************************************************
 
     updateColorLegend(['#253494', '#bd0026'], min_fc, max_fc);
+
+
+  // Size Legend ********************************************************************************************************************************************************************************************
+   var slegendFullWidth = 100;
+   var slegendFullHeight = legendHeight + margin.bottom + margin.top;
+
+
+ var genes = node.filter(function(d) { return !d.children; })
+            console.debug('genes');
+            console.debug(genes[[0]].g);
+
+
+  //var cc = 0;
+  //genes.forEach(function(d) { cc += 1;});
+  //var max_size = genes.filter(function(d) { return d.r})
+
+   //var genes_array = Object.values(genes)
+   //max_size = d3.max(genes_array,  function(d) { return d.r });
+
+//node.filter(function(d){ return d.name == "Striatum"; }).append("circle")
+
+//var max_size = genes(return circle.radius);
+
+         //console.debug('max_size');
+         //console.debug(cc);
+  var min_size = d3.min(data, function(d) { return d.size });
+         console.debug('min_size');
+        console.debug(min_size);
+
+   var slegendSvg = d3.select('#legend').append("svg")
+        .attr('width', slegendFullWidth)
+        .attr('height', slegendFullHeight)
+        .append('g')
+        .attr('transform', 'translate(' + legendMargin.left + ',' +
+        legendMargin.top + ')');
+
+   slegendSvg.append("text")
+          .text("Size");
+
+
+  slegendSvg.append("circle")
+    .attr("r", 2);
+
+
+
+ // End Legend ********************************************************************************************************************************************************************************************
 
           node.filter(function(d){ return !(d.name == "WB"); }).append("circle")
               .attr("r", function(d) { return  d.children ? 0.99 * d.r : d.r })

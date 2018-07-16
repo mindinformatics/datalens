@@ -112,6 +112,116 @@
          var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
          console.debug(color_scale(max_fc));
 
+
+         // Legend for FC Value colors ********************************************************************************************************************************************************************************************
+    var legendMargin = { top: 20, bottom: 20, left: 20, right: 20 };
+
+    // use same margins as main plot
+    var margin11 = { top: 20, bottom: 20, left: 30, right: 20 };
+    var legendWidth = 10;
+    var legendHeight = 200;
+    var legendFullWidth = 100;
+    var legendFullHeight = legendHeight + margin11.bottom + margin11.top;
+
+    var legendSvg = d3.select('#legend').append("svg")
+        .attr('width', legendFullWidth)
+        .attr('height', legendFullHeight)
+        .append('g')
+        .attr('transform', 'translate(' + legendMargin.left + ',' +
+        legendMargin.top + ')');
+
+    // update the color scale, restyle the plot points and legend
+    function updateColorLegend(scale, minVal, maxVal) {
+        // create color scale
+        var colorScale = d3.scale.linear()
+            .domain(linspace(minVal, maxVal, scale.length))
+            .range(scale);
+
+        // clear current legend
+        legendSvg.selectAll('*').remove();
+
+        // append gradient bar
+        var gradient = legendSvg.append('defs')
+            .append('linearGradient')
+            .attr('id', 'gradient')
+            .attr('x1', '0%') // bottom
+            .attr('y1', '100%')
+            .attr('x2', '0%') // to top
+            .attr('y2', '0%')
+            .attr('spreadMethod', 'pad');
+
+        // programatically generate the gradient for the legend
+        // this creates an array of [pct, color] pairs as stop
+        // values for legend
+        var pct = linspace(0, 100, scale.length).map(function(d) {
+            return Math.round(d) + '%';
+        });
+
+        var colorPct = d3.zip(pct, scale);
+
+        colorPct.forEach(function(d) {
+            gradient.append('stop')
+                .attr('offset', d[0])
+                .attr('stop-color', d[1])
+                .attr('stop-opacity', .6);
+        });
+
+        legendSvg.append('rect')
+            .attr('x1', 0)
+            .attr('y1', 0)
+            .attr('width', legendWidth)
+            .attr('height', legendHeight)
+            .style('fill', 'url(#gradient)');
+
+
+        var max_value = Math.ceil(maxVal);
+        var min_value = Math.floor(minVal);
+
+        // create a scale and axis for the legend
+        var legendScale = d3.scale.linear()
+            .domain([min_value, max_value])
+            .range([legendHeight, 0]);
+
+
+        var legendAxis = d3.svg.axis()
+            .scale(legendScale)
+            .orient("right")
+            .tickValues(d3.range(min_value, max_value))
+            //.ticks(10, function(d) { return d; });
+            .ticks(50);
+
+        legendSvg.append("g")
+            .attr("class", "legend axis")
+            .attr("transform", "translate(" + legendWidth + ", 0)")
+            .call(legendAxis);
+
+        legendSvg.append("text")
+          .attr("class", "y label")
+          .attr("text-anchor", "end")
+          .attr("y", 6)
+          .attr("dy", "-.75em")
+          .attr("transform", "rotate(-90)")
+          .text("FC Value");
+    }
+
+    function linspace(start, end, n) {
+        var out = [];
+        var delta = (end - start) / (n - 1);
+
+        var i = 0;
+        while(i < (n - 1)) {
+            out.push(start + (i * delta));
+            i++;
+        }
+
+        out.push(end);
+        return out;
+    }
+
+// End Legend ********************************************************************************************************************************************************************************************
+
+    updateColorLegend(['#253494', '#bd0026'], min_fc, max_fc);
+
           node.filter(function(d){ return !(d.name == "WB"); }).append("circle")
               .attr("r", function(d) { return  d.children ? 0.99 * d.r : d.r })
               .style('fill', function(d) { return (d.children ? "#000" : color_scale(real_fc(d.LogFC))); })

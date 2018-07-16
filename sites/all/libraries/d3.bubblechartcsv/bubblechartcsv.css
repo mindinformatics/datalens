@@ -163,3 +163,9 @@ label {
 #FCValue {
   display: none;
 }
+
+#legend {
+    float: left;
+    margin-top: 70px;
+}
+

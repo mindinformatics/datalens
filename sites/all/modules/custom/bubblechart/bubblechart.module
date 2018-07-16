@@ -43,10 +43,7 @@ function bubblechart_menu() {
 
 function bubblechart_csv() {
 
-  $page = '<div id="bubblechart-faq"><p>Every colored bubble is a gene, and the color indicates the fold change; red is up and blue is down. The size of the bubble indicates the size of the fold change. If you hover over a colored bubble (gene), a pop-up will give you the gene name, p-value, fold change, and study. You can filter the data using the checkboxes at the right and the sliders at the top. For more information about the Contrast, <a href="/contrast" target="_blank">view the Contrasts page</a>.</p></div>';
-
-
-  $page .=  t('<div id="legend"></div>');
+  $page =  t('<div id="legend"></div>');
 
   $chart = array(
     'id' => 'visualization',

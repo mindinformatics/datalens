@@ -97,9 +97,13 @@ ints=string_db$get_interactions( hits )
 cn=read.table("~/Dropbox (Partners HealthCare)/DataLENS_Paper/Networks/Calcineurin/CN-genes.txt",  sep="\t", header=TRUE)
 cn=unique(cn$Human_Gene)
 neuron=read.table("~/Dropbox (Partners HealthCare)/DataLENS_Paper/Networks/Calcineurin/geneset.neuron.txt",  sep="\t", header=TRUE)
-synapse=read.table("/Users/sdas/Sites/cats/sites/all/libraries/d3.fd/geneset.synapse.txt", sep="\t", header=TRUE)
+synapse=read.table("~/Sites/cats/sites/all/libraries/d3.fd/geneset.synapse.txt", sep="\t", header=TRUE)
 nfat=read.table("~/Dropbox (Partners HealthCare)/DataLENS_Paper/Networks/Calcineurin/geneset.NFAT.txt",  sep="\t", header=TRUE)
-
+creb=read.table("~/Sites/cats/sites/all/libraries/d3.fd/geneset.creb.txt",  sep="\t", header=TRUE)
+mir24=read.table("~/Sites/cats/sites/all/libraries/d3.fd/geneset.mir24.txt",  sep="\t", header=TRUE)
+barres=read.table("~/Dropbox (Partners HealthCare)/DataLENS_Paper/NFAT/barreslab_rnaseq.csv", sep=",", header=T)
+nfat_up=read.table("~/Dropbox (Partners HealthCare)/DataLENS_Paper/NFAT/ROSMAP-UP-NFAT-Targets.txt",sep="\t", header=TRUE)
+  
 intersect(neuron$GO_NEURON_PART,synapse$GO_SYNAPSE)
 cn_neuron=intersect(cn,neuron$GO_NEURON_PART)
 write.csv(cn_neuron,"cn_neuron.csv", row.names = F)
@@ -115,5 +119,25 @@ intersect(cn_synapse,gwis$Name)
 
 intersect(neuron$GO_NEURON_PART,synapse$GO_SYNAPSE)
 intersect(cn_neuron,synapse$GO_SYNAPSE)
-intersect(cn_neuron,nfat$TGGAAA_NFAT_Q4_01)
-intersect(cn,synapse$GO_SYNAPSE)
+cn_snypase_nfat=intersect(cn_synapse,nfat$TGGAAA_NFAT_Q4_01)
+cn_synapse_creb=intersect(cn_synapse,creb$CREB_Q3)
+intersect(cn,creb$CREB_Q3)
+intersect(cn_synapse, mir24$CTGAGCC_MIR24)
+nfat_exp=exp[exp$GeneSymbol %in% cn_snypase_nfat,]
+nfat_exp1=exp[exp$GeneSymbol %in% cn_nfat,]
+
+## Barres cell types
+barres$Gene.symbol = toupper(barres$Gene.symbol)
+nfat_up_barres=barres[match(nfat_up$Genes,barres$Gene.symbol),]
+nfat_up_barres=na.omit(nfat_up_barres)
+rownames(nfat_up_barres)=nfat_up_barres$Gene.symbol
+barres_cells=nfat_up_barres[,3:9]
+xx = data.frame(unlist(apply(barres_cells,1,function(x) colnames(barres_cells)[which(x==max(x))])))
+
+xx=xx[rownames(xx) %in% nfat_up_barres$Gene.symbol,]
+table(xx)
+setdiff(rownames(xx), nfat_up_barres$Gene.symbol)
+                                         
+
+# CREB test
+1-phyper(6, 140, 20000, 253)

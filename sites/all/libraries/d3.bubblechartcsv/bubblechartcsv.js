@@ -225,50 +225,72 @@
     updateColorLegend(['#253494', '#bd0026'], min_fc, max_fc);
 
 
-  // Size Legend ********************************************************************************************************************************************************************************************
-   var slegendFullWidth = 100;
-   var slegendFullHeight = legendHeight + margin.bottom + margin.top;
+// Size Legend ********************************************************************************************************************************************************************************************
+    var slegendFullWidth = 100;
+    var slegendFullHeight = legendHeight + margin.bottom + margin.top;
 
 
-  var genes= d3.selectAll("g.leaf.node");
-  // Make it a simple array
-  genes= genes[0];
-  // console.debug('genes');
-  // console.debug(genes);
+    var genes= d3.selectAll("g.leaf.node");
+    // Make it a simple array
+    genes= genes[0];
+    // console.debug('genes');
+    // console.debug(genes);
 
-  i=0;
-  max_size=0;
-  genes.forEach(function() { rsize=genes[i].attributes.rsize.value; i++; console.debug(rsize);  if(rsize > max_size) {max_size=rsize}});
+    i=0;
+    max_size=0;
+    genes.forEach(function() { rsize=genes[i].attributes.rsize.value; i++; console.debug(rsize);  if(rsize > max_size) {max_size=rsize}});
 
-  console.debug('max_size');
-  console.debug(max_size);
+    console.debug('max_size');
+    console.debug(max_size);
 
-  i=0;
-  min_size=100;
-  genes.forEach(function() { rsize=genes[i].attributes.rsize.value; i++; console.debug(rsize);  if(rsize < min_size) {min_size=rsize}});
+    i=0;
+    min_size=100;
+    genes.forEach(function() { rsize=genes[i].attributes.rsize.value; i++; console.debug(rsize);  if(rsize < min_size) {min_size=rsize}});
 
-  console.debug('min_size');
-  console.debug(min_size);
+    console.debug('min_size');
+    console.debug(min_size);
 
-
-   var slegendSvg = d3.select('#legend').append("svg")
+    var slegendSvg = d3.select('#legend').append("svg")
         .attr('width', slegendFullWidth)
         .attr('height', slegendFullHeight)
         .append('g')
-        .attr('transform', 'translate(' + legendMargin.left + ',' +
+        .attr('transform', 'translate(' + 50 + ',' +
         legendMargin.top + ')');
 
    slegendSvg.append("text")
+          .attr("text-anchor", "start")
           .text("Size");
 
 
-  slegendSvg.append("circle")
+   slegendSvg.append("circle")
+    .attr("r", max_size)
+    .attr("cx", 12)
+    .attr("cy", 50)
+    .style("fill", "none")
+    .style("stroke", "#A0A0A0")
+    .style('stroke-width', '2px');
+
+    slegendSvg.append("circle")
     .attr("r", min_size)
-    .style('fill', "#ccc")
-    .style('stroke-opacity','.1')
+    .attr("cx", 12)
+    .attr("cy", 125)
+    .style("fill", "none")
+    .style("stroke", "#A0A0A0")
     .style('stroke-width', '2px');
 
 
+    var max_sig = real_fc(d3.max( data, function(d) { return d.size }));
+
+    var min_sig = real_fc(d3.min( data, function(d) { return d.size }));
+
+
+    slegendSvg.append("text")
+                  .attr("dy", max_size+"em")
+                  .style("text-anchor", "start")
+              .append("textPath")
+                  .attr("xlink:href", "#s"+1)
+                  .attr("startOffset", '25%')
+                  .text("blah");
 
  // End Legend ********************************************************************************************************************************************************************************************
 

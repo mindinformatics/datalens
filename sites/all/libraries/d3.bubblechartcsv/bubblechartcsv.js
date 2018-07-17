@@ -87,7 +87,8 @@
           node.enter().append("g")
                 .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
                 .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-                .attr("rsize", function(d) {return d.r });
+                .attr("rsize", function(d) {return d.r })
+                .attr("sig", function(d) {return d.AdjPValue });
 
 
           node.append("title")
@@ -226,71 +227,105 @@
 
 
 // Size Legend ********************************************************************************************************************************************************************************************
-    var slegendFullWidth = 100;
+    var slegendFullWidth = 150;
     var slegendFullHeight = legendHeight + margin.bottom + margin.top;
+
 
 
     var genes= d3.selectAll("g.leaf.node");
     // Make it a simple array
-    genes= genes[0];
+    genes = genes[0];
     // console.debug('genes');
     // console.debug(genes);
 
-    i=0;
-    max_size=0;
-    genes.forEach(function() { rsize=genes[i].attributes.rsize.value; i++; console.debug(rsize);  if(rsize > max_size) {max_size=rsize}});
+    i = 0;
+    max_size = 0;
+    max_sig = 0;
+    genes.forEach(function() {
+      rsize = genes[i].attributes.rsize.value;
+      sig = genes[i].attributes.sig.value;
+      i++;
+      /*console.debug(rsize);*/
+      if(rsize > max_size) {
+        max_size = rsize;
+        max_sig = sig;
+        }
+    });
 
     console.debug('max_size');
     console.debug(max_size);
+    console.debug('max_sig');
+    console.debug(max_sig);
 
-    i=0;
-    min_size=100;
-    genes.forEach(function() { rsize=genes[i].attributes.rsize.value; i++; console.debug(rsize);  if(rsize < min_size) {min_size=rsize}});
+    i = 0;
+    min_size = 100;
+    min_sig = 0;
+    genes.forEach(function() {
+      rsize = genes[i].attributes.rsize.value;
+      sig = genes[i].attributes.sig.value;
+      i++;
+      /*console.debug(rsize);*/
+      if(rsize < min_size) {
+        min_size = rsize;
+        min_sig = sig; }
+    });
 
     console.debug('min_size');
     console.debug(min_size);
+    console.debug('min_sig');
+    console.debug(min_sig);
+
+
+    //Convert max_size and min_size from strings into numbers
+    max_size = +max_size;
+    console.debug(max_size);
+    min_size = +min_size;
+    console.debug(max_size);
 
     var slegendSvg = d3.select('#legend').append("svg")
         .attr('width', slegendFullWidth)
         .attr('height', slegendFullHeight)
         .append('g')
-        .attr('transform', 'translate(' + 50 + ',' +
-        legendMargin.top + ')');
+        .attr('transform', 'translate(' + 50 + ',' + 10 + ')');
 
    slegendSvg.append("text")
           .attr("text-anchor", "start")
           .text("Size");
 
-
    slegendSvg.append("circle")
     .attr("r", max_size)
     .attr("cx", 12)
-    .attr("cy", 50)
+    .attr("cy", max_size + 15)
     .style("fill", "none")
     .style("stroke", "#A0A0A0")
     .style('stroke-width', '2px');
+
+    var text1_y = max_size * 2 + 30;
+    var text2_y = text1_y + min_size * 2 + 30;
+
+    slegendSvg.append("text")
+      .attr('transform', 'translate(-' + 32 + ',' + text1_y + ')')
+      .style("text-anchor", "start")
+      .text("AdjPval: " + max_sig.substring(0, 8));
 
     slegendSvg.append("circle")
     .attr("r", min_size)
     .attr("cx", 12)
-    .attr("cy", 125)
+    .attr("cy", text1_y + min_size + 15)
     .style("fill", "none")
     .style("stroke", "#A0A0A0")
     .style('stroke-width', '2px');
 
 
-    var max_sig = real_fc(d3.max( data, function(d) { return d.size }));
-
-    var min_sig = real_fc(d3.min( data, function(d) { return d.size }));
-
-
     slegendSvg.append("text")
-                  .attr("dy", max_size+"em")
-                  .style("text-anchor", "start")
-              .append("textPath")
-                  .attr("xlink:href", "#s"+1)
-                  .attr("startOffset", '25%')
-                  .text("blah");
+        .attr('transform', 'translate(-' + 32 + ',' + text2_y + ')')
+        .style("text-anchor", "start")
+        .text("AdjPval: " + min_sig.substring(0, 8));
+
+
+//2 variables: cy of upper circle = radius + 10px, and c
+//cy of second: radius of upper * 2 + radius of lower + 20
+
 
  // End Legend ********************************************************************************************************************************************************************************************
 

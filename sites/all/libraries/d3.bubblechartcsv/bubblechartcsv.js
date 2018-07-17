@@ -176,7 +176,7 @@
             .style('fill', 'url(#gradient)');
 
 
-        var max_value = Math.ceil(maxVal);
+        var max_value = Math.ceil(maxVal) + .005;
         var min_value = Math.floor(minVal);
 
         // create a scale and axis for the legend

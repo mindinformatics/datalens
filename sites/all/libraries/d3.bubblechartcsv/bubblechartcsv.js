@@ -289,36 +289,36 @@
         .attr('transform', 'translate(' + 50 + ',' + 10 + ')');
 
    slegendSvg.append("text")
-          .attr("text-anchor", "start")
-          .text("Size");
+        .attr("text-anchor", "start")
+        .text("Size");
 
    slegendSvg.append("circle")
-    .attr("r", max_size)
-    .attr("cx", 12)
-    .attr("cy", max_size + 15)
-    .style("fill", "none")
-    .style("stroke", "#A0A0A0")
-    .style('stroke-width', '2px');
+      .attr("r", max_size)
+      .attr("cx", 12)
+      .attr("cy", max_size + 15)
+      .style("fill", "none")
+      .style("stroke", "#A0A0A0")
+      .style('stroke-width', '2px');
 
-    var text1_y = max_size * 2 + 30;
-    var text2_y = text1_y + min_size * 2 + 30;
+    var cy1_text = max_size * 2 + 30;
+    var cy2_text = cy1_text + min_size * 2 + 30;
 
     slegendSvg.append("text")
-      .attr('transform', 'translate(-' + 32 + ',' + text1_y + ')')
+      .attr('transform', 'translate(-' + 32 + ',' + cy1_text + ')')
       .style("text-anchor", "start")
       .text("AdjPval: " + max_sig.substring(0, 8));
 
     slegendSvg.append("circle")
-    .attr("r", min_size)
-    .attr("cx", 12)
-    .attr("cy", text1_y + min_size + 15)
-    .style("fill", "none")
-    .style("stroke", "#A0A0A0")
-    .style('stroke-width', '2px');
+      .attr("r", min_size)
+      .attr("cx", 12)
+      .attr("cy", cy1_text + min_size + 15)
+      .style("fill", "none")
+      .style("stroke", "#A0A0A0")
+        .style('stroke-width', '2px');
 
 
     slegendSvg.append("text")
-        .attr('transform', 'translate(-' + 32 + ',' + text2_y + ')')
+        .attr('transform', 'translate(-' + 32 + ',' + cy2_text + ')')
         .style("text-anchor", "start")
         .text("AdjPval: " + min_sig.substring(0, 8));
 

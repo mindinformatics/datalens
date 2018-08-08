@@ -15,8 +15,6 @@
    *       visualization to the DOM.
    */
   Drupal.d3.bubblechartcsv = function (select, settings) {
-      //rows = settings.rows;
-      //console.debug(rows);
 
       var diameter = 960,
         format = d3.format(",d");
@@ -40,8 +38,7 @@
         .endAngle(2*Math.PI);
 
       d3.csv("/sites/all/libraries/d3.bubblechartcsv/js-bubblechart-input.csv", function(error, data) {
-      //d3.csv("/sites/all/themes/scf_theme/BubbleChart/genes-hypoxia-revised-B3-B1.csv", function(error, data) {
-        console.debug(data);
+        //console.debug(data);
           data.forEach(function(d) {
             d.LogFC = +d.LogFC;
             d.PValue = +d.PValue;
@@ -88,7 +85,8 @@
                 .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
                 .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
                 .attr("rsize", function(d) {return d.r })
-                .attr("sig", function(d) {return d.AdjPValue });
+                .attr("sig_pval", function(d) {return d.PValue })
+                .attr("sig_adjpval", function(d) {return d.AdjPValue });
 
 
           node.append("title")
@@ -96,24 +94,15 @@
                 .html(function(d) { return (d.children ? d.name : d.name + "<br/>" + "FC: " + real_fc(d.LogFC) + "<br/>" + "P-value: " + d.PValue + "<br/>" + "Adjusted P-value: " + d.AdjPValue + "<br/>" + "Study: " + d.Study + "<br/>" + "Contrast: " + d.Contrast + "<br/>" + "DataType: " + d.DataType) });
 
 
-//These max and mins are not correct;
-//           var data_points = d3.entries(dataMap);
-//
-//           var max_fc = d3.max( data_points, function(d) { return d['value']['LogFC'] });
-//           console.debug('max_fc');
-//           console.debug(max_fc);
-//           var min_fc = d3.min( data_points, function(d) { return d['value']['LogFC'] });
-//           console.debug('min_fc');
-//           console.debug(min_fc);
-
+         // Get Max and Min Fold Change
          var max_fc = real_fc(d3.max( data, function(d) { return d.LogFC }));
-         console.debug('max_fc');
-         console.debug(max_fc);
+         //console.debug('max_fc');
+         //console.debug(max_fc);
          var min_fc = real_fc(d3.min( data, function(d) { return d.LogFC }));
-         console.debug('min_fc');
-         console.debug(min_fc);
+         //console.debug('min_fc');
+         //console.debug(min_fc);
          var color_scale = d3.scale.linear().domain([min_fc, max_fc]).range(['#253494', '#bd0026']);
-         console.debug(color_scale(max_fc));
+         //console.debug(color_scale(max_fc));
 
 
          // Legend for FC Value colors ********************************************************************************************************************************************************************************************
@@ -122,7 +111,7 @@
     // use same margins as main plot
     var margin = { top: 20, bottom: 20, left: 30, right: 20 };
     var legendWidth = 10;
-    var legendHeight = 200;
+    var legendHeight = 230;
     var legendFullWidth = 100;
     var legendFullHeight = legendHeight + margin.bottom + margin.top;
 
@@ -238,49 +227,67 @@
     // console.debug('genes');
     // console.debug(genes);
 
+    //.attr("sig_adjpval", function(d) {return d.AdjPValue })
+    //.attr("sig_pval", function(d) {return d.AdjPValue });
+
     i = 0;
     max_size = 0;
-    max_sig = 0;
+    max_pval = 0;
+    max_adj_pval = 0;
     genes.forEach(function() {
       rsize = genes[i].attributes.rsize.value;
-      sig = genes[i].attributes.sig.value;
+      pval = genes[i].attributes.sig_pval.value;
+      adj_pval = genes[i].attributes.sig_adjpval.value;
       i++;
       /*console.debug(rsize);*/
       if(rsize > max_size) {
         max_size = rsize;
-        max_sig = sig;
-        }
+        max_pval = pval;
+        max_adj_pval = adj_pval;
+      }
     });
 
+/*
     console.debug('max_size');
     console.debug(max_size);
-    console.debug('max_sig');
-    console.debug(max_sig);
+    console.debug('max_pval');
+    console.debug(max_pval);
+    console.debug('max_adj_pval');
+    console.debug(max_adj_pval);
+ */
 
     i = 0;
     min_size = 100;
-    min_sig = 0;
+    min_pval = 0;
+    min_adj_pval = 0;
     genes.forEach(function() {
       rsize = genes[i].attributes.rsize.value;
-      sig = genes[i].attributes.sig.value;
+      pval = genes[i].attributes.sig_pval.value;
+      adj_pval = genes[i].attributes.sig_adjpval.value;
       i++;
       /*console.debug(rsize);*/
       if(rsize < min_size) {
         min_size = rsize;
-        min_sig = sig; }
+        min_pval = pval;
+        min_adj_pval = adj_pval;
+      }
     });
 
+/*
     console.debug('min_size');
     console.debug(min_size);
-    console.debug('min_sig');
-    console.debug(min_sig);
+    console.debug('min_pval');
+    console.debug(min_pval);
+    console.debug('min_adj_pval');
+    console.debug(min_adj_pval);
+ */
 
 
     //Convert max_size and min_size from strings into numbers
     max_size = +max_size;
-    console.debug(max_size);
+    //console.debug(max_size);
     min_size = +min_size;
-    console.debug(max_size);
+    //console.debug(min_size);
 
     var slegendSvg = d3.select('#legend').append("svg")
         .attr('width', slegendFullWidth)
@@ -295,23 +302,30 @@
    slegendSvg.append("circle")
       .attr("r", max_size)
       .attr("cx", 12)
-      .attr("cy", max_size + 15)
+      .attr("cy", max_size + 10)
       .style("fill", "none")
       .style("stroke", "#A0A0A0")
       .style('stroke-width', '2px');
 
     var cy1_text = max_size * 2 + 30;
-    var cy2_text = cy1_text + min_size * 2 + 30;
+    var cy1_texta = max_size * 2 + 45;
+    var cy2_text = cy1_text + min_size * 2 + 45;
+    var cy2_texta = cy1_text + min_size * 2 + 60;
 
     slegendSvg.append("text")
       .attr('transform', 'translate(-' + 32 + ',' + cy1_text + ')')
       .style("text-anchor", "start")
-      .text("AdjPval: " + max_sig.substring(0, 8));
+      .text("  Pvalue: " + max_pval.substring(0, 8));
+
+    slegendSvg.append("text")
+      .attr('transform', 'translate(-' + 32 + ',' + cy1_texta + ')')
+      .style("text-anchor", "start")
+      .text("AdjPval: " + max_adj_pval.substring(0, 8));
 
     slegendSvg.append("circle")
       .attr("r", min_size)
       .attr("cx", 12)
-      .attr("cy", cy1_text + min_size + 15)
+      .attr("cy", cy1_text + min_size + 30)
       .style("fill", "none")
       .style("stroke", "#A0A0A0")
         .style('stroke-width', '2px');
@@ -320,11 +334,14 @@
     slegendSvg.append("text")
         .attr('transform', 'translate(-' + 32 + ',' + cy2_text + ')')
         .style("text-anchor", "start")
-        .text("AdjPval: " + min_sig.substring(0, 8));
+        .text("Pvalue: " + min_pval.substring(0, 8));
 
 
-//2 variables: cy of upper circle = radius + 10px, and c
-//cy of second: radius of upper * 2 + radius of lower + 20
+    slegendSvg.append("text")
+        .attr('transform', 'translate(-' + 32 + ',' + cy2_texta + ')')
+        .style("text-anchor", "start")
+        .text("AdjPval: " + min_adj_pval.substring(0, 8));
+
 
 
  // End Legend ********************************************************************************************************************************************************************************************
@@ -337,7 +354,7 @@
               .style('stroke-opacity','.1')
               .style('stroke-width', '2px');
 
-          console.debug(node);
+          //console.debug(node);
 
           //If no children, display title like this
           node.filter(function(d) { return !d.children; }).append("text")

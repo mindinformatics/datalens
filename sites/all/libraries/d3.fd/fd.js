@@ -37,8 +37,8 @@ var simulation = d3.forceSimulation()
 //d3.csv("/sites/all/libraries/d3.fd/snp-links-wo-coexp-ca-1.csv", function(error, glinks) {
 //d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca-1.csv", function(error, gnodes) {
 // Microglia
-d3.csv("/sites/all/libraries/d3.fd/snp-links-cn-synapse.csv", function(error, glinks) {
-d3.csv("/sites/all/libraries/d3.fd/snp-genes-cn-synapse.csv", function(error, gnodes) {
+d3.csv("/sites/all/libraries/d3.fd/snp-links-ca1.csv", function(error, glinks) {
+d3.csv("/sites/all/libraries/d3.fd/snp-genes-ca1.csv", function(error, gnodes) {
   if (error) throw error;
 
   glinks.forEach(function(d) {

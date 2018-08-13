@@ -10,15 +10,19 @@ real_fc <- function(x) {
   return(x)
 }
 
-
-#dat <- read.table("genemania-network.tsv", sep="\t", header=TRUE)
+dat <- read.table("genemania-interactions.txt", sep="\t", header=TRUE) # Fig 5 Calcium Signaling pathway
 #dat <- read.table("Tau.tsv",  sep="\t", header=TRUE)
-dat <- read.table("genemania-interactions-5.txt",  sep="\t", header=TRUE)
+#dat <- read.table("genemania-interactions-5.txt",  sep="\t", header=TRUE) # Fig 6 cn-synapse network
 #dat <- read.table("apoe-string_interactions.tsv",  sep="\t", header=TRUE)
+#dat <- read.table("genemania-interactions-chemokines.txt",  sep="\t", header=TRUE)
+#dat <- read.table("genemania-interactions-complement.txt",  sep="\t", header=TRUE)
+
 head(dat)
 
 dat2=dat[dat$Network.group == "Physical Interactions" | dat$Network.group == "Pathway" |
-         dat$Network.group == "Predicted" ,]
+           dat$Network.group == "Predicted" ,]
+
+#dat2=dat[dat$Network.group == "Physical Interactions",]
 #dat2 = dat
 all=c(dat2$Gene.1,dat2$Gene.2)
 id=unique(all)
@@ -31,14 +35,30 @@ dat2$target = match(dat2$Gene.2, id)-1
 
 dat2=dat2[,c("Gene.1","Gene.2","source","target")]
 colnames(dat2)<-c("Entity.1","Entity.2",	"source",	"target")
-write.csv(dat2,"snp-links-cn-synapse.csv", row.names = F)
+write.csv(dat2,"snp-links-ca1.csv", row.names = F)
 
 # Get the expression and GWiS data
 exp=read.csv("~/Dropbox (Partners HealthCare)/MSBB/Pipelines/Results/RNASeq/ROSMAP_PFC_FPKM_CpDxLow_AD-NCI.csv", sep=",", header=T)
 gwis=read.csv("~/Dropbox (Partners HealthCare)/DataLENS_Paper/Genetics/igap_gwis.GWiS.Summary.csv", sep=",", header=T)
+cellsig=read.csv("~/Dropbox (Partners HealthCare)/CATS-OMICS/Data/Expression/Barres/GSE73721 Human Cell Types Signature_human_gene_symbols_added.csv", sep=",", header=T)
+cellsig$total=apply(cellsig[,3:7],1,sum)
+cellsig$n=cellsig$neuron/cellsig$total
+cellsig$a=cellsig$astro/cellsig$total
+cellsig$m=cellsig$microglia/cellsig$total
+
 dat1=data.frame(dat1)
 
-dat1$fc=exp[match(dat1$id,exp$GeneSymbol),"logFC"]
+# to adjust for neuroal loss and astroglia activation
+map2=exp[exp$GeneSymbol %in% c("MAP2"),"logFC"]
+gfap=exp[exp$GeneSymbol %in% c("GFAP"),"logFC"]
+microglia=0.15
+
+dat1$n=cellsig[match(dat1$id,cellsig$human_gene),"n"]
+dat1$a=cellsig[match(dat1$id,cellsig$human_gene),"a"]
+dat1$n[is.na(dat1$n)]=0
+dat1$a[is.na(dat1$a)]=0
+#dat1$fc=match(dat1$id,exp$GeneSymbol),"logFC"
+dat1$fc=exp[match(dat1$id,exp$GeneSymbol),"logFC"] - dat1$n*map2 - dat1$a*gfap
 dat1$fc[is.na(dat1$fc)] <- 0
 dat1$fc=real_fc(dat1$fc)
 
@@ -55,7 +75,7 @@ dat1$log10_IGAP[is.infinite(dat1$log10_IGAP)]<-0
 dat1$group[dat1$log10_exp > 1.3]=1
 dat1$group[dat1$log10_exp < 1.3]=2
 
-write.csv(dat1,"snp-genes-cn-synapse.csv", row.names = F)
+write.csv(dat1,"snp-genes-ca1.csv", row.names = F)
 
 
 ##old method
@@ -141,3 +161,6 @@ setdiff(rownames(xx), nfat_up_barres$Gene.symbol)
 
 # CREB test
 1-phyper(6, 140, 20000, 253)
+
+
+cc=read.csv("snp-genes-cn1.csv", sep=",", header=T)

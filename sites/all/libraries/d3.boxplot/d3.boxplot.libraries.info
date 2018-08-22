@@ -1,0 +1,6 @@
+name = Basic Boxplot
+description = D3 Boxplot library
+files[js][] = boxplot.js
+files[js][] = d3.v3.min.js
+files[css][] = boxplot.css
+version = 1.0

@@ -1,0 +1,522 @@
+<?php
+
+// Show PHP errors (during development only)
+    error_reporting(E_ALL | E_STRICT);
+    ini_set("display_errors", 2);
+
+/**
+* Implements hook_menu().
+*/
+function boxplot_menu() {
+
+    $items['boxplot'] = array(
+    'title' => 'Boxplot',
+    'description' => 'Boxplot with user input',
+    'page callback' => 'boxplot',
+    'access callback' => 'user_is_logged_in',
+  );
+  $items['boxplot-dx'] = array(
+    'title' => 'Diagnosis vs. Gene Expression',
+    'description' => 'Boxplot with user input',
+    'page callback' => 'boxplot_dx',
+    'access callback' => 'user_is_logged_in',
+  );
+  $items['boxplot-braak'] = array(
+    'title' => 'Braak vs. Gene Expression',
+    'description' => 'Boxplot with user input',
+    'page callback' => 'boxplot_braak',
+    'access callback' => 'user_is_logged_in',
+  );
+  $items['boxplot-test'] = array(
+    'title' => 'Test boxplot',
+    'description' => 'Boxplot with user input',
+    'page callback' => 'boxplot_test',
+    'access callback' => 'user_is_logged_in',
+  );
+
+  return $items;
+}
+
+
+function boxplot_test() {
+
+  $path = libraries_get_path('d3.boxplot');
+  libraries_load('d3.boxplot');
+
+  $result = _query_mongo_boxplot("APP", "ROSMAP_PFC_RNASEQ_FPKM");
+
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'boxplot',
+    'rows' => $result,
+  );
+
+  return d3_draw($chart);
+
+}
+
+
+function boxplot_build($gene, $study) {
+
+  $path = libraries_get_path('d3.boxplot');
+  libraries_load('d3.boxplot');
+
+  $result = _query_mongo_boxplot($gene, $study);
+  //dsm($result);
+
+  $chart = array(
+    'id' => 'visualization',
+    'type' => 'boxplot',
+    'gene' => $gene,
+    'study' => $study,
+    'xaxis' => 'Braak',
+    'yaxis' => 'Expression',
+    'rows' => $result,
+  );
+
+  return d3_draw($chart);
+
+}
+
+
+function boxplot_build_multi($id, $gene, $study, $rows, $x_axis) {
+
+  $path = libraries_get_path('d3.boxplot');
+  libraries_load('d3.boxplot');
+
+  $chart = array(
+    'id' => $id,
+    'type' => 'boxplot',
+    'gene' => $gene,
+    'study' => $study,
+    'xaxis' => $x_axis,
+    'yaxis' => 'Expression',
+    'rows' => $rows,
+  );
+
+  return d3_draw($chart);
+
+}
+
+function boxplot() {
+
+  $gene_form = drupal_get_form('boxplot_form');
+  $output = drupal_render($gene_form);
+  //$output = "This is a test";
+
+  return $output;
+
+}
+
+function boxplot_dx() {
+
+  $gene_form = drupal_get_form('boxplot_form_dx');
+  $output = drupal_render($gene_form);
+  //$output = "This is a test";
+
+  return $output;
+
+}
+
+function boxplot_braak() {
+
+  $gene_form = drupal_get_form('boxplot_form_braak');
+  $output = drupal_render($gene_form);
+  //$output = "This is a test";
+
+  return $output;
+
+}
+
+
+function boxplot_form($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Plot Expression of gene across Contrasts.</p>'
+  );
+
+  $form['egene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
+  );
+
+    $form['submit'] = array(
+    '#prefix' => '<div class="eplot-inline">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_eboxplot_callback',
+      'wrapper'  => 'eplots',
+      'effect'   => 'fade',
+     ),
+  );
+
+  $content = "";
+    $form['wrapper'] = array(
+    '#markup' => '<div id="eplots">' . $content . '</div>',
+  );
+
+	return $form;
+}
+
+function boxplot_form_dx($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Plot expression of a gene across diagnosis.</p>'
+  );
+
+  $form['egene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
+  );
+
+    $form['submit'] = array(
+    '#prefix' => '<div class="eplot-inline">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_eboxplot_callback_dx',
+      'wrapper'  => 'eplots',
+      'effect'   => 'fade',
+     ),
+  );
+
+  $content = "";
+    $form['wrapper'] = array(
+    '#markup' => '<div id="eplots">' . $content . '</div>',
+  );
+
+
+	return $form;
+}
+
+function boxplot_form_braak($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Plot expression of a gene across Braak stages.</p>'
+  );
+
+  $form['egene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
+  );
+
+    $form['submit'] = array(
+    '#prefix' => '<div class="eplot-inline">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_boxplot_callback_braak',
+      'wrapper'  => 'eplots',
+      'effect'   => 'fade',
+     ),
+  );
+
+  $content = "";
+    $form['wrapper'] = array(
+    '#markup' => '<div id="eplots">' . $content . '</div>',
+  );
+
+
+	return $form;
+}
+
+function ajax_boxplot_callback($form, $form_state) {
+
+  $gene = $form_state['values']['egene'];
+  //$study = "ROSMAP_PFC_RNASEQ_FPKM";
+  $study = "MSBB_FP_RNASEQ_CPM";
+  //$gene = "APP";
+
+  $content = "<p></p>";
+
+  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $gene;
+  $barres_name = $gene . " Expression by Cell Type (Barres Lab)";
+
+  $gtex_link = "https://www.gtexportal.org/home/gene/" . $gene;
+  $gtex_name = $gene . " Expression across Tissues (GTExPortal)";
+
+  $links = "<div id='elinks'>" . "Gene Data Links<br />" . "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
+  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a></div>";
+
+  $content .= $links;
+
+	$content .= "<span id='etitle'>". $study . ": ". $gene . "</span>" .  boxplot_build($gene, $study);
+
+
+  return $content;
+
+}
+
+function ajax_boxplot_callback_dx($form, $form_state) {
+
+  $gene = $form_state['values']['egene'];
+  $study = "MayoBB_TCX_RNASEQ_CPM";
+  $x_axis = "Diagnosis";
+  //$gene = "APP";
+
+  $content = "<p></p>";
+
+  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $gene;
+  $barres_name = $gene . " Expression by Cell Type (Barres Lab)";
+
+  $gtex_link = "https://www.gtexportal.org/home/gene/" . $gene;
+  $gtex_name = $gene . " Expression across Tissues (GTExPortal)";
+
+  $links = "<div id='elinks'>" . "Gene Data Links<br />" . "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
+  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a></div>";
+
+  $content .= $links;
+
+  $data1 = _query_mongo_boxplot($gene, "MayoBB_CBE_RNASEQ_CPM");
+	$content1 = "<span id='etitle'>MayoBB RNA-Seq Cerebellum</span>" . boxplot_build_multi('vis1', $gene, "MayoBB_CBE_RNASEQ_CPM", $data1, $x_axis);
+	$data2 = _query_mongo_boxplot($gene, "MayoBB_TCX_RNASEQ_CPM");
+	$content2 = "<span id='etitle'>MayoBB RNA-Seq Temporal Cortex</span>" . boxplot_build_multi('vis2', $gene, "MayoBB_TCX_RNASEQ_CPM", $data2, $x_axis);
+	$data3 = _query_mongo_boxplot($gene, "ROSMAP_PFC_RNASEQ_FPKM");
+	$content3 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . boxplot_build_multi('vis3', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data3, $x_axis);
+	$data4 = "";
+	$content4 ="";
+
+
+	$content = '<div id="ebplots">';
+  $content .= "<span id='ebtitle'>" . $gene . "</span>";
+  $content .= '<table id="boxplot">';
+  $content .= '<tr><td>';
+  $content .= $content1;
+  $content .= '</td><td>';
+  $content .= $content2;
+  $content .= '</td></tr>';
+  $content .= '<tr><td>';
+  $content .= $content3;
+  $content .= '</td><td>';
+  $content .= $content4;
+  $content .= '</table>';
+  $content .= '</div>';
+
+  return $content;
+}
+
+function ajax_boxplot_callback_braak($form, $form_state) {
+
+  $gene = $form_state['values']['egene'];
+  $study = "MayoBB_TCX_RNASEQ_CPM";
+  $x_axis = "Braak";
+
+  $content = "<p></p>";
+
+  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $gene;
+  $barres_name = $gene . " Expression by Cell Type (Barres Lab)";
+
+  $gtex_link = "https://www.gtexportal.org/home/gene/" . $gene;
+  $gtex_name = $gene . " Expression across Tissues (GTExPortal)";
+
+  $links = "<div id='elinks'>" . "Gene Data Links<br />" . "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
+  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a></div>";
+
+  $content .= $links;
+
+  $data5 = _query_mongo_boxplot($gene, "MSBB_FP_RNASEQ_CPM");
+	$content5 = "<span id='etitle'>MSBB RNA-Seq Frontal Pole</span>" . boxplot_build_multi('vis5', $gene, "MSBB_FP_RNASEQ_CPM", $data5, $x_axis);
+	$data2 = _query_mongo_boxplot($gene, "MSBB_IFG_RNASEQ_CPM");
+	$content2 = "<span id='etitle'>MSBB RNA-Seq Inferior Frontal Gyrus</span>" . boxplot_build_multi('vis2', $gene, "MSBB_IFG_RNASEQ_CPM", $data2, $x_axis);
+
+	$data3 = _query_mongo_boxplot($gene, "MSBB_PHG_RNASEQ_CPM");
+	$content3 = "<span id='etitle'>MSBB RNA-Seq Parahippocampal Gyrus</span>" . boxplot_build_multi('vis3', $gene, "MSBB_PHG_RNASEQ_CPM", $data3, $x_axis);
+	$data4 = _query_mongo_boxplot($gene, "MSBB_STG_RNASEQ_CPM");
+	$content4 = "<span id='etitle'>MSBB RNA-Seq Superior Temporal Gyrus</span>" . boxplot_build_multi('vis4', $gene, "MSBB_STG_RNASEQ_CPM", $data4, $x_axis);
+
+	$data1 = _query_mongo_boxplot($gene, "ROSMAP_PFC_RNASEQ_FPKM");
+	$content1 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . boxplot_build_multi('vis1', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data1, $x_axis);
+  $content6 = "";
+
+	$content = '<div id="ebplots">';
+  $content .= "<span id='ebtitle'>" . $gene . "</span>";
+  $content .= '<table id="explodingbox-plot">';
+  $content .= '<tr><td>';
+  $content .= $content1;
+  $content .= '</td><td>';
+  $content .= $content2;
+  $content .= '</td></tr>';
+  $content .= '<tr><td>';
+  $content .= $content3;
+  $content .= '</td><td>';
+  $content .= $content4;
+  $content .= '</td></tr>';
+  $content .= '<tr><td>';
+  $content .= $content5;
+  $content .= '</td><td>';
+  $content .= $content6;
+  $content .= '</td></tr>';
+  $content .= '</table>';
+  $content .= '</div>';
+
+  return $content;
+}
+
+
+
+
+
+
+function _age_buckets3($input) {
+  switch ($input) {
+    case ($input>0 && $input<60):
+        $age = "< 60";
+        break;
+    case ($input>=60 && $input<70):
+        $age = "60 - 69";
+        break;
+    case ($input>=70 && $input<80):
+        $age = "70 - 79";
+        break;
+    case ($input>=80 && $input<90):
+        $age = "80 - 89";
+        break;
+    case ($input== "90_or_above"):
+        $age = "90+";
+        break;
+    case ($input>=90):
+        $age = "90+";
+        break;
+    case ($input == "NA"):
+        $age = "NA";
+        break;
+  }
+
+  return($age);
+
+}
+
+
+function _query_mongo_boxplot($input_genes, $study) {
+
+    //dsm($input_genes);
+    if (empty($input_genes)) {
+      $gene_list = array('DCLK1');
+    } else {
+      $gene_list = array($input_genes);
+    }
+
+    //dsm($gene_list);
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Need something to map the study to the correct subject covariates and subject_expression
+    // Or just put study name in the file?
+    //subject_covariates
+    //subject_expression
+
+    // Select the expression collection for gene expression info
+    $coll = $db->subject_expression;
+
+
+    // Filter on gene and study
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+             array('Study' => $study ) ) );
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $total = (string)$cursor->count(); //To find total number of documents
+    //dsm("Total: " . $total);
+    //$cursor->limit( 5 );
+
+    //TODO:Sould only be 1 result- add if statement here.
+    $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval", "gene_id","apoe_mean_22","apoe_mean_23","apoe_mean_24","apoe_mean_33","apoe_mean_34", "apoe_mean_44");
+    //gene_id	ensembl_id	GeneSymbol	Study	apoe_pval	apoe_mean_22	apoe_mean_23	apoe_mean_24	apoe_mean_33	apoe_mean_34	apoe_mean_44
+     foreach ($cursor as $doc) {
+       //dsm($doc);
+       $exp_keys = array_keys($doc);
+       $result = $doc;
+       $sample_ids = array_diff($exp_keys, $static_keys);
+     }
+     //dsm($result);
+
+    //dsm($sample_ids);
+
+    // Check the covariates for the clinical data
+     $coll2 = $db->subject_covariates;
+     $query2 = array('Study' => $study);
+     $cursor2 = $coll2->find($query2);
+
+     $row = array();
+     $i = 1;
+     foreach ($cursor2 as $doc) {
+       $sample_id = $doc['ID'];
+       //dsm($doc);
+       if (array_key_exists($sample_id, $result) && ($doc['ApoE'] != "NA") ) {
+        $row[] = array(
+          'ID' => $sample_id,
+          'Tissue' => (isset($doc['Tissue']))? $doc['Tissue']: null,
+          'Diagnosis' => $doc['Diagnosis'],
+          'Sex' => $doc['Gender'],
+          'ApoE' => $doc['ApoE'],
+          'AgeAtDeath' => _age_buckets3($doc['AgeAtDeath']),
+          'AgeAtOnset' => (isset($doc['AgeAtOnset']))? _age_buckets3($doc['AgeAtOnset']): null,
+          'Expression' => $result[$sample_id],
+          'ApoEPval' => (isset($result['apoe_pval']))? $result['apoe_pval']: null,
+          'Braak' => (isset($doc['Braak']))? _braak_bucket2($doc['Braak']): null,
+          'CERAD' => (isset($doc['Cerad']))? $doc['Cerad']: null
+          );
+
+       }
+       $i++;
+     }
+
+    //"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"
+    //  "1000_CER","MayoBrainBank_Dickson","Cerebellum","AD","F","90_or_above","34","708.7612"
+
+    //dsm($row);
+
+    return ($row);
+
+}
+
+function _braak_bucket2($input) {
+#//Braak: B1 = 0/I/II, B2 = III/IV, B3 = V/VI
+  switch ($input) {
+    case ($input >= 0 && $input <= 2):
+        $braak = "B1";
+        break;
+    case ($input >= 3 && $input <= 4):
+        $braak = "B2";
+        break;
+    case ($input >= 5 && $input <= 6):
+        $braak = "B3";
+        break;
+    case ($input > 6):  //ROSMAP: values or 8 or 9 are DK or Missing
+        $braak = "NA";
+        break;
+    case ($input == "NA"):
+        $braak = "NA";
+        break;
+  }
+
+  return($braak);
+
+}
+
+
+
+?>

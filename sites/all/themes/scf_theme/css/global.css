@@ -120,15 +120,13 @@ a:hover {
 /* Logo config */
 .logo-img {
   display: inline-block;
-  width: 25%;
+  width: 40%;
+  margin-right:0;
 }
 
 
 .logo-img img{
-  height: auto;
-  padding-top: 10px;
   width: 100%;
-  padding-left: 5%;
 }
 
 .site-name-slogan {
@@ -140,6 +138,7 @@ a:hover {
   font-weight: normal;
   /*font-style: italic;*/
   text-align: center;
+  color: #00456a;
 }
 
 /* Social block */

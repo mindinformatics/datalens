@@ -2,7 +2,8 @@
 /* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. */
 
 body {
-  font: 13px/18px 'PT Sans', sans-serif;
+  /*font: 13px/18px 'PT Sans', sans-serif; */
+  font-family: Helvetica, Arial, sans-serif;
   letter-spacing: 0px;
   background-repeat: repeat-x;
   /*background-color: #A9A3A1; */
@@ -10,7 +11,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Helvetica, Arial, Verdana,sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   line-height: 1em;
   letter-spacing: 0px;
 }
@@ -38,13 +39,6 @@ a:visited {
 
 a:hover {
 	color: #004466;
-}
-
-.site-slogan {
-  font-family: 'PT Sans', sans-serif;
-  font-weight: normal;
-  /*font-style: italic;*/
-  text-align: center;
 }
 
 #zone-branding,
@@ -123,12 +117,28 @@ a:hover {
 
 
 /* Logo config */
+.logo-img {
+  display: inline-block;
+  width: 25%;
+}
+
 
 .logo-img img{
   height: auto;
   padding-top: 10px;
-  width: 21%;
-  padding-left: 65%;
+  width: 100%;
+  padding-left: 5%;
+}
+
+.site-name-slogan {
+  display: inline-block;
+}
+
+.site-slogan {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  /*font-style: italic;*/
+  text-align: center;
 }
 
 /* Social block */
@@ -194,7 +204,7 @@ input[type="submit"] {
 #scfmembers_user_menu li{
 	display: inline;
 	color: #992233;
-	font-family: 'PT Sans', sans-serif;
+	font-family: font-family: Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: bold;
  	border-right: 1px solid #CCCCCC;
@@ -237,7 +247,7 @@ nav {
 }
 
 .region-menu-inner {
-  padding-left: 22%;
+  padding-left: 0;
 }
 
 #region-menu ul ul {
@@ -307,8 +317,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 #region-menu ul.nice-menu a {
   	color: #004466;
   	font-size: 12px;
-  	font-family: 'PT Sans', sans-serif;
-  	/*font-family: Helvetica, Arial, Verdana, sans-serif; */
+  	font-family: Helvetica, Arial, sans-serif;
   	font-weight: bold;
   	padding: 0px;
   	text-transform: uppercase;
@@ -381,7 +390,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 .front .nivo-caption {
   width: 20%;
   height: 25%;
-  font-family: 'PT Sans', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
   font-size: 15px;
   opacity: 0.8;
@@ -451,7 +460,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 /* Block Titles */
 .front .region-content h2.block-title,
 .front .region-sidebar-first h2.block-title {
-	font-family: 'PT Sans', sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
 	letter-spacing: 0.05em;
 	color: #004466;
@@ -553,13 +562,13 @@ ul.nice-menu-down ul li.menuparent > a:after {
     text-transform: uppercase;
     width: 25px;
     float: left;
-    font-family: 'PT Sans', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
 }
 
 .views-field-created span{
     display: block;
-    font-family: 'PT Sans', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
     margin: 0;
     padding: 0;
@@ -675,7 +684,7 @@ table#logo-table {
 }
 
 .not-front h1 {
-  font-family: 'PT Sans', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
   font-weight: bold;
   font-size: 18px;
@@ -683,7 +692,7 @@ table#logo-table {
 }
 
 .not-front h2 {
-  font-family: 'PT Sans', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
   font-weight: bold;
   font-size: 13px;
@@ -691,7 +700,7 @@ table#logo-table {
 }
 
 .not-front h3 {
-  font-family: 'PT Sans', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
   font-weight: bold;
   font-size: 11px;
@@ -979,7 +988,7 @@ form#user-profile-form .form-item-name {
 
 .page-user .block-member-commented-on-block-1 h2 {
 	text-transform: uppercase;
-	font-family: 'PT Sans', sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
 	font-size: 12px;
 	color: #4D317A;
@@ -1026,9 +1035,8 @@ form#user-profile-form .form-item-name {
 .page-members .region-sidebar-second h2,
 .context-forums .region-sidebar-second h2 {
 	background-color:#004466;
-
 	color: white;
-	font-family: 'PT Sans', sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
 	font-size: 14px;
 	padding: 10px 20px;
@@ -1341,7 +1349,7 @@ a.suggest-topic {
 }
 
 #comments h2.title {
-	font-family: 'PT Sans', sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
   /*font-family: Helvetica, Arial, Verdana, sans-serif; */
 	color: white;
 	font-weight: bold;

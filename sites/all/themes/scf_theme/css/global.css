@@ -65,7 +65,6 @@ a:hover {
 #region-branding {
 	display: inline-block;
 	float: left;
-	padding-top: 0.7%;
 }
 
 #region-user-first {
@@ -121,6 +120,7 @@ a:hover {
 /* Logo config */
 .logo-img {
   display: inline-block;
+  float: left;
   width: 40%;
   margin-right:0;
 }
@@ -132,6 +132,8 @@ a:hover {
 
 .site-name-slogan {
   display: inline-block;
+  float: right;
+  padding-top: 0.7%;
 }
 
 .site-slogan {

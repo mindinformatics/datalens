@@ -108,12 +108,6 @@ function members_context_default_contexts() {
           'region' => 'content',
           'weight' => '-8',
         ),
-        'views-datasets-block' => array(
-          'module' => 'views',
-          'delta' => 'datasets-block',
-          'region' => 'content',
-          'weight' => '-7',
-        ),
         'scfmembers-scfmembers_user_top_menu' => array(
           'module' => 'scfmembers',
           'delta' => 'scfmembers_user_top_menu',

@@ -65,6 +65,7 @@ a:hover {
 #region-branding {
 	display: inline-block;
 	float: left;
+	padding-top: 0.7%;
 }
 
 #region-user-first {
@@ -203,7 +204,7 @@ input[type="submit"] {
 
 #scfmembers_user_menu li{
 	display: inline;
-	color: #992233;
+	color: #00456a;
 	font-family: font-family: Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: bold;

@@ -1764,16 +1764,6 @@ ul.bef-tree-child.bef-tree-depth-2 {
 }
 
 
-
-/* Meetings */
-.page-upcoming-meetings .views-field-field-meeting-image {
-	float: left;
-}
-
-.page-upcoming-meetings .views-row {
-	padding: 22px 0;
-}
-
 /* Genes Taxonomy Individual Term */
 .field-name-field-synonyms .field-items .field-item p {
 	margin-bottom: 0;
@@ -2121,3 +2111,37 @@ ul.bef-tree-child.bef-tree-depth-2 {
 #gtitle {
   padding-left: 400px;
 }
+
+
+/* Meetings CSS */
+
+.node-type-meetings .region-content img {
+  padding-right: 0;
+}
+
+.group-agenda h3,
+.group-reports h3,
+.group-notes h3 {
+  color: grey;
+  font-size: 18px;
+
+
+}
+
+.group-agenda {
+  display: inline-block;
+  float: left;
+  width: 75%;
+}
+
+
+.group-reports,
+.group-notes {
+  display: inline-block;
+  float: right;
+  width: 25%;
+  padding-bottom: 5%;
+}
+
+
+

@@ -5776,7 +5776,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'field_meeting_image' => 'field_meeting_image',
     'nothing' => 'nothing',
   );
-  /* Field: Content: Meeting Image */
+  /* Field: Content: Agenda Image */
   $handler->display->display_options['fields']['field_meeting_image']['id'] = 'field_meeting_image';
   $handler->display->display_options['fields']['field_meeting_image']['table'] = 'field_data_field_meeting_image';
   $handler->display->display_options['fields']['field_meeting_image']['field'] = 'field_meeting_image';
@@ -5787,28 +5787,20 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'image_style' => 'jad_thumbnail',
     'image_link' => '',
   );
-  /* Field: Content: Meeting Name */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_meeting_link']['id'] = 'field_meeting_link';
   $handler->display->display_options['fields']['field_meeting_link']['table'] = 'field_data_field_meeting_link';
   $handler->display->display_options['fields']['field_meeting_link']['field'] = 'field_meeting_link';
   $handler->display->display_options['fields']['field_meeting_link']['label'] = '';
   $handler->display->display_options['fields']['field_meeting_link']['element_type'] = 'strong';
   $handler->display->display_options['fields']['field_meeting_link']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_meeting_link']['click_sort_column'] = 'url';
-  /* Field: Content: Meeting Date */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_meeting_dates']['id'] = 'field_meeting_dates';
   $handler->display->display_options['fields']['field_meeting_dates']['table'] = 'field_data_field_meeting_dates';
   $handler->display->display_options['fields']['field_meeting_dates']['field'] = 'field_meeting_dates';
   $handler->display->display_options['fields']['field_meeting_dates']['label'] = '';
   $handler->display->display_options['fields']['field_meeting_dates']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_meeting_dates']['settings'] = array(
-    'format_type' => 'short',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-  );
-  /* Field: Content: Location */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_meeting_location']['id'] = 'field_meeting_location';
   $handler->display->display_options['fields']['field_meeting_location']['table'] = 'field_data_field_meeting_location';
   $handler->display->display_options['fields']['field_meeting_location']['field'] = 'field_meeting_location';
@@ -5818,10 +5810,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  /* Sort criterion: Content: Meeting Date (field_meeting_dates) */
-  $handler->display->display_options['sorts']['field_meeting_dates_value']['id'] = 'field_meeting_dates_value';
-  $handler->display->display_options['sorts']['field_meeting_dates_value']['table'] = 'field_data_field_meeting_dates';
-  $handler->display->display_options['sorts']['field_meeting_dates_value']['field'] = 'field_meeting_dates_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -5840,7 +5828,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   /* Display: Meetings Page */
   $handler = $view->new_display('page', 'Meetings Page', 'page');
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Meeting Image */
+  /* Field: Content: Agenda Image */
   $handler->display->display_options['fields']['field_meeting_image']['id'] = 'field_meeting_image';
   $handler->display->display_options['fields']['field_meeting_image']['table'] = 'field_data_field_meeting_image';
   $handler->display->display_options['fields']['field_meeting_image']['field'] = 'field_meeting_image';
@@ -5850,39 +5838,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['field_meeting_image']['settings'] = array(
     'image_style' => 'jad_thumbnail',
     'image_link' => '',
-  );
-  /* Field: Content: Meeting Name */
-  $handler->display->display_options['fields']['field_meeting_link']['id'] = 'field_meeting_link';
-  $handler->display->display_options['fields']['field_meeting_link']['table'] = 'field_data_field_meeting_link';
-  $handler->display->display_options['fields']['field_meeting_link']['field'] = 'field_meeting_link';
-  $handler->display->display_options['fields']['field_meeting_link']['label'] = '';
-  $handler->display->display_options['fields']['field_meeting_link']['element_type'] = 'strong';
-  $handler->display->display_options['fields']['field_meeting_link']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_meeting_link']['click_sort_column'] = 'url';
-  /* Field: Content: Meeting Date */
-  $handler->display->display_options['fields']['field_meeting_dates']['id'] = 'field_meeting_dates';
-  $handler->display->display_options['fields']['field_meeting_dates']['table'] = 'field_data_field_meeting_dates';
-  $handler->display->display_options['fields']['field_meeting_dates']['field'] = 'field_meeting_dates';
-  $handler->display->display_options['fields']['field_meeting_dates']['label'] = '';
-  $handler->display->display_options['fields']['field_meeting_dates']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_meeting_dates']['settings'] = array(
-    'format_type' => 'short',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-  );
-  /* Field: Content: Location */
-  $handler->display->display_options['fields']['field_meeting_location']['id'] = 'field_meeting_location';
-  $handler->display->display_options['fields']['field_meeting_location']['table'] = 'field_data_field_meeting_location';
-  $handler->display->display_options['fields']['field_meeting_location']['field'] = 'field_meeting_location';
-  $handler->display->display_options['fields']['field_meeting_location']['label'] = '';
-  $handler->display->display_options['fields']['field_meeting_location']['alter']['strip_tags'] = TRUE;
-  $handler->display->display_options['fields']['field_meeting_location']['alter']['preserve_tags'] = '<br>';
-  $handler->display->display_options['fields']['field_meeting_location']['element_type'] = '0';
-  $handler->display->display_options['fields']['field_meeting_location']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_meeting_location']['settings'] = array(
-    'trim_length' => '600',
   );
   $handler->display->display_options['path'] = 'meetings';
 
@@ -5900,7 +5855,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Meeting Image */
+  /* Field: Content: Agenda Image */
   $handler->display->display_options['fields']['field_meeting_image']['id'] = 'field_meeting_image';
   $handler->display->display_options['fields']['field_meeting_image']['table'] = 'field_data_field_meeting_image';
   $handler->display->display_options['fields']['field_meeting_image']['field'] = 'field_meeting_image';
@@ -5911,33 +5866,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'image_style' => 'jad_thumbnail',
     'image_link' => '',
   );
-  /* Field: Content: Meeting Name */
-  $handler->display->display_options['fields']['field_meeting_link']['id'] = 'field_meeting_link';
-  $handler->display->display_options['fields']['field_meeting_link']['table'] = 'field_data_field_meeting_link';
-  $handler->display->display_options['fields']['field_meeting_link']['field'] = 'field_meeting_link';
-  $handler->display->display_options['fields']['field_meeting_link']['label'] = '';
-  $handler->display->display_options['fields']['field_meeting_link']['element_type'] = 'strong';
-  $handler->display->display_options['fields']['field_meeting_link']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_meeting_link']['click_sort_column'] = 'url';
-  /* Field: Content: Meeting Date */
-  $handler->display->display_options['fields']['field_meeting_dates']['id'] = 'field_meeting_dates';
-  $handler->display->display_options['fields']['field_meeting_dates']['table'] = 'field_data_field_meeting_dates';
-  $handler->display->display_options['fields']['field_meeting_dates']['field'] = 'field_meeting_dates';
-  $handler->display->display_options['fields']['field_meeting_dates']['label'] = '';
-  $handler->display->display_options['fields']['field_meeting_dates']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_meeting_dates']['settings'] = array(
-    'format_type' => 'long',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-  );
-  /* Field: Content: Location */
-  $handler->display->display_options['fields']['field_meeting_location']['id'] = 'field_meeting_location';
-  $handler->display->display_options['fields']['field_meeting_location']['table'] = 'field_data_field_meeting_location';
-  $handler->display->display_options['fields']['field_meeting_location']['field'] = 'field_meeting_location';
-  $handler->display->display_options['fields']['field_meeting_location']['label'] = '';
-  $handler->display->display_options['fields']['field_meeting_location']['element_label_colon'] = FALSE;
   $handler->display->display_options['block_description'] = 'Meetings';
   $export['meetings'] = $view;
 

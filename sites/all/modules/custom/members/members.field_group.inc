@@ -13,6 +13,39 @@ function members_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_agenda|node|meetings|default';
+  $field_group->group_name = 'group_agenda';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'meetings';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Agenda',
+    'weight' => '0',
+    'children' => array(
+      0 => 'field_meeting_image',
+      1 => 'field_agenda_text',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Agenda',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-agenda field-group-div',
+        'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_agenda|node|meetings|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_analysis_tab|node|dataset|default';
   $field_group->group_name = 'group_analysis_tab';
   $field_group->entity_type = 'node';
@@ -244,6 +277,39 @@ function members_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_notes|node|meetings|default';
+  $field_group->group_name = 'group_notes';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'meetings';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Notes',
+    'weight' => '6',
+    'children' => array(
+      0 => 'field_notes_text',
+      1 => 'field_notes_files',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Notes',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-notes field-group-div',
+        'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_notes|node|meetings|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_race|node|dataset|form';
   $field_group->group_name = 'group_race';
   $field_group->entity_type = 'node';
@@ -271,6 +337,39 @@ function members_field_group_info() {
     ),
   );
   $field_groups['group_race|node|dataset|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_reports|node|meetings|default';
+  $field_group->group_name = 'group_reports';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'meetings';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Progress Reports',
+    'weight' => '3',
+    'children' => array(
+      0 => 'field_progress_reports_text',
+      1 => 'field_progress_reports_files',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Progress Reports',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-reports field-group-div',
+        'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_reports|node|meetings|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -387,6 +486,7 @@ function members_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Agenda');
   t('Analysis');
   t('Challenged by');
   t('Datasets');
@@ -395,6 +495,8 @@ function members_field_group_info() {
   t('General');
   t('Literature');
   t('Nomination');
+  t('Notes');
+  t('Progress Reports');
   t('Race');
   t('Sex');
   t('Supported by');

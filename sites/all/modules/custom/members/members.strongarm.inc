@@ -1969,10 +1969,10 @@ function members_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '6',
+          'weight' => '2',
         ),
       ),
       'display' => array(),

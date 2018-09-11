@@ -3902,64 +3902,42 @@ function members_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-meetings-field_meeting_dates'.
-  $field_instances['node-meetings-field_meeting_dates'] = array(
+  // Exported field_instance: 'node-meetings-field_agenda_text'.
+  $field_instances['node-meetings-field_agenda_text'] = array(
     'bundle' => 'meetings',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'short',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
         'weight' => 2,
       ),
       'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'short',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 2,
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_meeting_dates',
-    'label' => 'Meeting Date',
+    'field_name' => 'field_agenda_text',
+    'label' => 'Agenda Text',
     'required' => 0,
     'settings' => array(
-      'default_value' => 'blank',
-      'default_value2' => 'blank',
-      'default_value_code' => '',
-      'default_value_code2' => '',
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'date',
+      'module' => 'text',
       'settings' => array(
-        'increment' => 15,
-        'input_format' => 'Y-m-d H:i:s',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
+        'rows' => 5,
       ),
-      'type' => 'date_text',
+      'type' => 'text_textarea',
       'weight' => 3,
     ),
   );
@@ -3978,7 +3956,7 @@ function members_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -3989,7 +3967,7 @@ function members_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_meeting_image',
-    'label' => 'Meeting Image',
+    'label' => 'Agenda Image',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
@@ -4007,7 +3985,14 @@ function members_field_default_field_instances() {
       'module' => 'image',
       'settings' => array(
         'filefield_sources' => array(
-          'filefield_sources' => array(),
+          'filefield_sources' => array(
+            'attach' => 0,
+            'clipboard' => 0,
+            'imce' => 0,
+            'reference' => 0,
+            'remote' => 0,
+            'upload' => 'upload',
+          ),
           'source_attach' => array(
             'absolute' => 0,
             'attach_mode' => 'move',
@@ -4018,18 +4003,83 @@ function members_field_default_field_instances() {
           ),
           'source_reference' => array(
             'autocomplete' => 0,
+            'search_all_fields' => 0,
           ),
         ),
-        'preview_image_style' => 'jad_thumbnail',
+        'preview_image_style' => '',
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 2,
+      'weight' => 4,
     ),
   );
 
-  // Exported field_instance: 'node-meetings-field_meeting_link'.
-  $field_instances['node-meetings-field_meeting_link'] = array(
+  // Exported field_instance: 'node-meetings-field_notes_files'.
+  $field_instances['node-meetings-field_notes_files'] = array(
+    'bundle' => 'meetings',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_notes_files',
+    'label' => 'Notes Files',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'txt pdf doc docx xls xlsx ppt pptx key',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'filefield_sources' => array(
+          'filefield_sources' => array(
+            'attach' => 0,
+            'clipboard' => 0,
+            'imce' => 0,
+            'reference' => 0,
+            'remote' => 0,
+            'upload' => 'upload',
+          ),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+            'search_all_fields' => 0,
+          ),
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-meetings-field_notes_text'.
+  $field_instances['node-meetings-field_notes_text'] = array(
     'bundle' => 'meetings',
     'default_value' => NULL,
     'deleted' => 0,
@@ -4037,80 +4087,21 @@ function members_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_default',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_meeting_link',
-    'label' => 'Meeting Name',
-    'required' => 0,
-    'settings' => array(
-      'absolute_url' => 1,
-      'attributes' => array(
-        'class' => '',
-        'configurable_class' => 0,
-        'configurable_title' => 0,
-        'rel' => '',
-        'target' => '_blank',
-        'title' => '',
-      ),
-      'display' => array(
-        'url_cutoff' => 80,
-      ),
-      'enable_tokens' => 1,
-      'rel_remove' => 'default',
-      'title' => 'required',
-      'title_label_use_field_label' => 1,
-      'title_maxlength' => 128,
-      'title_value' => '',
-      'url' => 'optional',
-      'user_register_form' => FALSE,
-      'validate_url' => 0,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'link',
-      'settings' => array(),
-      'type' => 'link_field',
-      'weight' => 1,
-    ),
-  );
-
-  // Exported field_instance: 'node-meetings-field_meeting_location'.
-  $field_instances['node-meetings-field_meeting_location'] = array(
-    'bundle' => 'meetings',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Enter the location.',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 7,
       ),
       'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'text',
+        'label' => 'above',
         'settings' => array(),
-        'type' => 'text_plain',
-        'weight' => 3,
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_meeting_location',
-    'label' => 'Location',
+    'field_name' => 'field_notes_text',
+    'label' => 'Notes Text',
     'required' => 0,
     'settings' => array(
       'text_processing' => 1,
@@ -4120,10 +4111,114 @@ function members_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 2,
+        'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 4,
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-meetings-field_progress_reports_files'.
+  $field_instances['node-meetings-field_progress_reports_files'] = array(
+    'bundle' => 'meetings',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_progress_reports_files',
+    'label' => 'Progress Reports Files',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'txt pdf doc docx xls xlsx ppt pptx key',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'filefield_sources' => array(
+          'filefield_sources' => array(
+            'attach' => 0,
+            'clipboard' => 0,
+            'imce' => 0,
+            'reference' => 0,
+            'remote' => 0,
+            'upload' => 'upload',
+          ),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+            'search_all_fields' => 0,
+          ),
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-meetings-field_progress_reports_text'.
+  $field_instances['node-meetings-field_progress_reports_text'] = array(
+    'bundle' => 'meetings',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_progress_reports_text',
+    'label' => 'Progress Reports Text',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 5,
     ),
   );
 
@@ -5896,6 +5991,8 @@ function members_field_default_field_instances() {
   t('Adjusted P-value');
   t('Advanced Degree(s)');
   t('Affiliation(s)');
+  t('Agenda Image');
+  t('Agenda Text');
   t('Alleles');
   t('Analysis');
   t('Areas of Interest');
@@ -5933,7 +6030,6 @@ function members_field_default_field_instances() {
   t('Enter a comma-separated list of words to describe your content.');
   t('Enter datasets that contain this target.');
   t('Enter description such as conference date, location or interviewed by.');
-  t('Enter the location.');
   t('Entrez id');
   t('Evidence that challenges this claim.');
   t('Evidence that supports this claim.');
@@ -5959,13 +6055,9 @@ function members_field_default_field_instances() {
   t('Links');
   t('Links to claim for this target.');
   t('Literature');
-  t('Location');
   t('Log2 of the Fold Change');
   t('LogFC');
   t('Map Location');
-  t('Meeting Date');
-  t('Meeting Image');
-  t('Meeting Name');
   t('Method');
   t('Middle Name');
   t('Mouse Differentially Expressed Genes');
@@ -5973,6 +6065,8 @@ function members_field_default_field_instances() {
   t('N Sample');
   t('Nearest Gene');
   t('Nominator(s)');
+  t('Notes Files');
+  t('Notes Text');
   t('Num_female');
   t('Num_male');
   t('Originating Dataset');
@@ -5988,6 +6082,8 @@ function members_field_default_field_instances() {
   t('Professional Links');
   t('Profile Type');
   t('Profile photos will be cropped to squares. Please ensure that you are relatively central in the image.');
+  t('Progress Reports Files');
+  t('Progress Reports Text');
   t('Project');
   t('Public or Private');
   t('Rank');

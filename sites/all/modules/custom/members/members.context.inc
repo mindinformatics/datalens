@@ -108,6 +108,12 @@ function members_context_default_contexts() {
           'region' => 'content',
           'weight' => '-8',
         ),
+        'block-34' => array(
+          'module' => 'block',
+          'delta' => '34',
+          'region' => 'content',
+          'weight' => '-7',
+        ),
         'scfmembers-scfmembers_user_top_menu' => array(
           'module' => 'scfmembers',
           'delta' => 'scfmembers_user_top_menu',
@@ -118,24 +124,6 @@ function members_context_default_contexts() {
           'module' => 'search',
           'delta' => 'form',
           'region' => 'menu',
-          'weight' => '-10',
-        ),
-        'views-latest_news-block' => array(
-          'module' => 'views',
-          'delta' => 'latest_news-block',
-          'region' => 'sidebar_first',
-          'weight' => '-10',
-        ),
-        'views-meetings-block' => array(
-          'module' => 'views',
-          'delta' => 'meetings-block',
-          'region' => 'sidebar_first',
-          'weight' => '-9',
-        ),
-        'block-34' => array(
-          'module' => 'block',
-          'delta' => '34',
-          'region' => 'sidebar_second',
           'weight' => '-10',
         ),
         'nivo_slider-nivo_slider' => array(

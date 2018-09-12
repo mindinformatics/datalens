@@ -3902,6 +3902,70 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-meetings-field_agenda_files'.
+  $field_instances['node-meetings-field_agenda_files'] = array(
+    'bundle' => 'meetings',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_agenda_files',
+    'label' => 'Agenda Files',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'txt pdf doc docx xls xlsx ppt pptx key',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'filefield_sources' => array(
+          'filefield_sources' => array(
+            'attach' => 0,
+            'clipboard' => 0,
+            'imce' => 0,
+            'reference' => 0,
+            'remote' => 0,
+            'upload' => 'upload',
+          ),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+            'search_all_fields' => 0,
+          ),
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-meetings-field_agenda_text'.
   $field_instances['node-meetings-field_agenda_text'] = array(
     'bundle' => 'meetings',
@@ -3946,7 +4010,7 @@ function members_field_default_field_instances() {
   $field_instances['node-meetings-field_meeting_image'] = array(
     'bundle' => 'meetings',
     'deleted' => 0,
-    'description' => 'Size should be 75x75 pixels.',
+    'description' => 'Image of Agenda',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -3956,7 +4020,7 @@ function members_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 1,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -4074,7 +4138,7 @@ function members_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -4114,7 +4178,7 @@ function members_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -4178,7 +4242,7 @@ function members_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -4218,7 +4282,7 @@ function members_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -5991,6 +6055,7 @@ function members_field_default_field_instances() {
   t('Adjusted P-value');
   t('Advanced Degree(s)');
   t('Affiliation(s)');
+  t('Agenda Files');
   t('Agenda Image');
   t('Agenda Text');
   t('Alleles');
@@ -6048,6 +6113,7 @@ function members_field_default_field_instances() {
   t('Hispanic');
   t('Identifiers');
   t('Image');
+  t('Image of Agenda');
   t('Input');
   t('Lab URL');
   t('Last Name');
@@ -6094,7 +6160,6 @@ function members_field_default_field_instances() {
   t('Result Id');
   t('Results');
   t('Sample Size');
-  t('Size should be 75x75 pixels.');
   t('Species');
   t('StandardError');
   t('Status');

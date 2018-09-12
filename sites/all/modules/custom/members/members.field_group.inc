@@ -25,6 +25,7 @@ function members_field_group_info() {
     'children' => array(
       0 => 'field_meeting_image',
       1 => 'field_agenda_text',
+      2 => 'field_agenda_files',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -285,7 +286,7 @@ function members_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Notes',
-    'weight' => '6',
+    'weight' => '3',
     'children' => array(
       0 => 'field_notes_text',
       1 => 'field_notes_files',
@@ -349,7 +350,7 @@ function members_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Progress Reports',
-    'weight' => '3',
+    'weight' => '2',
     'children' => array(
       0 => 'field_progress_reports_text',
       1 => 'field_progress_reports_files',

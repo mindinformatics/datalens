@@ -479,6 +479,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 #block-block-34{
   background: white;
   padding-left: 9%;
+  padding-top: 40px;
 }
 
 
@@ -672,6 +673,7 @@ table#logo-table {
 
 #logo-table td{
   height: 15%;
+  vertical-align: top;
 }
 
 

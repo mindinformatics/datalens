@@ -478,8 +478,22 @@ ul.nice-menu-down ul li.menuparent > a:after {
 
 #block-block-34 {
   background: white;
-  padding-left: 6%;
   padding-top: 40px;
+}
+
+table#logo-table {
+  border: none;
+}
+
+#logo-table td{
+  height: 15%;
+  vertical-align: top;
+  width: 25%;
+}
+
+
+#logo-table p {
+  padding-bottom: 20px;
 }
 
 
@@ -667,19 +681,7 @@ ul.nice-menu-down ul li.menuparent > a:after {
 	padding-right: 10px;
 }
 
-table#logo-table {
-  border: none;
-}
 
-#logo-table td{
-  height: 15%;
-  vertical-align: top;
-}
-
-
-#logo-table p {
-  padding-bottom: 20px;
-}
 
 
 /* Interior Page Styling */

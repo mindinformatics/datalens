@@ -26,23 +26,17 @@ function members_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'block-15' => array(
-          'module' => 'block',
-          'delta' => '15',
-          'region' => 'user_first',
-          'weight' => '-10',
+        'scfmembers-scfmembers_user_top_menu' => array(
+          'module' => 'scfmembers',
+          'delta' => 'scfmembers_user_top_menu',
+          'region' => 'user_second',
+          'weight' => '-40',
         ),
         'search-form' => array(
           'module' => 'search',
           'delta' => 'form',
           'region' => 'user_second',
-          'weight' => '-10',
-        ),
-        'scfmembers-scfmembers_user_top_menu' => array(
-          'module' => 'scfmembers',
-          'delta' => 'scfmembers_user_top_menu',
-          'region' => 'user_second',
-          'weight' => '-9',
+          'weight' => '-39',
         ),
         'block-16' => array(
           'module' => 'block',
@@ -123,7 +117,7 @@ function members_context_default_contexts() {
         'search-form' => array(
           'module' => 'search',
           'delta' => 'form',
-          'region' => 'menu',
+          'region' => 'user_second',
           'weight' => '-10',
         ),
         'nivo_slider-nivo_slider' => array(
@@ -164,23 +158,17 @@ function members_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'block-15' => array(
-          'module' => 'block',
-          'delta' => '15',
-          'region' => 'user_first',
-          'weight' => '-10',
-        ),
         'scfmembers-scfmembers_user_top_menu' => array(
           'module' => 'scfmembers',
           'delta' => 'scfmembers_user_top_menu',
           'region' => 'user_second',
-          'weight' => '-31',
+          'weight' => '-40',
         ),
         'search-form' => array(
           'module' => 'search',
           'delta' => 'form',
           'region' => 'user_second',
-          'weight' => '-31',
+          'weight' => '-39',
         ),
         'block-16' => array(
           'module' => 'block',
@@ -219,23 +207,17 @@ function members_context_default_contexts() {
           'region' => 'content',
           'weight' => '20',
         ),
-        'block-15' => array(
-          'module' => 'block',
-          'delta' => '15',
-          'region' => 'user_first',
-          'weight' => '-10',
+        'scfmembers-scfmembers_user_top_menu' => array(
+          'module' => 'scfmembers',
+          'delta' => 'scfmembers_user_top_menu',
+          'region' => 'user_second',
+          'weight' => '-40',
         ),
         'search-form' => array(
           'module' => 'search',
           'delta' => 'form',
           'region' => 'user_second',
-          'weight' => '-10',
-        ),
-        'scfmembers-scfmembers_user_top_menu' => array(
-          'module' => 'scfmembers',
-          'delta' => 'scfmembers_user_top_menu',
-          'region' => 'user_second',
-          'weight' => '-9',
+          'weight' => '-39',
         ),
         'block-16' => array(
           'module' => 'block',

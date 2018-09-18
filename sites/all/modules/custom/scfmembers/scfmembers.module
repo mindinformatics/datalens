@@ -67,9 +67,7 @@ function scfmembers_account_management_block_content() {
 
   $links = array();
   $links[] = l(t('Edit Profile'), 'user/' . $user->uid . '/edit/scfmembers_profile');
-  //$links[] = l(t('Upload publications'), 'user/' . $user->uid . '/biblio_import');
   $links[] = l(t('My Favorites'), 'user/' . $user->uid . '/bookmarks');
-  $links[] = l(t('Subscriptions'), 'user/' . $user->uid . '/subscriptions');
   $links[] = l(t('Account Settings'), 'user/' . $user->uid . '/edit');
   return theme('item_list', array('items' => $links, 'attributes' => array('class' => 'scfmembers_account_management')));
 }
@@ -83,15 +81,18 @@ function scfmembers_user_top_menu_block_content() {
   $links = array();
   if(user_is_logged_in()) {
     $username =  check_plain(_scfmembers_current_user_full_name());
-    $links[] = l(t('Welcome') . ', ' . $username, 'members/' . $user->uid);
     $links[] = l(t('Log Out'), 'user/logout');
-    $links[] = l(t('Edit Profile'), 'user/' . $user->uid . '/edit');
-    $links[] = l(t('My Favorites'), 'user/' . $user->uid . '/bookmarks');
+    $links[] = l(t('My Profile'), 'members/' . $user->uid);
+    $links[] = l(t('Edit My Profile'), 'user/' . $user->uid . '/edit');
+    $links[] = l(t('Edit My Account'), 'user/' . $user->uid . '/edit/xf_profile');
+    //$links[] = l(t('Contact Admin'), 'contact');
+    //$links[] = l(t('My Favorites'), 'user/' . $user->uid . '/bookmarks');
   }
   else {
-    $links[] = t('Welcome') . ', ' . 'Guest';
-    //$links[] = l(t('Join'), 'user/register');
     $links[] = l(t('Log In'), 'user/login');
+    //$links[] = t('Welcome') . ', ' . 'Guest';
+    //$links[] = l(t('Join'), 'user/register');
+
   }
 
   return theme('item_list', array('items' => $links, 'attributes' => array('id' => 'scfmembers_user_menu', 'class' => 'menu')));

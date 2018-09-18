@@ -2618,7 +2618,7 @@ function members_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_xfp_type',
     'field_permissions' => array(
-      'type' => 0,
+      'type' => 2,
     ),
     'indexes' => array(
       'tid' => array(

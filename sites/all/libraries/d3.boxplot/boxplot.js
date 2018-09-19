@@ -15,12 +15,25 @@
    */
 Drupal.d3.boxplot = function (select, settings) {
 
-console.log(settings.rows);
+//console.log(settings.rows);
 // Change mongo data from object to array
 var data2 = $.map(settings.rows, function(value, index) {
           return [value];
 });
+console.log(data2);
 
+var study = settings.study;
+var gene = settings.gene;
+var category = settings.xaxis;
+
+var groups = d3.nest()
+        .key(function(d) { return d.Braak; }).sortKeys(d3.ascending)
+        .rollup(function(d) { return d.map(function(d) { return +d.Expression; }); })
+        .entries(data2);
+var header2 = d3.values(groups).map(function(d) { return d3.keys(); });
+console.log(groups);
+console.log(header2);
+//console.log(groups);
 
 var labels = true; // show the text labels beside individual boxplots?
 
@@ -356,27 +369,24 @@ d3.csv("/sites/all/libraries/d3.boxplot/data.csv", function(error, csv) {
 	// where n = number of columns in the csv file
 	// data[i][0] = name of the ith column
 	// data[i][1] = array of values of ith column
+	// data[i][2] = array of values of ith column
 	if (error) throw error;
 
+	console.log(csv);
+	var headerNames = d3.keys(csv[0]);
+  numberOfColumns = headerNames.length;
+	console.log(numberOfColumns);
+
 	var data = [];
-	data[0] = [];
-	data[1] = [];
-	data[2] = [];
-	data[3] = [];
-	// add more rows if your csv file has more columns
+	var i = 0;
+	headerNames.forEach(function(y) {
+	  data[i] = [];
+	  data[i][0] = y;
+	  data[i][1] = [];
+	  i++;
+	});
 
-	// add here the header of the csv file
-	data[0][0] = "Q1";
-	data[1][0] = "Q2";
-	data[2][0] = "Q3";
-	data[3][0] = "Q4";
-	// add more rows if your csv file has more columns
 	console.log(data);
-
-	data[0][1] = [];
-	data[1][1] = [];
-	data[2][1] = [];
-	data[3][1] = [];
 
 	csv.forEach(function(x) {
 		var v1 = Math.floor(x.Q1),
@@ -444,7 +454,7 @@ d3.csv("/sites/all/libraries/d3.boxplot/data.csv", function(error, csv) {
         .attr("text-anchor", "middle")
         .style("font-size", "18px")
         //.style("text-decoration", "underline")
-        .text("Revenue 2012");
+        .text("Expression vs. Braak Stage");
 
 	 // draw y axis
 	svg.append("g")
@@ -456,7 +466,7 @@ d3.csv("/sites/all/libraries/d3.boxplot/data.csv", function(error, csv) {
 		  .attr("dy", ".71em")
 		  .style("text-anchor", "end")
 		  .style("font-size", "16px")
-		  .text("Revenue in €");
+		  .text(gene + " Expression");
 
 	// draw x axis
 	svg.append("g")
@@ -469,7 +479,7 @@ d3.csv("/sites/all/libraries/d3.boxplot/data.csv", function(error, csv) {
 		.attr("dy", ".71em")
         .style("text-anchor", "middle")
 		.style("font-size", "16px")
-        .text("Quarter");
+        .text("Braak Stage");
 });
 
 // Returns a function to compute the interquartile range.

@@ -49,6 +49,11 @@ function boxplot_test() {
   $chart = array(
     'id' => 'visualization',
     'type' => 'boxplot',
+    'gene' => "APP",
+    'study' => "ROSMAP_PFC_RNASEQ_FPKM",
+    'xaxis' => "Braak",
+    'yaxis' => 'Expression',
+    'flag' => 'single',
     'rows' => $result,
   );
 
@@ -72,6 +77,7 @@ function boxplot_build($gene, $study) {
     'study' => $study,
     'xaxis' => 'Braak',
     'yaxis' => 'Expression',
+    'flag' => 'single',
     'rows' => $result,
   );
 
@@ -92,6 +98,7 @@ function boxplot_build_multi($id, $gene, $study, $rows, $x_axis) {
     'study' => $study,
     'xaxis' => $x_axis,
     'yaxis' => 'Expression',
+    'flag' => 'multi',
     'rows' => $rows,
   );
 

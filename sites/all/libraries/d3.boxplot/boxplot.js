@@ -25,6 +25,8 @@ var data2 = $.map(settings.rows, function(value, index) {
 var study = settings.study;
 var gene = settings.gene;
 var category = settings.xaxis;
+var flag = settings.flag;
+console.log(flag);
 
 var groups = d3.nest()
         .key(function(d) { return d.Braak; }).sortKeys(d3.ascending)
@@ -47,7 +49,13 @@ console.log(data3);
 var labels = true; // show the text labels beside individual boxplots?
 
 var margin = {top: 30, right: 50, bottom: 80, left: 50};
+
 var width = 800 - margin.left - margin.right;
+
+if (flag === "multi") {
+  width = 400 - margin.left - margin.right;
+}
+
 var height = 400 - margin.top - margin.bottom;
 
 var min = Infinity,
@@ -438,7 +446,7 @@ function boxQuartiles(d) {
         .attr("x", (width / 2))
         .attr("y", 0 + (margin.top / 2))
         .attr("text-anchor", "middle")
-        .style("font-size", "18px")
+        .style("font-size", "16px")
         //.style("text-decoration", "underline")
         .text(gene + " Expression vs. Braak Stage");
 
@@ -448,10 +456,11 @@ function boxQuartiles(d) {
         .call(yAxis)
 		.append("text") // and text1
 		  .attr("transform", "rotate(-90)")
-		  .attr("y", 6)
+		  .attr("x", -40)
+		  .attr("y", -50)
 		  .attr("dy", ".71em")
 		  .style("text-anchor", "end")
-		  .style("font-size", "16px")
+		  .style("font-size", "14px")
 		  .text(gene + " Expression");
 
 	// draw x axis
@@ -464,7 +473,7 @@ function boxQuartiles(d) {
         .attr("y",  25 )
 		.attr("dy", ".71em")
         .style("text-anchor", "middle")
-		.style("font-size", "16px")
+		.style("font-size", "14px")
         .text("Braak Stage");
 //});
 

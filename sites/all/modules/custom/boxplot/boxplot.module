@@ -9,12 +9,6 @@
 */
 function boxplot_menu() {
 
-    $items['boxplot'] = array(
-    'title' => 'Boxplot',
-    'description' => 'Boxplot with user input',
-    'page callback' => 'boxplot',
-    'access callback' => 'user_is_logged_in',
-  );
   $items['boxplot-dx'] = array(
     'title' => 'Diagnosis vs. Gene Expression',
     'description' => 'Boxplot with user input',
@@ -62,30 +56,6 @@ function boxplot_test() {
 }
 
 
-function boxplot_build($gene, $study) {
-
-  $path = libraries_get_path('d3.boxplot');
-  libraries_load('d3.boxplot');
-
-  $result = _query_mongo_boxplot($gene, $study);
-  //dsm($result);
-
-  $chart = array(
-    'id' => 'visualization',
-    'type' => 'boxplot',
-    'gene' => $gene,
-    'study' => $study,
-    'xaxis' => 'Braak',
-    'yaxis' => 'Expression',
-    'flag' => 'single',
-    'rows' => $result,
-  );
-
-  return d3_draw($chart);
-
-}
-
-
 function boxplot_build_multi($id, $gene, $study, $rows, $x_axis) {
 
   $path = libraries_get_path('d3.boxplot');
@@ -106,15 +76,6 @@ function boxplot_build_multi($id, $gene, $study, $rows, $x_axis) {
 
 }
 
-function boxplot() {
-
-  $gene_form = drupal_get_form('boxplot_form');
-  $output = drupal_render($gene_form);
-  //$output = "This is a test";
-
-  return $output;
-
-}
 
 function boxplot_dx() {
 
@@ -137,47 +98,11 @@ function boxplot_braak() {
 }
 
 
-function boxplot_form($form, &$form_state) {
-
-  // Header
-  $form['header'] = array(
-    '#markup' => '<p>Plot Expression of gene across Contrasts.</p>'
-  );
-
-  $form['egene'] = array (
-    '#type' => 'textfield',
-    '#title' => t('Gene Symbol'),
-    '#default_value' => '',
-    '#description' => t('Please enter a gene symbol'),
-    '#size' => 20,
-    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
-  );
-
-    $form['submit'] = array(
-    '#prefix' => '<div class="eplot-inline">',
-    '#suffix' => '</div>',
-    '#type' => 'submit',
-    '#value' => t('Go'),
-    '#ajax' => array(
-      'callback' => 'ajax_eboxplot_callback',
-      'wrapper'  => 'eplots',
-      'effect'   => 'fade',
-     ),
-  );
-
-  $content = "";
-    $form['wrapper'] = array(
-    '#markup' => '<div id="eplots">' . $content . '</div>',
-  );
-
-	return $form;
-}
-
 function boxplot_form_dx($form, &$form_state) {
 
   // Header
   $form['header'] = array(
-    '#markup' => '<p>Plot expression of a gene across diagnosis.</p>'
+    '#markup' => '<p>Gene expression across Diagnosis.</p>'
   );
 
   $form['egene'] = array (

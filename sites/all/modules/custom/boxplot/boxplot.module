@@ -87,6 +87,7 @@ function boxplot_dx() {
 
 }
 
+
 function boxplot_braak() {
 
   $gene_form = drupal_get_form('boxplot_form_braak');
@@ -120,7 +121,7 @@ function boxplot_form_dx($form, &$form_state) {
     '#type' => 'submit',
     '#value' => t('Go'),
     '#ajax' => array(
-      'callback' => 'ajax_eboxplot_callback_dx',
+      'callback' => 'ajax_boxplot_callback_dx',
       'wrapper'  => 'eplots',
       'effect'   => 'fade',
      ),
@@ -385,7 +386,7 @@ function _query_mongo_boxplot($input_genes, $study) {
      }
      //dsm($result);
 
-    //dsm($sample_ids);
+     //dsm($sample_ids);
 
     // Check the covariates for the clinical data
      $coll2 = $db->subject_covariates;

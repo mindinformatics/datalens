@@ -140,7 +140,7 @@ function boxplot_form_braak($form, &$form_state) {
 
   // Header
   $form['header'] = array(
-    '#markup' => '<p>Plot expression of a gene across Braak stages.</p>'
+    '#markup' => '<p>Plot expression of a gene across Braak stages (B1 = 0/I/II, B2 = III/IV, B3 = V/VI).</p>'
   );
 
   $form['egene'] = array (
@@ -282,7 +282,7 @@ function ajax_boxplot_callback_braak($form, $form_state) {
   $content6 = "";
 
 	$content = '<div id="ebplots">';
-  $content .= "<span id='ebtitle'>" . $gene . "</span>";
+  $content .= "<span id='ebtitle'></span>";
   $content .= '<table id="explodingbox-plot">';
   $content .= '<tr><td>';
   $content .= $content1;

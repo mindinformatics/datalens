@@ -22,7 +22,7 @@ function boxplot_menu() {
     'access callback' => 'user_is_logged_in',
   );
   $items['boxplot-braak'] = array(
-    'title' => 'Braak vs. Gene Expression',
+    'title' => 'Gene Expression across Braak Stages',
     'description' => 'Boxplot with user input',
     'page callback' => 'boxplot_braak',
     'access callback' => 'user_is_logged_in',

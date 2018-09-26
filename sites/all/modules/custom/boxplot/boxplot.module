@@ -165,7 +165,7 @@ function boxplot_form_braak($form, &$form_state) {
   );
 
   $content = "";
-    $form['wrapper'] = array(
+  $form['wrapper'] = array(
     '#markup' => '<div id="eplots">' . $content . '</div>',
   );
 
@@ -251,6 +251,7 @@ function ajax_boxplot_callback_dx($form, $form_state) {
 function ajax_boxplot_callback_braak($form, $form_state) {
 
   $gene = $form_state['values']['egene'];
+
   $study = "MayoBB_TCX_RNASEQ_CPM";
   $x_axis = "Braak";
 
@@ -281,7 +282,7 @@ function ajax_boxplot_callback_braak($form, $form_state) {
 	$content1 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . boxplot_build_multi('vis1', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data1, $x_axis);
   $content6 = "";
 
-	$content = '<div id="ebplots">';
+	$content = '<div id="eplots">';
   $content .= "<span id='ebtitle'></span>";
   $content .= '<table id="explodingbox-plot">';
   $content .= '<tr><td>';

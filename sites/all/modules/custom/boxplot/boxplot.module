@@ -27,6 +27,12 @@ function boxplot_menu() {
     'page callback' => 'boxplot_test',
     'access callback' => 'user_is_logged_in',
   );
+    $items['boxplot-cerad'] = array(
+    'title' => 'Gene Expression across CERAD scores',
+    'description' => 'Boxplot with user input',
+    'page callback' => 'boxplot_cerad',
+    'access callback' => 'user_is_logged_in',
+  );
 
   return $items;
 }
@@ -77,9 +83,9 @@ function boxplot_build_multi($id, $gene, $study, $rows, $x_axis) {
 }
 
 
-function boxplot_dx() {
+function boxplot_cerad() {
 
-  $gene_form = drupal_get_form('boxplot_form_dx');
+  $gene_form = drupal_get_form('boxplot_form_cerad');
   $output = drupal_render($gene_form);
   //$output = "This is a test";
 
@@ -99,42 +105,16 @@ function boxplot_braak() {
 }
 
 
-function boxplot_form_dx($form, &$form_state) {
+function boxplot_dx() {
 
-  // Header
-  $form['header'] = array(
-    '#markup' => '<p>Gene expression across Diagnosis.</p>'
-  );
+  $gene_form = drupal_get_form('boxplot_form_dx');
+  $output = drupal_render($gene_form);
+  //$output = "This is a test";
 
-  $form['egene'] = array (
-    '#type' => 'textfield',
-    '#title' => t('Gene Symbol'),
-    '#default_value' => '',
-    '#description' => t('Please enter a gene symbol'),
-    '#size' => 20,
-    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
-  );
+  return $output;
 
-    $form['submit'] = array(
-    '#prefix' => '<div class="eplot-inline">',
-    '#suffix' => '</div>',
-    '#type' => 'submit',
-    '#value' => t('Go'),
-    '#ajax' => array(
-      'callback' => 'ajax_boxplot_callback_dx',
-      'wrapper'  => 'eplots',
-      'effect'   => 'fade',
-     ),
-  );
-
-  $content = "";
-    $form['wrapper'] = array(
-    '#markup' => '<div id="eplots">' . $content . '</div>',
-  );
-
-
-	return $form;
 }
+
 
 function boxplot_form_braak($form, &$form_state) {
 
@@ -173,6 +153,84 @@ function boxplot_form_braak($form, &$form_state) {
 	return $form;
 }
 
+function boxplot_form_cerad($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Plot expression of a gene across CERAD scores (CERAD: 1 = C0/None, 2 = C1/Sparse, 3 = C2/Moderate, 4 = C3/Frequent).</p>'
+  );
+
+  $form['egene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
+  );
+
+    $form['submit'] = array(
+    '#prefix' => '<div class="eplot-inline">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_boxplot_callback_cerad',
+      'wrapper'  => 'eplots',
+      'effect'   => 'fade',
+     ),
+  );
+
+  $content = "";
+    $form['wrapper'] = array(
+    '#markup' => '<div id="eplots">' . $content . '</div>',
+  );
+
+
+	return $form;
+}
+
+function boxplot_form_dx($form, &$form_state) {
+
+  // Header
+  $form['header'] = array(
+    '#markup' => '<p>Gene expression across Diagnosis.</p>'
+  );
+
+  $form['egene'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Gene Symbol'),
+    '#default_value' => '',
+    '#description' => t('Please enter a gene symbol'),
+    '#size' => 20,
+    '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
+  );
+
+    $form['submit'] = array(
+    '#prefix' => '<div class="eplot-inline">',
+    '#suffix' => '</div>',
+    '#type' => 'submit',
+    '#value' => t('Go'),
+    '#ajax' => array(
+      'callback' => 'ajax_boxplot_callback_dx',
+      'wrapper'  => 'eplots',
+      'effect'   => 'fade',
+     ),
+  );
+
+  $content = "";
+    $form['wrapper'] = array(
+    '#markup' => '<div id="eplots">' . $content . '</div>',
+  );
+
+
+	return $form;
+}
+
+
+
+
+
 function ajax_boxplot_callback($form, $form_state) {
 
   $gene = $form_state['values']['egene'];
@@ -198,6 +256,65 @@ function ajax_boxplot_callback($form, $form_state) {
 
   return $content;
 
+}
+
+
+function ajax_boxplot_callback_cerad($form, $form_state) {
+
+  $gene = $form_state['values']['egene'];
+  $study = "MayoBB_TCX_RNASEQ_CPM";
+  $x_axis = "CERAD";
+  //$gene = "APP";
+
+  $content = "<p></p>";
+
+  $barres_link = "http://web.stanford.edu/group/barres_lab/cgi-bin/geneSearchMariko.py?geneNameIn=" . $gene;
+  $barres_name = $gene . " Expression by Cell Type (Barres Lab)";
+
+  $gtex_link = "https://www.gtexportal.org/home/gene/" . $gene;
+  $gtex_name = $gene . " Expression across Tissues (GTExPortal)";
+
+  $links = "<div id='elinks'>" . "Gene Data Links<br />" . "<a href=" . $barres_link . " target='_blank' >" . $barres_name . "</a><br />" .
+  "<a href=" . $gtex_link . " target='_blank' >" . $gtex_name . "</a></div>";
+
+  $content .= $links;
+
+    $data5 = _query_mongo_boxplot($gene, "MSBB_FP_RNASEQ_CPM");
+	$content5 = "<span id='etitle'>MSBB RNA-Seq Frontal Pole</span>" . boxplot_build_multi('vis5', $gene, "MSBB_FP_RNASEQ_CPM", $data5, $x_axis);
+	$data2 = _query_mongo_boxplot($gene, "MSBB_IFG_RNASEQ_CPM");
+	$content2 = "<span id='etitle'>MSBB RNA-Seq Inferior Frontal Gyrus</span>" . boxplot_build_multi('vis2', $gene, "MSBB_IFG_RNASEQ_CPM", $data2, $x_axis);
+
+	$data3 = _query_mongo_boxplot($gene, "MSBB_PHG_RNASEQ_CPM");
+	$content3 = "<span id='etitle'>MSBB RNA-Seq Parahippocampal Gyrus</span>" . boxplot_build_multi('vis3', $gene, "MSBB_PHG_RNASEQ_CPM", $data3, $x_axis);
+	$data4 = _query_mongo_boxplot($gene, "MSBB_STG_RNASEQ_CPM");
+	$content4 = "<span id='etitle'>MSBB RNA-Seq Superior Temporal Gyrus</span>" . boxplot_build_multi('vis4', $gene, "MSBB_STG_RNASEQ_CPM", $data4, $x_axis);
+
+	$data1 = _query_mongo_boxplot($gene, "ROSMAP_PFC_RNASEQ_FPKM");
+	$content1 = "<span id='etitle'>ROSMAP RNA-Seq Prefrontal Cortex</span>" . boxplot_build_multi('vis1', $gene, "ROSMAP_PFC_RNASEQ_FPKM", $data1, $x_axis);
+  $content6 = "";
+
+	$content = '<div id="eplots">';
+  $content .= "<span id='ebtitle'></span>";
+  $content .= '<table id="explodingbox-plot">';
+  $content .= '<tr><td>';
+  $content .= $content1;
+  $content .= '</td><td>';
+  $content .= $content2;
+  $content .= '</td></tr>';
+  $content .= '<tr><td>';
+  $content .= $content3;
+  $content .= '</td><td>';
+  $content .= $content4;
+  $content .= '</td></tr>';
+  $content .= '<tr><td>';
+  $content .= $content5;
+  $content .= '</td><td>';
+  $content .= $content6;
+  $content .= '</td></tr>';
+  $content .= '</table>';
+  $content .= '</div>';
+
+  return $content;
 }
 
 function ajax_boxplot_callback_dx($form, $form_state) {

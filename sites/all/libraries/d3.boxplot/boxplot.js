@@ -26,14 +26,36 @@ var study = settings.study;
 var gene = settings.gene;
 var category = settings.xaxis;
 var flag = settings.flag;
-console.log(flag);
+//console.log(category);
 
-var groups = d3.nest()
+
+if (category === "Braak") {
+  var groups = d3.nest()
         .key(function(d) { return d.Braak; }).sortKeys(d3.ascending)
         .rollup(function(d) { return d.map(function(d) { return +d.Expression; }); })
         .entries(data2);
+  var x_axis_cat = "Braak Stage"
+}
 
-//console.log(groups); //B1,B2,B3
+if (category === "Diagnosis") {
+  var groups = d3.nest()
+        .key(function(d) { return d.Diagnosis; }).sortKeys(d3.ascending)
+        .rollup(function(d) { return d.map(function(d) { return +d.Expression; }); })
+        .entries(data2);
+  var x_axis_cat = "Diagnosis"
+}
+
+if (category === "CERAD") {
+  var groups = d3.nest()
+        .key(function(d) { return d.CERAD; }).sortKeys(d3.ascending)
+        .rollup(function(d) { return d.map(function(d) { return +d.Expression; }); })
+        .entries(data2);
+  var x_axis_cat = "CERAD"
+}
+
+
+
+//console.log(groups); //CERAD score, Braak Stage, etc.
 var data3 = [];
 var i = 0;
 groups.forEach(function(y) {
@@ -448,7 +470,7 @@ function boxQuartiles(d) {
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         //.style("text-decoration", "underline")
-        .text(gene + " Expression vs. Braak Stage");
+        .text(gene + " Expression vs. " + x_axis_cat);
 
 	 // draw y axis
 	svg.append("g")
@@ -474,7 +496,7 @@ function boxQuartiles(d) {
 		.attr("dy", ".71em")
         .style("text-anchor", "middle")
 		.style("font-size", "14px")
-        .text("Braak Stage");
+        .text(x_axis_cat);
 //});
 
 // Returns a function to compute the interquartile range.

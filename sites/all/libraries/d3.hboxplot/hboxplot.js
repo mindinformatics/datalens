@@ -19,7 +19,7 @@ Drupal.d3.hboxplot = function (select, settings) {
   var data = $.map(settings.rows, function(value, index) {
           return [value];
       });
-  console.log(settings.rows);
+  //console.log(settings.rows);
   //console.log(data);
 
 
@@ -32,9 +32,9 @@ Drupal.d3.hboxplot = function (select, settings) {
   data.forEach(function(d) {
             //d.PValue = +d.PValue.toPrecision(2);
             d.PValue = +d.PValue;
-            d.max = +d.max;
-            d.min = +d.min;
-            d.median = +d.median;
+            d.max = +d.CIR;
+            d.min = +d.CIL;
+            d.median = +d.logFC;
             d.row = rn;
             rn++;
   });
@@ -94,12 +94,12 @@ Drupal.d3.hboxplot = function (select, settings) {
       margin.top
     ]);
 
-  console.log(data);
+  //console.log(data);
 
   xAxis = d3.svg.axis()
     .scale(xScale)
     .orient("bottom")
-    .ticks(10)
+    .ticks(5)
     .tickSize(-12)
     .tickSubdivide(true); // deprecated, I know
 
@@ -115,7 +115,7 @@ Drupal.d3.hboxplot = function (select, settings) {
     .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
     //.attr("transform", "translate("+ (width/2) +","+(height-(padding/3))+")")  // centre below axis
     .attr("transform", "translate(" + (w/2) + " ," + (h + margin.top) + ")")
-    .text("Fold Change");
+    .text("Log2 Fold Change");
 
   var rows = data.map(function(d){return Number(d.row)});
   var p_vals = data.map(function(d){return (d.PValue) });

@@ -565,7 +565,7 @@ function hboxplot_query_mongo_file($input_gene, $file_list) {
        $result[$i]['Technology'] = $doc['DataType'];
        $result[$i]['FileName'] = $doc['FileName'];
        $result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
-       $result[$i]['LogFC'] = $doc['logFC'];
+       $result[$i]['logFC'] = $doc['logFC'];
        $result[$i]['FC'] = ($doc['logFC'] >= 0) ? pow(2,$doc['logFC']) : -1/pow(2,$doc['logFC']);
        $result[$i]['CIL'] = $doc['CIL'];
        $result[$i]['CIR'] = $doc['CIR'];
@@ -679,8 +679,8 @@ function hboxplot_views_pre_render(&$view) {
       //$temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ProbeID'];
       $temp->field_field_pvalue[0]['raw']['value'] = $row['PValue'];
       $temp->field_field_pvalue[0]['rendered']['#markup'] = sprintf('%.2E', $row['PValue']);
-      $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
-      $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
+      $temp->field_field_fold_change[0]['raw']['value'] = $row['logFC'];
+      $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['logFC'];
       //$temp->field_field_fold_change_raw[0]['raw']['value'] = $row['FC'];
       // $temp->field_field_fold_change_raw[0]['rendered']['#markup'] = sprintf('%.2f', $row['FC']);
       $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['FileName']);

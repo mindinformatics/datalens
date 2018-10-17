@@ -145,8 +145,8 @@ Drupal.d3.hboxplot = function (select, settings) {
     .call(yAxis);
 
   chart.append("line")
-    .attr("x1", xScale(1))
-    .attr("x2", xScale(1))
+    .attr("x1", xScale(0))
+    .attr("x2", xScale(0))
     .attr("y1", 0)
     .attr("y2", h - 20)
     .style("stroke", "gray")

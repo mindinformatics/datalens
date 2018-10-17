@@ -59,18 +59,18 @@ Drupal.d3.hboxplot = function (select, settings) {
 
   } else {
     var h = data.length * 25 + 100,
-      w = 700;
+      w = 750;
 
     var margin = {
     'top': 20,
     'bottom': 20,
     'left': 20,
-    'right': 280
+    'right': 325
     }
 
     var chart = d3.select('#' + settings.id).append("svg")
       .attr("height", h + 40)
-      .attr("width", w + 280);
+      .attr("width", w + 325);
   }
 
 

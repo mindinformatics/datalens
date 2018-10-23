@@ -286,10 +286,10 @@ function members_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Notes',
-    'weight' => '3',
+    'weight' => '5',
     'children' => array(
-      0 => 'field_notes_text',
-      1 => 'field_notes_files',
+      0 => 'field_notes_files',
+      1 => 'field_notes_text',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -350,10 +350,10 @@ function members_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Progress Reports',
-    'weight' => '2',
+    'weight' => '1',
     'children' => array(
-      0 => 'field_progress_reports_text',
-      1 => 'field_progress_reports_files',
+      0 => 'field_progress_reports_files',
+      1 => 'field_progress_reports_text',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -400,6 +400,39 @@ function members_field_group_info() {
     ),
   );
   $field_groups['group_sex|node|dataset|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_slides|node|meetings|default';
+  $field_group->group_name = 'group_slides';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'meetings';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Meeting Slides',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_meeting_slides_text',
+      1 => 'field_meeting_slides_files',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Meeting Slides',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-slides field-group-div',
+        'description' => '',
+        'show_label' => '1',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_slides|node|meetings|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -495,6 +528,7 @@ function members_field_group_info() {
   t('Evidence');
   t('General');
   t('Literature');
+  t('Meeting Slides');
   t('Nomination');
   t('Notes');
   t('Progress Reports');

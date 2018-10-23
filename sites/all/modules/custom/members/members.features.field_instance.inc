@@ -4078,6 +4078,110 @@ function members_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-meetings-field_meeting_slides_files'.
+  $field_instances['node-meetings-field_meeting_slides_files'] = array(
+    'bundle' => 'meetings',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_meeting_slides_files',
+    'label' => 'Meeting Slides Files',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'txt pdf doc docx xls xlsx ppt pptx key',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'filefield_sources' => array(
+          'filefield_sources' => array(
+            'attach' => 0,
+            'clipboard' => 0,
+            'imce' => 0,
+            'reference' => 0,
+            'remote' => 0,
+            'upload' => 'upload',
+          ),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+            'search_all_fields' => 0,
+          ),
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-meetings-field_meeting_slides_text'.
+  $field_instances['node-meetings-field_meeting_slides_text'] = array(
+    'bundle' => 'meetings',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_meeting_slides_text',
+    'label' => 'Meeting Slides Text',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 8,
+    ),
+  );
+
   // Exported field_instance: 'node-meetings-field_notes_files'.
   $field_instances['node-meetings-field_notes_files'] = array(
     'bundle' => 'meetings',
@@ -4138,7 +4242,7 @@ function members_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 9,
+      'weight' => 11,
     ),
   );
 
@@ -4178,7 +4282,7 @@ function members_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 8,
+      'weight' => 10,
     ),
   );
 
@@ -6124,6 +6228,8 @@ function members_field_default_field_instances() {
   t('Log2 of the Fold Change');
   t('LogFC');
   t('Map Location');
+  t('Meeting Slides Files');
+  t('Meeting Slides Text');
   t('Method');
   t('Middle Name');
   t('Mouse Differentially Expressed Genes');

@@ -23,6 +23,13 @@ function hboxplot_menu() {
     'access callback' => 'user_is_logged_in',
   );
 
+   $items['test-agora'] = array(
+    'title' => 'Check Agora data',
+    'description' => 'Compare studies',
+    'page callback' => 'hboxplot_file',
+    'access callback' => 'user_is_logged_in',
+  );
+
   return $items;
 }
 
@@ -663,6 +670,7 @@ function hboxplot_views_pre_render(&$view) {
     "MSBB_FP_CPM_CpDxAll_AD-NCI.csv");
 
     $mongo_array = hboxplot_query_mongo_file($gene_list, $file_list);
+    $agora_array = hboxplot_query_mongo_agora($gene_list);
 
     //dsm($mongo_array);
     usort($mongo_array, '_compare_filenames');
@@ -712,9 +720,12 @@ function hboxplot_views_pre_render(&$view) {
 
     $content1 = "<span id='htitle'>" . $gene_list . "</span>" .  hboxplot_block('vis1', $mongo_array, $category, $chart_size);
 
+    $content2 = "<span id='htitle'>" . $gene_list . "</span>" .  hboxplot_block('vis1', $agora_array, $category, $chart_size);
+
     $content = '<div id="hplots2">';
     $content .= "<span id='gtitle'></span>";
     $content .= $content1;
+    $content .= $content2;
     $content .= '</div>';
     $content .= $default_header;
 
@@ -734,5 +745,85 @@ function _compare_br($a, $b) {
 }
 
 
+function hboxplot_query_mongo_agora($input_gene) {
+
+
+    if (empty($input_gene)) {
+      $gene_list = array('PRELP');
+    } else {
+      $input_gene = strtoupper($input_gene);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_gene);
+      $gene_list = array_filter($gene_list);
+      $trimmed_array = array_map('trim', $gene_list);
+      $gene_list = $trimmed_array;
+      $species = array("human");
+      $gene_list = array_map('_query_synonyms', $gene_list, $species);
+      //var_dump($gene_list);
+
+    }
+
+
+    // Create a Mongo connection and connect to database //echo $db;
+    $mongo = new MongoClient("mongodb://localhost");
+    $db = $mongo->cats;
+
+    // Select the expression collection for gene expression info
+    $coll = $db->agora_expression;
+
+    //Agora Specific variables
+    //$strat_factor?
+    $contrast = "AD-CONTROL";
+    $model = "Diagnosis"; //Other options: Diagnosis, Diagnosis.Sex, APOE4, Diagnosis.AOD,"SourceDiagnosis"
+
+    // Filter on gene
+    //db.human_expression.find({"GeneSymbol":"CD33","Contrast":"AD-NCI","StratFactor":"CpDxAll"}).count()
+    //$query = array("GeneSymbol" => array('$in' => $gene_list));
+     $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
+             array('Contrast' => $contrast),
+             array('Model' => $model),
+             ) );
+
+    //dsm($query);
+
+    $cursor = $coll->find($query);
+    $cursor->timeout(-1);
+    $cursor->sort(array('Rank' => 1));
+    $cursor->limit( 500 );
+    //$total = (string)$cursor->count(); //To find total number of documents
+    //dsm($total);
+    //$cursor->limit( 5 );
+
+     //Access query results
+     $result = array();
+     $filenames = array();
+     $i = 0;
+
+     //Model,BrainRegionCode,Contrast,EnsemblID,logFC,CIL,CIR,AveExpr,t,PValue,adjPVal,B,Direction,GeneSymbol,percentage_gc_content,gene_length,Sex,Study,FileName
+     foreach ($cursor as $doc) {
+       //var_dump($doc);
+       $result[$i]['Study'] = $doc['Study'];
+       $result[$i]['BrainRegion'] = $doc['BrainRegionCode'];
+       $result[$i]['Technology'] = "";
+       $result[$i]['FileName'] = "Agora_" . $doc['Study'] . "_" . $doc['BrainRegionCode'];
+       $result[$i]['FileName2'] = $doc['FileName'];
+       //$result[$i]['ProbeID'] = !empty($doc['ProbeID']) ? $doc['ProbeID'] : "";
+       $result[$i]['logFC'] = $doc['logFC'];
+       $result[$i]['CIL'] = $doc['CIL'];
+       $result[$i]['CIR'] = $doc['CIR'];
+       $result[$i]['PValue'] = $doc['PValue'];
+       $result[$i]['adjPVal'] = $doc['adjPVal'];
+       $result[$i]['Sex'] = $doc['Sex'];
+       $result[$i]['Model'] = $doc['Model'];
+       $result[$i]['Contrast'] = $doc['Contrast'];
+       $filenames[] = $doc['FileName'];
+       $i++;
+     }
+
+  //dsm($result);
+
+  return $result;
+
+}
 
 ?>

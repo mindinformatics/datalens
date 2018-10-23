@@ -377,8 +377,10 @@ function ajax_hplot_callback_file($form, $form_state) {
   );
 
   $data_rows = hboxplot_query_mongo_file($gene, $data_files);
+  $official_gene_symbol = $data_rows[0]['GeneSymbol'];
+  dsm($data_rows);
   usort($data_rows, '_compare_filenames');
-	$content1 = "<span id='htitle'>" . $gene . "</span>" .  hboxplot_block('vis1', $data_rows, $category, $chart_size);
+	$content1 = "<span id='htitle'>" . $official_gene_symbol . "</span>" .  hboxplot_block('vis1', $data_rows, $category, $chart_size);
 
   $content = '<div id="hplots2">';
   $content .= "<span id='gtitle'></span>";
@@ -717,8 +719,9 @@ function hboxplot_views_pre_render(&$view) {
     $default_header = $view->header['area_text_custom']->options['content'];
     $category = "FileName";
     $chart_size = "single";
+    $official_gene_symbol = $mongo_array[0]['GeneSymbol'];
 
-    $content1 = "<span id='htitle'>" . $gene_list . "</span>" .  hboxplot_block('vis1', $mongo_array, $category, $chart_size);
+    $content1 = "<span id='htitle'>" . $official_gene_symbol . "</span>" .  hboxplot_block('vis1', $mongo_array, $category, $chart_size);
 
     //$content2 = "<span id='htitle'>" . $gene_list . "</span>" .  hboxplot_block('vis1', $agora_array, $category, $chart_size);
 

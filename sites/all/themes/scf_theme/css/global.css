@@ -2125,11 +2125,16 @@ ul.bef-tree-child.bef-tree-depth-2 {
 
 .group-agenda h3,
 .group-reports h3,
+.group-slides h3,
 .group-notes h3 {
   color: grey;
   font-size: 18px;
 
 
+}
+
+.field-name-field-agenda-files {
+  padding-bottom: 30px;
 }
 
 .group-agenda {
@@ -2140,6 +2145,7 @@ ul.bef-tree-child.bef-tree-depth-2 {
 
 
 .group-reports,
+.group-slides,
 .group-notes {
   display: inline-block;
   float: right;

@@ -13,7 +13,7 @@ function forcedirected_menu() {
     'title' => 'ForceDirected Graph',
     'description' => 'Different visualization examples using d3.',
     'page callback' => 'forcedirected_json',
-    'access callback' => TRUE,
+    'access callback' => 'user_is_logged_in',
   );
 
 

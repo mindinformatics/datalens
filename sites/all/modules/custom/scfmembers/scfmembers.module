@@ -83,8 +83,8 @@ function scfmembers_user_top_menu_block_content() {
     $username =  check_plain(_scfmembers_current_user_full_name());
     $links[] = l(t('Log Out'), 'user/logout');
     $links[] = l(t('My Profile'), 'members/' . $user->uid);
-    $links[] = l(t('Edit My Profile'), 'user/' . $user->uid . '/edit');
-    $links[] = l(t('Edit My Account'), 'user/' . $user->uid . '/edit/xf_profile');
+    $links[] = l(t('Edit My Profile'), 'user/' . $user->uid . '/edit/xf_profile');
+    $links[] = l(t('Edit My Account'), 'user/' . $user->uid . '/edit');
     //$links[] = l(t('Contact Admin'), 'contact');
     //$links[] = l(t('My Favorites'), 'user/' . $user->uid . '/bookmarks');
   }

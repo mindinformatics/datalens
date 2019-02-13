@@ -27,10 +27,10 @@ genes = genes_list[,"GeneSymbol"]
 #analysisFile=analysisFile[(analysisFile$Contrast == "B3-B1"), ] # Choose just B3-B1 and RNA-Seq
 #analysisFile=analysisFile[(analysisFile$StratFactor == "CpDxLow" & analysisFile$Contrast == "AD-NCI" & analysisFile$DataType != "RC"), ]
 #analysisFile=analysisFile[(analysisFile$StratFactor == "CpDxAll"), ]
-analysisFile=analysisFile[(analysisFile$StratFactor == "CpDxLow" & analysisFile$Contrast == "AD-NCI" & analysisFile$DataType != "RC"), ]
+analysisFile=analysisFile[(analysisFile$StratFactor == "CpDxLow" & analysisFile$Contrast == "AD-NCI" & analysisFile$DataType != "CPM"), ]
 
 # Set Output File Name based on Contrast
-fname2 = "Paper-CpDxLow-AD-NCI-Bubblechart-ZhangGenes.csv"
+fname2 = "Funding-CpDxLow-AD-NCI-Bubblechart-CaGenes.csv"
 
 
 # Create output dataframe.

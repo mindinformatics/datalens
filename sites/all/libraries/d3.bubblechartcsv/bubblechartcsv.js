@@ -247,14 +247,14 @@
       }
     });
 
-/*
+
     console.debug('max_size');
     console.debug(max_size);
     console.debug('max_pval');
     console.debug(max_pval);
     console.debug('max_adj_pval');
     console.debug(max_adj_pval);
- */
+
 
     i = 0;
     min_size = 100;
@@ -273,14 +273,14 @@
       }
     });
 
-/*
+
     console.debug('min_size');
     console.debug(min_size);
     console.debug('min_pval');
     console.debug(min_pval);
     console.debug('min_adj_pval');
     console.debug(min_adj_pval);
- */
+
 
 
     //Convert max_size and min_size from strings into numbers
@@ -312,15 +312,19 @@
     var cy2_text = cy1_text + min_size * 2 + 45;
     var cy2_texta = cy1_text + min_size * 2 + 60;
 
+    var formatSci = d3.format(".2e");
+
     slegendSvg.append("text")
       .attr('transform', 'translate(-' + 32 + ',' + cy1_text + ')')
       .style("text-anchor", "start")
-      .text("  Pvalue: " + max_pval.substring(0, 8));
+      //.text("P-value: " + max_pval.substring(0, 8));
+      .text("P-value: " + formatSci(max_pval));
+
 
     slegendSvg.append("text")
       .attr('transform', 'translate(-' + 32 + ',' + cy1_texta + ')')
       .style("text-anchor", "start")
-      .text("AdjPval: " + max_adj_pval.substring(0, 8));
+      .text("Adj P-value: " + formatSci(max_adj_pval));
 
     slegendSvg.append("circle")
       .attr("r", min_size)
@@ -334,13 +338,13 @@
     slegendSvg.append("text")
         .attr('transform', 'translate(-' + 32 + ',' + cy2_text + ')')
         .style("text-anchor", "start")
-        .text("Pvalue: " + min_pval.substring(0, 8));
+        .text("P-value: " + formatSci(min_pval));
 
 
     slegendSvg.append("text")
         .attr('transform', 'translate(-' + 32 + ',' + cy2_texta + ')')
         .style("text-anchor", "start")
-        .text("AdjPval: " + min_adj_pval.substring(0, 8));
+        .text("Adj P-value: " + formatSci(min_adj_pval));
 
 
 

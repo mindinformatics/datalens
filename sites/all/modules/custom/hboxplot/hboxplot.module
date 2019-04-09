@@ -723,12 +723,12 @@ function hboxplot_views_pre_render(&$view) {
 
     $content1 = "<span id='htitle'>" . $official_gene_symbol . "</span>" .  hboxplot_block('vis1', $mongo_array, $category, $chart_size);
 
-    //$content2 = "<span id='htitle'>" . $gene_list . "</span>" .  hboxplot_block('vis1', $agora_array, $category, $chart_size);
+    $content2 = "<span id='htitle'>" . $gene_list . "</span>" .  hboxplot_block('vis1', $agora_array, $category, $chart_size);
 
     $content = '<div id="hplots2">';
     $content .= "<span id='gtitle'></span>";
     $content .= $content1;
-    //$content .= $content2;
+    $content .= $content2;
     $content .= '</div>';
     $content .= $default_header;
 

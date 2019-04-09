@@ -530,13 +530,12 @@ function _query_mongo_boxplot($input_genes, $study) {
           'Braak' => (isset($doc['Braak']))? _braak_bucket2($doc['Braak']): null,
           'CERAD' => (isset($doc['Cerad']))? $doc['Cerad']: null
           );
-
        }
        $i++;
      }
 
     //"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"
-    //  "1000_CER","MayoBrainBank_Dickson","Cerebellum","AD","F","90_or_above","34","708.7612"
+    //"1000_CER","MayoBrainBank_Dickson","Cerebellum","AD","F","90_or_above","34","708.7612"
 
     //dsm($row);
 

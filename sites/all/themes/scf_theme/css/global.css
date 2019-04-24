@@ -230,6 +230,20 @@ nav {
 	display: none;
 }
 
+/** Abbvie integration css **/
+nav.navigation {
+	display: none;
+}
+
+#region-user-second {
+	float: right;
+	width: 300px;
+}
+#breadcrumb {
+display: none;
+}
+
+
 #region-menu {
 	height: 30px;
 }

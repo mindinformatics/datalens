@@ -1,0 +1,27 @@
+name = pmap2 pathways from ABBVIE
+description = D3 PMAP library
+files[js][] = scattercsv.js
+files[js][] = script/d3.v3.min.js
+files[js][] = script/d3-legend.min.js
+files[js][] = script/jquery-ui.js
+files[js][] = script/jquery-3.3.1.js
+files[js][] = script/jquery.slidereveal.js
+files[js][] = script/math.js
+files[css][] = css/main.css
+files[css][] = css/network.css
+version = 1.0
+
+; Information added by Drupal.org packaging script on 2015-12-27
+version = "7.x-1.0-alpha2"
+core = "7.x"
+project = "d3"
+datestamp = "1451186943"
+
+
+
+
+
+
+
+
+

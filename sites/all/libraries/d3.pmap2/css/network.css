@@ -1,0 +1,201 @@
+
+body {
+  overflow:hidden;
+   margin:0;
+}
+
+text {
+  font-family: Times New Roman;
+  pointer-events: none;
+}
+.accordion {
+    background-color: rgb(255,255,255,0.5);
+    color: #444;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+	
+}
+
+.active, .accordion:hover {
+    background-color: rgb(68,68,68,0.3);
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: rgb(200,200,200,0.5);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+	margin-bottom:0px
+	
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    //right: 0;
+	left: 0;
+    background-color: rgb(200,200,200,0.5);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    /*right: 25px;*/
+	left: 0px;
+    font-size: 36px;
+    margin-left: 10px;
+	margin-right: 50px;
+}
+.closebtn a{
+/*padding: 8px 8px 8px 10px;*/
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+//Top NavBar
+
+#container {
+			width: 1240px;
+			position: relative;
+			background: rgb(0.2, 255,255,255);
+			margin: 0 auto;
+			margin-top: 0;
+			padding: 40px;
+			border-radius: 0 0 5px 5px;
+			box-shadow: 0 0 8px 2px #000;
+		}
+#main_nav {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #fff;
+	width: 100%;
+	
+	border-radius: 0 0 5px 5px;
+	box-shadow: 0 0 8px 2px #000;
+}
+
+.with_nav #main_nav {
+	display: block;
+}
+
+.access_aid {
+	display: none;
+}
+
+#access_nav {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 0;
+	padding-top: 40px;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background: white 10px 10px / 20px 20px no-repeat;
+
+	background-image: -webkit-repeating-linear-gradient(#ccc, #ccc 2px, #fff 2px, #fff 4px);
+	background-image: repeating-linear-gradient(#ccc, #ccc 2px, #fff 2px, #fff 4px);
+	z-index: 1;
+}
+
+.with_nav #access_nav {
+	background-image: linear-gradient(45deg, transparent 13px, #ccc 13px, #ccc 15px, transparent 0), linear-gradient(-45deg, white 13px, #ccc 13px, #ccc 15px, white 0);
+}
+
+
+/* Weight Threshold Slider */
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 0;
+    background: url('../images/icons/rangeIcon.png');
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border: 0;
+    background: url('../images/icons/rangeIcon.png');
+    cursor: pointer;
+}
+
+
+.node path.selected {
+  stroke: black !important;
+  stroke-width: 2 !important;
+}
+.brush .extent {
+  fill-opacity: .1;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}

@@ -1,0 +1,3600 @@
+{
+    "directed": false,
+    "graph": [],
+    "links": [
+        {
+            "source": 68,
+            "target": 81,
+            "weight": 0.8084125287
+        },
+        {
+            "source": 51,
+            "target": 81,
+            "weight": 0.7997789109000001
+        },
+        {
+            "source": 75,
+            "target": 95,
+            "weight": 0.7906662368
+        },
+        {
+            "source": 55,
+            "target": 95,
+            "weight": 0.7828779091
+        },
+        {
+            "source": 2,
+            "target": 81,
+            "weight": 0.7815863976999999
+        },
+        {
+            "source": 55,
+            "target": 75,
+            "weight": 0.7612947590000001
+        },
+        {
+            "source": 2,
+            "target": 51,
+            "weight": 0.7373335161
+        },
+        {
+            "source": 51,
+            "target": 68,
+            "weight": 0.7344310045999999
+        },
+        {
+            "source": 21,
+            "target": 68,
+            "weight": 0.7248167328
+        },
+        {
+            "source": 21,
+            "target": 81,
+            "weight": 0.7236329512999999
+        },
+        {
+            "source": 5,
+            "target": 44,
+            "weight": 0.7173647195999999
+        },
+        {
+            "source": 37,
+            "target": 79,
+            "weight": 0.7157353879999999
+        },
+        {
+            "source": 29,
+            "target": 79,
+            "weight": 0.7140300051
+        },
+        {
+            "source": 51,
+            "target": 95,
+            "weight": 0.7079029383
+        },
+        {
+            "source": 26,
+            "target": 75,
+            "weight": 0.7042360073
+        },
+        {
+            "source": 51,
+            "target": 63,
+            "weight": 0.6956111138
+        },
+        {
+            "source": 2,
+            "target": 68,
+            "weight": 0.6949968317
+        },
+        {
+            "source": 44,
+            "target": 95,
+            "weight": 0.692120005
+        },
+        {
+            "source": 37,
+            "target": 44,
+            "weight": 0.6920345659999999
+        },
+        {
+            "source": 63,
+            "target": 79,
+            "weight": 0.6863743349
+        },
+        {
+            "source": 68,
+            "target": 96,
+            "weight": 0.6848956612999999
+        },
+        {
+            "source": 19,
+            "target": 55,
+            "weight": 0.6848101833
+        },
+        {
+            "source": 13,
+            "target": 55,
+            "weight": 0.6807751853
+        },
+        {
+            "source": 26,
+            "target": 95,
+            "weight": 0.6799647949
+        },
+        {
+            "source": 33,
+            "target": 68,
+            "weight": 0.6798105045999999
+        },
+        {
+            "source": 32,
+            "target": 59,
+            "weight": 0.6793569387999999
+        },
+        {
+            "source": 51,
+            "target": 55,
+            "weight": 0.6785862082999999
+        },
+        {
+            "source": 25,
+            "target": 81,
+            "weight": 0.6699873778000001
+        },
+        {
+            "source": 10,
+            "target": 39,
+            "weight": 0.6657090039
+        },
+        {
+            "source": 19,
+            "target": 95,
+            "weight": 0.660543908
+        },
+        {
+            "source": 55,
+            "target": 79,
+            "weight": 0.6595428315
+        },
+        {
+            "source": 10,
+            "target": 58,
+            "weight": 0.6579545797999999
+        },
+        {
+            "source": 55,
+            "target": 63,
+            "weight": 0.6558376159
+        },
+        {
+            "source": 51,
+            "target": 70,
+            "weight": 0.6557006256
+        },
+        {
+            "source": 47,
+            "target": 82,
+            "weight": 0.6550898558
+        },
+        {
+            "source": 29,
+            "target": 58,
+            "weight": 0.6549142877
+        },
+        {
+            "source": 9,
+            "target": 37,
+            "weight": 0.6522120861999999
+        },
+        {
+            "source": 34,
+            "target": 37,
+            "weight": 0.6520024004
+        },
+        {
+            "source": 57,
+            "target": 95,
+            "weight": 0.6512049283
+        },
+        {
+            "source": 68,
+            "target": 70,
+            "weight": 0.6501673992
+        },
+        {
+            "source": 79,
+            "target": 95,
+            "weight": 0.649114261
+        },
+        {
+            "source": 51,
+            "target": 79,
+            "weight": 0.6491142035
+        },
+        {
+            "source": 44,
+            "target": 89,
+            "weight": 0.6483125968
+        },
+        {
+            "source": 9,
+            "target": 59,
+            "weight": 0.6479152625
+        },
+        {
+            "source": 19,
+            "target": 51,
+            "weight": 0.6455073768999999
+        },
+        {
+            "source": 21,
+            "target": 96,
+            "weight": 0.6447641343
+        },
+        {
+            "source": 10,
+            "target": 21,
+            "weight": 0.6426510452
+        },
+        {
+            "source": 26,
+            "target": 44,
+            "weight": 0.6414701007
+        },
+        {
+            "source": 81,
+            "target": 96,
+            "weight": 0.6409429957
+        },
+        {
+            "source": 39,
+            "target": 68,
+            "weight": 0.6393060218
+        },
+        {
+            "source": 39,
+            "target": 97,
+            "weight": 0.6377141088
+        },
+        {
+            "source": 32,
+            "target": 79,
+            "weight": 0.6368626303
+        },
+        {
+            "source": 2,
+            "target": 28,
+            "weight": 0.6364085486
+        },
+        {
+            "source": 26,
+            "target": 37,
+            "weight": 0.6344489664
+        },
+        {
+            "source": 74,
+            "target": 79,
+            "weight": 0.6343662358
+        },
+        {
+            "source": 32,
+            "target": 37,
+            "weight": 0.6312671755
+        },
+        {
+            "source": 13,
+            "target": 95,
+            "weight": 0.6312208099000001
+        },
+        {
+            "source": 5,
+            "target": 89,
+            "weight": 0.6306413445
+        },
+        {
+            "source": 33,
+            "target": 51,
+            "weight": 0.6287378499
+        },
+        {
+            "source": 6,
+            "target": 95,
+            "weight": 0.6283000986
+        },
+        {
+            "source": 26,
+            "target": 78,
+            "weight": 0.6278127362
+        },
+        {
+            "source": 29,
+            "target": 63,
+            "weight": 0.6275119516
+        },
+        {
+            "source": 48,
+            "target": 75,
+            "weight": 0.6235365097
+        },
+        {
+            "source": 34,
+            "target": 79,
+            "weight": 0.6220065536
+        },
+        {
+            "source": 2,
+            "target": 33,
+            "weight": 0.6213661757
+        },
+        {
+            "source": 2,
+            "target": 25,
+            "weight": 0.6204687431
+        },
+        {
+            "source": 34,
+            "target": 44,
+            "weight": 0.6190240285999999
+        },
+        {
+            "source": 48,
+            "target": 95,
+            "weight": 0.6187420404999999
+        },
+        {
+            "source": 34,
+            "target": 95,
+            "weight": 0.6184688004
+        },
+        {
+            "source": 35,
+            "target": 68,
+            "weight": 0.6163970677
+        },
+        {
+            "source": 24,
+            "target": 72,
+            "weight": 0.616340418
+        },
+        {
+            "source": 28,
+            "target": 33,
+            "weight": 0.6159057397
+        },
+        {
+            "source": 63,
+            "target": 81,
+            "weight": 0.6146428545
+        },
+        {
+            "source": 44,
+            "target": 47,
+            "weight": 0.6143480879
+        },
+        {
+            "source": 44,
+            "target": 82,
+            "weight": 0.6143094222
+        },
+        {
+            "source": 9,
+            "target": 32,
+            "weight": 0.6107669064
+        },
+        {
+            "source": 13,
+            "target": 57,
+            "weight": 0.6094551513
+        },
+        {
+            "source": 10,
+            "target": 35,
+            "weight": 0.6068902342
+        },
+        {
+            "source": 43,
+            "target": 63,
+            "weight": 0.6051853000999999
+        },
+        {
+            "source": 5,
+            "target": 82,
+            "weight": 0.6046354445000001
+        },
+        {
+            "source": 6,
+            "target": 75,
+            "weight": 0.6045118975
+        },
+        {
+            "source": 60,
+            "target": 97,
+            "weight": 0.6041437143
+        },
+        {
+            "source": 25,
+            "target": 51,
+            "weight": 0.6014502053
+        },
+        {
+            "source": 13,
+            "target": 14,
+            "weight": 0.6006513151
+        },
+        {
+            "source": 63,
+            "target": 74,
+            "weight": 0.5965621815
+        },
+        {
+            "source": 37,
+            "target": 84,
+            "weight": 0.5931529949000001
+        },
+        {
+            "source": 28,
+            "target": 68,
+            "weight": 0.5912488727
+        },
+        {
+            "source": 5,
+            "target": 95,
+            "weight": 0.5904544056000001
+        },
+        {
+            "source": 10,
+            "target": 68,
+            "weight": 0.5902240709000001
+        },
+        {
+            "source": 26,
+            "target": 79,
+            "weight": 0.5895247889999999
+        },
+        {
+            "source": 78,
+            "target": 82,
+            "weight": 0.5888246182
+        },
+        {
+            "source": 39,
+            "target": 60,
+            "weight": 0.5872101856
+        },
+        {
+            "source": 37,
+            "target": 59,
+            "weight": 0.5871075547
+        },
+        {
+            "source": 6,
+            "target": 48,
+            "weight": 0.5862727636999999
+        },
+        {
+            "source": 23,
+            "target": 55,
+            "weight": 0.5860837836
+        },
+        {
+            "source": 23,
+            "target": 95,
+            "weight": 0.5856399411
+        },
+        {
+            "source": 10,
+            "target": 56,
+            "weight": 0.5847934011
+        },
+        {
+            "source": 44,
+            "target": 50,
+            "weight": 0.5837574959
+        },
+        {
+            "source": 29,
+            "target": 83,
+            "weight": 0.5826851049
+        },
+        {
+            "source": 70,
+            "target": 79,
+            "weight": 0.580910476
+        },
+        {
+            "source": 78,
+            "target": 95,
+            "weight": 0.5806640703
+        },
+        {
+            "source": 26,
+            "target": 55,
+            "weight": 0.5798812457
+        },
+        {
+            "source": 21,
+            "target": 39,
+            "weight": 0.5757912688
+        },
+        {
+            "source": 5,
+            "target": 47,
+            "weight": 0.5756054689
+        },
+        {
+            "source": 42,
+            "target": 91,
+            "weight": 0.5755128967
+        },
+        {
+            "source": 79,
+            "target": 80,
+            "weight": 0.5734726729999999
+        },
+        {
+            "source": 44,
+            "target": 86,
+            "weight": 0.5700785107999999
+        },
+        {
+            "source": 48,
+            "target": 55,
+            "weight": 0.5687693547
+        },
+        {
+            "source": 8,
+            "target": 15,
+            "weight": 0.5684696883
+        },
+        {
+            "source": 55,
+            "target": 57,
+            "weight": 0.5656751739
+        },
+        {
+            "source": 37,
+            "target": 67,
+            "weight": 0.5656454563000001
+        },
+        {
+            "source": 5,
+            "target": 91,
+            "weight": 0.5655643220000001
+        },
+        {
+            "source": 35,
+            "target": 39,
+            "weight": 0.5646352727
+        },
+        {
+            "source": 56,
+            "target": 68,
+            "weight": 0.5646058788
+        },
+        {
+            "source": 39,
+            "target": 85,
+            "weight": 0.5626104859000001
+        },
+        {
+            "source": 50,
+            "target": 95,
+            "weight": 0.5607766171
+        },
+        {
+            "source": 94,
+            "target": 95,
+            "weight": 0.5535196327
+        },
+        {
+            "source": 63,
+            "target": 83,
+            "weight": 0.5529773673
+        },
+        {
+            "source": 18,
+            "target": 78,
+            "weight": 0.5521464704
+        },
+        {
+            "source": 44,
+            "target": 94,
+            "weight": 0.5519150703
+        },
+        {
+            "source": 13,
+            "target": 19,
+            "weight": 0.5515825289
+        },
+        {
+            "source": 86,
+            "target": 89,
+            "weight": 0.5480710728
+        },
+        {
+            "source": 8,
+            "target": 54,
+            "weight": 0.5455554081
+        },
+        {
+            "source": 37,
+            "target": 69,
+            "weight": 0.5451790916
+        },
+        {
+            "source": 18,
+            "target": 61,
+            "weight": 0.5412277318
+        },
+        {
+            "source": 8,
+            "target": 47,
+            "weight": 0.5408345293
+        },
+        {
+            "source": 8,
+            "target": 49,
+            "weight": 0.5404975454
+        },
+        {
+            "source": 5,
+            "target": 94,
+            "weight": 0.5382576061
+        },
+        {
+            "source": 45,
+            "target": 55,
+            "weight": 0.5374759692000001
+        },
+        {
+            "source": 24,
+            "target": 69,
+            "weight": 0.5374254564000001
+        },
+        {
+            "source": 46,
+            "target": 89,
+            "weight": 0.53698309
+        },
+        {
+            "source": 26,
+            "target": 32,
+            "weight": 0.52723228
+        },
+        {
+            "source": 15,
+            "target": 49,
+            "weight": 0.525065231
+        },
+        {
+            "source": 43,
+            "target": 74,
+            "weight": 0.52308216
+        },
+        {
+            "source": 79,
+            "target": 83,
+            "weight": 0.522709874
+        },
+        {
+            "source": 43,
+            "target": 83,
+            "weight": 0.5198392058
+        },
+        {
+            "source": 25,
+            "target": 40,
+            "weight": 0.5182192421
+        },
+        {
+            "source": 2,
+            "target": 7,
+            "weight": 0.5163262658
+        },
+        {
+            "source": 26,
+            "target": 80,
+            "weight": 0.5151086917000001
+        },
+        {
+            "source": 19,
+            "target": 45,
+            "weight": 0.5150175606
+        },
+        {
+            "source": 26,
+            "target": 82,
+            "weight": 0.5140244558
+        },
+        {
+            "source": 30,
+            "target": 55,
+            "weight": 0.5135759042
+        },
+        {
+            "source": 73,
+            "target": 97,
+            "weight": 0.5107259278
+        },
+        {
+            "source": 16,
+            "target": 59,
+            "weight": 0.5065340191
+        },
+        {
+            "source": 54,
+            "target": 82,
+            "weight": 0.5065111832
+        },
+        {
+            "source": 16,
+            "target": 27,
+            "weight": 0.5051290654
+        },
+        {
+            "source": 79,
+            "target": 84,
+            "weight": 0.5042612035
+        },
+        {
+            "source": 69,
+            "target": 79,
+            "weight": 0.502106053
+        },
+        {
+            "source": 74,
+            "target": 83,
+            "weight": 0.5015275758
+        },
+        {
+            "source": 29,
+            "target": 71,
+            "weight": 0.5003025959
+        },
+        {
+            "source": 7,
+            "target": 81,
+            "weight": 0.5002589843
+        },
+        {
+            "source": 32,
+            "target": 80,
+            "weight": 0.49803129119999995
+        },
+        {
+            "source": 5,
+            "target": 8,
+            "weight": 0.4979893856
+        },
+        {
+            "source": 9,
+            "target": 79,
+            "weight": 0.49689619840000004
+        },
+        {
+            "source": 31,
+            "target": 97,
+            "weight": 0.494389714
+        },
+        {
+            "source": 41,
+            "target": 93,
+            "weight": 0.49352391799999995
+        },
+        {
+            "source": 10,
+            "target": 81,
+            "weight": 0.4907980418
+        },
+        {
+            "source": 62,
+            "target": 96,
+            "weight": 0.483624203
+        },
+        {
+            "source": 22,
+            "target": 59,
+            "weight": 0.48214811
+        },
+        {
+            "source": 34,
+            "target": 50,
+            "weight": 0.48161534479999996
+        },
+        {
+            "source": 39,
+            "target": 73,
+            "weight": 0.4796590811
+        },
+        {
+            "source": 69,
+            "target": 72,
+            "weight": 0.4793998795
+        },
+        {
+            "source": 15,
+            "target": 47,
+            "weight": 0.4783976467
+        },
+        {
+            "source": 49,
+            "target": 52,
+            "weight": 0.47782570869999996
+        },
+        {
+            "source": 47,
+            "target": 54,
+            "weight": 0.476695
+        },
+        {
+            "source": 55,
+            "target": 64,
+            "weight": 0.4759463294
+        },
+        {
+            "source": 60,
+            "target": 65,
+            "weight": 0.4747067672
+        },
+        {
+            "source": 9,
+            "target": 76,
+            "weight": 0.4745621858
+        },
+        {
+            "source": 47,
+            "target": 89,
+            "weight": 0.47371541619999996
+        },
+        {
+            "source": 20,
+            "target": 29,
+            "weight": 0.47302642689999996
+        },
+        {
+            "source": 34,
+            "target": 69,
+            "weight": 0.468875255
+        },
+        {
+            "source": 71,
+            "target": 79,
+            "weight": 0.4684017493
+        },
+        {
+            "source": 3,
+            "target": 86,
+            "weight": 0.46637567630000004
+        },
+        {
+            "source": 15,
+            "target": 52,
+            "weight": 0.46594837829999997
+        },
+        {
+            "source": 71,
+            "target": 83,
+            "weight": 0.4652337031
+        },
+        {
+            "source": 18,
+            "target": 95,
+            "weight": 0.4645791048
+        },
+        {
+            "source": 9,
+            "target": 16,
+            "weight": 0.4645502388
+        },
+        {
+            "source": 38,
+            "target": 59,
+            "weight": 0.462818134
+        },
+        {
+            "source": 8,
+            "target": 82,
+            "weight": 0.45990090170000003
+        },
+        {
+            "source": 60,
+            "target": 73,
+            "weight": 0.4595863264
+        },
+        {
+            "source": 17,
+            "target": 86,
+            "weight": 0.45862815310000005
+        },
+        {
+            "source": 23,
+            "target": 57,
+            "weight": 0.4560734897
+        },
+        {
+            "source": 13,
+            "target": 45,
+            "weight": 0.45245269829999996
+        },
+        {
+            "source": 4,
+            "target": 13,
+            "weight": 0.4518195757
+        },
+        {
+            "source": 14,
+            "target": 57,
+            "weight": 0.4502907912
+        },
+        {
+            "source": 10,
+            "target": 85,
+            "weight": 0.4493584864
+        },
+        {
+            "source": 61,
+            "target": 95,
+            "weight": 0.4481501461
+        },
+        {
+            "source": 13,
+            "target": 30,
+            "weight": 0.4480249935
+        },
+        {
+            "source": 49,
+            "target": 54,
+            "weight": 0.4473168968
+        },
+        {
+            "source": 5,
+            "target": 78,
+            "weight": 0.44604707979999997
+        },
+        {
+            "source": 68,
+            "target": 79,
+            "weight": 0.44348193799999996
+        },
+        {
+            "source": 0,
+            "target": 37,
+            "weight": 0.4420209486
+        },
+        {
+            "source": 41,
+            "target": 67,
+            "weight": 0.44164659359999997
+        },
+        {
+            "source": 36,
+            "target": 51,
+            "weight": 0.4410112507
+        },
+        {
+            "source": 12,
+            "target": 67,
+            "weight": 0.4377114323
+        },
+        {
+            "source": 56,
+            "target": 58,
+            "weight": 0.43541223219999997
+        },
+        {
+            "source": 19,
+            "target": 88,
+            "weight": 0.43494303170000004
+        },
+        {
+            "source": 5,
+            "target": 42,
+            "weight": 0.4322933404
+        },
+        {
+            "source": 12,
+            "target": 37,
+            "weight": 0.42927460619999996
+        },
+        {
+            "source": 10,
+            "target": 97,
+            "weight": 0.42777407759999997
+        },
+        {
+            "source": 23,
+            "target": 64,
+            "weight": 0.4254113094
+        },
+        {
+            "source": 92,
+            "target": 96,
+            "weight": 0.4222738936
+        },
+        {
+            "source": 1,
+            "target": 34,
+            "weight": 0.4208167835
+        },
+        {
+            "source": 2,
+            "target": 40,
+            "weight": 0.42061977429999997
+        },
+        {
+            "source": 82,
+            "target": 91,
+            "weight": 0.4203379436
+        },
+        {
+            "source": 1,
+            "target": 69,
+            "weight": 0.4197126657
+        },
+        {
+            "source": 31,
+            "target": 39,
+            "weight": 0.4191330461
+        },
+        {
+            "source": 41,
+            "target": 69,
+            "weight": 0.4189555817
+        },
+        {
+            "source": 67,
+            "target": 84,
+            "weight": 0.4186492539
+        },
+        {
+            "source": 60,
+            "target": 90,
+            "weight": 0.4165772693
+        },
+        {
+            "source": 40,
+            "target": 81,
+            "weight": 0.41318810780000004
+        },
+        {
+            "source": 16,
+            "target": 22,
+            "weight": 0.4118414344
+        },
+        {
+            "source": 47,
+            "target": 86,
+            "weight": 0.41163407189999995
+        },
+        {
+            "source": 15,
+            "target": 54,
+            "weight": 0.40908110579999996
+        },
+        {
+            "source": 85,
+            "target": 97,
+            "weight": 0.40675150369999996
+        },
+        {
+            "source": 60,
+            "target": 85,
+            "weight": 0.4056290699
+        },
+        {
+            "source": 8,
+            "target": 52,
+            "weight": 0.40526995990000003
+        },
+        {
+            "source": 0,
+            "target": 32,
+            "weight": 0.4008871497
+        },
+        {
+            "source": 32,
+            "target": 76,
+            "weight": 0.40043963
+        },
+        {
+            "source": 17,
+            "target": 44,
+            "weight": 0.4002961471
+        },
+        {
+            "source": 32,
+            "target": 38,
+            "weight": 0.3948810527
+        },
+        {
+            "source": 17,
+            "target": 89,
+            "weight": 0.3926094179
+        },
+        {
+            "source": 1,
+            "target": 37,
+            "weight": 0.3920610879
+        },
+        {
+            "source": 2,
+            "target": 36,
+            "weight": 0.3889248975
+        },
+        {
+            "source": 7,
+            "target": 68,
+            "weight": 0.3876235393
+        },
+        {
+            "source": 12,
+            "target": 69,
+            "weight": 0.3864897893
+        },
+        {
+            "source": 12,
+            "target": 41,
+            "weight": 0.3854369278
+        },
+        {
+            "source": 67,
+            "target": 69,
+            "weight": 0.3836793703
+        },
+        {
+            "source": 4,
+            "target": 14,
+            "weight": 0.3826731835
+        },
+        {
+            "source": 55,
+            "target": 88,
+            "weight": 0.3808032961
+        },
+        {
+            "source": 14,
+            "target": 30,
+            "weight": 0.375538661
+        },
+        {
+            "source": 32,
+            "target": 66,
+            "weight": 0.3722659154
+        },
+        {
+            "source": 80,
+            "target": 87,
+            "weight": 0.3707922584
+        },
+        {
+            "source": 61,
+            "target": 78,
+            "weight": 0.3697712796
+        },
+        {
+            "source": 10,
+            "target": 29,
+            "weight": 0.3692893282
+        },
+        {
+            "source": 9,
+            "target": 22,
+            "weight": 0.36677705909999997
+        },
+        {
+            "source": 21,
+            "target": 62,
+            "weight": 0.3655478252
+        },
+        {
+            "source": 64,
+            "target": 95,
+            "weight": 0.36524520689999995
+        },
+        {
+            "source": 16,
+            "target": 37,
+            "weight": 0.3648536686
+        },
+        {
+            "source": 46,
+            "target": 86,
+            "weight": 0.361457939
+        },
+        {
+            "source": 59,
+            "target": 76,
+            "weight": 0.3609802122
+        },
+        {
+            "source": 26,
+            "target": 61,
+            "weight": 0.36065085560000004
+        },
+        {
+            "source": 65,
+            "target": 97,
+            "weight": 0.3595618828
+        },
+        {
+            "source": 67,
+            "target": 79,
+            "weight": 0.3527524057
+        },
+        {
+            "source": 35,
+            "target": 97,
+            "weight": 0.3513165578
+        },
+        {
+            "source": 41,
+            "target": 77,
+            "weight": 0.3457878507
+        },
+        {
+            "source": 9,
+            "target": 66,
+            "weight": 0.3291842312
+        },
+        {
+            "source": 17,
+            "target": 46,
+            "weight": 0.329041149
+        },
+        {
+            "source": 14,
+            "target": 55,
+            "weight": 0.3262289875
+        },
+        {
+            "source": 8,
+            "target": 91,
+            "weight": 0.3243237605
+        },
+        {
+            "source": 0,
+            "target": 26,
+            "weight": 0.3215243876
+        },
+        {
+            "source": 20,
+            "target": 63,
+            "weight": 0.319258412
+        },
+        {
+            "source": 37,
+            "target": 38,
+            "weight": 0.31801081010000004
+        },
+        {
+            "source": 51,
+            "target": 88,
+            "weight": 0.3170201682
+        },
+        {
+            "source": 68,
+            "target": 92,
+            "weight": 0.3083120964
+        },
+        {
+            "source": 8,
+            "target": 53,
+            "weight": 0.3082086482
+        },
+        {
+            "source": 8,
+            "target": 42,
+            "weight": 0.307486001
+        },
+        {
+            "source": 25,
+            "target": 36,
+            "weight": 0.3066805201
+        },
+        {
+            "source": 62,
+            "target": 68,
+            "weight": 0.3054959842
+        },
+        {
+            "source": 65,
+            "target": 73,
+            "weight": 0.30319705269999997
+        },
+        {
+            "source": 34,
+            "target": 72,
+            "weight": 0.29815478100000004
+        },
+        {
+            "source": 58,
+            "target": 79,
+            "weight": 0.2847277357
+        },
+        {
+            "source": 66,
+            "target": 79,
+            "weight": 0.284315753
+        },
+        {
+            "source": 79,
+            "target": 87,
+            "weight": 0.284202498
+        },
+        {
+            "source": 65,
+            "target": 90,
+            "weight": 0.2797316187
+        },
+        {
+            "source": 31,
+            "target": 73,
+            "weight": 0.2740960707
+        },
+        {
+            "source": 3,
+            "target": 46,
+            "weight": 0.2716804227
+        },
+        {
+            "source": 11,
+            "target": 21,
+            "weight": 0.2675771085
+        },
+        {
+            "source": 3,
+            "target": 17,
+            "weight": 0.2666821462
+        },
+        {
+            "source": 62,
+            "target": 92,
+            "weight": 0.2639891192
+        },
+        {
+            "source": 32,
+            "target": 87,
+            "weight": 0.2573839765
+        },
+        {
+            "source": 5,
+            "target": 53,
+            "weight": 0.2503979617
+        },
+        {
+            "source": 42,
+            "target": 53,
+            "weight": 0.2455875098
+        },
+        {
+            "source": 11,
+            "target": 81,
+            "weight": 0.2431724298
+        },
+        {
+            "source": 20,
+            "target": 83,
+            "weight": 0.22943199050000002
+        },
+        {
+            "source": 58,
+            "target": 68,
+            "weight": 0.22803935649999998
+        },
+        {
+            "source": 4,
+            "target": 30,
+            "weight": 0.22769669280000002
+        },
+        {
+            "source": 22,
+            "target": 27,
+            "weight": 0.2234994706
+        },
+        {
+            "source": 10,
+            "target": 11,
+            "weight": 0.2163321402
+        },
+        {
+            "source": 29,
+            "target": 81,
+            "weight": 0.2060746867
+        },
+        {
+            "source": 27,
+            "target": 59,
+            "weight": 0.2019281203
+        },
+        {
+            "source": 69,
+            "target": 93,
+            "weight": 0.19816915989999997
+        },
+        {
+            "source": 24,
+            "target": 34,
+            "weight": 0.184714651
+        },
+        {
+            "source": 1,
+            "target": 72,
+            "weight": 0.1726062764
+        },
+        {
+            "source": 12,
+            "target": 93,
+            "weight": 0.1607000695
+        },
+        {
+            "source": 67,
+            "target": 77,
+            "weight": 0.15381351199999999
+        },
+        {
+            "source": 73,
+            "target": 90,
+            "weight": 0.1501362365
+        }
+    ],
+    "multigraph": false,
+    "nodes": [
+        {
+            "DUBs": 1,
+            "Description": "CYLD lysine 63 deubiquitinase ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000083799",
+            "label": "CYLD",
+            "logFC": -0.0115593823,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0156811787,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ataxin 3 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000066427",
+            "label": "ATXN3",
+            "logFC": -0.10937094970000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 1,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "proteasome 26S subunit, non-ATPase 7 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000103035",
+            "label": "PSMD7",
+            "logFC": 0.0122543415,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 1,
+            "proteomics_fc": -1.0512813426,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "TNF alpha induced protein 3 ",
+            "E3 ligases and adaptor proteins": 1,
+            "chaperones": 0,
+            "direction": "UP",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000118503",
+            "label": "TNFAIP3",
+            "logFC": 0.48230463700000004,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin C-terminal hydrolase L1 ",
+            "E3 ligases and adaptor proteins": 1,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000154277",
+            "label": "UCHL1",
+            "logFC": -0.043361008099999994,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 1,
+            "proteomics_fc": 1.0215233702,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 4 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000114316",
+            "label": "USP4",
+            "logFC": 0.080838938,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000162607",
+            "label": "USP1",
+            "logFC": 0.10999818800000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 7 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000187555",
+            "label": "USP7",
+            "logFC": -0.0261345558,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0264229485,
+            "translation": 0,
+            "ubiquitin related": 1,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 5 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000111667",
+            "label": "USP5",
+            "logFC": -0.1171069205,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0006997475,
+            "translation": 0,
+            "ubiquitin related": 1,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 11 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000102226",
+            "label": "USP11",
+            "logFC": -0.20938773100000002,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.1037958255,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 9 X-linked ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000124486",
+            "label": "USP9X",
+            "logFC": 0.10367154710000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0481359635,
+            "translation": 0,
+            "ubiquitin related": 1,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 9 Y-linked ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000114374",
+            "label": "USP9Y",
+            "logFC": -0.2740930944,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "BRCA1 associated protein 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000163930",
+            "label": "BAP1",
+            "logFC": 0.0457762845,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "eukaryotic translation initiation factor 3 subunit F ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000175390",
+            "label": "EIF3F",
+            "logFC": -0.07282333790000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0775642099,
+            "translation": 1,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "eukaryotic translation initiation factor 3 subunit H ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000147677",
+            "label": "EIF3H",
+            "logFC": -0.033623641,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": 1.083555389,
+            "translation": 1,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 13 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000058056",
+            "label": "USP13",
+            "logFC": -0.24537566,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 14 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000101557",
+            "label": "USP14",
+            "logFC": -0.1037594151,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0485529356,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 6 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000129204",
+            "label": "USP6",
+            "logFC": -0.1737540936,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 2 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000036672",
+            "label": "USP2",
+            "logFC": -0.0194091761,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 10 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000103194",
+            "label": "USP10",
+            "logFC": 0.0465025071,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0173983759,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 8 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 1,
+            "heat shock proteins": 0,
+            "id": "ENSG00000138592",
+            "label": "USP8",
+            "logFC": 0.0392909188,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 34 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000115464",
+            "label": "USP34",
+            "logFC": 0.1141503856,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "poly(A) specific ribonuclease subunit PAN2 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000135473",
+            "label": "PAN2",
+            "logFC": 0.0710334902,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "Josephin domain containing 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000100221",
+            "label": "JOSD1",
+            "logFC": 0.0693221888,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 15 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000135655",
+            "label": "USP15",
+            "logFC": -0.059473880199999996,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0966099108,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 3 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000140455",
+            "label": "USP3",
+            "logFC": 0.1817232598,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase like 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000132952",
+            "label": "USPL1",
+            "logFC": 0.0216064523,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "proteasome 26S subunit, non-ATPase 14 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000115233",
+            "label": "PSMD14",
+            "logFC": -0.0427300734,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 1,
+            "proteomics_fc": -1.0046758322,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "pre-mRNA processing factor 8 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000174231",
+            "label": "PRPF8",
+            "logFC": 0.0204562631,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": 1.0098133341,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 16 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000156256",
+            "label": "USP16",
+            "logFC": -0.0009379385000000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "STAM binding protein ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 1,
+            "heat shock proteins": 0,
+            "id": "ENSG00000124356",
+            "label": "STAMBP",
+            "logFC": 0.0362653596,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0233403832999999,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 39 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000168883",
+            "label": "USP39",
+            "logFC": 0.0576631223,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 20 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000136878",
+            "label": "USP20",
+            "logFC": -0.1090946501,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 19 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000172046",
+            "label": "USP19",
+            "logFC": -0.029035221099999998,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "COP9 signalosome subunit 6 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 1,
+            "heat shock proteins": 0,
+            "id": "ENSG00000168090",
+            "label": "COPS6",
+            "logFC": -0.0534065527,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0603527715,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 1
+        },
+        {
+            "DUBs": 1,
+            "Description": "COP9 signalosome subunit 5 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 1,
+            "heat shock proteins": 0,
+            "id": "ENSG00000121022",
+            "label": "COPS5",
+            "logFC": -0.08481146390000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0106757246,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 1
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 18 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000184979",
+            "label": "USP18",
+            "logFC": 0.1118657434,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 33 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000077254",
+            "label": "USP33",
+            "logFC": -0.1040327208,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "OTU deubiquitinase 3 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "DOWN",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000169914",
+            "label": "OTUD3",
+            "logFC": -0.2788033691,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 22 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000124422",
+            "label": "USP22",
+            "logFC": -0.0163124382,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 24 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000162402",
+            "label": "USP24",
+            "logFC": 0.1251807904,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0681259938,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 49 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000164663",
+            "label": "USP49",
+            "logFC": -0.1570471343,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "SUMO specific peptidase 6 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000112701",
+            "label": "SENP6",
+            "logFC": 0.0171020061,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "SUMO specific peptidase 3 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000161956",
+            "label": "SENP3",
+            "logFC": 0.0069241172,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 21 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000143258",
+            "label": "USP21",
+            "logFC": 0.0563613068,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 25 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000155313",
+            "label": "USP25",
+            "logFC": 0.1156880239,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "SUMO specific peptidase 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000079387",
+            "label": "SENP1",
+            "logFC": 0.0692833559,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin C-terminal hydrolase L5 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000116750",
+            "label": "UCHL5",
+            "logFC": -0.20947538670000002,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0468224902,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "OTU domain containing 6B ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000155100",
+            "label": "OTUD6B",
+            "logFC": 0.0534435898,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 53 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "UP",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000145390",
+            "label": "USP53",
+            "logFC": 0.4142998751,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "OTU deubiquitinase 4 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000164164",
+            "label": "OTUD4",
+            "logFC": 0.162634851,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "zinc finger RANBP2-type containing 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000019995",
+            "label": "ZRANB1",
+            "logFC": -0.007261803000000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "tripartite motif containing 44 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000166326",
+            "label": "TRIM44",
+            "logFC": -0.10501081220000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "family with sequence similarity 118 member A ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000100376",
+            "label": "FAM118A",
+            "logFC": 0.2435919325,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 47 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "UP",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000170242",
+            "label": "USP47",
+            "logFC": 0.2884652936,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0087221027,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 40 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000085982",
+            "label": "USP40",
+            "logFC": -0.009452276800000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "UFM1 specific peptidase 2 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000109775",
+            "label": "UFSP2",
+            "logFC": 0.12686798189999998,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.1779138286,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "YOD1 deubiquitinase ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000180667",
+            "label": "YOD1",
+            "logFC": 0.1663711983,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 1,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "OTU deubiquitinase 5 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000068308",
+            "label": "OTUD5",
+            "logFC": -0.0525679305,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "OTU deubiquitinase, ubiquitin aldehyde binding 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000167770",
+            "label": "OTUB1",
+            "logFC": -0.19571595420000001,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0717584327,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "OTU deubiquitinase 7B ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000264522",
+            "label": "OTUD7B",
+            "logFC": 0.1715789283,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "poly(ADP-ribose) polymerase family member 11 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000111224",
+            "label": "PARP11",
+            "logFC": -0.056208056799999996,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "SUMO specific peptidase 7 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000138468",
+            "label": "SENP7",
+            "logFC": 0.0311616882,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 31 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000103404",
+            "label": "USP31",
+            "logFC": 0.1464559343,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 35 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000118369",
+            "label": "USP35",
+            "logFC": -0.0629097354,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "STAM binding protein like 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000138134",
+            "label": "STAMBPL1",
+            "logFC": -0.1908845801,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.1399545120999999,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 36 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000055483",
+            "label": "USP36",
+            "logFC": -0.087353049,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 1,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 28 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000048028",
+            "label": "USP28",
+            "logFC": -0.022489247799999997,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 37 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000135913",
+            "label": "USP37",
+            "logFC": 0.09387083289999999,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "SUMO specific peptidase 2 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000163904",
+            "label": "SENP2",
+            "logFC": 0.025088395899999998,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 46 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000109189",
+            "label": "USP46",
+            "logFC": -0.049507495,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0259597003,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "OTU deubiquitinase, ubiquitin aldehyde binding 2 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000089723",
+            "label": "OTUB2",
+            "logFC": -0.293465502,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "TATA-box binding protein associated factor, RNA polymerase I subunit D ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "DOWN",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000166012",
+            "label": "TAF1D",
+            "logFC": -0.4016362611,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "BRCA1/BRCA2-containing complex subunit 3 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000185515",
+            "label": "BRCC3",
+            "logFC": -0.0607272679,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.1505821695,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "family with sequence similarity 118 member B ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000197798",
+            "label": "FAM118B",
+            "logFC": 0.2140206827,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "valosin containing protein interacting protein 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000175073",
+            "label": "VCPIP1",
+            "logFC": -0.052935553899999994,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0701468878,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "zinc finger CCCH-type containing 12A ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000163874",
+            "label": "ZC3H12A",
+            "logFC": 0.27957968510000003,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 44 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "DOWN",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000136014",
+            "label": "USP44",
+            "logFC": -0.2694944099,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 42 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000106346",
+            "label": "USP42",
+            "logFC": 0.0168813771,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 48 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000090686",
+            "label": "USP48",
+            "logFC": -0.1593304602,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 38 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000170185",
+            "label": "USP38",
+            "logFC": 0.1978254708,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 32 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000170832",
+            "label": "USP32",
+            "logFC": -0.0855315172,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 30 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000135093",
+            "label": "USP30",
+            "logFC": 0.050107336100000004,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 1,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "MPN domain containing ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000008382",
+            "label": "MPND",
+            "logFC": -0.046469352699999994,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 45 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000123552",
+            "label": "USP45",
+            "logFC": -0.06817405809999999,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "Myb like, SWIRM and MPN domains 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000162601",
+            "label": "MYSM1",
+            "logFC": -0.2456508634,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "SUMO peptidase family member, NEDD8 specific ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000166192",
+            "label": "SENP8",
+            "logFC": -0.009897915699999999,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 43 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000154914",
+            "label": "USP43",
+            "logFC": -0.1573311904,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": 1.0782541127,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "Josephin domain containing 2 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000161677",
+            "label": "JOSD2",
+            "logFC": 0.0241566948,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 51 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000247746",
+            "label": "USP51",
+            "logFC": -0.0404001625,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 54 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000166348",
+            "label": "USP54",
+            "logFC": 0.219306323,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "OTU deubiquitinase 7A ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000169918",
+            "label": "OTUD7A",
+            "logFC": -0.1280063756,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 1,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 32 pseudogene 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "DOWN",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000188933",
+            "label": "USP32P1",
+            "logFC": -0.48653302439999996,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "SUMO specific peptidase 5 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000119231",
+            "label": "SENP5",
+            "logFC": -0.1087741748,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 12 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000152484",
+            "label": "USP12",
+            "logFC": -0.0010601497999999999,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": -1.0259597003,
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "OTU deubiquitinase 1 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000165312",
+            "label": "OTUD1",
+            "logFC": -0.0104429802,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 32 pseudogene 3 ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000189423",
+            "label": "USP32P3",
+            "logFC": -0.1079138732,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        },
+        {
+            "DUBs": 1,
+            "Description": "ubiquitin specific peptidase 27 X-linked ",
+            "E3 ligases and adaptor proteins": 0,
+            "chaperones": 0,
+            "direction": "NONE",
+            "endocytosis": 0,
+            "heat shock proteins": 0,
+            "id": "ENSG00000273820",
+            "label": "USP27X",
+            "logFC": -0.142482789,
+            "lysosome": 0,
+            "macroautophagy": 0,
+            "macroautophagy (DB)": 0,
+            "mitophagy": 0,
+            "proteasome": 0,
+            "proteomics_fc": "NA",
+            "translation": 0,
+            "ubiquitin related": 0,
+            "unfolded protein response": 0,
+            "vesicle trafficking": 0
+        }
+    ]
+}

@@ -1,0 +1,68 @@
+<?php
+
+// Show PHP errors (during development only)
+    error_reporting(E_ALL | E_STRICT);
+    ini_set("display_errors", 2);
+
+/**
+* Implements hook_menu().
+*/
+function pmap2_menu() {
+  $items = array();
+    $items['pmap2'] = array(
+    'title' => 'Abbvie Pathways',
+    'description' => 'Abbvie Pathways Analysis',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('pmap2_form'),
+    'access callback' => 'user_is_logged_in',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form().
+ */
+function pmap2_form() {
+
+  $path = libraries_get_path('d3.pmap2');
+  libraries_load('d3.pmap2');
+
+  // Add CSS and JS
+  drupal_add_css($path . 'css/main.css');
+  drupal_add_css($path . 'css/network.css');
+  drupal_add_js($path .'script/d3.v3.min.js');
+  drupal_add_js($path .'script/d3-legend.min.js');
+  drupal_add_js($path .'script/jquery-ui.js');
+  drupal_add_js($path .'script/jquery-3.3.1.js');
+  drupal_add_js($path .'script/jquery.slidereveal.js');
+  drupal_add_js($path .'script/math.js');
+
+// Import your static HTML page
+  $form['html'] = array(
+    '#type' => 'item',
+    '#markup' => file_get_contents($path .'/index.html'),
+  );
+  return $form;
+
+}
+
+
+
+
+
+// function pmap2_new() {
+//
+//   $chart = array(
+//     'id' => 'visualization',
+//     'type' => 'pmap2',
+//   );
+//   return d3_draw($chart);
+// }
+
+
+
+
+
+
+?>

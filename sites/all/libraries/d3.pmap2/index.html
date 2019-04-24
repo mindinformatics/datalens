@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<title>Proteostasis@AMP-AD</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<body>
+
+<!-- Sidebar/menu -->
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-xlarge w3-padding" style="display:none; background-color: #094c6b; color:white;" id="mySidebar">
+  <br><br><button class="w3-bar-item w3-button w3-large"
+  onclick="w3_close()" >Close &times;</button>
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#Network" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Network</a> 
+    <!--a href="#Features" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Features</a--> 
+   
+    <!--a href="#Modules" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Modules</a--> 
+    <a href="#Feedback" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Feedback</a>
+	
+	 <a href="#Team" onclick="w3_close2()" class="w3-bar-item w3-button w3-hover-white">Team</a> 
+ </div>
+<div id="main">
+
+<div style="background-color: #094c6b; color:white;">
+  <button id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <div class="w3-container">
+    <h1>Proteostasis@AMP-AD</h1>
+  </div>
+</div>
+
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" style="background-color: #094c6b; color:white;" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:40px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:20px" id="Network">
+    <h2 class="colorTextNavy" ><b>Navigating Proteostasis pathways on AMP-AD RNA-seq </b></h1>
+    <hr style="width:1000px;border:2px solid #094c6b" class="w3-round">
+  </div>
+  
+  
+  <!-- Modules / Pricing Tables -->
+  <div class="w3-container" id="Modules" style="margin-top:10px">
+    <!--h1 class="w3-xxxlarge w3-text-red"><b>Modules.</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round"-->
+    <div class="w3-display-container">
+	<!-- <ul class="w3-ul w3-light-grey w3-center">
+			<li class="w3-dark-grey w3-xlarge w3-padding-20 ">Brain regions & cohorts</li>
+	</ul> -->
+	<p>The tool provides multiple networks based on different brain regions and pathways. User can use different filter options in network window to color the node of interest. <br> <br>  </p>
+	
+		<div class="panel-group " id="accordion" style="float:left; margin-right:40px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.39)">
+			<!-- <ul class="w3-ul w3-light-grey w3-center">
+			<li class="w3-dark-grey w3-xlarge w3-padding-20 w3-half">Brain regions & cohorts</li>
+			</ul>
+			<br> -->
+			<!-- <p><strong>Note:</strong> Click on headings to expand and see features and network graph.</p> -->
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h4 class="panel-title">
+				  <!-- <a data-toggle="collapse" data-parent="#accordion" href="#collapse13"><b>Brain Region</b></a> -->
+				  <b>Brain regions & cohorts</b>
+				</h4>
+			  </div>
+			  <div id="collapse13" class="panel-collapse collapse in">
+			  <!--  <div class="panel-body"> <h4> Features </h4> Information about Brain Regions<h4> Query </h4>Click on "Show Network" button to open the graph<br>
+				<br> -->
+				<table id="networkTab">
+					<!-- <tr>
+						<th colspan="2">Select Region</th>
+
+					</tr> -->
+					<tr>
+						<td align="center">
+							
+							<div class="select">
+								<select name="selectRegion" id="selectRegion">
+									<option value="">Select brain Region</option>
+								</select>
+								
+							</div>
+							
+							<div class="select">
+							<select name="selectProvider" id="selectProvider">
+								<option value="">Select Cohort</option>
+							</select> 
+							</div>
+							
+							<button class="w3-button w3-round-large" id="submit" style="background-color:#094c6b; color:white;">Submit</button>
+							
+						</td>
+						
+					</tr>
+					
+				</table>
+				
+				
+				</div>
+			  </div>
+			  
+		</div>
+		
+		
+		
+		<div class="panel-group " id="accordion" style="float:left; margin-right:40px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.39)">
+			<!-- <ul class="w3-ul w3-light-grey w3-center">
+			<li class="w3-dark-grey w3-xlarge w3-padding-20 w3-half">Brain regions & cohorts</li>
+			</ul>
+			<br> -->
+			<!-- <p><strong>Note:</strong> Click on headings to expand and see features and network graph.</p> -->
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h4 class="panel-title">
+				  <!-- <a data-toggle="collapse" data-parent="#accordion" href="#collapse13"><b>Brain Region</b></a> -->
+				  <b>Pathway wise networks for different brain regions</b>
+				</h4>
+			  </div>
+			  <div id="collapse13" class="panel-collapse collapse in">
+			  <!--  <div class="panel-body"> <h4> Features </h4> Information about Brain Regions<h4> Query </h4>Click on "Show Network" button to open the graph<br>
+				<br> -->
+				<table id="networkTab">
+			
+					<tr>
+						<td align="center">
+							
+							<div class="select">
+								<select name="selectPathway" id="selectPathway">
+									<option value="">Select Pathway</option>
+								</select>
+								
+							</div>
+							
+							<div class="select">
+								<select name="selectPathwayRegion" id="selectPathwayRegion">
+									<option value="">Select brain Region</option>
+								</select>
+								
+							</div>
+							
+							<div class="select">
+							<select name="selectPathwayProvider" id="selectPathwayProvider">
+								<option value="">Select Cohort</option>
+							</select> 
+							</div>
+							
+							<button class="w3-button w3-round-large" id="submitPathway" style="background-color:#2c3e50; color:white;">Submit</button>
+							
+						</td>
+						
+					</tr>
+					
+				</table>
+				
+				
+				</div>
+			  </div>
+			  
+		</div>
+		
+		<div class="panel-group " id="accordion" style="float:left; margin-right:40px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.39)">
+			<!-- <ul class="w3-ul w3-light-grey w3-center">
+			<li class="w3-dark-grey w3-xlarge w3-padding-20 w3-half">Brain regions & cohorts</li>
+			</ul>
+			<br> -->
+			<!-- <p><strong>Note:</strong> Click on headings to expand and see features and network graph.</p> -->
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h4 class="panel-title">
+				  <!-- <a data-toggle="collapse" data-parent="#accordion" href="#collapse13"><b>Brain Region</b></a> -->
+				  <b>Sage RNAseq</b>
+				</h4>
+			  </div>
+			  <div id="collapse13" class="panel-collapse collapse in">
+			  <!--  <div class="panel-body"> <h4> Features </h4> Information about Brain Regions<h4> Query </h4>Click on "Show Network" button to open the graph<br>
+				<br> -->
+				<table id="networkTab">
+					<!-- <tr>
+						<th colspan="2">Select Region</th>
+
+					</tr> -->
+					<tr>
+						<td align="center">
+							
+							<div class="select">
+								<select name="sage_selectRegion" id="sage_selectRegion">
+									<option value="">Select brain Region</option>
+								</select>
+								
+							</div>
+							
+							<div class="select">
+							<select name="sage_selectProvider" id="sage_selectProvider">
+								<option value="">Select Cohort</option>
+							</select> 
+							</div>
+							
+							<button class="w3-button w3-round-large" id="sage_submit" style="background-color:#094c6b; color:white;">Submit</button>
+							
+						</td>
+						
+					</tr>
+					
+				</table>
+				
+				
+				</div>
+			</div>
+			  
+		</div>
+		
+		
+		
+		<!--<div class="w3-content w3-display-container" id="slidimg" style="float:left; width:auto;">
+		
+			<div class="w3-display-container mySlides w3-animate-opacity" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.39)">
+			  <img src="/images/sage.jpg" style="width:100%">
+			 
+			</div>
+			
+			<div class="w3-display-container mySlides w3-animate-opacity" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.39)">
+			  <img src="/images/sage.jpg" style="width:100%">
+			  
+			</div>
+
+			<button class="w3-button w3-display-left " style="color:white; background-color:#094c6b" onclick="plusDivs(-1)">&#10094;</button>
+			<button class="w3-button w3-display-right" style="color:white; background-color:#094c6b" onclick="plusDivs(1)">&#10095;</button>
+
+		</div>
+		-->
+		
+	</div>
+		
+		<br><br>
+		<script>
+			var slideIndex = 1;
+			showDivs(slideIndex);
+
+			function plusDivs(n) {
+			  showDivs(slideIndex += n);
+			}
+
+			function showDivs(n) {
+			  var i;
+			  var x = document.getElementsByClassName("mySlides");
+			  if (n > x.length) {slideIndex = 1}    
+			  if (n < 1) {slideIndex = x.length}
+			  for (i = 0; i < x.length; i++) {
+				 x[i].style.display = "none";  
+			  }
+			  x[slideIndex-1].style.display = "block";  
+			}
+			
+			
+		</script>
+	
+	
+	
+	<!-- <div class="w3-row-padding">
+    <div class="w3-full">
+      <img src="/images/sage.png" style="width:80%" alt="Sage Bionetwork">
+     
+    </div>
+	</div>
+	 -->
+	
+	
+	
+	
+	
+	<!-- <div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><b>Pathway-wise Networks</b></a>
+			</h4>
+		</div>
+		<div id="collapse1" class="panel-collapse collapse">
+		
+        <table id="networkTab">
+			<tr>
+				<td align="center">
+					
+					<div class="select">
+						<select name="selectPathway" id="selectPathway">
+							<option value="">Select Pathway</option>
+						</select>
+						
+					</div>
+					
+					<div class="select">
+						<select name="selectPathwayRegion" id="selectPathwayRegion">
+							<option value="">Select brain Region</option>
+						</select>
+						
+					</div>
+					
+					<div class="select">
+					<select name="selectPathwayProvider" id="selectPathwayProvider">
+						<option value="">Select Cohort</option>
+					</select> 
+					</div>
+					
+					<button class="w3-button w3-round-large" id="submitPathway" style="background-color:#094c6b; color:white;">Submit</button>
+					
+				</td>
+				
+			</tr>
+			
+		</table>
+		
+		</div>
+		
+      </div> -->
+    </div>
+  </div> 
+</div>
+</div>
+  
+     
+  <!-- Contact -->
+  <div class="w3-container" id="Feedback" style="margin-top:75px; margin-left:40px;margin-right:40px">
+    <h1 class="w3-xxxlarge colorTextNavy"><b>Feedback.</b></h1>
+    <hr style="width:50px;border:5px solid #094c6b" class="w3-round">
+    <p>You can reach us!</p>
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" name="Name" required>
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" name="Email" required>
+      </div>
+      <div class="w3-section">
+        <label>Message</label>
+        <input class="w3-input w3-border" type="text" name="Message" required>
+      </div>
+      <button type="submit" class="w3-button w3-block w3-padding-large colorNavy w3-margin-bottom">Send Message</button>
+    </form>  
+  </div>
+
+  
+   <!-- Team -->
+  <div class="w3-container" id="Team" style="margin-top:75px; margin-left:40px;margin-right:40px; display:none">
+    <h1 class="w3-xxxlarge colorTextNavy"><b>Team.</b></h1>
+    <hr style="width:50px;border:5px solid #094c6b" class="w3-round">
+    <!-- <p>Our Team.</p> -->
+    <!-- <p><b>Our Team is thoughtfully chosen</b>:</p> -->
+  </div>
+  <!-- The Team -->
+  <div class="w3-row-padding w3-grayscale" id="teamDiv" style="margin-left:40px;margin-right:40px; display:none">
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/mis.jpg" alt="Imran" style="width:25%">
+        <div class="w3-container">
+          <h3>Mohd Imran Shah</h3>
+          <p class="w3-opacity">Scientific Manger <br>Computational Biology <br> Pharma Analytics <br> Excelra Knowledge Solutions Pvt. Ltd.</p>
+          
+        </div>
+      </div>
+    </div>
+	<div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/pr.jpg" alt="Prabhasa" style="width:25%">
+        <div class="w3-container">
+          <h3>Prabhasa Ravikirthi</h3>
+          <p class="w3-opacity">Scientific Manger <br>Computational Biology <br> Pharma Analytics <br> Excelra Knowledge Solutions Pvt. Ltd.</p>
+        
+        </div>
+      </div>
+    </div>
+	<div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/balu.jpg" alt="Balu" style="width:25%">
+        <div class="w3-container">
+          <h3>Balu Kamaraj</h3>
+          <p class="w3-opacity">Scientific Manger <br>Computational Biology <br> Pharma Analytics <br> Excelra Knowledge Solutions Pvt. Ltd.</p>
+        
+        </div>
+      </div>
+    </div>
+    <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/gyan.jpg" alt="Gyan" style="width:25%;">
+        <div class="w3-container">
+          <h3>Gyan P Srivastava</h3>
+          <p class="w3-opacity">Senior Manager <br> Data and Statistical Science <br> Abbvie Inc.</p>
+           
+        </div>
+      </div>
+    </div>
+	
+	 <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/simon.jpg" alt="Gyan" style="width:25%;">
+        <div class="w3-container">
+          <h3>Simon Xi</h3>
+          <p class="w3-opacity">Head of Computational Biology and Genomics, FNC <br> Abbvie Inc. <br> Adjunct Faculty at Brandeis University </p>
+            </div>
+      </div>
+    </div>
+	
+	 <div class="w3-col m4 w3-margin-bottom">
+      <div class="w3-light-grey">
+        <img src="images/matthew.jpg" alt="Gyan" style="width:25%;">
+        <div class="w3-container">
+          <h3>T Matthew Townsend</h3>
+          <p class="w3-opacity">Principal Research Scientist & Global Director of Proteostasis, Alzheimer's Disease  <br> Abbvie Inc.</p>
+           
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right"><a href="#" title="W3.CSS" target="_blank" class="w3-hover-opacity"></a></p></div>
+
+<script>
+//document.getElementById("teamDiv").style.display = "none";
+//document.getElementById("Team").style.display = "none";
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "200px";
+  document.getElementById("mySidebar").style.width = "200px";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+  //document.getElementById("teamDiv").style.display = "none";
+ // document.getElementById("Team").style.display = "none";
+  
+  
+}
+function w3_close2() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+  document.getElementById("teamDiv").style.display = "inline-block";
+  document.getElementById("Team").style.display = "inline-block";
+  
+} 
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+$("body").mouseup(function(e) 
+{
+    var container1 = $("div#Team");
+    var container2 = $("div#teamDiv");
+
+    // if the target of the click isn't the container nor a descendant of the container
+    if ((!container1.is(e.target) && container1.has(e.target).length === 0) && (!container2.is(e.target) && container2.has(e.target).length === 0)) 
+    {
+        container1.hide();
+        container2.hide();
+    }
+});
+
+/*function myFunction(fileName) {
+	window.open("network.html?fileName="+fileName);
+}*/
+
+</script>
+
+<script>
+	//var sample = {"UC Inflamed":"UC_inflame", "UC-Non Inflamed":"UC_non-inflame"};
+	//var pathwayList=["TCX","CBE","DLPFC","FP","IFG","PHG","STG"];
+	
+	var pathwayList={
+						"Proteasome": ["CBE", "TCX"],
+						//"heat shock proteins":[],
+						"Lysosome":["CBE", "TCX"],
+						"Chaperones":["CBE", "TCX"],
+						//"translation":["CBE", "TCX"],
+						//"ubiquitin related":["CBE", "TCX"],
+						//"unfolded protein response":["CBE", "TCX"],
+						"Macroautophagy":["CBE", "TCX"],
+						//"mitophagy":["CBE", "TCX"],
+						//"macroautophagy (DB)":["CBE", "TCX"],
+						"Endocytosis":["CBE", "TCX"],
+						//"vesicle trafficking":["CBE", "TCX"],
+						"DUBs":["CBE", "TCX"],
+						"E3_ligases_and_adaptor_proteins":["CBE", "TCX"]
+					};
+	var brainRegion = [
+						{ regionId: "TCX", Name: "TCX"},
+						{ regionId: "CBE", Name: "CBE" },
+						{ regionId: "DLPFC", Name: "DLPFC"},
+						{ regionId: "FP", Name: "FP"},
+						{ regionId: "IFG", Name: "IFG"},
+						{ regionId: "PHG", Name: "PHG"},
+						{ regionId: "STG", Name: "STG"}
+					];
+	var regionProviders = {
+	
+								"TCX": ["MAYO"],
+								"CBE": ["MAYO"],
+								"DLPFC": ["ROSMAP"],
+								"FP": ["MSSM"],
+								"IFG": ["MSSM"],
+								"PHG": ["MSSM"],
+								"STG": ["MSSM"]
+	
+						  }
+	function jsUcFirst(string) {
+			return string.charAt(0).toUpperCase() + string.slice(1);
+		}
+	
+	//Populate drop-down for pathwayList in pathway wise search
+	$(Object.keys(pathwayList)).each(function (i,d) {
+		//console.log(d);
+		//var val = sample[0]+"_"+pathwayList[key];
+		$('<option/>').val(jsUcFirst(d)).text(jsUcFirst(d)).appendTo('#selectPathway')
+	});
+	
+	//populate drowpdown for brainRegion in pathway wise search
+	$("#selectPathway").change(function(){
+		var selectedPathway = $("#selectPathway").val();
+		//console.log($("#selectPathway").val());
+		//console.log(pathwayList[selectedPathway]);
+		$('select#selectPathwayRegion').children('option:not(:first)').remove();
+		$('select#selectPathwayProvider').children('option:not(:first)').remove();
+		
+		$(pathwayList[selectedPathway]).each(function (i, d) {
+		//var val = sample[0]+"_"+pathwayList[key];
+			//console.log(d,i);
+			$('<option/>').val(d).text(jsUcFirst(d)).appendTo('#selectPathwayRegion')
+		});
+	});
+	
+	
+	
+	//populate drowpdown for cohort in pathway wise search
+	$("#selectPathwayRegion").change(function(){
+		var selectedRegion = $("#selectPathwayRegion").val();
+		//console.log($("#selectPathwayRegion").val());
+		//console.log(regionProviders[selectedRegion]);
+		$('select#selectPathwayProvider').children('option').remove();
+		
+		$(regionProviders[selectedRegion]).each(function (i, d) {
+		//var val = sample[0]+"_"+pathwayList[key];
+			//console.log(d,i);
+			$('<option/>').val(d).text(jsUcFirst(d)).appendTo('#selectPathwayProvider')
+		});
+	});
+	
+	//Submit pathway wise search
+	$("#submitPathway").click(function(){
+		//alert("The paragraph was clicked.");
+		fileName = $("#selectPathway").val()+"_"+$("#selectPathwayRegion").val()+"_"+$("#selectPathwayProvider").val() + '.json';
+		if($("#selectPathway").val() == "")
+		{
+			alert("Select pathway, brain region and cohort before submit!!!");
+			return false;
+		}
+		else if($("#selectPathwayRegion").val() == "")
+		{
+			alert("Select brain region and cohort before submit!!!");
+			return false;
+		}
+		else if($("#selectPathwayProvider").val() == "")
+		{
+			alert("Select cohort before submit!!!");
+			return false;
+		}
+		window.open("network.html?fileName="+fileName);
+	});
+	
+	
+	//Populate Dropdown for brainRegion
+	$(brainRegion).each(function () {
+		//var val = sample[0]+"_"+pathwayList[key];
+		$('<option/>').val(this.regionId).text(jsUcFirst(this.Name)).appendTo('#selectRegion')
+	});
+	
+	
+	//populate drowpdown for cohort
+	$("#selectRegion").change(function(){
+		var selectedRegion = $("#selectRegion").val();
+		//console.log($("#selectRegion").val());
+		//console.log(regionProviders[selectedRegion]);
+		$('select#selectProvider').children('option').remove();
+		
+		$(regionProviders[selectedRegion]).each(function (i, d) {
+		//var val = sample[0]+"_"+pathwayList[key];
+			//console.log(d,i);
+			$('<option/>').val(d+"_"+selectedRegion).text(jsUcFirst(d)).appendTo('#selectProvider')
+		});
+	});
+	
+	$("#submit").click(function(){
+		//alert("The paragraph was clicked.");
+		fileName = $("#selectProvider").val() + '.json';
+		if($("#selectRegion").val() == "")
+		{
+			alert("select brain region and cohort before submit!!!");
+			return false;
+		}
+		else if($("#selectProvider").val() == "")
+		{
+			alert("select cohort before submit!!!");
+			return false;
+		}
+		window.open("network.html?fileName="+fileName);
+	});
+	
+	
+	//######################### SAGE MODULE JS  ###########################
+	
+	var sage_brainRegion = [
+						
+						{ regionId: "CBE_blue", Name: "CBE_blue" },
+						{ regionId: "CBE_brown", Name: "CBE_brown" },
+						{ regionId: "CBE_turquoise", Name: "CBE_turquoise" },
+						{ regionId: "CBE_yellow", Name: "CBE_yellow" },
+						
+						{ regionId: "DLPFC_blue", Name: "DLPFC_blue"},
+						{ regionId: "DLPFC_brown", Name: "DLPFC_brown"},
+						{ regionId: "DLPFC_turquoise", Name: "DLPFC_turquoise"},
+						{ regionId: "DLPFC_yellow", Name: "DLPFC_yellow"},
+						
+						{ regionId: "FP_blue", Name: "FP_blue"},
+						{ regionId: "FP_brown", Name: "FP_brown"},
+						{ regionId: "FP_turquoise", Name: "FP_turquoise"},
+						{ regionId: "FP_yellow", Name: "FP_yellow"},
+						
+						{ regionId: "IFG_blue", Name: "IFG_blue"},
+						{ regionId: "IFG_brown", Name: "IFG_brown"},
+						{ regionId: "IFG_turquoise", Name: "IFG_turquoise"},
+						{ regionId: "IFG_yellow", Name: "IFG_yellow"},
+						
+						{ regionId: "PHG_blue", Name: "PHG_blue"},
+						{ regionId: "PHG_brown", Name: "PHG_brown"},
+						{ regionId: "PHG_green", Name: "PHG_green"},
+						{ regionId: "PHG_turquoise", Name: "PHG_turquoise"},
+						{ regionId: "PHG_yellow", Name: "PHG_yellow"},
+						
+						{ regionId: "STG_blue", Name: "STG_blue"},
+						{ regionId: "STG_brown", Name: "STG_brown"},
+						{ regionId: "STG_turquoise", Name: "STG_turquoise"},
+						{ regionId: "STG_yellow", Name: "STG_yellow"},
+						
+						{ regionId: "TCX_blue", Name: "TCX_blue"},
+						{ regionId: "TCX_brown", Name: "TCX_brown"},
+						{ regionId: "TCX_green", Name: "TCX_green"},
+						{ regionId: "TCX_turquoise", Name: "TCX_turquoise"},
+						{ regionId: "TCX_yellow", Name: "TCX_yellow"}
+					];
+	var sage_regionProviders = {
+	
+								"CBE_blue": ["MAYO"],
+								"CBE_brown": ["MAYO"],
+								"CBE_turquoise": ["MAYO"],
+								"CBE_yellow": ["MAYO"],
+								
+								"DLPFC_blue": ["ROSMAP"],
+								"DLPFC_brown": ["ROSMAP"], 
+								"DLPFC_turquoise": ["ROSMAP"], 
+								"DLPFC_yellow": ["ROSMAP"], 
+								
+								"FP_blue": ["MSSM"], 
+								"FP_brown": ["MSSM"], 
+								"FP_turquoise": ["MSSM"], 
+								"FP_yellow": ["MSSM"], 
+								
+								"IFG_blue": ["MSSM"], 
+								"IFG_brown": ["MSSM"], 
+								"IFG_turquoise": ["MSSM"], 
+								"IFG_yellow": ["MSSM"], 
+								
+								"PHG_blue": ["MSSM"],
+								"PHG_brown": ["MSSM"], 
+								"PHG_green": ["MSSM"], 
+								"PHG_turquoise": ["MSSM"], 
+								"PHG_yellow": ["MSSM"], 
+								
+								"STG_blue": ["MSSM"], 
+								"STG_brown": ["MSSM"], 
+								"STG_turquoise": ["MSSM"], 
+								"STG_yellow": ["MSSM"], 
+								
+								"TCX_blue": ["MAYO"], 
+								"TCX_brown": ["MAYO"], 
+								"TCX_green": ["MAYO"], 
+								"TCX_turquoise": ["MAYO"], 
+								"TCX_yellow": ["MAYO"] 
+	
+						  }
+	/*function jsUcFirst(string) {
+			return string.charAt(0).toUpperCase() + string.slice(1);
+		} */
+	
+	
+	//Populate Dropdown for sage_brainRegion
+	$(sage_brainRegion).each(function () {
+		//var val = sample[0]+"_"+pathwayList[key];
+		$('<option/>').val(this.regionId).text(jsUcFirst(this.Name)).appendTo('#sage_selectRegion')
+	});
+	
+	
+	//populate drowpdown for cohort
+	$("#sage_selectRegion").change(function(){
+		var selectedRegion = $("#sage_selectRegion").val();
+		//console.log($("#sage_selectRegion").val());
+		//console.log(sage_regionProviders[selectedRegion]);
+		$('select#sage_selectProvider').children('option').remove();
+		
+		$(sage_regionProviders[selectedRegion]).each(function (i, d) {
+		//var val = sample[0]+"_"+pathwayList[key];
+			//console.log(d,i);
+			$('<option/>').val(d+"_"+selectedRegion).text(jsUcFirst(d)).appendTo('#sage_selectProvider')
+		});
+	});
+	
+	$("#sage_submit").click(function(){
+		//alert("The paragraph was clicked.");
+		fileName = $("#sage_selectProvider").val() + '.json';
+		if($("#sage_selectRegion").val() == "")
+		{
+			alert("select brain region and cohort before submit!!!");
+			return false;
+		}
+		else if($("#sage_selectProvider").val() == "")
+		{
+			alert("select cohort before submit!!!");
+			return false;
+		}
+		window.open("network.html?fileName="+fileName);
+	});
+	
+	
+</script>   
+   
+</body>
+</html>

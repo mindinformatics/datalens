@@ -27,16 +27,8 @@ function pmap2_form() {
 
   $path = libraries_get_path('d3.pmap2');
   libraries_load('d3.pmap2');
+  //dsm($path);
 
-  // Add CSS and JS
-  drupal_add_css($path . 'css/main.css');
-  drupal_add_css($path . 'css/network.css');
-  drupal_add_js($path .'script/d3.v3.min.js');
-  drupal_add_js($path .'script/d3-legend.min.js');
-  drupal_add_js($path .'script/jquery-ui.js');
-  drupal_add_js($path .'script/jquery-3.3.1.js');
-  drupal_add_js($path .'script/jquery.slidereveal.js');
-  drupal_add_js($path .'script/math.js');
 
 // Import your static HTML page
   $form['html'] = array(
@@ -47,18 +39,6 @@ function pmap2_form() {
 
 }
 
-
-
-
-
-// function pmap2_new() {
-//
-//   $chart = array(
-//     'id' => 'visualization',
-//     'type' => 'pmap2',
-//   );
-//   return d3_draw($chart);
-// }
 
 
 

@@ -1,6 +1,5 @@
 name = pmap2 pathways from ABBVIE
 description = D3 PMAP library
-files[js][] = scattercsv.js
 files[js][] = script/d3.v3.min.js
 files[js][] = script/d3-legend.min.js
 files[js][] = script/jquery-ui.js

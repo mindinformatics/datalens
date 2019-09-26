@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * members.features.user_permission.inc
@@ -67,6 +68,13 @@ function members_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'create field_xfp_type'.
+  $permissions['create field_xfp_type'] = array(
+    'name' => 'create field_xfp_type',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'delete any discussion content'.
   $permissions['delete any discussion content'] = array(
     'name' => 'delete any discussion content',
@@ -103,6 +111,13 @@ function members_user_default_permissions() {
     'module' => 'profile2',
   );
 
+  // Exported permission: 'edit field_xfp_type'.
+  $permissions['edit field_xfp_type'] = array(
+    'name' => 'edit field_xfp_type',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit own discussion content'.
   $permissions['edit own discussion content'] = array(
     'name' => 'edit own discussion content',
@@ -110,6 +125,13 @@ function members_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'edit own field_xfp_type'.
+  $permissions['edit own field_xfp_type'] = array(
+    'name' => 'edit own field_xfp_type',
+    'roles' => array(),
+    'module' => 'field_permissions',
   );
 
   // Exported permission: 'edit own xf_profile profile'.
@@ -259,6 +281,20 @@ function members_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'profile2',
+  );
+
+  // Exported permission: 'view field_xfp_type'.
+  $permissions['view field_xfp_type'] = array(
+    'name' => 'view field_xfp_type',
+    'roles' => array(),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_xfp_type'.
+  $permissions['view own field_xfp_type'] = array(
+    'name' => 'view own field_xfp_type',
+    'roles' => array(),
+    'module' => 'field_permissions',
   );
 
   // Exported permission: 'view own xf_profile profile'.

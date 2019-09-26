@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * members.features.wysiwyg.inc
@@ -10,14 +11,11 @@
 function members_wysiwyg_default_profiles() {
   $profiles = array();
 
-  // Exported profile: filtered_html
+  // Exported profile: filtered_html.
   $profiles['filtered_html'] = array(
     'format' => 'filtered_html',
     'editor' => 'tinymce',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 1,
       'theme' => 'advanced',
       'language' => 'en',
       'buttons' => array(
@@ -47,32 +45,37 @@ function members_wysiwyg_default_profiles() {
           'imce' => 1,
         ),
       ),
-      'toolbar_loc' => 'top',
-      'toolbar_align' => 'left',
-      'path_loc' => 'bottom',
-      'resizing' => 1,
       'verify_html' => 1,
       'preformatted' => 0,
       'convert_fonts_to_spans' => 1,
       'remove_linebreaks' => 1,
       'apply_source_formatting' => 0,
       'paste_auto_cleanup_on_paste' => 0,
-      'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
       'css_setting' => 'theme',
       'css_path' => '',
-      'css_classes' => '',
+      'theme_advanced_statusbar_location' => 'bottom',
+      'theme_advanced_toolbar_location' => 'top',
+      'theme_advanced_toolbar_align' => 'left',
+      'theme_advanced_blockformats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
+      'theme_advanced_styles' => '',
+      'theme_advanced_resizing' => 1,
     ),
+    'preferences' => array(
+      'add_to_summaries' => FALSE,
+      'default' => 1,
+      'show_toggle' => 1,
+      'user_choose' => 0,
+      'version' => '3.5.11',
+    ),
+    'name' => 'formatfiltered_html',
     'rdf_mapping' => array(),
   );
 
-  // Exported profile: full_html
+  // Exported profile: full_html.
   $profiles['full_html'] = array(
     'format' => 'full_html',
     'editor' => 'tinymce',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 1,
       'theme' => 'advanced',
       'language' => 'en',
       'buttons' => array(
@@ -102,32 +105,37 @@ function members_wysiwyg_default_profiles() {
           'imce' => 1,
         ),
       ),
-      'toolbar_loc' => 'top',
-      'toolbar_align' => 'left',
-      'path_loc' => 'bottom',
-      'resizing' => 1,
       'verify_html' => 1,
       'preformatted' => 0,
       'convert_fonts_to_spans' => 1,
       'remove_linebreaks' => 1,
       'apply_source_formatting' => 0,
       'paste_auto_cleanup_on_paste' => 0,
-      'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
       'css_setting' => 'theme',
       'css_path' => '',
-      'css_classes' => '',
+      'theme_advanced_statusbar_location' => 'bottom',
+      'theme_advanced_toolbar_location' => 'top',
+      'theme_advanced_toolbar_align' => 'left',
+      'theme_advanced_blockformats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
+      'theme_advanced_styles' => '',
+      'theme_advanced_resizing' => 1,
     ),
+    'preferences' => array(
+      'add_to_summaries' => FALSE,
+      'default' => 1,
+      'show_toggle' => 1,
+      'user_choose' => 0,
+      'version' => '3.5.11',
+    ),
+    'name' => 'formatfull_html',
     'rdf_mapping' => array(),
   );
 
-  // Exported profile: plain_text
+  // Exported profile: plain_text.
   $profiles['plain_text'] = array(
     'format' => 'plain_text',
     'editor' => 'tinymce',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 1,
       'theme' => 'advanced',
       'language' => 'en',
       'buttons' => array(
@@ -157,21 +165,29 @@ function members_wysiwyg_default_profiles() {
           'imce' => 1,
         ),
       ),
-      'toolbar_loc' => 'top',
-      'toolbar_align' => 'left',
-      'path_loc' => 'bottom',
-      'resizing' => 1,
       'verify_html' => 1,
       'preformatted' => 0,
       'convert_fonts_to_spans' => 1,
       'remove_linebreaks' => 1,
       'apply_source_formatting' => 0,
       'paste_auto_cleanup_on_paste' => 0,
-      'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
       'css_setting' => 'theme',
       'css_path' => '',
-      'css_classes' => '',
+      'theme_advanced_statusbar_location' => 'bottom',
+      'theme_advanced_toolbar_location' => 'top',
+      'theme_advanced_toolbar_align' => 'left',
+      'theme_advanced_blockformats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
+      'theme_advanced_styles' => '',
+      'theme_advanced_resizing' => 1,
     ),
+    'preferences' => array(
+      'add_to_summaries' => FALSE,
+      'default' => 1,
+      'show_toggle' => 1,
+      'user_choose' => 0,
+      'version' => '3.5.11',
+    ),
+    'name' => 'formatplain_text',
     'rdf_mapping' => array(),
   );
 

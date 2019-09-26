@@ -235,11 +235,9 @@ function d3_libraries_info() {
   if ($lib == 'cdn') {
     $options = array(
       'lines' => 4,
-      //'file' => 'https://d3js.org/d3.v3.min.js',
-      'file' => 'https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js',
+      'file' => 'https://d3js.org/d3.v3.min.js',
       'pattern' => '/version\:\"([0-9\.]*)\"/',
     );
-
 
     // Detect version from CDN.
     $file = fopen($options['file'], 'r');

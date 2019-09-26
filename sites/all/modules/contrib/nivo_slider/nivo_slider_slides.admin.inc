@@ -27,6 +27,7 @@ function nivo_slider_slide_configuration_form($form, &$form_state) {
 
   // Get all available slides
   $slides = variable_get('nivo_slider_banner_settings', array());
+  $max_weigh_delta = count($slides) + 10;
 
   // Create a vertical tab for each slide
   foreach ($slides as $slide => $settings) {
@@ -48,7 +49,7 @@ function nivo_slider_slide_configuration_form($form, &$form_state) {
     );
     $form['images'][$slide]['weight'] = array(
       '#type' => 'weight',
-      '#delta' => 10,
+      '#delta' => $max_weigh_delta,
       '#default_value' => isset($settings['weight']) ? $settings['weight'] : 1,
       '#attributes' => array(
         'class' => array('slide-weight'),
@@ -106,6 +107,12 @@ function nivo_slider_slide_configuration_form($form, &$form_state) {
       '#title' => t('Link slide to URL'),
       '#default_value' => isset($settings['url']) ? $settings['url'] : '',
       '#description' => t('Specify a path or an absolute URL. An example path is %blog for the blog page. An example absolute URL is %url for the Drupal website. %front is the front page.', array('%blog' => 'blog', '%url' => 'http://drupal.org', '%front' => '<front>')),
+    );
+    $form['images'][$slide]['newtab'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Open URL in a new tab'),
+      '#default_value' => isset($settings['newtab']) ? $settings['newtab'] : '',
+      '#description' => t('Check this to open URL in a new tab'),
     );
     $form['images'][$slide]['visibility'] = array(
       '#type' => 'textarea',
@@ -191,7 +198,7 @@ function nivo_slider_settings_submit($form, &$form_state) {
   // Create a new slide if an image was uploaded
   if ($file = file_save_upload('upload')) {
     // Store slide images in a folder named 'banner'
-    $banner_folder = 'public://banner';
+    $banner_folder = 'public://' . variable_get('nivo_slider_dir_name', 'banner');
 
     // Create the banner directory if it does not currently exist
     file_prepare_directory($banner_folder, FILE_CREATE_DIRECTORY);
@@ -206,7 +213,7 @@ function nivo_slider_settings_submit($form, &$form_state) {
     $file->status = FILE_STATUS_PERMANENT;
 
     // Copy the slide image into the banner folder
-    $file = file_copy($file, $destination, FILE_EXISTS_REPLACE);
+    $file = file_copy($file, $destination, FILE_EXISTS_RENAME);
 
     // Create a new slide
     $slides[] = array(

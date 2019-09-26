@@ -67,6 +67,7 @@ function flag_anon_flag_options_alter(&$options, $flag) {
  */
 function flag_anon_flag_access_multiple($flag, $entity_ids, $account) {
   if ($flag->anon_display && $account->uid == 0) {
+    $access = array();
     foreach ($entity_ids as $id => $action) {
       $access[$id] = TRUE;
     }
@@ -115,6 +116,32 @@ function flag_anon_link($type, $object = NULL, $teaser = FALSE) {
   }
   if (isset($links)) {
     return $links;
+  }
+}
+
+/**
+ * Implements hook_entity_view().
+ *
+ * @TODO: Redo to using this hook instead of all hook_*_view().
+ */
+function flag_anon_entity_view($entity, $type, $view_mode, $langcode) {
+  if (user_is_logged_in()) {
+    return;
+  }
+  $flags = flag_get_flags($type);
+  foreach ($flags as $flag) {
+    if (!$flag->anon_display) {
+      continue;
+    }
+    if (!$flag->show_as_field) {
+      continue;
+    }
+    if (!$flag->applies_to_entity($entity)) {
+      continue;
+    }
+    $entity->content['flag_' . $flag->name] = array(
+      '#markup' => $flag->theme('flag', $flag->get_entity_id($entity), array('needs_wrapping_element' => TRUE)),
+    );
   }
 }
 
@@ -209,14 +236,13 @@ function flag_anon_create_link($flag_name, $entity_id) {
  */
 function flag_anon_preprocess_flag(&$variables) {
   $flag =& $variables['flag'];
-  $action = $variables['action'];
   $entity_id = $variables['entity_id'];
   // We don't need to check for anonymous users having actual access to this flag, since
   // we excluded that option in the flag configuration validation stage.
-  if ($GLOBALS['user']->uid == 0) {
+  if (user_is_anonymous()) {
     $variables['link_href']= '';
     $link = _flag_anon_link($flag, $entity_id);
-    $variables['link_text'] = $link['title'];
+    $variables['link_text'] = t($link['title']);
   }
 }
 
@@ -236,6 +262,8 @@ function _flag_anon_link($flag, $entity_id) {
   // Backward compatibility:
   $tokens['!login'] = $tokens['[login]'];
   $tokens['!register'] = $tokens['[register]'];
+  // Let other modules add to this list or alter existing items.
+  drupal_alter('flag_anon_message_placeholders', $tokens, $flag, $entity_id);
   return array(
     'title' => strtr($flag->get_label('anon_message', $entity_id), $tokens),
     'html' => TRUE,

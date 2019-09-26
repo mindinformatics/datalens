@@ -10,7 +10,7 @@
  */
 function addtoany_install() {
   drupal_set_message(st("Your AddToAny settings are available under !link",
-    array( '!link' => l('Configuration > System > AddToAny ',  'admin/config/system/addtoany' ) )
+    array( '!link' => l('Configuration > Web services > AddToAny ',  'admin/config/services/addtoany' ) )
   ));
 }
 
@@ -22,6 +22,7 @@ function addtoany_permission() {
     'administer addtoany' => array(
       'title' => t('Administer addtoany'),
       'description' => t(''),
+      'restrict access' => TRUE,
     ),
   );
 }
@@ -87,9 +88,9 @@ function addtoany_views_api() {
 function addtoany_menu() {
   $items = array();
 
-  $items['admin/config/system/addtoany'] = array(
+  $items['admin/config/services/addtoany'] = array(
     'title'            => t('AddToAny'),
-    'description'      => t('Settings for your <a href="https://www.addtoany.com/" target="blank">AddToAny</a> Share/Save buttons.'),
+    'description'      => t('Settings for your <a href="https://www.addtoany.com/" target="blank">AddToAny</a> share buttons.'),
     'page callback'    => 'drupal_get_form',
     'page arguments'   => array('addtoany_admin_settings'),
     'access arguments' => array('administer addtoany'),
@@ -155,8 +156,6 @@ function addtoany_page_alter(&$page) {
   if ( ! $_addtoany_init)
     return;
 
-  $script_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://static.addtoany.com/menu/page.js' : 'http://static.addtoany.com/menu/page.js';
-
   $javascript_header = "window.a2a_config=window.a2a_config||{};"
       . "window.da2a={done:false,"
         . "html_done:false,"
@@ -165,7 +164,7 @@ function addtoany_page_alter(&$page) {
           . "var a=document.createElement('script'),"
             . "s=document.getElementsByTagName('script')[0];"
           . "a.type='text/javascript';a.async=true;"
-          . "a.src='" . $script_url . "';"
+          . "a.src='https://static.addtoany.com/menu/page.js';"
           . "s.parentNode.insertBefore(a,s);"
           . "da2a.script_load=function(){};"
         . "},"
@@ -194,7 +193,7 @@ function addtoany_page_alter(&$page) {
           . "attach: function (context, settings) {"
             // If not the full document (it's probably AJAX), and window.da2a exists
             . "if (context !== document && window.da2a) {"
-              . "if(da2a.script_ready)a2a.init_all('page');" // Init all uninitiated AddToAny instances
+              . "if(da2a.script_ready)a2a.init_all();" // Init all uninitiated AddToAny instances
               . "da2a.script_load();" // Load external script if not already called
             . "}"
           . "}"
@@ -202,6 +201,7 @@ function addtoany_page_alter(&$page) {
       . "})(jQuery);"
       . "a2a_config.callbacks=a2a_config.callbacks||[];"
       . "a2a_config.callbacks.push({ready:da2a.script_onready});"
+      . "a2a_config.overlays=a2a_config.overlays||[];"
       . "a2a_config.templates=a2a_config.templates||{};"
       . ((variable_get('addtoany_no_3p', '0') != '1') ? "" : "a2a_config.no_3p=1;")
       . variable_get('addtoany_additional_js', '');

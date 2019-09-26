@@ -5,23 +5,30 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
-# Logs and databases #
-######################
-*.log
+
+#Ignore any local .sql files
 *.sql
 
-# OS generated files #
-######################
+#Ignore the load.sh file- changes too often
+load.sh
+
+# Ignore configuration files that may contain sensitive information.
+sites/default/settings.php
+sites/default/local.settings.php
+sites/default/settings*.txt
+sites/default/config.properties
+
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
+
+# Ignore the security review module file
+sites/all/modules/security_review/IGNOREME.txt
+sites/all/modules/security_review/file_write_test*
+
+# OS generated files
 .DS_Store*
-ehthumbs.db
-Icon
-Thumbs.db
-._*
+Icon
 
-# Vim generated files #
-######################
-*.un~
-
-# SASS #
-##########
-.sass-cache
+:wq

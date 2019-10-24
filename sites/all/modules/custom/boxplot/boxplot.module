@@ -424,7 +424,9 @@ function ajax_boxplot_callback_braak($form, $form_state) {
 }
 
 
-
+function convert(&$item, $key) {
+  $item = (array) $item;
+}
 
 
 
@@ -460,60 +462,62 @@ function _age_buckets3($input) {
 
 function _query_mongo_boxplot($input_genes, $study) {
 
-    //dsm($input_genes);
+    // dsm($input_genes);
+    // This used to convert $input_genes into array, but not needed here.
     if (empty($input_genes)) {
-      $gene_list = array('DCLK1');
+      $gene_list = 'DCLK1';
     } else {
-      $gene_list = array($input_genes);
+      $gene_list = $input_genes;
     }
 
-    //dsm($gene_list);
+    try {
+      // Create a Mongo connection and connect to database
+      $manager = new MongoDB\Driver\Manager("mongodb://read-only:Sh3TbXhx@localhost:27017/cats");
 
-    // Create a Mongo connection and connect to database //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
+      // Set filters
+      $filter = [ 'GeneSymbol' => $gene_list,
+                  'Study' => $study,
+       ];
 
-    // Need something to map the study to the correct subject covariates and subject_expression
-    // Or just put study name in the file?
-    //subject_covariates
-    //subject_expression
+      // Set up query
+      // An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+      $query = new MongoDB\Driver\Query($filter);
 
-    // Select the expression collection for gene expression info
-    $coll = $db->subject_expression;
+      // Run query; cursor returns an object
+      $cursor = $manager->executeQuery("cats.subject_expression", $query);
 
+      //Interactive shell equivalent for testing
+      //db.subject_expression.find( { Study: "ROSMAP_PFC_RNASEQ_FPKM", GeneSymbol: "APOE"} ).limit( 1 );
 
-    // Filter on gene and study
-    //$query = array("GeneSymbol" => array('$in' => $gene_list));
-    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
-             array('Study' => $study ) ) );
+      //Convert object to an array (does top level only)- result is array of objects
+      $records = $cursor->toArray();
+      //dsm($records);
 
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    $total = (string)$cursor->count(); //To find total number of documents
-    //dsm("Total: " . $total);
-    //$cursor->limit( 5 );
+      //Convert interior to array so final is array of arrays
+      array_walk($records, 'convert');
+      //dsm($records);
 
-    //TODO:Sould only be 1 result- add if statement here.
-    $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval", "gene_id","apoe_mean_22","apoe_mean_23","apoe_mean_24","apoe_mean_33","apoe_mean_34", "apoe_mean_44");
-    //gene_id	ensembl_id	GeneSymbol	Study	apoe_pval	apoe_mean_22	apoe_mean_23	apoe_mean_24	apoe_mean_33	apoe_mean_34	apoe_mean_44
-     foreach ($cursor as $doc) {
-       //dsm($doc);
+      $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval", "gene_id","apoe_mean_22","apoe_mean_23","apoe_mean_24","apoe_mean_33","apoe_mean_34", "apoe_mean_44");
+     foreach ($records as $doc) {
        $exp_keys = array_keys($doc);
        $result = $doc;
        $sample_ids = array_diff($exp_keys, $static_keys);
      }
-     //dsm($result);
+     //var_dump($sample_ids);
 
-     //dsm($sample_ids);
 
     // Check the covariates for the clinical data
-     $coll2 = $db->subject_covariates;
-     $query2 = array('Study' => $study);
-     $cursor2 = $coll2->find($query2);
+     $filter2 = ['Study' => $study];
+     $query2 = new MongoDB\Driver\Query($filter2);
+     $cursor2 = $manager->executeQuery("cats.subject_covariates", $query2);
+     $records2 = $cursor2->toArray();
+     array_walk($records2, 'convert');
+     //dsm($records2);
 
+    // Build result set with gene expression + clinical data
      $row = array();
      $i = 1;
-     foreach ($cursor2 as $doc) {
+     foreach ($records2 as $doc) {
        $sample_id = $doc['ID'];
        //dsm($doc);
        if (array_key_exists($sample_id, $result) && ($doc['ApoE'] != "NA") ) {
@@ -533,14 +537,21 @@ function _query_mongo_boxplot($input_genes, $study) {
        }
        $i++;
      }
+     //var_dump($row);
+     return ($row);
 
-    //"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"
-    //"1000_CER","MayoBrainBank_Dickson","Cerebellum","AD","F","90_or_above","34","708.7612"
+     //TODO:
+     //$cursor->timeout(-1);   //Need to make sure no timeout issues?
+    //$total = (string)$cursor->count(); //To find total number of documents
 
-    //dsm($row);
-
-    return ($row);
-
+   } catch (MongoDB\Driver\Exception\Exception $e) {
+      $filename = basename(__FILE__);
+      echo "The $filename script has experienced an error.\n";
+      echo "It failed with the following exception:\n";
+      echo "Exception:", $e->getMessage(), "\n";
+      echo "In file:", $e->getFile(), "\n";
+      echo "On line:", $e->getLine(), "\n";
+   }
 }
 
 function _braak_bucket2($input) {

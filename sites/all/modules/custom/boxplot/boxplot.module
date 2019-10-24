@@ -472,7 +472,7 @@ function _query_mongo_boxplot($input_genes, $study) {
 
     try {
       // Create a Mongo connection and connect to database
-      $manager = new MongoDB\Driver\Manager("mongodb://read-only:Sh3TbXhx@localhost:27017/cats");
+      $manager = new MongoDB\Driver\Manager("mongodb://read-only:Sh3TbXhx@127.0.0.1:27017/cats");
 
       // Set filters
       $filter = [ 'GeneSymbol' => $gene_list,

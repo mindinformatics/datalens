@@ -1,0 +1,46 @@
+{
+  "name": "locuszoom",
+  "version": "0.6.0",
+  "description": "Generate interactive visualizations of statistical genetic data",
+  "keywords": [
+    "visualization",
+    "genetics",
+    "genes",
+    "gwas",
+    "phewas"
+  ],
+  "homepage": "http://locuszoom.org",
+  "license": "MIT",
+  "author": "Christopher Clark <chriclrk@umich.edu>",
+  "main": "locuszoom.app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/statgen/locuszoom.git"
+  },
+  "scripts": {
+    "gulp": "gulp",
+    "test": "eslint . && gulp test",
+    "eslint": "eslint ."
+  },
+  "dependencies": {
+    "d3": "~3.5.0",
+    "q": "~1.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "gulp": "~3.9.1",
+    "gulp-concat": "~2.6.0",
+    "gulp-mocha": "~4.0.0",
+    "gulp-sass": "~3.1.0",
+    "gulp-uglify": "~2.0.1",
+    "gulp-util": "~3.0.8",
+    "gulp-watch": "~4.3.11",
+    "gulp-wrap": "~0.13.0",
+    "jsdoc": "^3.5.4",
+    "jsdom": "9.12.0",
+    "mocha": "~3.4.1",
+    "mocha-jsdom": "~1.1.0",
+    "should": "~11.2.0",
+    "yargs": "~6.6.0"
+  }
+}

@@ -1,0 +1,13 @@
+name = Locus Zoom
+description = visualization of GWAS results
+files[js][] = locuszoom.app.js
+files[js][] = files.js
+files[js][] = locuszoom.vendor.min.js
+files[css][] = locuszoom.css
+version = 0.1
+
+; Information added by Drupal.org packaging script on 2015-12-27
+version = "7.x-1.0-alpha2"
+core = "7.x"
+project = "lzoom"
+datestamp = "1451186943"

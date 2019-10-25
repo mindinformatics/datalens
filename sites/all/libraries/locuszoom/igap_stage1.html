@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"/>
+
+    <!-- Necessary includes for LocusZoom.js -->
+
+    <title>LocusZoom.js ~ IGAP GWAS Stage 1 Filtered</title>
+
+    <style>
+      body {
+        background-color: #FAFAFA;
+        margin: 0px 20px;
+      }
+      img {
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+
+  </head>
+
+  <body style="background-color: #FAFAFA; margin-left: 20px; margin-right: 20px;">
+    <div class="container">
+
+      <h1 style="margin-top: 1em;"><strong>Locus Zoom Demo Data</strong></h1>
+
+      <h3 style="float: left; color: #777"></h3>
+      <hr style="clear: both;">
+
+      <div class="row">
+        <div class="two columns">
+        </div>
+        <div class="ten columns">
+          <div id="plot" data-region="10:114550452-115067678"></div>
+
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <footer style="text-align: center;">
+        </footer>
+      </div>
+
+    </div>
+
+    <script>window.module = "locuszoom";</script>
+
+    <script type="text/javascript">
+    // Define Data Sources
+
+    //apiBase = "https://portaldev.sph.umich.edu/api/v1/";
+    // var data_sources = new LocusZoom.DataSources()
+     //   .add("assoc", ["AssociationLZ", {url: apiBase + "statistic/single/", params: {analysis: 3, id_field: "variant"}}])
+
+    var data_sources = new LocusZoom.DataSources()
+      //.add("trait", ["AssociationLZ", {url: "sites/all/libraries/locuszoom/lzoom/IGAP_stage1_selected.json?", params: {analysis: 3, id_field: "MarkerName"}} ] );
+      .add("assoc", ["AssociationLZ", {url: "sites/all/libraries/locuszoom/staticdata/assoc_10_114550452-115067678.json?", params: {analysis: 3, id_field: "variant"} } ] )
+      .add("ld", ["LDLZ", {url: "sites/all/libraries/locuszoom/staticdata/ld_10_114550452-115067678.json?"}])
+      .add("gene", ["GeneLZ", { url: "sites/all/libraries/locuszoom/staticdata/genes_10_114550452-115067678.json?"}])
+      .add("recomb", ["RecombLZ", { url: "sites/all/libraries/locuszoom/staticdata/recomb_10_114550452-115067678.json?" }])
+      .add("constraint", ["GeneConstraintLZ", { url: "sites/all/libraries/locuszoom/staticdata/constraint_10_114550452-115067678.json?" }])
+      .add("intervals", ["IntervalLZ", { url: "sites/all/libraries/locuszoom/staticdata/intervals_10_114550452-115067678.json?"}]);
+
+
+    // Get the standard assocation plot layout from LocusZoom's built-in layouts
+    var mods = {
+      namespace: {
+        default: "assoc",
+        ld: "ld",
+        gene: "gene",
+        recomb: "recomb",
+        intervals: "intervals"
+      }
+    };
+    layout = LocusZoom.Layouts.get("plot", "interval_association", mods);
+
+
+     /*
+
+      var layout = {
+            width: 500,
+            height: 500,
+            panels: [
+              {
+                id: "association",
+                data_layers: [
+                   {
+                     id: "association",
+                     type: "scatter",
+                     fields: ["trait:position", "trait:pvalue"],
+                     x_axis: { field: "trait:position" },
+                     y_axis: { field: "trait:pvalue" }
+                   }
+                ]
+              }
+            ]
+          };
+ */
+
+
+
+    // Generate the LocusZoom plot
+    var plot = LocusZoom.populate("#plot", data_sources, layout);
+
+  </script>
+
+  </body>
+</html>

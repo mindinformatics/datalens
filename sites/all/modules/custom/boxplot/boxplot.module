@@ -424,12 +424,6 @@ function ajax_boxplot_callback_braak($form, $form_state) {
 }
 
 
-function convert(&$item, $key) {
-  $item = (array) $item;
-}
-
-
-
 function _age_buckets3($input) {
   switch ($input) {
     case ($input>0 && $input<60):
@@ -472,7 +466,12 @@ function _query_mongo_boxplot($input_genes, $study) {
 
     try {
       // Create a Mongo connection and connect to database
-      $manager = new MongoDB\Driver\Manager("mongodb://read-only:Sh3TbXhx@127.0.0.1:27017/cats");
+      //$manager = new MongoDB\Driver\Manager("mongodb://read-only:Sh3TbXhx@127.0.0.1:27017/cats");
+
+      //Interactive shell equivalent for testing
+      //db.subject_expression.find( { Study: "ROSMAP_PFC_RNASEQ_FPKM", GeneSymbol: "APOE"} ).limit( 1 );
+
+      $manager = _mongo_connect();
 
       // Set filters
       $filter = [ 'GeneSymbol' => $gene_list,
@@ -486,15 +485,8 @@ function _query_mongo_boxplot($input_genes, $study) {
       // Run query; cursor returns an object
       $cursor = $manager->executeQuery("cats.subject_expression", $query);
 
-      //Interactive shell equivalent for testing
-      //db.subject_expression.find( { Study: "ROSMAP_PFC_RNASEQ_FPKM", GeneSymbol: "APOE"} ).limit( 1 );
-
-      //Convert object to an array (does top level only)- result is array of objects
-      $records = $cursor->toArray();
-      //dsm($records);
-
-      //Convert interior to array so final is array of arrays
-      array_walk($records, 'convert');
+      //Convert object to an array
+      $records = _convert_to_array($cursor);
       //dsm($records);
 
       $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval", "gene_id","apoe_mean_22","apoe_mean_23","apoe_mean_24","apoe_mean_33","apoe_mean_34", "apoe_mean_44");
@@ -510,8 +502,7 @@ function _query_mongo_boxplot($input_genes, $study) {
      $filter2 = ['Study' => $study];
      $query2 = new MongoDB\Driver\Query($filter2);
      $cursor2 = $manager->executeQuery("cats.subject_covariates", $query2);
-     $records2 = $cursor2->toArray();
-     array_walk($records2, 'convert');
+     $records2 = _convert_to_array($cursor2);
      //dsm($records2);
 
     // Build result set with gene expression + clinical data

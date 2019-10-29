@@ -1,0 +1,36 @@
+<?php
+
+// Show PHP errors (during development only)
+    //error_reporting(E_ALL | E_STRICT);
+    //ini_set("display_errors", 2);
+
+
+// Connect to mongo
+function _mongo_connect() {
+  $mgr = new MongoDB\Driver\Manager("mongodb://read-only:Sh3TbXhx@127.0.0.1:27017/cats");
+  return $mgr;
+
+}
+
+// Mongo returns an object; use this to conver the object into an array
+function _convert_to_array($object) {
+
+  // This converts only the "top" layer of the object to an array
+  $transition = $object->toArray();
+
+  // This converts the interior of array/object to an array
+  array_walk($transition, 'convert');
+
+  return $transition;
+
+}
+
+// Helper for the _convert_to_array function
+function convert(&$item, $key) {
+  $item = (array) $item;
+}
+
+
+
+
+?>

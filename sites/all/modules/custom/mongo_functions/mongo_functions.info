@@ -1,0 +1,5 @@
+name = "Mongo Functions"
+description = "Provides frequently needed mongo functions"
+package = custom
+core = 7.x
+dependencies[] = block

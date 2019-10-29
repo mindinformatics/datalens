@@ -688,24 +688,26 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
 
     //dsm($gene_list);
 
-    // Create a Mongo connection and connect to database //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
-
-    // Select the expression collection for gene expression info
-    $coll = $db->human_expression;
-
-    // Build mongo query: use wildcard for unspecified values
-    // db.human_expression.find({"GeneSymbol": "PRELP", "BrainRegionFull": { $regex:  '.*', $options: "si" }, "Contrast": { $regex:  '.*', $options: "si" }, "DataType": { $regex:  '.*', $options: "si" }, "StudyName": { $regex:  '.*', $options: "si" }, "PValue": { $regex:  '.*', $options: "si" }, "PValue": { $regex:  '.*', $options: "si" }, "logFC": { $regex:  '.*', $options: "si" },  })
-    $query1 = !empty($gene_list) ? array('GeneSymbol' => array('$in' => $gene_list)) : NULL;
-    $query2 = !empty($br_terms) ? array('BrainRegionFull' => array('$in' => $br_terms)) : NULL;
-    $query3 = !empty($con_terms) ? array('Contrast' => array('$in' => $con_terms)) : NULL;
-    $query4 = !empty($dt_terms) ? array('DataType' => array('$in' => $dt_terms)) : NULL;
-    $query5 = !empty($study_terms) ? array('StudyName' => array('$in' => $study_terms)) : NULL;
-    $query6 = array('PValue' => array('$lt' => (float)$pvalue));
-    //see $query7 below
-    $query8 = !empty($file_list) ? array('FileName' => array('$in' => $file_list)) : NULL;
-
+    //Set Filters
+    $filter = ['PValue' => array('$lt' => (float)$pvalue)];
+    if (!empty($gene_list)) {
+        $filter['GeneSymbol'] = array('$in' => $gene_list);
+    }
+    if (!empty($br_terms)) {
+        $filter['BrainRegionFull'] = array('$in' => $br_terms);
+    }
+    if (!empty($con_terms)) {
+        $filter['Contrast'] = array('$in' => $con_terms);
+    }
+    if (!empty($dt_terms)) {
+        $filter['DataType'] = array('$in' => $dt_terms);
+    }
+    if (!empty($study_terms)) {
+        $filter['StudyName'] = array('$in' => $study_terms);
+    }
+    if (!empty($file_list)) {
+        $filter['FileName'] = array('$in' => $file_list);
+    }
 
     // Fold change
     if ($fc_gt != 0) {
@@ -716,26 +718,18 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
       $query7 = NULL;
     }
 
-    $query_check = array($query1, $query2, $query3, $query4, $query5, $query6, $query7, $query8);
-    $query_total = array();
-    foreach ($query_check as $value) {
-      if (!empty($value)) {
-        $query_total[] = $value;
-      }
-    }
+    var_dump($filter);
+    // Create a Mongo connection
+    $manager = _mongo_connect();
 
-    //dsm($query_check);
-    //dsm($query_total);
-    $query = array( '$and' => $query_total);
-    //dsm($query);
+    // Set up query: An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+    $query = new MongoDB\Driver\Query($filter, ['sort' => ['PValue' => 1], 'limit' => 500]);
 
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    $cursor->sort(array('PValue' => 1));
-    $cursor->limit( 500 );
-    //$total = (string)$cursor->count(); //To find total number of documents
-    //dsm($total);
-    //$cursor->limit( 5 );
+    // Run query; cursor returns an object
+    $cursor = $manager->executeQuery("cats.human_expression", $query);
+
+    // Convert object to an array
+    $records = _convert_to_array($cursor);
 
      //Access query results
      $result = array();
@@ -743,7 +737,7 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
      $i = 0;
 
      //Study,BrainRegion,Technology,logFC,CIL,CIR,PValue,median,min,max,Rank,row
-     foreach ($cursor as $doc) {
+     foreach ($records as $doc) {
        //var_dump($doc);
        $result[$i]['Study'] = $doc['StudyName'];
        $result[$i]['BrainRegionCode'] = $doc['BrainRegionCode'];
@@ -777,23 +771,6 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
        $filenames[] = $doc['FileName'];
        $i++;
      }
-
- 	  // Old
-// 		      'Study' => $value['Study'],
-//  		    'BrainRegion' => $value['BrainRegion'],
-//  		    'parent' => $value['parent'],
-//  		    'DataType' => $value['DataType'],
-//  		    'Contrast' => $value['Contrast'],
-//  		    'GeneSymbol' => $value['GeneSymbol'],
-//  		    'LogFC' => $value['LogFC'],
-//  		    'PValue' => $value['PValue'],
-//  		    'AdjPValue' => $value['AdjPValue'],
-//  		    'FileName' => $value['FileName'],
-//  		    'ProbeID' => $value['ProbeID'],
-//  		    'size' => $value['size'],
-//  		    'name' => $value['GeneSymbol'],
-
-
 
   return $result;
 

@@ -410,40 +410,36 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
 
     }
 
+      // Create a Mongo connection
+      $manager = _mongo_connect();
 
-    // Create a Mongo connection and connect to database //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
+      // Set filters
+      $filter = [ 'GeneSymbol' => array('$in' => $gene_list),
+                  'DataType' => array('$in' => $data_type),
+                  'Contrast' => $contrast,
+                  'StratFactor' => $strat_factor,
+       ];
 
-    // Select the expression collection for gene expression info
-    $coll = $db->human_expression;
+      // Set up query
+      // An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+      $query = new MongoDB\Driver\Query($filter, ['sort' => ['Rank' => 1], 'limit' => 500]);
 
-    // Filter on gene
-    //db.human_expression.find({"GeneSymbol":"CD33","Contrast":"AD-NCI","StratFactor":"CpDxAll"}).count()
-    //$query = array("GeneSymbol" => array('$in' => $gene_list));
-    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
-             array('DataType' => array('$in' => $data_type)),
-             array('Contrast' => $contrast),
-             array('StratFactor' => $strat_factor),
-             ) );
+      // Run query; cursor returns an object
+      $cursor = $manager->executeQuery("cats.human_expression", $query);
 
-    //dsm($query);
-
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    $cursor->sort(array('Rank' => 1));
-    $cursor->limit( 500 );
-    //$total = (string)$cursor->count(); //To find total number of documents
-    //dsm($total);
-    //$cursor->limit( 5 );
+      //Convert object to an array
+      $records = _convert_to_array($cursor);
+      $total = count($records);
+      //echo "After \n";
+      //var_dump($records);
 
      //Access query results
-     $result = array();
-     $filenames = array();
-     $i = 0;
+      $result = array();
+      $filenames = array();
+      $i = 0;
 
      //Study,BrainRegion,Technology,logFC,CIL,CIR,PValue,median,min,max,Rank,row
-     foreach ($cursor as $doc) {
+     foreach ($records as $doc) {
        //var_dump($doc);
        $result[$i]['Study'] = $doc['StudyName'];
        $result[$i]['BrainRegion'] = $doc['BrainRegionCode'];
@@ -470,14 +466,11 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
       //var_dump("Duplicate Files");
       //var_dump($dup_files);
 
-
-
       foreach ($dup_files as $dup) {
         $abs_logfc = array();
         $array_id = array();
         $probe_id = array();
         //find it
-
 
         //probes = result['Filename'] == $dup
         //find max probe
@@ -510,12 +503,8 @@ function hboxplot_query_mongo($input_gene, $data_type, $contrast, $strat_factor)
       }
    }
 
-
-
   //dsm($result);
-
   return $result;
-
 }
 
 function hboxplot_query_mongo_file($input_gene, $file_list) {
@@ -535,30 +524,28 @@ function hboxplot_query_mongo_file($input_gene, $file_list) {
 
     }
 
+    // Create a Mongo connection and connect to database
+    $manager = _mongo_connect();
 
-    // Create a Mongo connection and connect to database //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
+    // Set filters
+    $filter = [ 'GeneSymbol' => array('$in' => $gene_list),
+                'FileName' => array('$in' => $file_list),
 
-    // Select the expression collection for gene expression info
-    $coll = $db->human_expression;
+     ];
 
-    // Filter on gene
-    //db.human_expression.find({"GeneSymbol":"CD33","Contrast":"AD-NCI","StratFactor":"CpDxAll"}).count()
-    //$query = array("GeneSymbol" => array('$in' => $gene_list));
-    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
-             array('FileName' => array('$in' => $file_list),
-             ) ) );
+    // Set up query
+    // An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+    $query = new MongoDB\Driver\Query($filter, ['sort' => [ 'Rank' => 1], 'limit' => 500]);
 
-    //dsm($query);
+    // Run query; cursor returns an object
+    $cursor = $manager->executeQuery("cats.human_expression", $query);
 
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    $cursor->sort(array('Rank' => 1));
-    $cursor->limit( 500 );
-    //$total = (string)$cursor->count(); //To find total number of documents
-    //dsm($total);
-    //$cursor->limit( 5 );
+    //Convert object to an array
+    $records = _convert_to_array($cursor);
+    $total = count($records);
+    //echo "After \n";
+    //var_dump($records);
+
 
      //Access query results
      $result = array();
@@ -566,7 +553,7 @@ function hboxplot_query_mongo_file($input_gene, $file_list) {
      $i = 0;
 
      //Study,BrainRegion,Technology,logFC,CIL,CIR,PValue,median,min,max,Rank,row
-     foreach ($cursor as $doc) {
+     foreach ($records as $doc) {
        //var_dump($doc);
        $result[$i]['Study'] = $doc['StudyName'];
        $result[$i]['GeneSymbol'] = $doc['GeneSymbol'];
@@ -750,7 +737,6 @@ function _compare_br($a, $b) {
 
 function hboxplot_query_mongo_agora($input_gene) {
 
-
     if (empty($input_gene)) {
       $gene_list = array('PRELP');
     } else {
@@ -763,47 +749,39 @@ function hboxplot_query_mongo_agora($input_gene) {
       $species = array("human");
       $gene_list = array_map('_query_synonyms', $gene_list, $species);
       //var_dump($gene_list);
-
     }
 
-
-    // Create a Mongo connection and connect to database //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
-
-    // Select the expression collection for gene expression info
-    $coll = $db->agora_expression;
-
-    //Agora Specific variables
-    //$strat_factor?
+    // Agora specific variables
+    //TODO: include $strat_factor?
     $contrast = "AD-CONTROL";
     $model = "Diagnosis"; //Other options: Diagnosis, Diagnosis.Sex, APOE4, Diagnosis.AOD,"SourceDiagnosis"
 
-    // Filter on gene
-    //db.human_expression.find({"GeneSymbol":"CD33","Contrast":"AD-NCI","StratFactor":"CpDxAll"}).count()
-    //$query = array("GeneSymbol" => array('$in' => $gene_list));
-     $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
-             array('Contrast' => $contrast),
-             array('Model' => $model),
-             ) );
 
-    //dsm($query);
+    // Create a Mongo connection
+    $manager = _mongo_connect();
 
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    $cursor->sort(array('Rank' => 1));
-    $cursor->limit( 500 );
-    //$total = (string)$cursor->count(); //To find total number of documents
-    //dsm($total);
-    //$cursor->limit( 5 );
+    // Set filters
+    $filter = [ 'GeneSymbol' => array('$in' => $gene_list),
+                'Contrast' => $contrast,
+                'Model' => $model,
+     ];
 
-     //Access query results
+    // Set up query: An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+    $query = new MongoDB\Driver\Query($filter, ['sort' => [ 'Rank' => 1], 'limit' => 500]);
+
+    // Run query; cursor returns an object
+    $cursor = $manager->executeQuery("cats.agora_expression", $query);
+
+    // Convert object to an array
+    $records = _convert_to_array($cursor);
+
+     // Access query results
      $result = array();
      $filenames = array();
      $i = 0;
 
      //Model,BrainRegionCode,Contrast,EnsemblID,logFC,CIL,CIR,AveExpr,t,PValue,adjPVal,B,Direction,GeneSymbol,percentage_gc_content,gene_length,Sex,Study,FileName
-     foreach ($cursor as $doc) {
+     foreach ($records as $doc) {
        //var_dump($doc);
        $result[$i]['Study'] = $doc['Study'];
        $result[$i]['BrainRegion'] = $doc['BrainRegionCode'];
@@ -824,9 +802,7 @@ function hboxplot_query_mongo_agora($input_gene) {
      }
 
   //dsm($result);
-
   return $result;
-
 }
 
 ?>

@@ -488,21 +488,18 @@ function scatterplot_views_pre_render(&$view) {
 
 
 function _query_mongo_gv($input_markers, $input_genes, $pval) {
-    // Create a Mongo connection and connect to database //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
-
-    // Select the genomic variation collection for genetic variation info
-    $coll = $db->genomic_variation;
-
-
+    // Set default pval
     if(empty($pval)) {
       $pval = 0.05;
     }
 
     // Filter on p-value only
     if ( (empty($input_markers)) && (empty($input_genes)) ) {
-      $query = array('Pvalue' => array('$lt' => (float)$pval) );
+      //$query = array('Pvalue' => array('$lt' => (float)$pval) );
+
+      $filter = [ 'Pvalue' => array('$lt' => (float)$pval),
+       ];
+
     }
 
     // Filter on markers, p-value
@@ -512,8 +509,12 @@ function _query_mongo_gv($input_markers, $input_genes, $pval) {
       $trimmed_array = array_map('trim', $markers_list);
       $markers_list = $trimmed_array;
 
-      $query = array( '$and' => array( array("MarkerName" => array('$in' => $markers_list)),
-             array('Pvalue' => array('$lt' => (float)$pval) ) ) );
+      //$query = array( '$and' => array( array("MarkerName" => array('$in' => $markers_list)),
+       //      array('Pvalue' => array('$lt' => (float)$pval) ) ) );
+
+      $filter = [ 'Pvalue' => array('$lt' => (float)$pval),
+                  'MarkerName' => array('$in' => $markers_list),
+       ];
     }
 
     // Filter on genes, p-value
@@ -527,8 +528,12 @@ function _query_mongo_gv($input_markers, $input_genes, $pval) {
       $species = array("human");
       $gene_list = array_map('_query_synonyms', $gene_list, $species);
 
-      $query = array( '$and' => array( array("HGNC" => array('$in' => $gene_list)),
-             array('Pvalue' => array('$lt' => (float)$pval) ) ) );
+      //$query = array( '$and' => array( array("HGNC" => array('$in' => $gene_list)),
+      //       array('Pvalue' => array('$lt' => (float)$pval) ) ) );
+
+      $filter = [ 'Pvalue' => array('$lt' => (float)$pval),
+                  'HGNC' => array('$in' => $gene_list),
+       ];
 
     }
     //Filter on markers, genes, p-value
@@ -546,23 +551,34 @@ function _query_mongo_gv($input_markers, $input_genes, $pval) {
       $gene_list = $trimmed_array;
       $gene_list = array_map('_query_synonyms', $gene_list);
 
-      $query = array( '$and' => array( array("MarkerName" => array('$in' => $markers_list)),
-        array("HGNC" => array('$in' => $gene_list)), array('Pvalue' => array('$lt' => (float)$pval) ) ) );
+      //$query = array( '$and' => array( array("MarkerName" => array('$in' => $markers_list)),
+      //  array("HGNC" => array('$in' => $gene_list)), array('Pvalue' => array('$lt' => (float)$pval) ) ) );
+
+      $filter = [ 'Pvalue' => array('$lt' => (float)$pval),
+                  'MarkerName' => array('$in' => $markers_list),
+                  'HGNC' => array('$in' => $gene_list),
+       ];
+
     }
 
-    //var_dump($query);
+    // Create a Mongo connection
+    $manager = _mongo_connect();
 
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    $cursor->sort(array('Pvalue' => 1));
-    $cursor->limit( 500 );
+    // Set up query: An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+    $query = new MongoDB\Driver\Query($filter, ['sort' => [ 'Pvalue' => 1], 'limit' => 500]);
 
-     //Access query results
-     $result = array();
-     $filenames = array();
-     $i = 0;
+    // Run query; cursor returns an object
+    $cursor = $manager->executeQuery("cats.genomic_variation", $query);
 
-     foreach ($cursor as $doc) {
+    // Convert object to an array
+    $records = _convert_to_array($cursor);
+
+    // Access query results
+    $result = array();
+    $filenames = array();
+    $i = 0;
+
+     foreach ($records as $doc) {
        //var_dump($doc);
                            //MarkerName,Allele1,Allele2,Freq1,FreqSE,Effect,StdErr,Pvalue,Direction,Nsample,chr,pos,cumulative_pos,HGNC_nearest_gene_snpsnap,HGNC,logpval,color,xlabel,FileName
        $result[$i]['MarkerName'] = $doc['MarkerName'];
@@ -624,36 +640,34 @@ function _query_mongo_scatter($input_genes, $study) {
     } else {
       $gene_list = array($input_genes);
     }
-
     //dsm($gene_list);
 
-    // Create a Mongo connection and connect to database //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
-
-    // Need something to map the study to the correct subject covariates and subject_expression
-    // Or just put study name in the file?
-    //subject_covariates
-    //subject_expression
-
-    // Select the expression collection for gene expression info
-    $coll = $db->subject_expression;
-
-
     // Filter on gene and study
-    //$query = array("GeneSymbol" => array('$in' => $gene_list));
-    $query = array( '$and' => array( array("GeneSymbol" => array('$in' => $gene_list)),
-             array('Study' => $study ) ) );
+    $filter = [ 'GeneSymbol' => array('$in' => $gene_list),
+                'Study' => $study,
+     ];
 
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    $total = (string)$cursor->count(); //To find total number of documents
-    //dsm("Total: " . $total);
-    //$cursor->limit( 5 );
+    // Create a Mongo connection
+    $manager = _mongo_connect();
+
+    // Set up query: An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+    $query = new MongoDB\Driver\Query($filter);
+
+    // Run query; cursor returns an object
+    $cursor = $manager->executeQuery("cats.subject_expression", $query);
+
+    // Convert object to an array
+    $records = _convert_to_array($cursor);
+
+     // Access query results
+     $result = array();
+     $filenames = array();
+     $i = 0;
+
 
     //TODO:Sould only be 1 result- add if statement here.
     $static_keys = array("GeneSymbol","Study","ensembl_id","_id", "apoe_pval", "gene_id");
-     foreach ($cursor as $doc) {
+     foreach ($records as $doc) {
        //dsm($doc);
        $exp_keys = array_keys($doc);
        $result = $doc;
@@ -664,13 +678,16 @@ function _query_mongo_scatter($input_genes, $study) {
     //dsm($sample_ids);
 
     // Check the covariates for the clinical data
-     $coll2 = $db->subject_covariates;
-     $query2 = array('Study' => $study);
-     $cursor2 = $coll2->find($query2);
+    $filter2 = ['Study' => $study,
+     ];
+
+    $query2 = new MongoDB\Driver\Query($filter2);
+    $cursor2 = $manager->executeQuery("cats.subject_covariates", $query2);
+    $records2 = _convert_to_array($cursor2);
 
      $row = array();
      $i = 1;
-     foreach ($cursor2 as $doc) {
+     foreach ($records2 as $doc) {
        $sample_id = $doc['ID'];
        //dsm($doc);
        if (array_key_exists($sample_id, $result) && ($doc['ApoE'] != "NA") ) {
@@ -692,9 +709,7 @@ function _query_mongo_scatter($input_genes, $study) {
 
     //"SampleID","Source","Tissue","Diagnosis","Sex","AgeAtDeath","ApoE","APP"
     //  "1000_CER","MayoBrainBank_Dickson","Cerebellum","AD","F","90_or_above","34","708.7612"
-
     //dsm($row);
-
     return ($row);
 
 }

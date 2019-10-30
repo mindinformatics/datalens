@@ -70,35 +70,31 @@ function _query_mongo_lzoom($chr, $start, $end, $analysis) {
 
     $study_file = $study_list[$analysis];
 
-    // Create a Mongo connection and connect to database //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
 
-    // Select the genomic variation collection for genetic variation info
-    $coll = $db->genetic_association;
+    // Create a Mongo connection
+    $manager = _mongo_connect();
 
-    // Filter on position and chromosome
-    $query = array('$and' =>
-               array(
-               array('chr' => $chr),
-               array('pos' => array('$lt' => $end, '$gt' => $start) ),
-               array('FileName' => $study_file)
-               )
-             );
+    // Set filters
+    $filter = [ 'chr' => $chr,
+                'FileName' => $study_file,
+                'pos' => array('$lt' => $end, '$gt' => $start),
+     ];
 
-    //dsm($query);
+    // Set up query: An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+    $query = new MongoDB\Driver\Query($filter, ['sort' => [ 'Pvalue' => 1], 'limit' => 500]);
 
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    $cursor->sort(array('Pvalue' => 1));
-    $cursor->limit( 500 );
+    // Run query; cursor returns an object
+    $cursor = $manager->executeQuery("cats.genetic_association", $query);
+
+    // Convert object to an array
+    $records = _convert_to_array($cursor);
 
      //Access query results
      $result = array();
      $filenames = array();
      $i = 0;
 
-     foreach ($cursor as $doc) {
+     foreach ($records as $doc) {
        //var_dump($doc);
        //analysis, variant, chr, position, refAlleleFreq, ref_allele, pvalue, log_pvalue, scoreTestStat (null)
        $result['analysis'][$i] = intval($analysis);

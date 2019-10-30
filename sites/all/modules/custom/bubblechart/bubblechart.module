@@ -804,10 +804,6 @@ function _query_mongo_mouse_table($input_genes, $pval, $species) {
       $pval = 0.05;
     }
 
-    // Create Mongo connection, connect to database and collection //echo $db;
-    $mongo = new MongoClient("mongodb://localhost");
-    $db = $mongo->cats;
-    $coll = $db->mouse_expression;
 
     // Filter on genes and p-value
     //$query = array("GeneSymbol" => array('$in' => $gene_list));
@@ -816,33 +812,36 @@ function _query_mongo_mouse_table($input_genes, $pval, $species) {
 
     //var_dump($gene_list);
     //var_dump($species[0]);
+
+
+      //Set Filters
+    $filter = ['PValue' => array('$lt' => (float)$pval)];
     if ($species[0] == "human") {
-      $query = array( '$and' => array( array("HumanGene" => array('$in' => $gene_list)),
-             array('PValue' => array('$lt' => (float)$pval) ) ) );
+        $filter['HumanGene'] = array('$in' => $gene_list);
     }
-
     if ($species[0] == "mouse") {
-       $query = array( '$and' => array( array("MouseGene" => array('$in' => $gene_list)),
-             array('PValue' => array('$lt' => (float)$pval) ) ) );
+        $filter['MouseGene'] = array('$in' => $gene_list);
     }
 
+    // Create a Mongo connection
+    $manager = _mongo_connect();
 
+    // Set up query: An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+    $query = new MongoDB\Driver\Query($filter, ['sort' => ['PValue' => 1], 'limit' => 500]);
+
+    // Run query; cursor returns an object
+    $cursor = $manager->executeQuery("cats.mouse_expression", $query);
+
+   //Convert object to an array
+    $records = _convert_to_array($cursor);
     //ProbeID,adjPValue,PValue,t,B,logFC,MouseGene,GeneTitle,Filename,BrainRegion,Perturbation,DataType,Group,Study,HumanGene
-
-    $cursor = $coll->find($query);
-    $cursor->timeout(-1);
-    $cursor->sort(array('PValue' => 1));
-    $cursor->limit( 500 );
-    //$total = (string)$cursor->count(); //To find total number of documents
-    //dsm($total);
-    //$cursor->limit( 5 );
 
      //Access query results
      $result = array();
      $filenames = array();
      $i = 0;
 
-     foreach ($cursor as $doc) {
+     foreach ($records as $doc) {
        //var_dump($doc);
        $result[$i]['Study'] = $doc['Study'];
        $result[$i]['BrainRegion'] = $doc['BrainRegion'];

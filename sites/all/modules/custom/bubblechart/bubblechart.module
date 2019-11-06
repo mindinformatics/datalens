@@ -718,7 +718,7 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
       $query7 = NULL;
     }
 
-    var_dump($filter);
+    //var_dump($filter);
     // Create a Mongo connection
     $manager = _mongo_connect();
 

@@ -22,6 +22,8 @@ sites/default/local.settings.php
 sites/default/settings*.txt
 sites/default/config.properties
 
+# Causes issues on Security Scan// not needed on LINUX
+web.config
 
 # Ignore paths that contain user-generated content.
 sites/*/files

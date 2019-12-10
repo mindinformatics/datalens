@@ -27,11 +27,12 @@ function views_php_check_access($php_access, $view_name, $display_id, $account =
   }
 
   if (!isset($function[$view_name . ':' . $display_id])) {
-    $function[$view_name . ':' . $display_id] = create_function('$view_name, $display_id, $account', $php_access . ';');
+    $function[$view_name . ':' . $display_id] = views_php_create_function('$view_name, $display_id, $account', $php_access . ';');
   }
 
   ob_start();
-  $access = (bool) $function[$view_name . ':' . $display_id]($view_name, $display_id, $account);
+  $closure = $function[$view_name . ':' . $display_id]->getClosure();
+  $access = (bool) $closure($view_name, $display_id, $account);
   ob_end_clean();
   return $access;
 }
@@ -157,4 +158,34 @@ function views_php_views_post_build($view) {
   if (!empty($view->views_php) && !empty($view->build_info['query']) && is_object($view->build_info['query'])) {
     $view->build_info['query']->range();
   }
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function views_php_libraries_info() {
+  return array(
+    'closure' => array(
+      'name' => 'Opis Closure',
+      'vendor url' => 'https://opis.io/closure',
+      'download url' => 'https://opis.io/closure',
+      'version arguments' => array(
+        'file' => 'CHANGELOG.md',
+        'pattern' => '/### v([\d\.]+)/',
+        'lines' => 5,
+      ),
+      'files' => array(
+        'php' => array('autoload.php'),
+      ),
+    ),
+  );
+}
+
+/**
+ * Internal support: create_function() emulation using an anonymous function with a serializable wrapper.
+ */
+function views_php_create_function($args, $code) {
+  libraries_load('closure');
+  $closure = \Opis\Closure\SerializableClosure::createClosure($args, $code);
+  return new \Opis\Closure\SerializableClosure($closure);
 }

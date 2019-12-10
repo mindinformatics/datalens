@@ -63,11 +63,12 @@ class views_php_handler_filter extends views_handler_filter {
    * @see views_php_views_pre_execute()
    */
   function php_pre_execute() {
-    // Ecexute static PHP code.
+    // Execute static PHP code.
     if (!empty($this->options['php_setup'])) {
-      $function = create_function('$view, $handler, &$static', $this->options['php_setup'] . ';');
+      $function = views_php_create_function('$view, $handler, &$static', $this->options['php_setup'] . ';');
       ob_start();
-      $function($this->view, $this, $this->php_static_variable);
+      $closure = $function->getClosure();
+      $closure($this->view, $this, $this->php_static_variable);
       ob_end_clean();
     }
   }
@@ -79,14 +80,15 @@ class views_php_handler_filter extends views_handler_filter {
   function php_post_execute() {
     // Evaluate the PHP code.
     if (!empty($this->options['php_filter'])) {
-      $function = create_function('$view, $handler, &$static, $row, $data', $this->options['php_filter'] . ';');
+      $function = views_php_create_function('$view, $handler, &$static, $row, $data', $this->options['php_filter'] . ';');
       ob_start();
       foreach ($this->view->result as $i => $row) {
         $normalized_row = new stdClass;
         foreach ($this->view->display_handler->get_handlers('field') as $field => $handler) {
           $normalized_row->$field = isset($row->{$handler->field_alias}) ? $row->{$handler->field_alias} : NULL;
         }
-        if ($function($this->view, $this, $this->php_static_variable, $normalized_row, $row)) {
+        $closure = $function->getClosure();
+        if ($closure($this->view, $this, $this->php_static_variable, $normalized_row, $row)) {
           unset($this->view->result[$i]);
         }
       }

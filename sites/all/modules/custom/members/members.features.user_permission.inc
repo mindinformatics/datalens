@@ -25,7 +25,8 @@ function members_user_default_permissions() {
     'name' => 'cancel own vote',
     'roles' => array(
       'administrator' => 'administrator',
-      'authenticated user' => 'authenticated user',
+      'member' => 'member',
+      'non-member' => 'non-member',
     ),
     'module' => 'poll',
   );
@@ -52,7 +53,7 @@ function members_user_default_permissions() {
   $permissions['create discussion content'] = array(
     'name' => 'create discussion content',
     'roles' => array(
-      'authenticated user' => 'authenticated user',
+      'administrator' => 'administrator',
     ),
     'module' => 'node',
   );
@@ -111,7 +112,7 @@ function members_user_default_permissions() {
   $permissions['edit own discussion content'] = array(
     'name' => 'edit own discussion content',
     'roles' => array(
-      'authenticated user' => 'authenticated user',
+      'administrator' => 'administrator',
     ),
     'module' => 'node',
   );
@@ -300,7 +301,8 @@ function members_user_default_permissions() {
     'name' => 'vote on polls',
     'roles' => array(
       'administrator' => 'administrator',
-      'authenticated user' => 'authenticated user',
+      'member' => 'member',
+      'non-member' => 'non-member',
     ),
     'module' => 'poll',
   );

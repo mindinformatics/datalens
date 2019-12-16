@@ -5656,8 +5656,8 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'uid' => 'uid',
@@ -5747,6 +5747,11 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['field_xfp_lastname']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_xfp_lastname']['alter']['text'] = 'Last Name: [field_xfp_lastname]';
   $handler->display->display_options['fields']['field_xfp_lastname']['element_label_colon'] = FALSE;
+  /* Field: User: E-mail */
+  $handler->display->display_options['fields']['mail']['id'] = 'mail';
+  $handler->display->display_options['fields']['mail']['table'] = 'users';
+  $handler->display->display_options['fields']['mail']['field'] = 'mail';
+  $handler->display->display_options['fields']['mail']['label'] = 'Email';
   /* Field: User: Group membership */
   $handler->display->display_options['fields']['og_user_node']['id'] = 'og_user_node';
   $handler->display->display_options['fields']['og_user_node']['table'] = 'og_membership';
@@ -5778,14 +5783,24 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<p></p>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Sort criterion: User: Created date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'users';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['created']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['created']['expose']['label'] = 'Created date';
-  $handler->display->display_options['sorts']['created']['granularity'] = 'day';
+  /* Sort criterion: Profile: Last Name (field_xfp_lastname) */
+  $handler->display->display_options['sorts']['field_xfp_lastname_value']['id'] = 'field_xfp_lastname_value';
+  $handler->display->display_options['sorts']['field_xfp_lastname_value']['table'] = 'field_data_field_xfp_lastname';
+  $handler->display->display_options['sorts']['field_xfp_lastname_value']['field'] = 'field_xfp_lastname_value';
+  $handler->display->display_options['sorts']['field_xfp_lastname_value']['relationship'] = 'profile';
+  /* Sort criterion: Profile: First Name (field_xfp_firstname) */
+  $handler->display->display_options['sorts']['field_xfp_firstname_value']['id'] = 'field_xfp_firstname_value';
+  $handler->display->display_options['sorts']['field_xfp_firstname_value']['table'] = 'field_data_field_xfp_firstname';
+  $handler->display->display_options['sorts']['field_xfp_firstname_value']['field'] = 'field_xfp_firstname_value';
+  $handler->display->display_options['sorts']['field_xfp_firstname_value']['relationship'] = 'profile';
+  /* Filter criterion: Profile: User uid */
+  $handler->display->display_options['filters']['user']['id'] = 'user';
+  $handler->display->display_options['filters']['user']['table'] = 'profile';
+  $handler->display->display_options['filters']['user']['field'] = 'user';
+  $handler->display->display_options['filters']['user']['relationship'] = 'profile';
+  $handler->display->display_options['filters']['user']['operator'] = '>=';
+  $handler->display->display_options['filters']['user']['value']['value'] = '2';
+  $handler->display->display_options['filters']['user']['group'] = 1;
   /* Filter criterion: Profile: First Name (field_xfp_firstname) */
   $handler->display->display_options['filters']['field_xfp_firstname_value']['id'] = 'field_xfp_firstname_value';
   $handler->display->display_options['filters']['field_xfp_firstname_value']['table'] = 'field_data_field_xfp_firstname';
@@ -5825,6 +5840,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['filters']['mail']['table'] = 'users';
   $handler->display->display_options['filters']['mail']['field'] = 'mail';
   $handler->display->display_options['filters']['mail']['operator'] = 'contains';
+  $handler->display->display_options['filters']['mail']['group'] = 1;
   $handler->display->display_options['filters']['mail']['exposed'] = TRUE;
   $handler->display->display_options['filters']['mail']['expose']['operator_id'] = 'mail_op';
   $handler->display->display_options['filters']['mail']['expose']['label'] = 'E-mail:';
@@ -5845,6 +5861,80 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+
+  /* Display: Data export */
+  $handler = $view->new_display('views_data_export', 'Data export', 'views_data_export_1');
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+  $handler->display->display_options['style_options']['provide_file'] = 1;
+  $handler->display->display_options['style_options']['filename'] = '%timestamp-yyyy_%timestamp-mm_%timestamp-dd_AlzDataLens_Members.csv';
+  $handler->display->display_options['style_options']['parent_sort'] = 0;
+  $handler->display->display_options['style_options']['quote'] = 1;
+  $handler->display->display_options['style_options']['trim'] = 0;
+  $handler->display->display_options['style_options']['replace_newlines'] = 0;
+  $handler->display->display_options['style_options']['newline_token'] = '1';
+  $handler->display->display_options['style_options']['header'] = 1;
+  $handler->display->display_options['style_options']['keep_html'] = 0;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: User: Uid */
+  $handler->display->display_options['fields']['uid']['id'] = 'uid';
+  $handler->display->display_options['fields']['uid']['table'] = 'users';
+  $handler->display->display_options['fields']['uid']['field'] = 'uid';
+  /* Field: Realname: Real name */
+  $handler->display->display_options['fields']['realname']['id'] = 'realname';
+  $handler->display->display_options['fields']['realname']['table'] = 'realname';
+  $handler->display->display_options['fields']['realname']['field'] = 'realname';
+  $handler->display->display_options['fields']['realname']['label'] = 'Display Name';
+  /* Field: Profile: First Name */
+  $handler->display->display_options['fields']['field_xfp_firstname']['id'] = 'field_xfp_firstname';
+  $handler->display->display_options['fields']['field_xfp_firstname']['table'] = 'field_data_field_xfp_firstname';
+  $handler->display->display_options['fields']['field_xfp_firstname']['field'] = 'field_xfp_firstname';
+  $handler->display->display_options['fields']['field_xfp_firstname']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['field_xfp_firstname']['label'] = '';
+  $handler->display->display_options['fields']['field_xfp_firstname']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_xfp_firstname']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_xfp_firstname']['alter']['text'] = 'First Name: [field_xfp_firstname]';
+  $handler->display->display_options['fields']['field_xfp_firstname']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_xfp_firstname']['type'] = 'text_plain';
+  /* Field: Profile: Last Name */
+  $handler->display->display_options['fields']['field_xfp_lastname']['id'] = 'field_xfp_lastname';
+  $handler->display->display_options['fields']['field_xfp_lastname']['table'] = 'field_data_field_xfp_lastname';
+  $handler->display->display_options['fields']['field_xfp_lastname']['field'] = 'field_xfp_lastname';
+  $handler->display->display_options['fields']['field_xfp_lastname']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['field_xfp_lastname']['label'] = '';
+  $handler->display->display_options['fields']['field_xfp_lastname']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_xfp_lastname']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_xfp_lastname']['alter']['text'] = 'Last Name: [field_xfp_lastname]';
+  $handler->display->display_options['fields']['field_xfp_lastname']['element_label_colon'] = FALSE;
+  /* Field: User: E-mail */
+  $handler->display->display_options['fields']['mail']['id'] = 'mail';
+  $handler->display->display_options['fields']['mail']['table'] = 'users';
+  $handler->display->display_options['fields']['mail']['field'] = 'mail';
+  $handler->display->display_options['fields']['mail']['label'] = 'Email';
+  /* Field: Profile: Affiliation(s) */
+  $handler->display->display_options['fields']['field_xfp_affiliation']['id'] = 'field_xfp_affiliation';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['table'] = 'field_data_field_xfp_affiliation';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['field'] = 'field_xfp_affiliation';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['label'] = 'Affiliations';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_xfp_affiliation']['delta_offset'] = '0';
+  /* Field: User: Group membership */
+  $handler->display->display_options['fields']['og_user_node']['id'] = 'og_user_node';
+  $handler->display->display_options['fields']['og_user_node']['table'] = 'og_membership';
+  $handler->display->display_options['fields']['og_user_node']['field'] = 'og_user_node';
+  $handler->display->display_options['fields']['og_user_node']['type'] = 'og_list_default';
+  $handler->display->display_options['fields']['og_user_node']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['og_user_node']['delta_offset'] = '0';
+  $handler->display->display_options['path'] = 'members/manage/export';
+  $handler->display->display_options['displays'] = array(
+    'page' => 'page',
+    'default' => 0,
+    'block' => 0,
+  );
   $export['manage_users'] = $view;
 
   $view = new view();

@@ -5,6 +5,7 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
+
 # Ignore any local .sql files
 *.sql
 
@@ -12,7 +13,7 @@ sites/*/private
 sites/all/modules/contrib/security_review/IGNOREME.txt
 sites/all/modules/contrib/security_review/file_write_test*
 
-# Ignore the load.sh file (changes too often)
+# Ignore the load.sh file- changes too often
 load.sh
 
 # Ignore configuration files that may contain sensitive information.
@@ -21,8 +22,12 @@ sites/default/local.settings.php
 sites/default/settings*.txt
 sites/default/config.properties
 
-# Causes issues on Security Scan//not needed on LINUX
+# Causes issues on Security Scan// not needed on LINUX
 web.config
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
 
 # Ignore OS generated files
 .DS_Store*

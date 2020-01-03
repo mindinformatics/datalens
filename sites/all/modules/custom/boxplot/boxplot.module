@@ -127,7 +127,7 @@ function boxplot_form_braak($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Gene Symbol'),
     '#default_value' => '',
-    '#description' => t('Select a gene from the list via type ahead.'),
+    '#description' => t('Type gene symbol then select from list'),
     '#size' => 20,
     '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
     '#required' => true,
@@ -165,7 +165,7 @@ function boxplot_form_cerad($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Gene Symbol'),
     '#default_value' => '',
-    '#description' => t('Select a gene from the list via type ahead.'),
+    '#description' => t('Type gene symbol then select from list'),
     '#size' => 20,
     '#autocomplete_path' => 'taxonomy/autocomplete/field_genes_diff',
     //'#element_validate' => array('boxplot_gene_validate')

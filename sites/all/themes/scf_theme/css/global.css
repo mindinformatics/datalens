@@ -2097,12 +2097,13 @@ ul.bef-tree-child.bef-tree-depth-2 {
   margin-right: 20px;
 }
 
-/* Forest plot and Exploding Boxplot*/
+/* Forest plot and Boxplot*/
 .eplot-inline,
 .hplot-inline {
   display: inline-block;
   vertical-align: top;
   padding-top: 33px;
+  margin-left: -56px;
 }
 
 #gtitle ,

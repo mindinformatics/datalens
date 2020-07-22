@@ -349,7 +349,7 @@ function members_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Gene Expression';
+  $handler->display->display_options['title'] = 'Cell Expression';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -1015,16 +1015,26 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['label'] = 'Gene(s):';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Human Gene(s) Symbol:';
   $handler->display->display_options['filters']['title']['expose']['description'] = 'Paste a list of gene symbols';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
   $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
+  );
+  /* Filter criterion: Content: Nid */
+  $handler->display->display_options['filters']['nid']['id'] = 'nid';
+  $handler->display->display_options['filters']['nid']['table'] = 'node';
+  $handler->display->display_options['filters']['nid']['field'] = 'nid';
+  $handler->display->display_options['filters']['nid']['group'] = 1;
+  $handler->display->display_options['filters']['nid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['nid']['expose']['operator_id'] = 'nid_op';
+  $handler->display->display_options['filters']['nid']['expose']['label'] = 'Mouse Gene(s) Symbol:';
+  $handler->display->display_options['filters']['nid']['expose']['description'] = 'Paste a list of gene symbols';
+  $handler->display->display_options['filters']['nid']['expose']['operator'] = 'nid_op';
+  $handler->display->display_options['filters']['nid']['expose']['identifier'] = 'nid';
+  $handler->display->display_options['filters']['nid']['expose']['remember_roles'] = array(
+    2 => '2',
   );
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
@@ -1055,7 +1065,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_5']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_5']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_5']['expose']['operator_id'] = 'term_node_tid_depth_5_op';
-  $handler->display->display_options['filters']['term_node_tid_depth_5']['expose']['label'] = 'Cell Type';
+  $handler->display->display_options['filters']['term_node_tid_depth_5']['expose']['label'] = 'Cell Type(s):';
   $handler->display->display_options['filters']['term_node_tid_depth_5']['expose']['operator'] = 'term_node_tid_depth_5_op';
   $handler->display->display_options['filters']['term_node_tid_depth_5']['expose']['identifier'] = 'CellType';
   $handler->display->display_options['filters']['term_node_tid_depth_5']['expose']['multiple'] = TRUE;
@@ -1073,7 +1083,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_3']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_3']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_3']['expose']['operator_id'] = 'term_node_tid_depth_3_op';
-  $handler->display->display_options['filters']['term_node_tid_depth_3']['expose']['label'] = 'Cell Isolation Technology';
+  $handler->display->display_options['filters']['term_node_tid_depth_3']['expose']['label'] = 'Cell Isolation Technology:';
   $handler->display->display_options['filters']['term_node_tid_depth_3']['expose']['operator'] = 'term_node_tid_depth_3_op';
   $handler->display->display_options['filters']['term_node_tid_depth_3']['expose']['identifier'] = 'CellIsolation';
   $handler->display->display_options['filters']['term_node_tid_depth_3']['expose']['multiple'] = TRUE;
@@ -1091,7 +1101,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_4']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_4']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_4']['expose']['operator_id'] = 'term_node_tid_depth_4_op';
-  $handler->display->display_options['filters']['term_node_tid_depth_4']['expose']['label'] = 'Contrast';
+  $handler->display->display_options['filters']['term_node_tid_depth_4']['expose']['label'] = 'Contrast:';
   $handler->display->display_options['filters']['term_node_tid_depth_4']['expose']['operator'] = 'term_node_tid_depth_4_op';
   $handler->display->display_options['filters']['term_node_tid_depth_4']['expose']['identifier'] = 'CellTypeContrast';
   $handler->display->display_options['filters']['term_node_tid_depth_4']['expose']['multiple'] = TRUE;

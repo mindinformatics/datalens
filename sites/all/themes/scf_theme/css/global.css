@@ -1657,7 +1657,8 @@ div.horizontal-tabs .horizontal-tabs-panes {
 .view-evidence .views-exposed-form .views-exposed-widget,
 .view-evidence-simple .views-exposed-form .views-exposed-widget,
 .view-genetic-association .views-exposed-form .views-exposed-widget,
-.view-evidence-mouse .views-exposed-form .views-exposed-widget {
+.view-evidence-mouse .views-exposed-form .views-exposed-widget,
+.view-cell-type-expression .views-exposed-form .views-exposed-widget  {
   padding: .5em 1em 0 .6em;
   margin-left: 3px;
 }
@@ -1681,6 +1682,12 @@ div.horizontal-tabs .horizontal-tabs-panes {
 }
 
 
+.view-cell-type-expression .views-exposed-form #edit-term-node-tid-depth-wrapper,
+.view-cell-type-expression .views-exposed-form #edit-term-node-tid-depth-1-wrapper,
+.view-cell-type-expression .views-exposed-form #edit-term-node-tid-depth-2-wrapper {
+  width: 18%;
+}
+
 .view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-wrapper,
 .view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-1-wrapper,
 .view-evidence-mouse .views-exposed-form #edit-term-node-tid-depth-2-wrapper {
@@ -1691,23 +1698,27 @@ div.horizontal-tabs .horizontal-tabs-panes {
   width: 18%;
 }
 
-.view-evidence-mouse .views-widget-filter-field_perturbation_tid .form-type-bef-checkbox {
+.view-evidence-mouse .views-widget-filter-field_perturbation_tid .form-type-bef-checkbox,
+.view-cell-type-expression .form-type-bef-checkbox{
   padding-left: 5px;
 }
 
-.view-evidence-mouse .views-exposed-form .views-exposed-widget {
+.view-evidence-mouse .views-exposed-form .views-exposed-widget,
+.view-cell-type-expression .views-exposed-form .views-exposed-widget{
   float: left;
   padding: .5em 1em 0 .6em;
   /*display: inline-block; */
 }
 
 .view-evidence .view-header,
-.view-evidence-mouse .view-header {
+.view-evidence-mouse .view-header,
+.view-cell-type-expression .view-header {
   font-size: 14px;
 }
 
 .view-evidence .view-empty p,
-.view-evidence-mouse .view-empty p {
+.view-evidence-mouse .view-empty p,
+.view-cell-type-expression .view-empty p {
   color: #004466;
   font-weight: bold;
 }
@@ -2153,6 +2164,3 @@ ul.bef-tree-child.bef-tree-depth-2 {
   width: 25%;
   padding-bottom: 5%;
 }
-
-
-

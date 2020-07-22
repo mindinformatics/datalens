@@ -307,7 +307,17 @@ function bubblechart_form_alter(&$form, &$form_state,$form_id ){
     $form['title']['#type']='textarea';
     $form['title']['#cols']='20';
     $form['title']['#rows']='9';
+ }
 
+ if($form['#id'] == 'views-exposed-form-cell-type-expression-page') {
+    //dsm($form);
+    $form['title']['#type']='textarea';
+    $form['title']['#cols']='20';
+    $form['title']['#rows']='9';
+
+    $form['nid']['#type']='textarea';
+    $form['nid']['#cols']='20';
+    $form['nid']['#rows']='9';
  }
 
 }
@@ -584,6 +594,144 @@ function bubblechart_views_pre_render(&$view) {
     }
 
   }
+
+
+  ///New here!!!!!!
+    if($view->name=='cell_type_expression'){
+    //dsm($view);
+    //dsm($view->exposed_input);
+    //dsm($view);
+
+    if (empty($view->exposed_input['title']) &&
+        empty($view->exposed_input['nid']) &&
+        empty($view->exposed_input['term_node_tid_depth']) &&
+        empty($view->exposed_input['term_node_tid_depth_1']) &&
+        empty($view->exposed_input['CellType']) &&
+        empty($view->exposed_input['CellIsolation']) &&
+        empty($view->exposed_input['CellTypeContrast']) &&
+        empty($view->exposed_input['field_fold_change_value']) &&
+        empty($view->exposed_input['term_node_tid_depth_2']) ) {
+        $view->result = array();
+        $view->total_rows = 0;
+        $view->query->pager->total_items = 0;
+        $view->query->pager->update_page_info();
+        $view->empty['area']->options['content'] = "Please select 1 or more filter options above and click the Apply button.";
+    } else {
+
+
+    //If human empty, take mouse, otherwise, always take human (even if both filled)
+      if ( empty($view->exposed_input['title']) ) {
+          $species = array("mouse");
+          $gene_list = $view->exposed_input['nid'];
+      } else {
+          $species = array("human");
+          $gene_list = $view->exposed_input['title'];
+
+      }
+
+    // Brain Region
+    $br_terms = array();
+    if (!empty($view->exposed_input['term_node_tid_depth'])) {
+        $brain_region = $view->exposed_input['term_node_tid_depth'];
+        foreach($brain_region as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          array_push($br_terms, $term);
+        }
+    }
+
+    // Contrast
+    $con_terms = array();
+      if (!empty($view->exposed_input['CellTypeContrast'])) {
+        $contrast = $view->exposed_input['CellTypeContrast '];
+        //dsm($contrast);
+        foreach($contrast as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          array_push($con_terms, $term);
+        }
+      }
+
+    // Data Type
+    $dt_terms = array();
+    if (!empty($view->exposed_input['term_node_tid_depth_1'])) {
+      $data_type = $view->exposed_input['term_node_tid_depth_1'];
+        foreach($data_type as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          if ($term === "Array Expression" ) {
+            $term = "uArray";
+          }
+          if ($term === "RNA-seq" ) {
+            array_push($dt_terms, "CPM", "RC", "FPKM");
+          } else {
+            array_push($dt_terms, $term);
+          }
+        }
+    }
+
+    // Group/Study
+    $study_terms = array();
+    if (!empty($view->exposed_input['term_node_tid_depth_2'])) {
+      $study = $view->exposed_input['term_node_tid_depth_2'];
+      foreach($study as $tid) {
+        $term = taxonomy_term_load($tid)->name;
+        array_push($study_terms, $term);
+      }
+    }
+
+    // PValue
+    $pvalue = ".05";
+    if (!empty($view->exposed_input['field_pvalue_value'])) {
+      $pvalue = $view->exposed_input['field_pvalue_value'];
+    }
+
+    // Fold Change
+    $fc_gt = 0;
+    if (!empty($view->exposed_input['field_fold_change_value'])) {
+      $fc_gt = abs($view->exposed_input['field_fold_change_value']);
+    }
+
+    $file_list = array();
+
+    $mongo_array = _query_mongo_celltype($gene_list, $br_terms, $species, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list);
+    //dsm($mongo_array);
+
+    $new_result_array = array();
+    foreach($mongo_array as $row) {
+       //$row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['AdjPVal'], $value['FileName']););
+      $analysis_nid = intval(_query_analysisId($row['ResultFile']));
+      $input_study_nid = intval(_query_inputId($analysis_nid));
+      //var_dump($analysis_id);
+      $temp = new stdClass;
+      $temp->node_title = $row['HumanSymbol'] . " " . $row['ID'];
+      $temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ID'];
+      $temp->field_field_pvalue[0]['raw']['value'] = $row['PValue'];
+      $temp->field_field_pvalue[0]['rendered']['#markup'] = sprintf('%.2E', $row['PValue']);
+      $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
+      $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
+      $temp->field_field_fold_change_raw[0]['raw']['value'] = $row['FC'];
+      $temp->field_field_fold_change_raw[0]['rendered']['#markup'] = sprintf('%.2f', $row['FC']);
+      $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['ResultFile']);
+      $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $row['ResultFile'] . '</a>';
+      $temp->field_field_brain_region[0]['rendered']['#markup']= $row['BrainRegion'];
+      $temp->field_field_data_type[0]['rendered']['#markup'] = $row['DataType'];
+      $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/node/' . $input_study_nid . '">' . $row['Study']. '</a>';
+      $new_result_array[] = $temp;
+    }
+
+
+    $view->result = $new_result_array;
+    $view->total_rows = count($new_result_array);
+    //$view->query->pager->total_items = count($new_result_array);
+    //$view->query->pager->update_page_info();
+
+    }
+  }
+
+
+
+
+
+
+
 }
 
 function _query_analysisId($input) {
@@ -769,6 +917,104 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
        $result[$i]['max'] = $doc['max'];
        $result[$i]['Rank'] = $doc['Rank'];
        $filenames[] = $doc['FileName'];
+       $i++;
+     }
+
+  return $result;
+
+}
+
+function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list) {
+
+    // Check gene input
+    if (!empty($input_gene)) {
+      $input_genes = strtoupper($input_gene);
+      //Explode whitespace (tabs, new lines, spaces) and commas; old: $gene_list = explode(",", $input_genes);
+      $gene_list = preg_split('/[\s ,]+/', $input_genes);
+      $gene_list = array_filter($gene_list);
+      $trimmed_array = array_map('trim', $gene_list);
+      $gene_list = $trimmed_array;
+      $species = $species_term;
+      $gene_list = array_map('_query_synonyms', $gene_list, $species);
+    } else {
+      $gene_list = array();
+    }
+
+    //dsm($gene_list);
+
+    //Set Filters
+    $filter = ['PValue' => array('$lt' => (float)$pvalue)];
+    if (!empty($gene_list)) {
+        $filter['HumanSymbol'] = array('$in' => $gene_list);
+    }
+    if (!empty($br_terms)) {
+        $filter['BrainRegionFull'] = array('$in' => $br_terms);
+    }
+    if (!empty($con_terms)) {
+        $filter['Contrast'] = array('$in' => $con_terms);
+    }
+    if (!empty($dt_terms)) {
+        $filter['DataType'] = array('$in' => $dt_terms);
+    }
+    if (!empty($study_terms)) {
+        $filter['StudyName'] = array('$in' => $study_terms);
+    }
+    if (!empty($file_list)) {
+        $filter['FileName'] = array('$in' => $file_list);
+    }
+
+    // Fold change
+    if ($fc_gt != 0) {
+      $fc_pos = $fc_gt;
+      $fc_neg = -($fc_gt);
+      $query7 = array('$or' => array(array('logFC' => array('$gt' => $fc_pos)), array('logFC' => array('$lt' => $fc_neg))) );
+    } else {
+      $query7 = NULL;
+    }
+
+    //var_dump($filter);
+    // Create a Mongo connection
+    $manager = _mongo_connect();
+
+    // Set up query: An empty query array would return all data:  $query = new MongoDB\Driver\Query([]);
+    $query = new MongoDB\Driver\Query($filter, ['sort' => ['PValue' => 1], 'limit' => 500]);
+
+    // Run query; cursor returns an object
+    $cursor = $manager->executeQuery("cats.cell_type_expression", $query);
+
+    // Convert object to an array
+    $records = _convert_to_array($cursor);
+
+     //Access query results
+     $result = array();
+     $filenames = array();
+     $i = 0;
+
+     //Study,BrainRegion,Technology,logFC,CIL,CIR,PValue,median,min,max,Rank,row
+     foreach ($records as $doc) {
+       //var_dump($doc);
+       //$result[$i]['Study'] = $doc['StudyName'];
+       $result[$i]['Study'] = "LPS";
+       $result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
+       $result[$i]['parent'] = $doc['BrainRegionFull'];
+       $result[$i]['Contrast'] = $doc['Contrast'];
+       $result[$i]['HumanSymbol'] = $doc['HumanSymbol'];
+       $result[$i]['MouseSymbol'] = $doc['MouseSymbol'];
+       $result[$i]['CellType'] = $doc['CellType'];
+       $result[$i]['CellIsolationTechnology'] = $doc['Technology'];
+       $result[$i]['AdjPValue'] = $doc['adjPVal'];
+       $result[$i]['name'] = $doc['HumanSymbol'];
+
+       $result[$i]['DataType'] = $doc['DataType'];
+       $result[$i]['LogFC'] = $doc['logFC'];
+       $result[$i]['FC'] = ($doc['logFC'] >= 0) ? pow(2,$doc['logFC']) : -1/pow(2,$doc['logFC']);
+
+       $result[$i]['PValue'] = $doc['PValue'];
+
+       $result[$i]['ResultFile'] = $doc['ResultFile'];
+       $result[$i]['ID'] = !empty($doc['ID']) ? $doc['ID'] : "";
+
+       $filenames[] = $doc['ResultFile'];
        $i++;
      }
 

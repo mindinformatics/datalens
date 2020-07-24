@@ -993,8 +993,8 @@ function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms
      //Study,BrainRegion,Technology,logFC,CIL,CIR,PValue,median,min,max,Rank,row
      foreach ($records as $doc) {
        //var_dump($doc);
-       //$result[$i]['Study'] = $doc['StudyName'];
-       $result[$i]['Study'] = "LPS";
+       $result[$i]['Study'] = $doc['StudyName'];
+       //$result[$i]['Study'] = "LPS";
        $result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
        $result[$i]['parent'] = $doc['BrainRegionFull'];
        $result[$i]['Contrast'] = $doc['Contrast'];

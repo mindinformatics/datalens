@@ -313,11 +313,11 @@ function bubblechart_form_alter(&$form, &$form_state,$form_id ){
     //dsm($form);
     $form['title']['#type']='textarea';
     $form['title']['#cols']='20';
-    $form['title']['#rows']='9';
+    $form['title']['#rows']='22';
 
     $form['nid']['#type']='textarea';
     $form['nid']['#cols']='20';
-    $form['nid']['#rows']='9';
+    $form['nid']['#rows']='22';
  }
 
 }

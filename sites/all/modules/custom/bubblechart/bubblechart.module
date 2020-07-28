@@ -657,12 +657,10 @@ function bubblechart_views_pre_render(&$view) {
         foreach($data_type as $tid) {
           $term = taxonomy_term_load($tid)->name;
           if ($term === "Array Expression" ) {
-            $term = "uArray";
+            $term = "Microarray";
           }
           if ($term === "RNA-seq" ) {
-            array_push($dt_terms, "CPM", "RC", "FPKM");
-          } else {
-            array_push($dt_terms, $term);
+            $term = "RNA-seq";
           }
         }
     }
@@ -700,6 +698,7 @@ function bubblechart_views_pre_render(&$view) {
       $analysis_nid = intval(_query_analysisId($row['ResultFile']));
       $input_study_nid = intval(_query_inputId($analysis_nid));
       //var_dump($analysis_id);
+      //$result[$i]['CellType']
       $temp = new stdClass;
       $temp->node_title = $row['HumanSymbol'] . " " . $row['ID'];
       $temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ID'];
@@ -712,6 +711,7 @@ function bubblechart_views_pre_render(&$view) {
       $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['ResultFile']);
       $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $row['ResultFile'] . '</a>';
       $temp->field_field_brain_region[0]['rendered']['#markup']= $row['BrainRegion'];
+      $temp->field_field_cell_type[0]['rendered']['#markup']= $row['CellType'];
       $temp->field_field_data_type[0]['rendered']['#markup'] = $row['DataType'];
       $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/node/' . $input_study_nid . '">' . $row['Study']. '</a>';
       $new_result_array[] = $temp;
@@ -994,15 +994,16 @@ function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms
      foreach ($records as $doc) {
        //var_dump($doc);
        $result[$i]['Study'] = $doc['StudyName'];
-       //$result[$i]['Study'] = "LPS";
        $result[$i]['BrainRegion'] = $doc['BrainRegionFull'];
        $result[$i]['parent'] = $doc['BrainRegionFull'];
        $result[$i]['Contrast'] = $doc['Contrast'];
        $result[$i]['HumanSymbol'] = $doc['HumanSymbol'];
-       $result[$i]['MouseSymbol'] = $doc['MouseSymbol'];
+       //$result[$i]['MouseSymbol'] = $doc['MouseSymbol'];
+       $result[$i]['MouseSymbol'] =!empty($doc['MouseSymbol']) ? $doc['MouseSymbol'] : "";
        $result[$i]['CellType'] = $doc['CellType'];
        $result[$i]['CellIsolationTechnology'] = $doc['Technology'];
-       $result[$i]['AdjPValue'] = $doc['adjPVal'];
+       //$result[$i]['AdjPValue'] = $doc['adjPVal'];
+       $result[$i]['AdjPValue'] = !empty($doc['adjPVal']) ? $doc['adjPVal'] : "";
        $result[$i]['name'] = $doc['HumanSymbol'];
 
        $result[$i]['DataType'] = $doc['DataType'];

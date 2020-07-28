@@ -152,7 +152,7 @@ function members_taxonomy_default_vocabularies() {
       'name' => 'Cell Type Contrast',
       'machine_name' => 'cell_type_contrast',
       'description' => '',
-      'hierarchy' => 1,
+      'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
       'rdf_mapping' => array(

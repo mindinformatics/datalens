@@ -940,6 +940,12 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
     'scale' => '2',
     'prefix_suffix' => 1,
   );
+  /* Field: Content: Cell Type */
+  $handler->display->display_options['fields']['field_cell_type']['id'] = 'field_cell_type';
+  $handler->display->display_options['fields']['field_cell_type']['table'] = 'field_data_field_cell_type';
+  $handler->display->display_options['fields']['field_cell_type']['field'] = 'field_cell_type';
+  $handler->display->display_options['fields']['field_cell_type']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_cell_type']['delta_offset'] = '0';
   /* Field: Content: Brain region */
   $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
@@ -1147,9 +1153,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_2']['field'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth_2']['relationship'] = 'field_input_target_id';
   $handler->display->display_options['filters']['term_node_tid_depth_2']['value'] = array(
-    95 => '95',
-    29 => '29',
-    19530 => '19530',
+    46634 => '46634',
     19460 => '19460',
     19524 => '19524',
     48 => '48',
@@ -1170,10 +1174,6 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
   );
   $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['reduce'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_2']['type'] = 'select';
@@ -1251,22 +1251,6 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
     'scale' => '1',
     'prefix_suffix' => 1,
   );
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php_1']['id'] = 'php_1';
-  $handler->display->display_options['fields']['php_1']['table'] = 'views';
-  $handler->display->display_options['fields']['php_1']['field'] = 'php';
-  $handler->display->display_options['fields']['php_1']['label'] = 'Fold Change';
-  $handler->display->display_options['fields']['php_1']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php_1']['php_output'] = '<?php 
-$dat=$data->field_field_fold_change[0][\'raw\'][\'value\'];
-$fc_up =pow(2,$dat);
-$fc_down= -1/pow(2,$dat);
-$fc = ($dat>= 0) ? $fc_up : $fc_down;
-printf("%.2f",$fc);
-?> 
-';
-  $handler->display->display_options['fields']['php_1']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php_1']['php_click_sortable'] = '';
   /* Field: Content: P-value */
   $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
   $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
@@ -1289,6 +1273,12 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
 ?>';
   $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
   $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
+  /* Field: Content: Cell Type */
+  $handler->display->display_options['fields']['field_cell_type']['id'] = 'field_cell_type';
+  $handler->display->display_options['fields']['field_cell_type']['table'] = 'field_data_field_cell_type';
+  $handler->display->display_options['fields']['field_cell_type']['field'] = 'field_cell_type';
+  $handler->display->display_options['fields']['field_cell_type']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_cell_type']['delta_offset'] = '0';
   /* Field: Content: Brain region */
   $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';

@@ -950,6 +950,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['label'] = 'Brain Region';
   $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
   /* Field: Content: Supporting Analysis */
@@ -1049,16 +1050,12 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Brain region(s):';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Brain Region(s):';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
   );
   $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
   $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'brain_region';
@@ -1277,19 +1274,35 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['field_cell_type']['id'] = 'field_cell_type';
   $handler->display->display_options['fields']['field_cell_type']['table'] = 'field_data_field_cell_type';
   $handler->display->display_options['fields']['field_cell_type']['field'] = 'field_cell_type';
+  $handler->display->display_options['fields']['field_cell_type']['label'] = 'CellType';
   $handler->display->display_options['fields']['field_cell_type']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_cell_type']['delta_offset'] = '0';
   /* Field: Content: Brain region */
   $handler->display->display_options['fields']['field_brain_region']['id'] = 'field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['table'] = 'field_data_field_brain_region';
   $handler->display->display_options['fields']['field_brain_region']['field'] = 'field_brain_region';
+  $handler->display->display_options['fields']['field_brain_region']['label'] = 'BrainRegion';
   $handler->display->display_options['fields']['field_brain_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_brain_region']['delta_offset'] = '0';
+  /* Field: Content: Cell Type Contrast */
+  $handler->display->display_options['fields']['field_cell_type_contrast']['id'] = 'field_cell_type_contrast';
+  $handler->display->display_options['fields']['field_cell_type_contrast']['table'] = 'field_data_field_cell_type_contrast';
+  $handler->display->display_options['fields']['field_cell_type_contrast']['field'] = 'field_cell_type_contrast';
+  $handler->display->display_options['fields']['field_cell_type_contrast']['label'] = 'Contrast';
+  $handler->display->display_options['fields']['field_cell_type_contrast']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Cell Isolation Technology */
+  $handler->display->display_options['fields']['field_cell_isolation_technology']['id'] = 'field_cell_isolation_technology';
+  $handler->display->display_options['fields']['field_cell_isolation_technology']['table'] = 'field_data_field_cell_isolation_technology';
+  $handler->display->display_options['fields']['field_cell_isolation_technology']['field'] = 'field_cell_isolation_technology';
+  $handler->display->display_options['fields']['field_cell_isolation_technology']['label'] = 'IsolationTechnology';
+  $handler->display->display_options['fields']['field_cell_isolation_technology']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Supporting Analysis */
   $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
   $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
+  $handler->display->display_options['fields']['field_result_data']['label'] = 'SupportingAnalysis';
   $handler->display->display_options['fields']['field_result_data']['settings'] = array(
+    'bypass_access' => 0,
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_result_data']['delta_offset'] = '0';
@@ -1307,6 +1320,7 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
   $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
   $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['fields']['field_data_type']['label'] = 'DataType';
   $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;

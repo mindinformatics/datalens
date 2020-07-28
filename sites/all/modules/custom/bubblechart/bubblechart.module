@@ -653,11 +653,22 @@ function bubblechart_views_pre_render(&$view) {
     // Contrast
     $con_terms = array();
       if (!empty($view->exposed_input['CellTypeContrast'])) {
-        $contrast = $view->exposed_input['CellTypeContrast '];
+        $contrast = $view->exposed_input['CellTypeContrast'];
         //dsm($contrast);
         foreach($contrast as $tid) {
           $term = taxonomy_term_load($tid)->name;
           array_push($con_terms, $term);
+        }
+      }
+
+    // Cell Type Isolation
+    $iso_terms = array();
+      if (!empty($view->exposed_input['CellIsolation'])) {
+        $isolation = $view->exposed_input['CellIsolation'];
+        //dsm($contrast);
+        foreach($isolation as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          array_push($iso_terms, $term);
         }
       }
 
@@ -701,7 +712,7 @@ function bubblechart_views_pre_render(&$view) {
 
     $file_list = array();
 
-    $mongo_array = _query_mongo_celltype($gene_list, $br_terms, $species, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list, $ct_terms);
+    $mongo_array = _query_mongo_celltype($gene_list, $br_terms, $species, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list, $ct_terms, $iso_terms);
     //dsm($mongo_array);
 
     $new_result_array = array();
@@ -936,7 +947,7 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
 
 }
 
-function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list, $ct_terms) {
+function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list, $ct_terms, $iso_terms) {
 
     // Check gene input
     if (!empty($input_gene)) {
@@ -964,6 +975,9 @@ function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms
     }
     if (!empty($ct_terms)) {
         $filter['CellType'] = array('$in' => $ct_terms);
+    }
+    if (!empty($iso_terms)) {
+        $filter['Technology'] = array('$in' => $iso_terms);
     }
     if (!empty($con_terms)) {
         $filter['Contrast'] = array('$in' => $con_terms);

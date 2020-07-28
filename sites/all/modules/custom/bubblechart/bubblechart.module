@@ -688,13 +688,13 @@ function bubblechart_views_pre_render(&$view) {
         }
     }
 
-    // Group/Study
-    $study_terms = array();
+    // Group
+    $group_terms = array();
     if (!empty($view->exposed_input['term_node_tid_depth_2'])) {
-      $study = $view->exposed_input['term_node_tid_depth_2'];
-      foreach($study as $tid) {
+      $group = $view->exposed_input['term_node_tid_depth_2'];
+      foreach($group as $tid) {
         $term = taxonomy_term_load($tid)->name;
-        array_push($study_terms, $term);
+        array_push($group_terms, $term);
       }
     }
 
@@ -712,7 +712,7 @@ function bubblechart_views_pre_render(&$view) {
 
     $file_list = array();
 
-    $mongo_array = _query_mongo_celltype($gene_list, $br_terms, $species, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list, $ct_terms, $iso_terms);
+    $mongo_array = _query_mongo_celltype($gene_list, $br_terms, $species, $con_terms, $dt_terms, $group_terms, $pvalue, $fc_gt, $file_list, $ct_terms, $iso_terms);
     //dsm($mongo_array);
 
     $new_result_array = array();
@@ -721,7 +721,6 @@ function bubblechart_views_pre_render(&$view) {
       $analysis_nid = intval(_query_analysisId($row['ResultFile']));
       $input_study_nid = intval(_query_inputId($analysis_nid));
       //var_dump($analysis_id);
-      //$result[$i]['CellType']
       $temp = new stdClass;
       $temp->node_title = $row['HumanSymbol'] . " " . $row['ID'];
       $temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ID'];
@@ -735,6 +734,8 @@ function bubblechart_views_pre_render(&$view) {
       $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $row['ResultFile'] . '</a>';
       $temp->field_field_brain_region[0]['rendered']['#markup']= $row['BrainRegion'];
       $temp->field_field_cell_type[0]['rendered']['#markup']= $row['CellType'];
+      $temp->field_field_cell_type_contrast[0]['rendered']['#markup']= $row['Contrast'];
+      $temp->field_field_cell_isolation_technology[0]['rendered']['#markup']= $row['CellIsolationTechnology'];
       $temp->field_field_data_type[0]['rendered']['#markup'] = $row['DataType'];
       $temp->field_field_input[0]['rendered']['#markup'] = '<a href="/node/' . $input_study_nid . '">' . $row['Study']. '</a>';
       $new_result_array[] = $temp;
@@ -947,7 +948,7 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
 
 }
 
-function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list, $ct_terms, $iso_terms) {
+function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms, $dt_terms, $group_terms, $pvalue, $fc_gt, $file_list, $ct_terms, $iso_terms) {
 
     // Check gene input
     if (!empty($input_gene)) {
@@ -985,8 +986,8 @@ function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms
     if (!empty($dt_terms)) {
         $filter['DataType'] = array('$in' => $dt_terms);
     }
-    if (!empty($study_terms)) {
-        $filter['StudyName'] = array('$in' => $study_terms);
+    if (!empty($group_terms)) {
+        $filter['Group'] = array('$in' => $group_terms);
     }
     if (!empty($file_list)) {
         $filter['FileName'] = array('$in' => $file_list);
@@ -1027,21 +1028,20 @@ function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms
        $result[$i]['parent'] = $doc['BrainRegionFull'];
        $result[$i]['Contrast'] = $doc['Contrast'];
        $result[$i]['HumanSymbol'] = $doc['HumanSymbol'];
-       //$result[$i]['MouseSymbol'] = $doc['MouseSymbol'];
        $result[$i]['MouseSymbol'] =!empty($doc['MouseSymbol']) ? $doc['MouseSymbol'] : "";
        $result[$i]['CellType'] = $doc['CellType'];
        $result[$i]['CellIsolationTechnology'] = $doc['Technology'];
-       //$result[$i]['AdjPValue'] = $doc['adjPVal'];
        $result[$i]['AdjPValue'] = !empty($doc['adjPVal']) ? $doc['adjPVal'] : "";
        $result[$i]['name'] = $doc['HumanSymbol'];
 
        $result[$i]['DataType'] = $doc['DataType'];
-       $result[$i]['LogFC'] = $doc['logFC'];
+       $result[$i]['LogFC'] = !empty($doc['logFC']) ? $doc['logFC'] : "";
        $result[$i]['FC'] = ($doc['logFC'] >= 0) ? pow(2,$doc['logFC']) : -1/pow(2,$doc['logFC']);
 
        $result[$i]['PValue'] = $doc['PValue'];
-
        $result[$i]['ResultFile'] = $doc['ResultFile'];
+
+       $result[$i]['Group'] = $doc['Group'];
        $result[$i]['ID'] = !empty($doc['ID']) ? $doc['ID'] : "";
 
        $filenames[] = $doc['ResultFile'];

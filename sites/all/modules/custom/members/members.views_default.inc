@@ -1063,7 +1063,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
   $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'brain_region';
   $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
+  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '1';
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth_5']['id'] = 'term_node_tid_depth_5';
   $handler->display->display_options['filters']['term_node_tid_depth_5']['table'] = 'node';

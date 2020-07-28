@@ -639,6 +639,17 @@ function bubblechart_views_pre_render(&$view) {
         }
     }
 
+   // Cell Type
+    $ct_terms = array();
+      if (!empty($view->exposed_input['CellType'])) {
+        $cell_type = $view->exposed_input['CellType'];
+        //dsm($contrast);
+        foreach($cell_type as $tid) {
+          $term = taxonomy_term_load($tid)->name;
+          array_push($ct_terms, $term);
+        }
+      }
+
     // Contrast
     $con_terms = array();
       if (!empty($view->exposed_input['CellTypeContrast'])) {
@@ -662,6 +673,7 @@ function bubblechart_views_pre_render(&$view) {
           if ($term === "RNA-seq" ) {
             $term = "RNA-seq";
           }
+          array_push($dt_terms, $term);
         }
     }
 
@@ -689,7 +701,7 @@ function bubblechart_views_pre_render(&$view) {
 
     $file_list = array();
 
-    $mongo_array = _query_mongo_celltype($gene_list, $br_terms, $species, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list);
+    $mongo_array = _query_mongo_celltype($gene_list, $br_terms, $species, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list, $ct_terms);
     //dsm($mongo_array);
 
     $new_result_array = array();
@@ -924,7 +936,7 @@ function _query_mongo2($input_gene, $br_terms, $con_terms, $dt_terms, $study_ter
 
 }
 
-function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list) {
+function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms, $dt_terms, $study_terms, $pvalue, $fc_gt, $file_list, $ct_terms) {
 
     // Check gene input
     if (!empty($input_gene)) {
@@ -949,6 +961,9 @@ function _query_mongo_celltype($input_gene, $br_terms, $species_term, $con_terms
     }
     if (!empty($br_terms)) {
         $filter['BrainRegionFull'] = array('$in' => $br_terms);
+    }
+    if (!empty($ct_terms)) {
+        $filter['CellType'] = array('$in' => $ct_terms);
     }
     if (!empty($con_terms)) {
         $filter['Contrast'] = array('$in' => $con_terms);

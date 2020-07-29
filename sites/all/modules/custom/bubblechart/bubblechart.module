@@ -717,19 +717,22 @@ function bubblechart_views_pre_render(&$view) {
 
     $new_result_array = array();
     foreach($mongo_array as $row) {
-       //$row[] = array($value['Study'], $value['BrainRegion'], $value['DataType'], $value['Contrast'], $value['GeneSymbol'], $value['LogFC'], $value['PValue'], $value['AdjPVal'], $value['FileName']););
       $analysis_nid = intval(_query_analysisId($row['ResultFile']));
       $input_study_nid = intval(_query_inputId($analysis_nid));
       //var_dump($analysis_id);
       $temp = new stdClass;
-      $temp->node_title = $row['HumanSymbol'] . " " . $row['ID'];
+      $temp->node_title = $row['HumanSymbol'];
       $temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ID'];
+
       $temp->field_field_pvalue[0]['raw']['value'] = $row['PValue'];
       $temp->field_field_pvalue[0]['rendered']['#markup'] = sprintf('%.2E', $row['PValue']);
+
       $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
-      $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
+      $temp->field_field_fold_change[0]['rendered']['#markup'] = sprintf('%.2f', $row['LogFC']);
+
       $temp->field_field_fold_change_raw[0]['raw']['value'] = $row['FC'];
       $temp->field_field_fold_change_raw[0]['rendered']['#markup'] = sprintf('%.2f', $row['FC']);
+
       $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['ResultFile']);
       $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $row['ResultFile'] . '</a>';
       $temp->field_field_brain_region[0]['rendered']['#markup']= $row['BrainRegion'];
@@ -749,11 +752,6 @@ function bubblechart_views_pre_render(&$view) {
 
     }
   }
-
-
-
-
-
 
 
 }

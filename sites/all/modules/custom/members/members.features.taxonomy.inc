@@ -129,7 +129,7 @@ function members_taxonomy_default_vocabularies() {
       'name' => 'Cell Type',
       'machine_name' => 'cell_type',
       'description' => '',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => 0,
       'rdf_mapping' => array(
@@ -152,7 +152,7 @@ function members_taxonomy_default_vocabularies() {
       'name' => 'Cell Type Contrast',
       'machine_name' => 'cell_type_contrast',
       'description' => '',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => 0,
       'rdf_mapping' => array(
@@ -198,7 +198,7 @@ function members_taxonomy_default_vocabularies() {
       'name' => 'Data Type',
       'machine_name' => 'data_type',
       'description' => '',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => -3,
       'rdf_mapping' => array(

@@ -924,6 +924,10 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['field'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['label'] = 'Log(FC)';
+  $handler->display->display_options['fields']['field_fold_change']['alter']['max_length'] = '5';
+  $handler->display->display_options['fields']['field_fold_change']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['field_fold_change']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['field_fold_change']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['field_fold_change']['settings'] = array(
     'thousand_separator' => '',
     'decimal_separator' => '.',
@@ -1060,7 +1064,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
   $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'brain_region';
   $handler->display->display_options['filters']['term_node_tid_depth']['hierarchy'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '1';
+  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '2';
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth_5']['id'] = 'term_node_tid_depth_5';
   $handler->display->display_options['filters']['term_node_tid_depth_5']['table'] = 'node';
@@ -1078,7 +1082,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_5']['type'] = 'select';
   $handler->display->display_options['filters']['term_node_tid_depth_5']['vocabulary'] = 'cell_type';
   $handler->display->display_options['filters']['term_node_tid_depth_5']['hierarchy'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth_5']['depth'] = '-1';
+  $handler->display->display_options['filters']['term_node_tid_depth_5']['depth'] = '2';
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth_3']['id'] = 'term_node_tid_depth_3';
   $handler->display->display_options['filters']['term_node_tid_depth_3']['table'] = 'node';
@@ -1096,7 +1100,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_3']['type'] = 'select';
   $handler->display->display_options['filters']['term_node_tid_depth_3']['vocabulary'] = 'cell_isolation_technology';
   $handler->display->display_options['filters']['term_node_tid_depth_3']['hierarchy'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth_3']['depth'] = '0';
+  $handler->display->display_options['filters']['term_node_tid_depth_3']['depth'] = '2';
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth_4']['id'] = 'term_node_tid_depth_4';
   $handler->display->display_options['filters']['term_node_tid_depth_4']['table'] = 'node';
@@ -1114,7 +1118,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_4']['type'] = 'select';
   $handler->display->display_options['filters']['term_node_tid_depth_4']['vocabulary'] = 'cell_type_contrast';
   $handler->display->display_options['filters']['term_node_tid_depth_4']['hierarchy'] = 1;
-  $handler->display->display_options['filters']['term_node_tid_depth_4']['depth'] = '-1';
+  $handler->display->display_options['filters']['term_node_tid_depth_4']['depth'] = '2';
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';
@@ -1124,6 +1128,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
     101 => '101',
     64 => '64',
     12 => '12',
+    46729 => '46729',
   );
   $handler->display->display_options['filters']['term_node_tid_depth_1']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['exposed'] = TRUE;
@@ -1134,10 +1139,6 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
   );
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['reduce'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['type'] = 'select';
@@ -1149,19 +1150,6 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_2']['table'] = 'node';
   $handler->display->display_options['filters']['term_node_tid_depth_2']['field'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth_2']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['value'] = array(
-    46634 => '46634',
-    19460 => '19460',
-    19524 => '19524',
-    48 => '48',
-    19525 => '19525',
-    19527 => '19527',
-    19461 => '19461',
-    19526 => '19526',
-    32 => '32',
-    19528 => '19528',
-    19529 => '19529',
-  );
   $handler->display->display_options['filters']['term_node_tid_depth_2']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_2']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['operator_id'] = 'term_node_tid_depth_2_op';
@@ -1172,7 +1160,6 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['remember_roles'] = array(
     2 => '2',
   );
-  $handler->display->display_options['filters']['term_node_tid_depth_2']['expose']['reduce'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_2']['type'] = 'select';
   $handler->display->display_options['filters']['term_node_tid_depth_2']['vocabulary'] = 'group';
   $handler->display->display_options['filters']['term_node_tid_depth_2']['hierarchy'] = 1;
@@ -1237,6 +1224,22 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Probe Id */
+  $handler->display->display_options['fields']['field_probe_id']['id'] = 'field_probe_id';
+  $handler->display->display_options['fields']['field_probe_id']['table'] = 'field_data_field_probe_id';
+  $handler->display->display_options['fields']['field_probe_id']['field'] = 'field_probe_id';
+  $handler->display->display_options['fields']['field_probe_id']['label'] = 'ID';
+  /* Field: Content: P-value */
+  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['label'] = 'P-Value';
+  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '10',
+    'prefix_suffix' => 1,
+  );
   /* Field: Content: LogFC */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
@@ -1248,28 +1251,17 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
     'scale' => '1',
     'prefix_suffix' => 1,
   );
-  /* Field: Content: P-value */
-  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
+  /* Field: Content: Fold Change */
+  $handler->display->display_options['fields']['field_fold_change_raw']['id'] = 'field_fold_change_raw';
+  $handler->display->display_options['fields']['field_fold_change_raw']['table'] = 'field_data_field_fold_change_raw';
+  $handler->display->display_options['fields']['field_fold_change_raw']['field'] = 'field_fold_change_raw';
+  $handler->display->display_options['fields']['field_fold_change_raw']['label'] = 'FC';
+  $handler->display->display_options['fields']['field_fold_change_raw']['settings'] = array(
     'thousand_separator' => '',
     'decimal_separator' => '.',
-    'scale' => '10',
+    'scale' => '2',
     'prefix_suffix' => 1,
   );
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = 'P-value';
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php 
-printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
-?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Field: Content: Cell Type */
   $handler->display->display_options['fields']['field_cell_type']['id'] = 'field_cell_type';
   $handler->display->display_options['fields']['field_cell_type']['table'] = 'field_data_field_cell_type';
@@ -1296,6 +1288,13 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
   $handler->display->display_options['fields']['field_cell_isolation_technology']['field'] = 'field_cell_isolation_technology';
   $handler->display->display_options['fields']['field_cell_isolation_technology']['label'] = 'IsolationTechnology';
   $handler->display->display_options['fields']['field_cell_isolation_technology']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Data Type */
+  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
+  $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
+  $handler->display->display_options['fields']['field_data_type']['label'] = 'DataType';
+  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Supporting Analysis */
   $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
   $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
@@ -1315,13 +1314,6 @@ printf("%.2e", $data->field_field_pvalue[0][\'raw\'][\'value\']);
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';
-  /* Field: Content: Data Type */
-  $handler->display->display_options['fields']['field_data_type']['id'] = 'field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['table'] = 'field_data_field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['field'] = 'field_data_type';
-  $handler->display->display_options['fields']['field_data_type']['relationship'] = 'field_input_target_id';
-  $handler->display->display_options['fields']['field_data_type']['label'] = 'DataType';
-  $handler->display->display_options['fields']['field_data_type']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published status */

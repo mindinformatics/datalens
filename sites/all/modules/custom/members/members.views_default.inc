@@ -1323,7 +1323,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['field_result_data']['id'] = 'field_result_data';
   $handler->display->display_options['fields']['field_result_data']['table'] = 'field_data_field_result_data';
   $handler->display->display_options['fields']['field_result_data']['field'] = 'field_result_data';
-  $handler->display->display_options['fields']['field_result_data']['label'] = 'SupportingAnalysis';
+  $handler->display->display_options['fields']['field_result_data']['label'] = 'ResultFile';
   $handler->display->display_options['fields']['field_result_data']['settings'] = array(
     'bypass_access' => 0,
     'link' => 1,
@@ -1334,7 +1334,9 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['field_input']['table'] = 'field_data_field_input';
   $handler->display->display_options['fields']['field_input']['field'] = 'field_input';
   $handler->display->display_options['fields']['field_input']['relationship'] = 'field_result_data_target_id';
+  $handler->display->display_options['fields']['field_input']['label'] = 'StudyName';
   $handler->display->display_options['fields']['field_input']['settings'] = array(
+    'bypass_access' => 0,
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_input']['delta_offset'] = '0';

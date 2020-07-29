@@ -715,6 +715,30 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
         ),
       ),
     ),
+    'nid' => array(
+      'bef_format' => 'default',
+      'slider_options' => array(
+        'bef_slider_min' => '0',
+        'bef_slider_max' => '99999',
+        'bef_slider_step' => '1',
+        'bef_slider_animate' => '',
+        'bef_slider_orientation' => 'horizontal',
+      ),
+      'more_options' => array(
+        'autosubmit' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
     'term_node_tid_depth' => array(
       'bef_format' => 'bef_ul',
       'more_options' => array(
@@ -740,8 +764,8 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
     'term_node_tid_depth_5' => array(
       'bef_format' => 'bef_ul',
       'more_options' => array(
-        'bef_select_all_none' => FALSE,
-        'bef_select_all_none_nested' => FALSE,
+        'bef_select_all_none' => 0,
+        'bef_select_all_none_nested' => 1,
         'bef_term_description' => 0,
         'bef_collapsible' => 0,
         'autosubmit' => 0,
@@ -763,7 +787,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
       'bef_format' => 'bef_ul',
       'more_options' => array(
         'bef_select_all_none' => 0,
-        'bef_select_all_none_nested' => 0,
+        'bef_select_all_none_nested' => 1,
         'bef_term_description' => 0,
         'bef_collapsible' => 0,
         'autosubmit' => 0,
@@ -785,7 +809,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
       'bef_format' => 'bef_ul',
       'more_options' => array(
         'bef_select_all_none' => 0,
-        'bef_select_all_none_nested' => 0,
+        'bef_select_all_none_nested' => 1,
         'bef_term_description' => 0,
         'bef_collapsible' => 0,
         'autosubmit' => 0,
@@ -829,7 +853,7 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
       'bef_format' => 'bef_ul',
       'more_options' => array(
         'bef_select_all_none' => 0,
-        'bef_select_all_none_nested' => 0,
+        'bef_select_all_none_nested' => 1,
         'bef_term_description' => 0,
         'bef_collapsible' => 0,
         'autosubmit' => 0,

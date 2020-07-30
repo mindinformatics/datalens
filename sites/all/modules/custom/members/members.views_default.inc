@@ -349,7 +349,7 @@ function members_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Cell Expression';
+  $handler->display->display_options['title'] = 'Cell Type Expression';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -933,16 +933,6 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: P-value */
-  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
-    'thousand_separator' => '',
-    'decimal_separator' => '.',
-    'scale' => '2',
-    'prefix_suffix' => 1,
-  );
   /* Field: Content: LogFC */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
@@ -963,6 +953,16 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['field_fold_change_raw']['table'] = 'field_data_field_fold_change_raw';
   $handler->display->display_options['fields']['field_fold_change_raw']['field'] = 'field_fold_change_raw';
   $handler->display->display_options['fields']['field_fold_change_raw']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: P-value */
+  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
     'thousand_separator' => '',
     'decimal_separator' => '.',
     'scale' => '2',
@@ -3462,16 +3462,6 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: P-value */
-  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
-  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
-    'thousand_separator' => '',
-    'decimal_separator' => '.',
-    'scale' => '2',
-    'prefix_suffix' => 1,
-  );
   /* Field: Content: LogFC */
   $handler->display->display_options['fields']['field_fold_change']['id'] = 'field_fold_change';
   $handler->display->display_options['fields']['field_fold_change']['table'] = 'field_data_field_fold_change';
@@ -3488,6 +3478,16 @@ Only the top 500 results are displayed, ordered by P-value.  Results with P-valu
   $handler->display->display_options['fields']['field_fold_change_raw']['table'] = 'field_data_field_fold_change_raw';
   $handler->display->display_options['fields']['field_fold_change_raw']['field'] = 'field_fold_change_raw';
   $handler->display->display_options['fields']['field_fold_change_raw']['settings'] = array(
+    'thousand_separator' => '',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: P-value */
+  $handler->display->display_options['fields']['field_pvalue']['id'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['table'] = 'field_data_field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['field'] = 'field_pvalue';
+  $handler->display->display_options['fields']['field_pvalue']['settings'] = array(
     'thousand_separator' => '',
     'decimal_separator' => '.',
     'scale' => '2',

@@ -575,8 +575,10 @@ function bubblechart_views_pre_render(&$view) {
         //$temp->field_field_probe_id[0]['rendered']['#markup'] = $row['ProbeID'];
         $temp->field_field_genes_diff[0]['rendered']['#markup'] = $row['GeneSymbol'];
         $temp->field_field_pvalue[0]['raw']['value'] = $row['PValue'];
-        $temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
-        $temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
+        //$temp->field_field_fold_change[0]['raw']['value'] = $row['LogFC'];
+        //$temp->field_field_fold_change[0]['rendered']['#markup'] = $row['LogFC'];
+        $temp->field_field_fold_change[0]['raw']['value'] = sprintf('%.2f', $row['LogFC']);
+        $temp->field_field_fold_change[0]['rendered']['#markup'] = sprintf('%.2f', $row['LogFC']);
         $temp->field_field_result_data[0]['raw']['target_id'] = _query_analysisId($row['FileName']);
         $temp->field_field_result_data[0]['rendered']['#markup'] = '<a href="/node/' . $analysis_nid . '">' . $analysis_name . '</a>';
         $temp->field_field_brain_region[0]['rendered']['#markup']= $row['BrainRegion'];

@@ -1743,6 +1743,14 @@ div.horizontal-tabs .horizontal-tabs-panes {
   width: 12%;
 }
 
+.view-cell-type-expression #edit-cellisolation-wrapper {
+  width: 15%;
+}
+
+.view-cell-type-expression #edit-celltypecontrast-wrapper {
+  width: 19%;
+}
+
 
 ul.bef-tree-child.bef-tree-depth-0,
 ul.bef-tree-child.bef-tree-depth-1,

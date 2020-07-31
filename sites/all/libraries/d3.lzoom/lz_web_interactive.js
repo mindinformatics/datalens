@@ -31,7 +31,7 @@ var studies_array = [];
 var pubmed_id_list = "";
 var study_ids_by_pmid = {};
 var study_ids_by_pmid_list_idx = [];
-LocusZoom.createCORSPromise("GET", "http://portaldev.sph.umich.edu/api/v1/single/?format=objects")
+LocusZoom.createCORSPromise("GET", "https://portaldev.sph.umich.edu/api/v1/single/?format=objects")
     .then(function(response){
         try {
             // Parse response to build an object of all available studies and their data
@@ -182,7 +182,7 @@ var tracks = {};
 var tracks_array = [];
 var track_ids_by_pmid = {};
 var track_ids_by_pmid_list_idx = [];
-LocusZoom.createCORSPromise("GET", "http://portaldev.sph.umich.edu/api/v1/annotation/intervals/?format=objects")
+LocusZoom.createCORSPromise("GET", "https://portaldev.sph.umich.edu/api/v1/annotation/intervals/?format=objects")
     .then(function(response){
         try {
             // Parse response to build an object of all available tracks and their data
@@ -330,10 +330,10 @@ LocusZoom.createCORSPromise("GET", "http://portaldev.sph.umich.edu/api/v1/annota
 
 // Data Sources - APIs LocusZoom will connect to for various pieces of data
 var data_sources = new LocusZoom.DataSources()
-  .add("gene", ["GeneLZ", { url: "http://portaldev.sph.umich.edu/api/v1/annotation/genes/", params: { source: 2 } }])
+  .add("gene", ["GeneLZ", { url: "https://portaldev.sph.umich.edu/api/v1/annotation/genes/", params: { source: 2 } }])
   .add("constraint", ["GeneConstraintLZ", { url: "http://exac.broadinstitute.org/api/constraint" }])
-  .add("ld", ["LDLZ", "http://portaldev.sph.umich.edu/api/v1/pair/LD/"])
-  .add("recomb", ["RecombLZ", { url: "http://portaldev.sph.umich.edu/api/v1/annotation/recomb/results/", params: {source: 15} }])
+  .add("ld", ["LDLZ", "https://portaldev.sph.umich.edu/api/v1/pair/LD/"])
+  .add("recomb", ["RecombLZ", { url: "https://portaldev.sph.umich.edu/api/v1/annotation/recomb/results/", params: {source: 15} }])
   .add("sig", ["StaticJSON", [{ "x": 0, "y": 7.30103 }, { "x": 2881033286, "y": 7.30103 }] ]);
 
 // Layout - the description of the plot and how data is presented. We start with only the genes panel.
@@ -382,7 +382,7 @@ function addStudy(id){
     $("#add_study_button_"+id).removeClass("button-green").addClass("button-yellow").prop("disabled", true).html("Added");
     // Add the data source
     var assoc_source = [ "AssociationLZ",
-                         { url: "http://portaldev.sph.umich.edu/api/v1/single/",
+                         { url: "https://portaldev.sph.umich.edu/api/v1/single/",
                            params: {
                                analysis: id,
                                id_field: "variant"
@@ -442,7 +442,7 @@ function addTrack(id){
     $("#add_track_button_"+id).removeClass("button-green").addClass("button-yellow").prop("disabled", true).html("Added");
     // Add the data source
     var interval_source = [ "IntervalLZ",
-                            { url: "http://portaldev.sph.umich.edu/api/v1/annotation/intervals/results/",
+                            { url: "https://portaldev.sph.umich.edu/api/v1/annotation/intervals/results/",
                               params: { source: id }
                             }
                           ];
@@ -639,7 +639,7 @@ var gene_lookup_active = null;
 var gene_lookup_results_timeout = null;
 $(document).ready(function() {
     $("#gene_lookup").searchbox({
-        url: "http://portaldev.sph.umich.edu/api_internal_dev/v1/annotation/genes/?transcripts=F",
+        url: "https://portaldev.sph.umich.edu/api_internal_dev/v1/annotation/genes/?transcripts=F",
         param: "filter",
         partial: "source in 2 and gene_name like '{value}*'",
         dom_id: '#gene_lookup_results',

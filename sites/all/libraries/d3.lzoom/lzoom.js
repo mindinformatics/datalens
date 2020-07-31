@@ -43,7 +43,7 @@
         .add("gene", ["GeneLZ", { url: apiBase + "annotation/genes/", params: {source: 2} }])
         .add("recomb", ["RecombLZ", { url: apiBase + "annotation/recomb/results/", params: {source: 15} }])
         .add("constraint", ["GeneConstraintLZ", { url: "http://exac.broadinstitute.org/api/constraint" }])
-        .add("intervals", ["IntervalLZ", { url: "http://portaldev.sph.umich.edu/api/v1/annotation/intervals/results/",
+        .add("intervals", ["IntervalLZ", { url: "https://portaldev.sph.umich.edu/api/v1/annotation/intervals/results/",
                               params: { source: 18 }}]);
 
     console.log(data_sources);

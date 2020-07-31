@@ -1654,6 +1654,7 @@ div.horizontal-tabs .horizontal-tabs-panes {
   font-weight: bold;
 }
 
+
 .view-evidence .views-exposed-form .views-exposed-widget,
 .view-evidence-simple .views-exposed-form .views-exposed-widget,
 .view-genetic-association .views-exposed-form .views-exposed-widget,
@@ -2163,3 +2164,4 @@ ul.bef-tree-child.bef-tree-depth-1 {
   width: 25%;
   padding-bottom: 5%;
 }
+

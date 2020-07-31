@@ -35,7 +35,7 @@
         if (!semanticVersionIsOk(minimum_d3_version, d3.version)){
             throw("d3 dependency not met. Outdated version detected.\nRequired d3 version: " + minimum_d3_version + " or higher (found: " + d3.version + ").");
         }
-        
+
         // Verify dependency: Q.js
         if (typeof Q != "function"){
             throw("Q dependency not met. Library missing.");
@@ -89,7 +89,7 @@ LocusZoom.populate = function(selector, datasource, layout) {
         plot.svg = d3.select("div#" + plot.id)
             .append("svg")
             .attr("version", "1.1")
-            .attr("xmlns", "http://www.w3.org/2000/svg")
+            .attr("xmlns", "https://www.w3.org/2000/svg")
             .attr("id", plot.id + "_svg").attr("class", "lz-locuszoom")
             .style(plot.layout.style);
         plot.setDimensions();
@@ -226,24 +226,24 @@ LocusZoom.prettyTicks = function(range, clip_range, target_tick_count){
         target_tick_count = 5;
     }
     target_tick_count = parseInt(target_tick_count);
-    
+
     var min_n = target_tick_count / 3;
     var shrink_sml = 0.75;
     var high_u_bias = 1.5;
     var u5_bias = 0.5 + 1.5 * high_u_bias;
-    
+
     var d = Math.abs(range[0] - range[1]);
     var c = d / target_tick_count;
     if ((Math.log(d) / Math.LN10) < -2){
         c = (Math.max(Math.abs(d)) * shrink_sml) / min_n;
     }
-    
+
     var base = Math.pow(10, Math.floor(Math.log(c)/Math.LN10));
     var base_toFixed = 0;
     if (base < 1 && base !== 0){
         base_toFixed = Math.abs(Math.round(Math.log(base)/Math.LN10));
     }
-    
+
     var unit = base;
     if ( ((2 * base) - c) < (high_u_bias * (c - unit)) ){
         unit = 2 * base;
@@ -254,7 +254,7 @@ LocusZoom.prettyTicks = function(range, clip_range, target_tick_count){
             }
         }
     }
-    
+
     var ticks = [];
     var i = parseFloat( (Math.floor(range[0]/unit)*unit).toFixed(base_toFixed) );
     while (i < range[1]){
@@ -265,7 +265,7 @@ LocusZoom.prettyTicks = function(range, clip_range, target_tick_count){
         }
     }
     ticks.push(i);
-    
+
     if (typeof clip_range == "undefined" || ["low", "high", "both", "neither"].indexOf(clip_range) === -1){
         clip_range = "neither";
     }
@@ -275,7 +275,7 @@ LocusZoom.prettyTicks = function(range, clip_range, target_tick_count){
     if (clip_range === "high" || clip_range === "both"){
         if (ticks[ticks.length-1] > range[1]){ ticks.pop(); }
     }
-    
+
     return ticks;
 };
 
@@ -326,7 +326,7 @@ LocusZoom.createCORSPromise = function (method, url, body, headers, timeout) {
         }
         // Send the request
         xhr.send(body);
-    } 
+    }
     return response.promise;
 };
 
@@ -835,7 +835,7 @@ LocusZoom.Layouts = (function() {
             var applyNamespaces = function(element, namespace){
                 if (namespace){
                     if (typeof namespace == "string"){
-                        namespace = { default: namespace }; 
+                        namespace = { default: namespace };
                     }
                 } else {
                     namespace = { default: "" };
@@ -1322,7 +1322,7 @@ LocusZoom.Layouts.add("dashboard", "standard_panel", {
             style: { "margin-left": "0.75em" }
         }
     ]
-});                 
+});
 
 LocusZoom.Layouts.add("dashboard", "standard_plot", {
     components: [
@@ -1478,7 +1478,7 @@ LocusZoom.Layouts.add("panel", "genes", {
             position: "right"
         });
         return l;
-    })(),   
+    })(),
     data_layers: [
         LocusZoom.Layouts.get("data_layer", "genes", { unnamespaced: true })
     ]
@@ -1939,7 +1939,7 @@ LocusZoom.DataLayer = function(layout, parent) {
         "faded": false,
         "hidden": false
     };
-    
+
     return this;
 
 };
@@ -2103,12 +2103,12 @@ LocusZoom.DataLayer.prototype.initialize = function(){
     this.svg.container = this.parent.svg.group.append("g")
         .attr("class", "lz-data_layer-container")
         .attr("id", this.getBaseId() + ".data_layer_container");
-        
+
     // Append clip path to the container element
     this.svg.clipRect = this.svg.container.append("clipPath")
         .attr("id", this.getBaseId() + ".clip")
         .append("rect");
-    
+
     // Append svg group for rendering all data layer elements, clipped by the clip path
     this.svg.group = this.svg.container.append("g")
         .attr("id", this.getBaseId() + ".data_layer")
@@ -2406,7 +2406,7 @@ LocusZoom.DataLayer.prototype.positionAllTooltips = function(){
  * @returns {LocusZoom.DataLayer}
  */
 LocusZoom.DataLayer.prototype.showOrHideTooltip = function(element){
-    
+
     if (typeof this.layout.tooltip != "object"){ return; }
     var id = this.getElementId(element);
 
@@ -2476,7 +2476,7 @@ LocusZoom.DataLayer.prototype.showOrHideTooltip = function(element){
     }
 
     return this;
-    
+
 };
 
 /**
@@ -2577,7 +2577,7 @@ LocusZoom.DataLayer.Statuses.verbs.forEach(function(verb, idx){
  * @returns {LocusZoom.DataLayer}
  */
 LocusZoom.DataLayer.prototype.setElementStatus = function(status, element, toggle, exclusive){
-    
+
     // Sanity checks
     if (typeof status == "undefined" || LocusZoom.DataLayer.Statuses.adjectives.indexOf(status) === -1){
         throw("Invalid status passed to DataLayer.setElementStatus()");
@@ -2600,7 +2600,7 @@ LocusZoom.DataLayer.prototype.setElementStatus = function(status, element, toggl
     if (exclusive){
         this.setAllElementStatus(status, !toggle);
     }
-    
+
     // Set/unset the proper status class on the appropriate DOM element(s)
     d3.select("#" + element_id).classed("lz-data_layer-" + this.layout.type + "-" + status, toggle);
     if (this.layout.hover_element){
@@ -2611,7 +2611,7 @@ LocusZoom.DataLayer.prototype.setElementStatus = function(status, element, toggl
         }
         selector.classed(hover_element_class, toggle);
     }
-    
+
     // Track element ID in the proper status state array
     var element_status_idx = this.state[this.state_id][status].indexOf(element_id);
     if (toggle && element_status_idx === -1){
@@ -2620,7 +2620,7 @@ LocusZoom.DataLayer.prototype.setElementStatus = function(status, element, toggl
     if (!toggle && element_status_idx !== -1){
         this.state[this.state_id][status].splice(element_status_idx, 1);
     }
-    
+
     // Trigger tool tip show/hide logic
     this.showOrHideTooltip(element);
 
@@ -2629,7 +2629,7 @@ LocusZoom.DataLayer.prototype.setElementStatus = function(status, element, toggl
     this.parent_plot.emit("layout_changed");
 
     return this;
-    
+
 };
 
 /**
@@ -2641,7 +2641,7 @@ LocusZoom.DataLayer.prototype.setElementStatus = function(status, element, toggl
  * @returns {LocusZoom.DataLayer}
  */
 LocusZoom.DataLayer.prototype.setElementStatusByFilters = function(status, toggle, filters, exclusive){
-    
+
     // Sanity check
     if (typeof status == "undefined" || LocusZoom.DataLayer.Statuses.adjectives.indexOf(status) === -1){
         throw("Invalid status passed to DataLayer.setElementStatusByFilters()");
@@ -2655,12 +2655,12 @@ LocusZoom.DataLayer.prototype.setElementStatusByFilters = function(status, toggl
     if (exclusive){
         this.setAllElementStatus(status, !toggle);
     }
-    
+
     // Apply statuses
     this.filterElements(filters).forEach(function(element){
         this.setElementStatus(status, element, toggle);
     }.bind(this));
-    
+
     return this;
 };
 
@@ -2671,7 +2671,7 @@ LocusZoom.DataLayer.prototype.setElementStatusByFilters = function(status, toggl
  * @returns {LocusZoom.DataLayer}
  */
 LocusZoom.DataLayer.prototype.setAllElementStatus = function(status, toggle){
-    
+
     // Sanity check
     if (typeof status == "undefined" || LocusZoom.DataLayer.Statuses.adjectives.indexOf(status) === -1){
         throw("Invalid status passed to DataLayer.setAllElementStatus()");
@@ -2737,29 +2737,29 @@ LocusZoom.DataLayer.prototype.executeBehaviors = function(directive, behaviors) 
 
         // Loop through behaviors making each one go in succession
         behaviors.forEach(function(behavior){
-            
+
             // Route first by the action, if defined
             if (typeof behavior != "object" || behavior === null){ return; }
-            
+
             switch (behavior.action){
-                
+
             // Set a status (set to true regardless of current status, optionally with exclusivity)
             case "set":
                 this.setElementStatus(behavior.status, element, true, behavior.exclusive);
                 break;
-                
+
             // Unset a status (set to false regardless of current status, optionally with exclusivity)
             case "unset":
                 this.setElementStatus(behavior.status, element, false, behavior.exclusive);
                 break;
-                
+
             // Toggle a status
             case "toggle":
                 var current_status_boolean = (this.state[this.state_id][behavior.status].indexOf(this.getElementId(element)) !== -1);
                 var exclusive = behavior.exclusive && !current_status_boolean;
                 this.setElementStatus(behavior.status, element, !current_status_boolean, exclusive);
                 break;
-                
+
             // Link to a dynamic URL
             case "link":
                 if (typeof behavior.href == "string"){
@@ -2771,15 +2771,15 @@ LocusZoom.DataLayer.prototype.executeBehaviors = function(directive, behaviors) 
                     }
                 }
                 break;
-                
+
             // Action not defined, just return
             default:
                 break;
-                
+
             }
-            
+
             return;
-            
+
         }.bind(this));
 
     }.bind(this);
@@ -3361,7 +3361,7 @@ LocusZoom.DataLayers.add("scatter", function(layout){
             // Remove labels when they're no longer in the filtered data set
             this.label_groups.exit().remove();
         }
-            
+
         // Generate main scatter data elements
         var selection = this.svg.group
             .selectAll("path.lz-data_layer-" + this.layout.type)
@@ -3418,10 +3418,10 @@ LocusZoom.DataLayers.add("scatter", function(layout){
             this.parent.emit("element_clicked", element);
             this.parent_plot.emit("element_clicked", element);
         }.bind(this));
-       
+
         // Apply mouse behaviors
         this.applyBehaviors(selection);
-        
+
         // Apply method to keep labels from overlapping each other
         if (this.layout.label){
             this.flip_labels();
@@ -3430,7 +3430,7 @@ LocusZoom.DataLayers.add("scatter", function(layout){
             // Extend mouse behaviors to labels
             this.applyBehaviors(this.label_texts);
         }
-        
+
     };
 
     // Method to set a passed element as the LD reference in the plot-level state
@@ -3451,7 +3451,7 @@ LocusZoom.DataLayers.add("scatter", function(layout){
         }
         this.parent_plot.applyState({ ldrefvar: ref });
     };
- 
+
     return this;
 
 });
@@ -3850,7 +3850,7 @@ LocusZoom.DataLayers.add("line", function(layout){
 
         // Remove old elements as needed
         selection.exit().remove();
-        
+
     };
 
     /**
@@ -3887,7 +3887,7 @@ LocusZoom.DataLayers.add("line", function(layout){
         // Trigger layout changed event hook
         this.parent.emit("layout_changed");
         this.parent_plot.emit("layout_changed");
-        
+
         return this;
     };
 
@@ -4004,7 +4004,7 @@ LocusZoom.DataLayers.add("orthogonal_line", function(layout){
 
         // Remove old elements as needed
         selection.exit().remove();
-        
+
     };
 
     return this;
@@ -4225,7 +4225,7 @@ LocusZoom.DataLayers.add("genes", function(layout){
 
         selection.enter().append("g")
             .attr("class", "lz-data_layer-genes");
-        
+
         selection.attr("id", function(d){ return this.getElementId(d); }.bind(this))
             .each(function(gene){
 
@@ -4237,7 +4237,7 @@ LocusZoom.DataLayers.add("genes", function(layout){
 
                 bboxes.enter().append("rect")
                     .attr("class", "lz-data_layer-genes lz-data_layer-genes-bounding_box");
-                
+
                 bboxes
                     .attr("id", function(d){
                         return data_layer.getElementId(d) + "_bounding_box";
@@ -4307,7 +4307,7 @@ LocusZoom.DataLayers.add("genes", function(layout){
                     boundaries
                         .attr("width", width).attr("height", height).attr("x", x).attr("y", y);
                 }
-                
+
                 boundaries.exit().remove();
 
                 // Render gene labels
@@ -4356,10 +4356,10 @@ LocusZoom.DataLayers.add("genes", function(layout){
                 // Render exon rects (first transcript only, for now)
                 var exons = d3.select(this).selectAll("rect.lz-data_layer-genes.lz-exon")
                     .data(gene.transcripts[gene.parent.transcript_idx].exons, function(d){ return d.exon_id; });
-                        
+
                 exons.enter().append("rect")
                     .attr("class", "lz-data_layer-genes lz-exon");
-                        
+
                 width = function(d){
                     return data_layer.parent.x_scale(d.end) - data_layer.parent.x_scale(d.start);
                 };
@@ -4497,7 +4497,7 @@ LocusZoom.DataLayers.add("genes", function(layout){
             .style("left", arrow_left + "px")
             .style("top", arrow_top + "px");
     };
-       
+
     return this;
 
 });
@@ -4536,7 +4536,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
 
     // Apply the arguments to set LocusZoom.DataLayer as the prototype
     LocusZoom.DataLayer.apply(this, arguments);
-    
+
     // Helper function to sum layout values to derive total height for a single interval track
     this.getTrackHeight = function(){
         return this.layout.track_height
@@ -4547,7 +4547,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
     this.tracks = 1;
     this.previous_tracks = 1;
     this.group_hover_elements = {};
-    
+
     // track-number-indexed object with arrays of interval indexes in the dataset
     this.interval_track_index = { 1: [] };
 
@@ -4560,7 +4560,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
         this.tracks = 0;
         this.interval_track_index = { 1: [] };
         this.track_split_field_index = {};
-        
+
         // If splitting tracks by a field's value then do a first pass determine
         // a value/track mapping that preserves the order of possible values
         if (this.layout.track_split_field && this.layout.split_tracks){
@@ -4588,7 +4588,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
                 end:   this.parent.x_scale(Math.min(d[this.layout.end_field], this.state.end))
             };
             this.data[i].display_range.width = this.data[i].display_range.end - this.data[i].display_range.start;
-            
+
             // Convert and stash display range values into domain values
             // (domain: values in terms of the data set, e.g. megabases)
             this.data[i].display_domain = {
@@ -4671,14 +4671,14 @@ LocusZoom.DataLayers.add("intervals", function(layout){
         }
 
         var width, height, x, y, fill, fill_opacity;
-            
+
         // Render interval groups
         var selection = this.svg.group.selectAll("g.lz-data_layer-intervals")
             .data(this.data, function(d){ return d[this.layout.id_field]; }.bind(this));
 
         selection.enter().append("g")
             .attr("class", "lz-data_layer-intervals");
-        
+
         selection.attr("id", function(d){ return this.getElementId(d); }.bind(this))
             .each(function(interval){
 
@@ -4690,10 +4690,10 @@ LocusZoom.DataLayers.add("intervals", function(layout){
                     .data([interval], function(d){ return d[data_layer.layout.id_field] + "_bbox"; });
                 if (data_layer.layout.split_tracks){
                     bboxes.remove();
-                } else {                    
+                } else {
                     bboxes.enter().append("rect")
                         .attr("class", "lz-data_layer-intervals lz-data_layer-intervals-bounding_box");
-                    
+
                     bboxes
                         .attr("id", function(d){
                             return data_layer.getElementId(d) + "_bounding_box";
@@ -4704,7 +4704,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
                         .attr("ry", function(){
                             return data_layer.layout.bounding_box_padding;
                         });
-                    
+
                     width = function(d){
                         return d.display_range.width + (2 * data_layer.layout.bounding_box_padding);
                     };
@@ -4727,7 +4727,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
                         bboxes
                             .attr("width", width).attr("height", height).attr("x", x).attr("y", y);
                     }
-                    
+
                     bboxes.exit().remove();
                 }
 
@@ -4755,8 +4755,8 @@ LocusZoom.DataLayers.add("intervals", function(layout){
                 fill_opacity = function(d){
                     return data_layer.resolveScalableParameter(data_layer.layout.fill_opacity, d);
                 };
-                
-                
+
+
                 if (data_layer.canTransition()){
                     rects
                         .transition()
@@ -4773,7 +4773,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
                         .attr("fill", fill)
                         .attr("fill-opacity", fill_opacity);
                 }
-                
+
                 rects.exit().remove();
 
                 // Render interval click areas
@@ -4842,7 +4842,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
         return this;
 
     };
-    
+
     // Reimplement the positionTooltip() method to be interval-specific
     this.positionTooltip = function(id){
         if (typeof id != "string"){
@@ -4905,7 +4905,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
             var target_height = (tracks * track_height) + ((tracks - 1) * track_spacing);
             this.parent.scaleHeightToData(target_height);
             if (legend_axis && this.parent.legend){
-                this.parent.legend.hide();                            
+                this.parent.legend.hide();
                 this.parent.layout.axes[legend_axis] = {
                     render: true,
                     ticks: [],
@@ -4957,7 +4957,7 @@ LocusZoom.DataLayers.add("intervals", function(layout){
         this.updateSplitTrackAxis();
         return this;
     };
-       
+
     return this;
 
 });
@@ -5060,9 +5060,9 @@ LocusZoom.DataLayers.add("genome_legend", function(layout){
             .attr("height", panel.layout.cliparea.height);
 
         region.exit().remove();
-        
+
     };
-       
+
     return this;
 
 });
@@ -5143,7 +5143,7 @@ LocusZoom.DataLayers.add("forest", function(layout){
         } else { // vertically centered
             top = page_origin.y + y_center - (tooltip_box.height / 2);
             arrow_top = (tooltip_box.height / 2) - arrow_width;
-        }        
+        }
         // Apply positions to the main div
         tooltip.selector.style("left", left + "px").style("top", top + "px");
         // Create / update position on arrow connecting tooltip to data
@@ -5204,7 +5204,7 @@ LocusZoom.DataLayers.add("forest", function(layout){
             // Remove old elements as needed
             ci_selection.exit().remove();
         }
-            
+
         // Generate a selection for all forest plot points
         var points_selection = this.svg.group
             .selectAll("path.lz-data_layer-forest.lz-data_layer-forest-point")
@@ -5260,12 +5260,12 @@ LocusZoom.DataLayers.add("forest", function(layout){
             this.parent.emit("element_clicked", element);
             this.parent_plot.emit("element_clicked", element);
         }.bind(this));
-       
+
         // Apply behaviors to points
         this.applyBehaviors(points_selection);
-        
+
     };
- 
+
     return this;
 
 });
@@ -5357,7 +5357,7 @@ LocusZoom.KnownDataSources = (function() {
             params[0] = null;
             return new (Function.prototype.bind.apply(newObj, params));
         } else {
-            throw("Unable to find data source for name: " + name); 
+            throw("Unable to find data source for name: " + name);
         }
     };
 
@@ -5737,7 +5737,7 @@ LocusZoom.ScaleFunctions.add("numerical_bin", function(parameters, input){
  */
 LocusZoom.ScaleFunctions.add("categorical_bin", function(parameters, value){
     if (typeof value == "undefined" || parameters.categories.indexOf(value) === -1){
-        return (parameters.null_value ? parameters.null_value : null); 
+        return (parameters.null_value ? parameters.null_value : null);
     } else {
         return parameters.values[parameters.categories.indexOf(value)];
     }
@@ -6171,8 +6171,8 @@ LocusZoom.Dashboard.Components = (function() {
  * @class
  * @param {LocusZoom.Dashboard.Component} parent
  */
-LocusZoom.Dashboard.Component.Button = function(parent) {   
-    
+LocusZoom.Dashboard.Component.Button = function(parent) {
+
     if (!(parent instanceof LocusZoom.Dashboard.Component)){
         throw "Unable to create dashboard component button, invalid parent";
     }
@@ -6382,7 +6382,7 @@ LocusZoom.Dashboard.Component.Button = function(parent) {
         else { this.onclick = function(){}; }
         return this;
     };
-    
+
     // Primary behavior functions
     /**
      * Show the button, including creating DOM elements if necessary for first render
@@ -6432,7 +6432,7 @@ LocusZoom.Dashboard.Component.Button = function(parent) {
             this.selector = null;
         }
         return this;
-    };    
+    };
 
     /**
      * Button Menu Object
@@ -6665,7 +6665,7 @@ LocusZoom.Dashboard.Components.add("download", function(layout){
                 }.bind(this));
             break;
         }
-    } 
+    }
     this.generateBase64SVG = function(){
         return Q.fcall(function () {
             // Insert a hidden div, clone the node into that so we can modify it with d3
@@ -7553,7 +7553,7 @@ LocusZoom.DataSources.prototype.toJSON = function() {
  *   `[namespace:]name[|transformation][|transformation]`. For example, `association:pvalue|neglog10`
  */
 LocusZoom.Data.Field = function(field){
-    
+
     var parts = /^(?:([^:]+):)?([^:|]*)(\|.+)*$/.exec(field);
     /** @member {String} */
     this.full_name = field;
@@ -7563,7 +7563,7 @@ LocusZoom.Data.Field = function(field){
     this.name = parts[2] || null;
     /** @member {Array} */
     this.transformations = [];
-    
+
     if (typeof parts[3] == "string" && parts[3].length > 1){
         this.transformations = parts[3].substring(1).split("|");
         this.transformations.forEach(function(transform, i){
@@ -7590,7 +7590,7 @@ LocusZoom.Data.Field = function(field){
         }
         return d[this.full_name];
     };
-    
+
 };
 
 /**
@@ -7639,7 +7639,7 @@ LocusZoom.Data.Requester = function(sources) {
             if (!sources.get(key)) {
                 throw("Datasource for namespace " + key + " not found");
             }
-            return sources.get(key).getData(state, requests[key].fields, 
+            return sources.get(key).getData(state, requests[key].fields,
                                             requests[key].outnames, requests[key].trans);
         });
         //assume the fields are requested in dependent order
@@ -7708,7 +7708,7 @@ LocusZoom.Data.Source.prototype.getCacheKey = function(state, chain, fields) {
  */
 LocusZoom.Data.Source.prototype.fetchRequest = function(state, chain, fields) {
     var url = this.getURL(state, chain, fields);
-    return LocusZoom.createCORSPromise("GET", url); 
+    return LocusZoom.createCORSPromise("GET", url);
 };
 // TODO: move this.getURL stub into parent class and add documentation; parent should not check for methods known only to children
 
@@ -7833,7 +7833,7 @@ LocusZoom.Data.Source.prototype.parseObjectsToObjects = function(x, fields, outn
     // [ {"id":1, "val":5}, {"id":2, "val":10}]
     var records = [];
     var fieldFound = [];
-    for (var k=0; k<fields.length; k++) { 
+    for (var k=0; k<fields.length; k++) {
         fieldFound[k] = 0;
     }
 
@@ -7872,7 +7872,7 @@ LocusZoom.Data.Source.prototype.parseObjectsToObjects = function(x, fields, outn
  *     This must be an array with the same length as `fields`
  */
 LocusZoom.Data.Source.prototype.parseData = function(x, fields, outnames, trans) {
-    if (Array.isArray(x)) { 
+    if (Array.isArray(x)) {
         return this.parseObjectsToObjects(x, fields, outnames, trans);
     } else {
         return this.parseArraysToObjects(x, fields, outnames, trans);
@@ -7917,7 +7917,7 @@ LocusZoom.Data.Source.extend = function(constructorFun, uniqueName, base) {
  * @returns {Object}
  */
 LocusZoom.Data.Source.prototype.toJSON = function() {
-    return [Object.getPrototypeOf(this).constructor.SOURCE_NAME, 
+    return [Object.getPrototypeOf(this).constructor.SOURCE_NAME,
         {url:this.url, params:this.params}];
 };
 
@@ -7971,7 +7971,7 @@ LocusZoom.Data.LDSource.prototype.preGetData = function(state, fields) {
 
 LocusZoom.Data.LDSource.prototype.findMergeFields = function(chain) {
     // since LD may be shared across sources with different namespaces
-    // we use regex to find columns to join on rather than 
+    // we use regex to find columns to join on rather than
     // requiring exact matches
     var exactMatch = function(arr) {return function() {
         var regexes = arguments;
@@ -8050,11 +8050,11 @@ LocusZoom.Data.LDSource.prototype.getURL = function(state, chain, fields) {
     }
     if (!chain.header) {chain.header = {};}
     chain.header.ldrefvar = refVar;
-    return this.url + "results/?filter=reference eq " + refSource + 
-        " and chromosome2 eq '" + state.chr + "'" + 
-        " and position2 ge " + state.start + 
-        " and position2 le " + state.end + 
-        " and variant1 eq '" + refVar + "'" + 
+    return this.url + "results/?filter=reference eq " + refSource +
+        " and chromosome2 eq '" + state.chr + "'" +
+        " and position2 ge " + state.start +
+        " and position2 le " + state.end +
+        " and variant1 eq '" + refVar + "'" +
         "&fields=chr,pos,rsquare";
 };
 
@@ -8092,7 +8092,7 @@ LocusZoom.Data.LDSource.prototype.parseResponse = function(resp, chain, fields, 
     if(reqFields.isrefvarin && chain.header.ldrefvar) {
         tagRefVariant(chain.body, chain.header.ldrefvar, keys.id, reqFields.isrefvarout);
     }
-    return chain;   
+    return chain;
 };
 
 /**
@@ -8108,7 +8108,7 @@ LocusZoom.Data.GeneSource = LocusZoom.Data.Source.extend(function(init) {
 LocusZoom.Data.GeneSource.prototype.getURL = function(state, chain, fields) {
     var source = state.source || chain.header.source || this.params.source || 2;
     return this.url + "?filter=source in " + source +
-        " and chrom eq '" + state.chr + "'" + 
+        " and chrom eq '" + state.chr + "'" +
         " and start le " + state.end +
         " and end ge " + state.start;
 };
@@ -8159,7 +8159,7 @@ LocusZoom.Data.GeneConstraintSource.prototype.parseResponse = function(resp, cha
     }
     var data = JSON.parse(resp);
     // Loop through the array of genes in the body and match each to a result from the constraints request
-    var constraint_fields = ["bp", "exp_lof", "exp_mis", "exp_syn", "lof_z", "mis_z", "mu_lof", "mu_mis","mu_syn", "n_exons", "n_lof", "n_mis", "n_syn", "pLI", "syn_z"]; 
+    var constraint_fields = ["bp", "exp_lof", "exp_mis", "exp_syn", "lof_z", "mis_z", "mu_lof", "mu_mis","mu_syn", "n_exons", "n_lof", "n_mis", "n_syn", "pLI", "syn_z"];
     chain.body.forEach(function(gene, i){
         var gene_id = gene.gene_id;
         if (gene_id.indexOf(".")){
@@ -8196,7 +8196,7 @@ LocusZoom.Data.RecombinationRateSource = LocusZoom.Data.Source.extend(function(i
 LocusZoom.Data.RecombinationRateSource.prototype.getURL = function(state, chain, fields) {
     var source = state.recombsource || chain.header.recombsource || this.params.source || 15;
     return this.url + "?filter=id in " + source +
-        " and chromosome eq '" + state.chr + "'" + 
+        " and chromosome eq '" + state.chr + "'" +
         " and position le " + state.end +
         " and position ge " + state.start;
 };
@@ -8213,8 +8213,8 @@ LocusZoom.Data.IntervalSource = LocusZoom.Data.Source.extend(function(init) {
 
 LocusZoom.Data.IntervalSource.prototype.getURL = function(state, chain, fields) {
     var source = state.bedtracksource || chain.header.bedtracksource || this.params.source || 16;
-    return this.url + "?filter=id in " + source + 
-        " and chromosome eq '" + state.chr + "'" + 
+    return this.url + "?filter=id in " + source +
+        " and chromosome eq '" + state.chr + "'" +
         " and start le " + state.end +
         " and end ge " + state.start;
 };

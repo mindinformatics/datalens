@@ -258,7 +258,7 @@ function ajax_lzoom_callback($form, $form_state) {
 
 function get_gene_info($input_gene) {
 
-  $base_api = "http://portaldev.sph.umich.edu/api/v1/annotation/genes/?filter=";
+  $base_api = "https://portaldev.sph.umich.edu/api/v1/annotation/genes/?filter=";
   $filter = "source in 2 and gene_name eq '" . $input_gene . "'";
   $full_url = $base_api . rawurlencode(utf8_encode(($filter)));
   //dsm($full_url);

@@ -405,7 +405,7 @@ function members_taxonomy_default_vocabularies() {
       'name' => 'Perturbation',
       'machine_name' => 'perturbation',
       'description' => '',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => 0,
       'rdf_mapping' => array(

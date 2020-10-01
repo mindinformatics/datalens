@@ -5,29 +5,30 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
-
-# Ignore any local .sql files
+# Ignore all local .sql files
 *.sql
-
-# Ignore the security review reports
-sites/all/modules/contrib/security_review/IGNOREME.txt
-sites/all/modules/contrib/security_review/file_write_test*
 
 # Ignore the load.sh file- changes too often
 load.sh
 
-# Ignore configuration files that may contain sensitive information.
+# Ignore additional configuration files that may contain sensitive information.
 sites/default/settings.php
 sites/default/local.settings.php
 sites/default/settings*.txt
 sites/default/config.properties
 
+# Ignore the security review module files
+sites/all/modules/security_review/IGNOREME.txt
+sites/all/modules/security_review/file_write_test*
+
 # Causes issues on Security Scan// not needed on LINUX
 web.config
 
-# Ignore paths that contain user-generated content.
-sites/*/files
-sites/*/private
+# Do not include these R-associated files.
+*.Rproj.user
+*.nb.html
+*.RProj
+*.Rhistory
 
 # Ignore OS generated files
 .DS_Store*

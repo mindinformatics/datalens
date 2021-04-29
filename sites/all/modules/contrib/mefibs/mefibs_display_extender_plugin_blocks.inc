@@ -100,7 +100,7 @@ class mefibs_display_extender_plugin_blocks extends views_plugin_display_extende
       drupal_add_css(drupal_get_path('module', 'mefibs') . '/css/mefibs_admin.css');
 
       $ajax_callback_base_path = 'admin/structure/views/view/' . $form_state['view']->name . '/edit/' . $form_state['view']->current_display . '/ajax/mefibs';
-      
+
       $exposed_settings = $this->display->get_option('exposed_form');
       $default_options = $exposed_settings['options'];
       $default_block = array(
@@ -132,13 +132,11 @@ class mefibs_display_extender_plugin_blocks extends views_plugin_display_extende
       }
 
       $form['mefibs'] = array(
-        '#prefix' => '<div id="mefibs-display-extender-blocks-wrapper-outer">',
-        '#suffix' => '</div>',
         '#blocks' => $blocks,
         '#tree' => TRUE,
       );
       $form['#title'] .= t('Enable additional blocks for exposed elements');
-      
+
       $form['mefibs']['description'] = array(
         '#type' => 'markup',
         '#markup' => t('Choose which blocks are available for exposed input fields for this display.'),
@@ -164,7 +162,7 @@ class mefibs_display_extender_plugin_blocks extends views_plugin_display_extende
           }
         }
       }
-      
+
       $default_sort = -1;
       if (!isset($settings['extras']['sort']) || $settings['extras']['sort'] === -1) {
         $default_sort = -1;
@@ -336,7 +334,7 @@ class mefibs_display_extender_plugin_blocks extends views_plugin_display_extende
       );
       $form['mefibs']['add_block']['name'] = array(
         '#type' => 'textfield',
-        '#title' => t('New block'),
+        '#title' => t('Block name'),
         '#default_value' => '',
         '#access' => $edit === FALSE,
       );
@@ -409,7 +407,7 @@ class mefibs_display_extender_plugin_blocks extends views_plugin_display_extende
         $action = array_pop($button['#parents']);
         array_pop($button['#parents']);
         $id = array_pop($button['#parents']);
-        
+
         // Store the action arguments to have them accessible in
         // options_form().
         $form_state['storage']['action'] = $action;
@@ -437,11 +435,11 @@ class mefibs_display_extender_plugin_blocks extends views_plugin_display_extende
             // Block to be removed.
             unset($blocks[$id]);
             break;
-            
+
           case 'edit':
             // Block to be edited.
             break;
-          
+
           case 'save':
             // Block to be saved.
             $blocks[$id] = array(
@@ -455,14 +453,14 @@ class mefibs_display_extender_plugin_blocks extends views_plugin_display_extende
             );
             break;
         }
-        
+
         $form_state['rerender'] = TRUE;
         $form_state['rebuild'] = TRUE;
         $form_state['view']->form_cache = array(
           'key' => 'display',
           'blocks' => array_values($blocks),
         );
-        
+
       }
       else {
         // Save settings.
@@ -482,14 +480,14 @@ class mefibs_display_extender_plugin_blocks extends views_plugin_display_extende
             'items_per_page' => $extras['items_per_page'] != -1 ? $blocks[$extras['items_per_page']]['machine_name'] : -1,
           ),
         );
-        
+
         $mefibs = $this->display->get_option('mefibs');
         if ($mefibs) {
           $settings = $settings + $mefibs;
         }
 
         // Remove filter associations for deleted blocks.
-        $block_ids = array();
+        $block_ids = array('default');
         foreach ($blocks as $block) {
           $block_ids[] = $block['machine_name'];
         }
@@ -499,9 +497,9 @@ class mefibs_display_extender_plugin_blocks extends views_plugin_display_extende
         $this->display->set_option('mefibs', $settings);
         views_ui_cache_set($this->view);
       }
-      
+
     }
-    
+
   }
 
 }

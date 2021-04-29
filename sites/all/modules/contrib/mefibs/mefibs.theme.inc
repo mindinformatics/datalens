@@ -42,7 +42,7 @@ function theme_mefibs_views_ui_block_list(&$vars) {
       );
       show($form[$key]['actions']);
     }
-    
+
     $row[] = drupal_render($form[$key]['actions']);
     $rows[] = $row;
     $count++;

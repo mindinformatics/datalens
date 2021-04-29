@@ -24,7 +24,7 @@ function mefibs_views_pre_build(&$view) {
   }
 
   $display = $view->display[$display_id]->handler;
-  
+
   $mefibs = $display->get_option('mefibs');
   if (!$mefibs) {
     return;
@@ -45,7 +45,7 @@ function mefibs_views_pre_build(&$view) {
     // No blocks, nothing to do.
     return;
   }
-  
+
   // Find out which block has been submitted.
   $block_id = 'default';
   foreach ($filters as $key => $value) {
@@ -112,12 +112,38 @@ function mefibs_views_pre_build(&$view) {
   // to set the correct default values.
   $_GET = $filters + $_GET;
   $view->set_exposed_input($filters);
-  
+
   // And save them in the session for later reference.
-  $_SESSION['mefibs'][$view->name][$view->current_display]['filters'] = $filters;
+  if (!empty($filters)) {
+    // Check if one of the filters should be remembered,
+    // if not, don't save them.
+    $save = FALSE;
+    foreach ($filters as $filter_identifier => $filter_value) {
+      $filter_name = isset($expected_items['filter'][$filter_identifier]) ? $expected_items['filter'][$filter_identifier] : $filter_identifier;
+      if (!empty($view->filter[$filter_name])) {
+        $filter_options = $view->filter[$filter_name]->options;
+        if (empty($filter_options['expose']['remember'])) {
+          continue;
+        }
+
+        // Check if we store exposed value for current user.
+        global $user;
+        $allowed_rids = empty($filter_options['expose']['remember_roles']) ? array() : array_filter($filter_options['expose']['remember_roles']);
+        $intersect_rids = array_intersect_key($allowed_rids, $user->roles);
+        if (empty($intersect_rids)) {
+          continue;
+        }
+        $save = TRUE;
+        break;
+      }
+    }
+    if ($save) {
+      $_SESSION['mefibs'][$view->name][$view->current_display]['filters'] = $filters;
+    }
+  }
 
   $pager = $view->display_handler->get_plugin('pager');
-  
+
   // Support for exposed items per page.
   if (isset($filters['items_per_page'])) {
     // Unsetting $_GET is ugly but necessary,
@@ -339,13 +365,13 @@ function mefibs_form_views_ui_edit_display_form_alter(&$form, $form_state) {
     return;
   }
   $display_id = $view->current_display;
-  
+
   $mefibs = $view->display_handler->get_option('mefibs');
   $blocks = $view->display_handler->extender['mefibs_blocks']->get_enabled_blocks();
   if (!count($blocks)) {
     return;
   }
-  
+
   // Add block selector for exposed items_per_page options
   if ($form_state['section'] == 'pager_options') {
     $form['options']['pager_options']['expose']['items_per_page']['#weight'] = -1;
@@ -376,7 +402,7 @@ function mefibs_form_views_ui_edit_display_form_alter(&$form, $form_state) {
       '#multiple' => TRUE,
     );
   }
-  
+
   // Add block selector for exposed form plugin settings.
   if ($form_state['section'] == 'exposed_form_options') {
     $form['options']['mefibs_block_sort'] = array(
@@ -388,7 +414,7 @@ function mefibs_form_views_ui_edit_display_form_alter(&$form, $form_state) {
       '#multiple' => TRUE,
     );
   }
-  
+
   $form['buttons']['submit']['#submit'][] = 'mefibs_form_views_ui_edit_display_form_submit';
 }
 
@@ -403,24 +429,24 @@ function mefibs_form_views_ui_edit_display_form_submit($form, &$form_state) {
     $display_id = $form_state['display_id'];
     $view->set_display($display_id);
     $display = $view->display[$display_id]->handler;
-    
+
     if (!$display->get_option('exposed_block')) {
       return;
     }
     $mefibs = $display->get_option('mefibs');
-    
+
     $mefibs_block_items_per_page = $values['pager_options']['expose']['mefibs_block_items_per_page'];
     $blocks_items_per_page = array_keys(array_filter($mefibs_block_items_per_page));
     $mefibs[$display_id]['other']['items_per_page'] = $blocks_items_per_page;
-    
+
     $mefibs_block_offset = $values['pager_options']['expose']['mefibs_block_offset'];
     $blocks_offset = array_keys(array_filter($mefibs_block_offset));
     $mefibs[$display_id]['other']['offset'] = $blocks_offset;
-    
+
     $view->display_handler->set_option('mefibs', $mefibs);
     views_ui_cache_set($view);
   }
-  
+
   if ($form_state['section'] == 'exposed_form_options') {
     $values = $form_state['values'];
 
@@ -428,7 +454,7 @@ function mefibs_form_views_ui_edit_display_form_submit($form, &$form_state) {
     $display_id = $form_state['display_id'];
     $view->set_display($display_id);
     $display = $view->display[$display_id]->handler;
-    
+
     if (!$display->get_option('exposed_block')) {
       return;
     }
@@ -466,12 +492,12 @@ function mefibs_form_views_ui_config_item_form_alter(&$form, $form_state) {
   if (!in_array($section, array('filters'))) {
     return;
   }
-  
+
   // Check if mefibs is configured
   if (!isset($view->display_handler->extender['mefibs_blocks'])) {
     return;
   }
-  
+
   $section_settings = $view->display_handler->get_option($section);
   $element_name = $form_state['id'];
   $mefibs = $view->display_handler->get_option('mefibs');
@@ -503,7 +529,7 @@ function mefibs_form_views_ui_config_item_form_submit($form, &$form_state) {
 
   // Extract 'filter' or 'sort'.
   $type = substr($section, 0, strlen($section) - 1);
-  
+
   $element_name = $form_state['id'];
   $values = $form_state['values'];
 
@@ -531,7 +557,7 @@ function mefibs_form_views_exposed_form_alter(&$form, $form_state) {
   if (!mefibs_display_is_mefibs_enabled($view->display_handler)) {
     return;
   }
-  
+
   $block_id = 'default';
   if (isset($form_state['exposed_form_override']) && isset($form_state['mefibs_block_id'])) {
     $form['mefibs_block_id'] = array(
@@ -541,7 +567,7 @@ function mefibs_form_views_exposed_form_alter(&$form, $form_state) {
     );
     $block_id = $form_state['mefibs_block_id'];
   }
-  
+
   if ($block_id == 'default') {
     // Add necessary info to JS settings.
     drupal_add_js(array(
@@ -556,13 +582,13 @@ function mefibs_form_views_exposed_form_alter(&$form, $form_state) {
       ),
     ), 'setting');
   }
-  
+
   // Hide exposed items from other form blocks.
   mefibs_hide_exposed_form_items($form, $view, $block_id);
 
   // Set default values to reflect the current filter states.
   mefibs_set_default_values($form, $view, $block_id);
-  
+
   array_unshift($form['#submit'], 'mefibs_exposed_block_form_submit');
 
 }
@@ -596,7 +622,7 @@ function mefibs_exposed_block_form($view, $block_id) {
 
   // Add javascript needed for ajax form behaviors.
   drupal_add_js(drupal_get_path('module', 'mefibs') . '/js/mefibs.js');
-  
+
   // Add necessary info to JS settings.
   drupal_add_js(array(
     'mefibs' => array(
@@ -612,7 +638,7 @@ function mefibs_exposed_block_form($view, $block_id) {
 
   // Inspired by the code in views_plugin_exposed_form::render_exposed_form().
   $exposed_form = $display->get_plugin('exposed_form');
-  
+
   // Deal with any exposed filters we may have, before building.
   $form_state = array(
     'view' => &$exposed_form->view,
@@ -666,7 +692,7 @@ function mefibs_exposed_block_form($view, $block_id) {
     $form['submit']['#attributes']['class'][] = 'ctools-use-ajax';
     $form['submit']['#attributes']['class'][] = 'ctools-auto-submit-click';
     $form['#attached']['js'][] = drupal_get_path('module', 'ctools') . '/js/auto-submit.js';
-    
+
     // As this is a copy of the original form, it is possible that the classes
     // are already there. We want uniqueness.
     array_unique($form['submit']['#attributes']['class']);
@@ -708,10 +734,10 @@ function mefibs_exposed_block_form_submit(&$form, &$form_state) {
   if (!$block_id || $block_id == 'default' || !mefibs_display_is_mefibs_enabled($view->display_handler)) {
     return;
   }
-  
+
   $display_id = $view->current_display;
   $display = $view->display[$display_id]->handler;
-  
+
   // Check if the reset button for this block is enabled. If so, we need to
   // rewrite the "op" value in order to let views know that the form should be
   // reset.
@@ -790,6 +816,9 @@ function mefibs_set_element_name_recursive(&$form, $prefix) {
     }
     if (isset($form[$element]['#type']) && in_array($form[$element]['#type'], $valid_element_types)) {
       $form[$element]['#name'] = $prefix . '-' . $form[$element]['#name'];
+      if (!empty($form[$element]['#multiple'])) {
+        $form[$element]['#attributes']['name'] = $form[$element]['#name'] . '[]';
+      }
     }
     if (count(element_children($form[$element]))) {
       mefibs_set_element_name_recursive($form[$element], $prefix);
@@ -800,7 +829,7 @@ function mefibs_set_element_name_recursive(&$form, $prefix) {
 /**
  * Build the element name prefix for the givne block_id.
  *
- * @param string $block_id 
+ * @param string $block_id
  * @return string
  */
 function mefibs_get_element_name_prefix($block_id) {
@@ -829,9 +858,14 @@ function mefibs_get_exposed_items($view) {
       foreach ($handlers as $handler) {
         if ($handler->options['exposed'] && in_array($type, array('filter', 'sort'))) {
           if ($type == 'filter') {
-            $items[$type][$handler->options['expose']['identifier']] = $handler->options['id'];
-            if ($handler->options['expose']['use_operator']) {
-              $items[$type][$handler->options['expose']['operator']] = $handler->options['expose']['operator_id'];
+            $expose_info = $handler->options['expose'];
+            $identifier = $expose_info['identifier'];
+            if ($handler->options['is_grouped']) {
+              $identifier = $handler->options['group_info']['identifier'];
+            }
+            $items[$type][$identifier] = $handler->options['id'];
+            if ($expose_info['use_operator']) {
+              $items[$type][$expose_info['operator']] = $expose_info['operator_id'];
             }
           }
           else {
@@ -847,6 +881,7 @@ function mefibs_get_exposed_items($view) {
     if ($pager->offset_exposed()) {
       $items['other'][] = 'offset';
     }
+
     $exposed_items[$view->current_display] = $items;
   }
 
@@ -881,13 +916,13 @@ function mefibs_get_expected_items_for_exposed_form_block($view, $block_id) {
     if (!isset($mefibs[$display_id][$type])) {
       continue;
     }
-    
+
     foreach ($exposed_items[$type] as $key => $item) {
       // Filters can have exposed operators so in case this is an operator we
       // build a special base name without the attached '_op'.
       $is_operator = strrpos($item, '_op') === strlen($item) - 3;
       $base = $is_operator ? substr($item, 0, strlen($item) - 3) : $item;
-      
+
       // Check for normal items and operators in special block.
       if (mefibs_item_visible($block_id, $mefibs, $display_id, $type, $item)) {
         $elements[$type][$key] = $item;
@@ -913,37 +948,44 @@ function mefibs_get_expected_items_for_exposed_form_block($view, $block_id) {
 /**
  * Hide form elements that should not show up for the given block id.
  *
- * @param array $form 
- * @param object $view 
- * @param string $block_id 
+ * @param array $form
+ * @param object $view
+ * @param string $block_id
  * @return void
  */
 function mefibs_hide_exposed_form_items(&$form, $view, $block_id) {
   $elements = mefibs_get_expected_items_for_exposed_form_block($view, $block_id);
+  $mefibs_options = $view->display_handler->get_option('mefibs');
 
   $display_id = $view->current_display;
   $display = $view->display[$display_id]->handler;
 
   $form_keys = array();
   foreach ($form['#info'] as $key => $definition) {
-    list($type, $item) = explode('-', $key);
-    if (in_array($item, $elements[$type])) {
-      if (!isset($form['#info']['filter-' . $item]['value'])) {
-        $key = $item;
+    list($type, $id) = explode('-', $key);
+    if ($display->get_handler($type, $id) && in_array($id, $elements[$type])) {
+      // This is a non grouped filter
+      if (!isset($form['#info']['filter-' . $id]['value'])) {
+        $key = $id;
       }
       else {
-        $key = $form['#info']['filter-' . $item]['value'];
+        $key = $form['#info']['filter-' . $id]['value'];
       }
       $form_keys[] = $key;
       if (isset($definition['operator']) && !empty($definition['operator'])) {
         $form_keys[] = $definition['operator'];
       }
     }
+    elseif (isset($elements[$type][$id])) {
+      // This is a grouped filter
+      $form_keys[] = $form['#info']['filter-' . $id]['value'];
+      if (isset($definition['operator']) && !empty($definition['operator'])) {
+        $form_keys[] = $definition['operator'];
+      }
+    }
   }
 
-  $mefibs = $view->display_handler->get_option('mefibs');
-
-  if (count($elements['sort']) && mefibs_sort_block_visible($block_id, $mefibs, $display_id)) {
+  if (count($elements['sort']) && $mefibs_options[$display_id]['sort_block'] == $block_id) {
     $form_keys[] = 'sort_by';
     $form_keys[] = 'sort_order';
   }
@@ -962,7 +1004,7 @@ function mefibs_hide_exposed_form_items(&$form, $view, $block_id) {
       ),
     ),
   ), 'setting');
-  
+
   // Add default form keys that we never want to hide.
   $form_keys = array_merge($form_keys, array(
     'submit',
@@ -991,11 +1033,11 @@ function mefibs_hide_exposed_form_items(&$form, $view, $block_id) {
   // Also hide the labels of hidden filters.
   $mefibs_options = $display->get_option('mefibs');
 
-  foreach ($form['#info'] as $id => $info) {
-    list($type, $item) = explode('-', $id);
-    if (!mefibs_item_visible($block_id, $mefibs_options, $display_id, $type, $item)) {
-      $form['#info'][$id]['label'] = '';
-      $form['#info'][$id]['description'] = '';
+  // Finally hide the labels of all non-shown filters.
+  foreach ($form['#info'] as $key => $info) {
+    if (isset($info['value']) && !in_array($info['value'], $form_keys)) {
+      $form['#info'][$key]['label'] = '';
+      $form['#info'][$key]['description'] = '';
     }
   }
 }
@@ -1006,11 +1048,11 @@ function mefibs_hide_exposed_form_items(&$form, $view, $block_id) {
  * The context is defined by the view specific mefibs options, the current
  * display id, the item type (filter, other) and the item name itself.
  *
- * @param string $block_id 
- * @param array $mefibs_options 
- * @param string $display_id 
- * @param string $type 
- * @param string $item 
+ * @param string $block_id
+ * @param array $mefibs_options
+ * @param string $display_id
+ * @param string $type
+ * @param string $item
  * @return boolean
  */
 function mefibs_item_visible($block_id, $mefibs_options, $display_id, $type, $item) {
@@ -1036,9 +1078,9 @@ function mefibs_item_visible($block_id, $mefibs_options, $display_id, $type, $it
  * The context is defined by the view specific mefibs options and the current
  * display id.
  *
- * @param string $block_id 
- * @param array $mefibs_options 
- * @param string $display_id 
+ * @param string $block_id
+ * @param array $mefibs_options
+ * @param string $display_id
  * @return boolean
  */
 function mefibs_sort_block_visible($block_id, $mefibs_options, $display_id) {
@@ -1089,15 +1131,15 @@ function mefibs_set_default_values(&$form, $view, $block_id) {
 /**
  * Check if mefibs is enabled for the given display handler.
  *
- * @param object $display_handler 
+ * @param object $display_handler
  * @return boolean
  */
 function mefibs_display_is_mefibs_enabled($display_handler) {
-  
+
   if (!is_object($display_handler) || !method_exists($display_handler, 'get_option')) {
     return FALSE;
   }
-  
+
   if (!isset($display_handler->extender['mefibs_blocks'])) {
     return FALSE;
   }
@@ -1113,7 +1155,7 @@ function mefibs_display_is_mefibs_enabled($display_handler) {
 /**
  * Callback function for a blocks machine_name form element.
  *
- * @param string $value 
+ * @param string $value
  * @return boolean
  */
 function mefibs_block_machine_name_exists($value, $element, $form_state) {
@@ -1146,7 +1188,7 @@ function mefibs_block_machine_name_exists($value, $element, $form_state) {
 /**
  * Recursively remove block associations from mefibs settings.
  *
- * @param array $display_settings 
+ * @param array $display_settings
  *  A structure like:
  *      'filter' => array(
  *        'filter_name' => array(
@@ -1166,7 +1208,7 @@ function mefibs_block_machine_name_exists($value, $element, $form_state) {
  *        ),
  *      )
  *
- * @param array $block_ids 
+ * @param array $block_ids
  *  The blocks to preserve.
  */
 function mefibs_remove_block_association_recursive(&$display_settings, $block_ids) {
@@ -1187,8 +1229,8 @@ function mefibs_remove_block_association_recursive(&$display_settings, $block_id
 /**
  * Remove an item from an array based on the value.
  *
- * @param array $array 
- * @param mixed $values 
+ * @param array $array
+ * @param mixed $values
  *  Either a single element or an array of elements that will be removed
  */
 function mefibs_remove_value_from_array(&$array, $values) {
